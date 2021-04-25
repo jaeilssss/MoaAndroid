@@ -4,23 +4,43 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.moa.moakotlin.data.Chat
+import com.moa.moakotlin.data.ChattingRoom
 import com.moa.moakotlin.data.User
 import kotlinx.coroutines.tasks.await
 
 class ChatRepository(var roomId: String) {
 
 
-    fun send(chat : Chat){
+    fun send(chat : Chat, opponentUid :String){
         var db = FirebaseFirestore.getInstance()
 
         db.collection("ChattingRoom").document(roomId)
-            .collection("ChattingRoom")
+            .collection("Chat")
             .add(chat).addOnSuccessListener {
-
+                        var chattingRoom = ChattingRoom()
+                chattingRoom.isRead=  true
+                chattingRoom.latestMessage = chat.talk
+                chattingRoom.opponentUid =opponentUid
+                chattingRoom.timeStamp = Timestamp.now()
+                updateLatestMessage(User.getInstance().uid,chattingRoom)
+                var chattingRoom2 = ChattingRoom()
+                chattingRoom2.isRead=  false
+                chattingRoom2.latestMessage = chat.talk
+                chattingRoom2.opponentUid =User.getInstance().uid
+                chattingRoom2.timeStamp = Timestamp.now()
+                updateLatestMessage(opponentUid,chattingRoom2)
             }
     }
 
+    fun updateLatestMessage(myId:String , chattingRoom : ChattingRoom){
+        var db = FirebaseFirestore.getInstance()
 
+        db.collection("User").document(myId)
+            .collection("ChattingRoom").document(roomId)
+            .set(chattingRoom).addOnCompleteListener {
+
+            }
+    }
 
    suspend fun initView() : Boolean {
        var list = ArrayList<Chat>()

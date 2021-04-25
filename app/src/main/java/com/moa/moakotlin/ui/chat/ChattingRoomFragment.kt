@@ -67,5 +67,6 @@ class ChattingRoomFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         adapter.list.clear()
+        model.deleteSnapShot()
     }
 }

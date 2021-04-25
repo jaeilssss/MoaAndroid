@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.ListenerRegistration
+import com.google.firebase.firestore.Query
 import com.moa.moakotlin.base.BaseViewModel
 import com.moa.moakotlin.data.ChattingRoom
 import com.moa.moakotlin.data.User
@@ -18,13 +20,17 @@ class ChattingRoomViewModel() : ViewModel(){
     var chattingRoomData = MutableLiveData<ArrayList<ChattingRoom>>()
     var roomList = ArrayList<String>()
     var TAG = "ChattingRoom"
+    lateinit var mlistener : ListenerRegistration
+    fun deleteSnapShot(){
+        mlistener.remove()
+    }
  fun setSnapShot(){
      chattingRoomData.value = ArrayList()
     var repository = ChattingRoomRepository()
 
-     var snapShot = repository.setSnapShotListener(User.getInstance().uid)
+    var snapShot = repository.setSnapShotListener(User.getInstance().uid)
 
-     snapShot.addSnapshotListener{ snapshot, e ->
+     mlistener = snapShot.addSnapshotListener{ snapshot, e ->
          if (e != null) {
              Log.w(TAG, "Listen failed.", e)
              return@addSnapshotListener

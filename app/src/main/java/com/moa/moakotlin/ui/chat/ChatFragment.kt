@@ -26,6 +26,7 @@ import com.moa.moakotlin.data.Chat
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentChatBinding
 import com.moa.moakotlin.recyclerview.chat.ChatAdapter
+import kotlinx.android.synthetic.main.chatting_room_item.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -75,15 +76,14 @@ class ChatFragment : Fragment() {
             model = ViewModelProvider(this).get(ChatViewModel::class.java)
         model.setReadTrue(roomId)
         binding.model = model
+        model.setSnapShot(roomId)
         onScrollListener(rcv,adapter)
-
 
             CoroutineScope(Dispatchers.Main).launch {
                 if(Chat.getInstance().get(roomId)==null){
                     if(model.initView(roomId)){
                         adapter.list = Chat.getInstance().get(roomId)!!
                         rcv.adapter = adapter
-
                     }else{
                         // initView 가 false 인 결
                     }
@@ -93,23 +93,30 @@ class ChatFragment : Fragment() {
                     rcv.adapter = adapter
                 }
             }
-
-
         model.msg.observe(viewLifecycleOwner,Observer{
+            println("observe 임!!!")
             adapter.list.add(model.msg.value!!)
             adapter.resetting()
+            if(model.msg.value!!.uid.equals(User.getInstance().uid)){
+                rcv.scrollToPosition(adapter.itemCount-1)
+            }else{
+                // 상대방이 쓴 채팅은 밑으로 안내려가짐 !!
+            }
         })
         binding.chatPhoto.setOnClickListener{
             model.imagePicker()
         }
         binding.chatSend.setOnClickListener {
-            model.send(opponentUser.uid)
+            if(model.talk.get()?.length!! >0){
+                model.send(roomId,opponentUser.uid)
+            }
         }
         return binding.root
     }
     override fun onStop() {
         super.onStop()
         model.setReadTrue(roomId)
+        model.deleteSnapShot()
     }
 
     fun onScrollListener(rcv: RecyclerView,adapter: ChatAdapter){
@@ -130,59 +137,5 @@ class ChatFragment : Fragment() {
                 }
             }
         })
-    }
-
-    fun snapShotListener(adapter: ChatAdapter){
-
-        db = firebase.collection("ChattingRoom").document(roomId)
-            .collection("Chat").orderBy("timeStamp",Query.Direction.DESCENDING).limit(1)
-            .addSnapshotListener{
-                    snapshot, e ->
-                if(e!=null){
-                    Log.e("snapshot error", e.toString())
-                }else{
-                    if (snapshot != null) {
-                        if(check==0){
-                            check++
-                        }else{
-                            for(dc : DocumentChange in snapshot.documentChanges){
-                                when(dc.type) {
-                                    DocumentChange.Type.ADDED -> {
-
-                                        var user = User.getInstance()
-                                        var map = dc.document
-                                        var chat = Chat()
-                                        if (map.get("images") != null) {
-                                            chat.images = map.get("images") as ArrayList<String>
-                                        }
-                                        chat.talk = map.get("talk").toString()
-                                        chat.uid = map.get("uid").toString()
-                                        chat.timeStamp = map.get("timeStamp") as Timestamp
-                                        adapter.addChat(chat)
-                                        adapter.changeSetting()
-
-                                        if(chat.uid.equals(user.uid)){
-                                            rcv.scrollToPosition(adapter.itemCount-1)
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-    }
-
-
-    fun readTrueSetting(){
-        firebase.collection("User")
-                .document(User.getInstance().uid)
-                .collection("ChattingRoom")
-                .document(roomId)
-                .update(
-                        "isRead",true
-                ).addOnSuccessListener {
-                    println("성공!")
-                }
     }
 }
