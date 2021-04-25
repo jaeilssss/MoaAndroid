@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+<data>
+    <variable
+        name="model"
+        type="com.moa.moakotlin.ui.signup.SignUpResultViewModel" />
+</data>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.signup.SignUpResultFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="회원가입 완료"
+            android:gravity="center_horizontal"
+            android:textColor="#000000"
+            android:textSize="20dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#000000"
+        android:layout_marginLeft="10dp"
+        android:textSize="15dp"
+        android:text="@string/signUpSuccess" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/aptUncertified"
+            android:layout_marginTop="5dp"
+            android:textColor="#000000"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="#000000"
+            android:layout_marginLeft="10dp"
+            android:text="@string/signUpLastMessage"/>
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="모아 시작하기"
+        android:id="@+id/sign_result_goto_home"
+        android:background="@drawable/login_button_shape"/>
+</LinearLayout>
+</LinearLayout>
+</layout>

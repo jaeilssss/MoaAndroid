@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="model"
+            type="com.moa.moakotlin.ui.firstview.FirstViewViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.firstview.FirstViewFragment">
+
+        <com.synnapps.carouselview.CarouselView
+            android:id="@+id/carousview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:autoPlay="false"
+            app:fillColor="#ffffff"
+            android:background="#221122"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:pageColor="#000000"
+            app:radius="6dp"
+            app:indicatorMarginVertical="100dp"
+            app:strokeColor="#ff777777"
+            app:strokeWidth="1dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="모두의 아파트 시작하기"
+            android:onClick="@{()->model.login()}"
+            android:background="@drawable/login_button_shape"
+            app:layout_constraintBottom_toBottomOf="@+id/carousview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="model"
+            type="com.moa.moakotlin.ui.select.KidSitterWriteViewModel" />
+    </data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.select.KidSitterWriteFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="쌍용 1차 뉴나리님 !"
+        android:layout_marginTop="25dp"
+        android:textColor="#000000"
+        android:textSize="20dp"
+        android:id="@+id/kid_my_address"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="주변 이웃과 어떤 소통을 원하시나요?"
+        android:layout_marginTop="25dp"
+        android:textColor="#000000"
+        android:textSize="20dp" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/go_to_kid_write"
+        android:background="@drawable/moa_temp_mom"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#bdbdbd"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/go_to_sitter_write"
+        android:background="@drawable/moa_temp_seater"/>
+
+</LinearLayout>
+</layout>

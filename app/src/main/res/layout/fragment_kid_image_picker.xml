@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="model"
+            type="com.moa.moakotlin.ui.imagepicker.KidImagePickerViewModel"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.imagepicker.KidImagePicker">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/kid_image_picker_submit"
+                android:layout_marginRight="15dp"
+                android:text="전송"
+                android:textSize="20dp"
+                />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentStart="true"
+                android:onClick="@{()->model.prev()}"
+                android:background="@drawable/moa_temp_back"
+                android:id="@+id/image_picker_back"/>
+        </RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:id="@+id/kid_image_picker_rv"/>
+    </LinearLayout>
+</layout>

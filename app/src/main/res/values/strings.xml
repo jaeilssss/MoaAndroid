@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">moaKotlin</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="certificationNoticeContent">잠깐!! \n 모두의 아파트는 실제 아파트 거주자만 이용할 수 있습니다 \n 회원가입을 위해 신분증 1종(주민등록증,여권,면허증 등) 을 준비해주세요 \n
+    만약 신분증의 주소가 설정하신 아파트 주소와 다르다면 추가로 서류가 필요해요 ! </string>
+
+    <string name="aptCertificationSkip">아직 준비 되지 않았군요! \n 사진 인증을 거치지 않은 경우 글쓰기 및 댓글 달기에 참여가 제한 됩니다 \n \n 가입 후에 사진 인증을 거쳐
+    실제 아파트 거주자로 등록될 수 있어요</string>
+    <string name="aptCertificationSuccess"> </string>
+    <string name="signUpSuccess">회원가입이 완료 되었습니다!</string>
+    <string name="aptUncertified">실제 거주지 미인증</string>
+    <string name="aptCertified">실제 거주지 인증</string>
+    <string name="signUpLastMessage"> 함께 만들어가는 아파트 선진 문화에 동참하신 것을 환영해요 ^.^ </string>
+    <string name="kidReviewHint">솔직한 피드백은 육아 돌봄을 \n 구하고 있는 이웃들에게 많은 도움이 됩니다 </string>
+    <string name="kidPolicy">글 작성하기 전에 알려드려요 \n 어떤 돌봄을 원하시는지(등하원 돕기,실내놀이 , 학습지도 등)과 돌봄위치 , 특별히 요청하는 사항 등에 대해서 \n 적어주세요\n\n 육아돌봄 정책 보러가기</string>
+    <string name="kidSuccessText">채용이 완료 되었습니다 \n 실제 시터를 선택해주세요</string>
+    <string-array name="kidType">
+        <item>"신생아 및 영아"</item>
+        <item>"유아"</item>
+        <item>"초등학생"</item>
+        <item>"기타"</item>
+    </string-array>
+    <string-array name="kidCount">
+        <item>"1명"</item>
+        <item>"2명"</item>
+        <item>"3명이상"</item>
+    </string-array>
+    <string-array name="sitterType">
+        <item>"엄마,아빠"</item>
+        <item>"할머니,할아버지"</item>
+        <item>"대학생"</item>
+        <item>"선생님"</item>
+    </string-array>
+    <string name="title_activity_loading_fragment">LoadingFragment</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="title_activity_loading">LoadingActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="5dp"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/chat_left_profile"
+            android:src="@drawable/profile_human"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+    <TextView
+        android:textSize="12sp"
+        android:id="@+id/TextView_nickname"
+        android:layout_width="310dp"
+        android:textColor="#000000"
+        android:text="닉네임"
+        android:layout_gravity="left"
+        android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_width="310dp"
+                android:layout_height="wrap_content">
+    <TextView
+        android:textSize="15dp"
+        android:id="@+id/TextView_msg2"
+        android:layout_width="wrap_content"
+        android:gravity="left"
+        android:padding="10dp"
+        android:text="dddddd"
+        android:textColor="#000000"
+        android:background="@drawable/login_button_shape"
+        android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+</LinearLayout>

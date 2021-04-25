@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<data>
+    <variable
+        name="model"
+        type="com.moa.moakotlin.ui.kid.KidHireSuccessViewModel" />
+</data>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1">
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/kid_hire_success_back"
+        android:background="@drawable/moa_temp_back"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="10dp"
+        android:text="선정 시터 선택"
+        android:textSize="20dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold"/>
+<View
+    android:layout_width="0dp"
+    android:layout_height="2dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/kid_hire_success_back"
+    android:id="@+id/kid_hire_success_line"
+    android:background="#bdbdbd"/>
+<TextView
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:background="@drawable/circle_check"
+    android:text="v"
+    android:gravity="center"
+    android:textSize="20dp"
+    android:textColor="#ffffff"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/kid_hire_success_line"
+    android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/kid_hire_success_line"
+        android:layout_marginTop="90dp"
+        android:text="@string/kidSuccessText"
+        android:id="@+id/kid_success_text"
+        android:textStyle="bold"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/kid_success_text"
+        android:background="#bdbdbd"
+        android:id="@+id/kid_hire_success_line2"
+        android:layout_marginTop="20dp"/>
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="fitXY"
+        tools:background="@drawable/moa_kid_default"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/kid_hire_success_line2"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/kid_success_image"/>
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        app:layout_constraintStart_toEndOf="@id/kid_success_image"
+        android:text="아이돌봄 채용"
+        app:layout_constraintTop_toBottomOf="@id/kid_hire_success_line2"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="#000000"
+        android:id="@+id/kid_hire_text"/>
+    <TextView
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        app:layout_constraintTop_toBottomOf="@id/kid_hire_text"
+        app:layout_constraintStart_toEndOf="@id/kid_success_image"
+        tools:text="등화원 돕기 시터 구합니다"
+        android:textColor="#000000"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/kid_success_title"
+        android:layout_marginTop="10dp"/>
+
+<View
+    android:layout_width="0dp"
+    android:layout_height="2dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/kid_success_title"
+    android:background="#bdbdbd"
+    android:id="@+id/kid_hire_success_line3"
+    android:layout_marginTop="25dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/kid_hire_success_line3"
+        android:id="@+id/kid_hire_success_rcv"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="나중에"
+            android:background="@drawable/background_shape"
+            android:id="@+id/kid_success_later"/>
+</LinearLayout>
+</layout>

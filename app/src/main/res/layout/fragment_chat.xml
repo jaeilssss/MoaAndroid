@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="model"
+            type="com.moa.moakotlin.ui.chat.ChatViewModel" />
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/below"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/moa_temp_back" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:text="상대방 닉네임"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textSize="20dp" />
+
+        </RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/chat_recycler_view"
+            android:layout_below="@+id/below"
+            android:layout_above="@id/bottom"
+            android:scrollbars="vertical"
+            app:stackFromEnd="true"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bottom"
+            android:padding="5dp"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/photo"
+                android:id="@+id/chat_Photo"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_weight="1"
+                android:text="@={model.talk}"
+                android:id="@+id/edit_text"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:id="@+id/chat_send"
+                android:layout_alignParentEnd="true"
+                android:text="send"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

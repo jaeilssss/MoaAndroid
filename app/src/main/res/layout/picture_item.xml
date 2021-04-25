@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="92dp"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:id="@+id/imageviewItem"
+            android:background="@drawable/radius"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+        <Button
+            android:id="@+id/profile_image_cancel"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="1dp"
+            android:text="X"
+            android:textSize="22dp"
+            android:textColor="@color/colorGray"
+            android:background="@drawable/radius"/>
+    </RelativeLayout>
+</LinearLayout>

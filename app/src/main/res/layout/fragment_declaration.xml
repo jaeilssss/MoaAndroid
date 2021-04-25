@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.bottomsheet.DeclarationBottomFragment">
+    <data>
+
+        <variable
+            name="model"
+            type="com.moa.moakotlin.ui.declaration.DeclarationViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="20sp"
+            android:id="@+id/declaration_txt"
+            android:layout_marginLeft="10dp"
+            android:text="신고하는 이유를 선택해주세요"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/declaration_txt"
+            android:layout_marginTop="10dp"
+            android:checked="@={model.checkBoxList[0]}"
+            android:onClick="@{()->model.check(0)}"
+            android:text="해당 게시글이 아니에요"
+            android:id="@+id/declaration_check1"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/declaration_check1"
+            android:id="@+id/declaration_check2"
+            android:checked="@={model.checkBoxList[1]}"
+            android:onClick="@{()->model.check(1)}"
+            android:text="허위 정보를 기재했어요"
+            android:layout_marginTop="5dp"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/declaration_check2"
+            android:id="@+id/declaration_check3"
+            android:checked="@={model.checkBoxList[2]}"
+            android:onClick="@{()->model.check(2)}"
+            android:text="부적절한 사진/글이 있어요"
+            android:layout_marginTop="5dp"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/declaration_check3"
+            android:id="@+id/declaration_check4"
+            android:checked="@={model.checkBoxList[3]}"
+            android:onClick="@{()->model.check(3)}"
+            android:text="기타 규정을 위반했어요"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="상세내용을 입력해주세요"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/declaration_check4"
+            android:layout_marginTop="20dp"
+            android:textSize="20sp"
+            android:id="@+id/declatation_text2"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000000"
+            />
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/declatation_text2"
+            android:minHeight="200dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/declaration_edit"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/declaration_edit"
+            android:text="신고하기"
+            android:id="@+id/declaration_submit"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

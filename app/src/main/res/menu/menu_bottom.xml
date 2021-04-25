@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+ <item
+     android:id="@+id/HomeFragment"
+     android:enabled="true"
+     android:icon="@drawable/moa_temp_bottom_home"
+     app:showAsAction="ifRoom"
+     android:title="" />
+    <item
+        android:id="@+id/writeSelectFragment"
+        android:icon="@drawable/moa_temp_bottom_write"
+        app:showAsAction="ifRoom"
+        android:title=""/>
+    <item
+        android:id="@+id/chattingRoomFragment"
+        android:enabled="true"
+        android:icon="@drawable/moa_temp_bottom_chat"
+        android:title=""
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/MyPageFragment"
+        android:enabled="true"
+        android:icon="@drawable/moa_temp_bottom_mypage"
+        android:title=""
+        app:showAsAction="ifRoom"/>
+</menu>

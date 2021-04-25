@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/firstViewFragment">
+
+    <fragment
+        android:id="@+id/ChatFragment"
+        android:name="com.moa.moakotlin.ui.chat.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat">
+        <action
+            android:id="@+id/action_ChatFragment_to_imagePickerFragment"
+            app:destination="@id/imagePickerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/HomeFragment"
+        android:name="com.moa.moakotlin.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_HomeFragment_to_kidViewSelectFragment"
+            app:destination="@id/kidViewSelectFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/MyPageFragment"
+        android:name="com.moa.moakotlin.ui.mypage.MyPageFragment"
+        android:label="fragment_my_page"
+        tools:layout="@layout/fragment_my_page">
+        <action
+            android:id="@+id/action_MyPageFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.moa.moakotlin.ui.login.LoginFragment"
+        android:label="LoginFragment">
+        <action
+            android:id="@+id/action_loginFragment_to_phoneCertification"
+            app:destination="@id/phoneCertification" />
+    </fragment>
+    <fragment
+        android:id="@+id/firstViewFragment"
+        android:name="com.moa.moakotlin.ui.firstview.FirstViewFragment"
+        android:label="FirstViewFragment">
+        <action
+            android:id="@+id/action_firstViewFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.moa.moakotlin.ui.signup.SignUpFragment"
+        android:label="SignUpFragment">
+        <action
+            android:id="@+id/action_signUpFragment_to_signUpInfoFragment"
+            app:destination="@id/signUpInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpInfoFragment"
+        android:name="com.moa.moakotlin.ui.signup.SignUpInfoFragment"
+        android:label="fragment_sign_up_info"
+        tools:layout="@layout/fragment_sign_up_info">
+        <action
+            android:id="@+id/action_signUpInfoFragment_to_aptInfoFragment"
+            app:destination="@id/aptInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/phoneCertification"
+        android:name="com.moa.moakotlin.ui.signup.PhoneCertification"
+        android:label="fragment_phone_certification"
+        tools:layout="@layout/fragment_phone_certification">
+        <action
+            android:id="@+id/action_phoneCertification_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_phoneCertification_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aptInfoFragment"
+        android:name="com.moa.moakotlin.ui.signup.AptInfoFragment"
+        android:label="fragment_apt_info"
+        tools:layout="@layout/fragment_apt_info">
+        <action
+            android:id="@+id/action_aptInfoFragment_to_aptSearchFragment"
+            app:destination="@id/aptSearchFragment" />
+        <action
+            android:id="@+id/action_aptInfoFragment_to_certificationNoticeFragment"
+            app:destination="@id/certificationNoticeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aptSearchFragment"
+        android:name="com.moa.moakotlin.ui.signup.AptSearchFragment"
+        android:label="fragment_apt_search"
+        tools:layout="@layout/fragment_apt_search" />
+    <fragment
+        android:id="@+id/certificationNoticeFragment"
+        android:name="com.moa.moakotlin.ui.certification.CertificationNoticeFragment"
+        android:label="fragment_certification_notice"
+        tools:layout="@layout/fragment_certification_notice">
+        <action
+            android:id="@+id/action_certificationNoticeFragment_to_certificationSkipFragment"
+            app:destination="@id/certificationSkipFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/certificationResultFragment"
+        android:name="com.moa.moakotlin.ui.certification.CertificationResultFragment"
+        android:label="fragment_certification_result"
+        tools:layout="@layout/fragment_certification_result" />
+    <fragment
+        android:id="@+id/certificationSkipFragment"
+        android:name="com.moa.moakotlin.ui.certification.CertificationSkipFragment"
+        android:label="CertificationSkipFragment">
+        <action
+            android:id="@+id/action_certificationSkipFragment_to_signUpResultFragment"
+            app:destination="@id/signUpResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpResultFragment"
+        android:name="com.moa.moakotlin.ui.signup.SignUpResultFragment"
+        android:label="fragment_sign_up_result"
+        tools:layout="@layout/fragment_sign_up_result">
+        <action
+            android:id="@+id/action_signUpResultFragment_to_firstViewFragment"
+            app:destination="@id/firstViewFragment" />
+        <action
+            android:id="@+id/action_signUpResultFragment_to_HomeFragment"
+            app:destination="@id/HomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUpPasswordFragment"
+        android:name="com.moa.moakotlin.ui.signup.SignUpPasswordFragment"
+        android:label="fragment_sign_up_password"
+        tools:layout="@layout/fragment_sign_up_password" />
+    <fragment
+        android:id="@+id/chattingRoomFragment"
+        android:name="com.moa.moakotlin.ui.chat.ChattingRoomFragment"
+        android:label="ChattingRoomFragment">
+        <action
+            android:id="@+id/action_chattingRoomFragment_to_ChatFragment"
+            app:destination="@id/ChatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imagePickerFragment"
+        android:name="com.moa.moakotlin.ui.imagepicker.ImagePickerFragment"
+        android:label="fragment_image_picker"
+        tools:layout="@layout/fragment_image_picker">
+        <action
+            android:id="@+id/action_imagePickerFragment_to_ChatFragment"
+            app:destination="@id/ChatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/kidMainFragment"
+        android:name="com.moa.moakotlin.ui.kid.KidMainFragment"
+        android:label="fragment_kid_main"
+        tools:layout="@layout/fragment_kid_main">
+        <action
+            android:id="@+id/action_kidMainFragment_to_kidReadFragment"
+            app:destination="@id/kidReadFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/kidReadFragment"
+        android:name="com.moa.moakotlin.ui.kid.KidReadFragment"
+        android:label="KidReadFragment">
+        <action
+            android:id="@+id/action_kidReadFragment_to_ChatFragment"
+            app:destination="@id/ChatFragment" />
+        <action
+            android:id="@+id/action_kidReadFragment_to_kidModifyFragment"
+            app:destination="@id/kidModifyFragment" />
+        <action
+            android:id="@+id/action_kidReadFragment_to_kidHireSuccessPageFragment"
+            app:destination="@id/kidHireSuccessPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/KidSitterWriteFragment"
+        android:name="com.moa.moakotlin.ui.select.KidSitterWriteFragment"
+        android:label="KidSitterWriteFragment">
+        <action
+            android:id="@+id/action_kidSelectFragment_to_kidWritePageFragment"
+            app:destination="@id/kidWritePageFragment" />
+        <action
+            android:id="@+id/action_KidSitterWriteFragment_to_sitterWriteFragment"
+            app:destination="@id/sitterWriteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/writeSelectFragment"
+        android:name="com.moa.moakotlin.ui.bottomsheet.WriteSelectFragment"
+        android:label="fragment_write_select"
+        tools:layout="@layout/fragment_write_select" />
+    <fragment
+        android:id="@+id/kidWritePageFragment"
+        android:name="com.moa.moakotlin.ui.kid.KidWritePageFragment"
+        android:label="KidWritePageFragment">
+        <action
+            android:id="@+id/action_kidWritePageFragment_to_kidImagePicker"
+            app:destination="@id/kidImagePicker" />
+        <action
+            android:id="@+id/action_kidWritePageFragment_to_kidReadFragment"
+            app:destination="@id/kidReadFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/kidImagePicker"
+        android:name="com.moa.moakotlin.ui.imagepicker.KidImagePicker"
+        android:label="KidImagePicker" />
+    <fragment
+        android:id="@+id/kidModifyFragment"
+        android:name="com.moa.moakotlin.ui.kid.KidModifyFragment"
+        android:label="KidModifyFragment">
+        <action
+            android:id="@+id/action_kidModifyFragment_to_kidImagePicker"
+            app:destination="@id/kidImagePicker" />
+        <action
+            android:id="@+id/action_kidModifyFragment_to_kidReadFragment"
+            app:destination="@id/kidReadFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/kidHireSuccessPageFragment"
+        android:name="com.moa.moakotlin.ui.kid.KidHireSuccessPageFragment"
+        android:label="KidHireSuccessPageFragment">
+        <action
+            android:id="@+id/action_kidHireSuccessPageFragment_to_kidReviewWriteFragment"
+            app:destination="@id/kidReviewWriteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/kidReviewWriteFragment"
+        android:name="com.moa.moakotlin.ui.kid.KidReviewWriteFragment"
+        android:label="KidReviewWriteFragment" />
+    <fragment
+        android:id="@+id/kidViewSelectFragment"
+        android:name="com.moa.moakotlin.ui.select.KidSitterViewSelectFragment"
+        android:label="KidViewSelectFragment">
+        <action
+            android:id="@+id/action_kidViewSelectFragment_to_kidMainFragment"
+            app:destination="@id/kidMainFragment" />
+        <action
+            android:id="@+id/action_kidViewSelectFragment_to_sitterMainFragment"
+            app:destination="@id/sitterMainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sitterWriteFragment"
+        android:name="com.moa.moakotlin.ui.sitter.SitterWriteFragment"
+        android:label="fragment_sitter_write"
+        tools:layout="@layout/fragment_sitter_write" />
+    <fragment
+        android:id="@+id/sitterMainFragment"
+        android:name="com.moa.moakotlin.ui.sitter.SitterMainFragment"
+        android:label="SitterMainFragment">
+        <action
+            android:id="@+id/action_sitterMainFragment_to_sitterReadFragment"
+            app:destination="@id/sitterReadFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sitterReadFragment"
+        android:name="com.moa.moakotlin.ui.sitter.SitterReadFragment"
+        android:label="fragment_sitter_read"
+        tools:layout="@layout/fragment_sitter_read">
+        <action
+            android:id="@+id/action_sitterReadFragment_to_sitterModifyFragment"
+            app:destination="@id/sitterModifyFragment" />
+        <action
+            android:id="@+id/action_sitterReadFragment_to_declarationFragment"
+            app:destination="@id/declarationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sitterModifyFragment"
+        android:name="com.moa.moakotlin.ui.sitter.SitterModifyFragment"
+        android:label="fragment_sitter_modify"
+        tools:layout="@layout/fragment_sitter_modify">
+        <action
+            android:id="@+id/action_sitterModifyFragment_to_sitterReadFragment"
+            app:destination="@id/sitterReadFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/declarationFragment"
+        android:name="com.moa.moakotlin.ui.declaration.DeclarationFragment"
+        android:label="DeclarationFragment" />
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.moa.moakotlin.ui.mypage.UserProfileFragment"
+        android:label="UserProfileFragment">
+        <action
+            android:id="@+id/action_userProfileFragment_to_userProfileModifyFragment"
+            app:destination="@id/userProfileModifyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userProfileModifyFragment"
+        android:name="com.moa.moakotlin.ui.mypage.UserProfileModifyFragment"
+        android:label="UserProfileModifyFragment">
+        <action
+            android:id="@+id/action_userProfileModifyFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
+        <action
+            android:id="@+id/action_userProfileModifyFragment_to_userImagePickerFragment"
+            app:destination="@id/userImagePickerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userImagePickerFragment"
+        android:name="com.moa.moakotlin.ui.imagepicker.UserImagePickerFragment"
+        android:label="UserImagePickerFragment" />
+    <fragment
+        android:id="@+id/FirstFragment"
+        android:name="com.moa.moakotlin.FirstFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_first">
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SecondFragment"
+        android:name="com.moa.moakotlin.SecondFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_second">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+
+</navigation>
