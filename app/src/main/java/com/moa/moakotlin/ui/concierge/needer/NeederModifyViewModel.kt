@@ -1,4 +1,4 @@
-package com.moa.moakotlin.ui.kid
+package com.moa.moakotlin.ui.concierge.needer
 
 import android.net.Uri
 import android.os.Bundle
@@ -16,7 +16,7 @@ import java.io.File
 import java.io.FileInputStream
 import java.time.LocalDateTime
 
-class KidModifyViewModel (navController: NavController) : BaseViewModel(navController){
+class NeederModifyViewModel (navController: NavController) : BaseViewModel(navController){
     var now = LocalDateTime.now()
     var title = ObservableField<String>("")
     var type = ObservableField<String>("")

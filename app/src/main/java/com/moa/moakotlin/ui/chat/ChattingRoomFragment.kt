@@ -18,13 +18,14 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.*
 import com.google.firebase.ktx.Firebase
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.ChattingRoom
 import com.moa.moakotlin.databinding.FragmentChattingRoomBinding
 import com.moa.moakotlin.recyclerview.chat.ChattingRoomAdapter
 
 
-class ChattingRoomFragment : Fragment() {
+class ChattingRoomFragment : BaseFragment() {
 
 
     lateinit var binding : FragmentChattingRoomBinding
@@ -55,7 +56,9 @@ class ChattingRoomFragment : Fragment() {
 
         rcv.adapter = adapter
 
+
         model.setSnapShot()
+
         model.chattingRoomData.observe(viewLifecycleOwner, Observer {
             adapter.list = model.chattingRoomData.value!!
             adapter.roomList = model.roomList
@@ -68,5 +71,9 @@ class ChattingRoomFragment : Fragment() {
         super.onStop()
         adapter.list.clear()
         model.deleteSnapShot()
+    }
+
+    override fun onBackPressed() {
+        navController.popBackStack(R.id.HomeFragment,true)
     }
 }

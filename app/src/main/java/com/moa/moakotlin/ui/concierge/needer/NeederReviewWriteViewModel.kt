@@ -1,4 +1,4 @@
-package com.moa.moakotlin.ui.kid
+package com.moa.moakotlin.ui.concierge.needer
 
 import androidx.databinding.ObservableField
 import androidx.navigation.NavController
@@ -11,7 +11,7 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.base.Transfer
 
 
-class KidReviewWriteViewModel(navController: NavController) : BaseViewModel(navController) {
+class NeederReviewWriteViewModel(navController: NavController) : BaseViewModel(navController) {
     var content = ObservableField<String>("")
 
     // 굉장히 비효율적인 방식인거같다 .... 나중에 효율적인 방식으록 고치자

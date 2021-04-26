@@ -1,4 +1,4 @@
-package com.moa.moakotlin.ui.sitter
+package com.moa.moakotlin.ui.concierge.helper
 
 import android.net.Uri
 import android.os.Bundle
@@ -7,16 +7,14 @@ import androidx.navigation.NavController
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseViewModel
-import com.moa.moakotlin.data.Kid
 import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.data.Sitter
 import com.moa.moakotlin.data.User
 import java.io.File
 import java.io.FileInputStream
 
-class SitterWriteViewModel(navController: NavController):BaseViewModel(navController) {
+class HelperWriteViewModel(navController: NavController):BaseViewModel(navController) {
 
     var title = ObservableField<String>("")
     var type = ObservableField<String>("")

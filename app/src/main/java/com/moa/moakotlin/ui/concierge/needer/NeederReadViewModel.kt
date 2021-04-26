@@ -1,18 +1,15 @@
-package com.moa.moakotlin.ui.kid
+package com.moa.moakotlin.ui.concierge.needer
 
-import android.content.Context
 import android.os.Bundle
-import android.widget.Toast
 import androidx.navigation.NavController
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseViewModel
-import com.moa.moakotlin.data.Chat
 import com.moa.moakotlin.data.ChattingRoom
 import com.moa.moakotlin.data.User
 
-class KidReadViewModel(navController: NavController ) : BaseViewModel(navController) {
+class NeederReadViewModel(navController: NavController ) : BaseViewModel(navController) {
 
     lateinit var writerUid :String
     fun goToChatting(writerUid : String){

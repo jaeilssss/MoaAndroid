@@ -57,9 +57,7 @@ class ChattingRoomViewModel() : ViewModel(){
                      }
                  }
              }
-
              chattingRoomData.value = list!!
-             println("라이브 데이터 변경?? ${chattingRoomData.value!!.size}")
          }
      }
 }

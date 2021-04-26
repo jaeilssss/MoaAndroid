@@ -79,8 +79,6 @@ class KidImagePicker : Fragment() {
                         list.clear()
                         list.addAll(Picture.getGalleryPhotos(context!!))
                         adapter!!.notifyDataSetChanged()
-                        //imageListRecyclerAdapter.addAll(getGalleryPhotos());
-                        //checkImageStatus();
                     }
                     Looper.loop()
                 }
@@ -89,11 +87,6 @@ class KidImagePicker : Fragment() {
         binding.model = model
 
         binding.kidImagePickerSubmit.setOnClickListener {
-
-//            var picture = adapter.list.get(adapter.checkBox)
-//            var list = ArrayList<Picture>()
-//            list.add(picture)
-//            Picture.setInstance(list)
                 navController.popBackStack()
         }
         return binding.root

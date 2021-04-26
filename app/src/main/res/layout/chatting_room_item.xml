@@ -47,7 +47,7 @@
         android:textSize="15sp"
         android:layout_marginTop="30dp"
         android:id="@+id/chatting_room_item_date"
-        android:layout_marginRight="10dp"/>
+        android:layout_marginRight="40dp"/>
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="10dp"
         android:layout_height="10dp"

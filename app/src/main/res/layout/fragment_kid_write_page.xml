@@ -5,7 +5,7 @@
     <data>
         <variable
             name="model"
-            type="com.moa.moakotlin.ui.kid.KidWritePageViewModel" />
+            type="com.moa.moakotlin.ui.concierge.needer.NeederWritePageViewModel" />
     </data>
 <ScrollView
     android:layout_height="match_parent"
@@ -14,7 +14,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.kid.KidWritePageFragment">
+    tools:context=".ui.concierge.needer.NeederWritePageFragment">
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -65,6 +65,7 @@
         android:layout_marginRight="10dp"
         android:backgroundTint="#ffffff"
         android:hint="글 제목"
+        android:textColor="#000000"
         android:text="@={model.title}"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -96,7 +97,7 @@
             android:text="카테고리 선택"
             app:layout_constraintStart_toStartOf="parent"
             android:textSize="17sp"
-            android:id="@+id/kid_type_select"
+            android:id="@+id/first_type"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginLeft="10dp"/>
 
@@ -106,7 +107,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/kid_type_select"
+            app:layout_constraintStart_toEndOf="@id/first_type"
             app:layout_constraintTop_toTopOf="parent"
             android:text="@={model.type}"
             tools:text="초등학생" />
@@ -173,69 +174,14 @@
         android:id="@+id/write_page_fourth_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/kid_view_hope_date_layout"
-        app:layout_constraintTop_toBottomOf="@id/write_page_fourth_view">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="희망 날짜(시작날짜)        >"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="10dp"
-            android:textSize="17sp"
-            android:layout_marginTop="10dp"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <DatePicker
+
+    <TextView
         android:layout_width="0dp"
-        android:layout_height="100dp"
-        android:datePickerMode="spinner"
-        android:calendarViewShown="false"
-        android:id="@+id/kid_write_date_picker"
-        android:year="@={model.year}"
-        android:month="@={model.month}"
-        android:day="@={model.day}"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/kid_view_hope_date_layout"/>
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/hope_date_check"
-        android:checked="@={model.isRe()}"
-        app:layout_constraintEnd_toStartOf="@id/date_text"
         app:layout_constraintTop_toBottomOf="@id/write_page_fourth_view"
-        app:layout_constraintBaseline_toBaselineOf="@id/date_text"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="정기돌봄"
-        android:textSize="17sp"
-        android:id="@+id/date_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/write_page_fourth_view"/>
-    <View
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:background="#bdbdbd"
-        android:id="@+id/write_page_fifth_view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/kid_write_date_picker"
-        android:layout_marginTop="20dp"/>
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/write_page_fifth_view"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textSize="15sp"
@@ -256,6 +202,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/kid_write_policy"
         android:hint="ㅇㅇㅇㅇ"
+        android:padding="10dp"
+        android:gravity="start|top"
         android:text="@={model.content}"
         android:layout_marginTop="50dp"
         app:layout_constraintEnd_toEndOf="parent"

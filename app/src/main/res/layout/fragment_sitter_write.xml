@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.moa.moakotlin.ui.sitter.SitterWriteViewModel" />
+            type="com.moa.moakotlin.ui.concierge.helper.HelperWriteViewModel" />
     </data>
 <ScrollView
     android:layout_width="match_parent"
@@ -16,7 +16,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.sitter.SitterWriteFragment">
+    tools:context=".ui.concierge.helper.HelperWriteFragment">
 
     <ImageView
         android:layout_width="wrap_content"

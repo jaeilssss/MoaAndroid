@@ -1,4 +1,4 @@
-package com.moa.moakotlin.ui.sitter
+package com.moa.moakotlin.ui.concierge.helper
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,13 +17,12 @@ import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentSitterReadBinding
 import com.moa.moakotlin.viewmodelfactory.SitterViewModelFactory
 import com.moa.moakotlin.viewpageradapter.SitterReadViewPager
-import kotlinx.android.synthetic.main.fragment_home.*
 
-class SitterReadFragment : Fragment() {
+class HelperReadFragment : Fragment() {
 
     lateinit var binding : FragmentSitterReadBinding
 
-    lateinit var model : SitterReadViewModel
+    lateinit var model : HelperReadViewModel
 
     lateinit var navController: NavController
 
@@ -34,7 +33,7 @@ class SitterReadFragment : Fragment() {
 
         navController = findNavController()
 
-        model = ViewModelProvider(this,SitterViewModelFactory(navController)).get(SitterReadViewModel::class.java)
+        model = ViewModelProvider(this,SitterViewModelFactory(navController)).get(HelperReadViewModel::class.java)
         var sitter : Sitter
      arguments.let {
         sitter = (arguments as Bundle).getParcelable("sitter")!!
@@ -62,8 +61,6 @@ class SitterReadFragment : Fragment() {
         }else{
             binding.sitterReadWage.text = sitter.wage
         }
-
-
 
         binding.sitterReadChattingBtn.setOnClickListener {
 //                var opponentUser  =

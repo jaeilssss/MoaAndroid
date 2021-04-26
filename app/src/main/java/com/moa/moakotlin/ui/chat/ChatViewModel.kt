@@ -81,8 +81,6 @@ lateinit var mlistener : ListenerRegistration
                 Log.w(TAG, "Listen failed.", error)
                 return@addSnapshotListener
             }
-            var list = msg.value
-
             if(value!=null){
                 for(document in value.documents){
                     var chat = document.toObject(Chat::class.java)
@@ -101,12 +99,4 @@ lateinit var mlistener : ListenerRegistration
 
         }
     }
-fun settingChattingRoomDb(myId:String ,chattingRoom: ChattingRoom){
-//    var firebase = FirebaseFirestore.getInstance()
-//    firebase.collection("User").document(myId)
-//            .collection("ChattingRoom").document(roomId)
-//            .set(chattingRoom).addOnCompleteListener {
-//
-//            }
-}
 }

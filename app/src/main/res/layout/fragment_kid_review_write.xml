@@ -3,7 +3,7 @@
     <data>
         <variable
             name="model"
-            type="com.moa.moakotlin.ui.kid.KidReviewWriteViewModel" />
+            type="com.moa.moakotlin.ui.concierge.needer.NeederReviewWriteViewModel" />
     </data>
 
 <ScrollView
@@ -16,7 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.kid.KidReviewWriteFragment">
+        tools:context=".ui.concierge.needer.NeederReviewWriteFragment">
 
         <ImageView
             android:id="@+id/kid_review_back"

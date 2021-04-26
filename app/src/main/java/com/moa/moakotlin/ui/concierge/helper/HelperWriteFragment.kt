@@ -1,4 +1,4 @@
-package com.moa.moakotlin.ui.sitter
+package com.moa.moakotlin.ui.concierge.helper
 
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -20,14 +19,14 @@ import com.moa.moakotlin.databinding.FragmentSitterWriteBinding
 import com.moa.moakotlin.recyclerview.sitter.SitterWritePictureAdapter
 import com.moa.moakotlin.viewmodelfactory.SitterViewModelFactory
 
-class SitterWriteFragment : Fragment() {
+class HelperWriteFragment : Fragment() {
 
 
     lateinit var binding : FragmentSitterWriteBinding
 
     lateinit var navController: NavController
 
-    lateinit var model : SitterWriteViewModel
+    lateinit var model : HelperWriteViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +38,7 @@ class SitterWriteFragment : Fragment() {
         navController = findNavController()
 
         model = ViewModelProvider(this,SitterViewModelFactory(navController))
-                .get(SitterWriteViewModel::class.java)
+                .get(HelperWriteViewModel::class.java)
         binding.model = model
 
 

@@ -1,4 +1,4 @@
-package com.moa.moakotlin.ui.kid
+package com.moa.moakotlin.ui.concierge.needer
 
 import android.net.Uri
 import android.os.Bundle
@@ -15,7 +15,7 @@ import java.io.FileInputStream
 import java.time.LocalDateTime
 import kotlin.collections.ArrayList
 
-class KidWritePageViewModel(navController: NavController) :BaseViewModel(navController){
+class NeederWritePageViewModel(navController: NavController) :BaseViewModel(navController){
 
 
     var now = LocalDateTime.now()
@@ -29,7 +29,8 @@ class KidWritePageViewModel(navController: NavController) :BaseViewModel(navCont
     var content = ObservableField<String>("")
     var imagelist : ArrayList<String> ?=null
     var list = ArrayList<String>()
-
+    var firstType = ""
+    var secondType = ""
     var isNego = ObservableField<Boolean>(false)
     var i   = 0
     var isRe = ObservableField<Boolean>(false)

@@ -19,9 +19,10 @@
         android:name="com.moa.moakotlin.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
+
         <action
-            android:id="@+id/action_HomeFragment_to_kidViewSelectFragment"
-            app:destination="@id/kidViewSelectFragment" />
+            android:id="@+id/action_HomeFragment_to_ConciergeMainFragment"
+            app:destination="@id/ConciergeMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/MyPageFragment"
@@ -152,7 +153,7 @@
     </fragment>
     <fragment
         android:id="@+id/kidMainFragment"
-        android:name="com.moa.moakotlin.ui.kid.KidMainFragment"
+        android:name="com.moa.moakotlin.ui.concierge.needer.NeederMainFragment"
         android:label="fragment_kid_main"
         tools:layout="@layout/fragment_kid_main">
         <action
@@ -161,7 +162,7 @@
     </fragment>
     <fragment
         android:id="@+id/kidReadFragment"
-        android:name="com.moa.moakotlin.ui.kid.KidReadFragment"
+        android:name="com.moa.moakotlin.ui.concierge.needer.NeederReadFragment"
         android:label="KidReadFragment">
         <action
             android:id="@+id/action_kidReadFragment_to_ChatFragment"
@@ -175,7 +176,7 @@
     </fragment>
     <fragment
         android:id="@+id/KidSitterWriteFragment"
-        android:name="com.moa.moakotlin.ui.select.KidSitterWriteFragment"
+        android:name="com.moa.moakotlin.ui.concierge.ConciergeWriteFragment"
         android:label="KidSitterWriteFragment">
         <action
             android:id="@+id/action_kidSelectFragment_to_kidWritePageFragment"
@@ -191,7 +192,7 @@
         tools:layout="@layout/fragment_write_select" />
     <fragment
         android:id="@+id/kidWritePageFragment"
-        android:name="com.moa.moakotlin.ui.kid.KidWritePageFragment"
+        android:name="com.moa.moakotlin.ui.concierge.needer.NeederWritePageFragment"
         android:label="KidWritePageFragment">
         <action
             android:id="@+id/action_kidWritePageFragment_to_kidImagePicker"
@@ -206,7 +207,7 @@
         android:label="KidImagePicker" />
     <fragment
         android:id="@+id/kidModifyFragment"
-        android:name="com.moa.moakotlin.ui.kid.KidModifyFragment"
+        android:name="com.moa.moakotlin.ui.concierge.needer.NeederModifyFragment"
         android:label="KidModifyFragment">
         <action
             android:id="@+id/action_kidModifyFragment_to_kidImagePicker"
@@ -217,7 +218,7 @@
     </fragment>
     <fragment
         android:id="@+id/kidHireSuccessPageFragment"
-        android:name="com.moa.moakotlin.ui.kid.KidHireSuccessPageFragment"
+        android:name="com.moa.moakotlin.ui.concierge.needer.NeederHireSuccessPageFragment"
         android:label="KidHireSuccessPageFragment">
         <action
             android:id="@+id/action_kidHireSuccessPageFragment_to_kidReviewWriteFragment"
@@ -225,27 +226,27 @@
     </fragment>
     <fragment
         android:id="@+id/kidReviewWriteFragment"
-        android:name="com.moa.moakotlin.ui.kid.KidReviewWriteFragment"
+        android:name="com.moa.moakotlin.ui.concierge.needer.NeederReviewWriteFragment"
         android:label="KidReviewWriteFragment" />
     <fragment
-        android:id="@+id/kidViewSelectFragment"
-        android:name="com.moa.moakotlin.ui.select.KidSitterViewSelectFragment"
+        android:id="@+id/ConciergeMainFragment"
+        android:name="com.moa.moakotlin.ui.concierge.ConciergeMainFragment"
         android:label="KidViewSelectFragment">
         <action
-            android:id="@+id/action_kidViewSelectFragment_to_kidMainFragment"
+            android:id="@+id/action_ConciergeMainFragment_to_kidMainFragment"
             app:destination="@id/kidMainFragment" />
         <action
-            android:id="@+id/action_kidViewSelectFragment_to_sitterMainFragment"
+            android:id="@+id/action_ConciergeMainFragment_to_sitterMainFragment"
             app:destination="@id/sitterMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/sitterWriteFragment"
-        android:name="com.moa.moakotlin.ui.sitter.SitterWriteFragment"
+        android:name="com.moa.moakotlin.ui.concierge.helper.HelperWriteFragment"
         android:label="fragment_sitter_write"
         tools:layout="@layout/fragment_sitter_write" />
     <fragment
         android:id="@+id/sitterMainFragment"
-        android:name="com.moa.moakotlin.ui.sitter.SitterMainFragment"
+        android:name="com.moa.moakotlin.ui.concierge.helper.HelperMainFragment"
         android:label="SitterMainFragment">
         <action
             android:id="@+id/action_sitterMainFragment_to_sitterReadFragment"
@@ -253,7 +254,7 @@
     </fragment>
     <fragment
         android:id="@+id/sitterReadFragment"
-        android:name="com.moa.moakotlin.ui.sitter.SitterReadFragment"
+        android:name="com.moa.moakotlin.ui.concierge.helper.HelperReadFragment"
         android:label="fragment_sitter_read"
         tools:layout="@layout/fragment_sitter_read">
         <action
@@ -265,7 +266,7 @@
     </fragment>
     <fragment
         android:id="@+id/sitterModifyFragment"
-        android:name="com.moa.moakotlin.ui.sitter.SitterModifyFragment"
+        android:name="com.moa.moakotlin.ui.concierge.helper.HelperModifyFragment"
         android:label="fragment_sitter_modify"
         tools:layout="@layout/fragment_sitter_modify">
         <action

@@ -7,13 +7,13 @@
 <data>
     <variable
         name="model"
-        type="com.moa.moakotlin.ui.sitter.SitterMainViewModel" />
+        type="com.moa.moakotlin.ui.concierge.helper.HelperMainViewModel" />
 
 </data>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.sitter.SitterMainFragment">
+    tools:context=".ui.concierge.helper.HelperMainFragment">
 <com.google.android.material.appbar.AppBarLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">

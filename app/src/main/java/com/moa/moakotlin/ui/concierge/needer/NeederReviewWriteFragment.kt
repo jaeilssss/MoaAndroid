@@ -1,4 +1,4 @@
-package com.moa.moakotlin.ui.kid
+package com.moa.moakotlin.ui.concierge.needer
 
 import android.content.Context
 import android.os.Bundle
@@ -15,16 +15,15 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.base.Transfer
 import com.moa.moakotlin.databinding.FragmentKidReviewWriteBinding
 import com.moa.moakotlin.viewmodelfactory.KidViewModelFactory
-import kotlinx.android.synthetic.*
 
-class KidReviewWriteFragment : Fragment() {
+class NeederReviewWriteFragment : Fragment() {
 
 
     lateinit var binding : FragmentKidReviewWriteBinding
 
     lateinit var navController: NavController
 
-    lateinit var model : KidReviewWriteViewModel
+    lateinit var model : NeederReviewWriteViewModel
     lateinit var transfer: Transfer
 
     override fun onAttach(context: Context) {
@@ -47,7 +46,7 @@ class KidReviewWriteFragment : Fragment() {
         navController = findNavController()
 
         model = ViewModelProvider(this,KidViewModelFactory(navController))
-            .get(KidReviewWriteViewModel::class.java)
+            .get(NeederReviewWriteViewModel::class.java)
 
         binding.model = model
         model.transfer = transfer

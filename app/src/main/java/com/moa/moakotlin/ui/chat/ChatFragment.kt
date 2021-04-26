@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.*
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.Transfer
 import com.moa.moakotlin.data.Chat
 import com.moa.moakotlin.data.User
@@ -34,7 +35,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class ChatFragment : Fragment() {
+class ChatFragment : BaseFragment() {
 
     lateinit var binding: FragmentChatBinding
     var check =0
@@ -61,7 +62,6 @@ class ChatFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_chat,container , false)
         roomId = arguments?.getString("roomId")?:"x"
 
-
         opponentUser = arguments?.getParcelable<User>("opponentUser")!!
 
         navController = findNavController()
@@ -73,6 +73,7 @@ class ChatFragment : Fragment() {
         var manager= LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
         manager.stackFromEnd = true
         rcv.layoutManager  = manager
+        rcv.scrollToPosition(adapter.itemCount-1)
             model = ViewModelProvider(this).get(ChatViewModel::class.java)
         model.setReadTrue(roomId)
         binding.model = model
@@ -84,6 +85,7 @@ class ChatFragment : Fragment() {
                     if(model.initView(roomId)){
                         adapter.list = Chat.getInstance().get(roomId)!!
                         rcv.adapter = adapter
+                        rcv.scrollToPosition(adapter.itemCount-1)
                     }else{
                         // initView 가 false 인 결
                     }
@@ -91,10 +93,10 @@ class ChatFragment : Fragment() {
                     Chat.getInstance().get(roomId)?.let { model.nextChat(roomId, it) }
                     adapter.list = Chat.getInstance().get(roomId)!!
                     rcv.adapter = adapter
+                    rcv.scrollToPosition(adapter.itemCount-1)
                 }
             }
         model.msg.observe(viewLifecycleOwner,Observer{
-            println("observe 임!!!")
             adapter.list.add(model.msg.value!!)
             adapter.resetting()
             if(model.msg.value!!.uid.equals(User.getInstance().uid)){
@@ -104,7 +106,11 @@ class ChatFragment : Fragment() {
             }
         })
         binding.chatPhoto.setOnClickListener{
-            model.imagePicker()
+            var bundle = Bundle()
+
+            bundle.putString("roomId",roomId)
+            bundle.putString("opponentUid",opponentUser.uid)
+            navController.navigate(R.id.imagePickerFragment,bundle)
         }
         binding.chatSend.setOnClickListener {
             if(model.talk.get()?.length!! >0){
@@ -119,6 +125,10 @@ class ChatFragment : Fragment() {
         model.deleteSnapShot()
     }
 
+    override fun onBackPressed() {
+        navController.popBackStack()
+    }
+
     fun onScrollListener(rcv: RecyclerView,adapter: ChatAdapter){
         rcv.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -130,7 +140,6 @@ class ChatFragment : Fragment() {
                       var result = model.scroll(roomId,adapter.list.get(0).timeStamp)
                         var size = result.size
                         adapter.joined(result)
-                        Toast.makeText(context,(result.size).toString(),Toast.LENGTH_SHORT).show()
                         rcv.scrollToPosition(size+lastCompletelyVisibleItemPosition)
                     }
 

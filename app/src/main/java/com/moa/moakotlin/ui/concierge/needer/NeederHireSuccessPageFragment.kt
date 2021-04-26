@@ -1,4 +1,4 @@
-package com.moa.moakotlin.ui.kid
+package com.moa.moakotlin.ui.concierge.needer
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -21,13 +21,13 @@ import com.moa.moakotlin.databinding.FragmentKidHireSuccessPageBinding
 import com.moa.moakotlin.recyclerview.kid.KidHireSuccessAdapter
 import com.moa.moakotlin.viewmodelfactory.KidViewModelFactory
 
-class KidHireSuccessPageFragment : Fragment() {
+class NeederHireSuccessPageFragment : Fragment() {
 
 lateinit var binding: FragmentKidHireSuccessPageBinding
 
     lateinit var navController: NavController
 
-    lateinit var model : KidHireSuccessViewModel
+    lateinit var model : NeederHireSuccessViewModel
 
     lateinit var list : ArrayList<ChattingRoom>
 
@@ -42,10 +42,9 @@ lateinit var binding: FragmentKidHireSuccessPageBinding
         navController = findNavController()
 
         model = ViewModelProvider(this, KidViewModelFactory(navController))
-            .get(KidHireSuccessViewModel::class.java)
+            .get(NeederHireSuccessViewModel::class.java)
 
         var kid = arguments?.getParcelable<Kid>("kid")
-
 
         if(kid?.images!=null){
             context?.let { Glide.with(it).load(kid.images!!.get(0)).into(binding.kidSuccessImage) }
@@ -58,6 +57,7 @@ lateinit var binding: FragmentKidHireSuccessPageBinding
         binding.model = model
 
         getChattingRoomList()
+
         return binding.root
     }
 

@@ -5,7 +5,7 @@
     <data>
         <variable
             name="model"
-            type="com.moa.moakotlin.ui.kid.KidReadViewModel" />
+            type="com.moa.moakotlin.ui.concierge.needer.NeederReadViewModel" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"

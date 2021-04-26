@@ -15,16 +15,33 @@
     <string name="kidReviewHint">솔직한 피드백은 육아 돌봄을 \n 구하고 있는 이웃들에게 많은 도움이 됩니다 </string>
     <string name="kidPolicy">글 작성하기 전에 알려드려요 \n 어떤 돌봄을 원하시는지(등하원 돕기,실내놀이 , 학습지도 등)과 돌봄위치 , 특별히 요청하는 사항 등에 대해서 \n 적어주세요\n\n 육아돌봄 정책 보러가기</string>
     <string name="kidSuccessText">채용이 완료 되었습니다 \n 실제 시터를 선택해주세요</string>
-    <string-array name="kidType">
-        <item>"신생아 및 영아"</item>
-        <item>"유아"</item>
-        <item>"초등학생"</item>
+    <string-array name="firstType">
+        <item>"인테리어"</item>
+        <item>"육아/교육"</item>
+        <item>"품앗이"</item>
+        <item>"반려동물"</item>
         <item>"기타"</item>
     </string-array>
-    <string-array name="kidCount">
-        <item>"1명"</item>
-        <item>"2명"</item>
-        <item>"3명이상"</item>
+    <string-array name="interiorDetail">
+        <item>"못박기"</item>
+        <item>"조명교체"</item>
+        <item>"가구 옮기기"</item>
+        <item>"정리/수납"</item>
+        <item>"도어락,문고리 교체"</item>
+    </string-array>
+    <string-array name="kidDetail">
+        <item>"등하원 도우미"</item>
+        <item>"놀이"</item>
+        <item>"교육"</item>
+        <item>"공동 육아 재능 기부하기"</item>
+    </string-array>
+    <string-array name="laborDetail">
+        <item>"김장 김치 함께 하기"</item>
+        <item>"대형마트 장 물건 나누기"</item>
+    </string-array>
+    <string-array name="petDetail">
+        <item>"반려동물 맡기기"</item>
+        <item>"반려동물 산책"</item>
     </string-array>
     <string-array name="sitterType">
         <item>"엄마,아빠"</item>

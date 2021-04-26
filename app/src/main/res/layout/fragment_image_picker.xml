@@ -24,7 +24,6 @@
             android:id="@+id/image_picker_submit"
             android:layout_marginRight="15dp"
             android:text="전송"
-            android:onClick="@{()->model.submit()}"
             android:textSize="20dp"
             />
         <ImageView

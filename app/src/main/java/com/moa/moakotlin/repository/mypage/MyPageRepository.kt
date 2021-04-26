@@ -32,7 +32,6 @@ class MyPageRepository {
                     }.addOnFailureListener {
                         result = false
                     }.await()
-          println(">??? ${result}")
           result
         }catch (e : Exception){
             result = false

@@ -1,4 +1,4 @@
-package com.moa.moakotlin.ui.sitter
+package com.moa.moakotlin.ui.concierge.helper
 
 import android.net.Uri
 import android.os.Bundle
@@ -15,7 +15,7 @@ import com.moa.moakotlin.data.User
 import java.io.File
 import java.io.FileInputStream
 
-class SitterModifyViewModel(navController: NavController) : BaseViewModel(navController) {
+class HelperModifyViewModel(navController: NavController) : BaseViewModel(navController) {
     var title = ObservableField<String>("")
     var type = ObservableField<String>("")
     var wage = ObservableField<String>("")

@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.sitter.SitterReadFragment">
+    tools:context=".ui.concierge.helper.HelperReadFragment">
 
     <data>
 
         <variable
             name="model"
-            type="com.moa.moakotlin.ui.sitter.SitterReadViewModel" />
+            type="com.moa.moakotlin.ui.concierge.helper.HelperReadViewModel" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"

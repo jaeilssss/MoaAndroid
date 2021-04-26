@@ -3,14 +3,14 @@
     <data>
         <variable
             name="model"
-            type="com.moa.moakotlin.ui.select.KidSitterWriteViewModel" />
+            type="com.moa.moakotlin.ui.concierge.ConciergeWriteViewModel" />
     </data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.select.KidSitterWriteFragment">
+    tools:context=".ui.concierge.ConciergeWriteFragment">
 
     <TextView
         android:layout_width="wrap_content"

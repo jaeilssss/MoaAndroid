@@ -59,7 +59,7 @@ var i = 0
         transfer.bottomVisible()
 
         binding.kid.setOnClickListener{
-            navController.navigate(R.id.action_HomeFragment_to_kidViewSelectFragment)
+            navController.navigate(R.id.action_HomeFragment_to_ConciergeMainFragment)
         }
 
         return binding.root

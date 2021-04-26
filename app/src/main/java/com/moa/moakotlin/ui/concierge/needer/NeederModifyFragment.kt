@@ -1,4 +1,4 @@
-package com.moa.moakotlin.ui.kid
+package com.moa.moakotlin.ui.concierge.needer
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -18,12 +18,12 @@ import com.moa.moakotlin.recyclerview.kid.KidWritePictureAdapter
 import com.moa.moakotlin.viewmodelfactory.KidViewModelFactory
 
 
-class KidModifyFragment : Fragment() {
+class NeederModifyFragment : Fragment() {
 
 
     lateinit var binding : FragmentKidModifyBinding
 
-    lateinit var model : KidModifyViewModel
+    lateinit var model : NeederModifyViewModel
 
     lateinit var navController: NavController
 
@@ -40,7 +40,7 @@ class KidModifyFragment : Fragment() {
 
         navController = findNavController()
 
-        model = ViewModelProvider(this, KidViewModelFactory(navController)).get(KidModifyViewModel::class.java)
+        model = ViewModelProvider(this, KidViewModelFactory(navController)).get(NeederModifyViewModel::class.java)
 
         arguments?.let {
             bundle = arguments as Bundle

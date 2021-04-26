@@ -1,4 +1,4 @@
-package com.moa.moakotlin.ui.kid
+package com.moa.moakotlin.ui.concierge.needer
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -19,13 +19,13 @@ import com.moa.moakotlin.databinding.FragmentKidReadBinding
 import com.moa.moakotlin.viewmodelfactory.KidViewModelFactory
 import com.moa.moakotlin.viewpageradapter.KidReadViewPagerAdapter
 
-class KidReadFragment : Fragment() {
+class NeederReadFragment : Fragment() {
 
     lateinit var binding : FragmentKidReadBinding
 
     lateinit var navController: NavController
 
-    lateinit var model: KidReadViewModel
+    lateinit var model: NeederReadViewModel
 
     lateinit var kid : Kid
     lateinit var  bundle : Bundle
@@ -70,7 +70,7 @@ class KidReadFragment : Fragment() {
         binding.kidHopeDate.text = kid.hopeDate
 
         model = ViewModelProvider(this, KidViewModelFactory(navController))
-            .get(KidReadViewModel::class.java)
+            .get(NeederReadViewModel::class.java)
         binding.model = model
 
         if(kid.isNegotiable==true){

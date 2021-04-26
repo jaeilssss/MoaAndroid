@@ -23,6 +23,9 @@ import com.moa.moakotlin.base.Transfer
 import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.databinding.FragmentImagePickerBinding
 import com.moa.moakotlin.recyclerview.imagepickrcv.ImagePickerAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ImagePickerFragment : Fragment() {
 
@@ -58,6 +61,18 @@ class ImagePickerFragment : Fragment() {
         rcv.layoutManager = manager
         var list = ArrayList<String>()
         context?.let { mcontext = it }!!
+        binding.imagePickerSubmit.setOnClickListener {
+
+            CoroutineScope(Dispatchers.Main).launch {
+                if(adapter.checkBox!=-1){
+                   var result =  model.submit(adapter.list.get(adapter.checkBox),roomId,opponentUid)
+                    if(result ==true){
+                        navController.popBackStack()
+                    }
+                }
+            }
+        }
+
 
         adapter = context?.let { list = Picture.getGalleryPhotos(it)
             ImagePickerAdapter(navController,it,list)

@@ -39,9 +39,6 @@ class KidWritePictureAdapter(var list : ArrayList<String>,var context : Context,
              imageview = view.findViewById(R.id.imageviewItem)
              imageview.setOnClickListener {
                      val builder: AlertDialog.Builder = AlertDialog.Builder(adapter.context)
-                     val items = adapter.resource.getStringArray(R.array.kidType)
-
-
 
                      builder.setPositiveButton("네",object :DialogInterface.OnClickListener{
                          override fun onClick(p0: DialogInterface?, p1: Int) {

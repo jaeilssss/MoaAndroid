@@ -1,4 +1,4 @@
-package com.moa.moakotlin.ui.sitter
+package com.moa.moakotlin.ui.concierge.helper
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -20,12 +20,12 @@ import com.moa.moakotlin.recyclerview.sitter.SitterMainAdapter
 import com.moa.moakotlin.viewmodelfactory.SitterViewModelFactory
 import com.moa.moakotlin.viewpageradapter.SitterMainViewPager
 
-class SitterMainFragment : Fragment() {
+class HelperMainFragment : Fragment() {
 
 
     lateinit var binding: FragmentSitterMainBinding
 
-    lateinit var model : SitterMainViewModel
+    lateinit var model : HelperMainViewModel
 
     lateinit var navController: NavController
 
@@ -40,7 +40,7 @@ class SitterMainFragment : Fragment() {
         navController = findNavController()
 
         model = ViewModelProvider(this,SitterViewModelFactory(navController))
-                .get(SitterMainViewModel::class.java)
+                .get(HelperMainViewModel::class.java)
 
         binding.model=model
 

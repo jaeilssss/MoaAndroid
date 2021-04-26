@@ -1,31 +1,27 @@
-package com.moa.moakotlin.ui.kid
+package com.moa.moakotlin.ui.concierge.needer
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.data.Kid
-import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.aptList
 import com.moa.moakotlin.databinding.FragmentKidMainBinding
 import com.moa.moakotlin.recyclerview.kid.KidAdapter
 
-class KidMainFragment : BaseFragment() {
+class NeederMainFragment : BaseFragment() {
 
         lateinit var binding : FragmentKidMainBinding
 
         lateinit var navController: NavController
-        lateinit var model: KidMainViewModel
+        lateinit var model: NeederMainViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -34,7 +30,7 @@ class KidMainFragment : BaseFragment() {
         navController = findNavController()
 
         model = context?.let {
-            KidMainViewModel(navController,it)
+            NeederMainViewModel(navController,it)
         }!!
 
         var rcv = binding.kidRecyclerview
