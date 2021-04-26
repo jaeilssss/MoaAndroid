@@ -25,7 +25,7 @@
     android:textStyle="bold"
     android:layout_marginLeft="10dp"
     android:layout_marginTop="10dp"
-    android:id="@+id/write_page_exit"/>
+    android:id="@+id/exit"/>
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="10dp"
         android:id="@+id/write_page_first_view"
-        app:layout_constraintTop_toBottomOf="@id/write_page_exit"
+        app:layout_constraintTop_toBottomOf="@id/exit"
         android:background="#bdbdbd"/>
 
     <EditText
@@ -102,7 +102,7 @@
             android:layout_marginLeft="10dp"/>
 
         <TextView
-            android:id="@+id/kid_type"
+            android:id="@+id/type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -114,10 +114,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/kid_count"
+            android:id="@+id/count"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@id/kid_type"
+            app:layout_constraintStart_toEndOf="@id/type"
             android:layout_marginLeft="20dp"
             android:text="@={model.count}"
             tools:text="3명이상"/>

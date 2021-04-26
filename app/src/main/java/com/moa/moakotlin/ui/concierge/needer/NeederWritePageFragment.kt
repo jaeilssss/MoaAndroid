@@ -36,7 +36,7 @@ class NeederWritePageFragment : Fragment() {
         // Inflate the layout for this fragment
 
         binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_kid_write_page, container, false)
+            DataBindingUtil.inflate(inflater, R.layout.fragment_needer_write_page, container, false)
         navController = findNavController()
 
         model = ViewModelProvider(this, KidViewModelFactory(navController))
