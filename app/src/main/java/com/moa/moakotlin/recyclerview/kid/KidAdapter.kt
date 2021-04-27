@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.NavController
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.moa.moakotlin.R
 import com.moa.moakotlin.data.Kid
-import org.w3c.dom.Text
 
 class KidAdapter(var list : ArrayList<Kid>, var context : Context, var navController: NavController) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     interface OnItemClickListener{
@@ -28,7 +26,7 @@ class KidAdapter(var list : ArrayList<Kid>, var context : Context, var navContro
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         var view : View
 
-            view = View.inflate(parent.context , R.layout.kid_item , null)
+            view = View.inflate(parent.context , R.layout.needer_item , null)
             return kidViewHolder(view,this)
 
     }

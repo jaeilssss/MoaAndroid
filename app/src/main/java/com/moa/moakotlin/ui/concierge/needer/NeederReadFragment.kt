@@ -15,13 +15,13 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.moa.moakotlin.R
 import com.moa.moakotlin.data.Kid
 import com.moa.moakotlin.data.User
-import com.moa.moakotlin.databinding.FragmentKidReadBinding
+import com.moa.moakotlin.databinding.FragmentNeederReadBinding
 import com.moa.moakotlin.viewmodelfactory.KidViewModelFactory
 import com.moa.moakotlin.viewpageradapter.KidReadViewPagerAdapter
 
 class NeederReadFragment : Fragment() {
 
-    lateinit var binding : FragmentKidReadBinding
+    lateinit var binding : FragmentNeederReadBinding
 
     lateinit var navController: NavController
 
@@ -38,7 +38,7 @@ class NeederReadFragment : Fragment() {
              kid = bundle.getParcelable("kid")!!
         }
 
-        binding = DataBindingUtil.inflate(inflater , R.layout.fragment_kid_read , container , false)
+        binding = DataBindingUtil.inflate(inflater , R.layout.fragment_needer_read , container , false)
 
 
 
@@ -47,7 +47,8 @@ class NeederReadFragment : Fragment() {
             binding.kidReadHireState.isEnabled = false
         }
         if(kid.uid.equals(User.getInstance().uid)){
-                binding.kidReadChatLayout.isVisible = false
+                binding.kidReadChatLayout.
+                isVisible = false
         }
         navController = findNavController()
 
@@ -58,12 +59,12 @@ class NeederReadFragment : Fragment() {
             adapter = kid.images?.let { KidReadViewPagerAdapter(it, activity?.applicationContext!!) }!!
         }
 
-        binding.kidReadViewPager.adapter = adapter
+        binding.viewPager.adapter = adapter
 
         if(kid.images !=null && kid.images!!.size>1){
-            binding.kidReadTabLayout.setupWithViewPager(binding.kidReadViewPager,true)
+            binding.tabLayout.setupWithViewPager(binding.viewPager,true)
         }
-        binding.kidType.text = kid.lifeCycle
+        binding.mainCategory.text = kid.lifeCycle
 
         binding.kidReadContent.text = kid.content
 
@@ -73,9 +74,9 @@ class NeederReadFragment : Fragment() {
             .get(NeederReadViewModel::class.java)
         binding.model = model
 
-        if(kid.isNegotiable==true){
-            binding.kidIsRegular.isVisible =true
-        }
+//        if(kid.isNegotiable==true){
+//            binding.kidIsRegular.isVisible =true
+//        }
 
         binding.kidReadHireState.setOnClickListener {
             if(kid.uid.equals(User.getInstance().uid)){
@@ -97,7 +98,7 @@ class NeederReadFragment : Fragment() {
                 }
             }
         }
-    binding.kidReadOption.setOnClickListener {
+    binding.option.setOnClickListener {
 
         var popupMenu = PopupMenu(context,it)
         if(kid.uid.equals(User.getInstance().uid)){

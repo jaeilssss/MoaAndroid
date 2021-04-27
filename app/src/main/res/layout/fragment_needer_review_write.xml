@@ -19,7 +19,7 @@
         tools:context=".ui.concierge.needer.NeederReviewWriteFragment">
 
         <ImageView
-            android:id="@+id/kid_review_back"
+            android:id="@+id/back"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="?attr/homeAsUpIndicator"
@@ -38,17 +38,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <View
-            android:id="@+id/kid_review_line"
+            android:id="@+id/review_line"
             android:layout_width="0dp"
             android:layout_height="2dp"
             android:layout_marginTop="10dp"
             android:background="#bdbdbd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/kid_review_back" />
+            app:layout_constraintTop_toBottomOf="@id/back" />
 
         <TextView
-            android:id="@+id/kid_review_sitter_name"
+            android:id="@+id/opponent_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -56,7 +56,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.28"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/kid_review_line"
+            app:layout_constraintTop_toBottomOf="@id/review_line"
             tools:text="정정" />
 
         <TextView
@@ -65,11 +65,11 @@
             android:layout_marginTop="10dp"
             android:text=" 님의 아이 돌봄은 어땠나요?"
             android:textColor="#000000"
-            app:layout_constraintStart_toEndOf="@id/kid_review_sitter_name"
-            app:layout_constraintTop_toBottomOf="@id/kid_review_line" />
+            app:layout_constraintStart_toEndOf="@id/opponent_name"
+            app:layout_constraintTop_toBottomOf="@id/review_line" />
 
         <EditText
-            android:id="@+id/kid_review_content"
+            android:id="@+id/review_content"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -77,30 +77,31 @@
             android:layout_marginRight="10dp"
             android:background="#ffffff"
             android:textColor="#000000"
+            android:gravity="left|center"
             android:text="@={model.content}"
             android:hint="@string/kidReviewHint"
             android:minHeight="200dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.473"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/kid_review_sitter_name" />
+            app:layout_constraintTop_toBottomOf="@id/opponent_name" />
 
         <View
-            android:id="@+id/kid_review_line2"
+            android:id="@+id/review_line2"
             android:layout_width="0dp"
             android:layout_height="100dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/kid_review_content" />
+            app:layout_constraintTop_toBottomOf="@id/review_content" />
 
         <Button
-            android:id="@+id/kid_review_submit"
+            android:id="@+id/submit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="완료"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/kid_review_line2" />
+            app:layout_constraintTop_toBottomOf="@id/review_line2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

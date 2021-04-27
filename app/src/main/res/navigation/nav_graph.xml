@@ -155,7 +155,7 @@
         android:id="@+id/kidMainFragment"
         android:name="com.moa.moakotlin.ui.concierge.needer.NeederMainFragment"
         android:label="fragment_kid_main"
-        tools:layout="@layout/fragment_kid_main">
+        tools:layout="@layout/fragment_needer_main">
         <action
             android:id="@+id/action_kidMainFragment_to_kidReadFragment"
             app:destination="@id/kidReadFragment" />
@@ -243,7 +243,7 @@
         android:id="@+id/sitterWriteFragment"
         android:name="com.moa.moakotlin.ui.concierge.helper.HelperWriteFragment"
         android:label="fragment_sitter_write"
-        tools:layout="@layout/fragment_sitter_write" />
+        tools:layout="@layout/fragment_helper_write" />
     <fragment
         android:id="@+id/sitterMainFragment"
         android:name="com.moa.moakotlin.ui.concierge.helper.HelperMainFragment"
@@ -256,7 +256,7 @@
         android:id="@+id/sitterReadFragment"
         android:name="com.moa.moakotlin.ui.concierge.helper.HelperReadFragment"
         android:label="fragment_sitter_read"
-        tools:layout="@layout/fragment_sitter_read">
+        tools:layout="@layout/fragment_helper_read">
         <action
             android:id="@+id/action_sitterReadFragment_to_sitterModifyFragment"
             app:destination="@id/sitterModifyFragment" />
@@ -268,7 +268,7 @@
         android:id="@+id/sitterModifyFragment"
         android:name="com.moa.moakotlin.ui.concierge.helper.HelperModifyFragment"
         android:label="fragment_sitter_modify"
-        tools:layout="@layout/fragment_sitter_modify">
+        tools:layout="@layout/fragment_helpter_modify">
         <action
             android:id="@+id/action_sitterModifyFragment_to_sitterReadFragment"
             app:destination="@id/sitterReadFragment" />

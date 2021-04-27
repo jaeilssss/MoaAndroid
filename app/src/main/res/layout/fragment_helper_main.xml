@@ -29,7 +29,7 @@
                 android:layout_height="50dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:id="@+id/sitter_main_top_layout"
+                android:id="@+id/top_layout"
                 android:background="#ffffff"
                 app:layout_constraintTop_toTopOf="parent">
 <ImageView
@@ -47,9 +47,8 @@
                 android:layout_height="300dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/sitter_main_top_layout" />
+                app:layout_constraintTop_toBottomOf="@id/top_layout" />
 
             <com.google.android.material.tabs.TabLayout
                 android:layout_width="wrap_content"
@@ -58,7 +57,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="@id/sitter_main_viewpager"
                 app:tabGravity="center"
-                android:id="@+id/sitter_main_tab"
+                android:id="@+id/tab_layout"
                 app:tabBackground="@drawable/dot_indicator"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

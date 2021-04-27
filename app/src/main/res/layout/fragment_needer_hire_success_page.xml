@@ -22,7 +22,7 @@
         android:layout_height="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/kid_hire_success_back"
+        android:id="@+id/back"
         android:background="@drawable/moa_temp_back"/>
 
     <TextView
@@ -40,7 +40,7 @@
     android:layout_height="2dp"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/kid_hire_success_back"
+    app:layout_constraintTop_toBottomOf="@id/back"
     android:id="@+id/kid_hire_success_line"
     android:background="#bdbdbd"/>
 <TextView
@@ -64,7 +64,7 @@
         app:layout_constraintTop_toBottomOf="@id/kid_hire_success_line"
         android:layout_marginTop="90dp"
         android:text="@string/kidSuccessText"
-        android:id="@+id/kid_success_text"
+        android:id="@+id/success_text"
         android:textStyle="bold"/>
 
     <View
@@ -72,7 +72,7 @@
         android:layout_height="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/kid_success_text"
+        app:layout_constraintTop_toBottomOf="@id/success_text"
         android:background="#bdbdbd"
         android:id="@+id/kid_hire_success_line2"
         android:layout_marginTop="20dp"/>
@@ -85,28 +85,28 @@
         app:layout_constraintTop_toBottomOf="@id/kid_hire_success_line2"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
-        android:id="@+id/kid_success_image"/>
+        android:id="@+id/success_image"/>
     <TextView
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        app:layout_constraintStart_toEndOf="@id/kid_success_image"
+        app:layout_constraintStart_toEndOf="@id/success_image"
         android:text="아이돌봄 채용"
         app:layout_constraintTop_toBottomOf="@id/kid_hire_success_line2"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:textColor="#000000"
-        android:id="@+id/kid_hire_text"/>
+        android:id="@+id/hire_text"/>
     <TextView
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        app:layout_constraintTop_toBottomOf="@id/kid_hire_text"
-        app:layout_constraintStart_toEndOf="@id/kid_success_image"
+        app:layout_constraintTop_toBottomOf="@id/hire_text"
+        app:layout_constraintStart_toEndOf="@id/success_image"
         tools:text="등화원 돕기 시터 구합니다"
         android:textColor="#000000"
         android:layout_marginLeft="10dp"
-        android:id="@+id/kid_success_title"
+        android:id="@+id/post_title"
         android:layout_marginTop="10dp"/>
 
 <View
@@ -114,7 +114,7 @@
     android:layout_height="2dp"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/kid_success_title"
+    app:layout_constraintTop_toBottomOf="@id/post_title"
     android:background="#bdbdbd"
     android:id="@+id/kid_hire_success_line3"
     android:layout_marginTop="25dp"/>
@@ -125,7 +125,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/kid_hire_success_line3"
-        android:id="@+id/kid_hire_success_rcv"/>
+        android:id="@+id/rcv"/>
 
 
 
@@ -137,6 +137,6 @@
             android:layout_height="wrap_content"
             android:text="나중에"
             android:background="@drawable/background_shape"
-            android:id="@+id/kid_success_later"/>
+            android:id="@+id/later"/>
 </LinearLayout>
 </layout>

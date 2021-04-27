@@ -15,7 +15,6 @@
     android:layout_width="match_parent"
     android:layout_weight="1"
     android:layout_height="wrap_content">
-
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_height="match_parent"
     android:layout_weight = "1"
@@ -25,7 +24,7 @@
         android:layout_height="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/moa_temp_back"/>
+        android:background="?attr/actionModeCloseDrawable"/>
 
     <ImageView
         android:layout_width="wrap_content"
@@ -34,18 +33,18 @@
         android:background="@android:drawable/ic_menu_sort_by_size"
         app:layout_constraintEnd_toEndOf="parent"
         android:textColor="#000000"
-        android:id="@+id/kid_read_option"
+        android:id="@+id/option"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/kid_read_view_pager"
+        android:id="@+id/view_pager"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <com.google.android.material.tabs.TabLayout
         android:layout_width="wrap_content"
@@ -54,10 +53,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:tabGravity="center"
         app:tabBackground="@drawable/dot_indicator"
-        android:id="@+id/kid_read_tab_layout"
+        android:id="@+id/tab_layout"
         app:tabIndicatorHeight="0dp"
         app:tabIndicatorGravity="center"
-        app:layout_constraintBottom_toBottomOf="@id/kid_read_view_pager"
+        app:layout_constraintBottom_toBottomOf="@id/view_pager"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -67,9 +66,9 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:textColor="#000000"
-        android:id="@+id/type_txt"
+        android:id="@+id/main_category"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/kid_read_view_pager"/>
+        app:layout_constraintTop_toBottomOf="@id/view_pager"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,9 +77,9 @@
             android:layout_marginLeft="10dp"
             tools:text="유아"
             android:textColor="#000000"
-            app:layout_constraintTop_toBottomOf="@id/kid_read_view_pager"
-            app:layout_constraintStart_toEndOf="@id/type_txt"
-            android:id="@+id/kid_type"/>
+            app:layout_constraintTop_toBottomOf="@id/view_pager"
+            app:layout_constraintStart_toEndOf="@id/main_category"
+            android:id="@+id/sub_category"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -88,19 +87,7 @@
         android:text="채용중"
         app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/kid_read_hire_state"
-        app:layout_constraintTop_toBottomOf="@id/kid_read_view_pager"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toEndOf="@id/kid_type"
-        app:layout_constraintTop_toBottomOf="@id/kid_read_view_pager"
-        tools:text="1명"
-        android:textColor="#000000"
-        android:id="@id/kid_count"/>
+        app:layout_constraintTop_toBottomOf="@id/view_pager"/>
 
 
     <TextView
@@ -113,31 +100,22 @@
         android:id="@+id/date_txt"
         android:layout_marginLeft="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/type_txt"/>
+        app:layout_constraintTop_toBottomOf="@id/main_category"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/date_txt"
-        app:layout_constraintTop_toBottomOf="@id/kid_type"
+        app:layout_constraintTop_toBottomOf="@id/main_category"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:textColor="#000000"
         tools:text="2021년 1월 22일"
         android:id="@+id/kid_hope_date"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/kid_count"
-        android:text="정기돌봄"
-        android:visibility="gone"
-        android:textColor="#000000"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:id="@+id/kid_is_regular"/>
+
     <View
         android:layout_width="0dp"
         android:layout_height="5dp"
+        android:id="@+id/view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/kid_hope_date"
@@ -149,7 +127,7 @@
         android:layout_height="wrap_content"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/kid_count"
+        app:layout_constraintTop_toBottomOf="@id/view"
         android:layout_marginTop="70dp"
         android:layout_marginLeft="10dp"
         android:textColor="#000000"

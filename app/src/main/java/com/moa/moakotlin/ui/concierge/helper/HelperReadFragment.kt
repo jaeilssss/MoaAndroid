@@ -14,13 +14,13 @@ import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
 import com.moa.moakotlin.data.Sitter
 import com.moa.moakotlin.data.User
-import com.moa.moakotlin.databinding.FragmentSitterReadBinding
+import com.moa.moakotlin.databinding.FragmentHelperReadBinding
 import com.moa.moakotlin.viewmodelfactory.SitterViewModelFactory
 import com.moa.moakotlin.viewpageradapter.SitterReadViewPager
 
 class HelperReadFragment : Fragment() {
 
-    lateinit var binding : FragmentSitterReadBinding
+    lateinit var binding : FragmentHelperReadBinding
 
     lateinit var model : HelperReadViewModel
 
@@ -29,7 +29,7 @@ class HelperReadFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_sitter_read,container,false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_helper_read,container,false)
 
         navController = findNavController()
 
@@ -42,30 +42,30 @@ class HelperReadFragment : Fragment() {
 
        model.initViewModel(sitter)
         // 이 부분 나중에 수정!!!
-        binding.sitterReadStatus.text =  sitter.status
+        binding.status.text =  sitter.status
 
         binding.sitterReadInfo.text  = sitter.aptName
 
-        binding.sitterReadContent.text = sitter.content
+        binding.content.text = sitter.content
 
-        binding.sitterReadType.text = sitter.type
+        binding.mainCategory.text = sitter.type
 
         var adapter = sitter?.images?.let { context?.let { it1 -> SitterReadViewPager(it, it1,navController) } }
 
-        binding.sitterReadViewpager.adapter = adapter
+        binding.viewpager.adapter = adapter
         if(sitter.images!!.size >2){
-            binding.sitterReadTab.setupWithViewPager(binding.sitterReadViewpager)
+            binding.tabLayout.setupWithViewPager(binding.viewpager)
         }
         if(sitter.uid.equals(User.getInstance().uid)){
-            binding.sitterReadChatLayout.isVisible = false
+            binding.chatLayout.isVisible = false
         }else{
-            binding.sitterReadWage.text = sitter.wage
+            binding.wage.text = sitter.wage
         }
 
-        binding.sitterReadChattingBtn.setOnClickListener {
+        binding.chattingBtn.setOnClickListener {
 //                var opponentUser  =
         }
-        binding.sitterReadOption.setOnClickListener {
+        binding.option.setOnClickListener {
             var popupMenu = PopupMenu(context,it)
             if(sitter.uid.equals(User.getInstance().uid)){
                 activity?.menuInflater?.inflate(R.menu.kid_read_option,popupMenu.menu)

@@ -17,13 +17,13 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.data.ChattingRoom
 import com.moa.moakotlin.data.Kid
 import com.moa.moakotlin.data.User
-import com.moa.moakotlin.databinding.FragmentKidHireSuccessPageBinding
+import com.moa.moakotlin.databinding.FragmentNeederHireSuccessPageBinding
 import com.moa.moakotlin.recyclerview.kid.KidHireSuccessAdapter
 import com.moa.moakotlin.viewmodelfactory.KidViewModelFactory
 
 class NeederHireSuccessPageFragment : Fragment() {
 
-lateinit var binding: FragmentKidHireSuccessPageBinding
+lateinit var binding: FragmentNeederHireSuccessPageBinding
 
     lateinit var navController: NavController
 
@@ -37,7 +37,7 @@ lateinit var binding: FragmentKidHireSuccessPageBinding
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
 
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_kid_hire_success_page , container ,false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_needer_hire_success_page , container ,false)
 
         navController = findNavController()
 
@@ -47,12 +47,12 @@ lateinit var binding: FragmentKidHireSuccessPageBinding
         var kid = arguments?.getParcelable<Kid>("kid")
 
         if(kid?.images!=null){
-            context?.let { Glide.with(it).load(kid.images!!.get(0)).into(binding.kidSuccessImage) }
+            context?.let { Glide.with(it).load(kid.images!!.get(0)).into(binding.successImage) }
         }else{
-            binding.kidSuccessImage.setImageResource(R.drawable.moa_kid_default)
+            binding.successImage.setImageResource(R.drawable.moa_kid_default)
         }
 
-        binding.kidSuccessTitle.text = kid?.title
+        binding.postTitle.text = kid?.title
 
         binding.model = model
 
@@ -79,8 +79,8 @@ lateinit var binding: FragmentKidHireSuccessPageBinding
                     }
                 }
                 adapter = KidHireSuccessAdapter(navController,list)
-                binding.kidHireSuccessRcv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-                binding.kidHireSuccessRcv.adapter =adapter
+                binding.rcv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+                binding.rcv.adapter =adapter
 
 
 

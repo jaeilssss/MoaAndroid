@@ -6,13 +6,12 @@ import android.content.DialogInterface
 import android.content.res.Resources
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.moa.moakotlin.data.Picture
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.moa.moakotlin.R
 
-class KidWritePictureAdapter(var list : ArrayList<String>,var context : Context,var resource : Resources) :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class KidWritePictureAdapter(var list: ArrayList<String>, var context: Context, var resource: Resources) :RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         var view = View.inflate(parent.context,R.layout.picture_item,null)

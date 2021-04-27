@@ -21,6 +21,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:background="#ffffff"
+                android:id="@+id/top_layout"
                 android:layout_height="wrap_content">
                 <ImageView
                     android:layout_width="wrap_content"
@@ -37,9 +38,8 @@
                 android:layout_height="240dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/sitter_main_top_layout" />
+                app:layout_constraintTop_toBottomOf="@id/top_layout" />
             <com.google.android.material.tabs.TabLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="@id/viewpager"
                 app:tabGravity="center"
-                android:id="@+id/sitter_main_tab"
+                android:id="@+id/tab_layout"
                 app:tabBackground="@drawable/dot_indicator"/>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -61,7 +61,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/kid_recyclerview"/>
+        android:id="@+id/rcv"/>
 
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

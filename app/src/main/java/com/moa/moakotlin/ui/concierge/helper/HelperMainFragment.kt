@@ -15,7 +15,7 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Sitter
 import com.moa.moakotlin.data.aptList
-import com.moa.moakotlin.databinding.FragmentSitterMainBinding
+import com.moa.moakotlin.databinding.FragmentHelperMainBinding
 import com.moa.moakotlin.recyclerview.sitter.SitterMainAdapter
 import com.moa.moakotlin.viewmodelfactory.SitterViewModelFactory
 import com.moa.moakotlin.viewpageradapter.SitterMainViewPager
@@ -23,7 +23,7 @@ import com.moa.moakotlin.viewpageradapter.SitterMainViewPager
 class HelperMainFragment : Fragment() {
 
 
-    lateinit var binding: FragmentSitterMainBinding
+    lateinit var binding: FragmentHelperMainBinding
 
     lateinit var model : HelperMainViewModel
 
@@ -35,7 +35,7 @@ class HelperMainFragment : Fragment() {
     ): View? {
         // Inflate the layout for this
 
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_sitter_main,container,false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_helper_main,container,false)
 
         navController = findNavController()
 
@@ -47,7 +47,7 @@ class HelperMainFragment : Fragment() {
         var adapter = context?.let { SitterMainViewPager(ArrayList<Sitter>(), it,navController) }
         binding.sitterMainViewpager.adapter = adapter
 
-        binding.sitterMainTab.setupWithViewPager(binding.sitterMainViewpager,true)
+        binding.tabLayout.setupWithViewPager(binding.sitterMainViewpager,true)
 
         binding.sitterRecyclerview.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
 

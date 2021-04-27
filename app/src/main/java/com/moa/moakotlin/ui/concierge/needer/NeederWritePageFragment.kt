@@ -14,15 +14,18 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
 import com.moa.moakotlin.data.Picture
-import com.moa.moakotlin.databinding.FragmentKidWritePageBinding
+import com.moa.moakotlin.databinding.FragmentNeederWritePageBinding
 import com.moa.moakotlin.recyclerview.kid.KidWritePictureAdapter
 import com.moa.moakotlin.viewmodelfactory.KidViewModelFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
 
 class NeederWritePageFragment : Fragment() {
 
-    lateinit var binding: FragmentKidWritePageBinding
+    lateinit var binding: FragmentNeederWritePageBinding
 
     lateinit var navController: NavController
 
@@ -49,24 +52,30 @@ class NeederWritePageFragment : Fragment() {
         model.month.set(now.monthValue)
         model.day.set(now.dayOfMonth)
 
-    var adapter = context?.let { KidWritePictureAdapter(ArrayList<String>(), it,resources) }
+    var adapter = context?.let { KidWritePictureAdapter(ArrayList(), it,resources) }
         var manager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
         if(Picture.getInstance()!=null){
             adapter?.list = Picture.getInstance()
-            binding.kidWritePictureCount.text = adapter?.list?.size.toString()
+            binding.pictureCount.text = adapter?.list?.size.toString()
         }
-        binding.kidWriteRcv.layoutManager = manager
-        binding.kidWriteRcv.adapter = adapter
-        binding.kidWriteGoToAlbum.setOnClickListener {
+        binding.rcv.layoutManager = manager
+        binding.rcv.adapter = adapter
+        binding.goToAlbum.setOnClickListener {
             navController.navigate(R.id.action_kidWritePageFragment_to_kidImagePicker)
         }
-        binding.firstType.setOnClickListener {
+
+        binding.categoryLayout.setOnClickListener {
             selectFirstType()
         }
-        binding.kidWriteSubmit.setOnClickListener {
-            adapter?.list?.let { it1 -> model.submit(it1)
-            return@setOnClickListener
+        binding.submit.setOnClickListener {
+            CoroutineScope(Dispatchers.Main).launch {
+
+                if (adapter != null) {
+                    model.submit(adapter.list)
+                }
+
             }
+            return@setOnClickListener
         }
         return binding.root
     }
@@ -99,12 +108,14 @@ class NeederWritePageFragment : Fragment() {
         builder.setItems(items,DialogInterface.OnClickListener { dialogInterface, i ->
             model.secondType = items.get(i)
         })
-
         var alertDialog : AlertDialog =builder.create()
         alertDialog.setTitle("세부 영역을 선택해주세요")
         alertDialog.show()
     }
 
+    override fun onStop() {
+        super.onStop()
+    }
 }
 
 

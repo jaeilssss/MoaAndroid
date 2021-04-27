@@ -13,7 +13,6 @@ import com.bumptech.glide.Glide
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Sitter
-import com.moa.moakotlin.recyclerview.kid.KidAdapter
 
 class SitterMainAdapter(var list : ArrayList<Sitter>,var context: Context,var navController: NavController) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -24,7 +23,7 @@ class SitterMainAdapter(var list : ArrayList<Sitter>,var context: Context,var na
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-    var view = View.inflate(parent.context,R.layout.sitter_item,null)
+    var view = View.inflate(parent.context,R.layout.helper_item,null)
         return SitterMainViewHolder(view,this)
     }
 

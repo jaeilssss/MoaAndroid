@@ -26,11 +26,11 @@
         android:onClick="@{()->model.prev()}"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/sitter_back"/>
+        android:id="@+id/back"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="시터 글쓰기"
+        android:text="슈퍼맨이 되고싶어요"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="10dp"
@@ -42,7 +42,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     android:text="완료"
-    android:id="@+id/sitter_write_submit"
+    android:id="@+id/submit"
     android:layout_margin="10dp"
     android:textSize="20dp"/>
 
@@ -52,7 +52,7 @@
         android:background="#bdbdbd"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sitter_back"
+        app:layout_constraintTop_toBottomOf="@id/back"
         android:id="@+id/sitter_write_line"
         android:layout_marginTop="10dp"/>
 
@@ -65,15 +65,15 @@
     android:layout_marginTop="10dp"
     android:paddingLeft="10dp"
     android:text="@={model.title}"
-    android:id="@+id/sitter_write_title"
+    android:id="@+id/edit_title"
     android:hint="글 제목"/>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sitter_write_title"
-        android:id="@+id/sitter_write_type_layout">
+        app:layout_constraintTop_toBottomOf="@id/edit_title"
+        android:id="@+id/type_layout">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -82,13 +82,13 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
-            android:id="@+id/sitter_write_type_txt"
+            android:id="@+id/write_type_txt"
             android:textSize="15dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            app:layout_constraintStart_toEndOf="@id/sitter_write_type_txt"
+            app:layout_constraintStart_toEndOf="@id/write_type_txt"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginLeft="10dp"
             android:textSize="15dp"
@@ -109,7 +109,7 @@
         android:layout_height="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sitter_write_type_layout"
+        app:layout_constraintTop_toBottomOf="@id/type_layout"
         android:id="@+id/sitter_write_line2"
         android:background="#bdbdbd"
         android:layout_marginTop="15dp"/>
@@ -120,14 +120,14 @@
         android:hint="희망시급"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sitter_write_line2"
-        app:layout_constraintEnd_toStartOf="@id/sitter_write_nego_check"
+        app:layout_constraintEnd_toStartOf="@id/nego_check"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:background="@null"
         android:textSize="20sp"
         android:text="@={model.wage}"
         android:inputType="number"
-        android:id="@+id/sitter_write_hope_wage"/>
+        android:id="@+id/hope_wage"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -136,13 +136,13 @@
         app:layout_constraintTop_toBottomOf="@id/sitter_write_line2"
         android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
-        android:id="@+id/sitter_write_nego_text"
+        android:id="@+id/nego_text"
         android:textSize="15sp"/>
 <CheckBox
     android:layout_width="25dp"
     android:layout_height="25dp"
-    android:id="@+id/sitter_write_nego_check"
-    app:layout_constraintEnd_toStartOf="@id/sitter_write_nego_text"
+    android:id="@+id/nego_check"
+    app:layout_constraintEnd_toStartOf="@id/nego_text"
     app:layout_constraintTop_toBottomOf="@id/sitter_write_line2"
     android:layout_marginTop="20dp"
     android:checked="@={model.isNego}"
@@ -153,7 +153,7 @@
         android:layout_height="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sitter_write_hope_wage"
+        app:layout_constraintTop_toBottomOf="@id/hope_wage"
         android:background="#bdbdbd"
         android:id="@+id/sitter_write_line3"
         android:layout_marginTop="10dp"/>
@@ -166,13 +166,13 @@
     app:layout_constraintTop_toBottomOf="@id/sitter_write_line3"
     android:minHeight="300dp"
     android:text="@={model.content}"
-    android:id="@+id/sitter_write_edit"/>
+    android:id="@+id/content_edit"/>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sitter_write_edit"
+        app:layout_constraintTop_toBottomOf="@id/content_edit"
         android:id="@+id/sitter_write_picture_layout">
     <ImageView
         android:layout_width="50dp"
@@ -181,13 +181,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="10dp"
-        android:id="@+id/sitter_write_picture_image"
+        android:id="@+id/ttt"
         android:layout_marginTop="10dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="프로필 사진(필수아님)"
-            app:layout_constraintStart_toEndOf="@id/sitter_write_picture_image"
+            app:layout_constraintStart_toEndOf="@id/ttt"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="10dp"
@@ -199,7 +199,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginLeft="10dp"
             app:layout_constraintStart_toEndOf="@id/sitter_write_picture_text"
-            android:id="@+id/sitter_write_count"
+            android:id="@+id/picture_count"
             android:text="@={model.pictureCount}"
             tools:text="0"/>
         <TextView
@@ -207,7 +207,7 @@
             android:layout_height="wrap_content"
             android:text="/10"
             android:layout_marginLeft="5dp"
-            app:layout_constraintStart_toEndOf="@id/sitter_write_count"
+            app:layout_constraintStart_toEndOf="@id/picture_count"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="15dp"/>
 
@@ -219,11 +219,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sitter_write_picture_layout"
         android:layout_marginLeft="10dp"
-        android:id="@+id/sitter_write_picture_btn"/>
+        android:id="@+id/picture_image"/>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/sitter_write_picture_btn"
+        app:layout_constraintStart_toEndOf="@id/picture_image"
         android:id="@+id/sitter_write_picture_rcv"
         app:layout_constraintTop_toBottomOf="@id/sitter_write_picture_layout"/>
 

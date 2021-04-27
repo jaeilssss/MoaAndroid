@@ -14,13 +14,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
 import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.data.Sitter
-import com.moa.moakotlin.databinding.FragmentSitterModifyBinding
+import com.moa.moakotlin.databinding.FragmentHelpterModifyBinding
 import com.moa.moakotlin.recyclerview.kid.KidWritePictureAdapter
 import com.moa.moakotlin.viewmodelfactory.SitterViewModelFactory
 
 class HelperModifyFragment : Fragment() {
 
-    lateinit var binding : FragmentSitterModifyBinding
+    lateinit var binding : FragmentHelpterModifyBinding
 
     lateinit var model : HelperModifyViewModel
 
@@ -30,7 +30,7 @@ class HelperModifyFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
 
-        binding = DataBindingUtil.inflate(inflater , R.layout.fragment_sitter_modify,container,false)
+        binding = DataBindingUtil.inflate(inflater , R.layout.fragment_helpter_modify,container,false)
 
         navController = findNavController()
 
@@ -64,7 +64,7 @@ class HelperModifyFragment : Fragment() {
         binding.sitterWritePictureBtn.setOnClickListener {
             navController.navigate(R.id.kidImagePicker)
         }
-        binding.sitterWriteSubmit.setOnClickListener {
+        binding.submit.setOnClickListener {
             if(model.check().equals("success")){
                 if (adapter != null) {
                     model.submit(adapter.list)

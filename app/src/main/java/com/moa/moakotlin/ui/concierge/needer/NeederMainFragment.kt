@@ -13,19 +13,19 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.data.Kid
 import com.moa.moakotlin.data.aptList
-import com.moa.moakotlin.databinding.FragmentKidMainBinding
+import com.moa.moakotlin.databinding.FragmentNeederMainBinding
 import com.moa.moakotlin.recyclerview.kid.KidAdapter
 
 class NeederMainFragment : BaseFragment() {
 
-        lateinit var binding : FragmentKidMainBinding
+        lateinit var binding : FragmentNeederMainBinding
 
         lateinit var navController: NavController
         lateinit var model: NeederMainViewModel
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        binding  = DataBindingUtil.inflate(inflater,R.layout.fragment_kid_main,container, false)
+        binding  = DataBindingUtil.inflate(inflater,R.layout.fragment_needer_main,container, false)
 
         navController = findNavController()
 
@@ -33,7 +33,7 @@ class NeederMainFragment : BaseFragment() {
             NeederMainViewModel(navController,it)
         }!!
 
-        var rcv = binding.kidRecyclerview
+        var rcv = binding.rcv
         var manager= LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
         rcv.layoutManager = manager
 

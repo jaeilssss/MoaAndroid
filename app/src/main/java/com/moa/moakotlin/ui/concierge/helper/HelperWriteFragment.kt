@@ -15,14 +15,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
 import com.moa.moakotlin.data.Picture
-import com.moa.moakotlin.databinding.FragmentSitterWriteBinding
+import com.moa.moakotlin.databinding.FragmentHelperWriteBinding
 import com.moa.moakotlin.recyclerview.sitter.SitterWritePictureAdapter
 import com.moa.moakotlin.viewmodelfactory.SitterViewModelFactory
 
 class HelperWriteFragment : Fragment() {
 
 
-    lateinit var binding : FragmentSitterWriteBinding
+    lateinit var binding : FragmentHelperWriteBinding
 
     lateinit var navController: NavController
 
@@ -33,7 +33,7 @@ class HelperWriteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_sitter_write,container,false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_helper_write,container,false)
 
         navController = findNavController()
 
@@ -51,19 +51,19 @@ class HelperWriteFragment : Fragment() {
             adapter = context?.let { SitterWritePictureAdapter(navController, ArrayList(), it) }!!
         }
 
-        binding.sitterWriteTypeLayout.setOnClickListener {
+        binding.typeLayout.setOnClickListener {
             selectType()
         }
 
         binding.sitterWritePictureRcv.adapter = adapter
 
-        binding.sitterWritePictureBtn.setOnClickListener {
+        binding.pictureImage.setOnClickListener {
                 navController.navigate(R.id.kidImagePicker)
         }
         binding.sitterWritePictureLayout.setOnClickListener{
             navController.navigate(R.id.kidImagePicker)
         }
-        binding.sitterWriteSubmit.setOnClickListener {
+        binding.submit.setOnClickListener {
             if(model.title.get()?.length==0){
                 Toast.makeText(context,"제목을 입력해주세요",Toast.LENGTH_SHORT).show()
             }else if(model.type.get()?.length==0){

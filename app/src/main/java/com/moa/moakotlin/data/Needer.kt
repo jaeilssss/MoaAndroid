@@ -14,7 +14,11 @@ data class Needer(
         var images : ArrayList<String> ?=null,
         var content : String,
         var wage : String,
-        var documentID : String ?=null
+        var documentID : String ?=null,
+        var status : String,
+        var uid : String,
+        var aptCode : String,
+        var aptName : String
         ){
 
 }

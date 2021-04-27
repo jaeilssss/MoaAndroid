@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
 import com.moa.moakotlin.data.Kid
 import com.moa.moakotlin.data.Picture
-import com.moa.moakotlin.databinding.FragmentKidModifyBinding
+import com.moa.moakotlin.databinding.FragmentNeederModifyBinding
 import com.moa.moakotlin.recyclerview.kid.KidWritePictureAdapter
 import com.moa.moakotlin.viewmodelfactory.KidViewModelFactory
 
@@ -21,7 +21,7 @@ import com.moa.moakotlin.viewmodelfactory.KidViewModelFactory
 class NeederModifyFragment : Fragment() {
 
 
-    lateinit var binding : FragmentKidModifyBinding
+    lateinit var binding : FragmentNeederModifyBinding
 
     lateinit var model : NeederModifyViewModel
 
@@ -36,7 +36,7 @@ class NeederModifyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_kid_modify,container,false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_needer_modify,container,false)
 
         navController = findNavController()
 
@@ -52,13 +52,13 @@ class NeederModifyFragment : Fragment() {
 
         var manager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
 
-        binding.kidModifyRcv.layoutManager = manager
+        binding.rcv.layoutManager = manager
         var adapter = context?.let { kid?.images?.let { it1 -> KidWritePictureAdapter(it1, it,resources) } }
         if(Picture.getInstance()!=null){
             adapter?.list = Picture.getInstance()
         }
-        binding.kidModifyRcv.adapter = adapter
-        binding.kidModifySubmit.setOnClickListener {
+        binding.rcv.adapter = adapter
+        binding.submit.setOnClickListener {
             adapter?.list?.let { it1 -> model.submit(it1) }
         }
         binding.kidModifyGoToAlbum.setOnClickListener {

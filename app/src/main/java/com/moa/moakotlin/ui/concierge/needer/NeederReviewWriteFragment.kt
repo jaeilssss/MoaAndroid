@@ -13,13 +13,13 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.Transfer
-import com.moa.moakotlin.databinding.FragmentKidReviewWriteBinding
+import com.moa.moakotlin.databinding.FragmentNeederReviewWriteBinding
 import com.moa.moakotlin.viewmodelfactory.KidViewModelFactory
 
 class NeederReviewWriteFragment : Fragment() {
 
 
-    lateinit var binding : FragmentKidReviewWriteBinding
+    lateinit var binding : FragmentNeederReviewWriteBinding
 
     lateinit var navController: NavController
 
@@ -41,7 +41,7 @@ class NeederReviewWriteFragment : Fragment() {
         var bundle = arguments as Bundle
 
         var opponent = bundle.getString("opponentUid")
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_kid_review_write,container,false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_needer_review_write,container,false)
 
         navController = findNavController()
 
@@ -51,7 +51,7 @@ class NeederReviewWriteFragment : Fragment() {
         binding.model = model
         model.transfer = transfer
 
-        binding.kidReviewSubmit.setOnClickListener {
+        binding.submit.setOnClickListener {
 
             if(model.content.get()?.length==0){
                 Toast.makeText(context,"리뷰를 작성해주세요!",Toast.LENGTH_SHORT).show()
