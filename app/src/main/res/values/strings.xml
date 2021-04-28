@@ -15,7 +15,7 @@
     <string name="kidReviewHint">솔직한 피드백은 육아 돌봄을 \n 구하고 있는 이웃들에게 많은 도움이 됩니다 </string>
     <string name="kidPolicy">글 작성하기 전에 알려드려요 \n 어떤 돌봄을 원하시는지(등하원 돕기,실내놀이 , 학습지도 등)과 돌봄위치 , 특별히 요청하는 사항 등에 대해서 \n 적어주세요\n\n 육아돌봄 정책 보러가기</string>
     <string name="kidSuccessText">채용이 완료 되었습니다 \n 실제 시터를 선택해주세요</string>
-    <string-array name="firstType">
+    <string-array name="mainCategory">
         <item>"인테리어"</item>
         <item>"육아/교육"</item>
         <item>"품앗이"</item>

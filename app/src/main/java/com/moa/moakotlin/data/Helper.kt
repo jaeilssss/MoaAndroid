@@ -7,12 +7,13 @@ data class Helper(
         var aptName : String,
         var uid : String,
         var title : String ,
-        var firstType : String,
+        var mainCategory : String,
         var images : ArrayList<String>?=null,
         var content : String,
         var timeStamp : Timestamp,
-        var wage : String,
-        var documentId : String,
+        var hopeWage : String,
+        var documentID : String,
+        @field:JvmField
         var isNego : Boolean
 ){
 }

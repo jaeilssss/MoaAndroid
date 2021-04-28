@@ -82,7 +82,7 @@ class NeederWritePageFragment : Fragment() {
 
     fun selectFirstType(){
         val builder : AlertDialog.Builder = AlertDialog.Builder(activity)
-        var items = resources.getStringArray(R.array.firstType)
+        var items = resources.getStringArray(R.array.mainCategory)
         builder.setItems(items,DialogInterface.OnClickListener { dialogInterface, i ->
             model.firstType = items.get(i)
             detailType(items.get(i))

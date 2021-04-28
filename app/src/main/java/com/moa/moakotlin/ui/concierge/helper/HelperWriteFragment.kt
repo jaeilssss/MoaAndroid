@@ -18,6 +18,9 @@ import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.databinding.FragmentHelperWriteBinding
 import com.moa.moakotlin.recyclerview.sitter.SitterWritePictureAdapter
 import com.moa.moakotlin.viewmodelfactory.SitterViewModelFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class HelperWriteFragment : Fragment() {
 
@@ -39,12 +42,13 @@ class HelperWriteFragment : Fragment() {
 
         model = ViewModelProvider(this,SitterViewModelFactory(navController))
                 .get(HelperWriteViewModel::class.java)
-        binding.model = model
 
+        binding.model = model
 
         binding.sitterWritePictureRcv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
 
         var adapter : SitterWritePictureAdapter
+
         if(Picture.getInstance()!=null){
             adapter = context?.let { SitterWritePictureAdapter(navController,Picture.getInstance(), it) }!!
         }else{
@@ -74,7 +78,12 @@ class HelperWriteFragment : Fragment() {
             else if(model.content.get()?.length==0){
                 Toast.makeText(context,"내용을 입력해주세요",Toast.LENGTH_SHORT).show()
             }else{
-                model.submit(adapter.list)
+                CoroutineScope(Dispatchers.Main).launch {
+                    if(model.submit(adapter.list)){
+                        Toast.makeText(context,"성공!",Toast.LENGTH_SHORT).show()
+                    }
+                }
+//                model.submit(adapter.list)
             }
         }
         return binding.root
@@ -82,9 +91,9 @@ class HelperWriteFragment : Fragment() {
 
     fun selectType(){
         val builder: AlertDialog.Builder = AlertDialog.Builder(activity)
-        val items = resources.getStringArray(R.array.sitterType)
-        builder.setItems(R.array.sitterType, DialogInterface.OnClickListener { dialog, pos ->
-            val items = resources.getStringArray(R.array.sitterType)
+        val items = resources.getStringArray(R.array.mainCategory)
+        builder.setItems(R.array.mainCategory, DialogInterface.OnClickListener { dialog, pos ->
+            val items = resources.getStringArray(R.array.mainCategory)
             model.type.set(items[pos])
 
         })

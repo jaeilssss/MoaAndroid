@@ -5,17 +5,17 @@ import java.util.ArrayList
 
 data class Needer(
         var title : String,
-        var firstType : String,
-        var secondType : String,
+        var mainCategory : String,
+        var subCategory : String,
         var hopeDate : String,
         @field:JvmField
         var isNego : Boolean,
         var timeStamp: Timestamp = Timestamp.now(),
         var images : ArrayList<String> ?=null,
         var content : String,
-        var wage : String,
+        var hopeWage : String,
         var documentID : String ?=null,
-        var status : String,
+        var hireStatus : String,
         var uid : String,
         var aptCode : String,
         var aptName : String

@@ -40,8 +40,6 @@ class NeederReadFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater , R.layout.fragment_needer_read , container , false)
 
-
-
         if(kid.hireStatus.equals("채용완료")){
             binding.kidReadHireState.text = "채용완료"
             binding.kidReadHireState.isEnabled = false

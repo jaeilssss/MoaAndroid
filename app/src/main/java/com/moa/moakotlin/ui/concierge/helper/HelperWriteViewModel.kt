@@ -7,10 +7,14 @@ import androidx.navigation.NavController
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.google.rpc.Help
 import com.moa.moakotlin.base.BaseViewModel
+import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.data.Sitter
 import com.moa.moakotlin.data.User
+import com.moa.moakotlin.repository.concierge.HelperRepository
+import com.moa.moakotlin.repository.imagePicker.ImagePickerRepository
 import java.io.File
 import java.io.FileInputStream
 
@@ -24,20 +28,28 @@ class HelperWriteViewModel(navController: NavController):BaseViewModel(navContro
     var pictureCount = ObservableField<String>("0")
     @field:JvmField
     var isNego = ObservableField<Boolean>(false)
-    var imagelist : ArrayList<String>  ?=null
+    var imagelist : ArrayList<String> ?=null
     var list = ArrayList<String>()
     var i = 0
-    fun submit(list :ArrayList<String>){
-        i=0
-        this.list = list
-        var bundle = Bundle()
-        if(list.size==0){
-            writeSitter()
-        }else{
-            imagelist = ArrayList<String>()
-            uploadImageList(list.get(i++),list.size)
-        }
+    var mainCategory = ""
 
+    suspend fun submit(list : ArrayList<String>) : Boolean{
+        var repository = HelperRepository()
+        var result = false
+        var helper = Helper(User.getInstance().aptCode,User.getInstance().aptName,User.getInstance().uid,title.get()!!,type.get()!!,null,
+                content.get()!!, Timestamp.now(),wage.get()!!,"",isNego.get()!!)
+        if(list.size==0){
+             result  = repository.submit(helper)
+        }else{
+            var uploader = ImagePickerRepository()
+            var images = ArrayList<String>()
+            for(i in 0 until list.size){
+                images.add(uploader.upload("helperImages/",list.get(i))!!)
+                helper.images = images
+            }
+            result = repository.submit(helper)
+        }
+        return result
     }
 
     fun uploadImageList(picture : String, size:Int){

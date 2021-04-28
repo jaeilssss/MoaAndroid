@@ -14,7 +14,11 @@ import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.data.Kid
 import com.moa.moakotlin.data.aptList
 import com.moa.moakotlin.databinding.FragmentNeederMainBinding
+import com.moa.moakotlin.recyclerview.concierge.NeederMainAdapter
 import com.moa.moakotlin.recyclerview.kid.KidAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class NeederMainFragment : BaseFragment() {
 
@@ -33,31 +37,36 @@ class NeederMainFragment : BaseFragment() {
             NeederMainViewModel(navController,it)
         }!!
 
-        var rcv = binding.rcv
-        var manager= LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-        rcv.layoutManager = manager
+        binding.model = model
 
-        var db = FirebaseFirestore.getInstance()
-        db.collection("Kid").whereIn("aptCode",aptList.getInstance().aroundApt)
-                .get().addOnSuccessListener {
-                    var list = ArrayList<Kid>()
-                    for( document in it.documents){
-                        var kid = document.toObject(Kid::class.java)
-                        if (kid != null){
-                           kid.documentID = document.id
-                            list.add(kid)
-                        }
-                    }
-                    context?.let {
-                        var adapter = KidAdapter(list, it,navController)
-                        rcv.adapter = adapter
-                    }
-                }
+        var manager= LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        var manager2= LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        var manager3= LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        var manager4= LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        var manager5= LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+
+        binding.kidRcv.layoutManager = manager
+        binding.interiorRcv.layoutManager = manager2
+        binding.besidesRcv.layoutManager = manager3
+        binding.laborRcv.layoutManager = manager4
+        binding.petRcv.layoutManager = manager5
+
+        CoroutineScope(Dispatchers.Main).launch {
+            var kidDataList = model.getData("육아/교육")
+            var interiorDataList = model.getData("인테리어")
+            var petDataList = model.getData("반려동물")
+                    // 품앗이 가 labor 인대 좀 어색하지 않나? 바꿔야할거같다는 생각..
+//            var laborDataList = model.getData("품앗이")
+            var besidesDataList = model.getData("기타")
+            var kidAdapter = NeederMainAdapter(kidDataList, requireContext())
+            binding.kidRcv.adapter = kidAdapter
+        }
+
         return binding.root
     }
 
     override fun onBackPressed() {
-        navController.popBackStack(R.id.HomeFragment,false)
+        navController.popBackStack()
     }
 
 
