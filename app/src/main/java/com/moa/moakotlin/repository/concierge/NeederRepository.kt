@@ -14,32 +14,30 @@ class NeederRepository {
         var db = FirebaseFirestore.getInstance()
         var result =false
         db.collection("Needer")
-                .add(needed).addOnSuccessListener {
+                .add(needed).addOnSuccessListener{
                     result = true
                 }.await()
-
         return result
-
     }
-    suspend fun modify(needed : Needer) : Boolean{
+    suspend fun modify(needer : Needer) : Boolean{
         var db = FirebaseFirestore.getInstance()
         var result = false
-        needed.documentID?.let {
-
+        needer.documentID?.let {
             db.collection("Needer")
-                .document(it).set(needed).addOnSuccessListener{
+                .document(it).set(needer).addOnSuccessListener{
                             result = true
                     }.await()
         }
         return result
     }
-    suspend fun initSetList(mainCaregory : String) :ArrayList<Needer>{
+    suspend fun initSetList(mainCategory : String) :ArrayList<Needer>{
+        println("${aptList.getInstance().aroundApt.get(0)}")
         var db = FirebaseFirestore.getInstance()
         var result = ArrayList<Needer>()
-        db.collection("Needer").orderBy("timeStamp",Query.Direction.DESCENDING).whereEqualTo("mainCategory", mainCaregory)
-                .whereEqualTo("aptCode",aptList.getInstance().aroundApt)
+        db.collection("Needer").orderBy("timeStamp",Query.Direction.DESCENDING).whereEqualTo("mainCategory",mainCategory)
+                .whereIn("aptCode",aptList.getInstance().aroundApt)
                 .limit(5).get().addOnSuccessListener {
-                    for(document in it.documents){
+                    for (document in it.documents) {
                         var data = document.toObject(Needer::class.java)
                         data?.documentID = document.id
                         if (data != null) {
@@ -49,10 +47,10 @@ class NeederRepository {
                 }.await()
         return result
     }
-    suspend fun getList() : ArrayList<Needer> {
+    suspend fun getList(mainCategory: String) : ArrayList<Needer> {
         var db = FirebaseFirestore.getInstance()
         var result = ArrayList<Needer>()
-        db.collection("Needer").orderBy("timeStamp", Query.Direction.DESCENDING).limit(50)
+        db.collection("Needer").orderBy("timeStamp", Query.Direction.DESCENDING).limit(50).whereEqualTo("mainCategory",mainCategory)
                 .get().addOnSuccessListener {
                     for(document in it.documents){
                         var data = document.toObject(Needer::class.java)

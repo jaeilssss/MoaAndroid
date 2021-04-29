@@ -23,7 +23,7 @@ class NeederMainAdapter(var list : ArrayList<Needer>,var context : Context) : Re
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         var data = list.get(position)
-        println("-------여기 실행되나요???")
+        println("${data.aptName}")
         if(data.images!=null){
             Glide.with(context).load(data.images!!.get(0)).into((holder as NeederViewHolder).image)
             holder.title.text = data.title

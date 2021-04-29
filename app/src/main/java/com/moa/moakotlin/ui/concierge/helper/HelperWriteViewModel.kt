@@ -36,7 +36,7 @@ class HelperWriteViewModel(navController: NavController):BaseViewModel(navContro
     suspend fun submit(list : ArrayList<String>) : Boolean{
         var repository = HelperRepository()
         var result = false
-        var helper = Helper(User.getInstance().aptCode,User.getInstance().aptName,User.getInstance().uid,title.get()!!,type.get()!!,null,
+        var helper = Helper(User.getInstance().aptCode,User.getInstance().aptName,User.getInstance().uid,title.get()!!,mainCategory,null,
                 content.get()!!, Timestamp.now(),wage.get()!!,"",isNego.get()!!)
         if(list.size==0){
              result  = repository.submit(helper)

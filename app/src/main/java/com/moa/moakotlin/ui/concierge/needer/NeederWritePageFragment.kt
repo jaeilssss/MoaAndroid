@@ -37,7 +37,6 @@ class NeederWritePageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_needer_write_page, container, false)
         navController = findNavController()
@@ -53,6 +52,7 @@ class NeederWritePageFragment : Fragment() {
         model.day.set(now.dayOfMonth)
 
     var adapter = context?.let { KidWritePictureAdapter(ArrayList(), it,resources) }
+
         var manager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
         if(Picture.getInstance()!=null){
             adapter?.list = Picture.getInstance()
@@ -63,17 +63,14 @@ class NeederWritePageFragment : Fragment() {
         binding.goToAlbum.setOnClickListener {
             navController.navigate(R.id.action_kidWritePageFragment_to_kidImagePicker)
         }
-
         binding.categoryLayout.setOnClickListener {
             selectFirstType()
         }
         binding.submit.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
-
                 if (adapter != null) {
                     model.submit(adapter.list)
                 }
-
             }
             return@setOnClickListener
         }
@@ -96,7 +93,7 @@ class NeederWritePageFragment : Fragment() {
         var items : Array<String>
         if(firstType.equals("인테리어")){
             items = resources.getStringArray(R.array.interiorDetail)
-        }else if(firstType.equals("육아/교육")){
+        }else if(firstType.equals("육아,교육")){
             items = resources.getStringArray(R.array.kidDetail)
         }else if(firstType.equals("품앗이")){
             items = resources.getStringArray(R.array.laborDetail)

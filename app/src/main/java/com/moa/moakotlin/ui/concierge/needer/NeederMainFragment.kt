@@ -52,16 +52,17 @@ class NeederMainFragment : BaseFragment() {
         binding.petRcv.layoutManager = manager5
 
         CoroutineScope(Dispatchers.Main).launch {
-            var kidDataList = model.getData("육아/교육")
+//            var kidDataList = model.getData("육아,교육")
             var interiorDataList = model.getData("인테리어")
-            var petDataList = model.getData("반려동물")
+//            var petDataList = model.getData("반려동물")
                     // 품앗이 가 labor 인대 좀 어색하지 않나? 바꿔야할거같다는 생각..
 //            var laborDataList = model.getData("품앗이")
-            var besidesDataList = model.getData("기타")
-            var kidAdapter = NeederMainAdapter(kidDataList, requireContext())
-            binding.kidRcv.adapter = kidAdapter
-        }
+//            var besidesDataList = model.getData("기타")
+//            var kidAdapter = NeederMainAdapter(kidDataList, requireContext())
+            var interiorAdapter = context?.let { NeederMainAdapter(interiorDataList, it) }
+            binding.kidRcv.adapter = interiorAdapter
 
+        }
         return binding.root
     }
 

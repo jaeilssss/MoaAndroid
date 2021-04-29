@@ -40,7 +40,7 @@ class NeederWritePageViewModel(navController: NavController) :BaseViewModel(navC
    suspend fun submit(list : ArrayList<String>){
         var repository = NeederRepository()
        var result = false
-       var hopeDate = "${year.get()}년 ${month.get()}월 ${day.get()} 일"
+       var hopeDate = "${year.get()}년 ${month.get()}월 ${day.get()}일"
        var needer = Needer(title.get()!!,firstType,secondType,hopeDate,isNego.get()!!, Timestamp.now(),null,content.get()!!,wage.get()!!,
                "","채용중",User.getInstance().uid,User.getInstance().aptCode,User.getInstance().aptName)
             if(list.size==0){
@@ -54,10 +54,7 @@ class NeederWritePageViewModel(navController: NavController) :BaseViewModel(navC
                 }
                 result = repository.submit(needer)
             }
-       println("result - > ${result}")
     }
-
-
 
     fun uploadImageList(picture : String, size:Int){
 
@@ -102,7 +99,6 @@ class NeederWritePageViewModel(navController: NavController) :BaseViewModel(navC
             }
         }
     }
-
     fun writeKid(){
         val kid = Kid()
         var user = User.getInstance()

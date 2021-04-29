@@ -17,7 +17,7 @@
     <string name="kidSuccessText">채용이 완료 되었습니다 \n 실제 시터를 선택해주세요</string>
     <string-array name="mainCategory">
         <item>"인테리어"</item>
-        <item>"육아/교육"</item>
+        <item>"육아,교육"</item>
         <item>"품앗이"</item>
         <item>"반려동물"</item>
         <item>"기타"</item>

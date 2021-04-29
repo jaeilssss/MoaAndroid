@@ -47,10 +47,11 @@ class HelperRepository {
                 }.await()
         return result
     }
-    suspend fun getList() : ArrayList<Helper> {
+    suspend fun getList(mainCaregory: String) : ArrayList<Helper> {
         var db = FirebaseFirestore.getInstance()
         var result = ArrayList<Helper>()
-        db.collection("Helper").orderBy("timeStamp",Query.Direction.DESCENDING).limit(50)
+        db.collection("Helper").orderBy("timeStamp",Query.Direction.DESCENDING).whereEqualTo("mainCategory",mainCaregory)
+                .limit(50)
                 .get().addOnSuccessListener {
                     for(document in it.documents){
                         var data = document.toObject(Helper::class.java)

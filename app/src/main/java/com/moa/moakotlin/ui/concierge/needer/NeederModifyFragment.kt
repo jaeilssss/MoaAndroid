@@ -49,15 +49,17 @@ class NeederModifyFragment : Fragment() {
 
         model.initDataSetting(kid)
 
-
         var manager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL,false)
 
         binding.rcv.layoutManager = manager
+
         var adapter = context?.let { kid?.images?.let { it1 -> KidWritePictureAdapter(it1, it,resources) } }
+
         if(Picture.getInstance()!=null){
             adapter?.list = Picture.getInstance()
         }
         binding.rcv.adapter = adapter
+
         binding.submit.setOnClickListener {
             adapter?.list?.let { it1 -> model.submit(it1) }
         }

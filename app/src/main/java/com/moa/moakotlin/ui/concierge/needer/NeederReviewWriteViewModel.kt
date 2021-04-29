@@ -17,7 +17,6 @@ class NeederReviewWriteViewModel(navController: NavController) : BaseViewModel(n
     // 굉장히 비효율적인 방식인거같다 .... 나중에 효율적인 방식으록 고치자
     lateinit var transfer : Transfer
 
-
     fun submit(opponentUid :String){
         var db = FirebaseFirestore.getInstance()
         var review = content.get()?.let { Review(it,Timestamp.now(),User.getInstance().uid) }
