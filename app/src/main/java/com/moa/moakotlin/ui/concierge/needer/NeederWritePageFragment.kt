@@ -81,7 +81,7 @@ class NeederWritePageFragment : Fragment() {
         val builder : AlertDialog.Builder = AlertDialog.Builder(activity)
         var items = resources.getStringArray(R.array.mainCategory)
         builder.setItems(items,DialogInterface.OnClickListener { dialogInterface, i ->
-            model.firstType = items.get(i)
+            model.mainCategory = items.get(i)
             detailType(items.get(i))
         })
         var alertDialog : AlertDialog =builder.create()
@@ -103,7 +103,7 @@ class NeederWritePageFragment : Fragment() {
             return
         }
         builder.setItems(items,DialogInterface.OnClickListener { dialogInterface, i ->
-            model.secondType = items.get(i)
+            model.subCategory = items.get(i)
         })
         var alertDialog : AlertDialog =builder.create()
         alertDialog.setTitle("세부 영역을 선택해주세요")

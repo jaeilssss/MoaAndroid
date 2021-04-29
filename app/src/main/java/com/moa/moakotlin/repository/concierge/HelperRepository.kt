@@ -8,10 +8,11 @@ import kotlinx.coroutines.tasks.await
 
 class HelperRepository {
 
-    suspend fun submit(helper : Helper) : Boolean{
+    suspend fun submit(mainCaregory: String,helper : Helper) : Boolean{
         var db = FirebaseFirestore.getInstance()
         var result =false
-        db.collection("Helper")
+        db.collection("Helper").document(mainCaregory)
+                .collection(mainCaregory)
                 .add(helper).addOnSuccessListener {
                     result = true
                 }.await()
@@ -19,12 +20,13 @@ class HelperRepository {
         return result
 
     }
-    suspend fun modify(helper : Helper) : Boolean{
+    suspend fun modify(mainCaregory: String,helper : Helper) : Boolean{
         var db = FirebaseFirestore.getInstance()
         var result = false
         helper.documentID?.let {
 
-            db.collection("Helper")
+            db.collection("Helper").document(mainCaregory)
+                    .collection(mainCaregory)
                     .document(it).set(helper).addOnSuccessListener{
                         result = true
                     }.await()
@@ -34,7 +36,9 @@ class HelperRepository {
     suspend fun initSetList(mainCaregory : String) :ArrayList<Helper>{
         var db = FirebaseFirestore.getInstance()
         var result = ArrayList<Helper>()
-        db.collection("Helper").orderBy("timeStamp",Query.Direction.DESCENDING).whereEqualTo("mainCategory", mainCaregory)
+        db.collection("Helper").document(mainCaregory)
+                .collection(mainCaregory)
+                .orderBy("timeStamp",Query.Direction.DESCENDING)
                 .limit(5).get().addOnSuccessListener {
                     for(document in it.documents){
                         var data = document.toObject(Helper::class.java)
@@ -50,7 +54,10 @@ class HelperRepository {
     suspend fun getList(mainCaregory: String) : ArrayList<Helper> {
         var db = FirebaseFirestore.getInstance()
         var result = ArrayList<Helper>()
-        db.collection("Helper").orderBy("timeStamp",Query.Direction.DESCENDING).whereEqualTo("mainCategory",mainCaregory)
+        db.collection("Helper")
+                .document(mainCaregory)
+                .collection(mainCaregory)
+                .orderBy("timeStamp",Query.Direction.DESCENDING)
                 .limit(50)
                 .get().addOnSuccessListener {
                     for(document in it.documents){

@@ -94,7 +94,7 @@ class HelperWriteFragment : Fragment() {
         val items = resources.getStringArray(R.array.mainCategory)
         builder.setItems(R.array.mainCategory, DialogInterface.OnClickListener { dialog, pos ->
             val items = resources.getStringArray(R.array.mainCategory)
-            model.type.set(items[pos])
+            model.mainCategory = items.get(pos)
 
         })
         val alertDialog: AlertDialog = builder.create()

@@ -31,8 +31,8 @@ class NeederWritePageViewModel(navController: NavController) :BaseViewModel(navC
     var content = ObservableField<String>("")
     var imagelist : ArrayList<String> ?=null
     var list = ArrayList<String>()
-    var firstType = ""
-    var secondType = ""
+    var mainCategory = ""
+    var subCategory = ""
     var isNego = ObservableField<Boolean>(false)
     var i   = 0
     var isRe = ObservableField<Boolean>(false)
@@ -41,10 +41,10 @@ class NeederWritePageViewModel(navController: NavController) :BaseViewModel(navC
         var repository = NeederRepository()
        var result = false
        var hopeDate = "${year.get()}년 ${month.get()}월 ${day.get()}일"
-       var needer = Needer(title.get()!!,firstType,secondType,hopeDate,isNego.get()!!, Timestamp.now(),null,content.get()!!,wage.get()!!,
+       var needer = Needer(title.get()!!,mainCategory,subCategory,hopeDate,isNego.get()!!, Timestamp.now(),null,content.get()!!,wage.get()!!,
                "","채용중",User.getInstance().uid,User.getInstance().aptCode,User.getInstance().aptName)
             if(list.size==0){
-                 result = repository.submit(needer)
+                 result = repository.submit(mainCategory,needer)
             }else{
                 var uploader = ImagePickerRepository()
                 var images = ArrayList<String>()
@@ -52,7 +52,7 @@ class NeederWritePageViewModel(navController: NavController) :BaseViewModel(navC
                     images.add(uploader.upload("neederImages/",list.get(i))!!)
                     needer.images = images
                 }
-                result = repository.submit(needer)
+                result = repository.submit(mainCategory,needer)
             }
     }
 

@@ -39,7 +39,7 @@ class HelperWriteViewModel(navController: NavController):BaseViewModel(navContro
         var helper = Helper(User.getInstance().aptCode,User.getInstance().aptName,User.getInstance().uid,title.get()!!,mainCategory,null,
                 content.get()!!, Timestamp.now(),wage.get()!!,"",isNego.get()!!)
         if(list.size==0){
-             result  = repository.submit(helper)
+             result  = repository.submit(mainCategory,helper)
         }else{
             var uploader = ImagePickerRepository()
             var images = ArrayList<String>()
@@ -47,7 +47,7 @@ class HelperWriteViewModel(navController: NavController):BaseViewModel(navContro
                 images.add(uploader.upload("helperImages/",list.get(i))!!)
                 helper.images = images
             }
-            result = repository.submit(helper)
+            result = repository.submit(mainCategory,helper)
         }
         return result
     }
