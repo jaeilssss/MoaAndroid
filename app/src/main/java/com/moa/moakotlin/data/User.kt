@@ -21,10 +21,7 @@ data class User(
     var timeStamp : Timestamp = Timestamp.now(),
     var introduction :String = ""
 
-): Parcelable
-
-{
-
+): Parcelable{
     companion object{
         // 자기변수 선언하기
         @Volatile private var instance : User ? = null
@@ -49,12 +46,8 @@ data class User(
         instance?.aptName = user.aptName
         instance?.introduction = user.introduction
     }
-
         fun deleteUser(){
             instance = null
         }
     }
-
-
-
 }

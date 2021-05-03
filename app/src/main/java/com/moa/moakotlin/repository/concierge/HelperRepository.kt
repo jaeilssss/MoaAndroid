@@ -4,6 +4,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Needer
+import com.moa.moakotlin.data.aptList
 import kotlinx.coroutines.tasks.await
 
 class HelperRepository {
@@ -38,6 +39,7 @@ class HelperRepository {
         var result = ArrayList<Helper>()
         db.collection("Helper").document(mainCaregory)
                 .collection(mainCaregory)
+                .whereIn("aptCode",aptList.getInstance().aroundApt)
                 .orderBy("timeStamp",Query.Direction.DESCENDING)
                 .limit(5).get().addOnSuccessListener {
                     for(document in it.documents){
@@ -58,6 +60,7 @@ class HelperRepository {
                 .document(mainCaregory)
                 .collection(mainCaregory)
                 .orderBy("timeStamp",Query.Direction.DESCENDING)
+                .whereIn("aptCode",aptList.getInstance().aroundApt)
                 .limit(50)
                 .get().addOnSuccessListener {
                     for(document in it.documents){

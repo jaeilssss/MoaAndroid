@@ -12,10 +12,8 @@ class aptList {
                 instance = it
             }
         }
-
         fun setInstance(newInstance : aptList){
             getInstance().aroundApt = newInstance.aroundApt
-
         }
     }
 }

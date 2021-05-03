@@ -1,5 +1,6 @@
 package com.moa.moakotlin.repository.user
 
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.aptList
@@ -16,7 +17,9 @@ class UserRepository {
 
         db.collection("User").document(documentId)
             .get().addOnSuccessListener {
-                user = it.toObject(User::class.java)!!
+                if(it.exists()){
+                    user = it.toObject(User::class.java)!!
+                }
 
             }.await()
         return user
@@ -26,7 +29,7 @@ class UserRepository {
         var result = false
         var db = FirebaseFirestore.getInstance()
 
-        db.collection("User").add(user)
+        db.collection("User").document(FirebaseAuth.getInstance().uid!!).set(user)
             .addOnSuccessListener {
                     result = true
             }.await()

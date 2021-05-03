@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.data.User
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,10 +20,14 @@ lateinit var model : LoadingViewModel
         CoroutineScope(Dispatchers.Main).launch {
             startLoading()
         }
-
     }
   suspend fun startLoading() {
         try{
+            Picture.deleteInstance()
+            if(FirebaseAuth.getInstance().currentUser==null){
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }
             var result = model.initApp(FirebaseAuth.getInstance().currentUser.uid,this)
             if(result==true){
                 startActivity(Intent(this, MainActivity::class.java))

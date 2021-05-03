@@ -1,48 +1,40 @@
 {
   "project_info": {
-    "project_number": "627032962121",
-    "project_id": "moapt-15a9c",
-    "storage_bucket": "moapt-15a9c.appspot.com"
+    "project_number": "363332347038",
+    "project_id": "moakr-8c0ab",
+    "storage_bucket": "moakr-8c0ab.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:627032962121:android:c776c907058abcbc8efb98",
+        "mobilesdk_app_id": "1:363332347038:android:3e9bb6eff097c166c8c78f",
         "android_client_info": {
           "package_name": "com.moa.moaKotlin"
         }
       },
       "oauth_client": [
         {
-          "client_id": "627032962121-n73k8144e2ma6bnr6bvb5v9dfqmimtpk.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.moa.moaKotlin",
-            "certificate_hash": "1e0d1603868d93848839bf77ca77143bf6d95db8"
-          }
-        },
-        {
-          "client_id": "627032962121-hlabjpb9o6da79eufrqq7u1md1i9b2tb.apps.googleusercontent.com",
+          "client_id": "363332347038-02abit9pbdl1kh7p6u1on1sujo0sgfik.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBNtMabCPLneFRvStPO2SdXLRCIuywdmXI"
+          "current_key": "AIzaSyAH6WxOVF9GDa7aezFn9L2_YXvhNceGZCw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "627032962121-hlabjpb9o6da79eufrqq7u1md1i9b2tb.apps.googleusercontent.com",
+              "client_id": "363332347038-02abit9pbdl1kh7p6u1on1sujo0sgfik.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "627032962121-315kt89311h7fdee57i1juldjekcp4g9.apps.googleusercontent.com",
+              "client_id": "363332347038-6a48ubofd5eobi2isvonn45m674g1488.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "asdf"
+                "bundle_id": "com.fomagran.MOA"
               }
             }
           ]
@@ -51,42 +43,34 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:627032962121:android:5fbab7b43ba583bd8efb98",
+        "mobilesdk_app_id": "1:363332347038:android:92eb077d3645659fc8c78f",
         "android_client_info": {
           "package_name": "com.moa.moakotlin"
         }
       },
       "oauth_client": [
         {
-          "client_id": "627032962121-30vsn4e2qsh7c3f71rkhkgqi0li15b1j.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.moa.moakotlin",
-            "certificate_hash": "1e0d1603868d93848839bf77ca77143bf6d95db8"
-          }
-        },
-        {
-          "client_id": "627032962121-hlabjpb9o6da79eufrqq7u1md1i9b2tb.apps.googleusercontent.com",
+          "client_id": "363332347038-02abit9pbdl1kh7p6u1on1sujo0sgfik.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBNtMabCPLneFRvStPO2SdXLRCIuywdmXI"
+          "current_key": "AIzaSyAH6WxOVF9GDa7aezFn9L2_YXvhNceGZCw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "627032962121-hlabjpb9o6da79eufrqq7u1md1i9b2tb.apps.googleusercontent.com",
+              "client_id": "363332347038-02abit9pbdl1kh7p6u1on1sujo0sgfik.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "627032962121-315kt89311h7fdee57i1juldjekcp4g9.apps.googleusercontent.com",
+              "client_id": "363332347038-6a48ubofd5eobi2isvonn45m674g1488.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "asdf"
+                "bundle_id": "com.fomagran.MOA"
               }
             }
           ]

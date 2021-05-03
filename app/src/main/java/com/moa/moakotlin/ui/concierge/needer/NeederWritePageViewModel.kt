@@ -3,7 +3,9 @@ package com.moa.moakotlin.ui.concierge.needer
 import android.net.Uri
 import android.os.Bundle
 import androidx.databinding.ObservableField
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
+import com.google.android.gms.dynamic.SupportFragmentWrapper
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -54,6 +56,7 @@ class NeederWritePageViewModel(navController: NavController) :BaseViewModel(navC
                 }
                 result = repository.submit(mainCategory,needer)
             }
+
     }
 
     fun uploadImageList(picture : String, size:Int){

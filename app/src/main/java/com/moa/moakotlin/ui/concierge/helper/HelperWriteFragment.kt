@@ -24,7 +24,6 @@ import kotlinx.coroutines.launch
 
 class HelperWriteFragment : Fragment() {
 
-
     lateinit var binding : FragmentHelperWriteBinding
 
     lateinit var navController: NavController
@@ -70,8 +69,8 @@ class HelperWriteFragment : Fragment() {
         binding.submit.setOnClickListener {
             if(model.title.get()?.length==0){
                 Toast.makeText(context,"제목을 입력해주세요",Toast.LENGTH_SHORT).show()
-            }else if(model.type.get()?.length==0){
-                Toast.makeText(context,"시터 유형을 입력해주세요",Toast.LENGTH_SHORT).show()
+            }else if(model.mainCategory.length==0){
+                Toast.makeText(context,"당신의 영역을 선택해주세요",Toast.LENGTH_SHORT).show()
             }else if(model.wage.get()?.length==0){
                 Toast.makeText(context,"희망 시급을 입력해주세요",Toast.LENGTH_SHORT).show()
             }

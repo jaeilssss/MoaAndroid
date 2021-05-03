@@ -11,6 +11,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -62,7 +63,6 @@ class ImagePickerFragment : Fragment() {
         var list = ArrayList<String>()
         context?.let { mcontext = it }!!
         binding.imagePickerSubmit.setOnClickListener {
-
             CoroutineScope(Dispatchers.Main).launch {
                 if(adapter.checkBox!=-1){
                    var result =  model.submit(adapter.list.get(adapter.checkBox),roomId,opponentUid)
@@ -87,10 +87,14 @@ class ImagePickerFragment : Fragment() {
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             //lay hinh tu camera
+            Toast.makeText(context,"여기실행!!",Toast.LENGTH_SHORT).show()
             Libraries.requestPermissionStorage(activity)
         } else {
+            Toast.makeText(context,"여기실행!! else ",Toast.LENGTH_SHORT).show()
+
             object : Thread() {
                 override fun run() {
+
                     Looper.prepare()
                     handler.post {
                         list.clear()

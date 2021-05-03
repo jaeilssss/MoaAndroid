@@ -35,7 +35,6 @@ class NeederRepository {
         return result
     }
     suspend fun initSetList(mainCategory : String) :ArrayList<Needer>{
-        println("${aptList.getInstance().aroundApt.get(0)}")
         var db = FirebaseFirestore.getInstance()
         var result = ArrayList<Needer>()
         db.collection("Needer")
@@ -60,6 +59,7 @@ class NeederRepository {
         db.collection("Needer")
                 .document(mainCategory)
                 .collection(mainCategory)
+                .whereIn("aptCode",aptList.getInstance().aroundApt)
                 .orderBy("timeStamp", Query.Direction.DESCENDING).limit(50)
                 .get().addOnSuccessListener {
                     for(document in it.documents){
