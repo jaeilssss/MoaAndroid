@@ -50,8 +50,7 @@
             android:layout_weight="1"
             android:background="@drawable/background_shape"
             android:text="다음 "
-            android:onClick="@{()->model.next()}"
-            android:id="@+id/certification_skip_next"
+            android:id="@+id/next"
             android:textColor="#000000"
             android:textSize="17dp" />
     </LinearLayout>

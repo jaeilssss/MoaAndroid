@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
@@ -27,9 +28,12 @@ class CertificationNoticeFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_certification_notice,container,false)
         navController = findNavController()
-        model = context?.let {CertificationNoticeViewModel(navController,it)}!!
-        binding.model = model
+        model = ViewModelProvider(this).get(CertificationNoticeViewModel::class.java)
 
+        binding.model = model
+        binding.skip.setOnClickListener {
+            navController.navigate(R.id.action_certificationNoticeFragment_to_certificationSkipFragment)
+        }
         arguments?.let {
             model.bundle = arguments as Bundle
         }

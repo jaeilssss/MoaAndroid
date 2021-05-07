@@ -5,11 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
 import com.moa.moakotlin.databinding.FragmentCertificationSkipBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class CertificationSkipFragment : Fragment() {
 
@@ -31,13 +35,25 @@ class CertificationSkipFragment : Fragment() {
 
         binding.model = model
 
+        binding.next.setOnClickListener {
+            CoroutineScope(Dispatchers.Main).launch {
+                var result = model.signup()
+                if(result==true){
+                    navController.navigate(R.id.action_certificationSkipFragment_to_signUpResultFragment)
+                }else{
+                    setToast("ERROR가 발생했습니다")
+                }
+            }
+        }
         arguments?.let {
             model.bundle = arguments as Bundle
         }
 
-
         return binding.root
     }
 
+    fun setToast(msg : String){
+        Toast.makeText(context,msg,Toast.LENGTH_SHORT).show()
+    }
 
 }

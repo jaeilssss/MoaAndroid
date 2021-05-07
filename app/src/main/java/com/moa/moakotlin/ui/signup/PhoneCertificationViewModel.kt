@@ -1,15 +1,10 @@
 package com.moa.moakotlin.ui.signup
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import android.widget.Toast
 import androidx.databinding.ObservableField
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
-import com.google.firebase.FirebaseException
-import com.google.firebase.FirebaseTooManyRequestsException
+
 import com.google.firebase.auth.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.moa.moakotlin.R
@@ -21,8 +16,6 @@ import com.moa.moakotlin.repository.user.UserRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
-import java.util.concurrent.TimeUnit
 
 class PhoneCertificationViewModel() : ViewModel(){
     val code = ObservableField<String>("")

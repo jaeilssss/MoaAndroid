@@ -126,7 +126,7 @@
             android:layout_gravity="left"
             android:layout_marginLeft="100dp"
             android:layout_marginRight="10dp"
-            android:onClick="@{()->model.next()}"
+            android:id="@+id/next"
             android:layout_weight="1"
             android:background="@drawable/background_shape"
             android:text="다음 "

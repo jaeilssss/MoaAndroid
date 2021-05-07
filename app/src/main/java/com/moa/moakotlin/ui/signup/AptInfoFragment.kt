@@ -24,6 +24,7 @@ class AptInfoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_apt_info,container,false)
 
@@ -35,6 +36,14 @@ class AptInfoFragment : Fragment() {
             model.bundle = arguments as Bundle
         }
         binding.model = model
+
+        binding.next.setOnClickListener {
+
+            model.next() // 일단 이렇게 만 하고 나중에 수정하자
+
+            navController.navigate(R.id.action_aptInfoFragment_to_certificationNoticeFragment)
+
+        }
 
         return binding.root
     }

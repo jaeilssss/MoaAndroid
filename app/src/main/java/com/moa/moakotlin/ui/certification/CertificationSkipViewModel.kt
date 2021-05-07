@@ -11,12 +11,21 @@ import com.google.firebase.ktx.Firebase
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseViewModel
 import com.moa.moakotlin.data.User
+import com.moa.moakotlin.repository.user.UserRepository
 import kotlinx.coroutines.*
 import java.util.*
 
 class CertificationSkipViewModel(navController: NavController,var context: Context) : BaseViewModel(navController){
 
 lateinit var bundle: Bundle
+
+    suspend fun signup() : Boolean{
+        var repository = UserRepository()
+
+        var result  = repository.signUpUser(User.getInstance())
+
+        return result
+    }
    fun next() {
 
        var user = User.getInstance()
