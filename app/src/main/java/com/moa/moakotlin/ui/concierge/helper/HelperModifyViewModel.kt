@@ -3,6 +3,7 @@ package com.moa.moakotlin.ui.concierge.helper
 import android.net.Uri
 import android.os.Bundle
 import androidx.databinding.ObservableField
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
@@ -15,7 +16,7 @@ import com.moa.moakotlin.data.User
 import java.io.File
 import java.io.FileInputStream
 
-class HelperModifyViewModel(navController: NavController) : BaseViewModel(navController) {
+class HelperModifyViewModel() : ViewModel() {
     var title = ObservableField<String>("")
     var type = ObservableField<String>("")
     var wage = ObservableField<String>("")
@@ -104,7 +105,7 @@ class HelperModifyViewModel(navController: NavController) : BaseViewModel(navCon
                 var bundle  = Bundle()
                 Picture.deleteInstance()
                 bundle.putParcelable("sitter",sitter)
-                navController.navigate(R.id.action_sitterModifyFragment_to_sitterReadFragment,bundle)
+//                navController.navigate(R.id.action_sitterModifyFragment_to_sitterReadFragment,bundle)
 
             }
     }

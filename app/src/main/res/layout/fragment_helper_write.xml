@@ -23,7 +23,6 @@
         android:layout_height="wrap_content"
         android:background="?attr/actionModeCloseDrawable"
         android:layout_margin="10dp"
-        android:onClick="@{()->model.prev()}"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/back"/>

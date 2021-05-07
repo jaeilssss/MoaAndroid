@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -61,7 +62,7 @@ class KidImagePicker : Fragment() {
         adapter = context?.let { list = Picture.getGalleryPhotos(it)
             KidImagePickerAdapter(navController,it,list)
         }!!
-       model = KidImagePickerViewModel(navController)
+       model = ViewModelProvider(this).get(KidImagePickerViewModel::class.java)
         rcv.adapter = adapter
         handler = Handler()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(

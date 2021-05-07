@@ -16,7 +16,6 @@ import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.data.Sitter
 import com.moa.moakotlin.databinding.FragmentHelpterModifyBinding
 import com.moa.moakotlin.recyclerview.kid.KidWritePictureAdapter
-import com.moa.moakotlin.viewmodelfactory.SitterViewModelFactory
 
 class HelperModifyFragment : Fragment() {
 
@@ -34,7 +33,7 @@ class HelperModifyFragment : Fragment() {
 
         navController = findNavController()
 
-        model = ViewModelProvider(this,SitterViewModelFactory(navController)).get(HelperModifyViewModel::class.java)
+        model = ViewModelProvider(this).get(HelperModifyViewModel::class.java)
 
         binding.model= model
 

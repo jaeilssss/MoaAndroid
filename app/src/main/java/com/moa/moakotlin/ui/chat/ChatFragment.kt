@@ -60,8 +60,9 @@ class ChatFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        check = 0
+
         transfer.bottomVisible()
+        check = 0
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_chat,container , false)
 
         roomId = arguments?.getString("roomId")?:"x"
@@ -90,6 +91,7 @@ class ChatFragment : BaseFragment() {
                         rcv.adapter = adapter
                         rcv.scrollToPosition(adapter.itemCount-1)
                     }else{
+
                         // initView 가 false 인 결
                     }
                 }else{
@@ -154,7 +156,6 @@ class ChatFragment : BaseFragment() {
     override fun onBackPressed() {
         navController.popBackStack()
     }
-
     fun onScrollListener(rcv: RecyclerView,adapter: ChatAdapter){
         rcv.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -168,7 +169,6 @@ class ChatFragment : BaseFragment() {
                         adapter.joined(result)
                         rcv.scrollToPosition(size+lastCompletelyVisibleItemPosition)
                     }
-
                 }
             }
         })
@@ -177,8 +177,7 @@ class ChatFragment : BaseFragment() {
     override fun onRequestPermissionsResult(
             requestCode: Int,
             permissions: Array<out String>,
-            grantResults: IntArray
-    ) {
+            grantResults: IntArray){
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         when (requestCode){

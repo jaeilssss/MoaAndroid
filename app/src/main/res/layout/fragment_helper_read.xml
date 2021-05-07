@@ -34,8 +34,7 @@
             android:layout_margin="10dp"
             android:background="?attr/actionModeCloseDrawable"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:onClick="@{()->model.prev()}"/>
+            app:layout_constraintTop_toTopOf="parent" />
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"

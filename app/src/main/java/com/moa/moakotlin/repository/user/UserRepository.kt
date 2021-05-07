@@ -19,6 +19,8 @@ class UserRepository {
             .get().addOnSuccessListener {
                 if(it.exists()){
                     user = it.toObject(User::class.java)!!
+                    user!!.uid = it.id
+
                 }
 
             }.await()

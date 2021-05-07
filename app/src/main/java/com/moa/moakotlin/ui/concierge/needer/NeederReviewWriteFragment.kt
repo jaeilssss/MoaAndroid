@@ -14,7 +14,6 @@ import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.Transfer
 import com.moa.moakotlin.databinding.FragmentNeederReviewWriteBinding
-import com.moa.moakotlin.viewmodelfactory.KidViewModelFactory
 
 class NeederReviewWriteFragment : Fragment() {
 
@@ -45,8 +44,7 @@ class NeederReviewWriteFragment : Fragment() {
 
         navController = findNavController()
 
-        model = ViewModelProvider(this,KidViewModelFactory(navController))
-            .get(NeederReviewWriteViewModel::class.java)
+        model = ViewModelProvider(this).get(NeederReviewWriteViewModel::class.java)
 
         binding.model = model
         model.transfer = transfer

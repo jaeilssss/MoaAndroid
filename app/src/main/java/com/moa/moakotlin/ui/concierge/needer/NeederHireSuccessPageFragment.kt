@@ -19,7 +19,7 @@ import com.moa.moakotlin.data.Kid
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentNeederHireSuccessPageBinding
 import com.moa.moakotlin.recyclerview.kid.KidHireSuccessAdapter
-import com.moa.moakotlin.viewmodelfactory.KidViewModelFactory
+
 
 class NeederHireSuccessPageFragment : Fragment() {
 
@@ -41,8 +41,7 @@ lateinit var binding: FragmentNeederHireSuccessPageBinding
 
         navController = findNavController()
 
-        model = ViewModelProvider(this, KidViewModelFactory(navController))
-            .get(NeederHireSuccessViewModel::class.java)
+        model = ViewModelProvider(this).get(NeederHireSuccessViewModel::class.java)
 
         var kid = arguments?.getParcelable<Kid>("kid")
 

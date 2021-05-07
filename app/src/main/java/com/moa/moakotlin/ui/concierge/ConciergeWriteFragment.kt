@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
@@ -28,12 +29,7 @@ class ConciergeWriteFragment : Fragment() {
 
         navController = findNavController()
 
-        model = context?.let {
-            ConciergeWriteViewModel(
-                navController,
-                it
-            )
-        }!!
+        model = ViewModelProvider(this).get(ConciergeWriteViewModel::class.java)
 
         binding.goToKidWrite.setOnClickListener{
             Picture.deleteInstance()

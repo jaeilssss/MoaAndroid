@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -77,8 +78,7 @@ class ImagePickerFragment : Fragment() {
         adapter = context?.let { list = Picture.getGalleryPhotos(it)
             ImagePickerAdapter(navController,it,list)
         }!!
-        model = context?.let {
-            ImagePickerViewModel(navController,it,adapter,roomId,opponentUid) }!!
+        model = ViewModelProvider(this).get(ImagePickerViewModel::class.java)
         rcv.adapter = adapter
         handler = Handler()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(

@@ -17,7 +17,6 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.databinding.FragmentHelperWriteBinding
 import com.moa.moakotlin.recyclerview.sitter.SitterWritePictureAdapter
-import com.moa.moakotlin.viewmodelfactory.SitterViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -39,8 +38,7 @@ class HelperWriteFragment : Fragment() {
 
         navController = findNavController()
 
-        model = ViewModelProvider(this,SitterViewModelFactory(navController))
-                .get(HelperWriteViewModel::class.java)
+        model = ViewModelProvider(this).get(HelperWriteViewModel::class.java)
 
         binding.model = model
 
@@ -77,11 +75,11 @@ class HelperWriteFragment : Fragment() {
             else if(model.content.get()?.length==0){
                 Toast.makeText(context,"내용을 입력해주세요",Toast.LENGTH_SHORT).show()
             }else{
-                CoroutineScope(Dispatchers.Main).launch {
-                    if(model.submit(adapter.list)){
-                        Toast.makeText(context,"성공!",Toast.LENGTH_SHORT).show()
-                    }
-                }
+
+                    var helper = model.test(adapter?.list)
+
+                    Toast.makeText(context,helper.title,Toast.LENGTH_SHORT).show()
+
 //                model.submit(adapter.list)
             }
         }

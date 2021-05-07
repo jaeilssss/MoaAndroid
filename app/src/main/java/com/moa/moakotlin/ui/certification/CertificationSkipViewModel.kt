@@ -8,7 +8,6 @@ import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
-import com.moa.moakotlin.Http.signuphttp.SignUpHttp
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseViewModel
 import com.moa.moakotlin.data.User
@@ -21,7 +20,7 @@ lateinit var bundle: Bundle
    fun next() {
 
        var user = User.getInstance()
-       user.timeStamp = Timestamp.now()
+       user.signUpDate = Timestamp.now()
        var db = FirebaseFirestore.getInstance()
                db.collection("User").document(FirebaseAuth.getInstance().uid!!)
                    .set(user)

@@ -1,6 +1,7 @@
 package com.moa.moakotlin.ui.declaration
 
 import androidx.databinding.ObservableField
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.google.firebase.FirebaseException
 import com.google.firebase.firestore.DocumentReference
@@ -10,7 +11,7 @@ import com.moa.moakotlin.data.Report
 import com.moa.moakotlin.data.User
 import kotlinx.coroutines.tasks.await
 
-class DeclarationViewModel(navController: NavController) :BaseViewModel(navController){
+class DeclarationViewModel() :ViewModel(){
 
     var checkBoxList = arrayOfNulls<ObservableField<Boolean>>(4)
 

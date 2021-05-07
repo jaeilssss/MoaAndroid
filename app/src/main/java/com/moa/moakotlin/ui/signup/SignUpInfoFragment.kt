@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
@@ -28,15 +29,11 @@ class SignUpInfoFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_sign_up_info,container,false)
         navController = findNavController()
-        model  = context?.let { SignUpInfoViewModel(navController, it) }!!
-
-
+        model  = ViewModelProvider(this).get(SignUpInfoViewModel::class.java)
         binding.nicknameCheck.setOnClickListener{
                 model.nickNameCheck()
         }
         binding.model = model
         return binding.root
     }
-
-
 }

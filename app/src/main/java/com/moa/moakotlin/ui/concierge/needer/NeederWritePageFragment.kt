@@ -19,7 +19,6 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.databinding.FragmentNeederWritePageBinding
 import com.moa.moakotlin.recyclerview.kid.KidWritePictureAdapter
-import com.moa.moakotlin.viewmodelfactory.KidViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -44,8 +43,7 @@ class NeederWritePageFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_needer_write_page, container, false)
         navController = findNavController()
 
-        model = ViewModelProvider(this, KidViewModelFactory(navController))
-            .get(NeederWritePageViewModel::class.java)
+        model = ViewModelProvider(this).get(NeederWritePageViewModel::class.java)
         binding.model = model
 
         var now = LocalDateTime.now()
@@ -88,8 +86,12 @@ class NeederWritePageFragment : Fragment() {
         }
         binding.submit.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
-                if (adapter != null) {
-                    model.submit(adapter.list)
+//                if (adapter != null) {
+//                    model.submit(adapter.list)
+//                }
+                if(adapter!=null){
+                    model.test(adapter.list)
+                    Toast.makeText(context,"성공!",Toast.LENGTH_SHORT).show()
                 }
             }
             return@setOnClickListener

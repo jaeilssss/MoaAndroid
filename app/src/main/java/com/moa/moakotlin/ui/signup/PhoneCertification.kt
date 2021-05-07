@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
@@ -34,14 +35,12 @@ class PhoneCertification : Fragment() {
         // Inflate the layout for this fragment
         binding  = DataBindingUtil.inflate(inflater,R.layout.fragment_phone_certification,container , false)
         navController = findNavController()
-        model = context?.let {PhoneCertificationViewModel(navController,it)}!!
+        model = ViewModelProvider(this).get(PhoneCertificationViewModel::class.java)
         binding.model = model
         arguments?.let {
             model.bundle = arguments as Bundle
         }
-        activity?.let {  model.init(it)}
-
-
+        activity?.let { model.init(it)}
         binding.success.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 if(model.check()==true){
@@ -58,7 +57,6 @@ class PhoneCertification : Fragment() {
                         navController.navigate(R.id.action_phoneCertification_to_signUpFragment)
                     }
                 }
-
             }
         }
        return binding.root

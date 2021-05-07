@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.databinding.FragmentConciergeMainBinding
-import com.moa.moakotlin.viewmodelfactory.KidViewModelFactory
 
 class ConciergeMainFragment : BaseFragment() {
 
@@ -33,9 +32,7 @@ class ConciergeMainFragment : BaseFragment() {
 
         navController = findNavController()
 
-        model = ViewModelProvider(this,KidViewModelFactory(navController))
-            .get(ConciergeMainViewModel::class.java)
-
+        model = ViewModelProvider(this).get(ConciergeMainViewModel::class.java)
         binding.kidViewGoToKid.setOnClickListener {
             navController.navigate(R.id.action_ConciergeMainFragment_to_kidMainFragment)
         }

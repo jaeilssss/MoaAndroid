@@ -3,6 +3,7 @@ package com.moa.moakotlin.ui.concierge.helper
 import android.net.Uri
 import android.os.Bundle
 import androidx.databinding.ObservableField
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
@@ -15,10 +16,13 @@ import com.moa.moakotlin.data.Sitter
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.repository.concierge.HelperRepository
 import com.moa.moakotlin.repository.imagePicker.ImagePickerRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import java.io.File
 import java.io.FileInputStream
 
-class HelperWriteViewModel(navController: NavController):BaseViewModel(navController) {
+class HelperWriteViewModel():ViewModel() {
 
     var title = ObservableField<String>("")
     var type = ObservableField<String>("")
@@ -33,6 +37,27 @@ class HelperWriteViewModel(navController: NavController):BaseViewModel(navContro
     var i = 0
     var mainCategory = ""
 
+
+    fun test (list: ArrayList<String>) : Helper {
+        var repository = HelperRepository()
+        var result = false
+        var helper = Helper(User.getInstance().aptCode, User.getInstance().aptName, User.getInstance().uid, title.get()!!, mainCategory, null,
+                content.get()!!, Timestamp.now(), wage.get()!!, "", isNego.get()!!)
+        CoroutineScope(Dispatchers.IO).async {
+            if (list.size == 0) {
+                result = repository.submit(mainCategory, helper)
+            } else {
+                var uploader = ImagePickerRepository()
+                var images = ArrayList<String>()
+                for (i in 0 until list.size) {
+                    images.add(uploader.upload("helperImages/", list.get(i))!!)
+                    helper.images = images
+                }
+                result = repository.submit(mainCategory, helper)
+            }
+        }
+        return helper
+    }
     suspend fun submit(list : ArrayList<String>) : Boolean{
         var repository = HelperRepository()
         var result = false

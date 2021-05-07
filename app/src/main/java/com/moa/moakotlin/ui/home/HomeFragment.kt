@@ -8,9 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.moa.moakotlin.Http.kid.KidGetHttp
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
@@ -52,7 +52,7 @@ var i = 0
         navController = findNavController()
 
 
-        model = context?.let { HomeViewModel(navController , it) }!!
+        model = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         binding.model = model
 

@@ -1,13 +1,14 @@
 package com.moa.moakotlin.ui.concierge.helper
 
 import androidx.databinding.ObservableField
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.google.firebase.firestore.FirebaseFirestore
 import com.moa.moakotlin.base.BaseViewModel
 import com.moa.moakotlin.data.Sitter
 import com.moa.moakotlin.data.User
 
-class HelperReadViewModel(navController: NavController) : BaseViewModel(navController) {
+class HelperReadViewModel() : ViewModel() {
     var nickname  =  ObservableField<String>("")
     var type = ObservableField<String>("")
 

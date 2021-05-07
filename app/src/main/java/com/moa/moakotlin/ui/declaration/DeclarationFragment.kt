@@ -15,7 +15,6 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.DocumentReference
 import com.moa.moakotlin.R
 import com.moa.moakotlin.databinding.FragmentDeclarationBinding
-import com.moa.moakotlin.viewmodelfactory.DeclarationViewFactory
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.consumesAll
 
@@ -38,7 +37,7 @@ class DeclarationFragment : Fragment() {
         navController = findNavController()
 
 
-        model = ViewModelProvider(this,DeclarationViewFactory(navController)).get(DeclarationViewModel::class.java)
+        model = ViewModelProvider(this).get(DeclarationViewModel::class.java)
 
         model.initCheckBoxList()
         binding.model = model

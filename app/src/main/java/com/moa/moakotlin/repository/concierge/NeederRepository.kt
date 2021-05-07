@@ -5,7 +5,6 @@ import com.google.firebase.firestore.Query
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.data.aptList
-import com.moa.moakotlin.main
 import kotlinx.coroutines.tasks.await
 
 class NeederRepository {
@@ -53,6 +52,7 @@ class NeederRepository {
                 }.await()
         return result
     }
+
     suspend fun getList(mainCategory: String) : ArrayList<Needer> {
         var db = FirebaseFirestore.getInstance()
         var result = ArrayList<Needer>()
@@ -72,4 +72,6 @@ class NeederRepository {
                 }.await()
         return result
     }
+
+
 }

@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
@@ -24,11 +25,10 @@ class LoginFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if(activity != null  ){
+        if(activity != null){
             transfer = activity as Transfer
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,7 +36,7 @@ class LoginFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_login,container,false)
             navController = findNavController()
 
-        loginViewModel = LoginViewModel(navController)
+        loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         binding.model = loginViewModel
 
         binding.lifecycleOwner=this
@@ -53,8 +53,6 @@ class LoginFragment : Fragment() {
                 }
             }
         }
-
-
         return binding.root
     }
 

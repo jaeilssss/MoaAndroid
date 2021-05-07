@@ -3,6 +3,7 @@ package com.moa.moakotlin.ui.concierge.needer
 import android.net.Uri
 import android.os.Bundle
 import androidx.databinding.ObservableField
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
@@ -16,7 +17,7 @@ import java.io.File
 import java.io.FileInputStream
 import java.time.LocalDateTime
 
-class NeederModifyViewModel (navController: NavController) : BaseViewModel(navController){
+class NeederModifyViewModel () : ViewModel(){
     var now = LocalDateTime.now()
     var title = ObservableField<String>("")
     var type = ObservableField<String>("")
@@ -44,8 +45,6 @@ class NeederModifyViewModel (navController: NavController) : BaseViewModel(navCo
         month.set(dateList[2].replace("일","").toInt())
 
         content.set(kid.content)
-
-
     }
 
     fun submit(imageList : ArrayList<String>){
@@ -66,7 +65,6 @@ class NeederModifyViewModel (navController: NavController) : BaseViewModel(navCo
         }else{
          dbConnection()
         }
-
     }
     fun uploadImageList(picture : String){
 
@@ -88,8 +86,6 @@ class NeederModifyViewModel (navController: NavController) : BaseViewModel(navCo
             }else{
                 uploadImageList(preUploadImage.get(imagelist.size-1))
             }
-
-
         }
     }
 
@@ -114,7 +110,7 @@ class NeederModifyViewModel (navController: NavController) : BaseViewModel(navCo
                 var bundle  = Bundle()
                 Picture.deleteInstance()
                 bundle.putParcelable("kid",kid)
-                navController.navigate(R.id.action_kidModifyFragment_to_kidReadFragment,bundle)
+//                navController.navigate(R.id.action_kidModifyFragment_to_kidReadFragment,bundle)
             }
     }
 }

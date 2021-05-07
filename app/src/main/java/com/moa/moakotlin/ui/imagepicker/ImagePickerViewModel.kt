@@ -1,6 +1,7 @@
 package com.moa.moakotlin.ui.imagepicker
 
 import android.content.Context
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.Timestamp
@@ -15,13 +16,7 @@ import com.moa.moakotlin.repository.chat.ChatRepository
 import com.moa.moakotlin.repository.imagePicker.ImagePickerRepository
 import kotlin.collections.ArrayList
 
-class ImagePickerViewModel(
-    navController: NavController,
-    context: Context,
-    var adapter: ImagePickerAdapter,
-    var roomId : String,
-    var otherId : String
-) : BaseViewModel(navController) {
+class ImagePickerViewModel() : ViewModel() {
 
     suspend fun submit(path: String,roomId: String,opponentUid: String) :Boolean {
 //        var bundle = Bundle()
@@ -67,16 +62,16 @@ class ImagePickerViewModel(
                     var chattingRoom = ChattingRoom()
 
                     chattingRoom.latestMessage = "사진을 보냈습니다"
-                    chattingRoom.opponentUid = otherId
+                    chattingRoom.opponentUid = opponentUid
 
                     chattingRoom.timeStamp = Timestamp.now()
-                    settingChattingRoomDb(user.uid, chattingRoom)
-                    settingChattingRoomDb(otherId, chattingRoom)
+                    settingChattingRoomDb(user.uid, chattingRoom,roomId)
+                    settingChattingRoomDb(opponentUid, chattingRoom,roomId)
                 })
     }
 
 
-    fun settingChattingRoomDb(myId: String, chattingRoom: ChattingRoom) {
+    fun settingChattingRoomDb(myId: String, chattingRoom: ChattingRoom,roomId: String) {
         var firebase = FirebaseFirestore.getInstance()
         firebase.collection("User").document(myId)
                 .collection("ChattingRoom").document(roomId)

@@ -16,7 +16,6 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.data.Kid
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentNeederReadBinding
-import com.moa.moakotlin.viewmodelfactory.KidViewModelFactory
 import com.moa.moakotlin.viewpageradapter.KidReadViewPagerAdapter
 
 class NeederReadFragment : Fragment() {
@@ -68,16 +67,14 @@ class NeederReadFragment : Fragment() {
 
         binding.kidHopeDate.text = kid.hopeDate
 
-        model = ViewModelProvider(this, KidViewModelFactory(navController))
-            .get(NeederReadViewModel::class.java)
+        model = ViewModelProvider(this).get(NeederReadViewModel::class.java)
+
         binding.model = model
 
-//        if(kid.isNegotiable==true){
-//            binding.kidIsRegular.isVisible =true
-//        }
-
         binding.kidReadHireState.setOnClickListener {
+
             if(kid.uid.equals(User.getInstance().uid)){
+
                 var popupMenu = PopupMenu(context,it)
 
                 activity?.menuInflater?.inflate(R.menu.kid_hire_status_menu,popupMenu.menu)
@@ -137,8 +134,6 @@ class NeederReadFragment : Fragment() {
         }
         return binding.root
     }
-
-
 
     fun setHired(){
         var db = FirebaseFirestore.getInstance()

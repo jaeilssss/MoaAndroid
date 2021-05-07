@@ -4,18 +4,17 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.ObservableField
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
-import com.moa.moakotlin.Http.login.loginHttp
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseViewModel
 import com.moa.moakotlin.data.User
-import com.moa.moakotlin.testHttp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
-class LoginViewModel(navController: NavController) : BaseViewModel(navController){
+class LoginViewModel() : ViewModel(){
     var phoneNumber = ObservableField<String>("")
 
 

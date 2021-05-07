@@ -1,6 +1,7 @@
 package com.moa.moakotlin.ui.imagepicker
 
 import android.net.Uri
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.Timestamp
@@ -15,10 +16,9 @@ import com.moa.moakotlin.data.User
 import java.io.File
 import java.io.FileInputStream
 
-class KidImagePickerViewModel(navController: NavController) : BaseViewModel(navController){
+class KidImagePickerViewModel() : ViewModel(){
 
-    override fun prev() {
-        super.prev()
+     fun prev() {
         Picture.deleteInstance()
     }
 }

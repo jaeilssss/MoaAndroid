@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,9 +34,7 @@ class NeederMainFragment : BaseFragment() {
 
         navController = findNavController()
 
-        model = context?.let {
-            NeederMainViewModel(navController,it)
-        }!!
+        model = ViewModelProvider(this).get(NeederMainViewModel::class.java)
 
         binding.model = model
 

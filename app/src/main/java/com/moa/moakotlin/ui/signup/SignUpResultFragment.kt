@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.FirebaseFirestore
@@ -26,13 +27,14 @@ class SignUpResultFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
 
         binding  = DataBindingUtil.inflate(inflater,R.layout.fragment_sign_up_result,container,false)
 
         navController = findNavController()
 
-        model = context?.let { SignUpResultViewModel(navController) }!!
+        model = ViewModelProvider(this).get(SignUpResultViewModel::class.java)
 
         binding.model = model
 

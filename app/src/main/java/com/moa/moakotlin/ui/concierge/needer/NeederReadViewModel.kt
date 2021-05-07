@@ -1,6 +1,7 @@
 package com.moa.moakotlin.ui.concierge.needer
 
 import android.os.Bundle
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
@@ -9,7 +10,7 @@ import com.moa.moakotlin.base.BaseViewModel
 import com.moa.moakotlin.data.ChattingRoom
 import com.moa.moakotlin.data.User
 
-class NeederReadViewModel(navController: NavController ) : BaseViewModel(navController) {
+class NeederReadViewModel() : ViewModel() {
 
     lateinit var writerUid :String
     fun goToChatting(writerUid : String){
@@ -29,7 +30,7 @@ class NeederReadViewModel(navController: NavController ) : BaseViewModel(navCont
                     bundle.putString("roomId",it.documents.get(0).id)
                     println("roomId : ${it.documents.get(0).id}")
                     bundle.putString("writerUid",writerUid)
-                    navController.navigate(R.id.action_kidReadFragment_to_ChatFragment,bundle)
+//                    navController.navigate(R.id.action_kidReadFragment_to_ChatFragment,bundle)
                 }
             }
     }
@@ -47,7 +48,7 @@ class NeederReadViewModel(navController: NavController ) : BaseViewModel(navCont
                 var bundle = Bundle()
                 bundle.putString("roomId",documentReference.id)
                 bundle.putString("opponentUid",opponentUid)
-                navController.navigate(R.id.action_kidReadFragment_to_ChatFragment,bundle)
+//                navController.navigate(R.id.action_kidReadFragment_to_ChatFragment,bundle)
             }.addOnFailureListener{
                 println("failure")
             }

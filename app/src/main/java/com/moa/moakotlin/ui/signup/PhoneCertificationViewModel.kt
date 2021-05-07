@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.databinding.ObservableField
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
@@ -23,7 +24,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 
-class PhoneCertificationViewModel(navController: NavController,var context: Context) : BaseViewModel(navController){
+class PhoneCertificationViewModel() : ViewModel(){
     val code = ObservableField<String>("")
     lateinit var bundle: Bundle
      var db = FirebaseFirestore.getInstance()
@@ -58,14 +59,12 @@ class PhoneCertificationViewModel(navController: NavController,var context: Cont
             CoroutineScope(Dispatchers.Default).async {
                 user = userRepository.getUserInfo(uid)
             }.await()
-
             if (user != null) {
                 User.setInstance(user!!)
                 return true
             }else{
                 return false
             }
-
         }
         return false
     }

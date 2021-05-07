@@ -18,7 +18,7 @@ data class User(
     var profileImage :String ?="",
     var address : String ="",
     var aptName : String ="",
-    var timeStamp : Timestamp = Timestamp.now(),
+    var signUpDate : Timestamp = Timestamp.now(),
     var introduction :String = ""
 
 ): Parcelable{
@@ -42,7 +42,7 @@ data class User(
         instance?.phoneNumber = user.phoneNumber
         instance?.profileImage = user.profileImage
         instance?.address = user.address
-        instance?.timeStamp = user.timeStamp
+        instance?.signUpDate = user.signUpDate
         instance?.aptName = user.aptName
         instance?.introduction = user.introduction
     }

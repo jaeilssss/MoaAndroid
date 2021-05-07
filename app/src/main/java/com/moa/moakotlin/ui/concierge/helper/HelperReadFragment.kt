@@ -15,7 +15,6 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.data.Sitter
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentHelperReadBinding
-import com.moa.moakotlin.viewmodelfactory.SitterViewModelFactory
 import com.moa.moakotlin.viewpageradapter.SitterReadViewPager
 
 class HelperReadFragment : Fragment() {
@@ -33,7 +32,7 @@ class HelperReadFragment : Fragment() {
 
         navController = findNavController()
 
-        model = ViewModelProvider(this,SitterViewModelFactory(navController)).get(HelperReadViewModel::class.java)
+        model = ViewModelProvider(this).get(HelperReadViewModel::class.java)
         var sitter : Sitter
      arguments.let {
         sitter = (arguments as Bundle).getParcelable("sitter")!!

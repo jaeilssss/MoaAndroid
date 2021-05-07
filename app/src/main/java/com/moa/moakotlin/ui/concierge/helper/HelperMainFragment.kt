@@ -17,7 +17,6 @@ import com.moa.moakotlin.data.Sitter
 import com.moa.moakotlin.data.aptList
 import com.moa.moakotlin.databinding.FragmentHelperMainBinding
 import com.moa.moakotlin.recyclerview.sitter.SitterMainAdapter
-import com.moa.moakotlin.viewmodelfactory.SitterViewModelFactory
 import com.moa.moakotlin.viewpageradapter.SitterMainViewPager
 
 class HelperMainFragment : Fragment() {
@@ -39,8 +38,7 @@ class HelperMainFragment : Fragment() {
 
         navController = findNavController()
 
-        model = ViewModelProvider(this,SitterViewModelFactory(navController))
-                .get(HelperMainViewModel::class.java)
+        model = ViewModelProvider(this).get(HelperMainViewModel::class.java)
 
         binding.model=model
 
