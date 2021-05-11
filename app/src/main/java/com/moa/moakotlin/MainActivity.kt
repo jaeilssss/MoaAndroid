@@ -30,27 +30,19 @@ class MainActivity : AppCompatActivity() ,Transfer{
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this
          navController = findNavController(R.id.mainFragment)
-
-        if(FirebaseAuth.getInstance().currentUser!=null){
+        if(User.getInstance().uid.equals("")){
+            println("@@@@@@@@@@@@@@@")
+            navGraph = navController.graph
+            navGraph.startDestination = R.id.firstViewFragment
+            navController.graph = navGraph
+        }else if(FirebaseAuth.getInstance().currentUser!=null){
             // 이미 로그인 된 유저는 start destination 바뀜
             Toast.makeText(applicationContext, "환영합니다 ${User.getInstance().nickName}님!",Toast.LENGTH_SHORT).show()
             navGraph = navController.graph
             navGraph.startDestination = R.id.HomeFragment
             navController.graph = navGraph
-//            var db = FirebaseFirestore.getInstance()
-//            db.collection("User").document(FirebaseAuth.getInstance().currentUser.uid)
-//                .get().addOnSuccessListener {
-//                    if(it.exists()){
-//                        var user = it.toObject(User::class.java)
-//                        if (user != null) {
-//                            User.setInstance(user)
-//                            getMyaroundApt(db)
-//                        }else{
-//                            Toast.makeText(applicationContext,"오류발생...",Toast.LENGTH_SHORT).show()
-//                        }
-//                    }
-//                }
         }
+
 
         binding.mainBottomNavigation.itemIconTintList = null
         binding.mainBottomNavigation.setOnNavigationItemSelectedListener {

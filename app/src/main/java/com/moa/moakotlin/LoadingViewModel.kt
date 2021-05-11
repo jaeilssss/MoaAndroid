@@ -21,6 +21,8 @@ class LoadingViewModel : ViewModel() {
                 return true
             }
             // aptList 가 null 일 수도 있지 않을까?? 고민해보자
+        }else{
+            return false
         }
         return false
     }

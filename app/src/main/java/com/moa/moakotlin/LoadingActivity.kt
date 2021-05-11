@@ -25,14 +25,24 @@ lateinit var model : LoadingViewModel
         try{
             Picture.deleteInstance()
             if(FirebaseAuth.getInstance().currentUser==null){
+                println("tttt!!!!")
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
+            }else{
+                var result = model.initApp(FirebaseAuth.getInstance().currentUser.uid,this)
+                if(result){
+
+                    println("?????????")
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                }else{
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                }
+
             }
-            var result = model.initApp(FirebaseAuth.getInstance().currentUser.uid,this)
-            if(result==true){
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
-            }
+
+
         }catch (e :Exception) {
 
         }

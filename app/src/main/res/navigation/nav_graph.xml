@@ -320,5 +320,10 @@
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/voiceMainFragment"
+        android:name="com.moa.moakotlin.ui.voice.VoiceMainFragment"
+        android:label="voice_main_fragment"
+        tools:layout="@layout/voice_main_fragment" />
 
 </navigation>

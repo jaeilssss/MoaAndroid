@@ -33,7 +33,7 @@ lateinit var transfer: Transfer
     lateinit var navController: NavController
 
     lateinit var model: HomeViewModel
-var i = 0
+    var i = 0
     override fun onAttach(context: Context) {
         super.onAttach(context)
         println(i++)
@@ -47,21 +47,27 @@ var i = 0
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false)
 
         navController = findNavController()
-
 
         model = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         binding.model = model
 
+
+
         transfer.bottomVisible()
 
-        binding.kid.setOnClickListener{
+        binding.concierge.setOnClickListener{
             navController.navigate(R.id.action_HomeFragment_to_ConciergeMainFragment)
         }
 
+
+        binding.voice.setOnClickListener {
+            navController.navigate(R.id.voiceMainFragment)
+        }
         return binding.root
 
     }
