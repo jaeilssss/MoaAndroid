@@ -56,12 +56,12 @@ lateinit var transfer: Transfer
 
         binding.model = model
 
-
-
         transfer.bottomVisible()
 
         binding.concierge.setOnClickListener{
+
             navController.navigate(R.id.action_HomeFragment_to_ConciergeMainFragment)
+
         }
 
 
