@@ -43,9 +43,7 @@ android {
 dependencies {
     //agora
     implementation 'io.agora.rtc:voice-sdk:3.0.0'
-    //logback
-    implementation 'com.github.tony19:logback-android-core:1.1.1-4'
-    implementation('com.github.tony19:logback-android-classic:1.1.1-4')
+    implementation 'com.github.agorabuilder:native-voice-sdk:3.4.0'
     //
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'

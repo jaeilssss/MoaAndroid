@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -14,6 +15,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
 import com.moa.moakotlin.databinding.VoiceMainFragmentBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class VoiceMainFragment : Fragment() {
 
@@ -29,11 +33,25 @@ class VoiceMainFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.voice_main_fragment,container,false)
+        viewModel = ViewModelProvider(this).get(VoiceMainViewModel::class.java)
         binding.model = viewModel
 
         navController = findNavController()
-            permission()
 
+        permission()
+
+        binding.join.setOnClickListener {
+
+            if(viewModel.checkChannelName()){
+                CoroutineScope(Dispatchers.Main).launch {
+                 var result = viewModel.generateToken()
+                    var bundle = Bundle()
+                    bundle.putString("token",result)
+                     navController.navigate(R.id.voiceRoomFragment,bundle)
+                }
+
+            }
+        }
         return binding.root
     }
 
@@ -76,7 +94,6 @@ class VoiceMainFragment : Fragment() {
 
             }
             else ->{
-                println("여기 아냐??  ")
                 var permissions = ArrayList<String>()
                 permissions.add(android.Manifest.permission.RECORD_AUDIO)
                 permissions.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)

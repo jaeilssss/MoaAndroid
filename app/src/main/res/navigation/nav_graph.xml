@@ -325,5 +325,10 @@
         android:name="com.moa.moakotlin.ui.voice.VoiceMainFragment"
         android:label="voice_main_fragment"
         tools:layout="@layout/voice_main_fragment" />
+    <fragment
+        android:id="@+id/voiceRoomFragment"
+        android:name="com.moa.moakotlin.ui.voice.VoiceRoomFragment"
+        android:label="voice_room_fragment"
+        tools:layout="@layout/voice_room_fragment" />
 
 </navigation>
