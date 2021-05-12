@@ -54,12 +54,6 @@ class VoiceMainFragment : Fragment() {
             .create()
             .show()
     }
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-
-    }
-
     private fun permission(){
         when{
             ContextCompat.checkSelfPermission(
