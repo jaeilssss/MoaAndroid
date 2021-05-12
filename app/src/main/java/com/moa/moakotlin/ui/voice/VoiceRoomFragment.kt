@@ -20,7 +20,6 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
 
     private lateinit var viewModel: VoiceRoomViewModel
 
-
     private lateinit var binding: VoiceRoomFragmentBinding
 
     private lateinit var navController: NavController
@@ -41,6 +40,7 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         binding = DataBindingUtil.inflate(inflater,R.layout.voice_room_fragment,container,false)
         viewModel = ViewModelProvider(this).get(VoiceRoomViewModel::class.java)
         binding.model = viewModel

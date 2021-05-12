@@ -25,7 +25,6 @@ class SignUpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
         binding = DataBindingUtil.inflate(inflater , R.layout.fragment_sign_up, container , false)
         navController = findNavController()
         model = ViewModelProvider(this).get(SignUpViewModel::class.java)
