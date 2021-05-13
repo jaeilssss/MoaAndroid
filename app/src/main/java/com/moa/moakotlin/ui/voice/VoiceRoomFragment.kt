@@ -1,11 +1,11 @@
 package com.moa.moakotlin.ui.voice
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.WorkerThread
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -13,8 +13,11 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
 import com.moa.moakotlin.databinding.VoiceRoomFragmentBinding
+import io.agora.rtc.Constants
+
 import io.agora.rtc.RtcEngine
-import io.agora.rtc.IRtcEngineEventHandler;
+import io.agora.rtc.IRtcEngineEventHandler as IRtcEngineEventHandler
+
 
 class VoiceRoomFragment : Fragment() ,AGEventHandler{
 
@@ -23,6 +26,10 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
     private lateinit var binding: VoiceRoomFragmentBinding
 
     private lateinit var navController: NavController
+
+    private lateinit var rtcEngine: RtcEngine
+
+    private lateinit var mRtcEventHandler : IRtcEngineEventHandler
 
     var EVENT_TYPE_ON_USER_AUDIO_MUTED = 7
 
@@ -41,18 +48,17 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = DataBindingUtil.inflate(inflater,R.layout.voice_room_fragment,container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.voice_room_fragment,container,false)
         viewModel = ViewModelProvider(this).get(VoiceRoomViewModel::class.java)
         binding.model = viewModel
 
         var token = arguments?.get("token") as String
 
         navController= findNavController()
-        worker().configEngine(cRole)
-        val rtc: RtcEngine = worker().getRtcEngine()
-        rtc.joinChannel(token, roomName, "good", config().mUid)
+        createIRtcEnginHandler()
+        initRtcEngine()
         setToast(token)
-
+        rtcEngine.joinChannel(token, "test", "Extra Optional Data", 0);
         return binding.root
     }
 
@@ -72,7 +78,52 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
     override fun onExtraCallback(type: Int, vararg data: Any?) {
         TODO("Not yet implemented")
     }
-    protected fun worker(): WorkerThread {
-        return (activity?.application as AGApplication).getWorkerThread()
+
+    private fun initRtcEngine(){
+        try {
+            rtcEngine = RtcEngine.create(
+                activity?.baseContext,
+                getString(R.string.agora_app_id),
+                mRtcEventHandler
+            )
+        } catch (e: Exception) {
+            Log.e("TAG", Log.getStackTraceString(e))
+            throw RuntimeException(
+                "NEED TO check rtc sdk init fatal error\n" + Log.getStackTraceString(
+                    e
+                )
+            )
+        }
+        setChannelProfile()
+    }
+    // Listen for the onJoinChannelSuccess callback.
+    // This callback occurs when the local user successfully joins the channel.
+    private fun createIRtcEnginHandler(){
+        mRtcEventHandler = object : IRtcEngineEventHandler() {
+            override fun onJoinChannelSuccess(channel: String?, uid: Int, elapsed: Int) {
+               activity?.runOnUiThread {
+               }
+                println("성공!!!")
+
+
+            }
+
+            override fun onError(err: Int) {
+                println("error")
+                super.onError(err)
+            }
+
+            // Listen for the onUserOffline callback.
+            // This callback occurs when the host leaves the channel or drops offline.
+            override fun onUserOffline(uid: Int, reason: Int) {
+                super.onUserOffline(uid, reason)
+
+            }
+        }
+    }
+
+
+    private fun setChannelProfile() {
+        rtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING)
     }
 }
