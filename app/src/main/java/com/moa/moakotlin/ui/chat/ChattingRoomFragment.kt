@@ -64,7 +64,6 @@ class ChattingRoomFragment : BaseFragment() {
             adapter.roomList = model.roomList
             adapter.resetting()
         })
-
         return binding.root
     }
     override fun onStop() {

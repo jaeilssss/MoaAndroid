@@ -33,6 +33,7 @@ class ConciergeMainFragment : BaseFragment() {
         navController = findNavController()
 
         model = ViewModelProvider(this).get(ConciergeMainViewModel::class.java)
+
         binding.kidViewGoToKid.setOnClickListener {
             navController.navigate(R.id.action_ConciergeMainFragment_to_kidMainFragment)
         }

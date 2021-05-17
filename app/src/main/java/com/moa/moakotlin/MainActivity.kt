@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() ,Transfer{
         binding.lifecycleOwner = this
          navController = findNavController(R.id.mainFragment)
         if(User.getInstance().uid.equals("")){
-            println("@@@@@@@@@@@@@@@")
             navGraph = navController.graph
             navGraph.startDestination = R.id.firstViewFragment
             navController.graph = navGraph
@@ -42,8 +41,6 @@ class MainActivity : AppCompatActivity() ,Transfer{
             navGraph.startDestination = R.id.HomeFragment
             navController.graph = navGraph
         }
-
-
         binding.mainBottomNavigation.itemIconTintList = null
         binding.mainBottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){

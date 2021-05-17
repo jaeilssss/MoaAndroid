@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.VoiceRoomFragmentBinding
 import io.agora.rtc.Constants
 
@@ -29,7 +30,7 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
 
     private lateinit var rtcEngine: RtcEngine
 
-    private lateinit var mRtcEventHandler : IRtcEngineEventHandler
+    private lateinit var mRtcEventHandler :IRtcEngineEventHandler
 
     var EVENT_TYPE_ON_USER_AUDIO_MUTED = 7
 
@@ -55,16 +56,16 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
         var token = arguments?.get("token") as String
 
         navController= findNavController()
-        createIRtcEnginHandler()
+       createIRtcEnginHandler()
         initRtcEngine()
-        setToast(token)
-        rtcEngine.joinChannel(token, "test", "Extra Optional Data", 0);
+        setToast("?>?")
+        rtcEngine.joinChannel(token, "test","Extra Optional Data", User.getInstance().phoneNumber.toInt())
         return binding.root
     }
 
 
     private fun setToast(msg : String){
-        Toast.makeText(activity?.applicationContext!!,msg , Toast.LENGTH_SHORT).show()
+        Toast.makeText(activity?.baseContext!!,msg , Toast.LENGTH_SHORT).show()
     }
 
     override fun onJoinChannelSuccess(channel: String?, uid: Int, elapsed: Int) {
@@ -88,6 +89,7 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
             )
         } catch (e: Exception) {
             Log.e("TAG", Log.getStackTraceString(e))
+            println("error 나오네 initRtcEngine")
             throw RuntimeException(
                 "NEED TO check rtc sdk init fatal error\n" + Log.getStackTraceString(
                     e
@@ -98,28 +100,28 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
     }
     // Listen for the onJoinChannelSuccess callback.
     // This callback occurs when the local user successfully joins the channel.
-    private fun createIRtcEnginHandler(){
-        mRtcEventHandler = object : IRtcEngineEventHandler() {
+    private fun createIRtcEnginHandler() {
+
+        mRtcEventHandler =  object : IRtcEngineEventHandler() {
             override fun onJoinChannelSuccess(channel: String?, uid: Int, elapsed: Int) {
-               activity?.runOnUiThread {
-               }
-                println("성공!!!")
 
+              println("성공!!!")
+          }
+          override fun onUserJoined(uid: Int, elapsed: Int) {
+              super.onUserJoined(uid, elapsed)
+              println("join~~~~~")
+          }
 
-            }
+          override fun onUserOffline(uid: Int, reason: Int) {
+              super.onUserOffline(uid, reason)
+              println("offline")
+          }
 
-            override fun onError(err: Int) {
-                println("error")
-                super.onError(err)
-            }
-
-            // Listen for the onUserOffline callback.
-            // This callback occurs when the host leaves the channel or drops offline.
-            override fun onUserOffline(uid: Int, reason: Int) {
-                super.onUserOffline(uid, reason)
-
-            }
-        }
+          override fun onError(err: Int) {
+              super.onError(err)
+              println("error")
+          }
+      }
     }
 
 

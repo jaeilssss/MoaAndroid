@@ -91,7 +91,6 @@ class ChatFragment : BaseFragment() {
                         rcv.adapter = adapter
                         rcv.scrollToPosition(adapter.itemCount-1)
                     }else{
-
                         // initView 가 false 인 결
                     }
                 }else{
