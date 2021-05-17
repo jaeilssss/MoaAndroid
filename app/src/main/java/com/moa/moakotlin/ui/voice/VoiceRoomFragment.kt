@@ -1,6 +1,9 @@
 package com.moa.moakotlin.ui.voice
 
+import android.media.AudioManager
 import android.os.Bundle
+import android.os.Handler
+import android.os.Message
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,9 +18,8 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.VoiceRoomFragmentBinding
 import io.agora.rtc.Constants
-
+import io.agora.rtc.IRtcEngineEventHandler
 import io.agora.rtc.RtcEngine
-import io.agora.rtc.IRtcEngineEventHandler as IRtcEngineEventHandler
 
 
 class VoiceRoomFragment : Fragment() ,AGEventHandler{
@@ -31,6 +33,8 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
     private lateinit var rtcEngine: RtcEngine
 
     private lateinit var mRtcEventHandler :IRtcEngineEventHandler
+
+    private val ACTION_WORKER_CONFIG_ENGINE = 0X2012
 
     var EVENT_TYPE_ON_USER_AUDIO_MUTED = 7
 
@@ -58,8 +62,18 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
         navController= findNavController()
        createIRtcEnginHandler()
         initRtcEngine()
-        setToast("?>?")
+        // Sets the channel profile of the Agora RtcEngine.
+        // The Agora RtcEngine differentiates channel profiles and applies different optimization algorithms accordingly. For example, it prioritizes smoothness and low latency for a video call, and prioritizes video quality for a video broadcast.
+        rtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING)
+        rtcEngine.setEnableSpeakerphone(true)
+        rtcEngine.muteLocalVideoStream(true)
         rtcEngine.joinChannel(token, "test","Extra Optional Data", User.getInstance().phoneNumber.toInt())
+        rtcEngine.setClientRole(Constants.MEDIA_ENGINE_ROLE_BROADCASTER_INTERACTIVE)
+        rtcEngine.muteLocalVideoStream(true)
+        var handler = Handler()
+        var message = Message()
+
+        handler.sendMessage(message)
         return binding.root
     }
 
@@ -87,6 +101,7 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
                 getString(R.string.agora_app_id),
                 mRtcEventHandler
             )
+            optional()
         } catch (e: Exception) {
             Log.e("TAG", Log.getStackTraceString(e))
             println("error 나오네 initRtcEngine")
@@ -104,7 +119,6 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
 
         mRtcEventHandler =  object : IRtcEngineEventHandler() {
             override fun onJoinChannelSuccess(channel: String?, uid: Int, elapsed: Int) {
-
               println("성공!!!")
           }
           override fun onUserJoined(uid: Int, elapsed: Int) {
@@ -123,9 +137,22 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
           }
       }
     }
-
-
     private fun setChannelProfile() {
         rtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING)
+
+
+    }
+
+    private fun optional() {
+//       activity?.getWindow()?.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN)
+//        activity?.getWindow()?.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        activity?.setVolumeControlStream(AudioManager.STREAM_VOICE_CALL)
+    }
+
+    private fun HandlerSetting(){
+        val envelop = Message()
+        envelop.what = ACTION_WORKER_CONFIG_ENGINE
+        envelop.obj = arrayOf<Any>(Constants.CLIENT_ROLE_BROADCASTER)
     }
 }
+

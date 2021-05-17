@@ -8,4 +8,5 @@ class VoiceRoomViewModel : ViewModel() {
     fun goToVoiceRoom(token : String){
 
     }
+
 }
