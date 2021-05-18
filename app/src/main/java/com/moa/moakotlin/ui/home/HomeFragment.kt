@@ -53,7 +53,7 @@ lateinit var transfer: Transfer
         navController = findNavController()
 
         model = ViewModelProvider(this).get(HomeViewModel::class.java)
-
+        model.init()
         binding.model = model
 
         transfer.bottomVisible()

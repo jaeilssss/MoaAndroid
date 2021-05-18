@@ -68,7 +68,8 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
         rtcEngine.setEnableSpeakerphone(true)
         rtcEngine.muteLocalVideoStream(true)
         rtcEngine.joinChannel(token, "test","Extra Optional Data", User.getInstance().phoneNumber.toInt())
-        rtcEngine.setClientRole(Constants.MEDIA_ENGINE_ROLE_BROADCASTER_INTERACTIVE)
+        rtcEngine.setClientRole(Constants.CLIENT_ROLE_BROADCASTER)
+
         rtcEngine.muteLocalVideoStream(true)
         var handler = Handler()
         var message = Message()
