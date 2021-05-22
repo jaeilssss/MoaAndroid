@@ -13,7 +13,6 @@ class VoiceRepository  {
         val data = hashMapOf(
             "channelName" to channelName,
             "uid" to uid,
-            "role" to true,
             "expireTime" to 3000
         )
         return functions
