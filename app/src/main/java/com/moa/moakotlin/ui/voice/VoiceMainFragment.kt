@@ -40,15 +40,15 @@ class VoiceMainFragment : Fragment() {
 
         permission()
 
+
+
         binding.join.setOnClickListener {
 
             if(viewModel.checkChannelName()){
                 CoroutineScope(Dispatchers.Main).launch {
                  var result = viewModel.generateToken()
                     var bundle = Bundle()
-
                     bundle.putString("token",result)
-                    println("main에서 token -> ${result}")
                      navController.navigate(R.id.voiceRoomFragment,bundle)
                 }
 

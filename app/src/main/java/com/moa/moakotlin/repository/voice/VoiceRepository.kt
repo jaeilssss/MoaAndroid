@@ -26,4 +26,8 @@ class VoiceRepository  {
                 result.get("token")
             }
     }
+
+    fun makeVoiceRoom(){
+
+    }
 }

@@ -38,6 +38,8 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
 
     private val ACTION_WORKER_CONFIG_ENGINE = 0X2012
 
+    private var muteState = false;
+
     var EVENT_TYPE_ON_USER_AUDIO_MUTED = 7
 
     var EVENT_TYPE_ON_SPEAKER_STATS = 8
@@ -59,11 +61,12 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
         viewModel = ViewModelProvider(this).get(VoiceRoomViewModel::class.java)
         binding.model = viewModel
 
-//        var token = arguments?.get("token") as String
-        var token= "0061186f40c5f4743a7b0650c9a6a0565d6IAD01n1Idgg/ZL6VRRGjX+Cm0ULxUXIyX/iQTPFmaXlAbgx+f9gAAAAAEABZxLUYNfSoYAEAAQA19Khg"
+        var token = arguments?.get("token") as String
+//        var token= "0061186f40c5f4743a7b0650c9a6a0565d6IAD01n1Idgg/ZL6VRRGjX+Cm0ULxUXIyX/iQTPFmaXlAbgx+f9gAAAAAEABZxLUYNfSoYAEAAQA19Khg"
         navController= findNavController()
        createIRtcEnginHandler()
         initRtcEngine()
+
         // Sets the channel profile of the Agora RtcEngine.
         // The Agora RtcEngine differentiates channel profiles and applies different optimization algorithms accordingly. For example, it prioritizes smoothness and low latency for a video call, and prioritizes video quality for a video broadcast.
         rtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING)
@@ -72,16 +75,18 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
 
         rtcEngine.setLogFile(Environment.getExternalStorageDirectory()
                 .toString() + File.separator + activity?.applicationContext?.getPackageName() + "/log/agora-rtc.log")
-        Toast.makeText(activity?.applicationContext,Constants.CLIENT_ROLE_BROADCASTER.toString(),Toast.LENGTH_SHORT).show()
         rtcEngine.setClientRole(1)
 //        rtcEngine.joinChannel(token, "test","Extra Optional Data", User.getInstance().phoneNumber.toInt())
         rtcEngine.joinChannel(token, "test","Extra Optional Data", 2)
+        binding.muteBtn.setOnClickListener {
+            if(muteState==false){
+                muteState = true
+            }else{
+                muteState = false
+            }
+        rtcEngine.muteLocalAudioStream(muteState)
 
-
-        var handler = Handler()
-        var message = Message()
-
-        handler.sendMessage(message)
+        }
         return binding.root
     }
 

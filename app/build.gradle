@@ -41,6 +41,12 @@ android {
 }
 
 dependencies {
+
+    //fcm
+
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
+
+    
     //agora
     implementation 'io.agora.rtc:voice-sdk:3.0.0'
 //    implementation 'com.github.agorabuilder:native-voice-sdk:3.4.0'

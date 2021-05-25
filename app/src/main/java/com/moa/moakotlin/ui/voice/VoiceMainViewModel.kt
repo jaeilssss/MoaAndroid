@@ -19,7 +19,7 @@ class VoiceMainViewModel : ViewModel() {
 
         println("chanel-> ${channelName.get()}")
 //        var functions  = repository.generateToken("test", User.getInstance().phoneNumber.toInt())
-        var functions  = repository.generateToken("test", 1)
+        var functions  = repository.generateToken("test", 2)
 
             functions.addOnCompleteListener {
                 if(it.isSuccessful) result = it.result as String

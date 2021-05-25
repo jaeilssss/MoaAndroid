@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() ,Transfer{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this
          navController = findNavController(R.id.mainFragment)

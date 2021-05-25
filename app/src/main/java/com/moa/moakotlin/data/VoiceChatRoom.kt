@@ -8,5 +8,6 @@ data class VoiceChatRoom(
     var range : String,
     var timeStamp : Timestamp,
     var token : String,
+    var aroundApt : ArrayList<String>,
     var topic : String){
 }
