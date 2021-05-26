@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.data.User
+import com.moa.moakotlin.repository.push.FcmService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,16 +24,15 @@ lateinit var model : LoadingViewModel
     }
   suspend fun startLoading() {
         try{
+            var intent = Intent(this,FcmService::class.java)
+            startService(intent)
             Picture.deleteInstance()
             if(FirebaseAuth.getInstance().currentUser==null){
-                println("tttt!!!!")
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }else{
                 var result = model.initApp(FirebaseAuth.getInstance().currentUser.uid,this)
                 if(result){
-
-                    println("?????????")
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }else{

@@ -4,11 +4,14 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
+import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.ktx.Firebase
 import com.moa.moakotlin.base.BaseViewModel
+import com.moa.moakotlin.data.PushDTO
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
@@ -20,17 +23,12 @@ class HomeViewModel() : ViewModel() {
 
     fun init(){
 //        deleteAtPath("test")
+//        registerPushToken()
+        var push = FcmPush()
 
-        var db = FirebaseFirestore.getInstance()
+        var token = "9PXLVgw8HvdGXt3ZRaMtMqCovDK2"
+        push.sendMessage(token,"test!!","하이 재일99")
 
-
-        db.collection("test").whereArrayContains("array","q").get().addOnSuccessListener {
-            if(it.isEmpty){
-                System.out.println("없음!!")
-            }else{
-                System.out.println("있음!")
-            }
-        }
     }
     fun goToKid() {
 
@@ -47,7 +45,6 @@ class HomeViewModel() : ViewModel() {
                 .addOnSuccessListener {
                     // Delete Success
                     // ...
-
                     System.out.println("성공!!!")
                 }
                 .addOnFailureListener {
@@ -56,4 +53,20 @@ class HomeViewModel() : ViewModel() {
                     System.out.println("실패..!!!")
                 }
     }
+
+    private fun registerPushToken() {
+        //v17.0.0 이전까지는
+        ////var pushToken = FirebaseInstanceId.getInstance().token
+        //v17.0.1 이후부터는 onTokenRefresh()-depriciated
+        var pushToken: String? = null
+        var uid = FirebaseAuth.getInstance().currentUser!!.uid
+        var map = mutableMapOf<String, Any>()
+        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener { instanceIdResult ->
+            pushToken = instanceIdResult.token
+            map["pushtoken"] = pushToken!!
+            FirebaseFirestore.getInstance().collection("pushtokens").document(uid!!).set(map)
+        }
+    }
+
+
 }
