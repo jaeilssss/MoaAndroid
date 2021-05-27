@@ -12,6 +12,8 @@ import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.ktx.Firebase
 import com.moa.moakotlin.base.BaseViewModel
 import com.moa.moakotlin.data.PushDTO
+import com.moa.moakotlin.data.PushMessage
+import com.moa.moakotlin.repository.push.FcmRepository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
@@ -24,10 +26,14 @@ class HomeViewModel() : ViewModel() {
     fun init(){
 //        deleteAtPath("test")
 //        registerPushToken()
-        var push = FcmPush()
-
-        var token = "9PXLVgw8HvdGXt3ZRaMtMqCovDK2"
-        push.sendMessage(token,"test!!","하이 재일99")
+//        var push = FcmPush()
+//
+//        var token = "9PXLVgw8HvdGXt3ZRaMtMqCovDK2"
+//        push.sendMessage(token,"test!!","하이 재일99")
+        var pushRepository = FcmRepository()
+        var token  = "fQoVy4jPQAWKipC6njohvq:APA91bEsOr04SUHcLGNod8lS56rFzQHDuhu6B3frj9nmXaBhONKtvEFUp0MXJNUOu8FJrnmKyMdi4WGtBWt5uFWKq_wDCFdQS0Wus7XLaGq5naVbrxV8FTRNcrNIsd9ZCsDmNpDsKVo0"
+        var message = PushMessage("Moa","당신의 게시글을 좋아요 눌렀습니다!",token)
+        pushRepository.sendPushMessage(message)
 
     }
     fun goToKid() {
@@ -59,6 +65,7 @@ class HomeViewModel() : ViewModel() {
         ////var pushToken = FirebaseInstanceId.getInstance().token
         //v17.0.1 이후부터는 onTokenRefresh()-depriciated
         var pushToken: String? = null
+
         var uid = FirebaseAuth.getInstance().currentUser!!.uid
         var map = mutableMapOf<String, Any>()
         FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener { instanceIdResult ->

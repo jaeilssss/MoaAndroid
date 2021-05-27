@@ -55,14 +55,13 @@ lateinit var transfer: Transfer
         model = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         model.init()
+
         binding.model = model
 
         transfer.bottomVisible()
 
         binding.concierge.setOnClickListener{
-
             navController.navigate(R.id.action_HomeFragment_to_ConciergeMainFragment)
-
         }
 
 
