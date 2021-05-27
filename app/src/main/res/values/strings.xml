@@ -66,4 +66,5 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="voice_room_make">방만들기</string>
     <string name="agora_app_id">1186f40c5f4743a7b0650c9a6a0565d6</string>
+
 </resources>

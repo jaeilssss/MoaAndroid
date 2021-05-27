@@ -46,6 +46,10 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
 
+    implementation 'com.google.gms:google-services:4.3.5'
+
+    //algoria search
+    implementation 'com.algolia:algoliasearch-android:3.+'
 
 
     //agora

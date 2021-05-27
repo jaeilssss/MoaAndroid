@@ -13,6 +13,6 @@ class FcmRepository {
                  "token" to message.token
          )
        var functions = Firebase.functions("asia-northeast3")
-        functions.getHttpsCallable("sendCloudMessage").call(data)
+        functions.getHttpsCallable("sendCloudMessageByToken").call(data)
     }
 }

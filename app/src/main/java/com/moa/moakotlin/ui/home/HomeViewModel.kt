@@ -4,12 +4,14 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
 import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.moa.moakotlin.base.BaseViewModel
 import com.moa.moakotlin.data.PushDTO
 import com.moa.moakotlin.data.PushMessage
@@ -30,10 +32,14 @@ class HomeViewModel() : ViewModel() {
 //
 //        var token = "9PXLVgw8HvdGXt3ZRaMtMqCovDK2"
 //        push.sendMessage(token,"test!!","하이 재일99")
+
+
         var pushRepository = FcmRepository()
         var token  = "fQoVy4jPQAWKipC6njohvq:APA91bEsOr04SUHcLGNod8lS56rFzQHDuhu6B3frj9nmXaBhONKtvEFUp0MXJNUOu8FJrnmKyMdi4WGtBWt5uFWKq_wDCFdQS0Wus7XLaGq5naVbrxV8FTRNcrNIsd9ZCsDmNpDsKVo0"
         var message = PushMessage("Moa","당신의 게시글을 좋아요 눌렀습니다!",token)
         pushRepository.sendPushMessage(message)
+
+        FirebaseMessaging.getInstance().subscribeToTopic("test")
 
     }
     fun goToKid() {

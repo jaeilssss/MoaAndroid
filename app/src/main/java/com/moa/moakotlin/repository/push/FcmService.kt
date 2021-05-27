@@ -18,14 +18,8 @@ class FcmService() : FirebaseMessagingService() {
 
     override fun onMessageReceived(remotemessage: RemoteMessage) {
 
-        if(remotemessage.notification !=null){  // 포그라운드늗
-            println("포그라우ㅡㄴㄷ")
-            remotemessage!!.notification!!.title?.let { remotemessage.notification!!.body?.let { it1 -> sendNotification(it1, it) } }
+            remotemessage.data.get("title")?.let { sendNotification(remotemessage.data.get("body")!!, it) }
 
-        }else if(remotemessage.data.size>0){ // 백그라운드
-                println("백그라우")
-            remotemessage.data.get("title")?.let { sendNotification(remotemessage.data.get("body")!!+"dd", "백그라오ㅜㄴ") }
-        }
     }
 
     private fun createNotificationChannel(context: Context, importance: Int, showBadge: Boolean,
@@ -52,8 +46,7 @@ class FcmService() : FirebaseMessagingService() {
 
         val intent = Intent(baseContext, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        val fullScreenPendingIntent = PendingIntent.getActivity(baseContext, 0,
-                intent, PendingIntent.FLAG_UPDATE_CURRENT)    // 2
+
 
         val builder = NotificationCompat.Builder(this, channelId)
 
@@ -65,8 +58,7 @@ class FcmService() : FirebaseMessagingService() {
 
         builder.setCategory(NotificationCompat.CATEGORY_MESSAGE)
         builder.setAutoCancel(true)
-//            builder.setTimeoutAfter(100L)
-//            builder.setFullScreenIntent(fullScreenPendingIntent, true) // 4
+
         val notificationManager = NotificationManagerCompat.from(this)
         notificationManager.notify(1001, builder.build())
     }
