@@ -25,7 +25,6 @@ class NeederReadViewModel() : ViewModel() {
                 if(it.isEmpty){
                     makChattingRoom(User.getInstance().uid,writerUid)
                 }else {
-                    println("이미 만들어저있는 채팅방!!")
                     var bundle = Bundle()
                     bundle.putString("roomId",it.documents.get(0).id)
                     println("roomId : ${it.documents.get(0).id}")

@@ -80,9 +80,6 @@ lateinit var binding: FragmentNeederHireSuccessPageBinding
                 adapter = KidHireSuccessAdapter(navController,list)
                 binding.rcv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
                 binding.rcv.adapter =adapter
-
-
-
             }
     }
 }

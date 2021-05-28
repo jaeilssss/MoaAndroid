@@ -1,16 +1,17 @@
 package com.moa.moakotlin.repository.push
 
+import android.annotation.SuppressLint
 import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.content.Intent
+import android.os.Build
+import android.os.PowerManager
+import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.moa.moakotlin.MainActivity
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
-import android.os.Build
-import androidx.core.app.NotificationCompat
 import com.moa.moakotlin.R
 
 
@@ -18,6 +19,15 @@ class FcmService() : FirebaseMessagingService() {
 
     override fun onMessageReceived(remotemessage: RemoteMessage) {
 
+        val pm =
+            getSystemService(Context.POWER_SERVICE) as PowerManager
+        @SuppressLint("InvalidWakeLockTag") val wakeLock =
+            pm.newWakeLock(
+                PowerManager.SCREEN_DIM_WAKE_LOCK
+                        or PowerManager.ACQUIRE_CAUSES_WAKEUP, "TAG"
+            )
+        wakeLock.acquire(3000)
+        wakeLock.release()
             remotemessage.data.get("title")?.let { sendNotification(remotemessage.data.get("body")!!, it) }
 
     }
