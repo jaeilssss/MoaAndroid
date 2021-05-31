@@ -65,7 +65,6 @@ class HomeViewModel() : ViewModel() {
                     System.out.println("실패..!!!")
                 }
     }
-
     private fun registerPushToken() {
         //v17.0.0 이전까지는
         ////var pushToken = FirebaseInstanceId.getInstance().token

@@ -39,12 +39,12 @@ class HelperRepository {
         var result = ArrayList<Helper>()
         db.collection("Helper").document(mainCaregory)
                 .collection(mainCaregory)
+                .whereArrayContains("array","addd")
                 .whereIn("aptCode",aptList.getInstance().aroundApt)
                 .orderBy("timeStamp",Query.Direction.DESCENDING)
                 .limit(5).get().addOnSuccessListener {
                     for(document in it.documents){
                         var data = document.toObject(Helper::class.java)
-
                         data?.documentID = document.id
                         if (data != null) {
                             result.add(data)

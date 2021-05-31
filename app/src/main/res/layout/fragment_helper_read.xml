@@ -77,7 +77,6 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         app:layout_constraintTop_toBottomOf="@id/viewpager"
         android:text=":"
         app:layout_constraintStart_toEndOf="@id/nickname_text"

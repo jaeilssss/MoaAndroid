@@ -2,9 +2,11 @@ package com.moa.moakotlin
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.moa.moakotlin.base.ConnectionStateMonitor
 import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.repository.push.FcmService
@@ -24,6 +26,11 @@ lateinit var model : LoadingViewModel
     }
   suspend fun startLoading() {
         try{
+            ConnectionStateMonitor(this,{
+                Toast.makeText(applicationContext,"와이파이 성공,",Toast.LENGTH_SHORT).show()
+            },{
+                Toast.makeText(applicationContext,"와이파이 실패,",Toast.LENGTH_SHORT).show()
+            })
             var intent = Intent(this,FcmService::class.java)
             startService(intent)
             Picture.deleteInstance()
