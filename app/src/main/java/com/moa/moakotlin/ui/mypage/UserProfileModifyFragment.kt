@@ -1,5 +1,9 @@
 package com.moa.moakotlin.ui.mypage
 
+import android.app.AlertDialog
+import android.content.Intent
+import android.content.IntentSender
+import android.content.pm.PackageManager
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -35,13 +40,12 @@ class UserProfileModifyFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.user_profile_modify_fragment,container, false)
 
-
+        Toast.makeText(context,"테스트,",Toast.LENGTH_SHORT).show()
         navController = findNavController()
 
 
         binding.userModifyBtn.setOnClickListener {
             var data =false
-
             CoroutineScope(Dispatchers.Main).launch {
                  data = viewModel.submit()
                 if(data==true){
@@ -57,15 +61,55 @@ class UserProfileModifyFragment : Fragment() {
                 }
             }
         }
-
         binding.userProfileModifyImage.setOnClickListener {
-            navController.navigate(R.id.userImagePickerFragment)
+            when{
+                ContextCompat.checkSelfPermission(activity?.applicationContext!!,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED ->{
+                    // 권한이 잘 부여됬을 떄
+                    navController.navigate(R.id.userImagePickerFragment)
+                }
+                shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE)->{
+                    // 교육용 팝 확인 후 권한 팝업 띄우는 기능
+                    showContextPopupPermission()
+                }
+                else->{
+                    requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),1000)
+                }
+            }
         }
         binding.model = viewModel
         initView()
                   return binding.root
     }
 
+    override fun startIntentSenderForResult(intent: IntentSender?, requestCode: Int, fillInIntent: Intent?, flagsMask: Int, flagsValues: Int, extraFlags: Int, options: Bundle?) {
+        super.startIntentSenderForResult(intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags, options)
+        Toast.makeText(context,"여기서 감지하네요22!!",Toast.LENGTH_SHORT).show()
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Toast.makeText(context,"여기서 감지하네요!!",Toast.LENGTH_SHORT).show()
+        println("여기서 감지할수있다....")
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        if(requestCode==1000){
+            navController.navigate(R.id.userImagePickerFragment)
+        }
+    }
+
+    fun showContextPopupPermission(){
+        AlertDialog.Builder(context).setTitle("권한이 필요합니다")
+                .setMessage("사진을 불러오기 위해 권한이 필요합니다")
+                .setPositiveButton("동의하기") { _, _ ->
+                    requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),1000)
+                }
+                .setNegativeButton("취소하기") { _, _ ->}
+                .create()
+                .show()
+    }
 fun showToast(msg : String){
     Toast.makeText(context,msg,Toast.LENGTH_SHORT).show()
 }

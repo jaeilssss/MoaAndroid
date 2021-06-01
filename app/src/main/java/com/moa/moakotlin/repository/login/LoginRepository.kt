@@ -20,7 +20,7 @@ class LoginRepository(var activity: FragmentActivity){
     var isChecked = false
     lateinit var resendToken : PhoneAuthProvider.ForceResendingToken
     lateinit var code2 : String
-    lateinit var storedVerificationId : String
+     var storedVerificationId : String ? =null
     var TAG = "firebase sendMessage"
     fun sendMessage(phoneNumber : String){
         val options = PhoneAuthOptions.newBuilder(auth)
@@ -40,7 +40,6 @@ class LoginRepository(var activity: FragmentActivity){
                 // 2 - Auto-retrieval. On some devices Google Play services can automatically
                 //     detect the incoming verification SMS and perform verification without
                 //     user action.
-
                 println("여기 들어왔니???")
                 code2 = credential.smsCode.toString()
             }
@@ -79,13 +78,16 @@ class LoginRepository(var activity: FragmentActivity){
             }
         }
    suspend fun signInWithPhoneAuthCredential(code: String) : Boolean{
+       if(storedVerificationId==null){
+           return false;
+       }else{
+
+
         isChecked=false
        var credential : PhoneAuthCredential
 
        credential  = PhoneAuthProvider.getCredential(storedVerificationId,code)
        return try{
-//
-
            CoroutineScope(Dispatchers.Default).async {
 
            }
@@ -93,11 +95,15 @@ class LoginRepository(var activity: FragmentActivity){
                    .addOnSuccessListener {
                        isChecked=true
 
+                   }.
+                   addOnFailureListener {
+                       isChecked=false
                    }.await()
                         println(isChecked)
                     isChecked
        }catch (e :FirebaseException){
            isChecked
+       }
        }
     }
     fun logOut(){

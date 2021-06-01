@@ -27,6 +27,8 @@ class ImagePickerRepository  {
             result = task.result.toString()
 
         }.await()
+
+
         return result
     }
 }

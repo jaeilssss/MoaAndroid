@@ -1,5 +1,6 @@
 package com.moa.moakotlin
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -66,6 +67,12 @@ class MainActivity : AppCompatActivity() ,Transfer{
             }
         }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Toast.makeText(applicationContext,"결과 받음 1000",Toast.LENGTH_SHORT).show()
+    }
+
 
     override fun bottomVisible() {
         binding.mainBottomNavigation.visibility= View.VISIBLE

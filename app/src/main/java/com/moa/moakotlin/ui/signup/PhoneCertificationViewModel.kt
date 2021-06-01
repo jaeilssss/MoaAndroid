@@ -35,19 +35,22 @@ class PhoneCertificationViewModel() : ViewModel(){
         repository.sendMessage(phoneNumber)
     }
     suspend fun check() :Boolean{
-        code.get()?.let {
-            CoroutineScope(Dispatchers.Default).async {
-                isChecked =  repository.signInWithPhoneAuthCredential(code.get()!!)
-            }.await()
+        if(repository.storedVerificationId==null){
+            return isChecked
+        }else{
+            code.get()?.let {
+                CoroutineScope(Dispatchers.Default).async {
+                    isChecked =  repository.signInWithPhoneAuthCredential(code.get()!!)
+                }.await()
+            }
         }
         return isChecked
     }
     suspend fun next() : Boolean {
         isChecked = true
         var user: User? = null
-        if (isChecked == true) {
+        if (isChecked == true){
             var uid = FirebaseAuth.getInstance().currentUser.uid
-
             var userRepository = UserRepository()
             CoroutineScope(Dispatchers.Default).async {
                 user = userRepository.getUserInfo(uid)

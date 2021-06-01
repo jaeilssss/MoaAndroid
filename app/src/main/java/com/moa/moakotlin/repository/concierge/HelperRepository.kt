@@ -17,15 +17,12 @@ class HelperRepository {
                 .add(helper).addOnSuccessListener {
                     result = true
                 }.await()
-
         return result
-
     }
     suspend fun modify(mainCaregory: String,helper : Helper) : Boolean{
         var db = FirebaseFirestore.getInstance()
         var result = false
         helper.documentID?.let {
-
             db.collection("Helper").document(mainCaregory)
                     .collection(mainCaregory)
                     .document(it).set(helper).addOnSuccessListener{
@@ -53,6 +50,7 @@ class HelperRepository {
                 }.await()
         return result
     }
+
     suspend fun getList(mainCaregory: String) : ArrayList<Helper> {
         var db = FirebaseFirestore.getInstance()
         var result = ArrayList<Helper>()

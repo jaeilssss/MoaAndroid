@@ -19,6 +19,7 @@ import com.moa.moakotlin.databinding.FragmentHelperWriteBinding
 import com.moa.moakotlin.recyclerview.sitter.SitterWritePictureAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class HelperWriteFragment : Fragment() {
@@ -80,7 +81,13 @@ class HelperWriteFragment : Fragment() {
 
                     Toast.makeText(context,helper.title,Toast.LENGTH_SHORT).show()
 
-//                model.submit(adapter.list)
+                CoroutineScope(Dispatchers.Main).launch {
+                    var result = model.submit(adapter?.list)
+                 if(result==true){
+                     Toast.makeText(context,"오오,...",Toast.LENGTH_SHORT).show()
+                 }
+                }
+
             }
         }
         return binding.root

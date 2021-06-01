@@ -45,14 +45,12 @@ class ImagePickerFragment : Fragment() {
             transfer = activity as Transfer
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         transfer.bottomGone()
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_image_picker,container,false)
-
         navController = findNavController()
         var roomId = arguments?.get("roomId") as String
         var opponentUid = arguments?.get("opponentUid") as String

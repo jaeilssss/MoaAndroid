@@ -46,7 +46,6 @@ lateinit var model : LoadingViewModel
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }
-
             }
 
 

@@ -63,8 +63,6 @@ lateinit var transfer: Transfer
         binding.concierge.setOnClickListener{
             navController.navigate(R.id.action_HomeFragment_to_ConciergeMainFragment)
         }
-
-
         binding.voice.setOnClickListener {
             navController.navigate(R.id.voiceMainFragment)
         }
