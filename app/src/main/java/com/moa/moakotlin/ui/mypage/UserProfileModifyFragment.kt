@@ -82,18 +82,6 @@ class UserProfileModifyFragment : Fragment() {
                   return binding.root
     }
 
-    override fun startIntentSenderForResult(intent: IntentSender?, requestCode: Int, fillInIntent: Intent?, flagsMask: Int, flagsValues: Int, extraFlags: Int, options: Bundle?) {
-        super.startIntentSenderForResult(intent, requestCode, fillInIntent, flagsMask, flagsValues, extraFlags, options)
-        Toast.makeText(context,"여기서 감지하네요22!!",Toast.LENGTH_SHORT).show()
-
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        Toast.makeText(context,"여기서 감지하네요!!",Toast.LENGTH_SHORT).show()
-        println("여기서 감지할수있다....")
-    }
-
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         if(requestCode==1000){
             navController.navigate(R.id.userImagePickerFragment)

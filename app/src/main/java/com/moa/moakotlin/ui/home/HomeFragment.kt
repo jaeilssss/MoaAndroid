@@ -33,15 +33,12 @@ lateinit var transfer: Transfer
     lateinit var navController: NavController
 
     lateinit var model: HomeViewModel
-    var i = 0
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        println(i++)
-        if(activity != null  ){
+        if(activity != null){
             transfer = activity as Transfer
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,11 +60,11 @@ lateinit var transfer: Transfer
         binding.concierge.setOnClickListener{
             navController.navigate(R.id.action_HomeFragment_to_ConciergeMainFragment)
         }
+
         binding.voice.setOnClickListener {
             navController.navigate(R.id.voiceMainFragment)
         }
         return binding.root
-
     }
 
     override fun onBackPressed() {
