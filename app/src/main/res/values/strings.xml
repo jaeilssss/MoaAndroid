@@ -2,6 +2,7 @@
     <string name="app_name">moa</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="phoneCertificationText">모아는 휴대폰 번호로 가입해요. \n번호는 안전하게 보관되며 \n어디에도 공개되지 않아요 </string>
     <string name="certificationNoticeContent">잠깐!! \n 모두의 아파트는 실제 아파트 거주자만 이용할 수 있습니다 \n 회원가입을 위해 신분증 1종(주민등록증,여권,면허증 등) 을 준비해주세요 \n
     만약 신분증의 주소가 설정하신 아파트 주소와 다르다면 추가로 서류가 필요해요 ! </string>
 

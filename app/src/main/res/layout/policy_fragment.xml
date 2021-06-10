@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="model"
+            type="com.moa.moakotlin.ui.signup.PolicyViewModel" />
+    </data>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.signup.PolicyFragment">
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="9.8dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/ic_back_btn"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="약관동의"
+        android:textSize="18sp"
+        android:textColor="@color/moaBlack"
+        android:textStyle="bold"
+        android:id="@+id/policyTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:layout_width="108.9dp"
+        android:layout_height="93dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/policyTextView"
+        android:layout_marginTop="105.7dp"
+        android:background="@color/mainColor"
+        android:id="@+id/policyImageView"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/policyCheckBoxLayout"
+        android:background="@drawable/login_edit_text_radius_15"
+        app:layout_constraintTop_toBottomOf="@id/policyImageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="92.5dp">
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/policyAllAgreeCheck"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="모두 확인, 동의합니다"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBaseline_toBaselineOf="@id/policyAllAgreeCheck"
+            app:layout_constraintStart_toEndOf="@id/policyAllAgreeCheck"
+
+            android:textColor="@color/moaBlack"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/policyAllAgreeCheck"
+            android:background="#dedede"
+            android:layout_marginTop="5dp"
+            android:id="@+id/view"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/view"
+            android:id="@+id/servicePolicyCheck"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="서비스 이용약관 (필수)"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBaseline_toBaselineOf="@id/servicePolicyCheck"
+            app:layout_constraintStart_toEndOf="@id/servicePolicyCheck"
+            android:textColor="@color/moaBlack"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/servicePolicyCheck"
+            android:id="@+id/personalPolicyCheck"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="개인정보 취급방침 (필수)"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBaseline_toBaselineOf="@id/personalPolicyCheck"
+            app:layout_constraintStart_toEndOf="@id/personalPolicyCheck"
+            android:textColor="@color/moaBlack"/>
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/personalPolicyCheck"
+            android:id="@+id/maketingPolicyCheck"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="마케팅 수신동의 (선택)"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBaseline_toBaselineOf="@id/maketingPolicyCheck"
+            app:layout_constraintStart_toEndOf="@id/maketingPolicyCheck"
+            android:textColor="@color/moaBlack"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+<Button
+    android:layout_width="330dp"
+    android:layout_height="55dp"
+    android:background="@drawable/button_shape_main_color"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/policyCheckBoxLayout"
+    android:layout_marginTop="30dp"
+    android:text="다음"
+    android:textSize="18sp"
+    android:id="@id/next"
+    android:textStyle="bold"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+</layout>

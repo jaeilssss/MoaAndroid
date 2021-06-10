@@ -55,9 +55,6 @@ class KidAdapter(var list : ArrayList<Kid>, var context : Context, var navContro
                 var date = list.get(position).hopeDate.split("년")
                 holder.hopeDate.text = date.get(1)+" 시작"
             }
-
-
-
     }
 
 

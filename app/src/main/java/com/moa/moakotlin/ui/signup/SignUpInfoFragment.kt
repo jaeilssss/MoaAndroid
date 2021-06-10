@@ -30,10 +30,10 @@ class SignUpInfoFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_sign_up_info,container,false)
         navController = findNavController()
         model  = ViewModelProvider(this).get(SignUpInfoViewModel::class.java)
-        binding.nicknameCheck.setOnClickListener{
-                model.nickNameCheck()
-        }
-        binding.model = model
+//        binding.nicknameCheck.setOnClickListener{
+//                model.nickNameCheck()
+//        }
+//        binding.model = model
         return binding.root
     }
 }

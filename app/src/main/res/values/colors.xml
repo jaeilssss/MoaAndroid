@@ -11,4 +11,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorGray">#777777</color>
+    <color name="textColor">#333333</color>
+    <color name="mainColor">#ffc418</color>
+    <color name="moaBlack">#333333</color>
 </resources>

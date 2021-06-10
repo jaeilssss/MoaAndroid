@@ -1,148 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.login.LoginFragment">
  <data>
   <variable
       name="model"
-      type="com.moa.moakotlin.ui.login.LoginViewModel" />
+      type="com.moa.moakotlin.ui.login.LoginViewModel"/>
 
  </data>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
- <LinearLayout
-     android:layout_width="match_parent"
-     android:layout_height="match_parent"
-     android:background="#ffffff"
-     android:orientation="vertical"
-     >
+ <ImageView
+     android:id="@+id/backButton"
+     android:layout_width="9.8dp"
+     android:layout_height="17dp"
+     android:layout_marginStart="16dp"
+     android:layout_marginTop="28dp"
+     android:background="@drawable/ic_back_btn"
+     android:textStyle="bold"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toTopOf="parent" />
 
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="1"
-      android:orientation="vertical"
-      >
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_weight="1"
-       android:orientation="vertical">
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="20dp"
-        android:layout_gravity="left"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="25dp"
-        android:background="@drawable/moatempimage" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="모두의 아파트, MoA"
-        android:layout_gravity="left"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="25dp"
-        android:textColor="#000000"
-        android:textSize="30dp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="안녕하세요"
-        android:layout_gravity="left"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="25dp"
-        android:textColor="#000000"
-        android:textSize="20dp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="따듯한 아파트를 만드는 MOA입니다"
-        android:layout_gravity="left"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="25dp"
-        android:textColor="#000000"
-        android:textSize="20dp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="입주민분들께서는 이용을 위해 로그인 해주세요."
-        android:layout_gravity="left"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="25dp"
-        android:textColor="#808080"
-        android:textSize="13dp" />
-   </LinearLayout>
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="0dp"
-       android:layout_weight="2"
-       android:orientation="vertical">
-    <EditText
-        android:id="@+id/edit_id"
-        android:layout_marginRight="20dp"
-        android:paddingLeft="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="@={model.phoneNumber}"
-        android:textColor="#000000"
-        android:inputType="number"
-        android:backgroundTint ="#BDBDBD"
-        android:textColorHint="#BDBDBD"
-        android:hint="핸드폰 번호 입력"/>
+ <TextView
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:text="전화번호 인증"
+     android:textColor="@color/moaBlack"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     android:layout_marginTop="11.8dp"
+     android:textSize="18sp"
+     android:textStyle="bold"
+     app:layout_constraintTop_toTopOf="parent"
+     android:id="@+id/phoneCertificationTextView"/>
 
+<ImageView
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        >
-     <TextView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text="비밀번호 찾기"
-         android:textColor="#000000"
-         android:layout_marginRight="20dp"
-         android:layout_gravity="center_horizontal"/>
-     <TextView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text=" | "
-         android:textColor="#000000"
-         android:layout_gravity="center_horizontal"/>
-     <TextView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text="회원가입하기"
-         android:onClick="@{()->model.goToSignUp()}"
-         android:textColor="#000000"
-         android:layout_marginLeft="20dp"
-         android:layout_gravity="center_horizontal"/>
-    </LinearLayout>
+    android:layout_marginStart="100dp"
+    android:layout_marginEnd="100dp"
+    android:layout_marginBottom="100dp"
 
-   </LinearLayout>
-  </LinearLayout>
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/phoneCertificationTextView"
+    android:id="@+id/loginCenterImageView"
+    android:background="@drawable/moa_login_image"/>
 
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      >
-   <Button
-       android:id="@+id/login_button"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:text="로그인"
-       android:textSize="18dp"
-       android:layout_gravity="bottom"
-       android:textColor="#000000"
-       android:background="#FFE400"
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/loginCenterImageView"
+    android:text="@string/phoneCertificationText"
+  android:layout_marginTop="19.8dp"
+    android:gravity="center"
+    android:textColor="@color/moaBlack"
+    android:textSize="16sp"
+    android:id="@+id/loginTextView"/>
 
-       />
-  </LinearLayout>
+ <EditText
+     android:layout_width="340dp"
+     android:layout_height="55dp"
+     android:id="@+id/phoneNumberEditText"
+     android:layout_marginTop="25dp"
+     android:hint="전화번호 입력"
+     android:textStyle="bold"
+     android:textSize="16sp"
+     android:padding="5dp"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     android:inputType="number"
+     app:layout_constraintTop_toBottomOf="@id/loginTextView"
+     android:background="@drawable/login_edit_text_radius_15"
+     />
+ <Button
+     android:layout_width="340dp"
+     android:layout_height="55dp"
+     app:layout_constraintTop_toBottomOf="@id/phoneNumberEditText"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     android:background="@drawable/button_shape_black_radius_15"
+    android:layout_marginTop="10dp"
+   android:text="인증 문자 받기"
+  android:textColor="#ffffff"
+  android:textStyle="bold"
+  android:textSize="18sp"
+  android:gravity="center"
+  android:id="@+id/sendMessage"/>
+ <EditText
+     android:layout_width="340dp"
+     android:layout_height="55dp"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintTop_toBottomOf="@id/sendMessage"
+     android:layout_marginTop="25dp"
+     android:background="@drawable/login_edit_text_radius_15"
+     android:textSize="16sp"
+     android:hint="인증번호 입력"
+     android:textStyle="bold"
+     android:padding="5dp"
+     android:id="@+id/certificationCode"/>
 
- </LinearLayout>
+ <Button
+     android:layout_width="340dp"
+     android:layout_height="55dp"
+     android:background="@drawable/button_shape_main_color"
+     app:layout_constraintTop_toBottomOf="@id/certificationCode"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintEnd_toEndOf="parent"
+     android:text="인증번호 확인"
+     android:textSize="18sp"
+     android:textStyle="bold"
+     android:layout_marginTop="10dp"
+     android:id="@+id/checkCertificationCode"/>
 
 
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</ScrollView>
 </layout>

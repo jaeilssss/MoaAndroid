@@ -43,16 +43,7 @@ class LoginFragment : Fragment() {
 
         transfer.bottomGone()
 
-        binding.loginButton.setOnClickListener{
-            loginViewModel.phoneNumber.get()?.let {
-                if(it.length==11){
-                   var bundle = loginViewModel.login()
-                    navController.navigate(R.id.action_loginFragment_to_phoneCertification,bundle)
-                }else{
-                    Toast.makeText(context,"핸드폰 번호를 재대로 입력해주세요",Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
+
         return binding.root
     }
 

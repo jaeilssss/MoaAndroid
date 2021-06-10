@@ -20,33 +20,28 @@ lateinit var model : LoadingViewModel
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loading)
         model = ViewModelProvider(this).get(LoadingViewModel::class.java)
+        FirebaseAuth.getInstance().signOut()
         CoroutineScope(Dispatchers.Main).launch {
             startLoading()
         }
     }
   suspend fun startLoading() {
         try{
-            ConnectionStateMonitor(this,{
-                Toast.makeText(applicationContext,"와이파이 성공,",Toast.LENGTH_SHORT).show()
-            },{
-                Toast.makeText(applicationContext,"와이파이 실패,",Toast.LENGTH_SHORT).show()
-            })
-            var intent = Intent(this,FcmService::class.java)
-            startService(intent)
-            Picture.deleteInstance()
-            if(FirebaseAuth.getInstance().currentUser==null){
+
+//            Picture.deleteInstance()
+//            if(FirebaseAuth.getInstance().currentUser==null){
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
-            }else{
-                var result = model.initApp(FirebaseAuth.getInstance().currentUser.uid,this)
-                if(result){
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
-                }else{
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finish()
-                }
-            }
+//            }else{
+//                var result = model.initApp(FirebaseAuth.getInstance().currentUser.uid,this)
+//                if(result){
+//                    startActivity(Intent(this, MainActivity::class.java))
+//                    finish()
+//                }else{
+//                    startActivity(Intent(this, MainActivity::class.java))
+//                    finish()
+//                }
+//            }
 
 
         }catch (e :Exception) {

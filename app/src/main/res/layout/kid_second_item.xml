@@ -13,8 +13,7 @@
             android:id="@+id/kid_filter"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/moa_temp_filter_image" />
+            android:layout_marginLeft="10dp" />
 
         <View
             android:layout_width="0dp"
