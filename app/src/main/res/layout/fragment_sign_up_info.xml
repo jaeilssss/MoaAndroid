@@ -40,7 +40,6 @@
             android:textColor="@color/moaBlack"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/userInfoTextView"
-
             android:textSize="14sp"
             android:id="@+id/userInfoNameTextView"/>
         <EditText
@@ -68,32 +67,42 @@
         android:layout_marginStart="15dp"
         android:textColor="@color/moaBlack"
         android:id="@+id/userInfoPrivateCodeTextView"/>
+
         <EditText
-            android:layout_width="155dp"
+            android:id="@+id/privateFrontEdit"
+            android:layout_width="0dp"
             android:layout_height="55dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/userInfoPrivateCodeTextView"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="40dp"
             android:background="@drawable/login_edit_text_radius_15"
             android:hint="앞자리"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:inputType="number"
             android:textSize="16sp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
-            android:id="@+id/privateFrontEdit"
-            android:padding="10dp"/>
+            app:layout_constraintEnd_toEndOf="@id/horizontalBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userInfoPrivateCodeTextView" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/horizontal_bar"
             android:id="@+id/horizontalBar"
-            app:layout_constraintStart_toEndOf="@id/privateFrontEdit"
+            android:layout_width="30dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/horizontal_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/userInfoPrivateCodeTextView" />
+
         <EditText
-            android:layout_width="50dp"
+            android:layout_width="0dp"
             android:layout_height="55dp"
             app:layout_constraintStart_toEndOf="@id/horizontalBar"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/userInfoPrivateCodeTextView"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
@@ -103,10 +112,11 @@
             android:gravity="center"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="닉네임 설정"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/privateFrontEdit"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
@@ -114,14 +124,31 @@
             android:id="@+id/userNickNameText"/>
 
         <EditText
-            android:layout_width="207dp"
+            android:id="@+id/userNickNameEdit"
+            android:layout_width="0dp"
             android:layout_height="55dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/userNickNameText"
-            android:background="@drawable/login_edit_text_radius_15"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
-            android:hint="닉네임 입력"/>
+            android:layout_marginTop="8dp"
+            android:background="@drawable/login_edit_text_radius_15"
+            android:hint="닉네임 입력"
+            app:layout_constraintEnd_toStartOf="@id/nicknameCheck"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintTop_toBottomOf="@id/userNickNameText" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="8dp"
+
+            android:id="@+id/nicknameCheck"
+            android:background="@drawable/button_shape_black_radius_15"
+            app:layout_constraintDimensionRatio="W ,2:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="userNickNameEdit"
+            app:layout_constraintTop_toBottomOf="@id/userNickNameText" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

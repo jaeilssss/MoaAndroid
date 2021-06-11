@@ -41,8 +41,11 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
-        android:layout_width="108.9dp"
-        android:layout_height="93dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="125dp"
+        android:layout_marginEnd="125dp"
+        app:layout_constraintDimensionRatio="H,10:9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/policyTextView"
@@ -51,8 +54,11 @@
         android:id="@+id/policyImageView"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="340dp"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintDimensionRatio="H,33:17"
         android:id="@+id/policyCheckBoxLayout"
         android:background="@drawable/login_edit_text_radius_15"
         app:layout_constraintTop_toBottomOf="@id/policyImageView"
@@ -77,7 +83,7 @@
             android:layout_marginTop="10dp"
             app:layout_constraintBaseline_toBaselineOf="@id/policyAllAgreeCheck"
             app:layout_constraintStart_toEndOf="@id/policyAllAgreeCheck"
-
+            android:lineSpacingExtra="6.5sp"
             android:textColor="@color/moaBlack"/>
         <View
             android:layout_width="0dp"
@@ -103,6 +109,7 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:text="서비스 이용약관 (필수)"
+            android:lineSpacingExtra="6.5sp"
             android:layout_marginTop="10dp"
             app:layout_constraintBaseline_toBaselineOf="@id/servicePolicyCheck"
             app:layout_constraintStart_toEndOf="@id/servicePolicyCheck"
@@ -122,6 +129,7 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:text="개인정보 취급방침 (필수)"
+            android:lineSpacingExtra="6.5sp"
             android:layout_marginTop="20dp"
             app:layout_constraintBaseline_toBaselineOf="@id/personalPolicyCheck"
             app:layout_constraintStart_toEndOf="@id/personalPolicyCheck"
@@ -140,6 +148,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
+            android:lineSpacingExtra="6.5sp"
             android:text="마케팅 수신동의 (선택)"
             android:layout_marginTop="20dp"
             app:layout_constraintBaseline_toBaselineOf="@id/maketingPolicyCheck"

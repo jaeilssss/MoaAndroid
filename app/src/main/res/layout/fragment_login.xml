@@ -9,9 +9,7 @@
       type="com.moa.moakotlin.ui.login.LoginViewModel"/>
 
  </data>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -40,50 +38,55 @@
      app:layout_constraintTop_toTopOf="parent"
      android:id="@+id/phoneCertificationTextView"/>
 
-<ImageView
-    android:layout_width="0dp"
-    android:layout_height="match_parent"
+ <ImageView
+     android:id="@+id/loginCenterImageView"
+     android:layout_width="0dp"
+     android:layout_height="0dp"
+     android:layout_marginStart="70dp"
+     android:layout_marginEnd="70dp"
+     app:layout_constraintDimensionRatio="H,5:4"
+     android:background="@drawable/moa_login_image"
+     android:layout_marginTop="40dp"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toBottomOf="@id/phoneCertificationTextView" />
 
-    android:layout_marginStart="100dp"
-    android:layout_marginEnd="100dp"
-    android:layout_marginBottom="100dp"
-
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/phoneCertificationTextView"
-    android:id="@+id/loginCenterImageView"
-    android:background="@drawable/moa_login_image"/>
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/loginCenterImageView"
-    android:text="@string/phoneCertificationText"
-  android:layout_marginTop="19.8dp"
-    android:gravity="center"
-    android:textColor="@color/moaBlack"
-    android:textSize="16sp"
-    android:id="@+id/loginTextView"/>
+ <TextView
+     android:id="@+id/loginTextView"
+     android:layout_width="0dp"
+     android:layout_height="wrap_content"
+     app:layout_constraintTop_toBottomOf="@id/loginCenterImageView"
+     android:layout_marginTop="10dp"
+     android:gravity="center"
+     android:text="@string/phoneCertificationText"
+     android:textColor="@color/moaBlack"
+     android:textSize="16sp"
+     android:lineSpacingExtra="9sp"
+     android:textStyle="normal"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintStart_toStartOf="parent"
+     tools:layout_editor_absoluteY="358dp" />
 
  <EditText
-     android:layout_width="340dp"
-     android:layout_height="55dp"
      android:id="@+id/phoneNumberEditText"
-     android:layout_marginTop="25dp"
-     android:hint="전화번호 입력"
-     android:textStyle="bold"
-     android:textSize="16sp"
-     android:padding="5dp"
-     app:layout_constraintStart_toStartOf="parent"
-     app:layout_constraintEnd_toEndOf="parent"
-     android:inputType="number"
-     app:layout_constraintTop_toBottomOf="@id/loginTextView"
+     android:layout_width="0dp"
+     android:layout_height="55dp"
+     android:layout_marginTop="16dp"
      android:background="@drawable/login_edit_text_radius_15"
-     />
+     android:hint="전화번호 입력"
+     android:inputType="number"
+     android:padding="5dp"
+     android:textSize="16sp"
+     android:textStyle="bold"
+     android:layout_marginStart="30dp"
+     android:layout_marginEnd="30dp"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintHorizontal_bias="0.492"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toBottomOf="@id/loginTextView" />
+
  <Button
-     android:layout_width="340dp"
+     android:layout_width="0dp"
      android:layout_height="55dp"
      app:layout_constraintTop_toBottomOf="@id/phoneNumberEditText"
      app:layout_constraintStart_toStartOf="parent"
@@ -95,23 +98,29 @@
   android:textStyle="bold"
   android:textSize="18sp"
   android:gravity="center"
+     android:layout_marginStart="30dp"
+     android:layout_marginEnd="30dp"
   android:id="@+id/sendMessage"/>
+
  <EditText
-     android:layout_width="340dp"
+     android:id="@+id/certificationCode"
+     android:layout_width="0dp"
      android:layout_height="55dp"
-     app:layout_constraintStart_toStartOf="parent"
-     app:layout_constraintEnd_toEndOf="parent"
-     app:layout_constraintTop_toBottomOf="@id/sendMessage"
-     android:layout_marginTop="25dp"
+     android:layout_marginTop="12dp"
      android:background="@drawable/login_edit_text_radius_15"
-     android:textSize="16sp"
      android:hint="인증번호 입력"
-     android:textStyle="bold"
      android:padding="5dp"
-     android:id="@+id/certificationCode"/>
+     android:textSize="16sp"
+     android:textStyle="bold"
+     android:layout_marginEnd="30dp"
+     android:layout_marginStart="30dp"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintHorizontal_bias="0.492"
+     app:layout_constraintStart_toStartOf="parent"
+     app:layout_constraintTop_toBottomOf="@id/sendMessage" />
 
  <Button
-     android:layout_width="340dp"
+     android:layout_width="0dp"
      android:layout_height="55dp"
      android:background="@drawable/button_shape_main_color"
      app:layout_constraintTop_toBottomOf="@id/certificationCode"
@@ -119,15 +128,13 @@
      app:layout_constraintEnd_toEndOf="parent"
      android:text="인증번호 확인"
      android:textSize="18sp"
+     android:layout_marginStart="30dp"
+     android:layout_marginEnd="30dp"
      android:textStyle="bold"
      android:layout_marginTop="10dp"
      android:id="@+id/checkCertificationCode"/>
 
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</ScrollView>
 </layout>
