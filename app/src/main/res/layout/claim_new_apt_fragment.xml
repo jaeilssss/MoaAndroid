@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.signup.ClaimNewAptFragment">
+
+    <ImageView
+        android:layout_width="9.8dp"
+        android:layout_height="17dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/ic_back_btn"
+        android:id="@+id/back"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="8.8sp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:id="@+id/claimNewAptText"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="11dp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="우리 아파트 추가 요청하기" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/claimNewAptText"
+        android:text="아파트명 입력"
+        app:layout_constraintDimensionRatio="H,10:1"
+        android:layout_marginStart="15dp"
+        android:textColor="@color/moaBlack"
+        android:textSize="14sp"
+        android:layout_marginTop="42dp"
+        android:id="@+id/aptNameText"/>
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="H,6:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/aptNameText"
+        android:background="@drawable/login_edit_text_radius_15"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:textSize="16sp"
+        android:hint="이름"
+        android:paddingStart="10dp"
+        android:id="@+id/aptNameEdit"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/aptNameEdit"
+        android:text="아파트 주소 입력"
+        app:layout_constraintDimensionRatio="H,10:1"
+        android:layout_marginStart="15dp"
+        android:textColor="@color/moaBlack"
+        android:textSize="14sp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/aptAddressText"/>
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="H,6:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/aptAddressText"
+        android:background="@drawable/login_edit_text_radius_15"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:textSize="16sp"
+        android:hint="주소"
+        android:paddingStart="10dp"
+        android:id="@+id/aptAddressEdit"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/aptAddressEdit"
+        android:text="아파트 주소 입력"
+        app:layout_constraintDimensionRatio="H,10:1"
+        android:layout_marginStart="15dp"
+        android:textColor="@color/moaBlack"
+        android:textSize="14sp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/requireYourPhoneText"/>
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="H,6:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/requireYourPhoneText"
+        android:background="@drawable/login_edit_text_radius_15"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:textSize="16sp"
+        android:hint=""
+        android:paddingStart="10dp"
+        android:id="@+id/requireYourPhoneEdit"/>
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="H,6:1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/button_shape_main_color"
+        android:text="다음"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:lineSpacingExtra="4.5sp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

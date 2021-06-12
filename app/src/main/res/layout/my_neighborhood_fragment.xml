@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    tools:context=".ui.signup.MyNeighborhoodFragment">
+    <ImageView
+        android:layout_width="9.8dp"
+        android:layout_height="17dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/ic_back_btn"
+        android:id="@+id/back"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="8.8sp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:id="@+id/myNeighborhoodText"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="11dp"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="우리 이웃 아파트" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myNeighborhoodText"
+        app:layout_constraintDimensionRatio="H,19:15"
+        android:layout_marginStart="82dp"
+        android:layout_marginEnd="82dp"
+        android:layout_marginTop="57dp"
+        android:background="@drawable/neighborhood"
+        android:id="@+id/neighborhoodImage"/>
+
+    
+
+</androidx.constraintlayout.widget.ConstraintLayout>
