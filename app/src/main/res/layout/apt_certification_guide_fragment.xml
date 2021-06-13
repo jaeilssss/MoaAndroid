@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="model"
+            type="com.moa.moakotlin.ui.certification.AptCertificationGuideViewModel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.certification.AptCertificationGuideFragment">
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="9.8dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/ic_back_btn"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="인증사진 올리는 방법"
+        android:textColor="@color/moaBlack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="11.8dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/AptCertificationGuideText"/>
+
+    <ImageView
+        android:id="@+id/CheckCoinCidence"
+        android:layout_width="19.2dp"
+        android:layout_height="13dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="96dp"
+        android:background="@drawable/ic_yellow_check"
+        app:layout_constraintEnd_toStartOf="@id/CoincidenceText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/AptCertificationGuideText" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/CoincidenceText"
+        android:text="@string/CoincidenceText"
+        android:layout_marginTop="80dp"
+        app:layout_constraintStart_toEndOf="@id/CheckCoinCidence"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center_vertical"
+        android:lineSpacingExtra="4.5sp"
+        app:layout_constraintTop_toBottomOf="@id/AptCertificationGuideText"
+        android:layout_marginEnd="30dp"
+        android:textColor="@color/moaBlack"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/CoincidenceDetail"
+        android:text="@string/CoincidenceDetail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/CoincidenceText"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="35dp"/>
+
+    <ImageView
+        android:id="@+id/CheckNotCoinCidence"
+        android:layout_width="19.2dp"
+        android:layout_height="13dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/ic_yellow_check"
+        app:layout_constraintEnd_toStartOf="@id/NotCoincidenceText"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/CoincidenceDetail" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/NotCoincidenceText"
+        android:text="@string/NotCoincidenceText"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toEndOf="@id/CheckCoinCidence"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center_vertical"
+        android:lineSpacingExtra="4.5sp"
+        app:layout_constraintTop_toBottomOf="@id/CoincidenceDetail"
+        android:layout_marginEnd="30dp"
+        android:textColor="@color/moaBlack"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/NotCoincidenceText"
+        android:text="@string/NotCoincidenceDetail"
+        android:id="@+id/"
+        android:textSize="16sp"
+        android:gravity="center_vertical"/>
+    <ImageView
+        android:layout_width="12.5dp"
+        android:layout_height="12.5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf=""
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

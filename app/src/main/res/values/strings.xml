@@ -20,6 +20,12 @@
     <string name="CertificationMessageFirst">잠깐! 모두의 아파트는 \n 실제 아파트 거주자만 이용할 수 있어요!</string>
     <string name="CertificationMessageSecond">회원가입을 위해 신분증 1종\n (주민등록증,여권,면허증)등을 준비해주세요\n 만약, 신분증 주소가 실제 거주 아파트가 다르다면 추가 서류가 필요해요!</string>
     <string name="CertificationMessageThird">우리 아파트 주소가 나와있는 서류(관리비고지서,택배송장, 카드명세서, 입주민카드, 세대주확인증,공공요금명세서 등 주소 확인이 가능한 서류 준비)</string>
+    <string name="CoincidenceText">신분증 주소와 거주지가 일치할 경우</string>
+    <string name="CoincidenceDetail">신분증의 주만등록번호 뒷자리를 손가락,종이\n등 으로 가리고 사진을 찍어 제출해주세요! </string>
+    <string name="NotCoincidenceText">신분증 주소와 거주기가 \n 일치하지 않는 경우</string>
+    <string name="NotCoincidenceDetail">신분증과 관련서류 하나는 제출해주세요! \n (주민등록번호 뒷자리 가리기 필수)</string>
+    <string name="NotCertificationText">인증 실패</string>
+    <string name="NotCertificationDetail">신분증의 주민등번호 뒷자리를 모두 공개하여 \n 올리는 경우 인증이 안됩니다</string>
     <string-array name="mainCategory">
         <item>"인테리어"</item>
         <item>"육아,교육"</item>

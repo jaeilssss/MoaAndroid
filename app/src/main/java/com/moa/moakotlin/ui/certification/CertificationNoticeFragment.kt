@@ -31,9 +31,7 @@ class CertificationNoticeFragment : Fragment() {
         model = ViewModelProvider(this).get(CertificationNoticeViewModel::class.java)
 
         binding.model = model
-        binding.skip.setOnClickListener {
-            navController.navigate(R.id.action_certificationNoticeFragment_to_certificationSkipFragment)
-        }
+
         arguments?.let {
             model.bundle = arguments as Bundle
         }
