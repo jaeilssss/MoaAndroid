@@ -108,16 +108,57 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/NotCoincidenceText"
         android:text="@string/NotCoincidenceDetail"
-        android:id="@+id/"
+        android:id="@+id/NotCoincidenceDetail"
         android:textSize="16sp"
         android:gravity="center_vertical"/>
+
     <ImageView
-        android:layout_width="12.5dp"
-        android:layout_height="12.5dp"
+        android:id="@+id/XImage"
+        android:layout_width="19.2dp"
+        android:layout_height="13dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/ic_x"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@id/notCertification"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/NotCoincidenceDetail" />
+
+    <TextView
+        android:id="@+id/notCertification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/NotCertificationText"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/moaBlack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/XImage"
+        app:layout_constraintTop_toBottomOf="@id/NotCoincidenceDetail" />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf=""
-
+        app:layout_constraintTop_toBottomOf="@id/notCertification"
+        android:text="@string/NotCertificationDetail"
+        android:gravity="center"/>
+<Button
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintDimensionRatio="H,6:1"
+    android:background="@drawable/button_shape_main_color"
+    android:layout_marginBottom="70dp"
+    android:text="다음"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    android:id="@+id/nextBtn"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

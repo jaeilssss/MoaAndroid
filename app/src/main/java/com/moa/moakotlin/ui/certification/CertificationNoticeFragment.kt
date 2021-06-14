@@ -24,10 +24,13 @@ class CertificationNoticeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_certification_notice,container,false)
+
         navController = findNavController()
+
         model = ViewModelProvider(this).get(CertificationNoticeViewModel::class.java)
 
         binding.model = model
@@ -35,6 +38,7 @@ class CertificationNoticeFragment : Fragment() {
         arguments?.let {
             model.bundle = arguments as Bundle
         }
+
         return binding.root
     }
 
