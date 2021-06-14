@@ -73,6 +73,6 @@
         android:text="다음"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:id="@+id/signUpResultNext"
+        android:id="@+id/signUpResultNext"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

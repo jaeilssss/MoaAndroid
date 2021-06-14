@@ -330,5 +330,9 @@
         android:name="com.moa.moakotlin.ui.voice.VoiceRoomFragment"
         android:label="voice_room_fragment"
         tools:layout="@layout/voice_room_fragment" />
+    <fragment
+        android:id="@+id/policyFragment"
+        android:name="com.moa.moakotlin.ui.signup.PolicyFragment"
+        android:label="PolicyFragment" />
 
 </navigation>

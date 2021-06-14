@@ -4,6 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.signup.SignUpInfoFragment"
     >
+    <data>
+        <variable
+            name="model"
+            type="com.moa.moakotlin.ui.signup.SignUpInfoViewModel"/>
+    </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -131,7 +139,7 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/login_edit_text_radius_15"
             android:hint="닉네임 입력"
-            app:layout_constraintEnd_toStartOf="@id/nicknameCheck"
+            app:layout_constraintEnd_toStartOf="@id/nicknameCheckBtn"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginEnd="15dp"
@@ -141,15 +149,15 @@
             android:layout_width="0dp"
             android:layout_height="55dp"
             android:layout_marginTop="8dp"
-            android:id="@+id/nicknameCheck"
+            android:id="@+id/nicknameCheckBtn"
             android:background="@drawable/button_shape_black_radius_15"
-            app:layout_constraintDimensionRatio="W ,2:1"
+            app:layout_constraintDimensionRatio="W,2:1"
             android:text="중복확인"
             android:layout_marginEnd="15dp"
             android:textColor="@color/white"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="userNickNameEdit"
+            app:layout_constraintStart_toEndOf="@id/userNickNameEdit"
             app:layout_constraintTop_toBottomOf="@id/userNickNameText" />
 
         <TextView
@@ -224,4 +232,5 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

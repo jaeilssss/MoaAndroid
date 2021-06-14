@@ -72,6 +72,8 @@
             android:layout_marginTop="10dp"
             android:scaleX="0.8"
             android:scaleY="0.8"
+            android:onClick="@{()->model.checkBoxFirst()}"
+            android:button="@drawable/selector_signup_policy_checkbox"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/policyAllAgreeCheck"/>
@@ -101,6 +103,8 @@
             android:layout_marginTop="10dp"
             android:scaleX="0.8"
             android:scaleY="0.8"
+            android:checked="@={model.checkBoxSecond}"
+            android:button="@drawable/selector_signup_policy_checkbox"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/view"
             android:id="@+id/servicePolicyCheck"/>
@@ -120,7 +124,9 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:scaleX="0.8"
+            android:button="@drawable/selector_signup_policy_checkbox"
             android:scaleY="0.8"
+            android:checked="@={model.checkBoxThird}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/servicePolicyCheck"
             android:id="@+id/personalPolicyCheck"/>
@@ -140,7 +146,9 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:scaleX="0.8"
+            android:button="@drawable/selector_signup_policy_checkbox"
             android:scaleY="0.8"
+            android:checked="@={model.checkBoxFourth}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/personalPolicyCheck"
             android:id="@+id/maketingPolicyCheck"/>
@@ -165,7 +173,7 @@
     android:layout_marginTop="30dp"
     android:text="다음"
     android:textSize="18sp"
-    android:id="@id/next"
+    android:id="@id/nextBtn"
     android:textStyle="bold"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -38,10 +38,10 @@ class SignUpResultFragment : Fragment() {
 
         binding.model = model
 
-        binding.signResultGotoHome.setOnClickListener{
-            model.getMyaroundApt(FirebaseFirestore.getInstance())
-            navController.navigate(R.id.action_signUpResultFragment_to_HomeFragment)
-        }
+//        binding.signResultGotoHome.setOnClickListener{
+//            model.getMyaroundApt(FirebaseFirestore.getInstance())
+//            navController.navigate(R.id.action_signUpResultFragment_to_HomeFragment)
+//        }
         return binding.root
     }
 
