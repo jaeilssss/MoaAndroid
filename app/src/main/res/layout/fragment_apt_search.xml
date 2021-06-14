@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+
+        <variable
+            name="model"
+            type="com.moa.moakotlin.ui.signup.AptSearchViewModel" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -110,3 +117,4 @@
     android:lineSpacingExtra="4.5sp"
     android:id="@+id/nextBtn"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

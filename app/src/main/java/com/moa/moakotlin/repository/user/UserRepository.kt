@@ -57,4 +57,18 @@ class UserRepository {
         return result
     }
 
+    suspend fun checkNickName(nickname :String) : Boolean{
+        var result = false
+
+        var db = FirebaseFirestore.getInstance()
+
+        db.collection("User").whereEqualTo("nickName",nickname)
+                .get().addOnSuccessListener {
+                    if(it.isEmpty){
+                        result = true
+                    }
+                }.await()
+        return result
+    }
+
 }

@@ -61,6 +61,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:hint="이름"
+            android:text="@={model.name}"
             android:padding="10dp"
             android:textSize="16sp"
             android:id="@+id/userInfoEditName"/>
@@ -86,9 +87,11 @@
             android:background="@drawable/login_edit_text_radius_15"
             android:hint="앞자리"
             android:maxLines="1"
+            android:maxLength="9"
             android:padding="10dp"
             android:inputType="number"
             android:textSize="16sp"
+            android:text="@={model.birthDay}"
             app:layout_constraintEnd_toEndOf="@id/horizontalBar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/userInfoPrivateCodeTextView" />
@@ -110,15 +113,27 @@
             android:layout_width="0dp"
             android:layout_height="55dp"
             app:layout_constraintStart_toEndOf="@id/horizontalBar"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/privateCode"
             app:layout_constraintTop_toBottomOf="@id/userInfoPrivateCodeTextView"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/login_edit_text_radius_15"
             android:hint="성별"
+            android:text="@={model.gender}"
+            android:maxLength="1"
             android:id="@+id/privateBackEdit"
             android:gravity="center"/>
-
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:text="******"
+        android:textSize="16dp"
+        android:id="@+id/privateCode"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        app:layout_constraintStart_toEndOf="@id/privateBackEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userInfoPrivateCodeTextView"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -139,6 +154,7 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/login_edit_text_radius_15"
             android:hint="닉네임 입력"
+            android:text="@={model.nickName}"
             app:layout_constraintEnd_toStartOf="@id/nicknameCheckBtn"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -197,6 +213,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
             android:paddingStart="15dp"
+            android:text="@={model.dong}"
             app:layout_constraintEnd_toStartOf="@+id/apartHosooEdit"
             android:id="@+id/apartDongEdit"/>
         <EditText
@@ -211,6 +228,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="15dp"
             android:paddingStart="15dp"
+            android:text="@={model.hosoo}"
             android:hint="호수"/>
 
         <Button
@@ -226,6 +244,7 @@
             android:lineSpacingExtra="4.5sp"
             android:gravity="center_horizontal"
             android:text="다음"
+            android:id="@+id/next"
             android:textSize="18sp"
             android:textColor="#000000"
             android:textStyle="bold"/>

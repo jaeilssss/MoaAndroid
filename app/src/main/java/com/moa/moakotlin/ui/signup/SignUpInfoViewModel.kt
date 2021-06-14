@@ -10,15 +10,34 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseViewModel
 import com.moa.moakotlin.data.User
+import com.moa.moakotlin.repository.user.UserRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 
 class SignUpInfoViewModel() : ViewModel(){
     var name = ObservableField<String>("")
     var birthDay = ObservableField<String>("")
     var gender = ObservableField<String>("")
     lateinit var bundle : Bundle
+    var dong = ObservableField<String>("")
+    var hosoo = ObservableField<String>("")
     var nickName = ObservableField<String>("")
     lateinit var db : FirebaseFirestore
     var nickCheck = false
+
+    suspend fun checkNickName() :Boolean {
+        var result : Boolean
+        if(nickName.get()?.length==0){
+            return false
+        }else{
+            var repository = UserRepository()
+             result = repository.checkNickName(nickName.get()!!)
+            if(result){
+                nickCheck = true
+            }
+        }
+        return result
+    }
     fun next(){
         if(name.get()?.length!! >0 && birthDay.get()?.length!! >0 && nickName.get()?.length!! >0&&
             gender.get()?.length!!>0){
@@ -44,20 +63,5 @@ class SignUpInfoViewModel() : ViewModel(){
 //            Toast.makeText(context,"정보를 입력해주세요!",Toast.LENGTH_SHORT).show()
         }
     }
-    fun nickNameCheck(){
-        db = FirebaseFirestore.getInstance()
-        db.collection("User").whereEqualTo("nickName",nickName.get())
-            .get()
-            .addOnSuccessListener {
-            if(it.isEmpty){
-//                Toast.makeText(context,"가능한 별칭 입니다!",Toast.LENGTH_SHORT).show()
-                nickCheck = true
-            }else{
-//                Toast.makeText(context,"이미 사용중인 별칭 입니다!",Toast.LENGTH_SHORT).show()
-                nickCheck = false
-            }
-            }.addOnFailureListener{
 
-            }
-    }
 }
