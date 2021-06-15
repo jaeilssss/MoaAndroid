@@ -55,9 +55,9 @@ class SignUpInfoFragment : BaseFragment() {
         CoroutineScope(Dispatchers.Main).launch {
             var result = model.checkNickName()
             if(!result){
-                context?.let { ShowToast(it,"이미 존재하는 닉네임입니다") }
+                context?.let { showToast(it,"이미 존재하는 닉네임입니다") }
             }else{
-                context?.let { ShowToast(it,"사용 가능한 닉네임 입니다") }
+                context?.let { showToast(it,"사용 가능한 닉네임 입니다") }
             }
         }
     }

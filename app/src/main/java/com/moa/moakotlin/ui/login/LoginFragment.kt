@@ -18,18 +18,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
-import com.moa.moakotlin.base.Transfer
+import com.moa.moakotlin.base.*
 import com.moa.moakotlin.databinding.FragmentLoginBinding
 import kotlin.math.log
 
-class LoginFragment : Fragment() {
+class LoginFragment : BaseScrollFragment() {
 
    lateinit var binding: FragmentLoginBinding
     lateinit var navController: NavController
     lateinit var loginViewModel :LoginViewModel
      var countDownTimer: CountDownTimer ?=null
     lateinit var transfer: Transfer
-
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -67,13 +66,19 @@ class LoginFragment : Fragment() {
                 // 아니면 회원가입 페이지로 이동
 
             navController.navigate(R.id.policyFragment)
-
-
         }
+        activity?.window?.let { keyboardVisibility(it,binding.scv) }
         transfer.bottomGone()
+
+
 
         return binding.root
     }
+
+    override fun onBackPressed() {
+        TODO("Not yet implemented")
+    }
+
     private fun createCountDownTimer(initialMililis : Long) =
         object : CountDownTimer(initialMililis,1000L){
             override fun onFinish() {
@@ -93,6 +98,8 @@ class LoginFragment : Fragment() {
         val second = "%02d".format(remainSeconds%60)
         binding.sendMessageBtn.text = "인증문자 다시 받기 (${minute}분 ${second}초)"
     }
+
+
 }
 
 

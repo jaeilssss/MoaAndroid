@@ -1,36 +1,51 @@
 package com.moa.moakotlin.repository
 
+import android.R.string
 import com.algolia.search.saas.Client
-import com.algolia.search.saas.CompletionHandler
-import com.algolia.search.saas.Index
 import com.algolia.search.saas.Query
-import com.moa.moakotlin.R
+import com.google.common.base.Splitter
+import com.google.common.collect.Lists
 import com.moa.moakotlin.data.Apt
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import java.util.*
+import kotlin.collections.ArrayList
+
 
 class algoriaRepository {
 
 
-    fun searchApt(str : String) : ArrayList<Apt>{
+  suspend  fun searchApt(str: String) : ArrayList<Apt>{
         var list  = ArrayList<Apt>()
-        var client = Client("Y5P2EINUZX","b17fcc022749dc2ae86e492504aa70f5")
+        var client = Client("Y5P2EINUZX", "b17fcc022749dc2ae86e492504aa70f5")
 
          var index = client.getIndex("Aparts")
-
-        var jsonArray = index.searchSync(Query(str)).getJSONArray("hits")
-        if(jsonArray!=null){
-            for(i in 0 until jsonArray.length()) {
-                var json = jsonArray?.getJSONObject(i)
-                var apt = Apt(json.getString("address"),json.getString("aptCode"),
-                json.getString("aptName"),json.getString("aroundApt") as ArrayList<String>,
-                        json.getString("doroJuso"), json.getString("lat"),
-                        json.getString("lon")
-                )
-                list.add(apt)
+        CoroutineScope(Dispatchers.Default).async {
+            var jsonArray = index.searchSync(Query(str)).getJSONArray("hits")
+            if(jsonArray!=null){
+                for(i in 0 until jsonArray.length()) {
+                    var json = jsonArray?.getJSONObject(i)
+                    println("arraylist~!~!")
+                    var aroundApt = json.getString("aroundApt")
+                    aroundApt.replace("[", "")
+                    aroundApt.replace("]", "")
+                    val aroundAptList: ArrayList<String> = Lists.newArrayList(Splitter.on(" , ").split(aroundApt))
+                    var apt = Apt(json.getString("address"), json.getString("aptCode"),
+                            json.getString("aptName"), aroundAptList,
+                            json.getString("doroJuso"), json.getString("lat"),
+                            json.getString("lon")
+                    )
+                    list.add(apt)
+                }
             }
-        }
+        }.await()
+
 
         return list
     }
+
+
 
 
 }

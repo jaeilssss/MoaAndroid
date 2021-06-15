@@ -10,8 +10,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
 import com.moa.moakotlin.databinding.FragmentAptSearchBinding
+import com.moa.moakotlin.recyclerview.algoria.SearchAptAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class AptSearchFragment : Fragment() {
@@ -35,8 +40,24 @@ lateinit var model : AptSearchViewModel
 
         binding.model = model
 
+
+        var adapter = SearchAptAdapter()
+
+        binding.searchAptRcv.adapter = adapter
+
+        binding.searchAptRcv.layoutManager = LinearLayoutManager(context)
+
+
         model.searchContent.observe(viewLifecycleOwner, Observer {
+            println("감지!!")
+            CoroutineScope(Dispatchers.Main).launch {
                 model.updateSearchView()
+            }
+
+        })
+
+        model.AptList.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it)
         })
 
         return binding.root

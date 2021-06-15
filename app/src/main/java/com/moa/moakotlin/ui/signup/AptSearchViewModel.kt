@@ -14,7 +14,7 @@ class AptSearchViewModel : ViewModel() {
 
     var searchContent = MutableLiveData<String>()
 
-    fun updateSearchView(){
+    suspend fun updateSearchView(){
         var algoriaRepository = algoriaRepository()
         searchContent.let {
             if(searchContent.value?.isNotEmpty() == true){
@@ -22,9 +22,5 @@ class AptSearchViewModel : ViewModel() {
                 AptList.value = list
             }
         }
-
-
-
     }
-
 }

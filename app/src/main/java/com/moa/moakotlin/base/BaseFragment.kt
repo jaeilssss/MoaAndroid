@@ -1,6 +1,7 @@
 package com.moa.moakotlin.base
 
 import android.content.Context
+import android.view.Window
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.moa.moakotlin.MainActivity
@@ -12,7 +13,9 @@ abstract class BaseFragment() : Fragment() ,onBackPressedListener {
         (context as MainActivity).backListener = this
     }
 
-     fun ShowToast(context: Context,msg:String){
+     fun showToast(context: Context,msg:String){
          Toast.makeText(context,msg,Toast.LENGTH_SHORT).show()
      }
+
+
 }
