@@ -40,11 +40,9 @@ class CertificationNoticeFragment : Fragment() {
 
         binding.model = model
 
-
         // bundle 여기서 데이터 최종으로 받아오기 !
         var user = User()
-
-
+        
         binding.skipCertificationBtn.setOnClickListener{
 
 //            CoroutineScope(Dispatchers.Main).launch {

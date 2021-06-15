@@ -38,6 +38,21 @@ class SignUpInfoViewModel() : ViewModel(){
         }
         return result
     }
+
+    fun checkInfo(){
+        return if(name.get()?.length!! > 0 &&
+                birthDay.get()?.length==6 &&
+                gender.get())
+    }
+
+    fun checkName() :Boolean{
+        return name.get()?.length!!>0
+    }
+    fun checkGender(): Boolean{
+        return gender.equals("1") || gender.equals("2") ||
+                gender.equals("3") || gender.equals("4")
+    }
+    fun 
     fun next(){
         if(name.get()?.length!! >0 && birthDay.get()?.length!! >0 && nickName.get()?.length!! >0&&
             gender.get()?.length!!>0){

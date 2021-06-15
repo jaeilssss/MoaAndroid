@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.databinding.ObservableField
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.moa.moakotlin.R
@@ -18,7 +19,7 @@ import kotlinx.coroutines.launch
 
 class LoginViewModel() : ViewModel(){
     var phoneNumber = ObservableField<String>("")
-    var code = ObservableField<String>("")
+    var code = MutableLiveData<String>("")
     lateinit var activity :FragmentActivity
     lateinit var  loginRepository :LoginRepository
     var isChecked  = false
@@ -45,11 +46,10 @@ class LoginViewModel() : ViewModel(){
         if(loginRepository.storedVerificationId==null){
             return isChecked
         }else{
-            code.get()?.let {
+
                 CoroutineScope(Dispatchers.Default).async {
-                    isChecked =  loginRepository.signInWithPhoneAuthCredential(code.get()!!)
+                    isChecked =  loginRepository.signInWithPhoneAuthCredential(code.value!!)
                 }.await()
-            }
         }
 
         if(isChecked){

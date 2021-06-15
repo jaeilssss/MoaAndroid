@@ -14,13 +14,32 @@ class PolicyViewModel : ViewModel() {
     var list = ArrayList<Boolean>()
 
     fun checkBoxFirst(){
-
-
+        if(checkBoxFirst.get()==true){
+            checkBoxFirst.set(true)
+            checkBoxSecond.set(true)
+            checkBoxThird.set(true)
+            checkBoxFourth.set(true)
+        }else if(checkBoxFirst.get()==false){
+            checkBoxFirst.set(false)
+            checkBoxSecond.set(false)
+            checkBoxThird.set(false)
+            checkBoxFourth.set(false)
+        }
     }
 
     fun checkBoxCheck() {
-
-
+        if(checkBoxSecond.get()==false){
+            checkBoxFirst.set(false)
+        }else if(checkBoxThird.get()==false){
+            checkBoxFirst.set(false)
+        }else if(checkBoxFourth.get()==false){
+            checkBoxFirst.set(false)
+        }
+            if(checkBoxSecond.get()==true &&
+                    checkBoxThird.get()==true&&
+                    checkBoxFourth.get()==true){
+                checkBoxFirst.set(true)
+            }
     }
 
     fun checkBox() : Boolean{
