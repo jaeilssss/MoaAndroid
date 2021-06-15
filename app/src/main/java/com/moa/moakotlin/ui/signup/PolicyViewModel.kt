@@ -3,6 +3,7 @@ package com.moa.moakotlin.ui.signup
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import java.util.*
+import kotlin.collections.ArrayList
 
 class PolicyViewModel : ViewModel() {
 
@@ -10,19 +11,16 @@ class PolicyViewModel : ViewModel() {
     var checkBoxSecond = ObservableField<Boolean>(false)
     var checkBoxThird = ObservableField<Boolean>(false)
     var checkBoxFourth = ObservableField<Boolean>(false)
+    var list = ArrayList<Boolean>()
 
     fun checkBoxFirst(){
-        if(checkBoxFirst.get()==false){
-            checkBoxFirst.set(true)
-            checkBoxSecond.set(true)
-            checkBoxThird.set(true)
-            checkBoxFourth.set(true)
-        }else{
-            checkBoxFirst.set(false)
-            checkBoxSecond.set(false)
-            checkBoxThird.set(false)
-            checkBoxFourth.set(false)
-        }
+
+
+    }
+
+    fun checkBoxCheck() {
+
+
     }
 
     fun checkBox() : Boolean{

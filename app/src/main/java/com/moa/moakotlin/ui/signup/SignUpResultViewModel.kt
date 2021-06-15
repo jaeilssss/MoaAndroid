@@ -21,7 +21,6 @@ class SignUpResultViewModel() : ViewModel(){
                     if (list != null) {
                         println(list.aroundApt.get(0))
                         aptList.setInstance(list)
-
                     }
                 }
             }

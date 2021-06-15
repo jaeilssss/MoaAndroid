@@ -19,8 +19,8 @@ data class User(
     var address : String ="",
     var aptName : String ="",
     var signUpDate : Timestamp = Timestamp.now(),
-    var introduction :String = ""
-
+    var introduction :String = "",
+    var isAgreeMarketing : Boolean = false
 ): Parcelable{
     companion object{
         // 자기변수 선언하기

@@ -4,7 +4,7 @@ import android.view.Window
 import android.widget.ScrollView
 
 abstract class BaseScrollFragment : BaseFragment(){
-    private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
+    private  var keyboardVisibilityUtils: KeyboardVisibilityUtils ?=null
      fun keyboardVisibility(window:Window , scrollView: ScrollView) {
         keyboardVisibilityUtils =
             KeyboardVisibilityUtils(window,
@@ -13,6 +13,8 @@ abstract class BaseScrollFragment : BaseFragment(){
                             smoothScrollTo(scrollX, scrollY + keyboardHeight)
                         }
                     })
-
+    }
+    fun closeKeyboardVisibility(){
+        keyboardVisibilityUtils = null
     }
 }

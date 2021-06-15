@@ -56,7 +56,6 @@ class ChattingRoomFragment : BaseFragment() {
 
         rcv.adapter = adapter
 
-
         model.setSnapShot()
 
         model.chattingRoomData.observe(viewLifecycleOwner, Observer {

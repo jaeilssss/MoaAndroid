@@ -12,6 +12,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
+import com.moa.moakotlin.base.BaseScrollFragment
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentSignUpBinding
 import com.moa.moakotlin.databinding.FragmentSignUpInfoBinding
 import kotlinx.coroutines.CoroutineScope
@@ -19,7 +21,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class SignUpInfoFragment : BaseFragment() {
+class SignUpInfoFragment : BaseScrollFragment() {
     lateinit var binding: FragmentSignUpInfoBinding
 
     lateinit var model : SignUpInfoViewModel
@@ -39,18 +41,38 @@ class SignUpInfoFragment : BaseFragment() {
 
         binding.model = model
 
+        if(User.getInstance().aptName.equals("").not()){
+            binding.apartCertificationButton.text = User.getInstance().aptName
+        }
+
         binding.nicknameCheckBtn.setOnClickListener {
            nickCheck()
         }
 
-        binding.apartCertificationEdit.setOnClickListener {
+       binding.userInfoEditName.setOnClickListener {
+           closeKeyboardVisibility()
+       }
+        binding.apartCertificationButton.setOnClickListener {
             goToAptSearch()
+        }
+
+        binding.next.setOnClickListener{
+            goToAptCertificationNotice()
+        }
+
+
+        binding.apartDongEdit.setOnClickListener {
+
+//            activity?.window?.let { it1 -> keyboardVisibility(it1,binding.scv) }
         }
         return binding.root
     }
 
 
 
+    fun goToAptCertificationNotice(){
+        navController.navigate(R.id.certificationNoticeFragment)
+    }
     fun nickCheck(){
         CoroutineScope(Dispatchers.Main).launch {
             var result = model.checkNickName()

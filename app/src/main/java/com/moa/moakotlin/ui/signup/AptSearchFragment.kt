@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,6 +13,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
+import com.moa.moakotlin.base.OnItemClickListener
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentAptSearchBinding
 import com.moa.moakotlin.recyclerview.algoria.SearchAptAdapter
 import kotlinx.coroutines.CoroutineScope
@@ -19,7 +23,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class AptSearchFragment : Fragment() {
+class AptSearchFragment : BaseFragment() {
 
 lateinit var binding : FragmentAptSearchBinding
 
@@ -36,6 +40,8 @@ lateinit var model : AptSearchViewModel
 
         navController = findNavController()
 
+
+
         model = ViewModelProvider(this).get(AptSearchViewModel::class.java)
 
         binding.model = model
@@ -49,7 +55,6 @@ lateinit var model : AptSearchViewModel
 
 
         model.searchContent.observe(viewLifecycleOwner, Observer {
-            println("감지!!")
             CoroutineScope(Dispatchers.Main).launch {
                 model.updateSearchView()
             }
@@ -60,8 +65,21 @@ lateinit var model : AptSearchViewModel
             adapter.submitList(it)
         })
 
+        adapter.setOnItemClickListener(object : OnItemClickListener{
+            override fun onItemClick(v: View, position: Int) {
+                User.getInstance().aptName = adapter.currentList[position].aptName
+                User.getInstance().aptCode = adapter.currentList[position].aptCode
+                navController.popBackStack()
+
+            }
+
+        })
         return binding.root
     }
 
-  
+    override fun onBackPressed() {
+        navController.popBackStack()
+    }
+
+
 }

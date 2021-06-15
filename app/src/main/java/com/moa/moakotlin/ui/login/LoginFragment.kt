@@ -19,6 +19,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.*
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentLoginBinding
 import kotlin.math.log
 
@@ -64,7 +65,10 @@ class LoginFragment : BaseScrollFragment() {
 
 
                 // 아니면 회원가입 페이지로 이동
+            // 인증코드가 맞는지도 확인 할 것!!!
 
+
+            User.getInstance().phoneNumber = binding.phoneNumberEditText.toString()
             navController.navigate(R.id.policyFragment)
         }
         activity?.window?.let { keyboardVisibility(it,binding.scv) }

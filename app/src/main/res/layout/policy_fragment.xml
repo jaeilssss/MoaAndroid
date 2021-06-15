@@ -72,6 +72,7 @@
             android:layout_marginTop="10dp"
             android:scaleX="0.8"
             android:scaleY="0.8"
+            android:checked="@={model.checkBoxFirst}"
             android:onClick="@{()->model.checkBoxFirst()}"
             android:button="@drawable/selector_signup_policy_checkbox"
             app:layout_constraintStart_toStartOf="parent"
@@ -104,6 +105,7 @@
             android:scaleX="0.8"
             android:scaleY="0.8"
             android:checked="@={model.checkBoxSecond}"
+            android:onClick="@{()->model.checkBoxCheck()}"
             android:button="@drawable/selector_signup_policy_checkbox"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/view"
@@ -124,6 +126,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:scaleX="0.8"
+            android:onClick="@{()->model.checkBoxCheck()}"
             android:button="@drawable/selector_signup_policy_checkbox"
             android:scaleY="0.8"
             android:checked="@={model.checkBoxThird}"
@@ -149,6 +152,7 @@
             android:button="@drawable/selector_signup_policy_checkbox"
             android:scaleY="0.8"
             android:checked="@={model.checkBoxFourth}"
+            android:onClick="@{()->model.checkBoxCheck()}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/personalPolicyCheck"
             android:id="@+id/maketingPolicyCheck"/>
@@ -174,6 +178,7 @@
     android:text="다음"
     android:textSize="18sp"
     android:id="@id/nextBtn"
+
     android:textStyle="bold"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

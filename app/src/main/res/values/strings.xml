@@ -11,6 +11,7 @@
     <string name="aptCertificationSuccess"> </string>
     <string name="signUpSuccess">회원가입이 완료 되었습니다!</string>
     <string name="aptUncertified">실제 거주지 미인증</string>
+    <string name="aptUncertifiedDetail">실제 거주지 미인증 \n 회원가입이 완료되었습니다!\n 활동하는데에 제한이 있으니,\n 추후에 인증을 해주세요.</string>
     <string name="aptCertified">실제 거주지 인증</string>
     <string name="signUpLastMessage"> 함께 만들어가는 아파트 선진 문화에 동참하신 것을 환영해요 ^.^ </string>
     <string name="kidReviewHint">솔직한 피드백은 육아 돌봄을 \n 구하고 있는 이웃들에게 많은 도움이 됩니다 </string>

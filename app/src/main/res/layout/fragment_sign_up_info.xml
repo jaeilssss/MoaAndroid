@@ -11,7 +11,9 @@
     </data>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/scv"
+        >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -119,6 +121,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/login_edit_text_radius_15"
             android:hint="성별"
+            android:inputType="numberDecimal"
             android:text="@={model.gender}"
             android:maxLength="1"
             android:id="@+id/privateBackEdit"
@@ -188,16 +191,17 @@
             android:textColor="@color/moaBlack"
             android:textSize="14sp"
             android:id="@+id/apartCertificationText"/>
-        <EditText
+        <Button
             android:layout_width="0dp"
             android:layout_height="55dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
+            android:gravity="left|center_vertical"
             app:layout_constraintTop_toBottomOf="@id/apartCertificationText"
             android:background="@drawable/login_edit_text_radius_15"
-            android:id="@+id/apartCertificationEdit"
+            android:id="@+id/apartCertificationButton"
             android:layout_marginTop="10dp"
             android:hint="아파트를 선택해주세요"
             android:paddingStart="15dp"/>
@@ -206,21 +210,22 @@
             android:layout_width="0dp"
             android:layout_height="55dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/apartCertificationEdit"
+            app:layout_constraintTop_toBottomOf="@id/apartCertificationButton"
             android:background="@drawable/login_edit_text_radius_15"
-            android:hint="동수"
+            android:hint="동"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
             android:paddingStart="15dp"
             android:text="@={model.dong}"
+            android:inputType="numberDecimal"
             app:layout_constraintEnd_toStartOf="@+id/apartHosooEdit"
             android:id="@+id/apartDongEdit"/>
         <EditText
             android:layout_width="0dp"
             android:layout_height="55dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/apartCertificationEdit"
+            app:layout_constraintTop_toBottomOf="@id/apartCertificationButton"
             android:background="@drawable/login_edit_text_radius_15"
             app:layout_constraintStart_toEndOf="@id/apartDongEdit"
             android:id="@+id/apartHosooEdit"
@@ -228,8 +233,9 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="15dp"
             android:paddingStart="15dp"
+            android:inputType="numberDecimal"
             android:text="@={model.hosoo}"
-            android:hint="호수"/>
+            android:hint="호"/>
 
         <Button
             android:layout_width="0dp"

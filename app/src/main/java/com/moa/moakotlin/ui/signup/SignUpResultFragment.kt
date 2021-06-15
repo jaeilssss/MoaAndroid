@@ -32,12 +32,17 @@ class SignUpResultFragment : Fragment() {
 
         binding  = DataBindingUtil.inflate(inflater,R.layout.fragment_sign_up_result,container,false)
 
+
         navController = findNavController()
 
         model = ViewModelProvider(this).get(SignUpResultViewModel::class.java)
 
         binding.model = model
-
+        var bundle = arguments as Bundle
+        var check = bundle.getBoolean("isCertified")
+        if(check.not()){
+            binding.SignUpResultMessage.text = resources.getString(R.string.aptUncertifiedDetail)
+        }
 //        binding.signResultGotoHome.setOnClickListener{
 //            model.getMyaroundApt(FirebaseFirestore.getInstance())
 //            navController.navigate(R.id.action_signUpResultFragment_to_HomeFragment)

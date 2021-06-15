@@ -29,6 +29,9 @@ class KeyboardVisibilityUtils(
             } else if (lastVisibleDecorViewHeight + MIN_KEYBOARD_HEIGHT_PX < visibleDecorViewHeight) {
                 // Notify listener about keyboard being hidden.
                 onHideKeyboard?.invoke()
+
+            }else{
+
             }
         }
         // Save current decor view height for the next call.

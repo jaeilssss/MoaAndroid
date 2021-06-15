@@ -1,14 +1,21 @@
 package com.moa.moakotlin.ui.certification
 
-import android.content.Context
-import android.os.Bundle
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
-import com.moa.moakotlin.R
-import com.moa.moakotlin.base.BaseViewModel
+import com.moa.moakotlin.data.User
+import com.moa.moakotlin.repository.user.UserRepository
 
 class CertificationNoticeViewModel() : ViewModel(){
-    lateinit var bundle: Bundle
+
+
+   suspend fun signUp(user :User) : Boolean{
+        var repository = UserRepository()
+
+      return  repository.signUpUser(user)
+
+    }
+
+
+
 
 }
 

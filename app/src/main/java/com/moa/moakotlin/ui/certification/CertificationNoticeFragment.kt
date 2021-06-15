@@ -1,6 +1,7 @@
 package com.moa.moakotlin.ui.certification
 
 import android.os.Bundle
+import android.view.Display
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentCertificationNoticeBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class CertificationNoticeFragment : Fragment() {
 
@@ -35,9 +40,22 @@ class CertificationNoticeFragment : Fragment() {
 
         binding.model = model
 
-        arguments?.let {
-            model.bundle = arguments as Bundle
+
+        // bundle 여기서 데이터 최종으로 받아오기 !
+        var user = User()
+
+
+        binding.skipCertificationBtn.setOnClickListener{
+
+//            CoroutineScope(Dispatchers.Main).launch {
+//                if(model.signUp(user)){
+                    var bundle = Bundle()
+                    bundle.putBoolean("isCertification",false)
+                    navController.navigate(R.id.signUpResultFragment,bundle)
+//                }
+//            }
         }
+
 
         return binding.root
     }
