@@ -204,6 +204,7 @@
             android:id="@+id/apartCertificationButton"
             android:layout_marginTop="10dp"
             android:hint="아파트를 선택해주세요"
+            android:text="@={model.aptName}"
             android:paddingStart="15dp"/>
 
         <EditText

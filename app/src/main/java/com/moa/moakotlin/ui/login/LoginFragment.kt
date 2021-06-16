@@ -78,9 +78,11 @@ class LoginFragment : BaseScrollFragment() {
             if(it.length==6){
                 binding.checkCertificationCodeBtn.setBackgroundResource(R.drawable.button_shape_main_color)
                 binding.checkCertificationCodeBtn.setTextColor(Color.BLACK)
+                binding.checkCertificationCodeBtn.isClickable=true
             }else{
                 binding.checkCertificationCodeBtn.setBackgroundResource(R.drawable.shape_unable_radius_15)
                 binding.checkCertificationCodeBtn.setTextColor(Color.WHITE)
+                binding.checkCertificationCodeBtn.isClickable=false
             }
         })
 
