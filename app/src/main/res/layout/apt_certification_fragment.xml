@@ -37,16 +37,33 @@
         android:id="@+id/AptCertificationText"/>
 
 <androidx.recyclerview.widget.RecyclerView
-    android:layout_width="0dp"
+    android:layout_width="wrap_content"
     android:layout_height="150dp"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toBottomOf="@id/AptCertificationText"
     android:id="@+id/aptCertificationRcv"
     android:layout_marginTop="40dp"
     android:orientation="horizontal"
     />
+    <ImageView
+        android:id="@+id/itemGoToAlbum"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/shape_grey_radius_10"
+        app:layout_constraintStart_toEndOf="@id/aptCertificationRcv"
+       app:layout_constraintTop_toBottomOf="@id/AptCertificationText" />
 
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/shape_shape_oval_grey"
+        android:src="@drawable/ic_plus"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@id/itemGoToAlbum"
+        app:layout_constraintTop_toTopOf="@id/itemGoToAlbum" />
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"

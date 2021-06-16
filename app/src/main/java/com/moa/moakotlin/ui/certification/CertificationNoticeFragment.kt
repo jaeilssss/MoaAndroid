@@ -42,9 +42,8 @@ class CertificationNoticeFragment : Fragment() {
 
         // bundle 여기서 데이터 최종으로 받아오기 !
         var user = User()
-        
-        binding.skipCertificationBtn.setOnClickListener{
 
+        binding.skipCertificationBtn.setOnClickListener{
 //            CoroutineScope(Dispatchers.Main).launch {
 //                if(model.signUp(user)){
                     var bundle = Bundle()
@@ -54,6 +53,9 @@ class CertificationNoticeFragment : Fragment() {
 //            }
         }
 
+        binding.CertificationBtn.setOnClickListener {
+            navController.navigate(R.id.aptCertificationGuideFragment)
+        }
 
         return binding.root
     }

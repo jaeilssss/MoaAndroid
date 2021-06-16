@@ -6,27 +6,39 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
+import com.moa.moakotlin.databinding.AptCertificationFragmentBinding
+import com.moa.moakotlin.databinding.AptCertificationGuideFragmentBinding
 
 class AptCertificationGuideFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = AptCertificationGuideFragment()
-    }
+
+    lateinit var binding : AptCertificationGuideFragmentBinding
+
+    lateinit var navController: NavController
 
     private lateinit var viewModel: AptCertificationGuideViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-        return inflater.inflate(R.layout.apt_certification_guide_fragment, container, false)
 
-    }
+        binding = DataBindingUtil.inflate(inflater,R.layout.apt_certification_guide_fragment,container,false)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+        navController = findNavController()
+
         viewModel = ViewModelProvider(this).get(AptCertificationGuideViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        binding.guildNextBtn.setOnClickListener {
+            navController.navigate(R.id.aptCertificationFragment)
+        }
+        return binding.root
+
     }
+
+
 
 }

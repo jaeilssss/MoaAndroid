@@ -48,7 +48,6 @@ class SignUpInfoFragment : BaseScrollFragment() {
             binding.next.isClickable =true
         }
         nextButtonChangeBackground()
-        context?.let { showToast(it,model.nickCheck.get().toString()) }
         if(User.getInstance().aptName.equals("").not()){
             model.aptName.value = User.getInstance().aptName
         }
@@ -73,7 +72,6 @@ class SignUpInfoFragment : BaseScrollFragment() {
                 model.nickCheck.set(false)
                 nextButtonChangeBackground()
             }
-
         }
         observeViewModel()
         return binding.root

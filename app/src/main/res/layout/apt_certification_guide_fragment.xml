@@ -7,7 +7,9 @@
             name="model"
             type="com.moa.moakotlin.ui.certification.AptCertificationGuideViewModel" />
     </data>
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -44,26 +46,25 @@
         android:layout_marginTop="96dp"
         android:background="@drawable/ic_yellow_check"
         app:layout_constraintEnd_toStartOf="@id/CoincidenceText"
-        app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toBottomOf="@id/AptCertificationGuideText" />
 
     <TextView
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/CoincidenceText"
         android:text="@string/CoincidenceText"
-        android:layout_marginTop="80dp"
-        app:layout_constraintStart_toEndOf="@id/CheckCoinCidence"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center_vertical"
+        android:gravity="center"
         android:lineSpacingExtra="4.5sp"
         app:layout_constraintTop_toBottomOf="@id/AptCertificationGuideText"
-        android:layout_marginEnd="30dp"
         android:textColor="@color/moaBlack"
         android:textSize="18sp"
         android:textStyle="bold"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:id="@+id/CoincidenceDetail"
         android:text="@string/CoincidenceDetail"
@@ -72,6 +73,7 @@
         app:layout_constraintTop_toBottomOf="@id/CoincidenceText"
         android:layout_marginStart="35dp"
         android:layout_marginTop="10dp"
+        android:gravity="center"
         android:layout_marginEnd="35dp"/>
 
     <ImageView
@@ -84,23 +86,26 @@
         app:layout_constraintEnd_toStartOf="@id/NotCoincidenceText"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintTop_toBottomOf="@id/CoincidenceDetail" />
 
     <TextView
+        android:id="@+id/NotCoincidenceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/NotCoincidenceText"
-        android:text="@string/NotCoincidenceText"
-        android:layout_marginTop="30dp"
-        app:layout_constraintStart_toEndOf="@id/CheckCoinCidence"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:gravity="center_vertical"
+        android:layout_marginTop="28dp"
+
+        android:gravity="center"
         android:lineSpacingExtra="4.5sp"
-        app:layout_constraintTop_toBottomOf="@id/CoincidenceDetail"
-        android:layout_marginEnd="30dp"
+        android:text="@string/NotCoincidenceText"
         android:textColor="@color/moaBlack"
         android:textSize="18sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/CoincidenceDetail" />
+
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -110,18 +115,16 @@
         android:text="@string/NotCoincidenceDetail"
         android:id="@+id/NotCoincidenceDetail"
         android:textSize="16sp"
-        android:gravity="center_vertical"/>
+        android:gravity="center"/>
 
     <ImageView
         android:id="@+id/XImage"
-        android:layout_width="19.2dp"
-        android:layout_height="13dp"
-        android:layout_marginTop="56dp"
-        android:background="@drawable/ic_x"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="10dp"
+        android:background="@drawable/ic_clear"
         app:layout_constraintEnd_toStartOf="@id/notCertification"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/NotCoincidenceDetail" />
 
     <TextView
@@ -130,12 +133,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:text="@string/NotCertificationText"
+        android:textColor="@color/moaBlack"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@color/moaBlack"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/XImage"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/NotCoincidenceDetail" />
+
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -143,22 +148,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/notCertification"
         android:text="@string/NotCertificationDetail"
+        android:id="@+id/NotCoincidenceDetailText"
         android:gravity="center"/>
-<Button
-    android:layout_width="0dp"
-    android:layout_height="0dp"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    android:layout_marginStart="15dp"
-    android:layout_marginEnd="15dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintDimensionRatio="H,6:1"
-    android:background="@drawable/button_shape_main_color"
-    android:layout_marginBottom="70dp"
-    android:text="다음"
-    android:textSize="18sp"
-    android:textStyle="bold"
-    android:id="@+id/nextBtn"/>
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/NotCoincidenceDetailText"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/button_shape_main_color"
+        android:text="다음"
+        android:textSize="18sp"
+        android:id="@+id/guildNextBtn"
+        android:textStyle="bold"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
 </layout>

@@ -32,7 +32,6 @@ class SignUpInfoViewModel() : ViewModel(){
         if(nickName.value?.length==0){
             return false
         }else{
-            println("여기 실행되는건가?")
             var repository = UserRepository()
              result = repository.checkNickName(nickName.value!!)
             if(result){

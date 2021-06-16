@@ -334,5 +334,23 @@
         android:id="@+id/policyFragment"
         android:name="com.moa.moakotlin.ui.signup.PolicyFragment"
         android:label="PolicyFragment" />
+    <fragment
+        android:id="@+id/aptCertificationGuideFragment"
+        android:name="com.moa.moakotlin.ui.certification.AptCertificationGuideFragment"
+        android:label="AptCertificationGuideFragment" />
+    <fragment
+        android:id="@+id/aptCertificationFragment"
+        android:name="com.moa.moakotlin.ui.certification.AptCertificationFragment"
+        android:label="AptCertificationFragment" />
+    <fragment
+        android:id="@+id/claimNewAptFragment"
+        android:name="com.moa.moakotlin.ui.signup.ClaimNewAptFragment"
+        android:label="claim_new_apt_fragment"
+        tools:layout="@layout/claim_new_apt_fragment" />
+    <fragment
+        android:id="@+id/myNeighborhoodFragment"
+        android:name="com.moa.moakotlin.ui.signup.MyNeighborhoodFragment"
+        android:label="my_neighborhood_fragment"
+        tools:layout="@layout/my_neighborhood_fragment" />
 
 </navigation>
