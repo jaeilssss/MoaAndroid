@@ -41,28 +41,26 @@ class MyNeighborhoodFragment : Fragment() {
         navController = findNavController()
         binding.model = viewModel
 
+        arguments?.let {
+            var neighborhood = it.getStringArrayList("neighborhood")
+            if (neighborhood != null) {
+                settingMyNeighborhood(neighborhood)
+            }
+        }
 
-        settingMyNeighborhood()
 
     }
 
-    private fun settingMyNeighborhood(){
-        var list = aptList.getInstance().aroundApt
-        println("${list.size}+dddd))!!")
-        var test = ArrayList<String>()
-
-        CoroutineScope(Dispatchers.Main).launch {
-            var AptNameList = viewModel.getMyAroundNeighborhood(list)
+    private fun settingMyNeighborhood( neighborhood : ArrayList<String>){
 
             var adapter = MyNeighborhoodListAdapter()
-            println("여기 사이즈 몇일까?? ${AptNameList.size}")
-            adapter.submitList(AptNameList)
+            adapter.submitList(neighborhood)
 
             binding.myNeighborhoodRcv.adapter = adapter
 
             binding.myNeighborhoodRcv.layoutManager = LinearLayoutManager(context)
 
-        }
+
     }
 
 }

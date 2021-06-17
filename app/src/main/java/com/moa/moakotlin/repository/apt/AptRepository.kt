@@ -13,6 +13,7 @@ class AptRepository  {
         db.collection("Apart").document(aptCode).get()
                 .addOnSuccessListener {
                     if(it.exists()){
+
                         var data = it.toObject(Apt::class.java)
                         aptName = data?.aptName.toString()
                         println("-------")

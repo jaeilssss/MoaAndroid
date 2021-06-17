@@ -16,7 +16,7 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.BaseScrollFragment
 import com.moa.moakotlin.data.User
-import com.moa.moakotlin.databinding.FragmentSignUpBinding
+import com.moa.moakotlin.data.aptList
 import com.moa.moakotlin.databinding.FragmentSignUpInfoBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -64,6 +64,7 @@ class SignUpInfoFragment : BaseScrollFragment() {
         }
 
         binding.next.setOnClickListener{
+            // 먼저 이웃리스트를 가지고 온다
             goToMyNeighborhood()
         }
 
@@ -78,8 +79,13 @@ class SignUpInfoFragment : BaseScrollFragment() {
     }
 
     private fun goToMyNeighborhood(){
+        CoroutineScope(Dispatchers.Main).launch {
+            var neighboorhood = model.getMyAroundNeighborhood(aptList.getInstance().aroundApt)
+            var bundle = Bundle()
+            bundle.putStringArrayList("neighborhood",neighboorhood)
+            navController.navigate(R.id.myNeighborhoodFragment,bundle)
+        }
 
-        navController.navigate(R.id.myNeighborhoodFragment)
     }
     private fun goToAptCertificationNotice(){
         navController.navigate(R.id.certificationNoticeFragment)

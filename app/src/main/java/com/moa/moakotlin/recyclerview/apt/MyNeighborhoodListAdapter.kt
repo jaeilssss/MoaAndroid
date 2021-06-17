@@ -14,14 +14,13 @@ class MyNeighborhoodListAdapter() : ListAdapter<String,MyNeighborhoodListAdapter
     }
 
     override fun onBindViewHolder(holder: MyNeighborhoodListAdapter.NeighborhoodViewHolder, position: Int) {
-       println("야")
         holder.binding(currentList[position])
     }
 
     inner class NeighborhoodViewHolder(var binding:ItemMyNeighborhoodTextBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun binding(aptName : String){
-            binding.itemMyNeighborhoodText.text = "3333"
+            binding.itemMyNeighborhoodText.text = aptName
         }
     }
 

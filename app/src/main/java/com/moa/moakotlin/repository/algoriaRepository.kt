@@ -29,11 +29,12 @@ class algoriaRepository {
                     var aroundApt = json.getString("aroundApt")
                    aroundApt= aroundApt.replace("[", "")
                    aroundApt= aroundApt.replace("]", "")
+                    aroundApt = aroundApt.replace("\"","")
                     val aroundAptList: ArrayList<String> = Lists.newArrayList(Splitter.on(",").split(aroundApt))
                     var apt = Apt(json.getString("address"), json.getString("aptCode"),
                             json.getString("aptName"), aroundAptList,
-                            json.getString("doroJuso"), json.getString("lat"),
-                            json.getString("lon")
+                            json.getString("doroJuso"), json.getDouble("lat"),
+                            json.getDouble("lon")
                     )
                     list.add(apt)
                 }

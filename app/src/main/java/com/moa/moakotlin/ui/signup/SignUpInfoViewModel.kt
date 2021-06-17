@@ -11,6 +11,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseViewModel
 import com.moa.moakotlin.data.User
+import com.moa.moakotlin.repository.apt.AptRepository
 import com.moa.moakotlin.repository.user.UserRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -76,6 +77,16 @@ class SignUpInfoViewModel() : ViewModel(){
     }
     fun checkLatestNickname() : Boolean{
         return latestNickName == nickName.value
+    }
+
+    suspend fun getMyAroundNeighborhood(list : ArrayList<String>) : ArrayList<String>{
+        var repository = AptRepository()
+        var aptNameList = ArrayList<String>()
+        for(i in 0 until list.size){
+            var aptName = repository.getMyAroundNeighborhood(list.get(i))
+            aptNameList.add(aptName)
+        }
+        return aptNameList
     }
 
 }
