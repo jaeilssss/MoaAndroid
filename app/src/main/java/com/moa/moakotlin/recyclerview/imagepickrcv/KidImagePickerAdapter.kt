@@ -32,7 +32,6 @@ class KidImagePickerAdapter(var navController: NavController,var context: Contex
         }else{
             (holder as KidImagePickerViewHolder).check.setImageResource(R.drawable.image_not_check_image)
         }
-
     }
 
     fun resetting(){

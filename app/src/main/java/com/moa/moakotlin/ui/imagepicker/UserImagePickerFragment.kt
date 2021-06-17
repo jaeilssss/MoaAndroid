@@ -78,7 +78,6 @@ class UserImagePickerFragment : Fragment() {
 
                 }
             }
-
         })
 
         binding.imagePickerBack.setOnClickListener {

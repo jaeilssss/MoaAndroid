@@ -43,10 +43,11 @@ class SignUpResultFragment : Fragment() {
         if(check.not()){
             binding.SignUpResultMessage.text = resources.getString(R.string.aptUncertifiedDetail)
         }
-//        binding.signResultGotoHome.setOnClickListener{
-//            model.getMyaroundApt(FirebaseFirestore.getInstance())
-//            navController.navigate(R.id.action_signUpResultFragment_to_HomeFragment)
-//        }
+
+
+        binding.signUpResultNext.setOnClickListener {
+            navController.navigate(R.id.HomeFragment)
+        }
         return binding.root
     }
 

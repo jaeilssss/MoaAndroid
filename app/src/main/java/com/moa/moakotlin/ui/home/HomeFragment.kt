@@ -1,16 +1,21 @@
 package com.moa.moakotlin.ui.home
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
@@ -18,6 +23,7 @@ import com.moa.moakotlin.base.Transfer
 import com.moa.moakotlin.base.onBackPressedListener
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentHomeBinding
+import com.moa.moakotlin.viewpageradapter.HomeViewPagerAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -53,6 +59,28 @@ lateinit var transfer: Transfer
 
         model.init()
 
+        var list = ArrayList<Int>()
+
+        list.add(R.drawable.banner_home_first)
+        list.add(R.drawable.banner_home_second)
+        list.add(R.drawable.banner_home_third)
+
+        var adapter = HomeViewPagerAdapter(list)
+
+        binding.homeViewPager.adapter = adapter
+
+        binding.homeViewPager.offscreenPageLimit =3
+
+        binding.homeViewPager.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
+
+        setUpBoardingIndicators()
+        setCurrentOnboardingIndicator(0)
+
+        binding.homeViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                setCurrentOnboardingIndicator(position)
+            }
+        })
         binding.model = model
 
         transfer.bottomVisible()
@@ -67,5 +95,41 @@ lateinit var transfer: Transfer
         }
         lastTimeBackPressed = System.currentTimeMillis();
         Toast.makeText(context,"종료하려면 한번 더 누르세요",Toast.LENGTH_SHORT).show()
+    }
+
+    private fun setUpBoardingIndicators(){
+        val indicators =
+                arrayOfNulls<ImageView>(3)
+
+        var layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+
+        layoutParams.setMargins(8,0,8,0)
+
+        for( i in indicators.indices){
+            indicators[i] = ImageView(context)
+            indicators[i]?.setImageDrawable(ContextCompat.getDrawable(
+                    activity?.applicationContext!!,
+                    R.drawable.onboarding_indicator_inactive
+            ))
+
+            indicators[i]?.layoutParams = layoutParams
+
+            binding.indicators?.addView(indicators[i])
+        }
+    }
+    private fun setCurrentOnboardingIndicator( index : Int){
+        var childCount = binding.indicators?.childCount
+        for(i in  0 until childCount!!){
+            var imageView = binding.indicators?.getChildAt(i) as ImageView
+            if(i==index){
+                imageView.setImageDrawable(ContextCompat.getDrawable(activity?.applicationContext!!,
+                        R.drawable.onboarding_indicator_active))
+            }else{
+                imageView.setImageDrawable(ContextCompat.getDrawable(activity?.applicationContext!!,
+                        R.drawable.onboarding_indicator_inactive))
+            }
+        }
     }
 }

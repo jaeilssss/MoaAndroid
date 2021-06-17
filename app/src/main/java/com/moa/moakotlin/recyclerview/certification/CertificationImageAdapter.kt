@@ -16,11 +16,14 @@ class CertificationImageAdapter() : ListAdapter<String, CertificationImageAdapte
         TODO("Not yet implemented")
     }
 
+
+
     inner class CertificationViewModel(binding : ItemAptCertificationBinding) : RecyclerView.ViewHolder(binding.root){
 
     }
+
     companion object{
-        val diffUtil = object  : DiffUtil.ItemCallback<String>(){
+        val diffUtil = object : DiffUtil.ItemCallback<String>(){
             override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
                 return oldItem ==newItem
             }

@@ -40,8 +40,6 @@ lateinit var model : AptSearchViewModel
 
         navController = findNavController()
 
-
-
         model = ViewModelProvider(this).get(AptSearchViewModel::class.java)
 
         binding.model = model
@@ -53,12 +51,10 @@ lateinit var model : AptSearchViewModel
 
         binding.searchAptRcv.layoutManager = LinearLayoutManager(context)
 
-
         model.searchContent.observe(viewLifecycleOwner, Observer {
             CoroutineScope(Dispatchers.Main).launch {
                 model.updateSearchView()
             }
-
         })
 
         model.AptList.observe(viewLifecycleOwner, Observer {
@@ -72,8 +68,9 @@ lateinit var model : AptSearchViewModel
                 navController.popBackStack()
 
             }
-
         })
+
+
         return binding.root
     }
 

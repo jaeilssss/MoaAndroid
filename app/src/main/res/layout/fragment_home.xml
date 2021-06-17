@@ -32,12 +32,64 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/MainText"
         android:elevation="10dp"
+        android:layout_margin="10dp"
+        android:id="@+id/userAddressLayout"
         android:background="@drawable/shape_white_radius_15dp"
         >
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/ic_compass"
+        android:layout_marginTop="7.5dp"
+        android:layout_marginStart="10dp"
+        android:id="@+id/compass"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:gravity="center_vertical"
+            tools:text="만현마을 쌍용 1차 701 601호 뉴나리"
+            app:layout_constraintStart_toEndOf="@id/compass"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="10dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:id="@+id/userAddressText"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+<androidx.viewpager2.widget.ViewPager2
+    android:layout_width="0dp"
+    android:layout_height="190dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/userAddressLayout"
+    android:id="@+id/homeViewPager"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:orientation="horizontal"
+    android:layout_marginTop="10dp"/>
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:id="@+id/indicators"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/homeViewPager"
+        android:padding="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>
