@@ -16,6 +16,7 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.User
+import com.moa.moakotlin.data.aptList
 import com.moa.moakotlin.databinding.FragmentAptSearchBinding
 import com.moa.moakotlin.recyclerview.algoria.SearchAptAdapter
 import kotlinx.coroutines.CoroutineScope
@@ -65,6 +66,8 @@ lateinit var model : AptSearchViewModel
             override fun onItemClick(v: View, position: Int) {
                 User.getInstance().aptName = adapter.currentList[position].aptName
                 User.getInstance().aptCode = adapter.currentList[position].aptCode
+                aptList.getInstance().aroundApt = adapter.currentList[position].aroundApt
+                println("여기 사이즈가 몇이ㅑㅇ?? ${aptList.getInstance().aroundApt.size}")
                 navController.popBackStack()
 
             }

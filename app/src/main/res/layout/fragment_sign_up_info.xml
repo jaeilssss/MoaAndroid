@@ -89,7 +89,7 @@
             android:background="@drawable/login_edit_text_radius_15"
             android:hint="앞자리"
             android:maxLines="1"
-            android:maxLength="9"
+            android:maxLength="6"
             android:padding="10dp"
             android:inputType="number"
             android:textSize="16sp"
@@ -107,7 +107,6 @@
             android:layout_marginEnd="15dp"
             android:background="@drawable/horizontal_bar"
             app:layout_constraintEnd_toEndOf="parent"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/userInfoPrivateCodeTextView" />
 

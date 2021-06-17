@@ -26,11 +26,10 @@ class algoriaRepository {
             if(jsonArray!=null){
                 for(i in 0 until jsonArray.length()) {
                     var json = jsonArray?.getJSONObject(i)
-                    println("arraylist~!~!")
                     var aroundApt = json.getString("aroundApt")
-                    aroundApt.replace("[", "")
-                    aroundApt.replace("]", "")
-                    val aroundAptList: ArrayList<String> = Lists.newArrayList(Splitter.on(" , ").split(aroundApt))
+                   aroundApt= aroundApt.replace("[", "")
+                   aroundApt= aroundApt.replace("]", "")
+                    val aroundAptList: ArrayList<String> = Lists.newArrayList(Splitter.on(",").split(aroundApt))
                     var apt = Apt(json.getString("address"), json.getString("aptCode"),
                             json.getString("aptName"), aroundAptList,
                             json.getString("doroJuso"), json.getString("lat"),

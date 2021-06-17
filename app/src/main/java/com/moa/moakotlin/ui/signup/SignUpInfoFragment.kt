@@ -64,7 +64,7 @@ class SignUpInfoFragment : BaseScrollFragment() {
         }
 
         binding.next.setOnClickListener{
-            goToAptCertificationNotice()
+            goToMyNeighborhood()
         }
 
         binding.userNickNameEdit.addTextChangedListener{
@@ -77,6 +77,10 @@ class SignUpInfoFragment : BaseScrollFragment() {
         return binding.root
     }
 
+    private fun goToMyNeighborhood(){
+
+        navController.navigate(R.id.myNeighborhoodFragment)
+    }
     private fun goToAptCertificationNotice(){
         navController.navigate(R.id.certificationNoticeFragment)
     }
