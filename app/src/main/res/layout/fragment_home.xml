@@ -92,39 +92,112 @@
         />
 
 
-    <GridLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/indicators"
-        android:columnCount="4"
-        android:layout_marginTop="25dp">
-
         <ImageView
-            android:layout_width="72.2dp"
-            android:layout_height="72.2dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="#bdbdbd"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/homeTalentSharingBnt"
+            app:layout_constraintTop_toBottomOf="@id/indicators"
+            app:layout_constraintDimensionRatio="H,1:1"
+            android:id="@+id/homeMoaVoiceChatBtn"
            />
         <ImageView
-            android:layout_width="72.2dp"
-            android:layout_height="72.2dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="#bdbdbd"
-            android:layout_marginStart="15dp"/>
+            android:layout_marginEnd="15dp"
+            app:layout_constraintStart_toEndOf="@id/homeMoaVoiceChatBtn"
+            app:layout_constraintEnd_toStartOf="@id/homeGroupBuyingBtn"
+            app:layout_constraintTop_toBottomOf="@id/indicators"
+            app:layout_constraintDimensionRatio="H,1:1"
+            android:layout_marginTop="10dp"
+            android:id="@+id/homeTalentSharingBnt"
+            />
         <ImageView
-            android:layout_width="72.2dp"
-            android:layout_height="70dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="#bdbdbd"
-            android:layout_marginStart="15dp"/>
+            android:layout_marginEnd="15dp"
+            app:layout_constraintStart_toEndOf="@id/homeTalentSharingBnt"
+            app:layout_constraintTop_toBottomOf="@id/indicators"
+            android:layout_marginTop="10dp"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintEnd_toStartOf="@id/homeHandPurchaseBtn"
+            android:id="@+id/homeGroupBuyingBtn"
+            />
         <ImageView
-            android:layout_width="72.2dp"
-            android:layout_height="72.2dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:background="#bdbdbd"
+            app:layout_constraintStart_toEndOf="@id/homeGroupBuyingBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/indicators"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:id="@+id/homeHandPurchaseBtn"
+            app:layout_constraintDimensionRatio="H,1:1"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="@id/homeMoaVoiceChatBtn"
+            app:layout_constraintEnd_toEndOf="@id/homeMoaVoiceChatBtn"
+            app:layout_constraintTop_toBottomOf="@id/homeMoaVoiceChatBtn"
+            android:text="모아 라디오"
+            android:gravity="center"
+            app:layout_constraintDimensionRatio="H,3:1"
+            android:textSize="14sp"
+            android:textColor="@color/moaBlack"
+            android:lineSpacingExtra="6sp"
+            android:id="@+id/homeVoiceChatText"
+            />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/homeTalentSharingBnt"
+        app:layout_constraintEnd_toEndOf="@id/homeTalentSharingBnt"
+        app:layout_constraintTop_toBottomOf="@id/homeTalentSharingBnt"
+        android:text="재능 공유"
+        android:gravity="center"
+        app:layout_constraintDimensionRatio="H,3:1"
+        android:textSize="14sp"
+        android:textColor="@color/moaBlack"
+        android:lineSpacingExtra="6sp"
+        android:id="@+id/hometalentSharingText"/>
 
-            android:layout_marginStart="15dp"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/homeGroupBuyingBtn"
+        app:layout_constraintEnd_toEndOf="@id/homeGroupBuyingBtn"
+        app:layout_constraintTop_toBottomOf="@id/homeGroupBuyingBtn"
+        android:text="공동구매"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintDimensionRatio="H,3:1"
+        android:textColor="@color/moaBlack"
+        android:lineSpacingExtra="6sp"
+        android:id="@+id/homeGroupBuyingText"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="나눔 중고"
+        app:layout_constraintStart_toStartOf="@id/homeHandPurchaseBtn"
+        app:layout_constraintEnd_toEndOf="@id/homeHandPurchaseBtn"
+        app:layout_constraintTop_toBottomOf="@id/homeHandPurchaseBtn"
+        android:gravity="center"
+        android:textColor="@color/moaBlack"
+        android:textSize="14sp"
+        app:layout_constraintDimensionRatio="H,3:1"
+        android:id="@+id/homeHandPurchaseText"/>
 
 
-    </GridLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
