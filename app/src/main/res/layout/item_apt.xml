@@ -10,7 +10,7 @@
 
     <TextView
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="만현마을 쌍용 1차 아파트"
@@ -21,10 +21,10 @@
         android:id="@+id/itemAptName"
         app:layout_constraintEnd_toStartOf="@id/itemMyAptCheck"
         android:layout_marginEnd="50dp"
-        app:layout_constraintDimensionRatio="H,7:1"/>
+/>
     <TextView
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/itemAptName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/itemMyAptCheck"
@@ -34,7 +34,7 @@
         android:id="@+id/aptJuso"
         android:lines="1"
         android:layout_marginEnd="50dp"
-        app:layout_constraintDimensionRatio="H,7:1"/>
+/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,6 +48,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginEnd="15dp"/>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

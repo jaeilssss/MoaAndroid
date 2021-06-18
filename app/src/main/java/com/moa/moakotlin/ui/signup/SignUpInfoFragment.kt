@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -80,16 +81,17 @@ class SignUpInfoFragment : BaseScrollFragment() {
 
     private fun goToMyNeighborhood(){
         CoroutineScope(Dispatchers.Main).launch {
+            binding.signUpLoadingProgressBar.isVisible = true
+            binding.signUpLoadingProgressBar.show()
             var neighboorhood = model.getMyAroundNeighborhood(aptList.getInstance().aroundApt)
             var bundle = Bundle()
             bundle.putStringArrayList("neighborhood",neighboorhood)
             navController.navigate(R.id.myNeighborhoodFragment,bundle)
+            binding.signUpLoadingProgressBar.hide()
         }
 
     }
-    private fun goToAptCertificationNotice(){
-        navController.navigate(R.id.certificationNoticeFragment)
-    }
+
     fun nickCheck(){
         CoroutineScope(Dispatchers.Main).launch {
             var result = model.checkNickName()

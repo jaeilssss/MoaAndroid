@@ -48,9 +48,14 @@ class MyNeighborhoodFragment : Fragment() {
             }
         }
 
-
+        binding.neighborhoodNextBtn.setOnClickListener {
+            goToAptCertificationNotice()
+        }
     }
 
+    private fun goToAptCertificationNotice(){
+        navController.navigate(R.id.certificationNoticeFragment)
+    }
     private fun settingMyNeighborhood( neighborhood : ArrayList<String>){
 
             var adapter = MyNeighborhoodListAdapter()
