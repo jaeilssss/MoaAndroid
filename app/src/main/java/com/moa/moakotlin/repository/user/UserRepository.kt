@@ -2,6 +2,7 @@ package com.moa.moakotlin.repository.user
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.moa.moakotlin.data.ApartCertification
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.aptList
 import kotlinx.coroutines.tasks.await
@@ -71,4 +72,12 @@ class UserRepository {
         return result
     }
 
+    fun userCertification(certification : ApartCertification){
+
+        var db = FirebaseFirestore.getInstance()
+
+        db.collection("ApartCertification").add(certification).addOnSuccessListener {
+
+        }
+    }
 }

@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <ImageView
@@ -12,7 +12,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:background="@drawable/shape_radius_10"
-        android:id="@+id/item_apt_certification_image"/>
+        android:id="@+id/itemAptCertificationImage"/>
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -21,5 +21,5 @@
         android:layout_marginStart="70dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/item_apt_certification_close"/>
+        android:id="@+id/itemAptCertificationClose"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
