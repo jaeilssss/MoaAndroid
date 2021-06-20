@@ -89,4 +89,18 @@ class SignUpInfoViewModel() : ViewModel(){
         return aptNameList
     }
 
+    fun setUserInstance() {
+        User.getInstance().aptName = aptName.value.toString()
+
+        User.getInstance().name = name.value.toString()
+
+        User.getInstance().nickName = nickName.toString()
+
+        User.getInstance().isMan = gender.value?.toInt() ==1 || gender.value?.toInt() ==3
+
+        User.getInstance().birthday = birthDay.value.toString()
+
+        User.getInstance().address = "$aptName ${dong.value.toString()}동 ${hosoo.value.toString()}호"
+    }
+
 }

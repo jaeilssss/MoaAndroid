@@ -65,6 +65,8 @@ class SignUpInfoFragment : BaseScrollFragment() {
         }
 
         binding.next.setOnClickListener{
+
+            model.setUserInstance()
             // 먼저 이웃리스트를 가지고 온다
             goToMyNeighborhood()
         }

@@ -20,6 +20,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.*
 import com.moa.moakotlin.data.User
@@ -69,6 +70,7 @@ class LoginFragment : BaseScrollFragment() {
 
             // 인증코드가 맞는지도 확인 할 것!!!
             User.getInstance().phoneNumber = binding.phoneNumberEditText.toString()
+//            User.getInstance().uid = FirebaseAuth.getInstance().uid.toString()
             navController.navigate(R.id.policyFragment)
         }
         activity?.window?.let { keyboardVisibility(it,binding.scv) }

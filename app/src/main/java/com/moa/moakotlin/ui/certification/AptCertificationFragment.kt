@@ -124,6 +124,7 @@ class AptCertificationFragment : BaseFragment() {
                         .setMessage(getString(R.string.AptCertificationImagesText))
                         .setPositiveButton("예"){
                             CoroutineScope(Dispatchers.Main).launch {
+                                viewModel.signUp()
                                 viewModel.certification(adapter.currentList)
                             }
                             var bundle = Bundle()

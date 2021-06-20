@@ -16,7 +16,6 @@ import com.moa.moakotlin.databinding.FragmentSignUpResultBinding
 
 class SignUpResultFragment : Fragment() {
 
-
     lateinit var binding: FragmentSignUpResultBinding
 
     lateinit var model: SignUpResultViewModel
@@ -31,7 +30,6 @@ class SignUpResultFragment : Fragment() {
         // Inflate the layout for this fragment
 
         binding  = DataBindingUtil.inflate(inflater,R.layout.fragment_sign_up_result,container,false)
-
 
         navController = findNavController()
 

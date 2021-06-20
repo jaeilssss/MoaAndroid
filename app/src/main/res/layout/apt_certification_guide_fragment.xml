@@ -43,11 +43,12 @@
         android:layout_width="19.2dp"
         android:layout_height="13dp"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/ic_yellow_check"
         app:layout_constraintEnd_toStartOf="@id/CoincidenceText"
-
-        app:layout_constraintTop_toBottomOf="@id/AptCertificationGuideText" />
+        app:layout_constraintTop_toTopOf="@id/CoincidenceText"
+        app:layout_constraintBottom_toBottomOf="@id/CoincidenceText"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -71,23 +72,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/CoincidenceText"
-        android:layout_marginStart="35dp"
+        android:textSize="16sp"
         android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:layout_marginEnd="35dp"/>
+        android:gravity="center" />
 
     <ImageView
         android:id="@+id/CheckNotCoinCidence"
         android:layout_width="19.2dp"
         android:layout_height="13dp"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="44dp"
         android:background="@drawable/ic_yellow_check"
+        android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toStartOf="@id/NotCoincidenceText"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintTop_toBottomOf="@id/CoincidenceDetail" />
+        app:layout_constraintTop_toTopOf="@id/NotCoincidenceText"
+        app:layout_constraintBottom_toBottomOf="@id/NotCoincidenceText"
+        />
 
     <TextView
         android:id="@+id/NotCoincidenceText"
@@ -121,11 +120,11 @@
         android:id="@+id/XImage"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_marginTop="48dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/ic_clear"
         app:layout_constraintEnd_toStartOf="@id/notCertification"
-        app:layout_constraintTop_toBottomOf="@id/NotCoincidenceDetail" />
+        app:layout_constraintTop_toTopOf="@id/notCertification"
+        app:layout_constraintBottom_toBottomOf="@id/notCertification"/>
 
     <TextView
         android:id="@+id/notCertification"
@@ -149,6 +148,7 @@
         app:layout_constraintTop_toBottomOf="@id/notCertification"
         android:text="@string/NotCertificationDetail"
         android:id="@+id/NotCoincidenceDetailText"
+        android:textSize="16sp"
         android:gravity="center"/>
 
     <Button

@@ -190,7 +190,41 @@
         android:textColor="@color/moaBlack"
         android:textSize="14sp"
         android:id="@+id/homeHandPurchaseText"/>
+<ImageView
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    app:layout_constraintStart_toStartOf="@id/homeVoiceChatText"
+    app:layout_constraintEnd_toEndOf="@id/homeVoiceChatText"
+    app:layout_constraintTop_toBottomOf="@id/homeVoiceChatText"
+    app:layout_constraintDimensionRatio="H,1:1"
+    android:layout_marginTop="14dp"
+    android:background="#bdbdbd"
+    android:id="@+id/myNeighborhoodBoardBtn"
+    />
 
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/hometalentSharingText"
+        app:layout_constraintEnd_toEndOf="@id/hometalentSharingText"
+        app:layout_constraintTop_toBottomOf="@id/hometalentSharingText"
+        android:layout_marginTop="14dp"
+        app:layout_constraintDimensionRatio="H,1:1"
+        android:background="#bdbdbd"
+        android:id="@+id/officeBoardBtn"/>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="@id/homeGroupBuyingText"
+        app:layout_constraintEnd_toEndOf="@id/homeGroupBuyingText"
+        app:layout_constraintTop_toBottomOf="@id/homeGroupBuyingText"
+        android:layout_marginTop="14dp"
+        android:background="#bdbdbd"
+        app:layout_constraintDimensionRatio="H,1:1"
+        android:id="@+id/claimBtn"/>
+
+    
 
 
 
