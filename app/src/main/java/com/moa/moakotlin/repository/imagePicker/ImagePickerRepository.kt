@@ -19,7 +19,7 @@ class ImagePickerRepository  {
 
         var inputstream = FileInputStream(File(picturePath))
 
-        val riversRef = storageRef.child(pathString + file.lastPathSegment)
+        val riversRef = storageRef.child(pathString+"/" + file.lastPathSegment)
 
         val uploadTask = riversRef.putStream(inputstream)
 

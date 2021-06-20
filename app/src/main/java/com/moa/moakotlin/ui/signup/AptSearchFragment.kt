@@ -62,12 +62,14 @@ lateinit var model : AptSearchViewModel
             adapter.submitList(it)
         })
 
+        binding.claimMyAptBtn.setOnClickListener {
+            navController.navigate(R.id.claimNewAptFragment)
+        }
         adapter.setOnItemClickListener(object : OnItemClickListener{
             override fun onItemClick(v: View, position: Int) {
                 User.getInstance().aptName = adapter.currentList[position].aptName
                 User.getInstance().aptCode = adapter.currentList[position].aptCode
                 aptList.getInstance().aroundApt = adapter.currentList[position].aroundApt
-                println("여기 사이즈가 몇이ㅑㅇ?? ${aptList.getInstance().aroundApt.size}")
                 navController.popBackStack()
 
             }

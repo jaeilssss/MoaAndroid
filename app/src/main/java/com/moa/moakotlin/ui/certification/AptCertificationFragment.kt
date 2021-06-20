@@ -30,11 +30,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.manager.SupportRequestManagerFragment
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
+import com.moa.moakotlin.customdialog.AptCertificationImageAlertDialog
 import com.moa.moakotlin.databinding.AptCertificationFragmentBinding
 import com.moa.moakotlin.recyclerview.certification.CertificationImageAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -115,10 +117,26 @@ class AptCertificationFragment : BaseFragment() {
         binding.AptCertificationNext.setOnClickListener {
 
 
+//
+            context?.let { it1 ->
+                AptCertificationImageAlertDialog(it1)
 
-            CoroutineScope(Dispatchers.IO).async {
-                viewModel.certification(adapter.currentList as ArrayList<String>)
+                        .setMessage(getString(R.string.AptCertificationImagesText))
+                        .setPositiveButton("예"){
+                            CoroutineScope(Dispatchers.Main).launch {
+                                viewModel.certification(adapter.currentList)
+                            }
+                            var bundle = Bundle()
+                            bundle.putBoolean("isCertified",true)
+                            navController.navigate(R.id.signUpResultFragment,bundle)
+                        }
+                        .setNegativeButton() {
+
+                        }
+                        .show()
             }
+
+
 
             // 여기서 어떻게 해야 하띾 고민중
         }

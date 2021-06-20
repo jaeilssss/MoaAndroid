@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_height="wrap_content">
+
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/AptCertificationImagesText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:layout_marginStart="38dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginTop="30dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:id="@+id/aptCertificationText"
+        android:textColor="@color/moaBlack"/>
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:id="@+id/aptCertificationCancle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/aptCertificationSubmit"
+        app:layout_constraintTop_toBottomOf="@id/aptCertificationText"
+        android:background="@drawable/shape_moa_black_radius_10"
+        android:layout_marginEnd="10dp"
+        android:text="아니요"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="25dp"
+        />
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:id="@+id/aptCertificationSubmit"
+        app:layout_constraintStart_toEndOf="@id/aptCertificationCancle"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/button_shape_main_color"
+        app:layout_constraintTop_toBottomOf="@id/aptCertificationText"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="네"
+        android:textSize="18sp"
+        android:textColor="@color/moaBlack"
+        android:textStyle="bold"
+        android:layout_marginBottom="25dp"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

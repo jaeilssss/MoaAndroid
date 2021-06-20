@@ -30,6 +30,7 @@
     <string name="AptCertificationSuppliesText">신분증 1종(주민등록증,여권,면허증 등)\n 주민등록번호 뒷자리 가리고 제출\n\n 만약 신분증 주소가 실제 거주 아파트가 다르다면 우리 아파트 주소가 나와있는 서류를 첨부해주세요! </string>
     <string name="AptCertificationSuppliesDetail">(관리비고지서,택배송장,카드명세서,입주민카드,\n세대주 확인,공공요금명세서 등 주소확인이 \n 가능한 서류 준비)</string>
     <string name="SignUpResultCertificationVersion">회원가입이 완료되었습니다 \n 제출하신 서류를 모아 고객안전팀에서 \n 승인 검토중입니다.\n (2일 이내 승인)</string>
+    <string name="AptCertificationImagesText">신분증의 주민등록 번호 뒷자리를 \n 모두 가리고 첨부하셨습니까?</string>
     <string-array name="mainCategory">
         <item>"인테리어"</item>
         <item>"육아,교육"</item>
