@@ -15,15 +15,19 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.Transfer
 import com.moa.moakotlin.base.onBackPressedListener
+import com.moa.moakotlin.data.Megazin
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentHomeBinding
+import com.moa.moakotlin.recyclerview.home.MegazinAdapter
 import com.moa.moakotlin.viewpageradapter.HomeViewPagerAdapter
+import kotlinx.android.synthetic.main.item_moa_megazin.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -85,6 +89,21 @@ lateinit var transfer: Transfer
         binding.model = model
 
         transfer.bottomVisible()
+
+        var megazinList = ArrayList<Megazin>()
+        megazinList.add(Megazin())
+        megazinList.add(Megazin())
+        megazinList.add(Megazin())
+        megazinList.add(Megazin())
+
+        var megazinAdapter = MegazinAdapter()
+
+        binding.homeMegazinRcv.adapter = megazinAdapter
+
+        binding.homeMegazinRcv.layoutManager = GridLayoutManager(activity?.applicationContext!!,2)
+
+        megazinAdapter.submitList(megazinList)
+
 
         return binding.root
     }

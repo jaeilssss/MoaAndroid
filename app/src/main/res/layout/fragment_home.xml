@@ -199,7 +199,7 @@
     app:layout_constraintDimensionRatio="H,1:1"
     android:layout_marginTop="14dp"
     android:background="#bdbdbd"
-    android:id="@+id/myNeighborhoodBoardBtn"
+    android:id="@+id/homemyNeighborhoodBoardBtn"
     />
 
     <ImageView
@@ -211,7 +211,7 @@
         android:layout_marginTop="14dp"
         app:layout_constraintDimensionRatio="H,1:1"
         android:background="#bdbdbd"
-        android:id="@+id/officeBoardBtn"/>
+        android:id="@+id/homeofficeBoardBtn"/>
 
     <ImageView
         android:layout_width="0dp"
@@ -222,12 +222,66 @@
         android:layout_marginTop="14dp"
         android:background="#bdbdbd"
         app:layout_constraintDimensionRatio="H,1:1"
-        android:id="@+id/claimBtn"/>
+        android:id="@+id/homeclaimBtn"/>
+<TextView
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="@id/homemyNeighborhoodBoardBtn"
+    app:layout_constraintEnd_toEndOf="@id/homemyNeighborhoodBoardBtn"
+    app:layout_constraintTop_toBottomOf="@id/homemyNeighborhoodBoardBtn"
+    android:text="이웃 이야기"
+    android:gravity="center"
+    android:textSize="14sp"
+    android:textColor="@color/moaBlack"
+    android:id="@+id/homemyNeighborhoodBoardText"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/homeofficeBoardBtn"
+        app:layout_constraintEnd_toEndOf="@id/homeofficeBoardBtn"
+        app:layout_constraintTop_toBottomOf="@id/homeofficeBoardBtn"
+        android:text="관리실 공지"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:textColor="@color/moaBlack"
+        android:id="@+id/homeOfficeBoardText"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/homeclaimBtn"
+        app:layout_constraintEnd_toEndOf="@id/homeclaimBtn"
+        app:layout_constraintTop_toBottomOf="@id/homeclaimBtn"
+        android:text="민원 신청"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:textColor="@color/moaBlack"
+        android:id="@+id/homeclaimText"
+        />
 
-    
+<TextView
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/homeclaimText"
+    android:layout_marginTop="15dp"
+    android:text="모아 매거진"
+    android:layout_marginStart="15dp"
+    android:textColor="@color/moaBlack"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    android:lineSpacingExtra="9.5sp"
+    android:id="@+id/homeMoaMegazinText"/>
 
-
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/homeMoaMegazinText"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:id="@+id/homeMegazinRcv"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
