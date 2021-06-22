@@ -69,7 +69,6 @@ class HelperMainFragment : Fragment() {
                                     R.id.sitter_item_layout ->{
                                         var bundle  = Bundle()
                                         bundle.putParcelable("sitter",rcvAdapter.list.get(position))
-                                        navController.navigate(R.id.action_sitterMainFragment_to_sitterReadFragment,bundle)
                                     }
 
                                 }

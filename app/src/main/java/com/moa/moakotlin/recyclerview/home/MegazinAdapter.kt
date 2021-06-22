@@ -1,7 +1,13 @@
 package com.moa.moakotlin.recyclerview.home
 
+import android.app.ActionBar
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.marginLeft
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -16,14 +22,28 @@ class MegazinAdapter() : ListAdapter<Megazin, MegazinAdapter.MegazinViewHolder>(
     }
 
     override fun onBindViewHolder(holder: MegazinViewHolder, position: Int) {
-        holder.binding(currentList[position])
+        holder.binding(currentList[position],position)
     }
 
-    inner class MegazinViewHolder(binding : ItemMoaMegazinBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class MegazinViewHolder(var binding : ItemMoaMegazinBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun binding(megazin:Megazin){
+        // item 따로 만드는 걸로 ,..
+        fun binding(megazin:Megazin, position: Int){
+
+            if(position%2==0){
+                // 오른 쪽에 마진 을 줄것 !
 
 
+            var wlayoutParams = ConstraintLayout.LayoutParams(100,100)
+
+                binding.itemMegazinImage.layoutParams = wlayoutParams
+
+                binding.itemMegazinImage.setBackgroundColor(Color.parseColor("#bdbdbd"))
+            }else{
+                var wlayoutParams = binding.itemMegazinImage.layoutParams
+                binding.itemMegazinImage.layoutParams = wlayoutParams
+
+            }
         }
 
     }

@@ -74,7 +74,6 @@ class HelperReadFragment : Fragment() {
                 popupMenu.setOnMenuItemClickListener {
                     when(it.itemId){
                         R.id.kid_read_modify ->{
-                            navController.navigate(R.id.action_sitterReadFragment_to_sitterModifyFragment,(arguments as Bundle))
                             return@setOnMenuItemClickListener true
                         }
                         else -> return@setOnMenuItemClickListener false
@@ -91,7 +90,6 @@ class HelperReadFragment : Fragment() {
                             var bundle = Bundle()
 
                             bundle.putParcelable("sitter",sitter)
-                            navController.navigate(R.id.action_sitterReadFragment_to_declarationFragment,bundle)
                             return@setOnMenuItemClickListener true
                         }else -> {
                         return@setOnMenuItemClickListener false

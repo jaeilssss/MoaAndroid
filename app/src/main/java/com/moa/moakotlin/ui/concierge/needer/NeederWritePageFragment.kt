@@ -69,7 +69,6 @@ class NeederWritePageFragment : Fragment() {
                         android.Manifest.permission.READ_EXTERNAL_STORAGE
                 )== PackageManager.PERMISSION_GRANTED ->{
 
-                    navController.navigate(R.id.action_kidWritePageFragment_to_kidImagePicker)
 
                 }
                 shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE)->{
@@ -150,7 +149,6 @@ class NeederWritePageFragment : Fragment() {
         when (requestCode){
             1000->{
                 if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    navController.navigate(R.id.action_kidWritePageFragment_to_kidImagePicker)
                 }else{
                     Toast.makeText(context,"권한이 거부되었습니다!", Toast.LENGTH_SHORT).show()
                 }

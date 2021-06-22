@@ -85,7 +85,6 @@ class NeederReadFragment : Fragment() {
                             setHired()
                             var bundle = Bundle()
                             bundle.putParcelable("kid",kid)
-                            navController.navigate(R.id.action_kidReadFragment_to_kidHireSuccessPageFragment,bundle)
                             return@setOnMenuItemClickListener true
                         }
                         else ->  return@setOnMenuItemClickListener false
@@ -104,7 +103,6 @@ class NeederReadFragment : Fragment() {
             popupMenu.setOnMenuItemClickListener {
                 when(it.itemId){
                     R.id.kid_read_modify ->{
-                        navController.navigate(R.id.action_kidReadFragment_to_kidModifyFragment,bundle)
                         return@setOnMenuItemClickListener true
                     }
                     else -> return@setOnMenuItemClickListener false

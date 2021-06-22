@@ -50,7 +50,6 @@ class SitterMainAdapter(var list : ArrayList<Sitter>,var context: Context,var na
         var bundle = Bundle()
 
         bundle.putParcelable("sitter",list.get(position))
-        navController.navigate(R.id.action_sitterMainFragment_to_sitterReadFragment,bundle)
     }
    inner class SitterMainViewHolder(view :View,adapter: SitterMainAdapter) : RecyclerView.ViewHolder(view){
         var imageView : ImageView

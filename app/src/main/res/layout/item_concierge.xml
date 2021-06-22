@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="252dp"
+        android:layout_height="160dp"
+        android:background="@drawable/shape_grey_radius_10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/shape_moa_black_radius_10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="fitXY"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/itemConciergeImage"/>
+
+        <TextView
+            android:padding="-5dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="만현마을 쌍용1차"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/itemConciergeImage"
+            app:layout_constraintTop_toTopOf="@id/itemConciergeImage"
+            android:layout_marginStart="10dp"
+            android:textSize="13sp"
+            android:maxLines="1"
+            android:gravity="bottom"
+            android:ellipsize="end"
+            android:textColor="@color/moaBlack"
+            android:textStyle="bold"
+            android:height="30dp"
+            android:id="@+id/itemConciergeAptName"/>
+
+        <TextView
+            android:padding="-5dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="파이리123"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            android:textColor="#2c2c2c"
+            android:height="30dp"
+            android:gravity="bottom"
+
+            app:layout_constraintStart_toEndOf="@id/itemConciergeImage"
+            app:layout_constraintTop_toBottomOf="@id/itemConciergeAptName" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintTop_toBottomOf="@id/itemConciergeImage"
+            android:gravity="bottom"
+            android:height="30dp"
+            android:text="등하교 도우미가 필요합니다 ㅠㅠ"
+            android:maxLines="1"
+            android:layout_marginTop="10dp"
+            android:id="@+id/itemConciergeContent"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/ic_won_sign"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemConciergeContent"
+            android:layout_marginStart="15dp"
+            android:id="@+id/itemConciergeWonSign"/>
+        <TextView
+            android:layout_width="75dp"
+            android:layout_height="36dp"
+            app:layout_constraintStart_toEndOf="@id/itemConciergeWonSign"
+            app:layout_constraintTop_toBottomOf="@id/itemConciergeContent"
+            android:text="20,000"
+            android:textSize="18sp"
+            android:gravity="bottom"
+            android:layout_marginStart="5dp"
+            android:id="@+id/itemConciergeHopePrice"/>
+
+        <TextView
+            android:layout_width="54dp"
+            android:layout_height="20dp"
+            android:background="@drawable/button_shape_main_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemConciergeContent"
+            android:text="협의가능"
+            android:gravity="center_horizontal"
+            android:textSize="10sp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/itemConciergeNego"
+ />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

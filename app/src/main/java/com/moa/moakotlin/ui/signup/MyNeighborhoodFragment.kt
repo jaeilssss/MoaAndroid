@@ -11,6 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.aptList
 import com.moa.moakotlin.databinding.MyNeighborhoodFragmentBinding
 import com.moa.moakotlin.recyclerview.apt.MyNeighborhoodListAdapter
@@ -41,6 +42,8 @@ class MyNeighborhoodFragment : Fragment() {
         navController = findNavController()
         binding.model = viewModel
 
+        binding.myAptText.text = User.getInstance().aptName
+
         arguments?.let {
             var neighborhood = it.getStringArrayList("neighborhood")
             if (neighborhood != null) {
@@ -59,12 +62,12 @@ class MyNeighborhoodFragment : Fragment() {
     private fun settingMyNeighborhood( neighborhood : ArrayList<String>){
 
             var adapter = MyNeighborhoodListAdapter()
+
             adapter.submitList(neighborhood)
 
             binding.myNeighborhoodRcv.adapter = adapter
 
             binding.myNeighborhoodRcv.layoutManager = LinearLayoutManager(context)
-
 
     }
 

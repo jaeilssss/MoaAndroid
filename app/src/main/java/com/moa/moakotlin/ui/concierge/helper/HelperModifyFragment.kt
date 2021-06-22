@@ -58,10 +58,10 @@ class HelperModifyFragment : Fragment() {
         binding.sitterWritePictureRcv.adapter = adapter
 
         binding.sitterWritePictureLayout.setOnClickListener {
-            navController.navigate(R.id.kidImagePicker)
+
         }
         binding.sitterWritePictureBtn.setOnClickListener {
-            navController.navigate(R.id.kidImagePicker)
+
         }
         binding.submit.setOnClickListener {
             if(model.check().equals("success")){

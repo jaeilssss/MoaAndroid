@@ -30,7 +30,7 @@ class WriteSelectFragment : BottomSheetDialogFragment() {
         navController  = findNavController()
 
         binding.kidSelectWrite.setOnClickListener {
-            navController.navigate(R.id.KidSitterWriteFragment)
+
             dismiss()
         }
         return binding.root

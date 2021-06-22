@@ -105,6 +105,9 @@ lateinit var transfer: Transfer
         megazinAdapter.submitList(megazinList)
 
 
+        binding.homeTalentSharingBnt.setOnClickListener {
+            navController.navigate(R.id.ConciergeMainFragment)
+        }
         return binding.root
     }
 

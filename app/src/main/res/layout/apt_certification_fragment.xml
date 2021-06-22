@@ -22,7 +22,7 @@
         android:layout_height="17dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
-        android:background="@drawable/ic_back_btn"
+        android:background="@drawable/ic_back"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +43,7 @@
 <androidx.recyclerview.widget.RecyclerView
     android:layout_width="wrap_content"
     android:layout_height="150dp"
-    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintStart_toEndOf="@id/itemGoToAlbum"
     app:layout_constraintTop_toBottomOf="@id/AptCertificationText"
     android:id="@+id/aptCertificationRcv"
     android:layout_marginTop="40dp"
@@ -55,7 +55,7 @@
         android:layout_height="100dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/shape_grey_radius_10"
-        app:layout_constraintStart_toEndOf="@id/aptCertificationRcv"
+        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toBottomOf="@id/AptCertificationText" />
 
     <ImageView

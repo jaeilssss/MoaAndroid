@@ -36,7 +36,6 @@ class KidHireSuccessAdapter(var navController: NavController,var list : ArrayLis
 
         bundle.putString("opponentUid",list.get(position).opponentUid)
 
-        navController.navigate(R.id.action_kidHireSuccessPageFragment_to_kidReviewWriteFragment,bundle)
     }
     class KidHireSuccessViewHolder(view : View ,var adapter : KidHireSuccessAdapter) : RecyclerView.ViewHolder(view),View.OnClickListener{
          var latestMessage : TextView

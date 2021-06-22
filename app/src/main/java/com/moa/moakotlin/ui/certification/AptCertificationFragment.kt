@@ -115,9 +115,6 @@ class AptCertificationFragment : BaseFragment() {
         }
 
         binding.AptCertificationNext.setOnClickListener {
-
-
-//
             context?.let { it1 ->
                 AptCertificationImageAlertDialog(it1)
 

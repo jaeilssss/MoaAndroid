@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -34,11 +35,14 @@ class ConciergeMainFragment : BaseFragment() {
 
         model = ViewModelProvider(this).get(ConciergeMainViewModel::class.java)
 
-        binding.kidViewGoToKid.setOnClickListener {
-            navController.navigate(R.id.action_ConciergeMainFragment_to_kidMainFragment)
+        binding.ConciergeMainTalentSharingLayout.setOnClickListener {
+
+            navController.navigate(R.id.neederMainFragment)
+
         }
-        binding.kidViewGoToSitter.setOnClickListener {
-            navController.navigate(R.id.action_ConciergeMainFragment_to_sitterMainFragment)
+
+        binding.ConciergeMainHelpLayout.setOnClickListener {
+
         }
         binding.model =model
         return binding.root

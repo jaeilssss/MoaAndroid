@@ -1,59 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
 
         <variable
             name="model"
             type="com.moa.moakotlin.ui.concierge.ConciergeMainViewModel" />
     </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:foregroundGravity="center_vertical"
     tools:context=".ui.concierge.ConciergeMainFragment">
-
-<LinearLayout
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="9.8dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/ic_back"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+<TextView
     android:layout_width="0dp"
-    android:layout_height="500dp"
+    android:layout_height="wrap_content"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"
-    android:orientation="vertical"
+    app:layout_constraintTop_toBottomOf="@id/back"
+    tools:text="쌍용1차 뉴냐리님!"
+    android:textStyle="bold"
+    android:textColor="@color/moaBlack"
+    android:textSize="18sp"
     android:gravity="center"
-    android:background="#bdbdbd">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="#ffffff"
-        android:orientation="vertical"
-        android:id="@+id/kid_view_go_to_kid"
-        android:gravity="center">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="엄빠 글 보러가기 !"
-            android:textSize="20sp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="#ffffff"
+    android:layout_marginTop="40dp"
+    android:id="@+id/ConciergeMainUserName"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ConciergeMainUserName"
+        android:text="이웃과 소통을 원하시나요?"
         android:gravity="center"
-        android:id="@+id/kid_view_go_to_sitter"
-        android:layout_marginTop="10dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="시터글 보러가기 !"
+        android:textColor="@color/moaBlack"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:id="@+id/ConciergeMainIntroduce"
+        />
 
-            android:textSize="20sp"/>
-    </LinearLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ConciergeMainTalentSharingLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/concierge_main_selector_view"
+        android:padding="3dp"
+        android:elevation="5dp"
+        app:layout_constraintDimensionRatio="H,33:17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ConciergeMainIntroduce"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="3dp"
+            android:background="@drawable/shape_radius_10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintDimensionRatio="H,33:17"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="H,127:144"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/ConciergeTalentSharingText"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/TalentSharingImage"
+                android:background="#bdbdbd"
+                android:layout_margin="10dp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/TalentSharingImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginEnd="60dp"
+                android:layout_marginTop="30dp"
+                android:text="재능공유"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/moaBlack"
+                android:id="@+id/ConciergeTalentSharingText"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/TalentSharingImage"
+                app:layout_constraintTop_toBottomOf="@id/ConciergeTalentSharingText"
+                android:layout_marginEnd="60dp"
+                android:layout_marginStart="10dp"
+                android:text="@string/ConciergeMainTalent"
+                android:textSize="14sp"
+                android:textColor="@color/colorGray"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="3dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:id="@+id/ConciergeMainHelpLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:elevation="5dp"
+        android:background="@drawable/concierge_main_selector_view"
+        app:layout_constraintTop_toBottomOf="@id/ConciergeMainTalentSharingLayout"
+        app:layout_constraintDimensionRatio="H,33:17"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:padding="3dp"
+            android:background="@drawable/shape_radius_10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintDimensionRatio="H,33:17"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="H,127:144"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/ConciergeHelpSharingText"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/HelpSharingImage"
+                android:background="#bdbdbd"
+                android:layout_margin="10dp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/HelpSharingImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginEnd="60dp"
+                android:layout_marginTop="30dp"
+                android:text="도움 요청"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@color/moaBlack"
+                android:id="@+id/ConciergeHelpSharingText"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/HelpSharingImage"
+                app:layout_constraintTop_toBottomOf="@id/ConciergeHelpSharingText"
+                android:layout_marginEnd="60dp"
+                android:text="@string/ConciergeMainHelp"
+                android:textSize="14sp"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/colorGray"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>
+<View
+    android:layout_width="0dp"
+    android:layout_height="20dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/ConciergeMainHelpLayout"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

@@ -62,7 +62,7 @@ class KidAdapter(var list : ArrayList<Kid>, var context : Context, var navContro
     fun goToKidReadPage(position: Int){
         var bundle = Bundle()
             bundle.putParcelable("kid",list.get(position))
-        navController.navigate(R.id.action_kidMainFragment_to_kidReadFragment,bundle)
+
     }
     class kidViewHolder(view : View,adapter: KidAdapter) : RecyclerView.ViewHolder(view) {
        var imageView :ImageView

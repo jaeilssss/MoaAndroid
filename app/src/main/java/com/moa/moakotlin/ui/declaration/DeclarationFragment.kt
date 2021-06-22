@@ -47,12 +47,10 @@ class DeclarationFragment : Fragment() {
                   result= model.submit()
                 if(result==true){
                     showToast("신고가 완료되었습니다")
-                    navController.popBackStack(R.id.sitterMainFragment,false)
                 }else{
 
                 }
             }
-
 
         }
 

@@ -129,11 +129,7 @@
             android:id="@+id/action_signUpResultFragment_to_HomeFragment"
             app:destination="@id/HomeFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/signUpPasswordFragment"
-        android:name="com.moa.moakotlin.ui.signup.SignUpPasswordFragment"
-        android:label="fragment_sign_up_password"
-        tools:layout="@layout/fragment_sign_up_password" />
+
     <fragment
         android:id="@+id/chattingRoomFragment"
         android:name="com.moa.moakotlin.ui.chat.ChattingRoomFragment"
@@ -152,131 +148,19 @@
             app:destination="@id/ChatFragment" />
     </fragment>
     <fragment
-        android:id="@+id/kidMainFragment"
-        android:name="com.moa.moakotlin.ui.concierge.needer.NeederMainFragment"
-        android:label="fragment_kid_main"
-        tools:layout="@layout/fragment_needer_main">
-        <action
-            android:id="@+id/action_kidMainFragment_to_kidReadFragment"
-            app:destination="@id/kidReadFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/kidReadFragment"
-        android:name="com.moa.moakotlin.ui.concierge.needer.NeederReadFragment"
-        android:label="KidReadFragment">
-        <action
-            android:id="@+id/action_kidReadFragment_to_ChatFragment"
-            app:destination="@id/ChatFragment" />
-        <action
-            android:id="@+id/action_kidReadFragment_to_kidModifyFragment"
-            app:destination="@id/kidModifyFragment" />
-        <action
-            android:id="@+id/action_kidReadFragment_to_kidHireSuccessPageFragment"
-            app:destination="@id/kidHireSuccessPageFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/KidSitterWriteFragment"
-        android:name="com.moa.moakotlin.ui.concierge.ConciergeWriteFragment"
-        android:label="KidSitterWriteFragment">
-        <action
-            android:id="@+id/action_kidSelectFragment_to_kidWritePageFragment"
-            app:destination="@id/kidWritePageFragment" />
-        <action
-            android:id="@+id/action_KidSitterWriteFragment_to_sitterWriteFragment"
-            app:destination="@id/sitterWriteFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/writeSelectFragment"
         android:name="com.moa.moakotlin.ui.bottomsheet.WriteSelectFragment"
         android:label="fragment_write_select"
         tools:layout="@layout/fragment_write_select" />
     <fragment
-        android:id="@+id/kidWritePageFragment"
-        android:name="com.moa.moakotlin.ui.concierge.needer.NeederWritePageFragment"
-        android:label="KidWritePageFragment">
-        <action
-            android:id="@+id/action_kidWritePageFragment_to_kidImagePicker"
-            app:destination="@id/kidImagePicker" />
-        <action
-            android:id="@+id/action_kidWritePageFragment_to_kidReadFragment"
-            app:destination="@id/kidReadFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/kidImagePicker"
-        android:name="com.moa.moakotlin.ui.imagepicker.KidImagePicker"
-        android:label="KidImagePicker" />
-    <fragment
-        android:id="@+id/kidModifyFragment"
-        android:name="com.moa.moakotlin.ui.concierge.needer.NeederModifyFragment"
-        android:label="KidModifyFragment">
-        <action
-            android:id="@+id/action_kidModifyFragment_to_kidImagePicker"
-            app:destination="@id/kidImagePicker" />
-        <action
-            android:id="@+id/action_kidModifyFragment_to_kidReadFragment"
-            app:destination="@id/kidReadFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/kidHireSuccessPageFragment"
-        android:name="com.moa.moakotlin.ui.concierge.needer.NeederHireSuccessPageFragment"
-        android:label="KidHireSuccessPageFragment">
-        <action
-            android:id="@+id/action_kidHireSuccessPageFragment_to_kidReviewWriteFragment"
-            app:destination="@id/kidReviewWriteFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/kidReviewWriteFragment"
-        android:name="com.moa.moakotlin.ui.concierge.needer.NeederReviewWriteFragment"
-        android:label="KidReviewWriteFragment" />
-    <fragment
         android:id="@+id/ConciergeMainFragment"
         android:name="com.moa.moakotlin.ui.concierge.ConciergeMainFragment"
         android:label="KidViewSelectFragment">
+
         <action
-            android:id="@+id/action_ConciergeMainFragment_to_kidMainFragment"
-            app:destination="@id/kidMainFragment" />
-        <action
-            android:id="@+id/action_ConciergeMainFragment_to_sitterMainFragment"
-            app:destination="@id/sitterMainFragment" />
+            android:id="@+id/action_ConciergeMainFragment_to_neederMainFragment"
+            app:destination="@id/neederMainFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/sitterWriteFragment"
-        android:name="com.moa.moakotlin.ui.concierge.helper.HelperWriteFragment"
-        android:label="fragment_sitter_write"
-        tools:layout="@layout/fragment_helper_write" />
-    <fragment
-        android:id="@+id/sitterMainFragment"
-        android:name="com.moa.moakotlin.ui.concierge.helper.HelperMainFragment"
-        android:label="SitterMainFragment">
-        <action
-            android:id="@+id/action_sitterMainFragment_to_sitterReadFragment"
-            app:destination="@id/sitterReadFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/sitterReadFragment"
-        android:name="com.moa.moakotlin.ui.concierge.helper.HelperReadFragment"
-        android:label="fragment_sitter_read"
-        tools:layout="@layout/fragment_helper_read">
-        <action
-            android:id="@+id/action_sitterReadFragment_to_sitterModifyFragment"
-            app:destination="@id/sitterModifyFragment" />
-        <action
-            android:id="@+id/action_sitterReadFragment_to_declarationFragment"
-            app:destination="@id/declarationFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/sitterModifyFragment"
-        android:name="com.moa.moakotlin.ui.concierge.helper.HelperModifyFragment"
-        android:label="fragment_sitter_modify"
-        tools:layout="@layout/fragment_helpter_modify">
-        <action
-            android:id="@+id/action_sitterModifyFragment_to_sitterReadFragment"
-            app:destination="@id/sitterReadFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/declarationFragment"
-        android:name="com.moa.moakotlin.ui.declaration.DeclarationFragment"
-        android:label="DeclarationFragment" />
     <fragment
         android:id="@+id/userProfileFragment"
         android:name="com.moa.moakotlin.ui.mypage.UserProfileFragment"
@@ -356,5 +240,9 @@
         android:id="@+id/imagePickerViewFragment"
         android:name="com.moa.moakotlin.ui.imagepicker.ImagePickerViewFragment"
         android:label="ImagePickerViewFragment" />
+    <fragment
+        android:id="@+id/neederMainFragment"
+        android:name="com.moa.moakotlin.ui.concierge.needer.NeederMainFragment"
+        android:label="NeederMainFragment" />
 
 </navigation>

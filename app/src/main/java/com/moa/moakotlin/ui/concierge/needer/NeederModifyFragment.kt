@@ -63,7 +63,7 @@ class NeederModifyFragment : Fragment() {
             adapter?.list?.let { it1 -> model.submit(it1) }
         }
         binding.kidModifyGoToAlbum.setOnClickListener {
-            navController.navigate(R.id.action_kidModifyFragment_to_kidImagePicker)
+
         }
         binding.model = model
         return binding.root

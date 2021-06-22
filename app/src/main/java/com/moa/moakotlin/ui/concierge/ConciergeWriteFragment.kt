@@ -33,10 +33,8 @@ class ConciergeWriteFragment : Fragment() {
 
         binding.goToKidWrite.setOnClickListener{
             Picture.deleteInstance()
-            navController.navigate(R.id.action_kidSelectFragment_to_kidWritePageFragment)
         }
         binding.goToSitterWrite.setOnClickListener {
-            navController.navigate(R.id.action_KidSitterWriteFragment_to_sitterWriteFragment)
         }
         return binding.root
     }

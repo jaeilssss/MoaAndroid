@@ -24,6 +24,8 @@ class ClaimNewAptResultFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(ClaimNewAptResultViewModel::class.java)
+
+
         // TODO: Use the ViewModel
     }
 

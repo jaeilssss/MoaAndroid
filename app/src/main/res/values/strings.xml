@@ -31,6 +31,11 @@
     <string name="AptCertificationSuppliesDetail">(관리비고지서,택배송장,카드명세서,입주민카드,\n세대주 확인,공공요금명세서 등 주소확인이 \n 가능한 서류 준비)</string>
     <string name="SignUpResultCertificationVersion">회원가입이 완료되었습니다 \n 제출하신 서류를 모아 고객안전팀에서 \n 승인 검토중입니다.\n (2일 이내 승인)</string>
     <string name="AptCertificationImagesText">신분증의 주민등록 번호 뒷자리를 \n 모두 가리고 첨부하셨습니까?</string>
+    <string name="TalentSharingMainText">나의 소소한 재능을\n 이웃들과 공유하고 싶어요</string>
+    <string name="HelpRequestMainText">나의 필요(요청)을 올리고\n 도움을 받고 싶어요</string>
+    <string name="ClaimNewAptDialog">요청하신 아파트가 등록이 되면 \n 연락드리겠습니다!</string>
+    <string name="ConciergeMainTalent">나의 소소한 재능을\n이웃들과 공유하고 싶어요!</string>
+    <string name="ConciergeMainHelp">나의 필요(요청)을 올리고\n도움을 받고 싶어요</string>
     <string-array name="mainCategory">
         <item>"인테리어"</item>
         <item>"육아,교육"</item>
