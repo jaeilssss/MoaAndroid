@@ -20,7 +20,7 @@ lateinit var model : LoadingViewModel
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loading)
         model = ViewModelProvider(this).get(LoadingViewModel::class.java)
-        FirebaseAuth.getInstance().signOut()
+
         CoroutineScope(Dispatchers.Main).launch {
             startLoading()
         }
@@ -28,20 +28,21 @@ lateinit var model : LoadingViewModel
   suspend fun startLoading() {
         try{
 
-//            Picture.deleteInstance()
-//            if(FirebaseAuth.getInstance().currentUser==null){
+            Picture.deleteInstance()
+
+            if(FirebaseAuth.getInstance().currentUser==null){
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
-//            }else{
-//                var result = model.initApp(FirebaseAuth.getInstance().currentUser.uid,this)
-//                if(result){
-//                    startActivity(Intent(this, MainActivity::class.java))
-//                    finish()
-//                }else{
-//                    startActivity(Intent(this, MainActivity::class.java))
-//                    finish()
-//                }
-//            }
+            }else{
+                var result = model.initApp(FirebaseAuth.getInstance().currentUser.uid,this)
+                if(result){
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                }else{
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finish()
+                }
+            }
 
 
         }catch (e :Exception) {

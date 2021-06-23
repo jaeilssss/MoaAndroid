@@ -61,6 +61,8 @@ class SignUpInfoFragment : BaseScrollFragment() {
            closeKeyboardVisibility()
        }
         binding.apartCertificationButton.setOnClickListener {
+
+            binding.apartCertificationButton.isClickable = false
             goToAptSearch()
         }
 
@@ -108,7 +110,6 @@ class SignUpInfoFragment : BaseScrollFragment() {
             }
         }
     }
-
 
     private fun observeViewModel(){
         model.name.observe(viewLifecycleOwner, Observer { nextButtonChangeBackground()})

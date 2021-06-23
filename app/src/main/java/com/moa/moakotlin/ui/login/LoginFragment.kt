@@ -25,6 +25,9 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.base.*
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentLoginBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlin.math.log
 
 class LoginFragment : BaseScrollFragment() {
@@ -55,23 +58,39 @@ class LoginFragment : BaseScrollFragment() {
         activity?.let { loginViewModel.init(it) }
         binding.sendMessageBtn.setOnClickListener {
             if(countDownTimer !=null){
-                countDownTimer?.cancel()
+                showToast(activity?.applicationContext!!,"이미 인증메시지를 보냈습니다")
+            }else{
+                countDownTimer =  createCountDownTimer(1200*100L)
+                countDownTimer?.start()
+                loginViewModel.sendMessage()
+                binding.certificationCode.isVisible = true
+                binding.checkCertificationCodeBtn.isVisible = true
             }
-           countDownTimer =  createCountDownTimer(1200*100L)
-            countDownTimer?.start()
-//            loginViewModel.sendMessage()
-            binding.certificationCode.isVisible = true
-            binding.checkCertificationCodeBtn.isVisible = true
+
         }
 
         binding.checkCertificationCodeBtn.setOnClickListener {
+
                 // 이미 회원가입이 완료 된 유저 이면 메인 화면으로
                 // 아니면 회원가입 페이지로 이동
 
             // 인증코드가 맞는지도 확인 할 것!!!
-            User.getInstance().phoneNumber = binding.phoneNumberEditText.toString()
-//            User.getInstance().uid = FirebaseAuth.getInstance().uid.toString()
-            navController.navigate(R.id.policyFragment)
+            CoroutineScope(Dispatchers.Main).launch {
+                if(loginViewModel.checkCertificationMessage()){
+                    User.getInstance().phoneNumber = binding.phoneNumberEditText.text.toString()
+                    User.getInstance().uid = FirebaseAuth.getInstance().uid.toString()
+
+                    if(loginViewModel.getUserInfo(FirebaseAuth.getInstance().currentUser.uid)){
+                        navController.navigate(R.id.HomeFragment)
+                    }else{
+                        navController.navigate(R.id.policyFragment)
+                    }
+                }else{
+                    showToast(activity?.applicationContext!!,"정확하지 않은 인증번호 입니다")
+                }
+
+            }
+
         }
         activity?.window?.let { keyboardVisibility(it,binding.scv) }
         transfer.bottomGone()
@@ -88,18 +107,21 @@ class LoginFragment : BaseScrollFragment() {
             }
         })
 
-
+        setChangeButton()
+        loginViewModel.phoneNumber.observe(viewLifecycleOwner, Observer {
+            setChangeButton()
+        })
         return binding.root
     }
 
     override fun onBackPressed() {
-        navController.popBackStack()
+        navController.popBackStack(R.id.FirstFragment,false)
     }
 
     private fun createCountDownTimer(initialMililis : Long) =
         object : CountDownTimer(initialMililis,1000L){
             override fun onFinish() {
-
+                countDownTimer = null
             }
 
             override fun onTick(remainTime: Long) {
@@ -113,9 +135,20 @@ class LoginFragment : BaseScrollFragment() {
 
         val minute = "%02d".format(remainSeconds/60)
         val second = "%02d".format(remainSeconds%60)
-        binding.sendMessageBtn.text = "인증문자 다시 받기 (${minute}분 ${second}초)"
+        binding.sendMessageBtn.text = "${minute}분 ${second}초"
     }
 
+    private fun setChangeButton(){
+        if(loginViewModel.checkPhoneNumber()){
+            binding.sendMessageBtn.setBackgroundResource(R.drawable.shape_moa_black_radius_10)
+            binding.sendMessageBtn.isClickable = true
+            binding.sendMessageBtn.setTextColor(Color.WHITE)
+        }else{
+            binding.sendMessageBtn.setBackgroundResource(R.drawable.shape_unable_radius_15)
+            binding.sendMessageBtn.isClickable = false
+            binding.sendMessageBtn.setTextColor(Color.WHITE)
+        }
+    }
 
 }
 

@@ -29,10 +29,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="#ffffff"
+            android:background="#FFFFFF"
             android:visibility="gone"
             android:id="@+id/main_bottom_navigation"
-            app:layout_behavior="tech.thdev.app.view.BottomNavigationBehavior"
+            app:labelVisibilityMode="unlabeled"
             app:menu="@menu/menu_bottom" />
 
 <!--        android:visibility="gone"-->

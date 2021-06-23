@@ -59,7 +59,7 @@ class ClaimNewAptFragment : BaseFragment() {
                                     showToast(activity?.applicationContext!!,"신청이 완료되었습니다! \n 등록되면 연락드리겠습니다")
                                     navController.navigate(R.id.firstViewFragment)
                                 }else{
-                                    showToast(activity?.applicationContext!!,"펄스")
+
                                 }
                             }
                         }

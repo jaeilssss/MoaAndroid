@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.PolicyFragmentBinding
 
 class PolicyFragment : Fragment() {
@@ -55,6 +56,7 @@ class PolicyFragment : Fragment() {
         })
         viewModel.checkBoxFourth.observe(viewLifecycleOwner, Observer {
             binding.maketingPolicyCheck.isChecked = it
+            User.getInstance().isAgreeMarketing = viewModel.checkBoxFourth.value==true
         })
     }
 

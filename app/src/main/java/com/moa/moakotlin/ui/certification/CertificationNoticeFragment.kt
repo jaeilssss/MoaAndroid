@@ -40,17 +40,14 @@ class CertificationNoticeFragment : Fragment() {
 
         binding.model = model
 
-        // bundle 여기서 데이터 최종으로 받아오기 !
-        var user = User()
-
         binding.skipCertificationBtn.setOnClickListener{
-//            CoroutineScope(Dispatchers.Main).launch {
-//                if(model.signUp(user)){
+            CoroutineScope(Dispatchers.Main).launch {
+                if(model.signUp(User.getInstance())){
                     var bundle = Bundle()
                     bundle.putBoolean("isCertification",false)
                     navController.navigate(R.id.signUpResultFragment,bundle)
-//                }
-//            }
+                }
+            }
         }
 
         binding.CertificationBtn.setOnClickListener {

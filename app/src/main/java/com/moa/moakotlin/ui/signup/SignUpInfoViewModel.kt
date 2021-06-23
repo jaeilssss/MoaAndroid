@@ -94,13 +94,13 @@ class SignUpInfoViewModel() : ViewModel(){
 
         User.getInstance().name = name.value.toString()
 
-        User.getInstance().nickName = nickName.toString()
+        User.getInstance().nickName = nickName.value.toString()
 
         User.getInstance().isMan = gender.value?.toInt() ==1 || gender.value?.toInt() ==3
 
-        User.getInstance().birthday = birthDay.value.toString()
+        User.getInstance().birthday = birthDay.value!!
 
-        User.getInstance().address = "$aptName ${dong.value.toString()}동 ${hosoo.value.toString()}호"
+        User.getInstance().address = "${aptName.value!!} ${dong.value.toString()}동 ${hosoo.value.toString()}호"
     }
 
 }
