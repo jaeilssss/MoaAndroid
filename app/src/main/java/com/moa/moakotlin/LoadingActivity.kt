@@ -20,7 +20,7 @@ lateinit var model : LoadingViewModel
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loading)
         model = ViewModelProvider(this).get(LoadingViewModel::class.java)
-
+        FirebaseAuth.getInstance().signOut()
         CoroutineScope(Dispatchers.Main).launch {
             startLoading()
         }

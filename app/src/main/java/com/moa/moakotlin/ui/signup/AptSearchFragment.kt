@@ -45,7 +45,6 @@ lateinit var model : AptSearchViewModel
 
         binding.model = model
 
-
         var adapter = SearchAptAdapter()
 
         binding.searchAptRcv.adapter = adapter
@@ -65,6 +64,8 @@ lateinit var model : AptSearchViewModel
         binding.claimMyAptBtn.setOnClickListener {
             navController.navigate(R.id.claimNewAptFragment)
         }
+
+
         adapter.setOnItemClickListener(object : OnItemClickListener{
             override fun onItemClick(v: View, position: Int) {
                 User.getInstance().aptName = adapter.currentList[position].aptName

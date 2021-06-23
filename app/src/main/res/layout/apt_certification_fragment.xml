@@ -65,6 +65,7 @@
         android:layout_marginTop="32dp"
         android:background="@drawable/shape_shape_oval_grey"
         android:src="@drawable/ic_plus"
+        android:id="@+id/AptCertificationPlusImage"
         app:layout_constraintVertical_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="@id/itemGoToAlbum"
         app:layout_constraintTop_toTopOf="@id/itemGoToAlbum" />

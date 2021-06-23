@@ -37,7 +37,7 @@
         android:layout_height="250dp"
         android:layout_marginTop="10dp"
         android:id="@+id/go_to_kid_write"
-        android:background="@drawable/moa_temp_mom"/>
+        android:background="@drawable/ic_launcher_background"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="10dp"
@@ -47,7 +47,7 @@
         android:layout_height="250dp"
         android:layout_marginTop="10dp"
         android:id="@+id/go_to_sitter_write"
-        android:background="@drawable/moa_temp_seater"/>
+        android:background="@drawable/ic_launcher_background"/>
 
 </LinearLayout>
 </layout>

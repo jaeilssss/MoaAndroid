@@ -20,6 +20,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -30,6 +31,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.manager.SupportRequestManagerFragment
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
+import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.customdialog.AptCertificationImageAlertDialog
 import com.moa.moakotlin.databinding.AptCertificationFragmentBinding
 import com.moa.moakotlin.recyclerview.certification.CertificationImageAdapter
@@ -88,6 +90,16 @@ class AptCertificationFragment : BaseFragment() {
 
         binding.aptCertificationRcv.adapter = adapter
 
+
+        adapter.setOnItemCLickListener(object : OnItemClickListener{
+            override fun onItemClick(v: View, position: Int) {
+                list.removeAt(position)
+                adapter.submitList(list)
+                adapter.notifyDataSetChanged()
+                binding.itemGoToAlbum.isVisible = list.size != 3
+                binding.AptCertificationPlusImage.isVisible = list.size !=3
+            }
+        })
         binding.aptCertificationRcv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
         binding.itemGoToAlbum.setOnClickListener {
             when {
@@ -110,7 +122,6 @@ class AptCertificationFragment : BaseFragment() {
                 else -> {
                     requestPermissions(requiredPermissions, 1000)
                 }
-
             }
         }
 
@@ -225,7 +236,8 @@ class AptCertificationFragment : BaseFragment() {
             adapter.notifyDataSetChanged()
 
             settingEnableButton()
-
+            binding.itemGoToAlbum.isVisible = list.size != 3
+            binding.AptCertificationPlusImage.isVisible = list.size !=3
 //            if(Build.VERSION.SDK_INT < 28){
                 // 안드로이드 9.0 (PIE) 버전 보다 낮을 경우
 
