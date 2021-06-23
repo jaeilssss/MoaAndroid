@@ -25,12 +25,12 @@ import kotlinx.coroutines.launch
 
 
 class SignUpInfoFragment : BaseScrollFragment() {
+
     lateinit var binding: FragmentSignUpInfoBinding
 
     lateinit var model : SignUpInfoViewModel
 
     lateinit var navController: NavController
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -27,10 +27,11 @@ class AptRepository  {
         var result = false
         var db = FirebaseFirestore.getInstance()
 
-        db.collection("RequestApart").add(request).addOnSuccessListener {
+        db.collection("RequestedApart").add(request).addOnSuccessListener {
             result = true
         }.await()
             return result
     }
+
 
 }

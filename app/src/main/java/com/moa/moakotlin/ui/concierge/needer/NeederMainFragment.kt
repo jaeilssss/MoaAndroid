@@ -55,8 +55,6 @@ class NeederMainFragment : BaseFragment() {
         binding.NeederMainInteriorRcv.adapter =kidAdapter4
         binding.NeederMainEtcRcv.adapter = kidAdapter5
 
-
-
         binding.NeederMainKidRcv.layoutManager = LinearLayoutManager(activity?.applicationContext!!,LinearLayoutManager.HORIZONTAL,false)
         binding.NeederMainpetRcv.layoutManager= LinearLayoutManager(activity?.applicationContext!!,LinearLayoutManager.HORIZONTAL,false)
         binding.NeederMainEducationRcv.layoutManager  = LinearLayoutManager(activity?.applicationContext!!,LinearLayoutManager.HORIZONTAL,false)

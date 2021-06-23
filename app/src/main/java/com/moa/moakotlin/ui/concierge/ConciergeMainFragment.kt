@@ -22,7 +22,6 @@ class ConciergeMainFragment : BaseFragment() {
 
     lateinit var model : ConciergeMainViewModel
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
