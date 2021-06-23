@@ -41,7 +41,7 @@ class AptCertificationViewModel : ViewModel() {
              var repository = UserRepository()
 //
 //             var apartCertification = ApartCertification(images, Timestamp.now(), User.getInstance().uid)
-             var apartCertification = ApartCertification(imagePathList, Timestamp.now(), "test입니다 재일")
+             var apartCertification = ApartCertification(imagePathList, Timestamp.now(), FirebaseAuth.getInstance().currentUser.uid)
 
              repository.userCertification(apartCertification)
          }

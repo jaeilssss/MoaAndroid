@@ -71,7 +71,6 @@ class AptCertificationFragment : BaseFragment() {
             Manifest.permission.READ_EXTERNAL_STORAGE
     )
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
