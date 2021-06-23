@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="252dp"
-        android:layout_height="160dp"
+        android:layout_height="170dp"
         android:background="@drawable/shape_grey_radius_10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,9 +17,10 @@
         <ImageView
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:background="@drawable/shape_moa_black_radius_10"
+            android:background="@drawable/ic_default_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_default_image"
             android:scaleType="fitXY"
             android:layout_marginStart="15dp"
             android:layout_marginTop="15dp"

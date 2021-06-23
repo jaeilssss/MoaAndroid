@@ -49,6 +49,9 @@ class NeederMainFragment : BaseFragment() {
         list.add(Needer())
         list.add(Needer())
 
+        binding.NeederMainKidAllBtn.setOnClickListener {
+
+        }
         binding.NeederMainKidRcv.adapter = kidAdapter
         binding.NeederMainpetRcv.adapter = kidAdapter2
         binding.NeederMainEducationRcv.adapter =kidAdapter3

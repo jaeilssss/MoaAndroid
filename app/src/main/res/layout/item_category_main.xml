@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/shape_grey_radius_10"
+        app:layout_constraintDimensionRatio="H,33:29"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/itemCategoryImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/shape_grey_top_radius_15"
+            android:scaleType="fitXY"
+            app:layout_constraintDimensionRatio="H,33:17"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/itemCategoryText"
+            android:layout_width="54sp"
+            android:layout_height="30sp"
+            android:layout_marginStart="18.2dp"
+            android:layout_marginTop="18.2dp"
+            android:background="@drawable/shape_main_color_radius_5"
+            android:gravity="center"
+            android:lineSpacingExtra="4sp"
+            android:text="학습/과외"
+            android:textSize="12sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemCategoryImage" />
+
+        <TextView
+            android:id="@+id/itemCategoryAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:layout_marginStart="18.2dp"
+            android:text="만현마을 쌍용 1차"
+            android:textColor="#2c2c2c"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemCategoryText" />
+
+        <TextView
+            android:id="@+id/itemCategoryNickName"
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:layout_marginStart="10dp"
+            android:text="파이리123"
+            app:layout_constraintStart_toEndOf="@id/itemCategoryAddress"
+            app:layout_constraintTop_toBottomOf="@id/itemCategoryText" />
+
+        <TextView
+            android:id="@+id/itemCategoryContent"
+            android:layout_width="wrap_content"
+            android:layout_height="30sp"
+            android:layout_marginStart="18.2dp"
+            android:text="유아 미술 교육 전공자 입니다"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itemCategoryAddress" />
+
+        <ImageView
+            android:id="@+id/itemWonSign"
+            android:layout_width="9.2dp"
+            android:layout_height="15.8dp"
+            android:layout_marginStart="18.2dp"
+            android:background="@drawable/ic_won_sign"
+            app:layout_constraintBottom_toBottomOf="@id/itemCategoryPrice"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/itemCategoryPrice" />
+
+        <TextView
+            android:id="@+id/itemCategoryPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+
+            android:includeFontPadding="false"
+            android:text="20,000원"
+            app:layout_constraintStart_toEndOf="@id/itemWonSign"
+            app:layout_constraintTop_toBottomOf="@id/itemCategoryContent" />
+
+        <!--        협의가능 넣어야함... 귀찮아.. -->
+        <!--        -->
+        <!--            <TextView-->
+        <!--                android:layout_width=""-->
+        <!--                android:layout_height=""-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
