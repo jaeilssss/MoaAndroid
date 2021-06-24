@@ -71,6 +71,25 @@ class NeederMainFragment : BaseFragment() {
 
         binding.model = model
 
+
+        binding.NeederMainKidAllBtn.setOnClickListener {
+            // 키드 데이터를 가지고 오는 viewmodel 메소드 호출 필요
+
+            navController.navigate(R.id.categoryMainFragment)
+        }
+        binding.NeederMaininteriorAllBtn.setOnClickListener {
+
+        }
+        binding.NeederMainEduAllBtn.setOnClickListener {
+
+        }
+        binding.NeederMainEtcAllBtn.setOnClickListener {
+
+        }
+        binding.NeederMainPetAllBtn.setOnClickListener {
+
+        }
+
         return binding.root
     }
 

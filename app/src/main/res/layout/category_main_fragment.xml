@@ -41,6 +41,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toBottomOf="@id/back"
     android:layout_marginTop="10dp"
+    android:paddingBottom="?attr/actionBarSize"
     android:id="@+id/CategoryMainRcv"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

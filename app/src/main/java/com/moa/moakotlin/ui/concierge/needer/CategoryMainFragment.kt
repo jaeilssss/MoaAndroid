@@ -9,8 +9,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
+import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.databinding.CategoryMainFragmentBinding
+import com.moa.moakotlin.recyclerview.concierge.CategoryMainAdapter
+import com.moa.moakotlin.recyclerview.concierge.NeederMainAdapter
 
 class CategoryMainFragment : Fragment() {
 
@@ -24,6 +28,7 @@ class CategoryMainFragment : Fragment() {
 
     private lateinit var navController: NavController
 
+    private lateinit var adapter : CategoryMainAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -37,7 +42,31 @@ class CategoryMainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(CategoryMainViewModel::class.java)
 
+        binding.CategoryMainRcv.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
+
+        adapter = CategoryMainAdapter()
+
         navController = findNavController()
+
+        var list = ArrayList<Needer>()
+
+        // 나중에 지울 것
+        list.add(Needer())
+        list.add(Needer())
+        list.add(Needer())
+        list.add(Needer())
+        list.add(Needer())
+        list.add(Needer())
+        list.add(Needer())
+        list.add(Needer())
+        list.add(Needer())
+        list.add(Needer())
+        list.add(Needer())
+
+        binding.CategoryMainRcv.adapter = adapter
+        adapter.submitList(list)
+
+
 
 
     }
