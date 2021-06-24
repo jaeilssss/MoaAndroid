@@ -90,7 +90,7 @@
      app:layout_constraintStart_toStartOf="parent"
      app:layout_constraintTop_toBottomOf="@id/loginTextView" />
 
- <Button
+ <androidx.appcompat.widget.AppCompatButton
      android:layout_width="0dp"
      android:layout_height="55dp"
      app:layout_constraintTop_toBottomOf="@id/phoneNumberEditText"
@@ -127,7 +127,7 @@
      app:layout_constraintStart_toStartOf="parent"
      app:layout_constraintTop_toBottomOf="@id/sendMessageBtn" />
 
- <Button
+ <androidx.appcompat.widget.AppCompatButton
      android:layout_width="0dp"
      android:layout_height="55dp"
      android:background="@drawable/button_shape_main_color"

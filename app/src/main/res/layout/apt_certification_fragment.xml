@@ -108,7 +108,7 @@
         android:id="@+id/AptCertificationSuppliesDetail"
         />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="0dp"
         android:layout_height="55dp"
         android:text="다음"

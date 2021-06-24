@@ -7,201 +7,230 @@
             name="model"
             type="com.moa.moakotlin.ui.concierge.needer.NeederReadViewModel" />
     </data>
-    <LinearLayout
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_weight="1"
-    android:layout_height="wrap_content">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_height="match_parent"
-    android:layout_weight = "1"
-    android:layout_width="match_parent">
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="?attr/actionModeCloseDrawable"/>
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="9.8dp"
+                android:layout_height="17dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/ic_back"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/back"
+                app:layout_constraintBottom_toBottomOf="@id/back"
+                android:src="@drawable/ic_option"
+                android:layout_marginEnd="15dp"
+                android:id="@+id/NeederReadOption"/>
+            <androidx.viewpager2.widget.ViewPager2
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintDimensionRatio="H,1:0.9"
+                android:id="@+id/NeederReadViewPager"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/NeederREadIndicators"
+                android:orientation="horizontal"
+                android:gravity="center"
+                app:layout_constraintTop_toBottomOf="@id/NeederReadViewPager"
+                android:padding="15dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="옵션"
-        android:background="@android:drawable/ic_menu_sort_by_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="#000000"
-        android:id="@+id/option"
-        app:layout_constraintTop_toTopOf="parent"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="49dp"
+                android:layout_height="49dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/NeederREadIndicators"
+                android:src="#dbbdbd"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="17dp"
+                android:id="@+id/NeederReadProfileImage"/>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="뉴나리"
+                android:maxLines="1"
+                app:layout_constraintStart_toEndOf="@id/NeederReadProfileImage"
+                app:layout_constraintTop_toTopOf="@id/NeederReadProfileImage"
+                app:layout_constraintBottom_toTopOf="@id/NeederReadAptName"
+                android:layout_marginStart="5dp"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                android:textColor="@color/moaBlack"
+                android:id="@+id/NeederReadNickName"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                app:layout_constraintStart_toEndOf="@id/NeederReadProfileImage"
+                app:layout_constraintTop_toBottomOf="@id/NeederReadNickName"
+                app:layout_constraintBottom_toBottomOf="@id/NeederReadProfileImage"
+                android:text="만현마을쌍용1차"
+                android:layout_marginStart="5dp"
+                android:textSize="11.3sp"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                android:id="@+id/NeederReadAptName"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_main_color_radius_5"
+                android:text="교육"
+                android:id="@+id/NeederReadMainCategory"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/NeederReadProfileImage"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="18dp"
+                android:padding="5dp"
+                android:textSize="15sp"
+                android:textColor="@color/moaBlack"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="놀이로 영어를 배워봐요!"
+                android:id="@+id/NeederMainTitle"
+                app:layout_constraintStart_toEndOf="@id/NeederReadMainCategory"
+                app:layout_constraintTop_toTopOf="@id/NeederReadMainCategory"
+                app:layout_constraintBottom_toBottomOf="@id/NeederReadMainCategory"
+                android:layout_marginStart="10dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/moaBlack" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:background="#dedede"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/NeederMainTitle"
+                android:layout_marginTop="18dp"
+                android:id="@+id/NeederMainGreyLine"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/NeederMainReview"
+                app:layout_constraintTop_toBottomOf="@id/NeederMainGreyLine"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                android:id="@+id/NeederMainIntroduce"
+                android:text="프로필"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/NeederMainIntroduce"
+                app:layout_constraintTop_toBottomOf="@id/NeederMainGreyLine"
+                android:text="받은후기"
+
+                android:id="@+id/NeederMainReview"/>
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/NeederMainReview"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:name="com.moa.moakotlin.ui.concierge.needer.NeederReadReviewFragment"
+                    android:id="@+id/NeederMainFragmentView"/>
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/NeederReadNickName"-->
+<!--                app:layout_constraintStart_toEndOf="@id/NeederReadProfileImage"-->
+<!--                android:layout_marginStart="5dp"-->
+<!--                android:text="만현마을 쌍용1차"-->
+<!--                android:textSize="11.3sp"-->
+<!--                android:textColor="moa"-->
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <com.google.android.material.tabs.TabLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="75dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tabGravity="center"
-        app:tabBackground="@drawable/dot_indicator"
-        android:id="@+id/tab_layout"
-        app:tabIndicatorHeight="0dp"
-        app:tabIndicatorGravity="center"
-        app:layout_constraintBottom_toBottomOf="@id/view_pager"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="돌봄대상"
-        android:textSize="15sp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:textColor="#000000"
-        android:id="@+id/main_category"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view_pager"/>
+        android:id="@+id/NeederReadChatLayout"
+        android:layout_marginTop="80dp"
+        android:background="#ffffffff"
+        app:layout_constraintBottom_toBottomOf="parent">
+<View
+    android:layout_width="0dp"
+    android:layout_height="2dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:background="#bdbdbd"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            tools:text="유아"
+            android:includeFontPadding="false"
+            android:text="희망 시급 협의가능"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="14dp"
+            android:layout_marginStart="22dp"
+            android:textSize="12sp"
+            android:lineSpacingExtra="4sp"
+            android:textColor="@color/moaBlack"
+            android:id="@+id/NeederReadHopeWage"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/NeederReadHopeWage"
+            android:text="30,000원"
+            android:layout_marginStart="22dp"
+            android:textColor="@color/moaBlack"
+            android:textSize="20sp"
+            android:includeFontPadding="false"
+            android:textStyle="bold"
+            android:id="@+id/NeederReadWage"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="210dp"
+            android:layout_height="55dp"
+            android:background="@drawable/button_shape_main_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/NeederReadHopeWage"
+            app:layout_constraintBottom_toBottomOf="@id/NeederReadWage"
+            android:text="이웃과 채팅하기"
             android:textColor="#000000"
-            app:layout_constraintTop_toBottomOf="@id/view_pager"
-            app:layout_constraintStart_toEndOf="@id/main_category"
-            android:id="@+id/sub_category"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="채용중"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/kid_read_hire_state"
-        app:layout_constraintTop_toBottomOf="@id/view_pager"/>
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginEnd="15dp"
+            android:id="@+id/NeederReadChatBtn"/>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:text="희망날짜(시작날짜)"
-        android:layout_marginTop="10dp"
-        android:textColor="#000000"
-        android:id="@+id/date_txt"
-        android:layout_marginLeft="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/main_category"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/date_txt"
-        app:layout_constraintTop_toBottomOf="@id/main_category"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:textColor="#000000"
-        tools:text="2021년 1월 22일"
-        android:id="@+id/kid_hope_date"/>
-
-    <View
-        android:layout_width="0dp"
-        android:layout_height="5dp"
-        android:id="@+id/view"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/kid_hope_date"
-        android:layout_marginTop="15dp"
-        android:background="#bdbdbd"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view"
-        android:layout_marginTop="70dp"
-        android:layout_marginLeft="10dp"
-        android:textColor="#000000"
-        android:id="@+id/content_txt"
-        android:text="신청내용"/>
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/content_txt"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:textColor="#000000"
-        android:id="@+id/kid_read_content"
-        tools:text="@string/kidPolicy"/>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-</ScrollView>
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:background="#ff7f00"
-                android:id="@+id/kid_read_chat_layout"
-                android:layout_height="80dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#ffffff"
-                    android:textStyle="bold"
-                    android:text="희망시급"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:id="@+id/kid_read_hope_wage_text"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="협의가능"
-                    app:layout_constraintStart_toEndOf="@id/kid_read_hope_wage_text"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="#ffffff"
-                    android:id="@+id/kid_read_wage_nego"
-                    android:visibility="gone"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:id="@+id/kid_read_wage"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:text="10000원"
-                    app:layout_constraintTop_toBottomOf="@id/kid_read_hope_wage_text"
-                    android:textColor="#ffffff"
-                    android:textStyle="bold"
-                    android:textSize="25dp"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="이웃과 채팅하기"
-            android:textStyle="bold"
-            android:padding="10dp"
-            android:textColor="#ff7f00"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/kid_read_chatting_btn"
-            android:background="@drawable/sign_up_shape"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginRight="20dp"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
 </layout>

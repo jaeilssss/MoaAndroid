@@ -1,6 +1,7 @@
 package com.moa.moakotlin
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -44,9 +45,14 @@ class MainActivity : AppCompatActivity() ,Transfer{
             navController.graph = navGraph
         }
         binding.mainBottomNavigation.itemIconTintList = null
+      var badge =   binding.mainBottomNavigation.getOrCreateBadge(R.id.writeSelectFragment)
+
+        badge.backgroundColor = Color.parseColor("#ffe402")
+
         binding.mainBottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.writeSelectFragment ->{
+
                     val bottomSheet = WriteSelectFragment()
                     bottomSheet.show(supportFragmentManager, bottomSheet.tag)
                     return@setOnNavigationItemSelectedListener true

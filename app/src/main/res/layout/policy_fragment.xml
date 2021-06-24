@@ -166,7 +166,7 @@
             app:layout_constraintStart_toEndOf="@id/maketingPolicyCheck"
             android:textColor="@color/moaBlack"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
-<Button
+<androidx.appcompat.widget.AppCompatButton
     android:layout_width="330dp"
     android:layout_height="55dp"
     android:background="@drawable/button_shape_main_color"

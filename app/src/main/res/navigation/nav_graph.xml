@@ -248,5 +248,9 @@
         android:id="@+id/categoryMainFragment"
         android:name="com.moa.moakotlin.ui.concierge.needer.CategoryMainFragment"
         android:label="CategoryMainFragment" />
+    <fragment
+        android:id="@+id/neederReadFragment"
+        android:name="com.moa.moakotlin.ui.concierge.needer.NeederReadFragment"
+        android:label="NeederReadFragment" />
 
 </navigation>

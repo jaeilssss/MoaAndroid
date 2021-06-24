@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/below"
             android:orientation="horizontal">
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/moa_temp_back" />
@@ -62,7 +62,7 @@
                 android:layout_weight="1"
                 android:text="@={model.talk}"
                 android:id="@+id/edit_text"/>
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="100dp"
                 android:id="@+id/chat_send"

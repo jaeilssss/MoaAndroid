@@ -220,7 +220,7 @@
                 android:textColor="#ffffff"
                 android:textStyle="bold"
                 android:textSize="25dp"/>
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="이웃과 채팅하기"

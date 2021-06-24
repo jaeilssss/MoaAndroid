@@ -28,7 +28,7 @@
             app:strokeColor="#ff777777"
             app:strokeWidth="1dp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"

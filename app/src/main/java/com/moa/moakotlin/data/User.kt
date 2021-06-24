@@ -10,6 +10,7 @@ data class User(
     var uid : String = "",
     var name : String="",
     var birthday : String = "",
+    @field:JvmField
     var isMan : Boolean = false,
     var aptCode : String="",
     var certificationStatus : String ="미인증",
@@ -20,6 +21,7 @@ data class User(
     var aptName : String ="",
     var signUpDate : Timestamp = Timestamp.now(),
     var introduction :String = "",
+    @field:JvmField
     var isAgreeMarketing : Boolean = false
 ): Parcelable{
     companion object{

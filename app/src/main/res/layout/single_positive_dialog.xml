@@ -23,7 +23,7 @@
         android:id="@+id/singlePositiveMessage"
         android:textColor="@color/moaBlack"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="0dp"
         android:layout_height="55dp"
         android:id="@+id/dialogPositiveBtn"
