@@ -60,7 +60,6 @@ class MyNeighborhoodFragment : Fragment() {
         navController.navigate(R.id.certificationNoticeFragment)
     }
     private fun settingMyNeighborhood( neighborhood : ArrayList<String>){
-
             var adapter = MyNeighborhoodListAdapter()
 
             adapter.submitList(neighborhood)

@@ -100,7 +100,7 @@ class SignUpInfoViewModel() : ViewModel(){
 
         User.getInstance().birthday = birthDay.value!!
 
-        User.getInstance().address = "${aptName.value!!} ${dong.value.toString()}동 ${hosoo.value.toString()}호"
+        User.getInstance().address = " ${User.getInstance().address} ${aptName.value!!} ${dong.value.toString()}동 ${hosoo.value.toString()}호"
     }
 
 }

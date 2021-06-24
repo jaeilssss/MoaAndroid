@@ -65,11 +65,11 @@ lateinit var model : AptSearchViewModel
             navController.navigate(R.id.claimNewAptFragment)
         }
 
-
         adapter.setOnItemClickListener(object : OnItemClickListener{
             override fun onItemClick(v: View, position: Int) {
                 User.getInstance().aptName = adapter.currentList[position].aptName
                 User.getInstance().aptCode = adapter.currentList[position].aptCode
+                User.getInstance().address = adapter.currentList[position].address
                 aptList.getInstance().aroundApt = adapter.currentList[position].aroundApt
                 navController.popBackStack()
 

@@ -11,7 +11,8 @@
         android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:background="@drawable/shape_radius_10"
+        android:background="@drawable/shape_radius_10"
+        android:scaleType="fitXY"
         android:id="@+id/itemAptCertificationImage"/>
     <ImageView
         android:layout_width="30dp"
