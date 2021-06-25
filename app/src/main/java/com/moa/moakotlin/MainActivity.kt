@@ -52,7 +52,6 @@ class MainActivity : AppCompatActivity() ,Transfer{
         binding.mainBottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.writeSelectFragment ->{
-
                     val bottomSheet = WriteSelectFragment()
                     bottomSheet.show(supportFragmentManager, bottomSheet.tag)
                     return@setOnNavigationItemSelectedListener true

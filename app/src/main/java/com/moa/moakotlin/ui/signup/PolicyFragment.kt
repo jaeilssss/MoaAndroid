@@ -37,8 +37,6 @@ class PolicyFragment : Fragment() {
             }
         }
         observeViewModel()
-
-
         return binding.root
     }
 

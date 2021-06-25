@@ -8,7 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
 import com.moa.moakotlin.data.Kid
 import com.moa.moakotlin.databinding.FragmentNeederReadBinding
@@ -33,28 +35,26 @@ class NeederReadFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_needer_read, container, false)
 
+        navController = findNavController()
 
+        model = ViewModelProvider(this).get(NeederReadViewModel::class.java)
+        
+        binding.model = model
+
+        setUpFragment(NeederReadIntroduceFragment())
 
         binding.NeederMainIntroduce.setOnClickListener {
-            println("눌림~")
-
-
-            val fragmentManager: FragmentManager = activity?.supportFragmentManager!!
-            val fragmentTransaction: FragmentTransaction =            fragmentManager.beginTransaction()
-            var fragment = NeederReadIntroduceFragment()
-            fragmentTransaction.replace(R.id.NeederMainFragmentView, fragment).commit()
+            setUpFragment(NeederReadIntroduceFragment())
         }
-
         binding.NeederMainReview.setOnClickListener {
-            println("눌림222~")
-//            childFragmentManager
-            val fragmentManager: FragmentManager = activity?.supportFragmentManager!!
-            val fragmentTransaction: FragmentTransaction =  fragmentManager.beginTransaction()
-            var fragment = NeederReadReviewFragment()
-            fragmentTransaction.replace(R.id.NeederMainFragmentView, fragment).commit()
-
-
+            setUpFragment(NeederReadReviewFragment())
         }
         return binding.root
+    }
+
+    fun setUpFragment(fragment : Fragment){
+        val fragmentManager: FragmentManager = activity?.supportFragmentManager!!
+        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.NeederMainFragmentView, fragment).commit()
     }
 }

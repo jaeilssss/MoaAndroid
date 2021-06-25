@@ -52,49 +52,26 @@ class NeederWritePageFragment : Fragment() {
         model.month.set(now.monthValue)
         model.day.set(now.dayOfMonth)
 
-    var adapter = context?.let { KidWritePictureAdapter(ArrayList(), it,resources) }
-
-        var manager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-        if(Picture.getInstance()!=null){
-            adapter?.list = Picture.getInstance()
-            binding.pictureCount.text = adapter?.list?.size.toString()
-        }
-        binding.rcv.layoutManager = manager
-        binding.rcv.adapter = adapter
-        binding.goToAlbum.setOnClickListener {
-
-            when{
-                ContextCompat.checkSelfPermission(
-                        activity?.applicationContext!!,
-                        android.Manifest.permission.READ_EXTERNAL_STORAGE
-                )== PackageManager.PERMISSION_GRANTED ->{
-
-
-                }
-                shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE)->{
-                    //교육용!!
-                    showContextPopupPermission()
-                }
-                else ->{
-                    requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),1000)
-                }
-            }
-        }
-        binding.categoryLayout.setOnClickListener {
-            selectFirstType()
-        }
-        binding.submit.setOnClickListener {
-            CoroutineScope(Dispatchers.Main).launch {
-//                if (adapter != null) {
-//                    model.submit(adapter.list)
+//        binding.goToAlbum.setOnClickListener {
+//
+//            when{
+//                ContextCompat.checkSelfPermission(
+//                        activity?.applicationContext!!,
+//                        android.Manifest.permission.READ_EXTERNAL_STORAGE
+//                )== PackageManager.PERMISSION_GRANTED ->{
+//
+//
 //                }
-                if(adapter!=null){
-                    model.test(adapter.list)
-                    Toast.makeText(context,"성공!",Toast.LENGTH_SHORT).show()
-                }
-            }
-            return@setOnClickListener
-        }
+//                shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE)->{
+//                    //교육용!!
+//                    showContextPopupPermission()
+//                }
+//                else ->{
+//                    requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),1000)
+//                }
+//            }
+//        }
+
         return binding.root
     }
     private fun showContextPopupPermission(){
