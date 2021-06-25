@@ -143,9 +143,6 @@ class AptCertificationFragment : BaseFragment() {
                         }
                         .show()
             }
-
-
-
             // 여기서 어떻게 해야 하띾 고민중
         }
         settingEnableButton()

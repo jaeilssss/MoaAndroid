@@ -144,7 +144,112 @@
         android:inputType="number"
         android:id="@+id/NeederWriteHopeWageEdit"/>
 
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="신청내용"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/NeederWriteHopeWageEdit"
+    android:layout_marginStart="15dp"
+    android:layout_marginTop="10dp"
+    android:textColor="@color/moaBlack"
+    android:textSize="14sp"
+    android:id="@+id/NeederWriteContentText"/>
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="158dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/shape_grey_radius_10"
+        app:layout_constraintTop_toBottomOf="@id/NeederWriteContentText"
+        android:layout_marginTop="10dp"
+        android:id="@+id/NeederWriteContentEdit"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/NeederWriteContentEdit"
+        android:id="@+id/NeederWritePolicyLayout"
+        android:background="@drawable/shape_main_color_radius_5">
+<View
+    android:layout_width="10dp"
+    android:layout_height="10dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/NeederWritePolicyLayout"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_grey_radius_10"
+        android:id="@+id/NeederWriteAlbum"/>
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/shape_shape_oval_grey"
+        android:src="@drawable/ic_plus"
+        android:id="@+id/AptCertificationPlusImage"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@id/NeederWriteAlbum"
+        app:layout_constraintTop_toTopOf="@id/NeederWriteAlbum" />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:text="3"
+    android:textStyle="bold"
+    android:textSize="16sp"
+    android:textColor="@color/moaBlack"
+    app:layout_constraintTop_toBottomOf="@id/AptCertificationPlusImage"
+    app:layout_constraintEnd_toStartOf="@id/NeederWritePictureTotal"
+    app:layout_constraintStart_toStartOf="@id/NeederWriteAlbum"
+    app:layout_constraintHorizontal_chainStyle="packed"
+    android:id="@+id/NeederWriteCountPicture"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/NeederWritePictureTotal"
+        app:layout_constraintTop_toBottomOf="@id/AptCertificationPlusImage"
+        tools:text="/10"
+        android:textSize="16sp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/NeederWriteCountPicture"
+        app:layout_constraintEnd_toEndOf="@id/NeederWriteAlbum"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/NeederWriteAlbum"
+        app:layout_constraintBottom_toBottomOf="@id/NeederWriteAlbum"
+        app:layout_constraintStart_toEndOf="@id/NeederWriteAlbum"
+        android:id="@+id/NeederWriteRcv"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintTop_toBottomOf="@id/NeederWriteRcv"
+        android:background="@drawable/button_shape_main_color"
+        android:textColor="@color/moaBlack"
+        android:text="다음"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:id="@+id/NeederWriteSubmit"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
