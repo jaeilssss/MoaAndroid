@@ -3,23 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
  <item
      android:id="@+id/HomeFragment"
+     android:icon="@drawable/ic_iconly_light_home"
      android:enabled="true"
-     android:icon="@drawable/dot_indicator"
-     app:showAsAction="ifRoom"
-     android:title="" />
-    <item
-        android:id="@+id/writeSelectFragment"
-        android:icon="@drawable/moa_temp_bottom_write"
-        android:title=""/>
+     android:title="홈" />
     <item
         android:id="@+id/chattingRoomFragment"
+        android:icon="@drawable/ic_chat"
         android:enabled="true"
-        android:icon="@drawable/moa_temp_bottom_chat"
-        android:title="" />
+        android:title="채팅"/>
+    <item
+        android:id="@+id/writeSelectFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_write"
+        android:title="글쓰기" />
+    <item
+
+        android:enabled="true"
+        android:icon="@drawable/ic_alarm"
+        app:showAsAction="ifRoom"
+        android:title="알림" />
     <item
         android:id="@+id/MyPageFragment"
         android:enabled="true"
-        android:icon="@drawable/moa_temp_bottom_mypage"
+        android:icon="@drawable/ic__mypage"
         app:showAsAction="ifRoom"
-        android:title="" />
+        android:title="마이페이지" />
 </menu>

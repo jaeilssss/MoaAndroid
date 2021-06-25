@@ -29,10 +29,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="#FFFFFF"
             android:visibility="gone"
+            app:labelVisibilityMode="labeled"
+            app:itemTextColor="@color/moaBlack"
+
             android:id="@+id/main_bottom_navigation"
-            app:labelVisibilityMode="unlabeled"
+            app:itemIconTint="@drawable/bottom_icon_color"
             app:menu="@menu/menu_bottom" />
 
 <!--        android:visibility="gone"-->

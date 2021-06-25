@@ -31,11 +31,7 @@ class ConciergeWriteFragment : Fragment() {
 
         model = ViewModelProvider(this).get(ConciergeWriteViewModel::class.java)
 
-        binding.goToKidWrite.setOnClickListener{
-            Picture.deleteInstance()
-        }
-        binding.goToSitterWrite.setOnClickListener {
-        }
+
         return binding.root
     }
 

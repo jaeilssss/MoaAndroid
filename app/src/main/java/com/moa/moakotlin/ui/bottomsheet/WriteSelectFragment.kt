@@ -1,5 +1,6 @@
 package com.moa.moakotlin.ui.bottomsheet
 
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -36,5 +37,8 @@ class WriteSelectFragment : BottomSheetDialogFragment() {
         return binding.root
     }
 
-
+    override fun onDismiss(dialog: DialogInterface) {
+        println("여기 눌림~~~dismiss")
+        super.onDismiss(dialog)
+    }
 }

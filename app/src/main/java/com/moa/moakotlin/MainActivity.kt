@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
@@ -13,6 +14,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.moa.moakotlin.base.BottomNavController
 import com.moa.moakotlin.base.Transfer
 import com.moa.moakotlin.base.onBackPressedListener
 import com.moa.moakotlin.data.User
@@ -20,7 +22,7 @@ import com.moa.moakotlin.data.aptList
 import com.moa.moakotlin.databinding.ActivityMainBinding
 import com.moa.moakotlin.ui.bottomsheet.WriteSelectFragment
 
-class MainActivity : AppCompatActivity() ,Transfer{
+class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     lateinit var navGraph : NavGraph
@@ -49,6 +51,11 @@ class MainActivity : AppCompatActivity() ,Transfer{
 
         badge.backgroundColor = Color.parseColor("#ffe402")
 
+
+
+        binding.mainBottomNavigation.get(0).setOnClickListener {
+            Toast.makeText(applicationContext, "환영합니다 ${User.getInstance().nickName}님!",Toast.LENGTH_SHORT).show()
+        }
         binding.mainBottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.writeSelectFragment ->{
@@ -61,6 +68,7 @@ class MainActivity : AppCompatActivity() ,Transfer{
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.MyPageFragment->{
+                    binding.mainBottomNavigation.menu.get(0).isChecked = true
                     navController.navigate(R.id.MyPageFragment)
                     return@setOnNavigationItemSelectedListener true
                 }
@@ -82,9 +90,7 @@ class MainActivity : AppCompatActivity() ,Transfer{
     override fun bottomGone() {
         binding.mainBottomNavigation.visibility= View.GONE    }
 
-    override fun showToast(content: String) {
-        Toast.makeText(applicationContext,content,Toast.LENGTH_SHORT).show()
-    }
+
 
 
     fun getMyaroundApt(db : FirebaseFirestore){
@@ -104,5 +110,9 @@ class MainActivity : AppCompatActivity() ,Transfer{
 
     override fun onBackPressed() {
         backListener.onBackPressed()
+    }
+
+    override fun setBottomControl(index: Int) {
+        TODO("Not yet implemented")
     }
 }

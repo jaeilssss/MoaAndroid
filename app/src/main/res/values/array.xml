@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <string-array name="통신사">
-        <item><font color='#000000'>SKT</font></item>
-        <item><font color='#000000'>KT</font></item>
-        <item><font color='#000000'>LGU +</font></item>
-        <item><font color='#000000'>SKT 알뜰폰</font></item>
-        <item><font color='#000000'>KT 알뜰폰</font></item>
-        <item><font color='#000000'>U + 알뜰폰</font></item>
 
-    </string-array>
 </resources>
