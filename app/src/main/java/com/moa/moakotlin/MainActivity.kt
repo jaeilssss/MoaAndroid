@@ -97,7 +97,6 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
         db.collection("Apart").document(User.getInstance().aptCode)
                 .get().addOnSuccessListener {
                     if(it.exists()){
-                        println("존재!!")
                         var list = it.toObject(aptList::class.java)
                         if (list != null) {
                             println(list.aroundApt.get(0))

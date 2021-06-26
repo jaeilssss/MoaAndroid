@@ -252,5 +252,13 @@
         android:id="@+id/neederReadFragment"
         android:name="com.moa.moakotlin.ui.concierge.needer.NeederReadFragment"
         android:label="NeederReadFragment" />
+    <fragment
+        android:id="@+id/conciergeWriteFragment"
+        android:name="com.moa.moakotlin.ui.concierge.ConciergeWriteFragment"
+        android:label="ConciergeWriteFragment" />
+    <fragment
+        android:id="@+id/neederWritePageFragment"
+        android:name="com.moa.moakotlin.ui.concierge.needer.NeederWritePageFragment"
+        android:label="NeederWritePageFragment" />
 
 </navigation>

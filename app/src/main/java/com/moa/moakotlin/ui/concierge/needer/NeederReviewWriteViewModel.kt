@@ -27,7 +27,7 @@ class NeederReviewWriteViewModel() : ViewModel() {
                 .collection("Review")
                 .add(review)
                 .addOnSuccessListener {
-                    transfer.showToast("리뷰작성이 완료되었습니댜")
+//                    transfer.showToast("리뷰작성이 완료되었습니댜")
 //                    navController.popBackStack(R.id.kidReadFragment,false)
                 }
         }

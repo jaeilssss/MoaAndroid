@@ -2,6 +2,7 @@ package com.moa.moakotlin.ui.concierge.needer
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,6 +20,7 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.databinding.FragmentNeederWritePageBinding
 import com.moa.moakotlin.recyclerview.kid.KidWritePictureAdapter
+import com.moa.moakotlin.ui.concierge.category.NeederCategoryActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,7 +34,6 @@ class NeederWritePageFragment : Fragment() {
     lateinit var navController: NavController
 
     lateinit var model: NeederWritePageViewModel
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,27 +53,36 @@ class NeederWritePageFragment : Fragment() {
         model.month.set(now.monthValue)
         model.day.set(now.dayOfMonth)
 
-//        binding.goToAlbum.setOnClickListener {
-//
-//            when{
-//                ContextCompat.checkSelfPermission(
-//                        activity?.applicationContext!!,
-//                        android.Manifest.permission.READ_EXTERNAL_STORAGE
-//                )== PackageManager.PERMISSION_GRANTED ->{
-//
-//
-//                }
-//                shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE)->{
-//                    //교육용!!
-//                    showContextPopupPermission()
-//                }
-//                else ->{
-//                    requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),1000)
-//                }
-//            }
-//        }
+
+        binding.NeederWriteCategoryLayout.setOnClickListener {
+
+            var intent = Intent(activity,NeederCategoryActivity::class.java)
+            startActivityForResult(intent,1000)
+        }
+        binding.NeederWriteAlbum.setOnClickListener {
+            checkPermission()
+        }
 
         return binding.root
+    }
+
+    private fun checkPermission(){
+        when{
+                ContextCompat.checkSelfPermission(
+                        activity?.applicationContext!!,
+                        android.Manifest.permission.READ_EXTERNAL_STORAGE
+                )== PackageManager.PERMISSION_GRANTED ->{
+
+
+                }
+                shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE)->{
+                    //교육용!!
+                    showContextPopupPermission()
+                }
+                else ->{
+                    requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),1000)
+                }
+            }
     }
     private fun showContextPopupPermission(){
         AlertDialog.Builder(activity?.applicationContext!!).setTitle("권한이 필요합니다")
