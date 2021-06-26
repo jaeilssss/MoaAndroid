@@ -36,6 +36,7 @@
         app:layout_constraintTop_toTopOf="@id/NeederCategoryText"
         app:layout_constraintBottom_toBottomOf="@id/NeederCategoryText"
         android:text="다음"
+        android:id="@+id/NeederCategorySubmit"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/moaBlack"

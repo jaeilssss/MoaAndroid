@@ -62,12 +62,14 @@
         android:background="@drawable/shape_grey_radius_10"
         android:paddingStart="10dp"
         android:hint="제목을 작성해주세요"
+        android:text="@={model.title}"
         android:id="@+id/NeederWriteTitleEdit"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="당신의 전문 분야"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/NeederWriteTitleEdit"
         android:layout_marginStart="15dp"
@@ -95,6 +97,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:gravity="center_vertical"
+                android:id="@+id/NeederWriteCategory"
+                android:text="@={model.category}"
                 android:textSize="16sp"
                 android:paddingStart="10dp"/>
             <ImageView
@@ -126,6 +130,7 @@
     android:textSize="14sp"
     android:button="@drawable/selector_signup_policy_checkbox"
     android:textColor="#777777"
+    android:checked="@={model.isNego}"
     app:layout_constraintTop_toTopOf="@id/NeederWriteHopeWageText"
     app:layout_constraintBottom_toBottomOf="@id/NeederWriteHopeWageText"
     android:id="@+id/NeederWriteIsNegoCheckBox"/>
@@ -141,6 +146,7 @@
         android:layout_marginTop="10dp"
         android:paddingStart="10dp"
         android:hint="희망시급"
+        android:text="@={model.hopeWage}"
         android:inputType="number"
         android:id="@+id/NeederWriteHopeWageEdit"/>
 
@@ -166,6 +172,7 @@
         android:background="@drawable/shape_grey_radius_10"
         app:layout_constraintTop_toBottomOf="@id/NeederWriteContentText"
         android:layout_marginTop="10dp"
+        android:text="@={model.content}"
         android:id="@+id/NeederWriteContentEdit"/>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"

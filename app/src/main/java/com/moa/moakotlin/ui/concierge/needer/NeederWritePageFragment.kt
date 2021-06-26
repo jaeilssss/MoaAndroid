@@ -47,23 +47,24 @@ class NeederWritePageFragment : Fragment() {
         model = ViewModelProvider(this).get(NeederWritePageViewModel::class.java)
         binding.model = model
 
-        var now = LocalDateTime.now()
-
-        model.year.set(now.year)
-        model.month.set(now.monthValue)
-        model.day.set(now.dayOfMonth)
-
-
         binding.NeederWriteCategoryLayout.setOnClickListener {
 
             var intent = Intent(activity,NeederCategoryActivity::class.java)
-            startActivityForResult(intent,1000)
+            startActivityForResult(intent,2000)
         }
         binding.NeederWriteAlbum.setOnClickListener {
             checkPermission()
         }
 
+
         return binding.root
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode==2000 && requestCode==2000){
+            model.category.value = data?.getStringExtra("selectedMainCategory")
+        }
     }
 
     private fun checkPermission(){
@@ -94,38 +95,8 @@ class NeederWritePageFragment : Fragment() {
                 .create()
                 .show()
     }
-    fun selectFirstType(){
-        val builder : AlertDialog.Builder = AlertDialog.Builder(activity)
-        var items = resources.getStringArray(R.array.mainCategory)
-        builder.setItems(items,DialogInterface.OnClickListener { dialogInterface, i ->
-            model.mainCategory = items.get(i)
-            detailType(items.get(i))
-        })
-        var alertDialog : AlertDialog =builder.create()
-        alertDialog.setTitle("원하는 영역을 선택해주세요!")
-        alertDialog.show()
-    }
-    fun detailType(firstType : String){
-        val builder : AlertDialog.Builder = AlertDialog.Builder(activity)
-        var items : Array<String>
-        if(firstType.equals("인테리어")){
-            items = resources.getStringArray(R.array.interiorDetail)
-        }else if(firstType.equals("육아,교육")){
-            items = resources.getStringArray(R.array.kidDetail)
-        }else if(firstType.equals("품앗이")){
-            items = resources.getStringArray(R.array.laborDetail)
-        }else if(firstType.equals("반려동물")){
-            items = resources.getStringArray(R.array.petDetail)
-        }else{
-            return
-        }
-        builder.setItems(items,DialogInterface.OnClickListener { dialogInterface, i ->
-            model.subCategory = items.get(i)
-        })
-        var alertDialog : AlertDialog =builder.create()
-        alertDialog.setTitle("세부 영역을 선택해주세요")
-        alertDialog.show()
-    }
+
+
     override fun onRequestPermissionsResult(
             requestCode: Int,
             permissions: Array<out String>,
