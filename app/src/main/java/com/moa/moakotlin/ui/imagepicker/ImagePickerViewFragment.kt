@@ -40,7 +40,6 @@ class ImagePickerViewFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(ImagePickerViewViewModel::class.java)
-        navController = findNavController()
         binding.model = viewModel
 
         getGalleryPhotos()
@@ -71,6 +70,7 @@ class ImagePickerViewFragment : Fragment() {
 
         }
         list.reverse()
+
 
         var adapter = ImagePickerViewAdapter(activity?.applicationContext!!,list)
 

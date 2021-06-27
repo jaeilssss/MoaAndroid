@@ -21,6 +21,7 @@ import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.databinding.FragmentNeederWritePageBinding
 import com.moa.moakotlin.recyclerview.kid.KidWritePictureAdapter
 import com.moa.moakotlin.ui.concierge.category.NeederCategoryActivity
+import com.moa.moakotlin.ui.imagepicker.ImagePickerActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -60,6 +61,7 @@ class NeederWritePageFragment : Fragment() {
         return binding.root
     }
 
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode==2000 && requestCode==2000){
@@ -74,6 +76,7 @@ class NeederWritePageFragment : Fragment() {
                         android.Manifest.permission.READ_EXTERNAL_STORAGE
                 )== PackageManager.PERMISSION_GRANTED ->{
 
+                    goToAlbum()
 
                 }
                 shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE)->{
@@ -107,6 +110,7 @@ class NeederWritePageFragment : Fragment() {
         when (requestCode){
             1000->{
                 if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    goToAlbum()
                 }else{
                     Toast.makeText(context,"권한이 거부되었습니다!", Toast.LENGTH_SHORT).show()
                 }
@@ -115,6 +119,11 @@ class NeederWritePageFragment : Fragment() {
 
             }
         }
+    }
+
+    private fun goToAlbum(){
+        var intent = Intent(activity,ImagePickerActivity::class.java)
+        startActivityForResult(intent,1000)
     }
     override fun onStop() {
         super.onStop()

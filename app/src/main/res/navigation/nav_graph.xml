@@ -236,10 +236,7 @@
         android:name="com.moa.moakotlin.ui.signup.MyNeighborhoodFragment"
         android:label="my_neighborhood_fragment"
         tools:layout="@layout/my_neighborhood_fragment" />
-    <fragment
-        android:id="@+id/imagePickerViewFragment"
-        android:name="com.moa.moakotlin.ui.imagepicker.ImagePickerViewFragment"
-        android:label="ImagePickerViewFragment" />
+
     <fragment
         android:id="@+id/neederMainFragment"
         android:name="com.moa.moakotlin.ui.concierge.needer.NeederMainFragment"
@@ -260,5 +257,9 @@
         android:id="@+id/neederWritePageFragment"
         android:name="com.moa.moakotlin.ui.concierge.needer.NeederWritePageFragment"
         android:label="NeederWritePageFragment" />
+    <fragment
+        android:id="@+id/imagePickerViewFragment"
+        android:name="com.moa.moakotlin.ui.imagepicker.ImagePickerViewFragment"
+        android:label="ImagePickerViewFragment" />
 
 </navigation>
