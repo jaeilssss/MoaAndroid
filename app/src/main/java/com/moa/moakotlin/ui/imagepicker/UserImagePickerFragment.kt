@@ -22,7 +22,6 @@ import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.base.Transfer
 import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.databinding.UserImagePickerFragmentBinding
-import com.moa.moakotlin.recyclerview.imagepickrcv.KidImagePickerAdapter
 import com.moa.moakotlin.recyclerview.imagepickrcv.UserImageAdapter
 
 class UserImagePickerFragment : Fragment() {

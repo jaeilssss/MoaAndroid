@@ -6,19 +6,28 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
-import androidx.navigation.NavController
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Picture
 
-class KidImagePickerAdapter(var navController: NavController,var context: Context,var list : ArrayList<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ConciergeImagePickerAdapter(var context: Context, var list : ArrayList<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var checkBox = -1
     var checkBoxList = ArrayList<Int>()
     var selectedPicture = Picture.getInstance()
+    var i=1
+
+    private var mListener : OnItemClickListener ?=null
+
+    fun setOnItemClickListener(mListener : OnItemClickListener){
+        this.mListener = mListener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
        var view = View.inflate(parent.context ,R.layout.image_picker_item,null)
-        return KidImagePickerViewHolder(view,this)
+        return KidImagePickerViewHolder(view)
     }
 
     override fun getItemCount(): Int {
@@ -28,18 +37,20 @@ class KidImagePickerAdapter(var navController: NavController,var context: Contex
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         Glide.with(context).load(list.get(position)).into((holder as KidImagePickerViewHolder).image)
         if(checkBoxList.contains(position)){
-            (holder as KidImagePickerViewHolder).check.setImageResource(R.drawable.image_check_image)
+            (holder as KidImagePickerViewHolder).check.setBackgroundResource(R.drawable.image_check_image)
+            holder.check.text = (selectedPicture.indexOf(list[position])+1).toString()
         }else{
-            (holder as KidImagePickerViewHolder).check.setImageResource(R.drawable.image_not_check_image)
+            (holder as KidImagePickerViewHolder).check.setBackgroundResource(R.drawable.image_not_check_image)
+            holder.check.text = ""
         }
     }
 
     fun resetting(){
         notifyDataSetChanged()
     }
-    class KidImagePickerViewHolder(view: View,var adapter: KidImagePickerAdapter) : RecyclerView.ViewHolder(view){
+   inner class KidImagePickerViewHolder(view: View) : RecyclerView.ViewHolder(view){
         lateinit var image : ImageView
-        lateinit var check : ImageView
+        lateinit var check : TextView
         lateinit var layout : RelativeLayout
 
         init{
@@ -52,21 +63,12 @@ class KidImagePickerAdapter(var navController: NavController,var context: Contex
             override fun onClick(v: View?) {
                 when(v?.id){
                     R.id.image_picker_layout ->{
-                        if(adapter.checkBoxList.contains(adapterPosition)){
-                            println("삭제포지션 : ${adapterPosition}")
-                            var index = adapter.checkBoxList.indexOf(adapterPosition)
-                            println("index : ${index}")
-                            adapter.checkBoxList.removeAt(index)
-                            adapter.selectedPicture.removeAt(index)
-                            println("리스트  !! ${adapter.checkBoxList}")
-
-                                adapter.resetting()
-                        }else{
-                            adapter.selectedPicture.add(adapter.list.get(adapterPosition))
-                            adapter.checkBoxList.add(adapterPosition)
-                            println("선택리스트 : ${adapter.checkBoxList}")
-                            adapter.resetting()
+                        if(mListener!=null){
+                            if(adapterPosition !=RecyclerView.NO_POSITION){
+                                mListener!!.onItemClick(v,adapterPosition)
+                            }
                         }
+
                     }
                 }
             }

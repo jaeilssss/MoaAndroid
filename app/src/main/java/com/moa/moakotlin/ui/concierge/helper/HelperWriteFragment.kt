@@ -43,51 +43,7 @@ class HelperWriteFragment : Fragment() {
 
         binding.model = model
 
-        binding.sitterWritePictureRcv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
 
-        var adapter : SitterWritePictureAdapter
-
-        if(Picture.getInstance()!=null){
-            adapter = context?.let { SitterWritePictureAdapter(navController,Picture.getInstance(), it) }!!
-        }else{
-            adapter = context?.let { SitterWritePictureAdapter(navController, ArrayList(), it) }!!
-        }
-
-        binding.typeLayout.setOnClickListener {
-            selectType()
-        }
-
-        binding.sitterWritePictureRcv.adapter = adapter
-
-        binding.pictureImage.setOnClickListener {
-        }
-        binding.sitterWritePictureLayout.setOnClickListener{
-        }
-        binding.submit.setOnClickListener {
-            if(model.title.get()?.length==0){
-                Toast.makeText(context,"제목을 입력해주세요",Toast.LENGTH_SHORT).show()
-            }else if(model.mainCategory.length==0){
-                Toast.makeText(context,"당신의 영역을 선택해주세요",Toast.LENGTH_SHORT).show()
-            }else if(model.wage.get()?.length==0){
-                Toast.makeText(context,"희망 시급을 입력해주세요",Toast.LENGTH_SHORT).show()
-            }
-            else if(model.content.get()?.length==0){
-                Toast.makeText(context,"내용을 입력해주세요",Toast.LENGTH_SHORT).show()
-            }else{
-
-                    var helper = model.test(adapter?.list)
-
-                    Toast.makeText(context,helper.title,Toast.LENGTH_SHORT).show()
-
-                CoroutineScope(Dispatchers.Main).launch {
-                    var result = model.submit(adapter?.list)
-                 if(result==true){
-                     Toast.makeText(context,"오오,...",Toast.LENGTH_SHORT).show()
-                 }
-                }
-
-            }
-        }
         return binding.root
     }
 

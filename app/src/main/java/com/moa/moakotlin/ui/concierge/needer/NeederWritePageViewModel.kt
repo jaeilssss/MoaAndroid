@@ -28,9 +28,11 @@ class NeederWritePageViewModel() :ViewModel(){
 
    var title = MutableLiveData<String>("")
     var category = MutableLiveData<String>("")
-    var isNego = MutableLiveData<Boolean>(false)
+    var isNego = MutableLiveData<Boolean>(true)
     var hopeWage = MutableLiveData<String>("")
     var content = MutableLiveData<String>("")
+
+    var selectedPictureList = MutableLiveData<ArrayList<String>>()
 
 
 

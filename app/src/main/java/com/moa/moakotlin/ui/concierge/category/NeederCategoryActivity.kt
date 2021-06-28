@@ -32,8 +32,6 @@ class NeederCategoryActivity : AppCompatActivity() {
                     finish()
                 }
         }
-
-
     }
 
     fun setMainCategory(mainCategory : String){

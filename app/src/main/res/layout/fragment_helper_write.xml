@@ -19,212 +19,148 @@
     tools:context=".ui.concierge.helper.HelperWriteFragment">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="?attr/actionModeCloseDrawable"
-        android:layout_margin="10dp"
+        android:id="@+id/back"
+        android:layout_width="9.8dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/ic_back"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/back"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="슈퍼맨이 되고싶어요"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="10dp"
-        android:textSize="20dp"
-        app:layout_constraintTop_toTopOf="parent"/>
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    android:text="완료"
-    android:id="@+id/submit"
-    android:layout_margin="10dp"
-    android:textSize="20dp"/>
+        android:textColor="@color/moaBlack"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@id/back"
+        app:layout_constraintBottom_toBottomOf="@id/back"
+        android:text="도움 요청 글쓰기"
+        android:id="@+id/HelperWriteText"
+        android:gravity="center_vertical"/>
 
-    <View
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="글쓰기"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/HelperWriteText"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/moaBlack"
+        android:layout_marginStart="15dp"
+        android:textSize="14sp"
+        android:id="@+id/HelperWriteTitleText"
+        android:lineSpacingExtra="8.5sp"/>
+    <EditText
         android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:background="#bdbdbd"
+        android:layout_height="55dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/back"
-        android:id="@+id/sitter_write_line"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintTop_toBottomOf="@id/HelperWriteTitleText"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_grey_radius_10"
+        android:hint="제목을 써주세요"
+        android:id="@+id/HelperWriteTitleEdit"
+        android:paddingStart="10dp"
+        />
 
-<EditText
-    android:layout_width="0dp"
-    android:layout_height="60dp"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/sitter_write_line"
-    android:layout_marginTop="10dp"
-    android:paddingLeft="10dp"
-    android:text="@={model.title}"
-    android:id="@+id/edit_title"
-    android:hint="글 제목"/>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edit_title"
-        android:id="@+id/type_layout">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="당신의 시터 유형"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:id="@+id/write_type_txt"
-            android:textSize="15dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            app:layout_constraintStart_toEndOf="@id/write_type_txt"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="10dp"
-            android:textSize="15dp"
-            android:text="@={model.type}"
-            tools:text="대학생"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:text=">"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="15dp"
-                android:textSize="15dp"
-                app:layout_constraintTop_toTopOf="parent"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <View
+        app:layout_constraintTop_toBottomOf="@id/HelperWriteTitleEdit"
+        android:text="당신의 전문 분야"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:textColor="@color/moaBlack"
+        android:textSize="14sp"
+        android:lineSpacingExtra="8.5sp"
+        android:id="@+id/HelperWriteCategoryText"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
-        android:layout_height="2dp"
+        android:layout_height="55dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/type_layout"
-        android:id="@+id/sitter_write_line2"
-        android:background="#bdbdbd"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintTop_toBottomOf="@id/HelperWriteCategoryText"
+        android:layout_marginTop="10dp"
+        android:id="@+id/HelperWriteCategoryLayout"
+        android:background="@drawable/shape_grey_radius_10">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:hint="당신의 전문 분야를 선택해주세요"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center_vertical"
+            android:id="@+id/NeederWriteCategory"
+            android:textSize="16sp"
+            android:paddingStart="10dp"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="37dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="9dp"
+            android:background="@drawable/ic_right_arrow"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="희망 시급"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/HelperWriteCategoryLayout"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:textColor="@color/moaBlack"
+        android:textSize="14sp"
+        android:id="@+id/HelperWriteHopeWageText"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="협의가능"
+        android:textSize="14sp"
+        android:button="@drawable/selector_signup_policy_checkbox"
+        android:textColor="#777777"
+        app:layout_constraintTop_toTopOf="@id/HelperWriteHopeWageText"
+        app:layout_constraintBottom_toBottomOf="@id/HelperWriteHopeWageText"
+        android:layout_marginEnd="15dp"
+        android:id="@+id/HelperWriteIsNegoCheckBox"/>
 
     <EditText
         android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:hint="희망시급"
+        android:layout_height="55dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sitter_write_line2"
-        app:layout_constraintEnd_toStartOf="@id/nego_check"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:background="@null"
-        android:textSize="20sp"
-        android:text="@={model.wage}"
-        android:inputType="number"
-        android:id="@+id/hope_wage"/>
+        android:background="@drawable/shape_grey_radius_10"
+        app:layout_constraintTop_toBottomOf="@id/HelperWriteHopeWageText"
+        android:hint="희망시급"
+        android:id="@+id/HelperWriteHopeWageEdit"/>
+
+<!--    여기서 부터 시작 해야 함 !-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="협의 가능"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sitter_write_line2"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="10dp"
-        android:id="@+id/nego_text"
-        android:textSize="15sp"/>
-<CheckBox
-    android:layout_width="25dp"
-    android:layout_height="25dp"
-    android:id="@+id/nego_check"
-    app:layout_constraintEnd_toStartOf="@id/nego_text"
-    app:layout_constraintTop_toBottomOf="@id/sitter_write_line2"
-    android:layout_marginTop="20dp"
-    android:checked="@={model.isNego}"
-    android:layout_marginRight="10dp"/>
-
-    <View
-        android:layout_width="0dp"
-        android:layout_height="2dp"
+        app:layout_constraintTop_toBottomOf="@id/HelperWriteHopeWageEdit"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hope_wage"
-        android:background="#bdbdbd"
-        android:id="@+id/sitter_write_line3"
-        android:layout_marginTop="10dp"/>
-
-<EditText
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/sitter_write_line3"
-    android:minHeight="300dp"
-    android:text="@={model.content}"
-    android:id="@+id/content_edit"/>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/content_edit"
-        android:id="@+id/sitter_write_picture_layout">
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="@drawable/moa_temp_write_picture"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="10dp"
-        android:id="@+id/ttt"
-        android:layout_marginTop="10dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="프로필 사진(필수아님)"
-            app:layout_constraintStart_toEndOf="@id/ttt"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="10dp"
-            android:id="@+id/sitter_write_picture_text"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginLeft="10dp"
-            app:layout_constraintStart_toEndOf="@id/sitter_write_picture_text"
-            android:id="@+id/picture_count"
-            android:text="@={model.pictureCount}"
-            tools:text="0"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="/10"
-            android:layout_marginLeft="5dp"
-            app:layout_constraintStart_toEndOf="@id/picture_count"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="15dp"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@android:drawable/ic_menu_gallery"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sitter_write_picture_layout"
-        android:layout_marginLeft="10dp"
-        android:id="@+id/picture_image"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/picture_image"
-        android:id="@+id/sitter_write_picture_rcv"
-        app:layout_constraintTop_toBottomOf="@id/sitter_write_picture_layout"/>
+        android:text="희망 날짜"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

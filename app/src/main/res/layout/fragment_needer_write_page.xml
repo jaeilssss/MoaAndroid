@@ -97,8 +97,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:gravity="center_vertical"
+                android:textColor="@color/moaBlack"
                 android:id="@+id/NeederWriteCategory"
-                android:text="@={model.category}"
                 android:textSize="16sp"
                 android:paddingStart="10dp"/>
             <ImageView
@@ -130,6 +130,7 @@
     android:textSize="14sp"
     android:button="@drawable/selector_signup_policy_checkbox"
     android:textColor="#777777"
+    android:layout_marginEnd="15dp"
     android:checked="@={model.isNego}"
     app:layout_constraintTop_toTopOf="@id/NeederWriteHopeWageText"
     app:layout_constraintBottom_toBottomOf="@id/NeederWriteHopeWageText"
@@ -228,7 +229,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/NeederWritePictureTotal"
         app:layout_constraintTop_toBottomOf="@id/AptCertificationPlusImage"
-        tools:text="/10"
+        android:text="/10"
         android:textSize="16sp"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@id/NeederWriteCountPicture"
@@ -236,11 +237,12 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toTopOf="@id/NeederWriteAlbum"
         app:layout_constraintBottom_toBottomOf="@id/NeederWriteAlbum"
         app:layout_constraintStart_toEndOf="@id/NeederWriteAlbum"
+        app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/NeederWriteRcv"/>
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="0dp"

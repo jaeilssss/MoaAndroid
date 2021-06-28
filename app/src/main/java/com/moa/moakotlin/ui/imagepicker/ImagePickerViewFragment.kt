@@ -1,5 +1,6 @@
 package com.moa.moakotlin.ui.imagepicker
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.provider.MediaStore
@@ -9,15 +10,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.databinding.ImagePickerViewFragmentBinding
+import com.moa.moakotlin.recyclerview.imagepickrcv.ConciergeImagePickerAdapter
 import com.moa.moakotlin.recyclerview.imagepickrcv.ImagePickerAdapter
 import com.moa.moakotlin.recyclerview.imagepickrcv.ImagePickerViewAdapter
 
-class ImagePickerViewFragment : Fragment() {
+class ImagePickerViewFragment() : Fragment() {
 
 
     private lateinit var binding : ImagePickerViewFragmentBinding
@@ -26,13 +30,31 @@ class ImagePickerViewFragment : Fragment() {
 
     private lateinit var viewModel: ImagePickerViewViewModel
 
+    private lateinit var adapter : ConciergeImagePickerAdapter
+
     var list = ArrayList<String>()
+
+    var myActivity : ImagePickerActivity ?=null
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        myActivity = activity as ImagePickerActivity
+
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+
+        myActivity = null
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
 
        binding = DataBindingUtil.inflate(inflater,R.layout.image_picker_view_fragment,container,false)
+
 
         return binding.root
     }
@@ -42,8 +64,33 @@ class ImagePickerViewFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ImagePickerViewViewModel::class.java)
         binding.model = viewModel
 
+        viewModel.selectedPictureList.observe(viewLifecycleOwner, Observer {
+            myActivity?.selectedPictures = viewModel.selectedPictureList.value!!
+        })
         getGalleryPhotos()
-        // TODO: Use the ViewModel
+
+        adapter.setOnItemClickListener(object : OnItemClickListener{
+            override fun onItemClick(v: View, position: Int) {
+                if(adapter.checkBoxList.contains(position)){
+                    var index = adapter.checkBoxList.indexOf(position)
+                    adapter.checkBoxList.removeAt(index)
+                   adapter.selectedPicture.removeAt(index)
+                    viewModel.list.removeAt(index)
+                    viewModel.selectedPictureList.value = viewModel.list
+                    adapter.i = 1
+                    adapter.resetting()
+                }else{
+                    adapter.selectedPicture.add(list.get(position))
+                    adapter.checkBoxList.add(position)
+                    viewModel.list.add(adapter.list[position])
+                    viewModel.selectedPictureList.value = viewModel.list
+                    adapter.i = 1
+                    adapter.resetting()
+                }
+            }
+
+        })
+
     }
 
 
@@ -60,7 +107,6 @@ class ImagePickerViewFragment : Fragment() {
         if(cursor !=null && cursor.count>0){
             while(cursor.moveToNext()){
 
-
                 var indexPath = cursor.getColumnIndex(MediaStore.MediaColumns.DATA)
                 list.add(cursor.getString(indexPath))
 
@@ -71,8 +117,7 @@ class ImagePickerViewFragment : Fragment() {
         }
         list.reverse()
 
-
-        var adapter = ImagePickerViewAdapter(activity?.applicationContext!!,list)
+         adapter = ConciergeImagePickerAdapter(activity?.applicationContext!!,list)
 
         binding.imageRcv.adapter = adapter
 

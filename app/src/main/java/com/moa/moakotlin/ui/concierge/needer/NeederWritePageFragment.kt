@@ -17,8 +17,10 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.databinding.FragmentNeederWritePageBinding
+import com.moa.moakotlin.recyclerview.certification.CertificationImageAdapter
 import com.moa.moakotlin.recyclerview.kid.KidWritePictureAdapter
 import com.moa.moakotlin.ui.concierge.category.NeederCategoryActivity
 import com.moa.moakotlin.ui.imagepicker.ImagePickerActivity
@@ -28,13 +30,17 @@ import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
 
-class NeederWritePageFragment : Fragment() {
+class NeederWritePageFragment : BaseFragment() {
 
     lateinit var binding: FragmentNeederWritePageBinding
 
     lateinit var navController: NavController
 
     lateinit var model: NeederWritePageViewModel
+
+    lateinit var adapter : CertificationImageAdapter
+
+    var selectedPictureList = ArrayList<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,14 +64,39 @@ class NeederWritePageFragment : Fragment() {
         }
 
 
+        initAdapter()
+
+
+
+
         return binding.root
     }
 
+    fun initAdapter(){
+        adapter  = CertificationImageAdapter()
+        binding.NeederWriteRcv.adapter = adapter
+
+        binding.NeederWriteRcv.layoutManager = LinearLayoutManager(activity?.applicationContext!!,LinearLayoutManager.HORIZONTAL,false)
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode==2000 && requestCode==2000){
+
+            binding.NeederWriteCategory.text = data?.getStringExtra("selectedMainCategory")
             model.category.value = data?.getStringExtra("selectedMainCategory")
+
+
+        }else if(resultCode==1000 && requestCode==1000){
+            var list = data?.getStringArrayListExtra("selectedPictures")
+
+            if (list != null) {
+                selectedPictureList.addAll(list)
+                adapter.submitList(selectedPictureList)
+                adapter.notifyDataSetChanged()
+            }
+
+
         }
     }
 
@@ -127,6 +158,10 @@ class NeederWritePageFragment : Fragment() {
     }
     override fun onStop() {
         super.onStop()
+    }
+
+    override fun onBackPressed() {
+        TODO("Not yet implemented")
     }
 }
 

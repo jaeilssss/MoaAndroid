@@ -21,8 +21,7 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.base.Transfer
 import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.databinding.FragmentKidImagePickerBinding
-import com.moa.moakotlin.recyclerview.imagepickrcv.ImagePickerAdapter
-import com.moa.moakotlin.recyclerview.imagepickrcv.KidImagePickerAdapter
+import com.moa.moakotlin.recyclerview.imagepickrcv.ConciergeImagePickerAdapter
 
 class KidImagePicker : Fragment() {
 
@@ -32,7 +31,7 @@ class KidImagePicker : Fragment() {
     lateinit var handler: Handler
     lateinit var navController: NavController
     lateinit var mcontext : Context
-    lateinit var adapter : KidImagePickerAdapter
+    lateinit var adapter : ConciergeImagePickerAdapter
     lateinit var model : KidImagePickerViewModel
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -60,7 +59,7 @@ class KidImagePicker : Fragment() {
             mcontext  = it
         }
         adapter = context?.let { list = Picture.getGalleryPhotos(it)
-            KidImagePickerAdapter(navController,it,list)
+            ConciergeImagePickerAdapter(it,list)
         }!!
        model = ViewModelProvider(this).get(KidImagePickerViewModel::class.java)
         rcv.adapter = adapter

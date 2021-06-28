@@ -24,13 +24,18 @@ class NeederMainCategoryFragment : Fragment() {
 
         var selectMainCategory  = ""
 
-    lateinit var myActivity : NeederCategoryActivity
+     var myActivity : NeederCategoryActivity ?=null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
         myActivity =  activity as NeederCategoryActivity
 
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        myActivity = null
     }
 
     override fun onCreateView(
@@ -52,7 +57,7 @@ class NeederMainCategoryFragment : Fragment() {
             if (selectMainCategory == "육아") {
                 setBackgroundKid(R.drawable.shape_grey_radius_10)
                 selectMainCategory = ""
-                myActivity.setMainCategory("")
+                myActivity?.setMainCategory("")
             } else {
                 setBackgroundKid(R.drawable.drawable_view_focused_main_color)
                 setBackgroundEdu(R.drawable.shape_grey_radius_10)
@@ -60,7 +65,7 @@ class NeederMainCategoryFragment : Fragment() {
                 setBackgroundInterior(R.drawable.shape_grey_radius_10)
                 setBackgroundEtc(R.drawable.shape_grey_radius_10)
                 selectMainCategory = "육아"
-                myActivity.setMainCategory("육아")
+                myActivity?.setMainCategory("육아")
             }
         }
         binding.NeederMainCategoryEduLayout.setOnClickListener {
@@ -68,7 +73,7 @@ class NeederMainCategoryFragment : Fragment() {
             if (selectMainCategory == "교육") {
                 setBackgroundEdu(R.drawable.shape_grey_radius_10)
                 selectMainCategory = ""
-                myActivity.setMainCategory("")
+                myActivity?.setMainCategory("")
             } else {
                 setBackgroundPet(R.drawable.shape_grey_radius_10)
                 setBackgroundInterior(R.drawable.shape_grey_radius_10)
@@ -76,7 +81,7 @@ class NeederMainCategoryFragment : Fragment() {
                 setBackgroundKid(R.drawable.shape_grey_radius_10)
                 setBackgroundEdu(R.drawable.drawable_view_focused_main_color)
                 selectMainCategory = "교육"
-                myActivity.setMainCategory("교육")
+                myActivity?.setMainCategory("교육")
             }
         }
 
@@ -84,7 +89,7 @@ class NeederMainCategoryFragment : Fragment() {
             if(selectMainCategory =="반려동물케어"){
                 setBackgroundPet(R.drawable.shape_grey_radius_10)
                 selectMainCategory=""
-                myActivity.setMainCategory("")
+                myActivity?.setMainCategory("")
             }else{
                 setBackgroundInterior(R.drawable.shape_grey_radius_10)
                 setBackgroundEtc(R.drawable.shape_grey_radius_10)
@@ -92,14 +97,14 @@ class NeederMainCategoryFragment : Fragment() {
                 setBackgroundEdu(R.drawable.shape_grey_radius_10)
                 setBackgroundPet(R.drawable.drawable_view_focused_main_color)
                 selectMainCategory = "반려동물케어"
-                myActivity.setMainCategory("반려동물케어")
+                myActivity?.setMainCategory("반려동물케어")
             }
         }
         binding.NeederMainCategoryInteriorLayout.setOnClickListener {
             if(selectMainCategory=="인테리어"){
                 setBackgroundInterior(R.drawable.shape_grey_radius_10)
                 selectMainCategory =""
-                myActivity.setMainCategory("")
+                myActivity?.setMainCategory("")
             }else{
                 setBackgroundEtc(R.drawable.shape_grey_radius_10)
                 setBackgroundKid(R.drawable.shape_grey_radius_10)
@@ -107,7 +112,7 @@ class NeederMainCategoryFragment : Fragment() {
                 setBackgroundPet(R.drawable.shape_grey_radius_10)
                 setBackgroundInterior(R.drawable.drawable_view_focused_main_color)
                 selectMainCategory = "인테리어"
-                        myActivity.setMainCategory("인테리어")
+                        myActivity?.setMainCategory("인테리어")
             }
         }
 
@@ -115,7 +120,7 @@ class NeederMainCategoryFragment : Fragment() {
             if(selectMainCategory=="기타"){
                 setBackgroundEtc(R.drawable.shape_grey_radius_10)
                 selectMainCategory= ""
-                myActivity.setMainCategory("")
+                myActivity?.setMainCategory("")
             }else{
                 setBackgroundKid(R.drawable.shape_grey_radius_10)
                 setBackgroundEdu(R.drawable.shape_grey_radius_10)
@@ -123,7 +128,7 @@ class NeederMainCategoryFragment : Fragment() {
                 setBackgroundInterior(R.drawable.shape_grey_radius_10)
                 setBackgroundEtc(R.drawable.drawable_view_focused_main_color)
                 selectMainCategory="기타"
-                myActivity.setMainCategory("기타")
+                myActivity?.setMainCategory("기타")
             }
         }
     }

@@ -19,6 +19,8 @@ class ImagePickerViewAdapter(var context: Context,var list : ArrayList<String>) 
 
     lateinit var binding : ImagePickerItemBinding
 
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 //        if(viewType==0){
 //            context = parent.context
