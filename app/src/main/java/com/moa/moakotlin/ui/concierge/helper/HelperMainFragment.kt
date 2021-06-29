@@ -55,7 +55,7 @@ class HelperMainFragment : BaseFragment() {
         binding.NeederMainpetRcv.layoutManager= LinearLayoutManager(activity?.applicationContext!!,LinearLayoutManager.HORIZONTAL,false)
         binding.NeederMainEducationRcv.layoutManager  = LinearLayoutManager(activity?.applicationContext!!,LinearLayoutManager.HORIZONTAL,false)
         binding.NeederMainInteriorRcv.layoutManager= LinearLayoutManager(activity?.applicationContext!!,LinearLayoutManager.HORIZONTAL,false)
-        binding.NeederMainEtcRcv .layoutManager= LinearLayoutManager(activity?.applicationContext!!,LinearLayoutManager.HORIZONTAL,false)
+        binding.NeederMainEtcRcv.layoutManager= LinearLayoutManager(activity?.applicationContext!!,LinearLayoutManager.HORIZONTAL,false)
         kidAdapter.submitList(list)
         kidAdapter2.submitList(list)
         kidAdapter3.submitList(list)
@@ -63,7 +63,6 @@ class HelperMainFragment : BaseFragment() {
         kidAdapter5.submitList(list)
 
         binding.model = model
-
 
         binding.NeederMainKidAllBtn.setOnClickListener {
             // 키드 데이터를 가지고 오는 viewmodel 메소드 호출 필요

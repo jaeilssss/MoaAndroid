@@ -35,9 +35,7 @@ class ConciergeMainFragment : BaseFragment() {
         model = ViewModelProvider(this).get(ConciergeMainViewModel::class.java)
 
         binding.ConciergeMainTalentSharingLayout.setOnClickListener {
-
             navController.navigate(R.id.HelperMainFragment)
-
         }
 
         binding.ConciergeMainHelpLayout.setOnClickListener {

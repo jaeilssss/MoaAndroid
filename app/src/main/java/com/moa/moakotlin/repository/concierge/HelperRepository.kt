@@ -9,15 +9,14 @@ import kotlinx.coroutines.tasks.await
 
 class HelperRepository {
 
-    suspend fun submit(mainCaregory: String,helper : Helper) : Boolean{
+    suspend fun submit(mainCaregory: String,helper : Helper) : Helper{
         var db = FirebaseFirestore.getInstance()
-        var result =false
         db.collection("Helper").document(mainCaregory)
                 .collection(mainCaregory)
                 .add(helper).addOnSuccessListener {
-                    result = true
+                    helper.documentID = it.id
                 }.await()
-        return result
+        return helper
     }
     suspend fun modify(mainCaregory: String,helper : Helper) : Boolean{
         var db = FirebaseFirestore.getInstance()

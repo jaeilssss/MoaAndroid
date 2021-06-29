@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -22,6 +23,9 @@ import com.moa.moakotlin.databinding.FragmentHelperWritePageBinding
 import com.moa.moakotlin.recyclerview.certification.CertificationImageAdapter
 import com.moa.moakotlin.ui.concierge.category.HelperCategoryActivity
 import com.moa.moakotlin.ui.imagepicker.ImagePickerActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class HelperWritePageFragment : BaseFragment() {
@@ -57,6 +61,21 @@ class HelperWritePageFragment : BaseFragment() {
             checkPermission()
         }
 
+        binding.HelperWriteSubmit.setOnClickListener {
+            CoroutineScope(Dispatchers.Main).launch {
+                binding.HelperWriteLoading.show()
+                binding.HelperWriteLoading.isVisible = true
+                var data = model.submit()
+                showToast(activity?.applicationContext!!,data.title)
+                var bundle = Bundle()
+                bundle.putParcelable("helper",data)
+
+                navController.navigate(R.id.HelperReadFragment,bundle)
+                binding.HelperWriteLoading.hide()
+            }
+
+
+        }
         initAdapter()
         binding.HelperWriteCountPicture.text = "0"
 
@@ -73,6 +92,8 @@ class HelperWritePageFragment : BaseFragment() {
             setSubmitBtnChange()
         })
         setSubmitBtnChange()
+
+
         return binding.root
     }
 
@@ -177,7 +198,7 @@ class HelperWritePageFragment : BaseFragment() {
     }
 
     override fun onBackPressed() {
-        TODO("Not yet implemented")
+      navController.popBackStack()
     }
 }
 

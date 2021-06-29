@@ -14,6 +14,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.concierge.Helper.HelperWritePageFragment">
+
     <ImageView
         android:id="@+id/back"
         android:layout_width="9.8dp"
@@ -122,19 +123,23 @@
         android:textColor="@color/moaBlack"
         android:lineSpacingExtra="8.5sp"
         android:id="@+id/HelperWriteHopeWageText"/>
-<CheckBox
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:layout_constraintEnd_toEndOf="parent"
-    android:text="협의가능"
-    android:textSize="14sp"
-    android:button="@drawable/selector_signup_policy_checkbox"
-    android:textColor="#777777"
-    android:layout_marginEnd="15dp"
-    android:checked="@={model.isNego}"
-    app:layout_constraintTop_toTopOf="@id/HelperWriteHopeWageText"
-    app:layout_constraintBottom_toBottomOf="@id/HelperWriteHopeWageText"
-    android:id="@+id/HelperWriteIsNegoCheckBox"/>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:text="협의가능"
+        android:textSize="14sp"
+        android:checked="@={model.isNego}"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:button="@drawable/selector_signup_policy_checkbox"
+        app:layout_constraintTop_toTopOf="@id/HelperWriteHopeWageText"
+        app:layout_constraintBottom_toBottomOf="@id/HelperWriteHopeWageText"
+        android:id="@+id/policyAllAgreeCheck"/>
     <EditText
         android:layout_width="0dp"
         android:layout_height="55dp"
@@ -261,6 +266,17 @@
         android:textStyle="bold"
         android:layout_marginTop="20dp"
         android:id="@+id/HelperWriteSubmit"/>
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="?android:progressBarStyleLarge"
+        android:indeterminateTint="@color/mainColor"
+        android:visibility="gone"
+        android:id="@+id/HelperWriteLoading"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

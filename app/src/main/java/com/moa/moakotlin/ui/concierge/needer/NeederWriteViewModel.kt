@@ -35,44 +35,44 @@ class NeederWriteViewModel():ViewModel() {
     var mainCategory = ""
 
 
-    fun test (list: ArrayList<String>) : Helper {
-        var repository = HelperRepository()
-        var result = false
-        var helper = Helper(User.getInstance().aptCode, User.getInstance().aptName, User.getInstance().uid, title.get()!!, mainCategory, null,
-                content.get()!!, Timestamp.now(), wage.get()!!, "", isNego.get()!!)
-        CoroutineScope(Dispatchers.IO).async {
-            if (list.size == 0) {
-                result = repository.submit(mainCategory, helper)
-            } else {
-                var uploader = ImagePickerRepository()
-                var images = ArrayList<String>()
-                for (i in 0 until list.size) {
-                    images.add(uploader.upload("helperImages/", list.get(i))!!)
-                    helper.images = images
-                }
-                result = repository.submit(mainCategory, helper)
-            }
-        }
-        return helper
-    }
-    suspend fun submit(list : ArrayList<String>) : Boolean{
-        var repository = HelperRepository()
-        var result = false
-        var helper = Helper(User.getInstance().aptCode,User.getInstance().aptName,User.getInstance().uid,title.get()!!,mainCategory,null,
-                content.get()!!, Timestamp.now(),wage.get()!!,"",isNego.get()!!)
-        if(list.size==0){
-             result  = repository.submit(mainCategory,helper)
-        }else{
-            var uploader = ImagePickerRepository()
-            var images = ArrayList<String>()
-            for(i in 0 until list.size){
-                images.add(uploader.upload("helperImages/",list.get(i))!!)
-                helper.images = images
-            }
-            result = repository.submit(mainCategory,helper)
-        }
-        return result
-    }
+//    fun test (list: ArrayList<String>) : Helper {
+//        var repository = HelperRepository()
+//        var result = false
+//        var helper = Helper(User.getInstance().aptCode, User.getInstance().aptName, User.getInstance().uid, title.get()!!, mainCategory, null,
+//                content.get()!!, Timestamp.now(), wage.get()!!, "", isNego.get()!!)
+//        CoroutineScope(Dispatchers.IO).async {
+//            if (list.size == 0) {
+//                result = repository.submit(mainCategory, helper)
+//            } else {
+//                var uploader = ImagePickerRepository()
+//                var images = ArrayList<String>()
+//                for (i in 0 until list.size) {
+//                    images.add(uploader.upload("helperImages/", list.get(i))!!)
+//                    helper.images = images
+//                }
+//                result = repository.submit(mainCategory, helper)
+//            }
+//        }
+//        return helper
+//    }
+//    suspend fun submit(list : ArrayList<String>) : Boolean{
+//        var repository = HelperRepository()
+//        var result = false
+//        var helper = Helper(User.getInstance().aptCode,User.getInstance().aptName,User.getInstance().uid,title.get()!!,mainCategory,null,
+//                content.get()!!, Timestamp.now(),wage.get()!!,"",isNego.get()!!)
+//        if(list.size==0){
+//             result  = repository.submit(mainCategory,helper)
+//        }else{
+//            var uploader = ImagePickerRepository()
+//            var images = ArrayList<String>()
+//            for(i in 0 until list.size){
+//                images.add(uploader.upload("helperImages/",list.get(i))!!)
+//                helper.images = images
+//            }
+//            result = repository.submit(mainCategory,helper)
+//        }
+//        return result
+//    }
 
     fun uploadImageList(picture : String, size:Int){
 
