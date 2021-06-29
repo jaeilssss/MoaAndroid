@@ -7,29 +7,29 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.moa.moakotlin.R
-import com.moa.moakotlin.databinding.NeederMainCategoryFragmentBinding
+import com.moa.moakotlin.databinding.HelperMainCategoryFragmentBinding
 
-class NeederMainCategoryFragment : Fragment() {
+
+class HelperMainCategoryFragment : Fragment() {
 
     companion object {
-        fun newInstance() = NeederMainCategoryFragment()
+        fun newInstance() = HelperMainCategoryFragment()
     }
 
-    private lateinit var viewModel: NeederMainCategoryViewModel
+    private lateinit var viewModel: HelperMainCategoryViewModel
 
-    private lateinit var binding : NeederMainCategoryFragmentBinding
+    private lateinit var binding : HelperMainCategoryFragmentBinding
 
         var selectMainCategory  = ""
 
-     var myActivity : NeederCategoryActivity ?=null
+     var myActivity : HelperCategoryActivity ?=null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        myActivity =  activity as NeederCategoryActivity
+        myActivity =  activity as HelperCategoryActivity
 
     }
 
@@ -43,17 +43,17 @@ class NeederMainCategoryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = DataBindingUtil.inflate(inflater,R.layout.needer_main_category_fragment,container,false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.helper_main_category_fragment,container,false)
 
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(NeederMainCategoryViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(HelperMainCategoryViewModel::class.java)
 
         binding.model = viewModel
-        binding.NeederMainCategoryKidLayout.setOnClickListener {
+        binding.HelperMainCategoryKidLayout.setOnClickListener {
             if (selectMainCategory == "육아") {
                 setBackgroundKid(R.drawable.shape_grey_radius_10)
                 selectMainCategory = ""
@@ -68,7 +68,7 @@ class NeederMainCategoryFragment : Fragment() {
                 myActivity?.setMainCategory("육아")
             }
         }
-        binding.NeederMainCategoryEduLayout.setOnClickListener {
+        binding.HelperMainCategoryEduLayout.setOnClickListener {
 
             if (selectMainCategory == "교육") {
                 setBackgroundEdu(R.drawable.shape_grey_radius_10)
@@ -85,7 +85,7 @@ class NeederMainCategoryFragment : Fragment() {
             }
         }
 
-        binding.NeederMainCategoryPetLayout.setOnClickListener {
+        binding.HelperMainCategoryPetLayout.setOnClickListener {
             if(selectMainCategory =="반려동물케어"){
                 setBackgroundPet(R.drawable.shape_grey_radius_10)
                 selectMainCategory=""
@@ -100,7 +100,7 @@ class NeederMainCategoryFragment : Fragment() {
                 myActivity?.setMainCategory("반려동물케어")
             }
         }
-        binding.NeederMainCategoryInteriorLayout.setOnClickListener {
+        binding.HelperMainCategoryInteriorLayout.setOnClickListener {
             if(selectMainCategory=="인테리어"){
                 setBackgroundInterior(R.drawable.shape_grey_radius_10)
                 selectMainCategory =""
@@ -116,7 +116,7 @@ class NeederMainCategoryFragment : Fragment() {
             }
         }
 
-        binding.NeederMainCategoryEtcLayout.setOnClickListener {
+        binding.HelperMainCategoryEtcLayout.setOnClickListener {
             if(selectMainCategory=="기타"){
                 setBackgroundEtc(R.drawable.shape_grey_radius_10)
                 selectMainCategory= ""
@@ -153,19 +153,19 @@ class NeederMainCategoryFragment : Fragment() {
 
     }
     private fun setBackgroundKid(resInt : Int){
-        binding.NeederMainCategoryKidLayout.setBackgroundResource(resInt)
+        binding.HelperMainCategoryKidLayout.setBackgroundResource(resInt)
     }
     private fun setBackgroundEdu(resInt : Int){
-        binding.NeederMainCategoryEduLayout.setBackgroundResource(resInt)
+        binding.HelperMainCategoryEduLayout.setBackgroundResource(resInt)
     }
     private fun setBackgroundPet(resInt : Int){
-        binding.NeederMainCategoryPetLayout.setBackgroundResource(resInt)
+        binding.HelperMainCategoryPetLayout.setBackgroundResource(resInt)
     }
     private fun setBackgroundInterior(resInt: Int){
-        binding.NeederMainCategoryInteriorLayout.setBackgroundResource(resInt)
+        binding.HelperMainCategoryInteriorLayout.setBackgroundResource(resInt)
     }
     private fun setBackgroundEtc(resInt: Int){
-        binding.NeederMainCategoryEtcLayout.setBackgroundResource(resInt)
+        binding.HelperMainCategoryEtcLayout.setBackgroundResource(resInt)
     }
 
 }

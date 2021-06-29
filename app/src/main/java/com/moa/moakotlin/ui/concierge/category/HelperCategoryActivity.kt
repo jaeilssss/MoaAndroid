@@ -4,23 +4,20 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
-import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.RecyclerView
 import com.moa.moakotlin.R
-import com.moa.moakotlin.databinding.ActivityNeederCategoryBinding
 
-class NeederCategoryActivity : AppCompatActivity() {
+class HelperCategoryActivity : AppCompatActivity() {
 
 
 
     var selectMainCategory = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_needer_category)
+        setContentView(R.layout.activity_helper_category)
 
         initFragment()
 
-        var submit = findViewById<TextView>(R.id.NeederCategorySubmit)
+        var submit = findViewById<TextView>(R.id.HelperCategorySubmit)
         submit.setOnClickListener {
                 if(selectMainCategory.equals("").not()){
                     var intent = Intent()
@@ -38,7 +35,7 @@ class NeederCategoryActivity : AppCompatActivity() {
         selectMainCategory = mainCategory
     }
     private fun initFragment(){
-        var fragment = NeederMainCategoryFragment()
-        supportFragmentManager.beginTransaction().replace(R.id.NeederCategoryFrgment,fragment).commit()
+        var fragment = HelperMainCategoryFragment()
+        supportFragmentManager.beginTransaction().replace(R.id.HelperCategoryFrgment,fragment).commit()
     }
 }

@@ -12,11 +12,11 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Picture
 
-class ConciergeImagePickerAdapter(var context: Context, var list : ArrayList<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ConciergeImagePickerAdapter(var context: Context, var list : ArrayList<String>, var selectedPicture : ArrayList<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var checkBox = -1
     var checkBoxList = ArrayList<Int>()
-    var selectedPicture = Picture.getInstance()
+
     var i=1
 
     private var mListener : OnItemClickListener ?=null
@@ -36,13 +36,21 @@ class ConciergeImagePickerAdapter(var context: Context, var list : ArrayList<Str
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         Glide.with(context).load(list.get(position)).into((holder as KidImagePickerViewHolder).image)
-        if(checkBoxList.contains(position)){
-            (holder as KidImagePickerViewHolder).check.setBackgroundResource(R.drawable.image_check_image)
+
+        if(selectedPicture.contains(list.get(position))){
+                (holder as KidImagePickerViewHolder).check.setBackgroundResource(R.drawable.image_check_image)
             holder.check.text = (selectedPicture.indexOf(list[position])+1).toString()
         }else{
-            (holder as KidImagePickerViewHolder).check.setBackgroundResource(R.drawable.image_not_check_image)
+                (holder as KidImagePickerViewHolder).check.setBackgroundResource(R.drawable.image_not_check_image)
             holder.check.text = ""
         }
+//        if(checkBoxList.contains(position)){
+//            (holder as KidImagePickerViewHolder).check.setBackgroundResource(R.drawable.image_check_image)
+//            holder.check.text = (selectedPicture.indexOf(list[position])+1).toString()
+//        }else{
+//            (holder as KidImagePickerViewHolder).check.setBackgroundResource(R.drawable.image_not_check_image)
+//            holder.check.text = ""
+//        }
     }
 
     fun resetting(){

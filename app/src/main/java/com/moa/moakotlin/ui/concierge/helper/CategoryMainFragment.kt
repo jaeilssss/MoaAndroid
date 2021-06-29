@@ -1,4 +1,4 @@
-package com.moa.moakotlin.ui.concierge.needer
+package com.moa.moakotlin.ui.concierge.helper
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -14,7 +14,6 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.databinding.CategoryMainFragmentBinding
 import com.moa.moakotlin.recyclerview.concierge.CategoryMainAdapter
-import com.moa.moakotlin.recyclerview.concierge.NeederMainAdapter
 
 class CategoryMainFragment : Fragment() {
 

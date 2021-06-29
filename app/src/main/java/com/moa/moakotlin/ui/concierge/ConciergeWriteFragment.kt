@@ -40,7 +40,7 @@ class ConciergeWriteFragment : BaseFragment() {
             if(User.getInstance().certificationStatus.equals("인증").not()){
                 showToast(activity?.applicationContext!!,"아파트 인증 한 유저만 이용가능합니다!")
             }else{
-                navController.navigate(R.id.neederWritePageFragment)
+                navController.navigate(R.id.HelperWritePageFragment)
             }
         }
 

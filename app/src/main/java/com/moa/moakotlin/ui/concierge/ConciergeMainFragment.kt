@@ -36,7 +36,7 @@ class ConciergeMainFragment : BaseFragment() {
 
         binding.ConciergeMainTalentSharingLayout.setOnClickListener {
 
-            navController.navigate(R.id.neederMainFragment)
+            navController.navigate(R.id.HelperMainFragment)
 
         }
 

@@ -157,9 +157,6 @@
         android:name="com.moa.moakotlin.ui.concierge.ConciergeMainFragment"
         android:label="KidViewSelectFragment">
 
-        <action
-            android:id="@+id/action_ConciergeMainFragment_to_neederMainFragment"
-            app:destination="@id/neederMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/userProfileFragment"
@@ -238,24 +235,24 @@
         tools:layout="@layout/my_neighborhood_fragment" />
 
     <fragment
-        android:id="@+id/neederMainFragment"
-        android:name="com.moa.moakotlin.ui.concierge.needer.NeederMainFragment"
+        android:id="@+id/HelperMainFragment"
+        android:name="com.moa.moakotlin.ui.concierge.helper.HelperMainFragment"
         android:label="NeederMainFragment" />
     <fragment
         android:id="@+id/categoryMainFragment"
-        android:name="com.moa.moakotlin.ui.concierge.needer.CategoryMainFragment"
+        android:name="com.moa.moakotlin.ui.concierge.helper.CategoryMainFragment"
         android:label="CategoryMainFragment" />
     <fragment
-        android:id="@+id/neederReadFragment"
-        android:name="com.moa.moakotlin.ui.concierge.needer.NeederReadFragment"
+        android:id="@+id/HelperReadFragment"
+        android:name="com.moa.moakotlin.ui.concierge.helper.HelperReadFragment"
         android:label="NeederReadFragment" />
     <fragment
         android:id="@+id/conciergeWriteFragment"
         android:name="com.moa.moakotlin.ui.concierge.ConciergeWriteFragment"
         android:label="ConciergeWriteFragment" />
     <fragment
-        android:id="@+id/neederWritePageFragment"
-        android:name="com.moa.moakotlin.ui.concierge.needer.NeederWritePageFragment"
+        android:id="@+id/HelperWritePageFragment"
+        android:name="com.moa.moakotlin.ui.concierge.helper.HelperWritePageFragment"
         android:label="NeederWritePageFragment" />
     <fragment
         android:id="@+id/imagePickerViewFragment"

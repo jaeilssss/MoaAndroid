@@ -18,26 +18,26 @@ class ImagePickerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_picker)
 
+        var intent = intent
 
-        initFragment()
-
+       selectedPictures = intent.getStringArrayListExtra("selectedPictureList")!!
 
         var submit = findViewById<TextView>(R.id.ActivityImagePickerSubmit)
 
         submit.setOnClickListener {
+            Toast.makeText(applicationContext,selectedPictures.size.toString(),Toast.LENGTH_SHORT).show()
             var intent = Intent()
             intent.putExtra("selectedPictures",selectedPictures)
-            Toast.makeText(applicationContext,selectedPictures.size.toString(),Toast.LENGTH_SHORT).show()
             setResult(1000,intent)
             finish()
         }
-
+        initFragment()
     }
 
 
 
     fun initFragment(){
-        var fragment = ImagePickerViewFragment()
+        var fragment = ImagePickerViewFragment(selectedPictures)
         supportFragmentManager.beginTransaction().replace(R.id.ActivityImagePickerFragment,fragment).commit()
     }
 }

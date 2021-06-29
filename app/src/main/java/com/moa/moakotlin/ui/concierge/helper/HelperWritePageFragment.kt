@@ -1,9 +1,9 @@
-package com.moa.moakotlin.ui.concierge.needer
+package com.moa.moakotlin.ui.concierge.helper
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,32 +11,26 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
-import com.moa.moakotlin.data.Picture
-import com.moa.moakotlin.databinding.FragmentNeederWritePageBinding
+import com.moa.moakotlin.databinding.FragmentHelperWritePageBinding
 import com.moa.moakotlin.recyclerview.certification.CertificationImageAdapter
-import com.moa.moakotlin.recyclerview.kid.KidWritePictureAdapter
-import com.moa.moakotlin.ui.concierge.category.NeederCategoryActivity
+import com.moa.moakotlin.ui.concierge.category.HelperCategoryActivity
 import com.moa.moakotlin.ui.imagepicker.ImagePickerActivity
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.time.LocalDateTime
 
 
-class NeederWritePageFragment : BaseFragment() {
+class HelperWritePageFragment : BaseFragment() {
 
-    lateinit var binding: FragmentNeederWritePageBinding
+    lateinit var binding: FragmentHelperWritePageBinding
 
     lateinit var navController: NavController
 
-    lateinit var model: NeederWritePageViewModel
+    lateinit var model: HelperWritePageViewModel
 
     lateinit var adapter : CertificationImageAdapter
 
@@ -48,42 +42,62 @@ class NeederWritePageFragment : BaseFragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_needer_write_page, container, false)
+            DataBindingUtil.inflate(inflater, R.layout.fragment_helper_write_page, container, false)
         navController = findNavController()
 
-        model = ViewModelProvider(this).get(NeederWritePageViewModel::class.java)
+        model = ViewModelProvider(this).get(HelperWritePageViewModel::class.java)
         binding.model = model
 
-        binding.NeederWriteCategoryLayout.setOnClickListener {
+        binding.HelperWriteCategoryLayout.setOnClickListener {
 
-            var intent = Intent(activity,NeederCategoryActivity::class.java)
+            var intent = Intent(activity,HelperCategoryActivity::class.java)
             startActivityForResult(intent,2000)
         }
-        binding.NeederWriteAlbum.setOnClickListener {
+        binding.HelperWriteAlbum.setOnClickListener {
             checkPermission()
         }
 
-
         initAdapter()
+        binding.HelperWriteCountPicture.text = "0"
 
-
-
-
+        model.title.observe(viewLifecycleOwner, Observer {
+            setSubmitBtnChange()
+        })
+        model.category.observe(viewLifecycleOwner, Observer {
+            setSubmitBtnChange()
+        })
+        model.content.observe(viewLifecycleOwner, Observer {
+            setSubmitBtnChange()
+        })
+        model.hopeWage.observe(viewLifecycleOwner, Observer {
+            setSubmitBtnChange()
+        })
+        setSubmitBtnChange()
         return binding.root
     }
 
+    fun setSubmitBtnChange(){
+        if(model.checkEdit()){
+            binding.HelperWriteSubmit.setBackgroundResource(R.drawable.button_shape_main_color)
+            binding.HelperWriteSubmit.setTextColor(Color.BLACK)
+        }else{
+            binding.HelperWriteSubmit.setBackgroundResource(R.drawable.shape_grey_top_radius_15)
+            binding.HelperWriteSubmit.setTextColor(Color.WHITE)
+        }
+    }
     fun initAdapter(){
         adapter  = CertificationImageAdapter()
-        binding.NeederWriteRcv.adapter = adapter
+        binding.HelperWriteRcv.adapter = adapter
 
-        binding.NeederWriteRcv.layoutManager = LinearLayoutManager(activity?.applicationContext!!,LinearLayoutManager.HORIZONTAL,false)
+        binding.HelperWriteRcv.layoutManager = LinearLayoutManager(activity?.applicationContext!!,LinearLayoutManager.HORIZONTAL,false)
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode==2000 && requestCode==2000){
 
-            binding.NeederWriteCategory.text = data?.getStringExtra("selectedMainCategory")
+            binding.HelperWriteCategory.text = data?.getStringExtra("selectedMainCategory")
             model.category.value = data?.getStringExtra("selectedMainCategory")
 
 
@@ -91,12 +105,13 @@ class NeederWritePageFragment : BaseFragment() {
             var list = data?.getStringArrayListExtra("selectedPictures")
 
             if (list != null) {
-                selectedPictureList.addAll(list)
+                selectedPictureList.clear()
+                 selectedPictureList.addAll(list)
                 adapter.submitList(selectedPictureList)
                 adapter.notifyDataSetChanged()
+                binding.HelperWriteCountPicture.text = selectedPictureList.size.toString()
+                model.selectedPictureList.value = selectedPictureList
             }
-
-
         }
     }
 
@@ -130,7 +145,6 @@ class NeederWritePageFragment : BaseFragment() {
                 .show()
     }
 
-
     override fun onRequestPermissionsResult(
             requestCode: Int,
             permissions: Array<out String>,
@@ -153,7 +167,9 @@ class NeederWritePageFragment : BaseFragment() {
     }
 
     private fun goToAlbum(){
+
         var intent = Intent(activity,ImagePickerActivity::class.java)
+        intent.putExtra("selectedPictureList",selectedPictureList)
         startActivityForResult(intent,1000)
     }
     override fun onStop() {

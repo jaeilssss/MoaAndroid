@@ -5,7 +5,7 @@
     <data>
         <variable
             name="model"
-            type="com.moa.moakotlin.ui.concierge.needer.NeederReadViewModel" />
+            type="com.moa.moakotlin.ui.concierge.helper.HelperReadViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,7 +38,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/back"
                 android:src="@drawable/ic_option"
                 android:layout_marginEnd="15dp"
-                android:id="@+id/NeederReadOption"/>
+                android:id="@+id/HelperReadOption"/>
             <androidx.viewpager2.widget.ViewPager2
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -46,16 +46,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintDimensionRatio="H,1:0.9"
-                android:id="@+id/NeederReadViewPager"/>
+                android:id="@+id/HelperReadViewPager"/>
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:id="@+id/NeederREadIndicators"
+                android:id="@+id/HelperREadIndicators"
                 android:orientation="horizontal"
                 android:gravity="center"
-                app:layout_constraintTop_toBottomOf="@id/NeederReadViewPager"
+                app:layout_constraintTop_toBottomOf="@id/HelperReadViewPager"
                 android:padding="15dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"/>
@@ -64,11 +64,11 @@
                 android:layout_width="49dp"
                 android:layout_height="49dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/NeederREadIndicators"
+                app:layout_constraintTop_toBottomOf="@id/HelperREadIndicators"
                 android:src="#dbbdbd"
                 android:layout_marginStart="17dp"
                 android:layout_marginTop="17dp"
-                android:id="@+id/NeederReadProfileImage"/>
+                android:id="@+id/HelperReadProfileImage"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -76,36 +76,36 @@
                 android:includeFontPadding="false"
                 android:text="뉴나리"
                 android:maxLines="1"
-                app:layout_constraintStart_toEndOf="@id/NeederReadProfileImage"
-                app:layout_constraintTop_toTopOf="@id/NeederReadProfileImage"
-                app:layout_constraintBottom_toTopOf="@id/NeederReadAptName"
+                app:layout_constraintStart_toEndOf="@id/HelperReadProfileImage"
+                app:layout_constraintTop_toTopOf="@id/HelperReadProfileImage"
+                app:layout_constraintBottom_toTopOf="@id/HelperReadAptName"
                 android:layout_marginStart="5dp"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 android:textColor="@color/moaBlack"
-                android:id="@+id/NeederReadNickName"/>
+                android:id="@+id/HelperReadNickName"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
-                app:layout_constraintStart_toEndOf="@id/NeederReadProfileImage"
-                app:layout_constraintTop_toBottomOf="@id/NeederReadNickName"
-                app:layout_constraintBottom_toBottomOf="@id/NeederReadProfileImage"
+                app:layout_constraintStart_toEndOf="@id/HelperReadProfileImage"
+                app:layout_constraintTop_toBottomOf="@id/HelperReadNickName"
+                app:layout_constraintBottom_toBottomOf="@id/HelperReadProfileImage"
                 android:text="만현마을쌍용1차"
                 android:layout_marginStart="5dp"
                 android:textSize="11.3sp"
                 app:layout_constraintHorizontal_chainStyle="packed"
-                android:id="@+id/NeederReadAptName"/>
+                android:id="@+id/HelperReadAptName"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_main_color_radius_5"
                 android:text="교육"
-                android:id="@+id/NeederReadMainCategory"
+                android:id="@+id/HelperReadMainCategory"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/NeederReadProfileImage"
+                app:layout_constraintTop_toBottomOf="@id/HelperReadProfileImage"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="18dp"
                 android:padding="5dp"
@@ -115,10 +115,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="놀이로 영어를 배워봐요!"
-                android:id="@+id/NeederMainTitle"
-                app:layout_constraintStart_toEndOf="@id/NeederReadMainCategory"
-                app:layout_constraintTop_toTopOf="@id/NeederReadMainCategory"
-                app:layout_constraintBottom_toBottomOf="@id/NeederReadMainCategory"
+                android:id="@+id/HelperMainTitle"
+                app:layout_constraintStart_toEndOf="@id/HelperReadMainCategory"
+                app:layout_constraintTop_toTopOf="@id/HelperReadMainCategory"
+                app:layout_constraintBottom_toBottomOf="@id/HelperReadMainCategory"
                 android:layout_marginStart="10dp"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -130,40 +130,40 @@
                 android:background="#dedede"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/NeederMainTitle"
+                app:layout_constraintTop_toBottomOf="@id/HelperMainTitle"
                 android:layout_marginTop="18dp"
-                android:id="@+id/NeederMainGreyLine"/>
+                android:id="@+id/HelperMainGreyLine"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/NeederMainReview"
-                app:layout_constraintTop_toBottomOf="@id/NeederMainGreyLine"
+                app:layout_constraintEnd_toStartOf="@id/HelperMainReview"
+                app:layout_constraintTop_toBottomOf="@id/HelperMainGreyLine"
                 app:layout_constraintHorizontal_chainStyle="packed"
-                android:id="@+id/NeederMainIntroduce"
+                android:id="@+id/HelperMainIntroduce"
                 android:text="프로필"/>
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/NeederMainIntroduce"
-                app:layout_constraintTop_toBottomOf="@id/NeederMainGreyLine"
+                app:layout_constraintStart_toEndOf="@id/HelperMainIntroduce"
+                app:layout_constraintTop_toBottomOf="@id/HelperMainGreyLine"
                 android:text="받은후기"
 
-                android:id="@+id/NeederMainReview"/>
+                android:id="@+id/HelperMainReview"/>
                 <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/NeederMainReview"
+                    app:layout_constraintTop_toBottomOf="@id/HelperMainReview"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:id="@+id/NeederMainFragmentView"/>
+                    android:id="@+id/HelperMainFragmentView"/>
 <!--            <TextView-->
 <!--                android:layout_width="wrap_content"-->
 <!--                android:layout_height="wrap_content"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/NeederReadNickName"-->
-<!--                app:layout_constraintStart_toEndOf="@id/NeederReadProfileImage"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/HelperReadNickName"-->
+<!--                app:layout_constraintStart_toEndOf="@id/HelperReadProfileImage"-->
 <!--                android:layout_marginStart="5dp"-->
 <!--                android:text="만현마을 쌍용1차"-->
 <!--                android:textSize="11.3sp"-->
@@ -176,7 +176,7 @@
         android:layout_height="75dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/NeederReadChatLayout"
+        android:id="@+id/HelperReadChatLayout"
         android:layout_marginTop="80dp"
         android:background="#ffffffff"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -198,35 +198,35 @@
             android:textSize="12sp"
             android:lineSpacingExtra="4sp"
             android:textColor="@color/moaBlack"
-            android:id="@+id/NeederReadHopeWage"/>
+            android:id="@+id/HelperReadHopeWage"/>
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/NeederReadHopeWage"
+            app:layout_constraintTop_toBottomOf="@id/HelperReadHopeWage"
             android:text="30,000원"
             android:layout_marginStart="22dp"
             android:textColor="@color/moaBlack"
             android:textSize="20sp"
             android:includeFontPadding="false"
             android:textStyle="bold"
-            android:id="@+id/NeederReadWage"/>
+            android:id="@+id/HelperReadWage"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="210dp"
             android:layout_height="55dp"
             android:background="@drawable/button_shape_main_color"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/NeederReadHopeWage"
-            app:layout_constraintBottom_toBottomOf="@id/NeederReadWage"
+            app:layout_constraintTop_toTopOf="@id/HelperReadHopeWage"
+            app:layout_constraintBottom_toBottomOf="@id/HelperReadWage"
             android:text="이웃과 채팅하기"
             android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginEnd="15dp"
-            android:id="@+id/NeederReadChatBtn"/>
+            android:id="@+id/HelperReadChatBtn"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

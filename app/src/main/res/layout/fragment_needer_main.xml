@@ -7,7 +7,7 @@
     <data>
         <variable
             name="model"
-            type="com.moa.moakotlin.ui.concierge.needer.NeederMainViewModel" />
+            type="com.moa.moakotlin.ui.concierge.helper.HelperMainViewModel" />
     </data>
 <ScrollView
     android:layout_width="match_parent"
@@ -34,10 +34,10 @@
             android:textColor="@color/moaBlack"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="6.8dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/back"
+            app:layout_constraintBottom_toBottomOf="@id/back"
             android:id="@+id/currentViewText"/>
 
         <ImageView

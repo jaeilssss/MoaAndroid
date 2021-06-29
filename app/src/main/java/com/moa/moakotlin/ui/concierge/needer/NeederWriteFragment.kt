@@ -1,4 +1,4 @@
-package com.moa.moakotlin.ui.concierge.helper
+package com.moa.moakotlin.ui.concierge.needer
 
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -7,28 +7,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
-import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.databinding.FragmentHelperWriteBinding
-import com.moa.moakotlin.recyclerview.sitter.SitterWritePictureAdapter
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 
-class HelperWriteFragment : Fragment() {
+class NeederWriteFragment : Fragment() {
 
     lateinit var binding : FragmentHelperWriteBinding
 
     lateinit var navController: NavController
 
-    lateinit var model : HelperWriteViewModel
+    lateinit var model : NeederWriteViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +31,7 @@ class HelperWriteFragment : Fragment() {
 
         navController = findNavController()
 
-        model = ViewModelProvider(this).get(HelperWriteViewModel::class.java)
+        model = ViewModelProvider(this).get(NeederWriteViewModel::class.java)
 
         binding.model = model
 

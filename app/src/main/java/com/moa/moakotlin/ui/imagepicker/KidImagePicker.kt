@@ -58,9 +58,9 @@ class KidImagePicker : Fragment() {
         context?.let {
             mcontext  = it
         }
-        adapter = context?.let { list = Picture.getGalleryPhotos(it)
-            ConciergeImagePickerAdapter(it,list)
-        }!!
+//        adapter = context?.let { list = Picture.getGalleryPhotos(it)
+//            ConciergeImagePickerAdapter(it,list,null)
+//        }!!
        model = ViewModelProvider(this).get(KidImagePickerViewModel::class.java)
         rcv.adapter = adapter
         handler = Handler()

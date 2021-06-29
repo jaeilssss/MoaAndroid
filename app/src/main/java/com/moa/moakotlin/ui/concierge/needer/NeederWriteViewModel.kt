@@ -1,15 +1,12 @@
-package com.moa.moakotlin.ui.concierge.helper
+package com.moa.moakotlin.ui.concierge.needer
 
 import android.net.Uri
 import android.os.Bundle
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavController
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import com.google.rpc.Help
-import com.moa.moakotlin.base.BaseViewModel
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.data.Sitter
@@ -22,7 +19,7 @@ import kotlinx.coroutines.async
 import java.io.File
 import java.io.FileInputStream
 
-class HelperWriteViewModel():ViewModel() {
+class NeederWriteViewModel():ViewModel() {
 
     var title = ObservableField<String>("")
     var type = ObservableField<String>("")

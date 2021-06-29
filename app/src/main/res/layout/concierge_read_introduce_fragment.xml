@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.concierge.needer.NeederReadIntroduceFragment">
+    tools:context=".ui.concierge.helper.HelperReadIntroduceFragment">
 
     <TextView
         android:layout_width="0dp"
@@ -13,7 +13,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:textSize="16sp"
         android:lineSpacingExtra="9sp"
-        android:id="@+id/NeederReadContent"
+        android:id="@+id/ConciergeReadContent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="Helloddddddd\n dddddd\ndddd\nddddd\ndfd\nd]\dmd\nddddd\nddddddddd\ndddddd" />
@@ -22,49 +22,49 @@
         android:layout_height="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/NeederReadContent"
+        app:layout_constraintTop_toBottomOf="@id/ConciergeReadContent"
         android:background="#bdbdbd"
         android:layout_marginTop="19dp"
-        android:id="@+id/NeederReadIntroductLine"/>
+        android:id="@+id/ConciergeReadIntroductLine"/>
 
     <ImageView
         android:layout_width="24dp"
         android:layout_height="29dp"
         android:background="@drawable/ic_heart_badge"
-        app:layout_constraintTop_toBottomOf="@id/NeederReadIntroductLine"
+        app:layout_constraintTop_toBottomOf="@id/ConciergeReadIntroductLine"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/NeederReadIntroduceBadge"/>
+        android:id="@+id/ConciergeReadIntroduceBadge"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@id/NeederReadIntroduceBadge"
-        app:layout_constraintTop_toTopOf="@id/NeederReadIntroduceBadge"
-        app:layout_constraintBottom_toBottomOf="@id/NeederReadIntroduceBadge"
+        app:layout_constraintStart_toEndOf="@id/ConciergeReadIntroduceBadge"
+        app:layout_constraintTop_toTopOf="@id/ConciergeReadIntroduceBadge"
+        app:layout_constraintBottom_toBottomOf="@id/ConciergeReadIntroduceBadge"
         android:layout_marginStart="10dp"
         android:text="수지 센트럴 아이파크"
         android:textSize="16sp"
         android:textColor="@color/moaBlack"
         android:lineSpacingExtra="9sp"
-        android:id="@+id/NeederReadIntroduceAptName"/>
+        android:id="@+id/ConciergeReadIntroduceAptName"/>
 
     <View
         android:layout_width="0dp"
         android:layout_height="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/NeederReadIntroduceAptName"
+        app:layout_constraintTop_toBottomOf="@id/ConciergeReadIntroduceAptName"
         android:background="#bdbdbd"
-        android:id="@+id/NeederReadIntroduceLine2"
+        android:id="@+id/ConciergeReadIntroduceLine2"
         android:layout_marginTop="15dp"/>
 
     <View
         android:layout_width="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/NeederReadIntroduceLine2"
+        app:layout_constraintTop_toBottomOf="@id/ConciergeReadIntroduceLine2"
         android:layout_height="80dp"/>
 
 

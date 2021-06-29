@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.moa.moakotlin.ui.concierge.helper.HelperWriteViewModel" />
+            type="com.moa.moakotlin.ui.concierge.needer.NeederWriteViewModel" />
     </data>
 <ScrollView
     android:layout_width="match_parent"
@@ -16,7 +16,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.concierge.helper.HelperWriteFragment">
+    tools:context=".ui.concierge.needer.NeederWriteFragment">
 
     <ImageView
         android:id="@+id/back"

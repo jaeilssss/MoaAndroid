@@ -7,12 +7,12 @@
 <data>
     <variable
         name="model"
-        type="com.moa.moakotlin.ui.concierge.needer.CategoryMainViewModel" />
+        type="com.moa.moakotlin.ui.concierge.helper.CategoryMainViewModel" />
 </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.concierge.needer.CategoryMainFragment">
+    tools:context=".ui.concierge.helper.CategoryMainFragment">
     <ImageView
     android:id="@+id/back"
     android:layout_width="9.8dp"

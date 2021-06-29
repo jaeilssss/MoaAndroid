@@ -13,6 +13,8 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/shape_radius_10"
         android:scaleType="fitXY"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:id="@+id/itemAptCertificationImage"/>
     <ImageView
         android:layout_width="30dp"
@@ -20,7 +22,7 @@
         android:background="@drawable/shape_moa_black_radius_10"
         android:src="@drawable/ic_white_x"
         android:layout_marginStart="70dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/itemAptCertificationImage"
+        app:layout_constraintTop_toTopOf="@id/itemAptCertificationImage"
         android:id="@+id/itemAptCertificationClose"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
