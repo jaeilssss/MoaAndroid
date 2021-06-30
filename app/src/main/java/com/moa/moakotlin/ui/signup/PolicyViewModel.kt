@@ -29,7 +29,6 @@ class PolicyViewModel : ViewModel() {
     }
 
     fun checkBoxCheck() {
-        println("${checkBoxSecond.value}")
        if(checkBoxSecond.value==false){
             checkBoxFirst.value = false
         }else if(checkBoxThird.value==false){

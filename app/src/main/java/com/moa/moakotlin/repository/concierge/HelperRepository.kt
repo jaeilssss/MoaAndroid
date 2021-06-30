@@ -1,11 +1,19 @@
 package com.moa.moakotlin.repository.concierge
 
+import android.net.Uri
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.storage.FirebaseStorage
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.data.aptList
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import java.io.File
+import java.io.FileInputStream
 
 class HelperRepository {
 
@@ -15,6 +23,7 @@ class HelperRepository {
                 .collection(mainCaregory)
                 .add(helper).addOnSuccessListener {
                     helper.documentID = it.id
+
                 }.await()
         return helper
     }
@@ -69,6 +78,38 @@ class HelperRepository {
                     }
                 }.await()
         return result
+    }
+
+        fun upload(pathString : String , picturePathList : ArrayList<String>,helper : Helper,action :suspend ()-> Unit){
+//        var picture = adapter.list.get(adapter.checkBox)
+        var uploadedList = ArrayList<String>()
+        for(picturePath in picturePathList){
+            println("시작전")
+            var result : String ?=null
+            var storageRef = FirebaseStorage.getInstance().getReference()
+
+            var file = Uri.fromFile(File(picturePath))
+
+            var inputstream = FileInputStream(File(picturePath))
+
+            val riversRef = storageRef.child(pathString+"/" + file.lastPathSegment)
+
+            val uploadTask = riversRef.putStream(inputstream)
+
+            uploadTask.continueWithTask { riversRef.downloadUrl }.addOnCompleteListener { task ->
+                uploadedList.add(task.result.toString())
+                println("실행중")
+                if(uploadedList.size ==picturePathList.size){
+                    helper.images = uploadedList
+                    CoroutineScope(Dispatchers.Main).async {
+                        action.invoke()
+                    }
+
+
+                }
+
+            }
+        }
     }
 
 }

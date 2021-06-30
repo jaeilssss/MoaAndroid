@@ -64,17 +64,15 @@ class HelperWritePageFragment : BaseFragment() {
         binding.HelperWriteSubmit.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 binding.HelperWriteLoading.show()
-                binding.HelperWriteLoading.isVisible = true
-                var data = model.submit()
-                showToast(activity?.applicationContext!!,data.title)
-                var bundle = Bundle()
-                bundle.putParcelable("helper",data)
-
-                navController.navigate(R.id.HelperReadFragment,bundle)
-                binding.HelperWriteLoading.hide()
+               model.submit()
+               model.newHelper.observe(viewLifecycleOwner, Observer {
+                   var bundle = Bundle()
+                   bundle.putParcelable("helper",it)
+                   Toast.makeText(activity?.applicationContext,it.title,Toast.LENGTH_SHORT).show()
+                   navController.navigate(R.id.HelperReadFragment,bundle)
+                   binding.HelperWriteLoading.hide()
+               })
             }
-
-
         }
         initAdapter()
         binding.HelperWriteCountPicture.text = "0"

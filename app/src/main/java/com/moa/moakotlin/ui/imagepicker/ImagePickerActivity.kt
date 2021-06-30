@@ -25,7 +25,6 @@ class ImagePickerActivity : AppCompatActivity() {
         var submit = findViewById<TextView>(R.id.ActivityImagePickerSubmit)
 
         submit.setOnClickListener {
-            Toast.makeText(applicationContext,selectedPictures.size.toString(),Toast.LENGTH_SHORT).show()
             var intent = Intent()
             intent.putExtra("selectedPictures",selectedPictures)
             setResult(1000,intent)

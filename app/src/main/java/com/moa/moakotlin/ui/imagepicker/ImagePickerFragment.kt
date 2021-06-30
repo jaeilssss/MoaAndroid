@@ -92,7 +92,6 @@ class ImagePickerFragment : Fragment() {
 
             object : Thread() {
                 override fun run() {
-
                     Looper.prepare()
                     handler.post {
                         list.clear()

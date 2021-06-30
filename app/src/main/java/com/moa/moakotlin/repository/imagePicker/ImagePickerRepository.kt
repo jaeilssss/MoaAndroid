@@ -25,9 +25,8 @@ class ImagePickerRepository  {
 
         uploadTask.continueWithTask { riversRef.downloadUrl }.addOnCompleteListener { task ->
             result = task.result.toString()
-
+            println("업로드 완료")
         }.await()
-
 
         return result
     }

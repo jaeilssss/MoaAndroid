@@ -26,7 +26,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoaKotlin"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.imagepicker.ImagePickerActivity"></activity>
+        <activity android:name=".ui.concierge.needer.CustomCalendarActivity"></activity>
+        <activity android:name=".ui.imagepicker.ImagePickerActivity" />
         <activity android:name=".ui.concierge.category.HelperCategoryActivity" />
         <activity android:name=".ui.concierge.category.NeederMainCategoryActivity" /> <!-- <meta-data -->
         <!-- android:name="com.google.firebase.messaging.default_notification_icon" -->
