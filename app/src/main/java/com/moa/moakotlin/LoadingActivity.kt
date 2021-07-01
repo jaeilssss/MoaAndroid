@@ -26,15 +26,14 @@ lateinit var model : LoadingViewModel
     }
   suspend fun startLoading() {
         try{
-
             Picture.deleteInstance()
 
             if(FirebaseAuth.getInstance().currentUser==null){
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }else{
-                var result = model.initApp(FirebaseAuth.getInstance().currentUser.uid,this)
-                if(result){
+                var result = FirebaseAuth.getInstance().currentUser?.let { model.initApp(it.uid,this) }
+                if(result == true){
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }else{

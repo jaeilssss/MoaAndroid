@@ -36,6 +36,7 @@
     <string name="ClaimNewAptDialog">요청하신 아파트가 등록이 되면 \n 연락드리겠습니다!</string>
     <string name="ConciergeMainTalent">나의 소소한 재능을\n이웃들과 공유하고 싶어요!</string>
     <string name="ConciergeMainHelp">나의 필요(요청)을 올리고\n도움을 받고 싶어요</string>
+    <string name="NeederCompletionText">서비스가 완료되었어요\n실제 재능을 공유한 이웃을 선택해주세요</string>
     <string-array name="mainCategory">
         <item>"인테리어"</item>
         <item>"육아,교육"</item>

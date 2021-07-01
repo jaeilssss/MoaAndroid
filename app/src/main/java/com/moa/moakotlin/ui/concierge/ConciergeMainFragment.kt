@@ -15,7 +15,6 @@ import com.moa.moakotlin.databinding.FragmentConciergeMainBinding
 
 class ConciergeMainFragment : BaseFragment() {
 
-
     lateinit var binding: FragmentConciergeMainBinding
 
     lateinit var navController: NavController

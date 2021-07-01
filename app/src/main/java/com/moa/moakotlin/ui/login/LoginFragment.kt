@@ -80,7 +80,10 @@ class LoginFragment : BaseScrollFragment() {
                     User.getInstance().phoneNumber = binding.phoneNumberEditText.text.toString()
                     User.getInstance().uid = FirebaseAuth.getInstance().uid.toString()
 
-                    if(loginViewModel.getUserInfo(FirebaseAuth.getInstance().currentUser.uid)){
+                    if(FirebaseAuth.getInstance().currentUser?.let { it1 ->
+                            loginViewModel.getUserInfo(
+                                it1.uid)
+                        } == true){
                         navController.navigate(R.id.HomeFragment)
                     }else{
                         navController.navigate(R.id.policyFragment)

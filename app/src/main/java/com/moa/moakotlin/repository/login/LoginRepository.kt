@@ -69,7 +69,7 @@ class LoginRepository(var activity: FragmentActivity){
         isChecked=false
        var credential : PhoneAuthCredential
 
-       credential  = PhoneAuthProvider.getCredential(storedVerificationId,code)
+       credential  = PhoneAuthProvider.getCredential(storedVerificationId!!,code)
        return try{
            CoroutineScope(Dispatchers.Default).async {
 

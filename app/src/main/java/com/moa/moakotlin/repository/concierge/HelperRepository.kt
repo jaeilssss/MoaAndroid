@@ -1,9 +1,14 @@
 package com.moa.moakotlin.repository.concierge
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.data.aptList
@@ -84,9 +89,12 @@ class HelperRepository {
 //        var picture = adapter.list.get(adapter.checkBox)
         var uploadedList = ArrayList<String>()
         for(picturePath in picturePathList){
-            println("시작전")
+
             var result : String ?=null
-            var storageRef = FirebaseStorage.getInstance().getReference()
+            var storageRef : StorageReference = FirebaseStorage.getInstance().reference
+
+
+
 
             var file = Uri.fromFile(File(picturePath))
 
@@ -95,7 +103,16 @@ class HelperRepository {
             val riversRef = storageRef.child(pathString+"/" + file.lastPathSegment)
 
             val uploadTask = riversRef.putStream(inputstream)
-
+            println("시작전")
+//            uploadTask.addOnSuccessListener {
+//                println("리스너~~~")
+//                uploadedList.add(it.task.result.toString())
+//                if(uploadedList.size==picturePathList.size){
+//                    CoroutineScope(Dispatchers.Main).async {
+//                        action.invoke()
+//                    }
+//                }
+//            }
             uploadTask.continueWithTask { riversRef.downloadUrl }.addOnCompleteListener { task ->
                 uploadedList.add(task.result.toString())
                 println("실행중")
@@ -104,12 +121,11 @@ class HelperRepository {
                     CoroutineScope(Dispatchers.Main).async {
                         action.invoke()
                     }
-
-
                 }
 
             }
         }
+
     }
 
 }

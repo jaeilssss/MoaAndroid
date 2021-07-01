@@ -31,7 +31,7 @@ class phoneCertificationApi(var context : Context,var activity: FragmentActivity
             //     detect the incoming verification SMS and perform verification without
             //     user action.
             System.out.println("onVerificationCompleted")
-             code = credential.smsCode
+             code = credential.smsCode.toString()
             
 //            if(code!=null){
 //                Log.d(TAG, "onVerificationCompleted:$credential")
