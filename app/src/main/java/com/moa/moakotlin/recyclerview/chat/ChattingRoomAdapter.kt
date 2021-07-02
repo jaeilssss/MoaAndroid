@@ -96,12 +96,10 @@ class ChattingRoomAdapter(var navconroller: NavController, var context: Context,
             lateinit var nickname : TextView
 
         init {
-            profile_Image = view.findViewById(R.id.chatting_room_item_profile)
-            latest_time = view.findViewById(R.id.chatting_room_item_date)
-            nickname = view.findViewById(R.id.chatting_room_item_nickname)
+
         }
             fun bind(chattingRoom: ChattingRoom){
-                latestMessage  = view.findViewById(R.id.chatting_room_item_latest_message)
+
                 latestMessage.setText(chattingRoom.latestMessage)
 
                 linearLayout = view.findViewById(R.id.chatting_room_layout)

@@ -14,46 +14,47 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="15dp"
-        android:id="@+id/chatting_room_item_profile"/>
+        android:id="@+id/itemChattingRoomProfile"/>
 
     <TextView
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        app:layout_constraintStart_toEndOf="@id/chatting_room_item_profile"
+        app:layout_constraintStart_toEndOf="@id/itemChattingRoomProfile"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
         android:textStyle="bold"
         android:textSize="17sp"
-        android:id="@+id/chatting_room_item_nickname"
+        android:id="@+id/itemChattingRoomNickname"
         tools:text="닉네임"/>
     <TextView
         android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:singleLine="true"
-        app:layout_constraintStart_toEndOf="@id/chatting_room_item_profile"
-        app:layout_constraintTop_toBottomOf="@id/chatting_room_item_nickname"
+        app:layout_constraintStart_toEndOf="@id/itemChattingRoomProfile"
+        app:layout_constraintTop_toBottomOf="@id/itemChattingRoomNickname"
         tools:text="최신메시지"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginStart="10dp"
         android:textSize="17sp"
-        android:id="@+id/chatting_room_item_latest_message"/>
+        android:id="@+id/itemChattingRoomLatestMessage"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/itemChattingRoomNickname"
+        app:layout_constraintTop_toTopOf="@id/itemChattingRoomNickname"
+        app:layout_constraintBottom_toBottomOf="@id/itemChattingRoomNickname"
         tools:text="최신의 메세지"
         android:textSize="15sp"
-        android:layout_marginTop="30dp"
-        android:id="@+id/chatting_room_item_date"
-        android:layout_marginRight="40dp"/>
+        android:layout_marginStart="10dp"
+        android:id="@+id/itemChattingRoomDate" />
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="10dp"
         android:layout_height="10dp"
         android:src="#bd2211"
         android:id="@+id/chatting_room_item_read_check"
-        app:layout_constraintStart_toEndOf="@id/chatting_room_item_date"
+        app:layout_constraintStart_toEndOf="@id/itemChattingRoomDate"
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="gone"
         android:layout_marginLeft="10dp"

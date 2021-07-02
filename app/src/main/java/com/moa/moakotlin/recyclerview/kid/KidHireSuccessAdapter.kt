@@ -28,7 +28,7 @@ class KidHireSuccessAdapter(var navController: NavController,var list : ArrayLis
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
        holder as KidHireSuccessViewHolder
 
-        holder.latestMessage.text = list.get(position).latestMessage
+
 
     }
     fun goToReview(position: Int){
@@ -38,24 +38,12 @@ class KidHireSuccessAdapter(var navController: NavController,var list : ArrayLis
 
     }
     class KidHireSuccessViewHolder(view : View ,var adapter : KidHireSuccessAdapter) : RecyclerView.ViewHolder(view),View.OnClickListener{
-         var latestMessage : TextView
 
-         var latest_time : TextView
-
-         var partner_name : TextView
-
-         var profile_Image : ImageView
 
          var linearLayout: ConstraintLayout
          var readCheck : ImageView
         init {
-            latestMessage = view.findViewById(R.id.chatting_room_item_latest_message)
 
-            latest_time = view.findViewById(R.id.chatting_room_item_date)
-
-            partner_name = view.findViewById(R.id.chatting_room_item_nickname)
-
-            profile_Image = view.findViewById(R.id.chatting_room_item_profile)
 
             linearLayout = view.findViewById(R.id.chatting_room_layout)
 

@@ -53,7 +53,9 @@ class ImagePickerViewFragment(var selectedPictures : ArrayList<String>) : Fragme
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
-       binding = DataBindingUtil.inflate(inflater,R.layout.image_picker_view_fragment,container,false)
+
+        binding = DataBindingUtil.inflate(inflater,R.layout.image_picker_view_fragment,container,false)
+
 
         return binding.root
     }
@@ -63,9 +65,8 @@ class ImagePickerViewFragment(var selectedPictures : ArrayList<String>) : Fragme
         viewModel = ViewModelProvider(this).get(ImagePickerViewViewModel::class.java)
         binding.model = viewModel
 
-//        viewModel.selectedPictureList.value = selectedPictures
-        viewModel.list.addAll(selectedPictures)
-        viewModel.selectedPictureList.value = viewModel.list
+
+
         viewModel.selectedPictureList.observe(viewLifecycleOwner, Observer {
             myActivity?.selectedPictures = viewModel.selectedPictureList.value!!
         })
@@ -73,30 +74,29 @@ class ImagePickerViewFragment(var selectedPictures : ArrayList<String>) : Fragme
 
         adapter.setOnItemClickListener(object : OnItemClickListener{
             override fun onItemClick(v: View, position: Int) {
-                if(adapter.selectedPicture.contains(adapter.list.get(position)) == true){
-                    var index = adapter.selectedPicture.indexOf(adapter.list.get(position))
-                    //                        adapter?.checkBoxList?.removeAt(index)
-                    adapter.selectedPicture.remove(list.get(position))
-                    viewModel.list.remove(list.get(position))
+                if(adapter.checkBoxList.contains(position)){
+                    var index = adapter.checkBoxList.indexOf(position)
+                    adapter.checkBoxList.removeAt(index)
+                    adapter.selectedPicture.removeAt(index)
+                    viewModel.list.removeAt(index)
                     viewModel.selectedPictureList.value = viewModel.list
                     adapter.i = 1
                     adapter.resetting()
                 }else{
-                    if(adapter.selectedPicture.size==10){
-                        Toast.makeText(activity?.applicationContext!!,"최대 10까지 선택가능합니다!",Toast.LENGTH_SHORT).show()
-                    }else{
-                        adapter.selectedPicture.add(list.get(position))
-//                    adapter?.checkBoxList?.add(position)
-                        adapter.list.get(position).let { viewModel.list.add(it) }
-                        viewModel.selectedPictureList.value = viewModel.list
-                        adapter.i = 1
-                        adapter.resetting()
-                    }
+                    adapter.selectedPicture.add(list.get(position))
+                    adapter.checkBoxList.add(position)
+                    viewModel.list.add(adapter.list[position])
+                    viewModel.selectedPictureList.value = viewModel.list
+                    adapter.i = 1
+                    adapter.resetting()
                 }
             }
+
         })
 
     }
+
+
     private fun getGalleryPhotos(){
 //        list.add(" ")
         var uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI
@@ -120,7 +120,7 @@ class ImagePickerViewFragment(var selectedPictures : ArrayList<String>) : Fragme
         }
         list.reverse()
 
-         adapter = ConciergeImagePickerAdapter(activity?.applicationContext!!,list,selectedPictures)
+        adapter = ConciergeImagePickerAdapter(activity?.applicationContext!!,list)
 
         binding.imageRcv.adapter = adapter
 

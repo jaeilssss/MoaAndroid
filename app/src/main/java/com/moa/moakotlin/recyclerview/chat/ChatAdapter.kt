@@ -88,7 +88,7 @@ class ChatAdapter(var navController: NavController, var context: Context,var lis
             holder.bind(chat)
         }else if(holder is leftViewHolder){
             if(opponentUser.profileImage!=null){
-                Glide.with(context).load(opponentUser.profileImage).into(holder.profile)
+//                Glide.with(context).load(opponentUser.profileImage).into(holder.profile)
             }
             holder.nickname.text = opponentUser.nickName
             holder.bind(chat)
@@ -110,15 +110,15 @@ class ChatAdapter(var navController: NavController, var context: Context,var lis
 
     class leftViewHolder(var view : View,var adapter: ChatAdapter,var context: Context) : RecyclerView.ViewHolder(view) {
       lateinit var talk : TextView
-        lateinit var profile : ImageView
+
         lateinit var nickname : TextView
         init {
-            profile = view.findViewById(R.id.chat_left_profile)
+
 
             nickname = view.findViewById(R.id.TextView_nickname)
         }
             fun bind(chat : Chat){
-               talk = view.findViewById(R.id.TextView_msg2)
+
                 talk.setText(chat.talk)
             }
     }
@@ -127,11 +127,11 @@ class ChatAdapter(var navController: NavController, var context: Context,var lis
         lateinit var profile : ImageView
         lateinit var nickname : TextView
         init {
-            profile = view.findViewById(R.id.chat_right_profile)
+
             nickname = view.findViewById(R.id.TextView_nickname)
         }
         fun bind(chat : Chat){
-            talk = view.findViewById(R.id.TextView_msg)
+
             talk.setText(chat.talk)
         }
     }

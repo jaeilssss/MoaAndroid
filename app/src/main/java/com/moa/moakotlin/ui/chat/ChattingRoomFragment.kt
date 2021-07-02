@@ -48,13 +48,13 @@ class ChattingRoomFragment : BaseFragment() {
 
         binding.model = model
 
-        var rcv = binding.chattingRoomRecyclerview
+//        var rcv = binding.chattingRoomRecyclerview
 
         adapter = context?.let { ChattingRoomAdapter(navController, it,ArrayList<ChattingRoom>()) }!!
 
-        rcv.layoutManager=  LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-
-        rcv.adapter = adapter
+//        rcv.layoutManager=  LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+//
+//        rcv.adapter = adapter
 
         model.setSnapShot()
 

@@ -79,6 +79,7 @@ lateinit var transfer: Transfer
         binding.homeViewPager.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
 
         setUpBoardingIndicators()
+
         setCurrentOnboardingIndicator(0)
 
         binding.homeViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {

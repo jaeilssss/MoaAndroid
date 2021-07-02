@@ -70,7 +70,7 @@ class ChatFragment : BaseFragment() {
         opponentUser = arguments?.getParcelable<User>("opponentUser")!!
 
         navController = findNavController()
-         rcv = binding.chatRecyclerView
+//         rcv = binding.chatRecyclerView
         rcv.setHasFixedSize(true)
         rcv.setItemViewCacheSize(30)
        var adapter = context?.let { ChatAdapter(navController, it, ArrayList<Chat>(),opponentUser) }!!
@@ -109,31 +109,31 @@ class ChatFragment : BaseFragment() {
                 // 상대방이 쓴 채팅은 밑으로 안내려가짐 !!
             }
         })
-        binding.chatPhoto.setOnClickListener{
-            when{
-                ContextCompat.checkSelfPermission(
-                        activity?.applicationContext!!,
-                        android.Manifest.permission.READ_EXTERNAL_STORAGE
-                )==PackageManager.PERMISSION_GRANTED ->{
-                                 var bundle = Bundle()
-                                bundle.putString("roomId",roomId)
-                                bundle.putString("opponentUid",opponentUser.uid)
-                                navController.navigate(R.id.imagePickerFragment,bundle)
-                }
-                shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE)->{
-                        //교육용!!
-                    showContextPopupPermission()
-                }
-                else ->{
-                    requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),1000)
-                }
-            }
-        }
-        binding.chatSend.setOnClickListener {
-            if(model.talk.get()?.length!! >0){
-                model.send(roomId,opponentUser.uid)
-            }
-        }
+//        binding.chatPhoto.setOnClickListener{
+//            when{
+//                ContextCompat.checkSelfPermission(
+//                        activity?.applicationContext!!,
+//                        android.Manifest.permission.READ_EXTERNAL_STORAGE
+//                )==PackageManager.PERMISSION_GRANTED ->{
+//                                 var bundle = Bundle()
+//                                bundle.putString("roomId",roomId)
+//                                bundle.putString("opponentUid",opponentUser.uid)
+//                                navController.navigate(R.id.imagePickerFragment,bundle)
+//                }
+//                shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE)->{
+//                        //교육용!!
+//                    showContextPopupPermission()
+//                }
+//                else ->{
+//                    requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),1000)
+//                }
+//            }
+//        }
+//        binding.chatSend.setOnClickListener {
+//            if(model.talk.get()?.length!! >0){
+//                model.send(roomId,opponentUser.uid)
+//            }
+//        }
         return binding.root
     }
   private fun showContextPopupPermission(){

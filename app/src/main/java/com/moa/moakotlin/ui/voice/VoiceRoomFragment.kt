@@ -78,15 +78,15 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
         rtcEngine.setClientRole(1)
 //        rtcEngine.joinChannel(token, "test","Extra Optional Data", User.getInstance().phoneNumber.toInt())
         rtcEngine.joinChannel(token, "test","Extra Optional Data", 2)
-        binding.muteBtn.setOnClickListener {
-            if(muteState==false){
-                muteState = true
-            }else{
-                muteState = false
-            }
-        rtcEngine.muteLocalAudioStream(muteState)
-
-        }
+//        binding.muteBtn.setOnClickListener {
+//            if(muteState==false){
+//                muteState = true
+//            }else{
+//                muteState = false
+//            }
+//        rtcEngine.muteLocalAudioStream(muteState)
+//
+//        }
         return binding.root
     }
 

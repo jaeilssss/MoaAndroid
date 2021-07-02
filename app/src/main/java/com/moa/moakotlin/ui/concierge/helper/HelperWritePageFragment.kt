@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -28,11 +29,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class HelperWritePageFragment : BaseFragment() {
+class HelperWritePageFragment : Fragment    () {
 
     lateinit var binding: FragmentHelperWritePageBinding
-
-    lateinit var navController: NavController
 
     lateinit var model: HelperWritePageViewModel
 
@@ -47,7 +46,7 @@ class HelperWritePageFragment : BaseFragment() {
         // Inflate the layout for this fragment
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_helper_write_page, container, false)
-        navController = findNavController()
+
 
         model = ViewModelProvider(this).get(HelperWritePageViewModel::class.java)
         binding.model = model
@@ -68,8 +67,8 @@ class HelperWritePageFragment : BaseFragment() {
                model.newHelper.observe(viewLifecycleOwner, Observer {
                    var bundle = Bundle()
                    bundle.putParcelable("helper",it)
-                   Toast.makeText(activity?.applicationContext,it.title,Toast.LENGTH_SHORT).show()
-                   navController.navigate(R.id.HelperReadFragment,bundle)
+                   Toast.makeText(activity?.applicationContext,"작성이 완료되었습니다",Toast.LENGTH_SHORT).show()
+                   activity?.finish()
                    binding.HelperWriteLoading.hide()
                })
             }
@@ -124,7 +123,6 @@ class HelperWritePageFragment : BaseFragment() {
             var list = data?.getStringArrayListExtra("selectedPictures")
 
             if (list != null) {
-                selectedPictureList.clear()
                  selectedPictureList.addAll(list)
                 adapter.submitList(selectedPictureList)
                 adapter.notifyDataSetChanged()
@@ -195,9 +193,7 @@ class HelperWritePageFragment : BaseFragment() {
         super.onStop()
     }
 
-    override fun onBackPressed() {
-      navController.popBackStack()
-    }
+
 }
 
 

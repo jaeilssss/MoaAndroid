@@ -43,18 +43,18 @@ class VoiceMainFragment : Fragment() {
 
 
 
-        binding.join.setOnClickListener {
-
-            if(viewModel.checkChannelName()){
-                CoroutineScope(Dispatchers.Main).launch {
-                 var result = viewModel.generateToken()
-                    var bundle = Bundle()
-                    bundle.putString("token",result)
-                     navController.navigate(R.id.voiceRoomFragment,bundle)
-                }
-
-            }
-        }
+//        binding.join.setOnClickListener {
+//
+//            if(viewModel.checkChannelName()){
+//                CoroutineScope(Dispatchers.Main).launch {
+//                 var result = viewModel.generateToken()
+//                    var bundle = Bundle()
+//                    bundle.putString("token",result)
+//                     navController.navigate(R.id.voiceRoomFragment,bundle)
+//                }
+//
+//            }
+//        }
         return binding.root
     }
 

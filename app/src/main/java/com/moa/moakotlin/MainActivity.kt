@@ -21,6 +21,7 @@ import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.aptList
 import com.moa.moakotlin.databinding.ActivityMainBinding
 import com.moa.moakotlin.ui.bottomsheet.WriteSelectFragment
+import com.moa.moakotlin.ui.concierge.ConciergeWriteActivity
 
 class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
     private lateinit var binding: ActivityMainBinding
@@ -28,6 +29,10 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
     lateinit var navGraph : NavGraph
     lateinit var backListener : onBackPressedListener
 
+    companion object
+    {
+        val REQUEST_WRITE_CODE = 1000
+     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)
@@ -51,16 +56,17 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
 
         badge.backgroundColor = Color.parseColor("#ffe402")
 
-
-
         binding.mainBottomNavigation.get(0).setOnClickListener {
+
             Toast.makeText(applicationContext, "환영합니다 ${User.getInstance().nickName}님!",Toast.LENGTH_SHORT).show()
         }
         binding.mainBottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.writeSelectFragment ->{
-                    val bottomSheet = WriteSelectFragment()
-                    bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+//                    val bottomSheet = WriteSelectFragment()
+//                    bottomSheet.show(supportFragmentManager, bottomSheet.tag)
+                    var intent = Intent(this,ConciergeWriteActivity::class.java)
+                    startActivityForResult(intent,REQUEST_WRITE_CODE)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.HomeFragment ->{

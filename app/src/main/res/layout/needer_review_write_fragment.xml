@@ -1,13 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     tools:context=".ui.concierge.needer.NeederReviewWriteFragment">
+    <data>
+        <variable
+            name="model"
+            type="com.moa.moakotlin.ui.concierge.needer.NeederReviewWriteViewModel" />
+    </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="9.8dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/ic_back"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="재능 공유 후기 남기기"
+        android:textColor="@color/moaBlack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@id/back"
+        app:layout_constraintBottom_toBottomOf="@id/back"
+        android:id="@+id/NeederReviewWriteText"/>
 
-</FrameLayout>
+    <ImageView
+        android:layout_width="103dp"
+        android:layout_height="137dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/back"
+        android:layout_marginTop="83dp"
+        android:background="#bdbdbd"
+        android:id="@+id/NeederReviewWriteImage"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/NeederReviewWriteImage"
+        android:text="정정님의 재능공유는 어땠나요??"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp"
+        android:textSize="16sp"
+        android:textColor="@color/moaBlack"
+        android:textStyle="bold"
+        android:id="@+id/NeederReviewWriteMessage"/>
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="200dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/NeederReviewWriteMessage"
+        android:background="@drawable/shape_grey_radius_10"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="15dp"
+        android:hint="솔직한 피드백은 이웃들에게 많은 도움이 됩니다"
+        android:gravity="top"
+        android:padding="15dp"
+        android:textColor="@color/moaBlack"
+        android:textSize="16sp"
+        android:id="@+id/NeederReviewWriteEdit"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/NeederReviewWriteEdit"
+        android:background="@drawable/button_shape_main_color"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="30dp"
+        android:text="다음"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:id="@+id/NeederREviewWriteSubmit"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>
