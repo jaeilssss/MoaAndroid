@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.User
+import com.moa.moakotlin.data.aptList
 import com.moa.moakotlin.repository.concierge.HelperRepository
 import com.moa.moakotlin.repository.imagePicker.ImagePickerRepository
 import kotlinx.coroutines.CoroutineScope
@@ -25,7 +26,6 @@ class HelperWritePageViewModel() :ViewModel(){
  var repository = HelperRepository()
  var newHelper = MutableLiveData<Helper>()
 
-
  fun check(){
   isNego.value=true
  }
@@ -39,7 +39,7 @@ class HelperWritePageViewModel() :ViewModel(){
   var i=1
   helper = Helper()
   uploadedPathList = ArrayList<String>()
-  helper.aptCode = User.getInstance().aptCode
+  helper.aptCodeList = aptList.getInstance().aroundApt
   helper.aptName = User.getInstance().aptName
   helper.content = content.value!!
   helper.title = title.value!!
@@ -67,7 +67,7 @@ class HelperWritePageViewModel() :ViewModel(){
   }
   if(num==uploadedPathList.size){
    helper.images = uploadedPathList
-   println("?>?")
+
   return storeSubmit()
 
   }

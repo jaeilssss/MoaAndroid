@@ -11,9 +11,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
+import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.databinding.FragmentNeederMainBinding
-import com.moa.moakotlin.recyclerview.concierge.NeederMainAdapter
+import com.moa.moakotlin.recyclerview.concierge.HelperMainAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class HelperMainFragment : BaseFragment() {
 
@@ -30,23 +34,25 @@ class HelperMainFragment : BaseFragment() {
 
         model = ViewModelProvider(this).get(HelperMainViewModel::class.java)
 
-        var kidAdapter = NeederMainAdapter()
-        var kidAdapter2 = NeederMainAdapter()
-        var kidAdapter3= NeederMainAdapter()
-        var kidAdapter4 = NeederMainAdapter()
-        var kidAdapter5 = NeederMainAdapter()
-        var list = ArrayList<Needer>()
-        list.add(Needer())
-        list.add(Needer())
-        list.add(Needer())
-        list.add(Needer())
-        list.add(Needer())
+
+        var kidAdapter = HelperMainAdapter()
+
+        var interiorAdapter = HelperMainAdapter()
+        var kidAdapter3= HelperMainAdapter()
+        var kidAdapter4 = HelperMainAdapter()
+        var kidAdapter5 = HelperMainAdapter()
+        var list = ArrayList<Helper>()
+        list.add(Helper())
+        list.add(Helper())
+        list.add(Helper())
+        list.add(Helper())
+        list.add(Helper())
 
         binding.NeederMainKidAllBtn.setOnClickListener {
 
         }
         binding.NeederMainKidRcv.adapter = kidAdapter
-        binding.NeederMainpetRcv.adapter = kidAdapter2
+        binding.NeederMainpetRcv.adapter = interiorAdapter
         binding.NeederMainEducationRcv.adapter =kidAdapter3
         binding.NeederMainInteriorRcv.adapter =kidAdapter4
         binding.NeederMainEtcRcv.adapter = kidAdapter5
@@ -56,17 +62,12 @@ class HelperMainFragment : BaseFragment() {
         binding.NeederMainEducationRcv.layoutManager  = LinearLayoutManager(activity?.applicationContext!!,LinearLayoutManager.HORIZONTAL,false)
         binding.NeederMainInteriorRcv.layoutManager= LinearLayoutManager(activity?.applicationContext!!,LinearLayoutManager.HORIZONTAL,false)
         binding.NeederMainEtcRcv.layoutManager= LinearLayoutManager(activity?.applicationContext!!,LinearLayoutManager.HORIZONTAL,false)
-        kidAdapter.submitList(list)
-        kidAdapter2.submitList(list)
-        kidAdapter3.submitList(list)
-        kidAdapter4.submitList(list)
-        kidAdapter5.submitList(list)
+
 
         binding.model = model
 
         binding.NeederMainKidAllBtn.setOnClickListener {
             // 키드 데이터를 가지고 오는 viewmodel 메소드 호출 필요
-
 //            navController.navigate(R.id.categoryMainFragment)
             navController.navigate(R.id.HelperReadFragment)
         }
@@ -82,11 +83,19 @@ class HelperMainFragment : BaseFragment() {
         binding.NeederMainPetAllBtn.setOnClickListener {
 
         }
-
+        initGetData(kidAdapter,"육아")
+//        initGetData(interiorAdapter,"인테리어")
         return binding.root
     }
 
-    override fun onBackPressed() {
+
+    fun initGetData(adapter: HelperMainAdapter,mainCategory : String){
+        CoroutineScope(Dispatchers.Main).launch {
+            var list = model.getData(mainCategory)
+            adapter.submitList(list)
+        }
+    }
+    override fun onBackPressed( ) {
         navController.popBackStack()
     }
 

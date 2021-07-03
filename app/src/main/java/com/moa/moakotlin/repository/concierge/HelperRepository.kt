@@ -11,6 +11,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Needer
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.aptList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -49,8 +50,7 @@ class HelperRepository {
         var result = ArrayList<Helper>()
         db.collection("Helper").document(mainCaregory)
                 .collection(mainCaregory)
-                .whereArrayContains("array","addd")
-                .whereIn("aptCode",aptList.getInstance().aroundApt)
+                .whereArrayContains("aptCodeList", User.getInstance().aptCode)
                 .orderBy("timeStamp",Query.Direction.DESCENDING)
                 .limit(5).get().addOnSuccessListener {
                     for(document in it.documents){

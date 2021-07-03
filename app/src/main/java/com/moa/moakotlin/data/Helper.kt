@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Helper(
-        var aptCode : String="",
+        var aptCodeList : ArrayList<String> = ArrayList<String>(),
         var aptName : String="",
         var uid : String="",
         var title : String="",
