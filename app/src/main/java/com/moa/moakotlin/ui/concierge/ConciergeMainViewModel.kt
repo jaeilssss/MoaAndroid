@@ -10,7 +10,7 @@ import com.moa.moakotlin.repository.concierge.HelperRepository
 class ConciergeMainViewModel(): ViewModel(){
 
     companion object{
-        val mainHelperCategoryList = arrayListOf<String>("육아","기타")
+        val mainHelperCategoryList = arrayListOf<String>("육아","기타","인테리어","반려동물케어","교육")
     }
     suspend fun getHelperDataList() : HashMap<String,ArrayList<Helper>>{
 

@@ -39,7 +39,8 @@ class HelperWritePageViewModel() :ViewModel(){
   var i=1
   helper = Helper()
   uploadedPathList = ArrayList<String>()
-  helper.aptCodeList = aptList.getInstance().aroundApt
+  helper.aroundApt = aptList.getInstance().aroundApt
+  helper.aptCode = User.getInstance().aptCode
   helper.aptName = User.getInstance().aptName
   helper.content = content.value!!
   helper.title = title.value!!

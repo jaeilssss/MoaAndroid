@@ -50,7 +50,7 @@ class HelperRepository {
         var result = ArrayList<Helper>()
         db.collection("Helper").document(mainCaregory)
                 .collection(mainCaregory)
-                .whereArrayContains("aptCodeList", User.getInstance().aptCode)
+                .whereArrayContains("aroundApt", User.getInstance().aptCode)
                 .orderBy("timeStamp",Query.Direction.DESCENDING)
                 .limit(5).get().addOnSuccessListener {
                     for(document in it.documents){
@@ -70,8 +70,8 @@ class HelperRepository {
         db.collection("Helper")
                 .document(mainCaregory)
                 .collection(mainCaregory)
+                .whereArrayContains("aroundApt", User.getInstance().aptCode)
                 .orderBy("timeStamp",Query.Direction.DESCENDING)
-                .whereIn("aptCode",aptList.getInstance().aroundApt)
                 .limit(50)
                 .get().addOnSuccessListener {
                     for(document in it.documents){
@@ -87,7 +87,9 @@ class HelperRepository {
 
         fun upload(pathString : String , picturePathList : ArrayList<String>,helper : Helper,action :suspend ()-> Unit){
 //        var picture = adapter.list.get(adapter.checkBox)
-        var uploadedList = ArrayList<String>()
+            var i = 0
+            helper.images = ArrayList()
+        var uploadedList = HashMap<Int,String>()
         for(picturePath in picturePathList){
 
             var result : String ?=null
@@ -101,8 +103,8 @@ class HelperRepository {
             var inputstream = FileInputStream(File(picturePath))
 
             val riversRef = storageRef.child(pathString+"/" + file.lastPathSegment)
-
-            val uploadTask = riversRef.putStream(inputstream)
+            val number = i++
+            val uploadTask = riversRef.putBytes(inputstream.readBytes())
             println("시작전")
 //            uploadTask.addOnSuccessListener {
 //                println("리스너~~~")
@@ -114,12 +116,17 @@ class HelperRepository {
 //                }
 //            }
             uploadTask.continueWithTask { riversRef.downloadUrl }.addOnCompleteListener { task ->
-                uploadedList.add(task.result.toString())
+                uploadedList.put(number, task.result.toString())
                 println("실행중")
+                println("순서 -> ${i}")
                 if(uploadedList.size ==picturePathList.size){
-                    helper.images = uploadedList
+
+                    for(i in 0 until picturePathList.size){
+                        uploadedList[i]?.let { helper.images?.add(it) }
+                    }
                     CoroutineScope(Dispatchers.Main).async {
                         action.invoke()
+
                     }
                 }
 

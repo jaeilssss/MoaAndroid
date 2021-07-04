@@ -29,7 +29,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class HelperWritePageFragment : Fragment    () {
+class HelperWritePageFragment : Fragment() {
 
     lateinit var binding: FragmentHelperWritePageBinding
 
@@ -90,7 +90,6 @@ class HelperWritePageFragment : Fragment    () {
         })
         setSubmitBtnChange()
 
-
         return binding.root
     }
 
@@ -117,7 +116,6 @@ class HelperWritePageFragment : Fragment    () {
 
             binding.HelperWriteCategory.text = data?.getStringExtra("selectedMainCategory")
             model.category.value = data?.getStringExtra("selectedMainCategory")
-
 
         }else if(resultCode==1000 && requestCode==1000){
             var list = data?.getStringArrayListExtra("selectedPictures")
