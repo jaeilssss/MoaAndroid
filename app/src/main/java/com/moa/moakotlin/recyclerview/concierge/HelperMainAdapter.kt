@@ -2,10 +2,13 @@ package com.moa.moakotlin.recyclerview.concierge
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.databinding.ItemConciergeBinding
 import java.text.SimpleDateFormat
@@ -22,13 +25,17 @@ class HelperMainAdapter() :ListAdapter<Helper, HelperMainAdapter.ConciergeViewHo
     inner class ConciergeViewHolder(var binding: ItemConciergeBinding) : RecyclerView.ViewHolder(binding.root){
         fun binding(helper: Helper){
             if(helper.images?.size!!>0){
-                Glide.with(binding.root).load(helper.images?.get(0)).into(binding.itemConciergeImage)
+                Glide.with(binding.root).load(helper.images?.get(0)).apply(RequestOptions.bitmapTransform(RoundedCorners(10))).into(binding.itemConciergeImage)
+            }
+            if(helper.isNego.not()){
+                binding.itemConciergeNego.isVisible = false
             }
             binding.itemConciergeHopeWage.text = helper.hopeWage
             binding.itemConciergeContent.text = helper.content
-            val ConTimeFormat = SimpleDateFormat("yyyy-MM-dd HH:mm")
+            binding.itemConciergeAptName.text = helper.aptName
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm")
 
-            binding.itemConciergeDate.text =  ConTimeFormat.format(helper.timeStamp.toDate())
+            binding.itemConciergeDate.text =  dateFormat.format(helper.timeStamp.toDate())
 
         }
     }

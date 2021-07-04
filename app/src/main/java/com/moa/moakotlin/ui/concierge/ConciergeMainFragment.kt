@@ -12,6 +12,9 @@ import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.databinding.FragmentConciergeMainBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ConciergeMainFragment : BaseFragment() {
 
@@ -34,7 +37,14 @@ class ConciergeMainFragment : BaseFragment() {
         model = ViewModelProvider(this).get(ConciergeMainViewModel::class.java)
 
         binding.ConciergeMainTalentSharingLayout.setOnClickListener {
-            navController.navigate(R.id.HelperMainFragment)
+
+            CoroutineScope(Dispatchers.Main).launch {
+                var map = model.getHelperDataList()
+                var bundle = Bundle()
+                bundle.putSerializable("HelperData",map)
+                navController.navigate(R.id.HelperMainFragment,bundle)
+            }
+
         }
 
         binding.ConciergeMainHelpLayout.setOnClickListener {

@@ -83,8 +83,10 @@ class HelperMainFragment : BaseFragment() {
         binding.NeederMainPetAllBtn.setOnClickListener {
 
         }
-        initGetData(kidAdapter,"육아")
+//        initGetData(kidAdapter,"육아")
 //        initGetData(interiorAdapter,"인테리어")
+        initGetData(kidAdapter)
+        initGetData2(interiorAdapter)
         return binding.root
     }
 
@@ -94,6 +96,25 @@ class HelperMainFragment : BaseFragment() {
             var list = model.getData(mainCategory)
             adapter.submitList(list)
         }
+    }
+
+    fun initGetData(adapter: HelperMainAdapter){
+
+        arguments?.let {
+            var map  = it.getSerializable("HelperData")!! as HashMap<String, ArrayList<Helper>>
+            adapter.submitList(map.get("육아"))
+
+        }
+
+    }
+    fun initGetData2(adapter: HelperMainAdapter){
+
+        arguments?.let {
+            var map  = it.getSerializable("HelperData")!! as HashMap<String, ArrayList<Helper>>
+            adapter.submitList(map.get("인테리어"))
+
+        }
+
     }
     override fun onBackPressed( ) {
         navController.popBackStack()
