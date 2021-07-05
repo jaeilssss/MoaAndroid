@@ -186,40 +186,17 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     android:background="#bdbdbd"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:includeFontPadding="false"
-            android:text="희망 시급 협의가능"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="14dp"
-            android:layout_marginStart="22dp"
-            android:textSize="12sp"
-            android:lineSpacingExtra="4sp"
-            android:textColor="@color/moaBlack"
-            android:id="@+id/HelperReadHopeWage"/>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/HelperReadHopeWage"
-            android:text="30,000원"
-            android:layout_marginStart="22dp"
-            android:textColor="@color/moaBlack"
-            android:textSize="20sp"
-            android:includeFontPadding="false"
-            android:textStyle="bold"
-            android:id="@+id/HelperReadWage"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="210dp"
+            android:layout_width="0dp"
             android:layout_height="55dp"
             android:background="@drawable/button_shape_main_color"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/HelperReadHopeWage"
-            app:layout_constraintBottom_toBottomOf="@id/HelperReadWage"
+            android:layout_marginStart="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:text="이웃과 채팅하기"
             android:textColor="#000000"
             android:textSize="18sp"
@@ -227,7 +204,6 @@
             android:gravity="center"
             android:layout_marginEnd="15dp"
             android:id="@+id/HelperReadChatBtn"/>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

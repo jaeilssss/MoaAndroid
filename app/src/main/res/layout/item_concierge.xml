@@ -14,6 +14,7 @@
         android:background="@drawable/shape_grey_radius_10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/itemConciergeLayout"
         app:layout_constraintTop_toTopOf="parent">
         <ImageView
             android:layout_width="70dp"

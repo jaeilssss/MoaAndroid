@@ -2,6 +2,7 @@ package com.moa.moakotlin.recyclerview.concierge
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.View
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -9,11 +10,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.moa.moakotlin.R
+import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.databinding.ItemConciergeBinding
 import java.text.SimpleDateFormat
 
 class HelperMainAdapter() :ListAdapter<Helper, HelperMainAdapter.ConciergeViewHolder>(diffUtil) {
+
+    private var mListener : OnItemClickListener ?=null
+
+
+    fun setOnItemClickListener(mListener : OnItemClickListener){
+       this.mListener = mListener
+
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HelperMainAdapter.ConciergeViewHolder {
         return ConciergeViewHolder(ItemConciergeBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
@@ -37,7 +48,24 @@ class HelperMainAdapter() :ListAdapter<Helper, HelperMainAdapter.ConciergeViewHo
 
             binding.itemConciergeDate.text =  dateFormat.format(helper.timeStamp.toDate())
 
+            binding.itemConciergeLayout.setOnClickListener(ButtonClick())
         }
+
+        inner class ButtonClick : View.OnClickListener{
+            override fun onClick(v: View?) {
+                when(v?.id){
+                    R.id.itemConciergeLayout ->{
+                        if(mListener!=null){
+                            if(adapterPosition != RecyclerView.NO_POSITION){
+                                mListener!!.onItemClick(v,adapterPosition)
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
     }
 
     companion object{

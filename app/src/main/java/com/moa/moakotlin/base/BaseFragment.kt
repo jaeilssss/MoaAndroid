@@ -1,5 +1,6 @@
 package com.moa.moakotlin.base
 
+import android.app.Activity
 import android.content.Context
 import android.view.Window
 import android.widget.Toast

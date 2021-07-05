@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -39,14 +40,16 @@ class ConciergeMainFragment : BaseFragment() {
         binding.ConciergeMainTalentSharingLayout.setOnClickListener {
 
             CoroutineScope(Dispatchers.Main).launch {
-                var map = model.getHelperDataList()
-                var bundle = Bundle()
-                bundle.putSerializable("HelperData",map)
-                navController.navigate(R.id.HelperMainFragment,bundle)
+                binding.ConciergeMainLoading.show()
+                model.getHelperDataList()
+                model.HelperData.observe(viewLifecycleOwner, Observer {
+                    var bundle = Bundle()
+                    bundle.putSerializable("HelperData",it)
+                    navController.navigate(R.id.HelperMainFragment,bundle)
+                    binding.ConciergeMainLoading.hide()
+                })
             }
-
         }
-
         binding.ConciergeMainHelpLayout.setOnClickListener {
 
         }

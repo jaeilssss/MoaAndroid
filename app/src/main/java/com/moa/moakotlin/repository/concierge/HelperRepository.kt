@@ -22,7 +22,9 @@ import java.io.File
 import java.io.FileInputStream
 
 class HelperRepository {
-
+    companion object{
+        val mainHelperCategoryList = arrayListOf<String>("육아","기타","인테리어","반려동물케어","교육")
+    }
     suspend fun submit(mainCaregory: String,helper : Helper) : Helper{
         var db = FirebaseFirestore.getInstance()
         db.collection("Helper").document(mainCaregory)
@@ -45,23 +47,32 @@ class HelperRepository {
         }
         return result
     }
-    suspend fun initSetList(mainCaregory : String) :ArrayList<Helper>{
+    fun initSetList(map : HashMap<String,ArrayList<Helper>>,action: suspend () -> Unit){
         var db = FirebaseFirestore.getInstance()
-        var result = ArrayList<Helper>()
-        db.collection("Helper").document(mainCaregory)
-                .collection(mainCaregory)
-                .whereArrayContains("aroundApt", User.getInstance().aptCode)
-                .orderBy("timeStamp",Query.Direction.DESCENDING)
-                .limit(5).get().addOnSuccessListener {
-                    for(document in it.documents){
-                        var data = document.toObject(Helper::class.java)
-                        data?.documentID = document.id
-                        if (data != null) {
-                            result.add(data)
+
+        for(mainCategory in mainHelperCategoryList){
+            db.collection("Helper").document(mainCategory)
+                    .collection(mainCategory)
+                    .whereArrayContains("aroundApt", User.getInstance().aptCode)
+                    .orderBy("timeStamp",Query.Direction.DESCENDING)
+                    .limit(5).get().addOnSuccessListener {
+                        var result = ArrayList<Helper>()
+                        for(document in it.documents){
+                            var data = document.toObject(Helper::class.java)
+                            data?.documentID = document.id
+                            if (data != null) {
+                                result.add(data)
+                            }
                         }
+                        map.put(mainCategory,result)
+                        if(map.size== mainHelperCategoryList.size){
+                            CoroutineScope(Dispatchers.Main).launch {
+                                action.invoke()
+                            }
+                        }
+
                     }
-                }.await()
-        return result
+        }
     }
 
     suspend fun getList(mainCaregory: String) : ArrayList<Helper> {
@@ -96,15 +107,13 @@ class HelperRepository {
             var storageRef : StorageReference = FirebaseStorage.getInstance().reference
 
 
-
-
             var file = Uri.fromFile(File(picturePath))
 
             var inputstream = FileInputStream(File(picturePath))
 
             val riversRef = storageRef.child(pathString+"/" + file.lastPathSegment)
             val number = i++
-            val uploadTask = riversRef.putBytes(inputstream.readBytes())
+            val uploadTask = riversRef.putStream(inputstream)
             println("시작전")
 //            uploadTask.addOnSuccessListener {
 //                println("리스너~~~")
@@ -136,3 +145,6 @@ class HelperRepository {
     }
 
 }
+
+
+

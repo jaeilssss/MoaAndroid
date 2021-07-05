@@ -97,7 +97,13 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
         binding.mainBottomNavigation.visibility= View.GONE    }
 
 
+        fun bottomNavigationGone(){
+            binding.mainBottomNavigation.visibility= View.GONE
+        }
 
+    fun bottomNavigationVisible(){
+        binding.mainBottomNavigation.visibility= View.VISIBLE
+    }
 
     fun getMyaroundApt(db : FirebaseFirestore){
         db.collection("Apart").document(User.getInstance().aptCode)
