@@ -18,20 +18,20 @@ class ConciergeMainViewModel(): ViewModel(){
     companion object{
         val mainHelperCategoryList = arrayListOf<String>("육아","기타","인테리어","반려동물케어","교육")
     }
-    suspend fun getHelperDataList() {
-
-        var repository = HelperRepository()
-
-        var map = HashMap<String,ArrayList<Helper>>()
-
-
-
-             repository.initSetList(map){
-
-                 HelperData.value = map
-             }
-
-        }
+//    suspend fun getHelperDataList() {
+//
+//        var repository = HelperRepository()
+//
+//        var map = HashMap<String,ArrayList<Helper>>()
+//
+//
+//
+//             repository.initSetList(map){
+//
+//                 HelperData.value = map
+//             }
+//
+//        }
 
 
 

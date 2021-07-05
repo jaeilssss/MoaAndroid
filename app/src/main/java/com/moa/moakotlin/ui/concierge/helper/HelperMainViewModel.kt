@@ -10,11 +10,11 @@ import com.moa.moakotlin.repository.user.UserRepository
 
 class HelperMainViewModel() : ViewModel() {
 
-//    suspend fun getData(mainCategory : String) : ArrayList<Helper>{
-//            var repository = HelperRepository()
-//
-//        return repository.initSetList(mainCategory)
-//    }
+    suspend fun getData(mainCategory : String) : ArrayList<Helper>{
+            var repository = HelperRepository()
+
+        return repository.initSetList(mainCategory)
+    }
 
     suspend fun getWriterData(uid :String) : User? {
         var repository = UserRepository()

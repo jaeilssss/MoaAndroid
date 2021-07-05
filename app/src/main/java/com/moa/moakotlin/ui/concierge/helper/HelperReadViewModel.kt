@@ -6,6 +6,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.moa.moakotlin.data.ChattingRoom
 import com.moa.moakotlin.data.User
+import com.moa.moakotlin.repository.concierge.HelperRepository
 
 class HelperReadViewModel() : ViewModel() {
 
@@ -64,6 +65,12 @@ class HelperReadViewModel() : ViewModel() {
             }.addOnFailureListener{
                 println("failure")
             }
+    }
+
+    suspend fun delete(mainCategory : String , documentId : String) : Boolean{
+        var repository = HelperRepository()
+
+        return repository.delete(mainCategory,documentId)
     }
 
 }

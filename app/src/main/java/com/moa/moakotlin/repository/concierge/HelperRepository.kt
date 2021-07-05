@@ -47,16 +47,15 @@ class HelperRepository {
         }
         return result
     }
-    fun initSetList(map : HashMap<String,ArrayList<Helper>>,action: suspend () -> Unit){
+  suspend  fun initSetList(mainCategory: String) : ArrayList<Helper>{
         var db = FirebaseFirestore.getInstance()
-
-        for(mainCategory in mainHelperCategoryList){
+      var result = ArrayList<Helper>()
             db.collection("Helper").document(mainCategory)
                     .collection(mainCategory)
                     .whereArrayContains("aroundApt", User.getInstance().aptCode)
                     .orderBy("timeStamp",Query.Direction.DESCENDING)
                     .limit(5).get().addOnSuccessListener {
-                        var result = ArrayList<Helper>()
+
                         for(document in it.documents){
                             var data = document.toObject(Helper::class.java)
                             data?.documentID = document.id
@@ -64,15 +63,11 @@ class HelperRepository {
                                 result.add(data)
                             }
                         }
-                        map.put(mainCategory,result)
-                        if(map.size== mainHelperCategoryList.size){
-                            CoroutineScope(Dispatchers.Main).launch {
-                                action.invoke()
-                            }
-                        }
 
-                    }
-        }
+
+                    }.await()
+      return result
+
     }
 
     suspend fun getList(mainCaregory: String) : ArrayList<Helper> {
@@ -144,6 +139,22 @@ class HelperRepository {
 
     }
 
+
+   suspend fun delete(mainCaregory: String,documentId : String) : Boolean{
+       var db = FirebaseFirestore.getInstance()
+       var check = false
+       db.collection("Helper")
+               .document(mainCaregory)
+               .collection(mainCaregory)
+               .document(documentId)
+               .delete()
+               .addOnCompleteListener {
+                   if(it.isSuccessful){
+                       check=true
+                   }
+               }.await()
+       return check
+    }
 }
 
 

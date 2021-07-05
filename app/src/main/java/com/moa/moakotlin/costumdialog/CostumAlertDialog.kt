@@ -1,4 +1,4 @@
-package com.moa.moakotlin.customdialog
+package com.moa.moakotlin.costumdialog
 
 import android.app.AlertDialog
 import android.content.Context
@@ -7,9 +7,8 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import com.moa.moakotlin.R
-import java.util.logging.Handler
 
-class AptCertificationImageAlertDialog(private val context : Context) {
+class CostumAlertDialog (private val context : Context) {
 
     private val builder : AlertDialog.Builder by lazy {
         AlertDialog.Builder(context).setView(view)
@@ -31,11 +30,11 @@ class AptCertificationImageAlertDialog(private val context : Context) {
         false
     }
 
-    fun setMessage(message: CharSequence): AptCertificationImageAlertDialog {
+    fun setMessage(message: CharSequence): CostumAlertDialog {
         view.findViewById<TextView>(R.id.aptCertificationText).text = message
         return this
     }
-    fun setPositiveButton(text: CharSequence, listener: (view: View) -> (Unit)): AptCertificationImageAlertDialog {
+    fun setPositiveButton(text: CharSequence, listener: (view: View) -> (Unit)): CostumAlertDialog {
         view.findViewById<Button>(R.id.aptCertificationSubmit).apply {
             setOnClickListener(listener)
 
@@ -44,14 +43,14 @@ class AptCertificationImageAlertDialog(private val context : Context) {
         return this
     }
 
-    fun setNegativeButton(listener : (view: View) -> (Unit)) : AptCertificationImageAlertDialog{
+    fun setNegativeButton(listener : (view: View) -> (Unit)) : CostumAlertDialog{
         view.findViewById<Button>(R.id.aptCertificationCancle).apply {
             setOnClickListener(listener)
             setOnTouchListener(onTouchListener)
         }
         return this
     }
-//    fun create() {
+    //    fun create() {
 //        dialog = builder.create()
 //    }
     fun show() {

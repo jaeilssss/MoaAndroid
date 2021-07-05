@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="model"
+            type="com.moa.moakotlin.ui.concierge.helper.HelperModifyViewModel" />
+    </data>
+    <ScrollView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ui.concierge.Helper.HelperModifyPageFragment">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="9.8dp"
+                android:layout_height="17dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="재능 공유 글쓰기"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/back"
+                app:layout_constraintBottom_toBottomOf="@id/back"
+                android:textSize="18sp"
+                android:textColor="@color/moaBlack"
+                android:textStyle="bold"
+                android:id="@+id/HelperModifyText"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="글 제목"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/back"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="50dp"
+                android:textSize="14sp"
+                android:textColor="@color/moaBlack"
+                android:lineSpacingExtra="8.5sp"
+                android:id="@+id/HelperModifyTitleText"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/HelperModifyTitleText"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_grey_radius_10"
+                android:padding="10dp"
+                android:hint="제목을 작성해주세요"
+                android:text="@={model.title}"
+                android:id="@+id/HelperModifyTitleEdit"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="당신의 전문 분야"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/HelperModifyTitleEdit"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:textSize="14sp"
+                android:textColor="@color/moaBlack"
+                android:lineSpacingExtra="8.5sp"
+                android:id="@+id/HelperModifyCategoryText"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintTop_toBottomOf="@id/HelperModifyCategoryText"
+                android:layout_marginTop="10dp"
+                android:id="@+id/HelperModifyCategoryLayout"
+                android:background="@drawable/shape_grey_radius_10">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:hint="당신의 전문 분야를 선택해주세요"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/moaBlack"
+                    android:id="@+id/HelperModifyCategory"
+                    android:text="@={model.category}"
+                    android:textSize="16sp"
+                    android:padding="10dp"/>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="37dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="9dp"
+                    android:background="@drawable/ic_right_arrow"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/HelperModifyCategoryLayout"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="희망시급"
+                android:layout_marginStart="15dp"
+                android:textSize="14sp"
+                android:textColor="@color/moaBlack"
+                android:lineSpacingExtra="8.5sp"
+                android:id="@+id/HelperModifyHopeWageText"/>
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                android:text="협의가능"
+                android:textSize="14sp"
+                android:checked="@={model.isNego}"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:button="@drawable/selector_signup_policy_checkbox"
+                app:layout_constraintTop_toTopOf="@id/HelperModifyHopeWageText"
+                app:layout_constraintBottom_toBottomOf="@id/HelperModifyHopeWageText"
+                android:id="@+id/policyAllAgreeCheck"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintTop_toBottomOf="@id/HelperModifyHopeWageText"
+                android:background="@drawable/shape_grey_radius_10"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:hint="희망시급"
+                android:text="@={model.hopeWage}"
+                android:inputType="number"
+                android:id="@+id/HelperModifyHopeWageEdit"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="신청내용"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/HelperModifyHopeWageEdit"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/moaBlack"
+                android:textSize="14sp"
+                android:id="@+id/HelperModifyContentText"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:minHeight="158dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:gravity="top"
+                android:padding="10dp"
+                android:background="@drawable/shape_grey_radius_10"
+                app:layout_constraintTop_toBottomOf="@id/HelperModifyContentText"
+                android:layout_marginTop="10dp"
+                android:text="@={model.content}"
+                android:id="@+id/HelperModifyContentEdit"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/HelperModifyContentEdit"
+                android:id="@+id/HelperModifyPolicyLayout"
+                android:background="@drawable/shape_main_color_radius_5">
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/HelperModifyPolicyLayout"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_grey_radius_10"
+                android:id="@+id/HelperModifyAlbum"/>
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/shape_shape_oval_grey"
+                android:src="@drawable/ic_plus"
+                android:id="@+id/AptCertificationPlusImage"
+                app:layout_constraintVertical_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="@id/HelperModifyAlbum"
+                app:layout_constraintTop_toTopOf="@id/HelperModifyAlbum" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="3"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="@color/moaBlack"
+                app:layout_constraintTop_toBottomOf="@id/AptCertificationPlusImage"
+                app:layout_constraintEnd_toStartOf="@id/HelperModifyPictureTotal"
+                app:layout_constraintStart_toStartOf="@id/HelperModifyAlbum"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                android:id="@+id/HelperModifyCountPicture"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/HelperModifyPictureTotal"
+                app:layout_constraintTop_toBottomOf="@id/AptCertificationPlusImage"
+                android:text="/10"
+                android:textSize="16sp"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toEndOf="@id/HelperModifyCountPicture"
+                app:layout_constraintEnd_toEndOf="@id/HelperModifyAlbum"/>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="@id/HelperModifyAlbum"
+                app:layout_constraintBottom_toBottomOf="@id/HelperModifyAlbum"
+                app:layout_constraintStart_toEndOf="@id/HelperModifyAlbum"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/HelperModifyRcv"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintTop_toBottomOf="@id/HelperModifyRcv"
+                android:background="@drawable/button_shape_main_color"
+                android:textColor="@color/moaBlack"
+                android:text="다음"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:id="@+id/HelperModifySubmit"/>
+            <androidx.core.widget.ContentLoadingProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                style="?android:progressBarStyleLarge"
+                android:indeterminateTint="@color/mainColor"
+                android:visibility="gone"
+                android:id="@+id/HelperModifyLoading"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

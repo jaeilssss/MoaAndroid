@@ -40,7 +40,7 @@
             app:layout_constraintBottom_toBottomOf="@id/back"
             android:id="@+id/currentViewText"/>
 
-        <ImageView
+        <androidx.viewpager2.widget.ViewPager2
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintDimensionRatio="H,2:1"
@@ -50,32 +50,43 @@
             app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintTop_toBottomOf="@id/currentViewText"
             android:layout_marginTop="15dp"
-            android:background="@drawable/banner_needer_main"
-            android:id="@+id/neederMainBanner"/>
+            android:id="@+id/HelperMainBanner"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/HelperMainIndicators"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/HelperMainBanner"
+            android:padding="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="육아"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/neederMainBanner"
+        app:layout_constraintTop_toBottomOf="@id/HelperMainIndicators"
         android:layout_marginStart="15dp"
         android:textSize="18sp"
         android:textStyle="bold"
         android:lineSpacingExtra="-5.3sp"
         android:textColor="@color/moaBlack"
-        android:id="@+id/NeederMainKidText"
+        android:id="@+id/HelperMainKidText"
         />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="전체보기"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/neederMainBanner"
+            app:layout_constraintTop_toBottomOf="@id/HelperMainIndicators"
             android:layout_marginEnd="15dp"
             android:textSize="15sp"
             android:lineSpacingExtra="-3.3sp"
-            android:id="@+id/NeederMainKidAllBtn"/>
+            android:id="@+id/HelperMainKidAllBtn"/>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -83,8 +94,8 @@
             android:layout_marginEnd="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/NeederMainKidText"
-            android:id="@+id/NeederMainKidRcv"/>
+            app:layout_constraintTop_toBottomOf="@id/HelperMainKidText"
+            android:id="@+id/HelperMainKidRcv"/>
 
 
         <TextView
@@ -92,23 +103,23 @@
             android:layout_height="wrap_content"
             android:text="교육"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/NeederMainKidRcv"
+            app:layout_constraintTop_toBottomOf="@id/HelperMainKidRcv"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginStart="15dp"
             android:textColor="@color/moaBlack"
             android:lineSpacingExtra="-5.3sp"
-            android:id="@+id/NeederMainEducationText"/>
+            android:id="@+id/HelperMainEducationText"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="전체보기"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/NeederMainKidRcv"
+            app:layout_constraintTop_toBottomOf="@id/HelperMainKidRcv"
             android:layout_marginEnd="15dp"
             android:textSize="15sp"
             android:lineSpacingExtra="-3.3sp"
-            android:id="@+id/NeederMainEduAllBtn"/>
+            android:id="@+id/HelperMainEduAllBtn"/>
 <androidx.recyclerview.widget.RecyclerView
     android:layout_width="0dp"
     android:layout_height="wrap_content"
@@ -116,30 +127,30 @@
     app:layout_constraintEnd_toEndOf="parent"
     android:layout_marginTop="10dp"
     android:layout_marginEnd="10dp"
-    app:layout_constraintTop_toBottomOf="@id/NeederMainEducationText"
-    android:id="@+id/NeederMainEducationRcv"/>
+    app:layout_constraintTop_toBottomOf="@id/HelperMainEducationText"
+    android:id="@+id/HelperMainEducationRcv"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="인테리어"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/NeederMainEducationRcv"
+            app:layout_constraintTop_toBottomOf="@id/HelperMainEducationRcv"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginStart="15dp"
             android:textColor="@color/moaBlack"
             android:lineSpacingExtra="-5.3sp"
-            android:id="@+id/NeederMaininteriorText"/>
+            android:id="@+id/HelperMaininteriorText"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="전체보기"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/NeederMainEducationRcv"
+            app:layout_constraintTop_toBottomOf="@id/HelperMainEducationRcv"
             android:layout_marginEnd="15dp"
             android:textSize="15sp"
             android:lineSpacingExtra="-3.3sp"
-            android:id="@+id/NeederMaininteriorAllBtn"/>
+            android:id="@+id/HelperMaininteriorAllBtn"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
@@ -148,30 +159,30 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            app:layout_constraintTop_toBottomOf="@id/NeederMaininteriorText"
-            android:id="@+id/NeederMainInteriorRcv"/>
+            app:layout_constraintTop_toBottomOf="@id/HelperMaininteriorText"
+            android:id="@+id/HelperMainInteriorRcv"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="반려동물"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/NeederMainInteriorRcv"
+            app:layout_constraintTop_toBottomOf="@id/HelperMainInteriorRcv"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginStart="15dp"
             android:textColor="@color/moaBlack"
             android:lineSpacingExtra="-5.3sp"
-            android:id="@+id/NeederMainPetText"/>
+            android:id="@+id/HelperMainPetText"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="전체보기"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/NeederMainInteriorRcv"
+            app:layout_constraintTop_toBottomOf="@id/HelperMainInteriorRcv"
             android:layout_marginEnd="15dp"
             android:textSize="15sp"
             android:lineSpacingExtra="-3.3sp"
-            android:id="@+id/NeederMainPetAllBtn"/>
+            android:id="@+id/HelperMainPetAllBtn"/>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -179,30 +190,30 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            app:layout_constraintTop_toBottomOf="@id/NeederMainPetText"
-            android:id="@+id/NeederMainpetRcv"/>
+            app:layout_constraintTop_toBottomOf="@id/HelperMainPetText"
+            android:id="@+id/HelperMainpetRcv"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="기타"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/NeederMainpetRcv"
+            app:layout_constraintTop_toBottomOf="@id/HelperMainpetRcv"
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginStart="15dp"
             android:textColor="@color/moaBlack"
             android:lineSpacingExtra="-5.3sp"
-            android:id="@+id/NeederMainEtcText"/>
+            android:id="@+id/HelperMainEtcText"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="전체보기"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/NeederMainpetRcv"
+            app:layout_constraintTop_toBottomOf="@id/HelperMainpetRcv"
             android:layout_marginEnd="15dp"
             android:textSize="15sp"
             android:lineSpacingExtra="-3.3sp"
-            android:id="@+id/NeederMainEtcAllBtn"/>
+            android:id="@+id/HelperMainEtcAllBtn"/>
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -210,8 +221,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
-            app:layout_constraintTop_toBottomOf="@id/NeederMainEtcText"
-            android:id="@+id/NeederMainEtcRcv"/>
+            app:layout_constraintTop_toBottomOf="@id/HelperMainEtcText"
+            android:id="@+id/HelperMainEtcRcv"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
 </layout>

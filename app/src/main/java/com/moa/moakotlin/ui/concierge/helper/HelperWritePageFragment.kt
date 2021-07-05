@@ -20,6 +20,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
+import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.databinding.FragmentHelperWritePageBinding
 import com.moa.moakotlin.recyclerview.certification.CertificationImageAdapter
 import com.moa.moakotlin.ui.concierge.category.HelperCategoryActivity
@@ -39,6 +40,7 @@ class HelperWritePageFragment : Fragment() {
 
     var selectedPictureList = ArrayList<String>()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,6 +52,7 @@ class HelperWritePageFragment : Fragment() {
 
         model = ViewModelProvider(this).get(HelperWritePageViewModel::class.java)
         binding.model = model
+
 
         binding.HelperWriteCategoryLayout.setOnClickListener {
 

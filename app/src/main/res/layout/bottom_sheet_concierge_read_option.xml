@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="24dp"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="56dp"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+<!--    android:background="@drawable/shape_white_top_radius_10"-->
+
+<androidx.appcompat.widget.AppCompatTextView
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_marginTop="10dp"
+    android:text="수정"
+    android:gravity="center"
+    android:textSize="18dp"
+    android:padding="10dp"
+    android:textColor="@color/moaBlack"
+    android:id="@+id/ConciergeReadOptionModify"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintTop_toBottomOf="@id/ConciergeReadOptionModify"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:text="삭제"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:textColor="@color/moaBlack"
+        android:id="@+id/ConciergeReadOptionDelete"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -31,6 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/aptCertificationSubmit"
         app:layout_constraintTop_toBottomOf="@id/aptCertificationText"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:background="@drawable/shape_moa_black_radius_10"
         android:layout_marginEnd="10dp"
         android:text="아니요"
@@ -39,6 +40,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="25dp"
+
         />
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="0dp"
@@ -48,6 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@drawable/button_shape_main_color"
         app:layout_constraintTop_toBottomOf="@id/aptCertificationText"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:text="네"
@@ -55,6 +58,7 @@
         android:textColor="@color/moaBlack"
         android:textStyle="bold"
         android:layout_marginBottom="25dp"
+
         />
 
 
