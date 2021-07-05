@@ -16,7 +16,7 @@ import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Needer
-import com.moa.moakotlin.databinding.FragmentNeederMainBinding
+import com.moa.moakotlin.databinding.FragmentHelperMainBinding
 import com.moa.moakotlin.recyclerview.concierge.HelperMainAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,7 +24,7 @@ import kotlinx.coroutines.launch
 
 class HelperMainFragment : BaseFragment() {
 
-        lateinit var binding : FragmentNeederMainBinding
+        lateinit var binding : FragmentHelperMainBinding
 
         lateinit var navController: NavController
         lateinit var model: HelperMainViewModel
@@ -42,7 +42,7 @@ class HelperMainFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        binding  = DataBindingUtil.inflate(inflater,R.layout.fragment_needer_main,container, false)
+        binding  = DataBindingUtil.inflate(inflater,R.layout.fragment_helper_main,container, false)
 
         navController = findNavController()
 

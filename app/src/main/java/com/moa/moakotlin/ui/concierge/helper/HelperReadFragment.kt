@@ -21,13 +21,13 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Kid
 import com.moa.moakotlin.data.User
-import com.moa.moakotlin.databinding.FragmentNeederReadBinding
+import com.moa.moakotlin.databinding.FragmentHelperReadBinding
 import com.moa.moakotlin.viewpageradapter.ConciergeReadViewpagerAdapter
 
 
 class HelperReadFragment : Fragment() {
 
-    lateinit var binding : FragmentNeederReadBinding
+    lateinit var binding : FragmentHelperReadBinding
 
     lateinit var navController: NavController
 
@@ -50,7 +50,7 @@ class HelperReadFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_needer_read, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_helper_read, container, false)
 
         navController = findNavController()
 
