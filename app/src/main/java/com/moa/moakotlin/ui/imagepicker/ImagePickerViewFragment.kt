@@ -75,9 +75,7 @@ class ImagePickerViewFragment(var selectedPictures : ArrayList<String>) : Fragme
 
         adapter.setOnItemClickListener(object : OnItemClickListener{
             override fun onItemClick(v: View, position: Int) {
-                if (viewModel.selectedPictureList.value!!.size+selectedPictures.size == 10) {
-                    Toast.makeText(context , "최대 10개 까지 업로드 가능합니다",Toast.LENGTH_SHORT).show()
-                } else {
+
                     if (adapter.checkBoxList.contains(position)) {
                         var index = adapter.checkBoxList.indexOf(position)
                         adapter.checkBoxList.removeAt(index)
@@ -87,15 +85,19 @@ class ImagePickerViewFragment(var selectedPictures : ArrayList<String>) : Fragme
                         adapter.i = 1
                         adapter.resetting()
                     } else {
-                        adapter.selectedPicture.add(list.get(position))
-                        adapter.checkBoxList.add(position)
-                        viewModel.list.add(adapter.list[position])
-                        viewModel.selectedPictureList.value = viewModel.list
-                        adapter.i = 1
-                        adapter.resetting()
+                        if (viewModel.selectedPictureList.value!!.size+selectedPictures.size == 10) {
+                            Toast.makeText(context , "최대 10개 까지 업로드 가능합니다",Toast.LENGTH_SHORT).show()
+                        } else {
+                            adapter.selectedPicture.add(list.get(position))
+                            adapter.checkBoxList.add(position)
+                            viewModel.list.add(adapter.list[position])
+                            viewModel.selectedPictureList.value = viewModel.list
+                            adapter.i = 1
+                            adapter.resetting()
+                        }
                     }
                 }
-            }
+
 
         })
 

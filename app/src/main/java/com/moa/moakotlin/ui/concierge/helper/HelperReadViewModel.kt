@@ -1,16 +1,20 @@
 package com.moa.moakotlin.ui.concierge.helper
 
 import android.os.Bundle
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.moa.moakotlin.data.ChattingRoom
+import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.repository.concierge.HelperRepository
 
 class HelperReadViewModel() : ViewModel() {
 
     lateinit var writerUid :String
+
+    var newHelper = MutableLiveData<Helper>()
     fun goToChatting(writerUid : String){
         this.writerUid = writerUid
         var db = FirebaseFirestore.getInstance()

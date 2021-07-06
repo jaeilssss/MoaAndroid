@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -117,6 +118,19 @@ class HelperReadFragment : BaseFragment() {
                 setCurrentOnboardingIndicator(position)
             }
         })
+
+        model.newHelper.observe(viewLifecycleOwner, Observer {
+                            helper = it
+                adapter.list = ArrayList()
+                adapter.list.addAll(it.images!!)
+            binding.HelperReadViewPager.adapter = adapter
+//                adapter.notifyDataSetChanged()
+                setHelperData(it)
+                setUpBoardingIndicators(it.images!!.size)
+                setUpFragment(ConciergeReadIntroduceFragment(it))
+                setCurrentOnboardingIndicator(0)
+
+        })
         return binding.root
     }
 
@@ -153,15 +167,17 @@ class HelperReadFragment : BaseFragment() {
         if(requestCode== REQUEST_MODIFY_CODE && resultCode == REQUEST_MODIFY_CODE){
 
             data?.getParcelableExtra<Helper>("newHelper")?.let {
-                helper = it
-                adapter.list = ArrayList()
-                adapter.list.addAll(it.images!!)
-                adapter.notifyDataSetChanged()
-                binding.HelperReadViewPager.verticalScrollbarPosition=0
-                setHelperData(it)
-                setUpBoardingIndicators(it.images!!.size)
-                setUpFragment(ConciergeReadIntroduceFragment(it))
-                setCurrentOnboardingIndicator(0)
+//                helper = it
+//                adapter.list = ArrayList()
+//                adapter.list.addAll(it.images!!)
+//                adapter.notifyDataSetChanged()
+//                binding.HelperReadViewPager.verticalScrollbarPosition=0
+//                setHelperData(it)
+//                setUpBoardingIndicators(it.images!!.size)
+//                setUpFragment(ConciergeReadIntroduceFragment(it))
+//                setCurrentOnboardingIndicator(0)
+
+                model.newHelper.value = it
 
 
             }

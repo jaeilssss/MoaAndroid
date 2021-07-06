@@ -95,7 +95,7 @@ class HelperModifyFragment : Fragment() {
 
         viewModel.newHelper.observe(viewLifecycleOwner, Observer {
 
-                Toast.makeText(activity?.applicationContext,"수정이 완료되었습니다",Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity?.applicationContext,"수정이 완료되었습니다",Toast.LENGTH_SHORT).show()
 
             var intent = Intent()
 
