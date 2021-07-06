@@ -12,12 +12,40 @@ class HelperModifyViewModel : ViewModel() {
     var hopeWage = MutableLiveData<String>("")
     var content = MutableLiveData<String>("")
     var uploadedPathList = ArrayList<String>()
-    var selectedPictureList = MutableLiveData<ArrayList<String>>()
-    var helper = Helper()
+    var selectedPictureList = MutableLiveData<ArrayList<String>>(ArrayList())
     var repository = HelperRepository()
     var newHelper = MutableLiveData<Helper>()
     fun checkEdit() : Boolean{
         return title.value?.length!! >0 && category.value?.length!!>0 &&
                 hopeWage.value?.length!!>0 && content.value?.length!!>0
     }
+
+    suspend fun submit(uploadedPosition : Int,helper : Helper){
+        var repository = HelperRepository()
+        helper.title = title.value.toString()
+        helper.isNego = isNego.value!!
+        helper.hopeWage = hopeWage.value.toString()
+        helper.mainCategory = category.value.toString()
+        helper.content = content.value.toString()
+        if(uploadedPosition==-1){
+                if(selectedPictureList.value?.size!=0){
+                    repository.upload(uploadedPosition,helper.mainCategory, selectedPictureList.value!!,helper){
+                        println("invoke 부분")
+                        newHelper.value = repository.modify(helper.mainCategory,helper)
+                    }
+                }else{
+                    newHelper.value = repository.modify(helper.mainCategory,helper)
+                }
+
+        }else{
+            if(selectedPictureList.value?.size!=0){
+                println("여기 ${helper.images?.get(0)}")
+                println("size 0>  ${selectedPictureList.value?.size}")
+                repository.upload(uploadedPosition,helper.mainCategory, selectedPictureList.value!!,helper){
+                    newHelper.value = repository.modify(helper.mainCategory,helper)
+                }
+            }
+        }
+    }
+
 }

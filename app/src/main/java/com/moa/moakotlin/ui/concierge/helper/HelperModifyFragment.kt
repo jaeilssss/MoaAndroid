@@ -13,12 +13,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.databinding.HelperModifyFragmentBinding
 import com.moa.moakotlin.recyclerview.certification.CertificationImageAdapter
+import com.moa.moakotlin.ui.concierge.category.HelperCategoryActivity
 import com.moa.moakotlin.ui.imagepicker.ImagePickerActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class HelperModifyFragment : Fragment() {
 
@@ -35,6 +41,7 @@ class HelperModifyFragment : Fragment() {
     var selectedPictureList = ArrayList<String>()
 
     private  lateinit var helper : Helper
+    var uploadedPosition =-1
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,12 +62,60 @@ class HelperModifyFragment : Fragment() {
         arguments.let {
             helper = it?.getParcelable<Helper>("helper")!!
             setData(helper)
+            println("시작 할떄 helper - > ${helper.documentID}")
         }
 
         binding.HelperModifyAlbum.setOnClickListener {
             checkPermission()
         }
 
+        viewModel.selectedPictureList.observe(viewLifecycleOwner, Observer {
+
+            binding.HelperModifyCountPicture.text = it.size.toString()
+            adapter.submitList(it)
+            adapter.notifyDataSetChanged()
+        })
+        binding.HelperModifyCategoryLayout.setOnClickListener {
+
+            var intent = Intent(activity, HelperCategoryActivity::class.java)
+            startActivityForResult(intent,2000)
+        }
+        viewModel.title.observe(viewLifecycleOwner, Observer {
+            setSubmitBtnChange()
+        })
+        viewModel.hopeWage.observe(viewLifecycleOwner, Observer {
+            setSubmitBtnChange()
+        })
+        viewModel.content.observe(viewLifecycleOwner, Observer {
+            setSubmitBtnChange()
+        })
+        viewModel.category.observe(viewLifecycleOwner, Observer {
+            setSubmitBtnChange()
+        })
+
+        viewModel.newHelper.observe(viewLifecycleOwner, Observer {
+
+                Toast.makeText(activity?.applicationContext,"수정이 완료되었습니다",Toast.LENGTH_SHORT).show()
+
+            var intent = Intent()
+
+            intent.putExtra("newHelper",it)
+
+           activity?.setResult(4000,intent)
+
+                activity?.finish()
+            binding.HelperModifySubmit.isClickable = true
+                binding.HelperModifyLoading.hide()
+
+        })
+        binding.HelperModifySubmit.setOnClickListener {
+            Toast.makeText(context,selectedPictureList.size.toString(),Toast.LENGTH_SHORT).show()
+            binding.HelperModifySubmit.isClickable = false
+            binding.HelperModifyLoading.show()
+            CoroutineScope(Dispatchers.Main).launch {
+                viewModel.submit(uploadedPosition,helper)
+            }
+        }
     }
     private fun setData(helper : Helper){
         viewModel.title.value = helper.title
@@ -68,6 +123,10 @@ class HelperModifyFragment : Fragment() {
         viewModel.content.value = helper.content
         viewModel.hopeWage.value = helper.hopeWage
         viewModel.selectedPictureList.value = helper.images
+        selectedPictureList.addAll(viewModel.selectedPictureList.value!!)
+        if(helper.images!!.size>0){
+            uploadedPosition = helper.images!!.size-1
+        }
     }
     private fun setSubmitBtnChange(){
         if(viewModel.checkEdit()){
@@ -85,6 +144,21 @@ class HelperModifyFragment : Fragment() {
         binding.HelperModifyRcv.layoutManager = LinearLayoutManager(activity?.applicationContext!!,
             LinearLayoutManager.HORIZONTAL,false)
 
+        adapter.setOnItemCLickListener(object :OnItemClickListener{
+            override fun onItemClick(v: View, position: Int) {
+                if(position<=uploadedPosition && uploadedPosition!=-1){
+                    uploadedPosition--
+                    selectedPictureList.removeAt(position)
+                    helper.images?.removeAt(position)
+                    viewModel.selectedPictureList.value = selectedPictureList
+
+                }else{
+                    selectedPictureList.removeAt(position)
+                    viewModel.selectedPictureList.value = selectedPictureList
+                }
+            }
+
+        })
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

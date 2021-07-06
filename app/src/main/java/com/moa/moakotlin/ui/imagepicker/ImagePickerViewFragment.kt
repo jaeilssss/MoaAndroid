@@ -16,6 +16,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.databinding.ImagePickerViewFragmentBinding
 import com.moa.moakotlin.recyclerview.imagepickrcv.ConciergeImagePickerAdapter
@@ -74,21 +75,25 @@ class ImagePickerViewFragment(var selectedPictures : ArrayList<String>) : Fragme
 
         adapter.setOnItemClickListener(object : OnItemClickListener{
             override fun onItemClick(v: View, position: Int) {
-                if(adapter.checkBoxList.contains(position)){
-                    var index = adapter.checkBoxList.indexOf(position)
-                    adapter.checkBoxList.removeAt(index)
-                    adapter.selectedPicture.removeAt(index)
-                    viewModel.list.removeAt(index)
-                    viewModel.selectedPictureList.value = viewModel.list
-                    adapter.i = 1
-                    adapter.resetting()
-                }else{
-                    adapter.selectedPicture.add(list.get(position))
-                    adapter.checkBoxList.add(position)
-                    viewModel.list.add(adapter.list[position])
-                    viewModel.selectedPictureList.value = viewModel.list
-                    adapter.i = 1
-                    adapter.resetting()
+                if (viewModel.selectedPictureList.value!!.size+selectedPictures.size == 10) {
+                    Toast.makeText(context , "최대 10개 까지 업로드 가능합니다",Toast.LENGTH_SHORT).show()
+                } else {
+                    if (adapter.checkBoxList.contains(position)) {
+                        var index = adapter.checkBoxList.indexOf(position)
+                        adapter.checkBoxList.removeAt(index)
+                        adapter.selectedPicture.removeAt(index)
+                        viewModel.list.removeAt(index)
+                        viewModel.selectedPictureList.value = viewModel.list
+                        adapter.i = 1
+                        adapter.resetting()
+                    } else {
+                        adapter.selectedPicture.add(list.get(position))
+                        adapter.checkBoxList.add(position)
+                        viewModel.list.add(adapter.list[position])
+                        viewModel.selectedPictureList.value = viewModel.list
+                        adapter.i = 1
+                        adapter.resetting()
+                    }
                 }
             }
 

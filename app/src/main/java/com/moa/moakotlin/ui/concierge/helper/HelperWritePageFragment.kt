@@ -76,6 +76,8 @@ class HelperWritePageFragment : Fragment() {
                })
             }
         }
+
+
         initAdapter()
         binding.HelperWriteCountPicture.text = "0"
 

@@ -49,13 +49,16 @@ class HelperWritePageViewModel() :ViewModel(){
   helper.uid = User.getInstance().uid
   helper.isNego = isNego.value!!
 
-
-  helper.images = selectedPictureList.value
-   helper.images?.let {
-    repository.upload(helper.mainCategory, it,helper) {
+  if(selectedPictureList.value!!.size==0){
+   println("??왜 0이야???")
    newHelper.value = repository.submit(helper.mainCategory,helper)
-    }
+  }else{
+
+    repository.upload(-1,helper.mainCategory, selectedPictureList.value!!,helper) {
+     newHelper.value = repository.submit(helper.mainCategory,helper)
+
    }
+  }
   }
 
 

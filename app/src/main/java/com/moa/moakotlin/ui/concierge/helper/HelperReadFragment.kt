@@ -46,10 +46,10 @@ class HelperReadFragment : BaseFragment() {
 
     lateinit var kid : Kid
     lateinit var  bundle : Bundle
-    var data = Helper()
+    var helper = Helper()
     var writer = User()
     var myActivity = MainActivity()
-
+    lateinit var adapter : ConciergeReadViewpagerAdapter
     companion object{
         val REQUEST_MODIFY_CODE = 4000
     }
@@ -74,7 +74,7 @@ class HelperReadFragment : BaseFragment() {
         binding.model = model
         myActivity.bottomNavigationGone()
         arguments?.let {
-            data = it.getParcelable<Helper>("data")!!
+            helper = it.getParcelable<Helper>("data")!!
             writer = it.getParcelable<User>("writer")!!
 
         }
@@ -93,21 +93,20 @@ class HelperReadFragment : BaseFragment() {
         }
             option.show(activity?.supportFragmentManager!!,"bottomsheet")
         }
+        setUpBoardingIndicators(helper?.images!!.size)
         setCurrentOnboardingIndicator(0)
-        setUpFragment(ConciergeReadIntroduceFragment(data))
-
+        setUpFragment(ConciergeReadIntroduceFragment(helper))
 
         setWriterInfo()
-        setUpBoardingIndicators(data?.images!!.size)
-        setHelperData()
+        setHelperData(helper)
 
-        var adapter = data.images?.let { it1 -> ConciergeReadViewpagerAdapter(activity?.applicationContext!!, it1) }
+         adapter = helper.images?.let { it1 -> ConciergeReadViewpagerAdapter(activity?.applicationContext!!, it1) }!!
 
         binding.HelperReadViewPager.adapter = adapter
 
 
         binding.HelperMainIntroduce.setOnClickListener {
-            setUpFragment(ConciergeReadIntroduceFragment(data))
+            setUpFragment(ConciergeReadIntroduceFragment(helper))
         }
         binding.HelperMainReview.setOnClickListener {
             setUpFragment(HelperReadReviewFragment())
@@ -125,7 +124,10 @@ class HelperReadFragment : BaseFragment() {
         navController.popBackStack()
     }
 
+
+
     private fun setUpBoardingIndicators(size : Int){
+        binding.HelperReadIndicators.removeAllViews()
         val indicators =
                  arrayOfNulls<ImageView>(size)
 
@@ -141,20 +143,41 @@ class HelperReadFragment : BaseFragment() {
                     activity?.applicationContext!!,
                     R.drawable.onboarding_indicator_inactive
             ))
-
             indicators[i]?.layoutParams = layoutParams
-
             binding.HelperReadIndicators?.addView(indicators[i])
         }
     }
-    private fun setHelperData(){
-        binding.HelperReadMainCategory.text = data.mainCategory
-        binding.HelperMainTitle.text = data.title
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        if(requestCode== REQUEST_MODIFY_CODE && resultCode == REQUEST_MODIFY_CODE){
+
+            data?.getParcelableExtra<Helper>("newHelper")?.let {
+                helper = it
+                adapter.list = ArrayList()
+                adapter.list.addAll(it.images!!)
+                adapter.notifyDataSetChanged()
+                binding.HelperReadViewPager.verticalScrollbarPosition=0
+                setHelperData(it)
+                setUpBoardingIndicators(it.images!!.size)
+                setUpFragment(ConciergeReadIntroduceFragment(it))
+                setCurrentOnboardingIndicator(0)
+
+
+            }
+
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun setHelperData(helper : Helper){
+        binding.HelperReadMainCategory.text = helper.mainCategory
+        binding.HelperMainTitle.text = helper.title
     }
     private fun setWriterInfo(){
         val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일 HH:mm")
         binding.HelperReadNickName.text = writer.nickName
-        binding.HelperReadDate.text = dateFormat.format(data.timeStamp.toDate())
+        binding.HelperReadDate.text = dateFormat.format(helper.timeStamp.toDate())
     }
     private fun setCurrentOnboardingIndicator( index : Int){
         var childCount = binding.HelperReadIndicators?.childCount
@@ -181,7 +204,7 @@ class HelperReadFragment : BaseFragment() {
                 .setMessage("게시글을 정말 삭제하시겠습니까?")
                 .setPositiveButton("예"){
                     CoroutineScope(Dispatchers.Main).launch {
-                        if(model.delete(data.mainCategory,data.documentID)){
+                        if(model.delete(helper.mainCategory,helper.documentID)){
                             showToast(activity?.applicationContext!!,"삭제가 완료되었습니다")
                             navController.popBackStack()
                         }
@@ -197,7 +220,7 @@ class HelperReadFragment : BaseFragment() {
     }
     fun goToModify(){
         var intent = Intent(activity,ConciergeWriteActivity::class.java)
-        intent.putExtra("helper",data)
+        intent.putExtra("helper",helper)
         startActivityForResult(intent ,REQUEST_MODIFY_CODE )
     }
 }

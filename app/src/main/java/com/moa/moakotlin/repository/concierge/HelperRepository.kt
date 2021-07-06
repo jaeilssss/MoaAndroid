@@ -35,17 +35,14 @@ class HelperRepository {
                 }.await()
         return helper
     }
-    suspend fun modify(mainCaregory: String,helper : Helper) : Boolean{
+    suspend fun modify(mainCategory: String,helper : Helper) : Helper{
         var db = FirebaseFirestore.getInstance()
-        var result = false
-        helper.documentID?.let {
-            db.collection("Helper").document(mainCaregory)
-                    .collection(mainCaregory)
-                    .document(it).set(helper).addOnSuccessListener{
-                        result = true
-                    }.await()
-        }
-        return result
+        db.collection("Helper").document(mainCategory)
+                .collection(mainCategory)
+                .document(helper.documentID)
+                .set(helper).addOnCompleteListener {
+                }.await()
+        return helper
     }
   suspend  fun initSetList(mainCategory: String) : ArrayList<Helper>{
         var db = FirebaseFirestore.getInstance()
@@ -63,8 +60,6 @@ class HelperRepository {
                                 result.add(data)
                             }
                         }
-
-
                     }.await()
       return result
 
@@ -91,50 +86,54 @@ class HelperRepository {
         return result
     }
 
-        fun upload(pathString : String , picturePathList : ArrayList<String>,helper : Helper,action :suspend ()-> Unit){
+        fun upload(num : Int, pathString : String , picturePathList : ArrayList<String>,helper : Helper,action :suspend ()-> Unit){
 //        var picture = adapter.list.get(adapter.checkBox)
             var i = 0
-            helper.images = ArrayList()
+//            helper.images = ArrayList()
         var uploadedList = HashMap<Int,String>()
         for(picturePath in picturePathList){
 
-            var result : String ?=null
-            var storageRef : StorageReference = FirebaseStorage.getInstance().reference
+            if(num!=-1 && num>=i){
 
-
-            var file = Uri.fromFile(File(picturePath))
-
-            var inputstream = FileInputStream(File(picturePath))
-
-            val riversRef = storageRef.child(pathString+"/" + file.lastPathSegment)
-            val number = i++
-            val uploadTask = riversRef.putStream(inputstream)
-            println("시작전")
-//            uploadTask.addOnSuccessListener {
-//                println("리스너~~~")
-//                uploadedList.add(it.task.result.toString())
-//                if(uploadedList.size==picturePathList.size){
-//                    CoroutineScope(Dispatchers.Main).async {
-//                        action.invoke()
-//                    }
-//                }
-//            }
-            uploadTask.continueWithTask { riversRef.downloadUrl }.addOnCompleteListener { task ->
-                uploadedList.put(number, task.result.toString())
-                println("실행중")
-                println("순서 -> ${i}")
-                if(uploadedList.size ==picturePathList.size){
-
-                    for(i in 0 until picturePathList.size){
-                        uploadedList[i]?.let { helper.images?.add(it) }
-                    }
+                if(i==picturePathList.size-1){
                     CoroutineScope(Dispatchers.Main).async {
+                        println("ddd")
                         action.invoke()
-
                     }
                 }
+                i++
+            }else{
 
+                var result : String ?=null
+                var storageRef : StorageReference = FirebaseStorage.getInstance().reference
+
+
+                var file = Uri.fromFile(File(picturePath))
+
+                var inputstream = FileInputStream(File(picturePath))
+
+                val riversRef = storageRef.child(pathString+"/" + file.lastPathSegment)
+                val number = i++
+                val uploadTask = riversRef.putStream(inputstream)
+
+                uploadTask.continueWithTask { riversRef.downloadUrl }.addOnCompleteListener { task ->
+                    uploadedList.put(number, task.result.toString())
+                    println("실행중")
+                    println("순서 -> ${i}")
+                    if(number+1==picturePathList.size){
+
+                        for(i in 0 until picturePathList.size){
+                            uploadedList[i]?.let { helper.images?.add(it) }
+                        }
+                        CoroutineScope(Dispatchers.Main).async {
+                            action.invoke()
+
+                        }
+                    }
+
+                }
             }
+
         }
 
     }

@@ -11,7 +11,7 @@ data class Helper(
         var uid : String="",
         var title : String="",
         var mainCategory : String="",
-        var images : ArrayList<String>?=null,
+        var images : ArrayList<String>?=ArrayList<String>(),
         var content : String="",
         var timeStamp : Timestamp= Timestamp.now(),
         var hopeWage : String="",
