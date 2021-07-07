@@ -10,10 +10,13 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="28dp"
-        android:background="@drawable/shape_grey_radius_10"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/shape_grey_radius_16"
         app:layout_constraintDimensionRatio="H,33:27"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        android:id="@+id/CategoryHelperLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -21,9 +24,8 @@
             android:id="@+id/itemCategoryImage"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:background="@drawable/shape_grey_top_radius_15"
+
+            android:background="@drawable/shape_white_top_radius_10"
             android:scaleType="fitXY"
             app:layout_constraintDimensionRatio="H,33:17"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +48,7 @@
             app:layout_constraintTop_toBottomOf="@id/itemCategoryImage" />
 
         <TextView
-            android:id="@+id/itemCategoryNickName"
+            android:id="@+id/itemCategoryHopeDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -102,6 +104,8 @@
             android:background="@drawable/shape_main_color_radius_5"
             android:includeFontPadding="false"
             android:text="협의가능"
+            android:padding="5dp"
+            android:textColor="@color/moaBlack"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@id/itemCategoryPrice"
             app:layout_constraintEnd_toEndOf="parent"

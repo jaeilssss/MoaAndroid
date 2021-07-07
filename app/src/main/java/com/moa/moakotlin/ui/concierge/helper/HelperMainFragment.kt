@@ -70,9 +70,20 @@ class HelperMainFragment : BaseFragment() {
         binding.model = model
 
         binding.HelperMainKidAllBtn.setOnClickListener {
-//             키드 데이터를 가지고 오는 viewmodel 메소드 호출 필요
-            navController.navigate(R.id.categoryMainFragment)
+            goToCategoryMain("육아")
+        }
 
+        binding.HelperMainEduAllBtn.setOnClickListener {
+            goToCategoryMain("교육")
+        }
+        binding.HelperMainPetAllBtn.setOnClickListener {
+            goToCategoryMain("반려동물케어")
+        }
+        binding.HelperMaininteriorAllBtn.setOnClickListener {
+            goToCategoryMain("인테리어")
+        }
+        binding.HelperMainEtcAllBtn.setOnClickListener {
+            goToCategoryMain("기타")
         }
 
         initGetData(kidAdapter,"육아")
@@ -108,19 +119,6 @@ class HelperMainFragment : BaseFragment() {
             }
         })
     }
-//    fun initGetData(){
-//
-//        arguments?.let {
-//            var map  = it.getSerializable("HelperData")!! as HashMap<String, ArrayList<Helper>>
-//            kidAdapter.submitList(map.get("육아"))
-//            interiorAdapter.submitList(map.get("인테리어"))
-//            petAdapter.submitList(map.get("반려동물케어"))
-//            etcAdapter.submitList(map.get("기타"))
-//            educationAdapter.submitList(map.get("교육"))
-//
-//        }
-//
-//    }
 
     override fun onBackPressed( ) {
         navController.popBackStack()
@@ -185,4 +183,10 @@ class HelperMainFragment : BaseFragment() {
         }
     }
 
+    private fun goToCategoryMain(mainCategory: String){
+
+        var bundle = Bundle()
+        bundle.putString("mainCategory",mainCategory)
+        navController.navigate(R.id.categoryMainFragment,bundle)
+    }
 }

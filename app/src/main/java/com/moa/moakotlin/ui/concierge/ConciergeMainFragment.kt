@@ -40,19 +40,9 @@ class ConciergeMainFragment : BaseFragment() {
         binding.ConciergeMainTalentSharingLayout.setOnClickListener {
 
             navController.navigate(R.id.HelperMainFragment)
-//            CoroutineScope(Dispatchers.Main).launch {
-//                binding.ConciergeMainLoading.show()
-//                model.getHelperDataList()
-//                model.HelperData.observe(viewLifecycleOwner, Observer {
-//                    var bundle = Bundle()
-//                    bundle.putSerializable("HelperData",it)
-//                    navController.navigate(R.id.HelperMainFragment,bundle)
-//                    binding.ConciergeMainLoading.hide()
-//                })
-//            }
         }
         binding.ConciergeMainHelpLayout.setOnClickListener {
-
+            navController.navigate(R.id.action_ConciergeMainFragment_to_neederMainFragment)
         }
         binding.model =model
         return binding.root

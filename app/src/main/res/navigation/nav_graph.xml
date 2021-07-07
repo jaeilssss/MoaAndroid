@@ -157,6 +157,9 @@
         android:name="com.moa.moakotlin.ui.concierge.ConciergeMainFragment"
         android:label="KidViewSelectFragment">
 
+        <action
+            android:id="@+id/action_ConciergeMainFragment_to_neederMainFragment"
+            app:destination="@id/neederMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/userProfileFragment"
@@ -258,5 +261,10 @@
         android:id="@+id/imagePickerViewFragment"
         android:name="com.moa.moakotlin.ui.imagepicker.ImagePickerViewFragment"
         android:label="ImagePickerViewFragment" />
+    <fragment
+        android:id="@+id/neederMainFragment"
+        android:name="com.moa.moakotlin.ui.concierge.needer.NeederMainFragment"
+        android:label="needer_main_fragment"
+        tools:layout="@layout/needer_main_fragment" />
 
 </navigation>

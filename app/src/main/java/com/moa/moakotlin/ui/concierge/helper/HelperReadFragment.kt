@@ -105,6 +105,9 @@ class HelperReadFragment : BaseFragment() {
 
         binding.HelperReadViewPager.adapter = adapter
 
+        binding.back.setOnClickListener {
+            navController.popBackStack()
+        }
 
         binding.HelperMainIntroduce.setOnClickListener {
             setUpFragment(ConciergeReadIntroduceFragment(helper))
