@@ -22,7 +22,7 @@
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/NeederMainCategoryEduLayout"
-        android:background="@drawable/shape_grey_radius_10"
+        android:background="@drawable/concierge_main_selector_view"
         app:layout_constraintDimensionRatio="H,1:1"
         android:layout_margin="15dp"
         android:id="@+id/NeederMainCategoryKidLayout"
@@ -66,7 +66,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="15dp"
-        android:background="@drawable/shape_grey_radius_10">
+        android:background="@drawable/concierge_main_selector_view">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -106,7 +106,7 @@
         app:layout_constraintTop_toBottomOf="@id/NeederMainCategoryKidLayout"
         android:id="@+id/NeederMainCategoryPetLayout"
         app:layout_constraintDimensionRatio="H,1:1"
-        android:background="@drawable/shape_grey_radius_10"
+        android:background="@drawable/concierge_main_selector_view"
         android:layout_marginTop="15dp">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
@@ -146,7 +146,7 @@
         app:layout_constraintTop_toBottomOf="@id/NeederMainCategoryEduLayout"
         android:layout_marginTop="15dp"
         app:layout_constraintDimensionRatio="H,1:1"
-        android:background="@drawable/shape_grey_radius_10"
+        android:background="@drawable/concierge_main_selector_view"
         android:id="@+id/NeederMainCategoryInteriorLayout">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
@@ -161,12 +161,13 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_margin="15dp"
+                android:layout_margin="20dp"
                 app:layout_constraintDimensionRatio="H,1:1"
+
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/ic_category_kid"/>
+                android:src="@drawable/ic_category_interior"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -185,7 +186,7 @@
         app:layout_constraintEnd_toEndOf="@id/NeederMainCategoryPetLayout"
         app:layout_constraintTop_toBottomOf="@id/NeederMainCategoryPetLayout"
         android:layout_marginTop="15dp"
-        android:background="@drawable/shape_grey_radius_10"
+        android:background="@drawable/concierge_main_selector_view"
         android:id="@+id/NeederMainCategorySharingLayout">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
@@ -223,7 +224,7 @@
     app:layout_constraintDimensionRatio="H,1:1"
     app:layout_constraintStart_toStartOf="@id/NeederMainCategoryInteriorLayout"
     app:layout_constraintEnd_toEndOf="@id/NeederMainCategoryInteriorLayout"
-    android:background="@drawable/shape_grey_radius_10"
+    android:background="@drawable/concierge_main_selector_view"
     app:layout_constraintTop_toBottomOf="@id/NeederMainCategoryInteriorLayout"
     android:id="@+id/NeederMainCategoryBorrowLayout"
     android:layout_marginTop="15dp">
@@ -262,7 +263,7 @@
         app:layout_constraintDimensionRatio="H,1:1"
         app:layout_constraintStart_toStartOf="@id/NeederMainCategorySharingLayout"
         app:layout_constraintEnd_toEndOf="@id/NeederMainCategorySharingLayout"
-        android:background="@drawable/shape_grey_radius_10"
+        android:background="@drawable/concierge_main_selector_view"
         app:layout_constraintTop_toBottomOf="@id/NeederMainCategorySharingLayout"
         android:id="@+id/NeederMainCategoryEtcLayout"
         android:layout_marginTop="15dp">

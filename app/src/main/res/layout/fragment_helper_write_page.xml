@@ -156,12 +156,80 @@
         android:inputType="number"
         android:id="@+id/HelperWriteHopeWageEdit"/>
 
-<TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/NeederWriteGuideLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="200dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/shape_write_guide_radius_15"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/HelperWriteHopeWageEdit">
+
+        <ImageView
+            android:id="@+id/HelperWriteGuideCheckImg"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/ic_yellow_check"
+            app:layout_constraintEnd_toStartOf="@id/HelperWriteGuideTextView"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/HelperWriteGuideTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 글 작성하기 전에 알려드려요"
+            android:textColor="@color/moaBlack"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/HelperWriteGuideCheckImg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/HelperWriteGuideCheckImg"
+            app:layout_constraintTop_toTopOf="@id/HelperWriteGuideCheckImg" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:text="@string/ConciergeWriteGuide"
+            app:layout_constraintTop_toBottomOf="@id/HelperWriteGuideTextView"
+            android:layout_marginTop="10dp"
+            android:textSize="16dp"
+            android:textColor="@color/moaBlack"
+            android:gravity="center"
+            android:lineSpacingExtra="9sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/goToGuideLine"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="10dp"
+            android:textColor="@color/moaBlack"
+            android:id="@+id/HelperWriteGoToGuide"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="신청내용"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/HelperWriteHopeWageEdit"
+    app:layout_constraintTop_toBottomOf="@id/NeederWriteGuideLayout"
     android:layout_marginStart="15dp"
     android:layout_marginTop="10dp"
     android:textColor="@color/moaBlack"
@@ -182,28 +250,12 @@
         android:layout_marginTop="10dp"
         android:text="@={model.content}"
         android:id="@+id/HelperWriteContentEdit"/>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/HelperWriteContentEdit"
-        android:id="@+id/HelperWritePolicyLayout"
-        android:background="@drawable/shape_main_color_radius_5">
-<View
-    android:layout_width="10dp"
-    android:layout_height="10dp"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/HelperWritePolicyLayout"
+        app:layout_constraintTop_toBottomOf="@id/HelperWriteContentEdit"
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/shape_grey_radius_10"

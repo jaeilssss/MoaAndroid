@@ -3,6 +3,7 @@ package com.moa.moakotlin.ui.concierge.needer
 import android.net.Uri
 import android.os.Bundle
 import androidx.databinding.ObservableField
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
@@ -32,7 +33,8 @@ class NeederWriteViewModel():ViewModel() {
     var imagelist : ArrayList<String> ?=null
     var list = ArrayList<String>()
     var i = 0
-    var mainCategory = ""
+    var mainCategory = MutableLiveData<String>("")
+    var subCategory = MutableLiveData<String>("")
 
 
 //    fun test (list: ArrayList<String>) : Helper {

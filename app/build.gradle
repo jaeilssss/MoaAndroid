@@ -42,6 +42,7 @@ android {
 
 dependencies {
 
+    implementation "com.google.android:flexbox:2.0.1"
     //fcm
 
     implementation 'com.google.firebase:firebase-messaging:17.3.4'

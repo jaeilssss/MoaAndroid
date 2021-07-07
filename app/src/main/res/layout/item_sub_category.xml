@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="등하원 도우미"
-        android:background="@drawable/shape_grey_radius_10"
-        android:padding="20dp"
+        android:background="@drawable/selector_sub_category"
+        android:padding="13dp"
         android:gravity="center"
         android:textSize="18sp"
+        android:id="@+id/itemSubCategory"
         android:textColor="@color/moaBlack"
         android:layout_marginBottom="15dp"
         android:layout_marginStart="20dp"

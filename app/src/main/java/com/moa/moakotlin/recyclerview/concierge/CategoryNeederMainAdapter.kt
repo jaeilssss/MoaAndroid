@@ -5,12 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.databinding.ItemCategoryMainBinding
 
-class CateoryNeederMainAdapter() : ListAdapter<Needer, CateoryNeederMainAdapter.CategoryViewHolder>(diffUtil) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CateoryNeederMainAdapter.CategoryViewHolder {
+class CategoryNeederMainAdapter() : ListAdapter<Needer, CategoryNeederMainAdapter.CategoryViewHolder>(diffUtil) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryNeederMainAdapter.CategoryViewHolder {
         return CategoryViewHolder(ItemCategoryMainBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 

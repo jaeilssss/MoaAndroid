@@ -17,6 +17,7 @@ import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentConciergeWriteBinding
 import com.moa.moakotlin.ui.concierge.helper.HelperWritePageFragment
+import com.moa.moakotlin.ui.concierge.needer.NeederWriteFragment
 
 class ConciergeWriteFragment : Fragment() {
 
@@ -53,7 +54,16 @@ class ConciergeWriteFragment : Fragment() {
             }
         }
 
-        
+        binding.ConciergeMainHelpLayout.setOnClickListener {
+            if(User.getInstance().certificationStatus.equals("인증").not()){
+                showToast(activity?.applicationContext!!,"아파트 인증 한 유저만 이용가능합니다!")
+            }else{
+                var fragment = NeederWriteFragment()
+
+                activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.ConciergeWriteFrameLayout,fragment)?.commit()
+            }
+        }
+
 
         return binding.root
     }

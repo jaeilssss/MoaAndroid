@@ -26,16 +26,47 @@ class NeederMainCategoryFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.needer_main_category_fragment,container, false)
 
+
+
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-
         super.onActivityCreated(savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(NeederMainCategoryViewModel::class.java)
 
         binding.model = viewModel
+
+        binding.NeederMainCategoryEtcLayout.setOnClickListener {
+            var fragment = NeederSubCategoryFragment("기타")
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.NeederCategoryFrgment,fragment)?.commit()
+        }
+        binding.NeederMainCategoryInteriorLayout.setOnClickListener {
+            var fragment = NeederSubCategoryFragment("인테리어")
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.NeederCategoryFrgment,fragment)?.commit()
+        }
+        binding.NeederMainCategoryPetLayout.setOnClickListener {
+            var fragment = NeederSubCategoryFragment("반려동물케어")
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.NeederCategoryFrgment,fragment)?.commit()
+        }
+        binding.NeederMainCategoryEduLayout.setOnClickListener {
+            var fragment = NeederSubCategoryFragment("교육")
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.NeederCategoryFrgment,fragment)?.commit()
+        }
+        binding.NeederMainCategoryKidLayout.setOnClickListener {
+            var fragment = NeederSubCategoryFragment("육아")
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.NeederCategoryFrgment,fragment)?.commit()
+        }
+        binding.NeederMainCategorySharingLayout.setOnClickListener {
+            var fragment = NeederSubCategoryFragment("품앗이")
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.NeederCategoryFrgment,fragment)?.commit()
+        }
+
+        binding.NeederMainCategoryBorrowLayout.setOnClickListener {
+            var fragment = NeederSubCategoryFragment("빌려주세요")
+            activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.NeederCategoryFrgment,fragment)?.commit()
+        }
 
     }
 

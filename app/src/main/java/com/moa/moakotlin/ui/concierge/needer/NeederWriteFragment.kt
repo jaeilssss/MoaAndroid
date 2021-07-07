@@ -2,6 +2,7 @@ package com.moa.moakotlin.ui.concierge.needer
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,46 +11,54 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
-import com.moa.moakotlin.databinding.FragmentHelperWriteBinding
+import com.moa.moakotlin.databinding.FragmentNeederWriteBinding
+import com.moa.moakotlin.ui.concierge.category.NeederCategoryActivity
 
 class NeederWriteFragment : Fragment() {
 
-    lateinit var binding : FragmentHelperWriteBinding
+    lateinit var binding : FragmentNeederWriteBinding
 
     lateinit var navController: NavController
 
     lateinit var model : NeederWriteViewModel
 
+    companion object{
+        var REQUEST_CATEGORY_SELECTION = 2000
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_helper_write,container,false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_needer_write,container,false)
 
-        navController = findNavController()
 
         model = ViewModelProvider(this).get(NeederWriteViewModel::class.java)
 
         binding.model = model
 
-
+        binding.NeederWriteCategoryLayout.setOnClickListener { selectCategory() }
         return binding.root
     }
 
-    fun selectType(){
-        val builder: AlertDialog.Builder = AlertDialog.Builder(activity)
-        val items = resources.getStringArray(R.array.mainCategory)
-        builder.setItems(R.array.mainCategory, DialogInterface.OnClickListener { dialog, pos ->
-            val items = resources.getStringArray(R.array.mainCategory)
-            model.mainCategory = items.get(pos)
+    fun selectCategory(){
+        var intent = Intent(activity,NeederCategoryActivity::class.java)
 
-        })
-        val alertDialog: AlertDialog = builder.create()
-        alertDialog.setTitle("당신의 유형을 선택해주세요")
-        alertDialog.show()
+        startActivityForResult(intent, REQUEST_CATEGORY_SELECTION)
     }
 
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode== REQUEST_CATEGORY_SELECTION && resultCode == REQUEST_CATEGORY_SELECTION){
+
+            model.mainCategory.value = data?.getStringExtra("mainCategory")
+            model.subCategory.value = data?.getStringExtra("subCategory")
+
+            binding.NeederWriteCategory.text = "${data?.getStringExtra("mainCategory")}  /  ${data?.getStringExtra("subCategory")}"
+
+        }
+    }
 }

@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+        <variable
+            name="model"
+            type="com.moa.moakotlin.ui.concierge.needer.NeederWriteViewModel" />
+    </data>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.concierge.needer.NeederWriteFragment">
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="9.8dp"
+        android:layout_height="17dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/ic_back"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/moaBlack"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@id/back"
+        app:layout_constraintBottom_toBottomOf="@id/back"
+        android:text="도움 요청 글쓰기"
+        android:id="@+id/NeederWriteText"
+        android:gravity="center_vertical"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="글쓰기"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/NeederWriteText"
+        android:layout_marginTop="50dp"
+        android:textColor="@color/moaBlack"
+        android:layout_marginStart="15dp"
+        android:textSize="14sp"
+        android:id="@+id/NeederWriteTitleText"
+        android:lineSpacingExtra="8.5sp"/>
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintTop_toBottomOf="@id/NeederWriteTitleText"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_grey_radius_10"
+        android:hint="제목을 써주세요"
+        android:id="@+id/NeederWriteTitleEdit"
+        android:padding="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/NeederWriteTitleEdit"
+        android:text="당신의 전문 분야"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:textColor="@color/moaBlack"
+        android:textSize="14sp"
+        android:lineSpacingExtra="8.5sp"
+        android:id="@+id/NeederWriteCategoryText"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintTop_toBottomOf="@id/NeederWriteCategoryText"
+        android:layout_marginTop="10dp"
+        android:id="@+id/NeederWriteCategoryLayout"
+        android:background="@drawable/shape_grey_radius_10">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:hint="당신이 필요한 분야를 선택해주세요"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center_vertical"
+            android:id="@+id/NeederWriteCategory"
+            android:textSize="16sp"
+            android:textColor="@color/moaBlack"
+            android:paddingStart="10dp"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="37dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="9dp"
+            android:background="@drawable/ic_right_arrow"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="희망 시급"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/NeederWriteCategoryLayout"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:textColor="@color/moaBlack"
+        android:textSize="14sp"
+        android:id="@+id/NeederWriteHopeWageText"/>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="협의가능"
+        android:textSize="14sp"
+        android:button="@drawable/selector_signup_policy_checkbox"
+        android:textColor="#777777"
+        app:layout_constraintTop_toTopOf="@id/NeederWriteHopeWageText"
+        app:layout_constraintBottom_toBottomOf="@id/NeederWriteHopeWageText"
+        android:layout_marginEnd="15dp"
+        android:id="@+id/NeederWriteIsNegoCheckBox"/>
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_grey_radius_10"
+        app:layout_constraintTop_toBottomOf="@id/NeederWriteHopeWageText"
+        android:hint="희망시급"
+        android:inputType="number"
+        android:padding="10dp"
+        android:id="@+id/NeederWriteHopeWageEdit"/>
+
+<!--    여기서 부터 시작 해야 함 !-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/NeederWriteHopeWageEdit"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:textColor="@color/moaBlack"
+        android:id="@+id/NeederWriteHopeDateTextView"
+        android:textSize="14sp"
+        android:text="희망 날짜"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintTop_toBottomOf="@id/NeederWriteHopeDateTextView"
+        android:layout_marginTop="10dp"
+        android:id="@+id/NeederWriteHopeDateLayout"
+        android:background="@drawable/shape_grey_radius_10">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:hint="시작 날짜를 선택해주세요"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center_vertical"
+            android:id="@+id/NeederWriteHopeDateText"
+            android:textSize="16sp"
+            android:paddingStart="10dp"/>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="37dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="9dp"
+            android:background="@drawable/ic_right_arrow"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/NeederWriteHopeDateLayout"
+        android:minHeight="200dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="5dp"
+        android:id="@+id/NeederWriteGuideLayout"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_write_guide_radius_15">
+
+        <ImageView
+            android:id="@+id/NeederWriteGuideCheckImg"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/ic_yellow_check"
+            app:layout_constraintEnd_toStartOf="@id/NeederWriteGuideTextView"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/NeederWriteGuideTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 글 작성하기 전에 알려드려요"
+            android:textColor="@color/moaBlack"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/NeederWriteGuideCheckImg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/NeederWriteGuideCheckImg"
+            app:layout_constraintTop_toTopOf="@id/NeederWriteGuideCheckImg" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:text="@string/ConciergeWriteGuide"
+            app:layout_constraintTop_toBottomOf="@id/NeederWriteGuideTextView"
+            android:layout_marginTop="10dp"
+            android:textSize="16dp"
+            android:textColor="@color/moaBlack"
+            android:gravity="center"
+            android:lineSpacingExtra="9sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/goToGuideLine"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="10dp"
+            android:textColor="@color/moaBlack"
+            android:id="@+id/NeederWriteGoToGuide"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="신청내용"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/NeederWriteGuideLayout"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/moaBlack"
+        android:textSize="14sp"
+        android:id="@+id/NeederWriteContentTextView"/>
+    
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/NeederWriteContentTextView"
+        android:minHeight="158dp"
+        android:background="@drawable/shape_grey_radius_15"
+        android:hint="내용을 입력하세요"
+        android:gravity="top"
+        android:padding="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/NeederWriteContentEdit"/>
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/NeederWriteContentEdit"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_grey_radius_10"
+        android:id="@+id/NeederWriteAlbum"/>
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/shape_shape_oval_grey"
+        android:src="@drawable/ic_plus"
+        android:id="@+id/AptCertificationPlusImage"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@id/NeederWriteAlbum"
+        app:layout_constraintTop_toTopOf="@id/NeederWriteAlbum" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="3"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@color/moaBlack"
+        app:layout_constraintTop_toBottomOf="@id/AptCertificationPlusImage"
+        app:layout_constraintEnd_toStartOf="@id/NeederWritePictureTotal"
+        app:layout_constraintStart_toStartOf="@id/NeederWriteAlbum"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:id="@+id/NeederWriteCountPicture"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/NeederWritePictureTotal"
+        app:layout_constraintTop_toBottomOf="@id/AptCertificationPlusImage"
+        android:text="/10"
+        android:textSize="16sp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/NeederWriteCountPicture"
+        app:layout_constraintEnd_toEndOf="@id/NeederWriteAlbum"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/NeederWriteAlbum"
+        app:layout_constraintBottom_toBottomOf="@id/NeederWriteAlbum"
+        app:layout_constraintStart_toEndOf="@id/NeederWriteAlbum"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/NeederWriteRcv"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintTop_toBottomOf="@id/NeederWriteRcv"
+        android:background="@drawable/button_shape_main_color"
+        android:textColor="@color/moaBlack"
+        android:text="다음"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:id="@+id/NeederWriteSubmit"/>
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="?android:progressBarStyleLarge"
+        android:indeterminateTint="@color/mainColor"
+        android:visibility="gone"
+        android:id="@+id/NeederWriteLoading"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+</layout>
