@@ -79,6 +79,7 @@
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
                 android:text="뉴나리"
+                android:fontFamily="@font/notosanscjkkr_medium"
                 android:maxLines="1"
                 app:layout_constraintStart_toEndOf="@id/HelperReadProfileImage"
                 app:layout_constraintTop_toTopOf="@id/HelperReadProfileImage"
@@ -96,7 +97,7 @@
                 app:layout_constraintStart_toEndOf="@id/HelperReadProfileImage"
                 app:layout_constraintTop_toBottomOf="@id/HelperReadNickName"
                 app:layout_constraintBottom_toBottomOf="@id/HelperReadProfileImage"
-                android:text="만현마을쌍용1차"
+                android:fontFamily="@font/notosanscjkkr_medium"
                 android:layout_marginStart="5dp"
                 android:textSize="11.3sp"
                 app:layout_constraintHorizontal_chainStyle="packed"
@@ -126,6 +127,7 @@
                 android:layout_marginStart="10dp"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                android:fontFamily="@font/notosanscjkkr_medium"
                 android:textColor="@color/moaBlack" />
 
             <View
@@ -146,6 +148,7 @@
                 app:layout_constraintTop_toBottomOf="@id/HelperMainGreyLine"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 android:id="@+id/HelperMainIntroduce"
+                android:fontFamily="@font/notosanscjkkr_medium"
                 android:text="프로필"/>
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
@@ -154,7 +157,7 @@
                 app:layout_constraintStart_toEndOf="@id/HelperMainIntroduce"
                 app:layout_constraintTop_toBottomOf="@id/HelperMainGreyLine"
                 android:text="받은후기"
-
+                android:fontFamily="@font/notosanscjkkr_medium"
                 android:id="@+id/HelperMainReview"/>
                 <FrameLayout
                     android:layout_width="0dp"
@@ -202,6 +205,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="이웃과 채팅하기"
+            android:fontFamily="@font/notosanscjkkr_medium"
             android:textColor="#000000"
             android:textSize="18sp"
             android:textStyle="bold"

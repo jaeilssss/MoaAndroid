@@ -38,7 +38,7 @@ class HelperWritePageViewModel() :ViewModel(){
 
   var i=1
   helper = Helper()
-  uploadedPathList = ArrayList<String>()
+
   helper.aroundApt = aptList.getInstance().aroundApt
   helper.aptCode = User.getInstance().aptCode
   helper.aptName = User.getInstance().aptName
@@ -61,25 +61,4 @@ class HelperWritePageViewModel() :ViewModel(){
   }
   }
 
-
- suspend fun upload(path : String,num : Int) : Boolean{
-  var imageRepository = ImagePickerRepository()
-  var uploadPath= imageRepository.upload("helper",path)
-  if (uploadPath != null) {
-   println("${num} 번째 ->  ${uploadedPathList.size} ")
-   uploadedPathList.add(uploadPath)
-  }
-  if(num==uploadedPathList.size){
-   helper.images = uploadedPathList
-
-  return storeSubmit()
-
-  }
-  return false
- }
-
- suspend fun storeSubmit() : Boolean{
-  var data=  repository.submit(helper.mainCategory,helper)
-  return true
- }
 }

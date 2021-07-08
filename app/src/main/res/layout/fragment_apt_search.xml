@@ -34,12 +34,12 @@
         android:gravity="center_horizontal"
         android:lineSpacingExtra="8.8sp"
         android:textSize="18sp"
-        android:textStyle="bold"
         android:textColor="#000000"
         android:id="@+id/aptSearchText"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/back"
+        app:layout_constraintBottom_toBottomOf="@id/back"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="11dp"
+        android:fontFamily="@font/notosanscjkkr_medium"
         app:layout_constraintStart_toStartOf="parent"
         android:text="우리 아파트 검색" />
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -71,6 +71,7 @@
     android:background="@drawable/login_edit_text_radius_15"
     app:layout_constraintTop_toTopOf="parent"
     android:hint="아파트를 입력해주세요"
+    android:fontFamily="@font/notosanscjkkr_medium"
     android:text="@={model.searchContent}"
     android:paddingStart="10dp"
     android:id="@+id/aptSearchEdit"/>

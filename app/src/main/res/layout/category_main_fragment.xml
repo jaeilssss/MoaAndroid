@@ -32,6 +32,7 @@
         android:textStyle="bold"
         android:textSize="18sp"
         android:id="@+id/CategoryMainText"
+        android:fontFamily="@font/notosanscjkkr_medium"
         app:layout_constraintTop_toTopOf="@id/back"
         app:layout_constraintBottom_toBottomOf="@id/back"/>
 

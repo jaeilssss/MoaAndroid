@@ -21,6 +21,7 @@
         android:layout_marginTop="30dp"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:id="@+id/aptCertificationText"
         android:textColor="@color/moaBlack"/>
 
@@ -36,6 +37,7 @@
         android:layout_marginEnd="10dp"
         android:text="아니요"
         android:textSize="18sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:textColor="#ffffff"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
@@ -55,6 +57,7 @@
         android:layout_marginEnd="20dp"
         android:text="네"
         android:textSize="18sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:textColor="@color/moaBlack"
         android:textStyle="bold"
         android:layout_marginBottom="25dp"

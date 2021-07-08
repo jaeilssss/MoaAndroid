@@ -16,6 +16,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         android:text="채팅"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:textStyle="bold"
         android:textColor="@color/moaBlack"
         android:textSize="18sp"

@@ -34,10 +34,11 @@
         android:textColor="@color/moaBlack"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="11.8dp"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        app:layout_constraintTop_toTopOf="@id/back"
+        app:layout_constraintBottom_toBottomOf="@id/back"
         android:id="@+id/AptCertificationText"/>
 
 <androidx.recyclerview.widget.RecyclerView
@@ -76,6 +77,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/aptCertificationRcv"
         android:text="필요한 준비물"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:id="@+id/aptCertificationSupplies"
         android:gravity="center"
         android:textStyle="bold"
@@ -91,6 +93,7 @@
         android:text="@string/AptCertificationSuppliesText"
         android:gravity="center"
         android:textSize="16sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:id="@+id/aptCertificationSuppliesText"
         />
     <TextView
@@ -103,6 +106,7 @@
         app:layout_constraintTop_toBottomOf="@id/aptCertificationSuppliesText"
         android:layout_marginTop="80dp"
         android:gravity="center"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:background="@drawable/login_edit_text_radius_15"
         android:text="@string/AptCertificationSuppliesDetail"
         android:id="@+id/AptCertificationSuppliesDetail"
@@ -118,6 +122,7 @@
         app:layout_constraintTop_toBottomOf="@id/AptCertificationSuppliesDetail"
         android:layout_marginTop="15dp"
         android:textStyle="bold"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:textSize="18sp"
         android:id="@+id/AptCertificationNext"/>
 

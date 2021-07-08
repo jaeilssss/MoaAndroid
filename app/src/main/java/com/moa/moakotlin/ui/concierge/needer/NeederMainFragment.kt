@@ -15,6 +15,7 @@ import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.databinding.NeederMainFragmentBinding
 import com.moa.moakotlin.recyclerview.concierge.HelperMainAdapter
+import com.moa.moakotlin.recyclerview.concierge.NeederMainAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,11 +30,14 @@ class NeederMainFragment : Fragment() {
 
     lateinit var myActivity : MainActivity
 
-    var kidAdapter = HelperMainAdapter()
-    var interiorAdapter = HelperMainAdapter()
-    var etcAdapter= HelperMainAdapter()
-    var educationAdapter = HelperMainAdapter()
-    var petAdapter = HelperMainAdapter()
+    var kidAdapter = NeederMainAdapter()
+    var interiorAdapter = NeederMainAdapter()
+    var etcAdapter= NeederMainAdapter()
+    var educationAdapter = NeederMainAdapter()
+    var petAdapter = NeederMainAdapter()
+    var sharingAdapter = NeederMainAdapter()
+    var borrowAdapter = NeederMainAdapter()
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         myActivity = activity as MainActivity
@@ -71,18 +75,25 @@ class NeederMainFragment : Fragment() {
             LinearLayoutManager.HORIZONTAL,false)
         binding.NeederMainEtcRcv.layoutManager= LinearLayoutManager(activity?.applicationContext!!,
             LinearLayoutManager.HORIZONTAL,false)
+        binding.NeederMainBorrowRcv.layoutManager =  LinearLayoutManager(activity?.applicationContext!!,
+            LinearLayoutManager.HORIZONTAL,false)
+        binding.NeederMainSharingRcv.layoutManager =  LinearLayoutManager(activity?.applicationContext!!,
+            LinearLayoutManager.HORIZONTAL,false)
+
 
         initGetData(kidAdapter,"육아")
         initGetData(interiorAdapter,"인테리어")
         initGetData(petAdapter,"반려동물케어")
         initGetData(educationAdapter,"교육")
         initGetData(etcAdapter,"기타")
+        initGetData(borrowAdapter,"빌려주세요")
+        initGetData(sharingAdapter,"품앗이")
     }
     // 이 부분 수정해야함.. 어댑터를 하나 더 만들어야 함
-    fun initGetData(adapter: HelperMainAdapter,mainCategory : String){
+    fun initGetData(adapter: NeederMainAdapter,mainCategory : String){
         CoroutineScope(Dispatchers.Main).launch {
             var list = viewModel.getData(mainCategory)
-//            adapter.submitList(list)
+            adapter.submitList(list)
         }
     }
 }

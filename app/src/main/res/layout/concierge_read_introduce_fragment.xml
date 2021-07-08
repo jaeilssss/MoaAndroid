@@ -16,6 +16,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="신청내용"
+    android:fontFamily="@font/notosanscjkkr_medium"
     android:layout_marginStart="15dp"
     android:textSize="12sp"
     android:textColor="#777777"
@@ -33,6 +34,7 @@
         app:layout_constraintTop_toBottomOf="@id/ConciergeReadContentText"
         android:textColor="@color/moaBlack"
         android:padding="5dp"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:paddingStart="15dp"
         android:text="@={model.content}"/>
     <TextView
@@ -43,6 +45,7 @@
         app:layout_constraintTop_toBottomOf="@id/ConciergeReadContent"
         android:text="이웃정보"
         android:textSize="12sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:textColor="#777777"
         android:layout_marginTop="15dp"
         android:id="@+id/ConciergeReadAptNameText"/>
@@ -56,6 +59,7 @@
         android:layout_marginStart="15dp"
         android:text="@={model.aptName}"
         android:textSize="16sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:textColor="@color/moaBlack"
         android:lineSpacingExtra="9sp"
         android:layout_marginTop="10dp"
@@ -70,6 +74,7 @@
         android:textSize="12sp"
         android:textColor="#777777"
         android:layout_marginTop="15dp"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:layout_marginStart="15dp"
         android:id="@+id/ConciergeReadHopeWageText"/>
     <TextView
@@ -80,6 +85,7 @@
         android:textColor="@color/moaBlack"
         android:textStyle="bold"
         android:textSize="20sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:text="@={model.hopeWage}"
         android:layout_marginStart="15dp"
         android:id="@+id/ConciergeReadHopeWage"/>

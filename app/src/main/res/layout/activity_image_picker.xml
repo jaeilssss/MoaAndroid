@@ -27,6 +27,7 @@
         app:layout_constraintTop_toTopOf="@id/back"
         app:layout_constraintBottom_toBottomOf="@id/back"
         android:text="이미지 선택"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:id="@+id/ActivityImagePickerText"
         android:gravity="center_vertical"/>
     <TextView
@@ -37,6 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="16dp"
         android:text="완료"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:textSize="18sp"
         android:textColor="@color/moaBlack"
         android:id="@+id/ActivityImagePickerSubmit"/>

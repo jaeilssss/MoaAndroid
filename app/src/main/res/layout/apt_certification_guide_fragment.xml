@@ -32,10 +32,10 @@
         android:textColor="@color/moaBlack"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="11.8dp"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/back"
+        app:layout_constraintBottom_toBottomOf="@id/back"
         android:id="@+id/AptCertificationGuideText"/>
 
     <ImageView
@@ -63,6 +63,7 @@
         app:layout_constraintTop_toBottomOf="@id/AptCertificationGuideText"
         android:textColor="@color/moaBlack"
         android:textSize="18sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:textStyle="bold"/>
     <TextView
         android:layout_width="0dp"
@@ -73,6 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/CoincidenceText"
         android:textSize="16sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:layout_marginTop="10dp"
         android:gravity="center" />
 
@@ -101,6 +103,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/notosanscjkkr_medium"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/CoincidenceDetail" />
@@ -113,6 +116,7 @@
         app:layout_constraintTop_toBottomOf="@id/NotCoincidenceText"
         android:text="@string/NotCoincidenceDetail"
         android:id="@+id/NotCoincidenceDetail"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:textSize="16sp"
         android:gravity="center"/>
 
@@ -135,6 +139,7 @@
         android:textColor="@color/moaBlack"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:fontFamily="@font/notosanscjkkr_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
@@ -149,6 +154,7 @@
         android:text="@string/NotCertificationDetail"
         android:id="@+id/NotCoincidenceDetailText"
         android:textSize="16sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:gravity="center"/>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -160,6 +166,7 @@
         android:layout_marginTop="70dp"
         android:background="@drawable/button_shape_main_color"
         android:text="다음"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:textSize="18sp"
         android:id="@+id/guildNextBtn"
         android:textStyle="bold"/>

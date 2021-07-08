@@ -8,11 +8,9 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import com.moa.moakotlin.data.Helper
-import com.moa.moakotlin.data.Picture
-import com.moa.moakotlin.data.Sitter
-import com.moa.moakotlin.data.User
+import com.moa.moakotlin.data.*
 import com.moa.moakotlin.repository.concierge.HelperRepository
+import com.moa.moakotlin.repository.concierge.NeederRepository
 import com.moa.moakotlin.repository.imagePicker.ImagePickerRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,128 +20,58 @@ import java.io.FileInputStream
 
 class NeederWriteViewModel():ViewModel() {
 
-    var title = ObservableField<String>("")
-    var type = ObservableField<String>("")
-    var wage = ObservableField<String>("")
-    var content = ObservableField<String>("")
+    var title = MutableLiveData<String>("")
+
+    var wage = MutableLiveData<String>("")
+    var content = MutableLiveData<String>("")
     lateinit var images : ArrayList<String>
-    var pictureCount = ObservableField<String>("0")
+    var pictureCount = MutableLiveData<String>("0")
     @field:JvmField
-    var isNego = ObservableField<Boolean>(false)
+    var isNego = MutableLiveData<Boolean>(false)
     var imagelist : ArrayList<String> ?=null
     var list = ArrayList<String>()
     var hopeDate = MutableLiveData<String>()
     var i = 0
+    var selectedPictureList = MutableLiveData<ArrayList<String>>()
     var mainCategory = MutableLiveData<String>("")
     var subCategory = MutableLiveData<String>("")
+    var newNeeder = MutableLiveData<Needer>()
 
 
-//    fun test (list: ArrayList<String>) : Helper {
-//        var repository = HelperRepository()
-//        var result = false
-//        var helper = Helper(User.getInstance().aptCode, User.getInstance().aptName, User.getInstance().uid, title.get()!!, mainCategory, null,
-//                content.get()!!, Timestamp.now(), wage.get()!!, "", isNego.get()!!)
-//        CoroutineScope(Dispatchers.IO).async {
-//            if (list.size == 0) {
-//                result = repository.submit(mainCategory, helper)
-//            } else {
-//                var uploader = ImagePickerRepository()
-//                var images = ArrayList<String>()
-//                for (i in 0 until list.size) {
-//                    images.add(uploader.upload("helperImages/", list.get(i))!!)
-//                    helper.images = images
-//                }
-//                result = repository.submit(mainCategory, helper)
-//            }
-//        }
-//        return helper
-//    }
-//    suspend fun submit(list : ArrayList<String>) : Boolean{
-//        var repository = HelperRepository()
-//        var result = false
-//        var helper = Helper(User.getInstance().aptCode,User.getInstance().aptName,User.getInstance().uid,title.get()!!,mainCategory,null,
-//                content.get()!!, Timestamp.now(),wage.get()!!,"",isNego.get()!!)
-//        if(list.size==0){
-//             result  = repository.submit(mainCategory,helper)
-//        }else{
-//            var uploader = ImagePickerRepository()
-//            var images = ArrayList<String>()
-//            for(i in 0 until list.size){
-//                images.add(uploader.upload("helperImages/",list.get(i))!!)
-//                helper.images = images
-//            }
-//            result = repository.submit(mainCategory,helper)
-//        }
-//        return result
-//    }
+    fun check() : Boolean{
+        return title.value?.length!!>0 &&
+                content.value?.length!!>0 &&
+                wage.value?.length!!>0 &&
+                hopeDate.value?.length!!>0 &&
+                mainCategory.value?.length!!>0 &&
+                subCategory.value?.length!!>0
+    }
+    suspend fun submit(){
 
-    fun uploadImageList(picture : String, size:Int){
+        var i=1
+        var repository = NeederRepository()
+      var needer = Needer()
 
-        var storageRef = FirebaseStorage.getInstance().getReference()
+        needer.aroundApt = aptList.getInstance().aroundApt
+        needer.aptCode = User.getInstance().aptCode
+        needer.aptName = User.getInstance().aptName
+        needer.content = content.value!!
+        needer.title = title.value!!
+        needer.hopeWage = wage.value!!
+        needer.hopeDate = hopeDate.value!!
+        needer.mainCategory = mainCategory.value!!
+        needer.subCategory = subCategory.value!!
+        needer.uid = User.getInstance().uid
+        needer.hireStatus = "모집중"
+        needer.isNego = isNego.value!!
 
-        var file = Uri.fromFile(File(picture))
-
-        var inputstream = FileInputStream(File(picture))
-
-        val riversRef = storageRef.child("sitterImage/" + file.lastPathSegment)
-
-        val uploadTask = riversRef.putStream(inputstream)
-
-        uploadTask.continueWithTask { riversRef.downloadUrl }.addOnCompleteListener { task ->
-
-            imagelist!!.add(task.result.toString())
-            if(imagelist!!.size==size){
-             var sitter = content.get()?.let {
-                 isNego.get()?.let { it1 ->
-                     title.get()?.let { it2 ->
-                         wage.get()?.let { it3 ->
-                             type.get()?.let { it4 ->
-                                 Sitter(User.getInstance().aptCode,User.getInstance().aptName, it,"","심사중",imagelist, it4
-                                         , it1, Timestamp.now(), it2,User.getInstance().uid, it3)
-                             }
-                         }
-                     }
-                 }
-             }
-                var db = FirebaseFirestore.getInstance()
-                if (sitter != null) {
-                    db.collection("Sitter")
-                            .add(sitter).addOnSuccessListener {
-                                var bundle = Bundle()
-                                bundle.putParcelable("sitter",sitter)
-                                Picture.deleteInstance()
-                                imagelist =null
-
-                            }
-                }
-            }else{
-                uploadImageList(list.get(i++),list.size)
+        if(selectedPictureList.value!!.size==0){
+            newNeeder.value = repository.submit(needer.mainCategory,needer)
+        }else{
+            repository.upload(-1,needer.mainCategory, selectedPictureList.value!!,needer) {
+                newNeeder.value = repository.submit(needer.mainCategory,needer)
             }
         }
     }
 
-    fun writeSitter(){
-        var sitter = content.get()?.let {
-            isNego.get()?.let { it1 ->
-                title.get()?.let { it2 ->
-                    wage.get()?.let { it3 ->
-                        type.get()?.let { it4 ->
-                            Sitter(User.getInstance().aptCode,User.getInstance().aptName, it,"","심사중",imagelist, it4
-                                    , it1, Timestamp.now(), it2,User.getInstance().uid, it3)
-                        }
-                    }
-                }
-            }
-        }
-        var db = FirebaseFirestore.getInstance()
-        if (sitter != null) {
-            db.collection("Sitter")
-                    .add(sitter).addOnSuccessListener {
-                        var bundle = Bundle()
-                        bundle.putParcelable("sitter",sitter)
-                        Picture.deleteInstance()
-
-                    }
-        }
-    }
 }

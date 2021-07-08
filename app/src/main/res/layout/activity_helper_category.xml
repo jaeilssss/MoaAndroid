@@ -27,6 +27,7 @@
         app:layout_constraintTop_toTopOf="@id/back"
         app:layout_constraintBottom_toBottomOf="@id/back"
         android:text="카테고리 선택"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:id="@+id/HelperCategoryText"
         android:gravity="center_vertical"/>
     <TextView
@@ -38,6 +39,7 @@
         android:text="다음"
         android:id="@+id/HelperCategorySubmit"
         android:textSize="18sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:textStyle="bold"
         android:textColor="@color/moaBlack"
         android:layout_marginEnd="15dp"
