@@ -63,7 +63,7 @@ lateinit var transfer: Transfer
         model = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         model.init()
-
+        binding.UserAptName.text = User.getInstance().aptName
         var list = ArrayList<Int>()
 
         list.add(R.drawable.banner_home_first)

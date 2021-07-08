@@ -88,7 +88,7 @@
                 app:layout_constraintEnd_toStartOf="@id/ConciergeTalentSharingText"
                 app:layout_constraintTop_toTopOf="parent"
                 android:id="@+id/TalentSharingImage"
-                android:background="#bdbdbd"
+                android:background="@drawable/img_concierge_select_helper"
                 android:layout_margin="10dp"/>
             <TextView
                 android:layout_width="0dp"
@@ -148,7 +148,7 @@
                 app:layout_constraintEnd_toStartOf="@id/ConciergeHelpSharingText"
                 app:layout_constraintTop_toTopOf="parent"
                 android:id="@+id/HelpSharingImage"
-                android:background="#bdbdbd"
+                android:background="@drawable/img_concierge_select_needer"
                 android:layout_margin="10dp"/>
             <TextView
                 android:layout_width="0dp"

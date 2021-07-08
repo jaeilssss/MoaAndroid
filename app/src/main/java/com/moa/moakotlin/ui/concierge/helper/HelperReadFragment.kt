@@ -45,7 +45,6 @@ class HelperReadFragment : BaseFragment() {
 
     lateinit var model: HelperReadViewModel
 
-    lateinit var kid : Kid
     lateinit var  bundle : Bundle
     var helper = Helper()
     var writer = User()
@@ -127,7 +126,7 @@ class HelperReadFragment : BaseFragment() {
                 adapter.list = ArrayList()
                 adapter.list.addAll(it.images!!)
             binding.HelperReadViewPager.adapter = adapter
-//                adapter.notifyDataSetChanged()
+
                 setHelperData(it)
                 setUpBoardingIndicators(it.images!!.size)
                 setUpFragment(ConciergeReadIntroduceFragment(it))

@@ -16,4 +16,6 @@
     <color name="moaBlack">#333333</color>
     <color name="Unabled">#80515151</color>
     <color name="semiGrey15">#26c7c7c7</color>
+    <color name="calendarGrey">#888</color>
+    <color name="calendarBlue">#0000FF</color>
 </resources>

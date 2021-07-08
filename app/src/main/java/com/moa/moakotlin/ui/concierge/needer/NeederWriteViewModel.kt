@@ -32,6 +32,7 @@ class NeederWriteViewModel():ViewModel() {
     var isNego = ObservableField<Boolean>(false)
     var imagelist : ArrayList<String> ?=null
     var list = ArrayList<String>()
+    var hopeDate = MutableLiveData<String>()
     var i = 0
     var mainCategory = MutableLiveData<String>("")
     var subCategory = MutableLiveData<String>("")

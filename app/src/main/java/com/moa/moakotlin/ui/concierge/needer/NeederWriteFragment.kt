@@ -25,6 +25,7 @@ class NeederWriteFragment : Fragment() {
 
     companion object{
         var REQUEST_CATEGORY_SELECTION = 2000
+        var REQUEST_HOPE_DATE_SELECT_CODE = 6000
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +40,10 @@ class NeederWriteFragment : Fragment() {
         binding.model = model
 
         binding.NeederWriteCategoryLayout.setOnClickListener { selectCategory() }
+        binding.NeederWriteHopeDateLayout.setOnClickListener { selectHopeDate() }
         return binding.root
+
+
     }
 
     fun selectCategory(){
@@ -48,6 +52,11 @@ class NeederWriteFragment : Fragment() {
         startActivityForResult(intent, REQUEST_CATEGORY_SELECTION)
     }
 
+    fun selectHopeDate(){
+        var intent = Intent(activity,CustomCalendarActivity::class.java)
+
+        startActivityForResult(intent, REQUEST_HOPE_DATE_SELECT_CODE)
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -59,6 +68,10 @@ class NeederWriteFragment : Fragment() {
 
             binding.NeederWriteCategory.text = "${data?.getStringExtra("mainCategory")}  /  ${data?.getStringExtra("subCategory")}"
 
+        }
+        if(requestCode == REQUEST_HOPE_DATE_SELECT_CODE && resultCode == REQUEST_HOPE_DATE_SELECT_CODE){
+            binding.NeederWriteHopeDateText.text = "${data?.getStringExtra("hopeYear")}년 ${data?.getStringExtra("hopeMonth")}월 ${data?.getStringExtra("hopeDay")}일"
+            model.hopeDate.value= "${data?.getStringExtra("hopeYear")}년 ${data?.getStringExtra("hopeMonth")}월 ${data?.getStringExtra("hopeDay")}일"
         }
     }
 }

@@ -35,10 +35,10 @@
             android:textColor="@color/moaBlack"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="11.8dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@id/back"
+            app:layout_constraintBottom_toBottomOf="@id/back"
             android:id="@+id/userInfoTextView"/>
 
         <TextView
@@ -51,6 +51,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/userInfoTextView"
             android:textSize="14sp"
+            android:fontFamily="@font/notosanscjkkr_medium"
             android:id="@+id/userInfoNameTextView"/>
         <EditText
             android:layout_width="0dp"
@@ -156,6 +157,7 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/login_edit_text_radius_15"
             android:hint="닉네임 입력"
+            android:padding="10dp"
             android:text="@={model.nickName}"
             app:layout_constraintEnd_toStartOf="@id/nicknameCheckBtn"
             app:layout_constraintHorizontal_bias="1.0"
@@ -163,7 +165,7 @@
             android:layout_marginEnd="15dp"
             app:layout_constraintTop_toBottomOf="@id/userNickNameText" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="0dp"
             android:layout_height="55dp"
             android:layout_marginTop="8dp"
@@ -190,7 +192,7 @@
             android:textColor="@color/moaBlack"
             android:textSize="14sp"
             android:id="@+id/apartCertificationText"/>
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="0dp"
             android:layout_height="55dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -248,7 +250,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             android:lineSpacingExtra="4.5sp"
-            android:gravity="center_horizontal"
+                android:fontFamily="@font/notosanscjkkr_medium"
             android:text="다음"
             android:id="@+id/next"
             android:textSize="18sp"
