@@ -10,6 +10,7 @@
         android:padding="13dp"
         android:gravity="center"
         android:textSize="18sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:id="@+id/itemSubCategory"
         android:textColor="@color/moaBlack"
         android:layout_marginBottom="15dp"

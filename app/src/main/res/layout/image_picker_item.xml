@@ -23,6 +23,7 @@
             android:id="@+id/image_check_box_button"
             android:gravity="center"
             android:textSize="15dp"
+            android:fontFamily="@font/notosanscjkkr_medium"
             android:textStyle="bold"
             android:layout_alignRight="@+id/image_picker_item"
             android:background="@drawable/image_not_check_image"/>

@@ -24,6 +24,7 @@
                 android:id="@+id/kid_image_picker_submit"
                 android:layout_marginRight="15dp"
                 android:text="전송"
+                android:fontFamily="@font/notosanscjkkr_medium"
                 android:textSize="20dp"
                 />
             <ImageView

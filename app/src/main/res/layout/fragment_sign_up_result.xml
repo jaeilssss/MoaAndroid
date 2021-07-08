@@ -33,10 +33,11 @@
         android:textColor="@color/moaBlack"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="11.8dp"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/back"
+        app:layout_constraintBottom_toBottomOf="@id/back"
         android:id="@+id/signUpResultText"/>
     <ImageView
         android:layout_width="60dp"
@@ -56,6 +57,7 @@
         android:layout_marginTop="25dp"
         android:textSize="18sp"
         android:textColor="@color/moaBlack"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:text="@string/SignUpResultCertificationVersion"
         android:id="@+id/SignUpResultMessage"
         android:gravity="center"/>
@@ -71,6 +73,7 @@
         android:layout_marginEnd="15dp"
         android:background="@drawable/button_shape_main_color"
         android:text="완료"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:textSize="18sp"
         android:textStyle="bold"
         android:id="@+id/signUpResultNext"/>

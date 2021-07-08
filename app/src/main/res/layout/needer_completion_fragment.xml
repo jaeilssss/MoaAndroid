@@ -32,6 +32,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:fontFamily="@font/notosanscjkkr_medium"
             app:layout_constraintTop_toTopOf="@id/back"
             app:layout_constraintBottom_toBottomOf="@id/back"
             android:id="@+id/NeederCompletionTextView"/>
@@ -64,6 +65,7 @@
                     android:layout_marginTop="25dp"
                     android:text="@string/NeederCompletionText"
                     android:textSize="16sp"
+                    android:fontFamily="@font/notosanscjkkr_medium"
                     android:textColor="@color/moaBlack"
                     android:textStyle="bold"
                     android:id="@+id/NeederCompletionMessage"/>
@@ -85,6 +87,7 @@
                     android:layout_marginEnd="15dp"
                     android:layout_marginStart="15dp"
                     android:maxLines="1"
+                    android:fontFamily="@font/notosanscjkkr_medium"
                     android:ellipsize="end"
                     android:text="등하원 돕기 시터 구해요"
                     app:layout_constraintTop_toTopOf="@id/NeederCompletionContentImage"
@@ -115,6 +118,7 @@
     android:layout_margin="15dp"
     android:background="@drawable/button_shape_main_color"
     android:text="나중에"
+    android:fontFamily="@font/notosanscjkkr_medium"
     android:textStyle="bold"
     android:textSize="18sp"
     android:id="@+id/NeederCompletionLaterBtn"/>

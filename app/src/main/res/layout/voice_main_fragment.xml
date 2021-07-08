@@ -23,6 +23,7 @@
             android:text="방 개설하기"
             android:textStyle="bold"
             android:textSize="18sp"
+            android:fontFamily="@font/notosanscjkkr_medium"
             android:id="@+id/VoiceMainCreageRoomBtn"
             android:layout_marginBottom="10dp"
             />
@@ -56,6 +57,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:fontFamily="@font/notosanscjkkr_medium"
             app:layout_constraintTop_toTopOf="@id/back"
             app:layout_constraintBottom_toBottomOf="@id/back"
             android:id="@+id/VoiceTextView"/>

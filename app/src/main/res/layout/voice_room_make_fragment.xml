@@ -30,6 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="모아 방송 만들기"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:textColor="@color/moaBlack"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,6 +43,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="대표 이미지를 선택해주세요"
+        android:fontFamily="@font/notosanscjkkr_medium"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="15dp"
         android:textColor="@color/moaBlack"
@@ -72,6 +74,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/notosanscjkkr_medium"
         app:layout_constraintStart_toStartOf="@id/VoiceRoomGoToAlbum"
         app:layout_constraintEnd_toEndOf="@id/VoiceRoomGoToAlbum"
         app:layout_constraintBottom_toBottomOf="@id/VoiceRoomGoToAlbum"

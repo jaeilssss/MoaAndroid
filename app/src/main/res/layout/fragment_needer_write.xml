@@ -86,6 +86,7 @@
         android:layout_marginEnd="15dp"
         android:textColor="@color/moaBlack"
         android:textSize="14sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:lineSpacingExtra="8.5sp"
         android:id="@+id/NeederWriteCategoryText"/>
 
@@ -177,6 +178,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="15dp"
         android:textColor="@color/moaBlack"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:id="@+id/NeederWriteHopeDateTextView"
         android:textSize="14sp"
         android:text="희망 날짜"/>
@@ -379,6 +381,7 @@
         android:background="@drawable/shape_unable_radius_15"
         android:textColor="@color/moaBlack"
         android:text="다음"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:clickable="false"
         android:textSize="18sp"
         android:textStyle="bold"

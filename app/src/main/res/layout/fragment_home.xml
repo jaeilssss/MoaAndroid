@@ -253,6 +253,7 @@
         android:text="관리실 공지"
         android:textSize="14sp"
         android:gravity="center"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:textColor="@color/moaBlack"
         android:id="@+id/homeOfficeBoardText"/>
     <TextView

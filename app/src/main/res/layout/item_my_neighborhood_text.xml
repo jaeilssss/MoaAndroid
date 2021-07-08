@@ -19,6 +19,7 @@
         tools:text="만현마을 쌍용 1차 아파트"
         android:paddingStart="10dp"
         android:textSize="16sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:textColor="@color/moaBlack"
         android:textStyle="bold"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
