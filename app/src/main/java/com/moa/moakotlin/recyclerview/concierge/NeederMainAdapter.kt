@@ -14,9 +14,10 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.databinding.ItemConciergeBinding
+import com.moa.moakotlin.databinding.ItemEmptyConciergeBinding
 import java.text.SimpleDateFormat
 
-class NeederMainAdapter() : ListAdapter<Needer, NeederMainAdapter.ConciergeViewHolder>(diffUtil) {
+class NeederMainAdapter() : ListAdapter<Needer, RecyclerView.ViewHolder>(diffUtil) {
 
     private var mListener : OnItemClickListener?=null
 
@@ -25,12 +26,31 @@ class NeederMainAdapter() : ListAdapter<Needer, NeederMainAdapter.ConciergeViewH
         this.mListener = mListener
 
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NeederMainAdapter.ConciergeViewHolder {
-        return ConciergeViewHolder(ItemConciergeBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+
+    override fun getItemViewType(position: Int): Int {
+
+        if(currentList[position].documentID.equals("-1")){
+            return -1
+        }else{
+            return 0
+        }
     }
 
-    override fun onBindViewHolder(holder: NeederMainAdapter.ConciergeViewHolder, position: Int) {
-        holder.binding(currentList[position])
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        if(viewType==-1){
+            return EmptyConciergeViewHolder(ItemEmptyConciergeBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        }else{
+            return ConciergeViewHolder(ItemConciergeBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        }
+
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        if(holder is ConciergeViewHolder) holder.binding(currentList[position])
+    }
+
+    inner class EmptyConciergeViewHolder(var binding: ItemEmptyConciergeBinding) : RecyclerView.ViewHolder(binding.root){
+
     }
 
     inner class ConciergeViewHolder(var binding: ItemConciergeBinding) : RecyclerView.ViewHolder(binding.root){
@@ -83,4 +103,6 @@ class NeederMainAdapter() : ListAdapter<Needer, NeederMainAdapter.ConciergeViewH
 
         }
     }
+
+
 }

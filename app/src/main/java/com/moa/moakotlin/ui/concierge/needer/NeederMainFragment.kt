@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.databinding.NeederMainFragmentBinding
 import com.moa.moakotlin.recyclerview.concierge.HelperMainAdapter
 import com.moa.moakotlin.recyclerview.concierge.NeederMainAdapter
@@ -64,6 +65,9 @@ class NeederMainFragment : Fragment() {
         binding.NeederMainEducationRcv.adapter =educationAdapter
         binding.NeederMainInteriorRcv.adapter =interiorAdapter
         binding.NeederMainEtcRcv.adapter = etcAdapter
+        binding.NeederMainSharingRcv.adapter = sharingAdapter
+        binding.NeederMainBorrowRcv.adapter = borrowAdapter
+
 
         binding.NeederMainKidRcv.layoutManager = LinearLayoutManager(activity?.applicationContext!!,
             LinearLayoutManager.HORIZONTAL,false)
@@ -93,6 +97,11 @@ class NeederMainFragment : Fragment() {
     fun initGetData(adapter: NeederMainAdapter,mainCategory : String){
         CoroutineScope(Dispatchers.Main).launch {
             var list = viewModel.getData(mainCategory)
+            if(list.size==0){
+                var emptyNeeder = Needer()
+                emptyNeeder.documentID = (-1).toString()
+                list.add(emptyNeeder)
+            }
             adapter.submitList(list)
         }
     }

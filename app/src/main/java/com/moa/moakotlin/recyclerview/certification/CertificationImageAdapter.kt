@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.databinding.ItemAptCertificationBinding
-import com.moa.moakotlin.recyclerview.kid.KidAdapter
 
 class CertificationImageAdapter() : ListAdapter<String, CertificationImageAdapter.CertificationViewModel>(diffUtil){
 

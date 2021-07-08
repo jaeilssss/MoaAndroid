@@ -126,6 +126,11 @@ class HelperMainFragment : BaseFragment() {
     fun initGetData(adapter: HelperMainAdapter,mainCategory : String){
         CoroutineScope(Dispatchers.Main).launch {
             var list = model.getData(mainCategory)
+            if(list.size==0){
+                var emptyHelper = Helper()
+                emptyHelper.documentID = (-1).toString()
+                list.add(emptyHelper)
+            }
             adapter.submitList(list)
         }
     }
