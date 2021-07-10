@@ -93,12 +93,7 @@ class HelperReadFragment : BaseFragment() {
         }
             option.show(activity?.supportFragmentManager!!,"bottomsheet")
         }
-        setUpBoardingIndicators(helper?.images!!.size)
-        setCurrentOnboardingIndicator(0)
-        setUpFragment(ConciergeReadIntroduceFragment(helper))
 
-        setWriterInfo()
-        setHelperData(helper)
 
          adapter = helper.images?.let { it1 -> ConciergeReadViewpagerAdapter(activity?.applicationContext!!, it1) }!!
 
@@ -109,7 +104,7 @@ class HelperReadFragment : BaseFragment() {
         }
 
         binding.HelperMainIntroduce.setOnClickListener {
-            setUpFragment(ConciergeReadIntroduceFragment(helper))
+            setUpFragment(ConciergeReadIntroduceFragment(helper,null))
         }
         binding.HelperMainReview.setOnClickListener {
             setUpFragment(HelperReadReviewFragment())
@@ -129,10 +124,16 @@ class HelperReadFragment : BaseFragment() {
 
                 setHelperData(it)
                 setUpBoardingIndicators(it.images!!.size)
-                setUpFragment(ConciergeReadIntroduceFragment(it))
+                setUpFragment(ConciergeReadIntroduceFragment(it,null))
                 setCurrentOnboardingIndicator(0)
 
         })
+        setUpBoardingIndicators(helper?.images!!.size)
+        setCurrentOnboardingIndicator(0)
+        setUpFragment(ConciergeReadIntroduceFragment(helper,null))
+
+        setWriterInfo()
+        setHelperData(helper)
         return binding.root
     }
 
@@ -169,15 +170,6 @@ class HelperReadFragment : BaseFragment() {
         if(requestCode== REQUEST_MODIFY_CODE && resultCode == REQUEST_MODIFY_CODE){
 
             data?.getParcelableExtra<Helper>("newHelper")?.let {
-//                helper = it
-//                adapter.list = ArrayList()
-//                adapter.list.addAll(it.images!!)
-//                adapter.notifyDataSetChanged()
-//                binding.HelperReadViewPager.verticalScrollbarPosition=0
-//                setHelperData(it)
-//                setUpBoardingIndicators(it.images!!.size)
-//                setUpFragment(ConciergeReadIntroduceFragment(it))
-//                setCurrentOnboardingIndicator(0)
 
                 model.newHelper.value = it
 

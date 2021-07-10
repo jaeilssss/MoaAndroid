@@ -1,8 +1,10 @@
 package com.moa.moakotlin.data
 
+import android.os.Parcelable
 import com.google.firebase.Timestamp
+import kotlinx.android.parcel.Parcelize
 import java.util.ArrayList
-
+@Parcelize
 data class Needer(
         var title : String = "",
         var mainCategory : String = "",
@@ -20,5 +22,5 @@ data class Needer(
         var aptCode : String="",
         var aptName : String="",
         var aroundApt: ArrayList<String> =ArrayList<String>()
-        ){
+        ): Parcelable {
 }

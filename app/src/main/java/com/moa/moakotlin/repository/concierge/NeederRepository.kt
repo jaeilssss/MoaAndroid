@@ -58,6 +58,23 @@ class NeederRepository {
 
     }
 
+    suspend fun delete(mainCaregory: String,documentId : String) : Boolean{
+        var db = FirebaseFirestore.getInstance()
+        var check = false
+        db.collection("Needer")
+                .document(mainCaregory)
+                .collection(mainCaregory)
+                .document(documentId)
+                .delete()
+                .addOnCompleteListener {
+                    if(it.isSuccessful){
+                        check=true
+                    }
+                }.await()
+        return check
+    }
+
+
     fun upload(num : Int, pathString : String , picturePathList : ArrayList<String>,helper : Needer,action :suspend ()-> Unit){
 //        var picture = adapter.list.get(adapter.checkBox)
         var i = 0
@@ -90,7 +107,8 @@ class NeederRepository {
 
                 uploadTask.continueWithTask { riversRef.downloadUrl }.addOnCompleteListener { task ->
                     uploadedList.put(number, task.result.toString())
-                    if(number+1==picturePathList.size){
+                    println("number - > ${number}")
+                    if(uploadedList.size==picturePathList.size){
 
                         for(i in 0 until picturePathList.size){
                             uploadedList[i]?.let { helper.images?.add(it) }

@@ -265,6 +265,14 @@
         android:id="@+id/neederMainFragment"
         android:name="com.moa.moakotlin.ui.concierge.needer.NeederMainFragment"
         android:label="needer_main_fragment"
-        tools:layout="@layout/needer_main_fragment" />
+        tools:layout="@layout/needer_main_fragment" >
+        <action
+            android:id="@+id/action_neederMainFragment_to_neederReadFragment"
+            app:destination="@id/neederReadFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/neederReadFragment"
+        android:name="com.moa.moakotlin.ui.concierge.needer.NeederReadFragment"
+        android:label="NeederReadFragment" />
 
 </navigation>

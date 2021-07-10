@@ -28,7 +28,6 @@
             android:id="@+id/itemConciergeImage"/>
 
         <TextView
-            android:padding="-5dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="만현마을 쌍용1차"
@@ -39,15 +38,14 @@
             android:layout_marginStart="10dp"
             android:textSize="13sp"
             android:maxLines="1"
+            android:includeFontPadding="false"
             android:gravity="bottom"
             android:ellipsize="end"
             android:textColor="@color/moaBlack"
             android:textStyle="bold"
-            android:height="30dp"
             android:id="@+id/itemConciergeAptName"/>
 
         <TextView
-            android:padding="-5dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -56,6 +54,7 @@
             android:id="@+id/itemConciergeDate"
             android:textSize="12sp"
             android:layout_marginTop="15dp"
+            android:includeFontPadding="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             android:textColor="#2c2c2c"
@@ -74,6 +73,7 @@
             app:layout_constraintTop_toBottomOf="@id/itemConciergeImage"
             android:gravity="bottom"
             android:text="등하교 도우미가 필요합니다 ㅠㅠ"
+            android:singleLine="true"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:maxLines="1"
             android:layout_marginTop="10dp"
@@ -86,19 +86,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/itemConciergeContent"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
+
             android:id="@+id/itemConciergeWonSign"/>
-        <com.google.android.material.textview.MaterialTextView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/itemConciergeWonSign"
             app:layout_constraintTop_toTopOf="@id/itemConciergeWonSign"
             app:layout_constraintBottom_toBottomOf="@id/itemConciergeWonSign"
             android:text="20,000"
-            android:fontFamily="@font/notosanscjkkr_medium"
+            android:fontFamily="@font/notosanscjkkr_bold"
+            android:includeFontPadding="false"
             android:textSize="18sp"
             android:textColor="@color/moaBlack"
-            android:textStyle="bold"
             android:layout_marginStart="5dp"
             android:id="@+id/itemConciergeHopeWage"/>
 
@@ -113,9 +113,9 @@
             android:fontFamily="@font/notosanscjkkr_medium"
             android:textColor="@color/moaBlack"
             android:gravity="center"
+            android:layout_marginEnd="10dp"
             android:includeFontPadding="false"
             android:textSize="10sp"
-            android:layout_marginTop="5dp"
             android:id="@+id/itemConciergeNego"
  />
 

@@ -120,7 +120,7 @@ class HelperRepository {
                     uploadedList.put(number, task.result.toString())
                     println("실행중")
                     println("순서 -> ${i}")
-                    if(number+1==picturePathList.size){
+                    if(uploadedList.size==picturePathList.size){
 
                         for(i in 0 until picturePathList.size){
                             uploadedList[i]?.let { helper.images?.add(it) }

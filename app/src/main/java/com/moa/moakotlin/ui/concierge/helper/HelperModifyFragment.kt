@@ -109,7 +109,6 @@ class HelperModifyFragment : Fragment() {
 
         })
         binding.HelperModifySubmit.setOnClickListener {
-            Toast.makeText(context,selectedPictureList.size.toString(),Toast.LENGTH_SHORT).show()
             binding.HelperModifySubmit.isClickable = false
             binding.HelperModifyLoading.show()
             CoroutineScope(Dispatchers.Main).launch {

@@ -8,11 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.google.rpc.Help
 import com.moa.moakotlin.R
 import com.moa.moakotlin.data.Helper
+import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.databinding.ConciergeReadIntroduceFragmentBinding
 
-class ConciergeReadIntroduceFragment(var helper : Helper) : Fragment() {
+class ConciergeReadIntroduceFragment(var helper : Helper ? ,var needer : Needer ?) : Fragment() {
 
 
     private lateinit var viewModel: ConciergeReadIntroduceViewModel
@@ -34,12 +36,22 @@ class ConciergeReadIntroduceFragment(var helper : Helper) : Fragment() {
     }
 
     private fun settingData(){
-        viewModel.content.set(helper.content)
-        viewModel.hopeWage.set("${helper.hopeWage} 원")
-        viewModel.aptName.set(helper.aptName)
-        if(helper.isNego.not()){
-            binding.ConciergeReadHopeWageText.text= "희망 가능"
+        if(helper!=null){
+            viewModel.content.set(helper!!.content)
+            viewModel.hopeWage.set("${helper!!.hopeWage} 원")
+            viewModel.aptName.set(helper!!.aptName)
+            if(helper!!.isNego.not()){
+                binding.ConciergeReadHopeWageText.text= "희망 가격"
+            }
+        }else if(needer!=null){
+            viewModel.content.set(needer!!.content)
+            viewModel.hopeWage.set("${needer!!.hopeWage} 원")
+            viewModel.aptName.set(needer!!.aptName)
+            if(needer!!.isNego.not()){
+                binding.ConciergeReadHopeWageText.text= "희망 가격"
+            }
         }
+
     }
 
 }
