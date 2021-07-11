@@ -85,14 +85,18 @@ lateinit var mlistener : ListenerRegistration
                 for(document in value.documents){
                     var chat = document.toObject(Chat::class.java)
                     var size = Chat.getInstance().get(roomId)?.size
-                    if (size != null) {
-                        if(chat?.timeStamp !=Chat.getInstance().get(roomId)?.get(size-1)?.timeStamp){
-                            if (chat != null) {
-                                msg.value = chat!!
-                                println("snapShot이 움직임!!")
+                    if (size != 0) {
+                        if (size != null) {
+                            if(chat?.timeStamp !=Chat.getInstance().get(roomId)?.get(size-1)?.timeStamp){
+                                if (chat != null) {
+                                    msg.value = chat!!
+                                    println("snapShot이 움직임!!")
+                                    setReadTrue(roomId)
+                                }
                             }
                         }
-
+                    }else{
+                        msg.value = chat!!
                     }
                 }
             }

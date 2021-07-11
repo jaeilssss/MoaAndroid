@@ -81,29 +81,16 @@ class ChatAdapter(var navController: NavController, var context: Context,var lis
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         var chat = list.get(position)
         if(holder is rightViewHolder){
-            if(User.getInstance().profileImage!=null){
-                Glide.with(context).load(User.getInstance().profileImage).into(holder.profile)
-            }
-            holder.nickname.text = User.getInstance().nickName
+
             holder.bind(chat)
         }else if(holder is leftViewHolder){
-            if(opponentUser.profileImage!=null){
-//                Glide.with(context).load(opponentUser.profileImage).into(holder.profile)
-            }
-            holder.nickname.text = opponentUser.nickName
+
             holder.bind(chat)
         }else if(holder is rightImageViewHolder){
-            if(User.getInstance().profileImage!=null){
-                Glide.with(context).load(User.getInstance().profileImage).into(holder.profile)
-            }
-            holder.nickname.text = User.getInstance().nickName
+
 
             holder.bind(chat)
         }else if(holder is leftImageViewHoldfer){
-            if(opponentUser.profileImage!=null){
-                Glide.with(context).load(opponentUser.profileImage).into(holder.profile)
-            }
-            holder.nickname.text = opponentUser.nickName
             holder.bind(chat)
         }
     }
@@ -113,9 +100,7 @@ class ChatAdapter(var navController: NavController, var context: Context,var lis
 
         lateinit var nickname : TextView
         init {
-
-
-            nickname = view.findViewById(R.id.TextView_nickname)
+            talk = view.findViewById(R.id.itemLeftChatMessage)
         }
             fun bind(chat : Chat){
 
@@ -124,14 +109,12 @@ class ChatAdapter(var navController: NavController, var context: Context,var lis
     }
     class rightViewHolder(var view : View , var adapter: ChatAdapter,var context: Context) : RecyclerView.ViewHolder(view){
         lateinit var talk : TextView
-        lateinit var profile : ImageView
-        lateinit var nickname : TextView
+
         init {
 
-            nickname = view.findViewById(R.id.TextView_nickname)
         }
         fun bind(chat : Chat){
-
+            talk = view.findViewById(R.id.itemRightChatMessage)
             talk.setText(chat.talk)
         }
     }

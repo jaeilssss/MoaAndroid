@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:padding="10dp"
     android:orientation="vertical">
     <TextView
@@ -16,6 +16,7 @@
         android:text="안녕하세요!"
         android:padding="15dp"
         android:textSize="14sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
         android:textColor="@color/moaBlack"
         android:lineSpacingExtra="6sp"
         android:maxWidth="200dp"
@@ -25,6 +26,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/itemLeftChatMessage"
         android:text="오후 6:50"
+        android:fontFamily="@font/notosanscjkkr_medium"
         app:layout_constraintBottom_toBottomOf="@id/itemLeftChatMessage"
         android:id="@+id/itemChatLeftDate"
         />

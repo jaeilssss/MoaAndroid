@@ -38,7 +38,6 @@ class WriteSelectFragment : BottomSheetDialogFragment() {
     }
 
     override fun onDismiss(dialog: DialogInterface) {
-        println("여기 눌림~~~dismiss")
         super.onDismiss(dialog)
     }
 }

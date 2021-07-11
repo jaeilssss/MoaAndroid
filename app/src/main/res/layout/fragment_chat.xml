@@ -39,6 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintTop_toBottomOf="@id/back"
         android:id="@+id/ChatRcv"/>
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -70,6 +71,7 @@
         android:hint="메시지를 입력하세요"
         android:gravity="center_vertical"
         android:padding="5dp"
+        android:text="@={model.talk}"
         app:layout_constraintTop_toTopOf="parent"
         android:fontFamily="@font/notosanscjkkr_medium"
         app:layout_constraintBottom_toBottomOf="parent"

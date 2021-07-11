@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
@@ -24,7 +25,9 @@ import com.moa.moakotlin.costumdialog.CostumAlertDialog
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.NeederReadFragmentBinding
+import com.moa.moakotlin.recyclerview.imagepickrcv.ImagePickerViewAdapter
 import com.moa.moakotlin.ui.bottomsheet.ConciergeReadBottomSheetFragment
+import com.moa.moakotlin.ui.bottomsheet.NeederHireStatusBottomSheet
 import com.moa.moakotlin.ui.concierge.ConciergeWriteActivity
 import com.moa.moakotlin.ui.concierge.helper.ConciergeReadIntroduceFragment
 import com.moa.moakotlin.ui.concierge.helper.HelperReadFragment
@@ -46,7 +49,6 @@ class NeederReadFragment : BaseFragment() {
     private lateinit var binding: NeederReadFragmentBinding
     private lateinit var needer : Needer
     private lateinit var writer : User
-
     private lateinit var adapter : ConciergeReadViewpagerAdapter
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -76,12 +78,17 @@ class NeederReadFragment : BaseFragment() {
         arguments?.let {
             needer = it.getParcelable<Needer>("needer")!!
             writer = it.getParcelable<User>("writer")!!
-
             // 서브 카테고리는 어디서 보여주지??...
-
         }
 
+        binding.NeederReadChatBtn.setOnClickListener { goToChat() }
+        binding.NeederReadGearImg.setOnClickListener {
+            val option = NeederHireStatusBottomSheet{
+                hireCompleteDialog()
+        }
+            option.show(activity?.supportFragmentManager!!,"bottomsheet")
 
+        }
         binding.NeederReadOption.setOnClickListener {
             val option : ConciergeReadBottomSheetFragment = ConciergeReadBottomSheetFragment {
                 when(it){
@@ -96,6 +103,16 @@ class NeederReadFragment : BaseFragment() {
             }
             option.show(activity?.supportFragmentManager!!,"bottomsheet")
         }
+
+
+        viewModel.roomId.observe(viewLifecycleOwner, Observer {
+            var bundle = Bundle()
+            bundle.putString("roomId",it)
+            bundle.putParcelable("opponentUser",writer)
+            bundle.putParcelable("Needer",needer)
+            navController.navigate(R.id.ChatFragment,bundle)
+
+        })
         adapter = needer.images?.let { it1 -> ConciergeReadViewpagerAdapter(activity?.applicationContext!!, it1) }!!
 
         binding.NeederReadViewPager.adapter = adapter
@@ -113,11 +130,11 @@ class NeederReadFragment : BaseFragment() {
     }
 
     private fun setWriterInfo(){
-        binding.NeederReadNickName.text = writer.nickName
+        binding.NeederReadNickName.text = writer?.nickName
     }
     private fun setNeederData(){
         binding.NeederMainTitle.text = needer.title
-        binding.NeederReadNickName.text = writer.nickName
+        binding.NeederReadNickName.text = writer?.nickName
         binding.NeederReadMainCategory.text = needer.mainCategory
         binding.NeederReadHopeDate.text = needer.hopeDate
         binding.NeederReadHireStatusText.text = needer.hireStatus
@@ -190,5 +207,29 @@ class NeederReadFragment : BaseFragment() {
 
                     }.show()
         }
+    }
+
+   private fun hireCompleteDialog(){
+        context?.let {
+            CostumAlertDialog(it)
+                .setMessage("모집을 완료하시겠습니까??")
+                .setPositiveButton("예"){
+                        goToReview()
+                }
+                .setNegativeButton {
+
+                }.show()
+        }
+    }
+
+    fun goToChat(){
+            CoroutineScope(Dispatchers.Main).launch {
+                viewModel.getChattingRoom(needer.uid)
+            }
+    }
+    fun goToReview(){
+        var bundle = Bundle()
+        bundle.putParcelable("Needer",needer)
+        navController.navigate(R.id.action_neederReadFragment_to_neederCompletionFragment,bundle)
     }
 }

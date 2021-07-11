@@ -50,7 +50,7 @@ class ChattingRoomFragment : BaseFragment() {
 
 //        var rcv = binding.chattingRoomRecyclerview
 
-        adapter = context?.let { ChattingRoomAdapter(navController, it,ArrayList<ChattingRoom>()) }!!
+        adapter = context?.let { ChattingRoomAdapter(it,ArrayList<ChattingRoom>()) }!!
 
 //        rcv.layoutManager=  LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
 //

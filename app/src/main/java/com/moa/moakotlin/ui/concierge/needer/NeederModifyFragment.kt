@@ -72,6 +72,8 @@ class NeederModifyFragment : Fragment() {
 
         binding.NeederModifyAlbum.setOnClickListener { checkPermission() }
 
+
+
         viewModel.title.observe(viewLifecycleOwner, Observer {setSubmitBtnChange()})
         viewModel.mainCategory.observe(viewLifecycleOwner, Observer {setSubmitBtnChange()})
         viewModel.hopeDate.observe(viewLifecycleOwner, Observer { setSubmitBtnChange() })

@@ -111,7 +111,6 @@ class ChatRepository(var roomId: String) {
 
     fun setSnapShot() : Query{
         var db = FirebaseFirestore.getInstance()
-
        var query =  db.collection("ChattingRoom").document(roomId)
             .collection("Chat").orderBy("timeStamp",Query.Direction.DESCENDING).limit(1)
             return query
