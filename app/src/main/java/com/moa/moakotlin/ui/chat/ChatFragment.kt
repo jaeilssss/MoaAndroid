@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.Task
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.*
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.Transfer
@@ -51,12 +52,14 @@ class ChatFragment : BaseFragment() {
     lateinit var transfer : Transfer
     lateinit var rcv : RecyclerView
      var needer : Needer ? = null
+    lateinit var myActivity : MainActivity
     var firebase  = FirebaseFirestore.getInstance()
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if(activity != null){
             transfer = activity as Transfer
         }
+        myActivity = activity as MainActivity
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,6 +70,8 @@ class ChatFragment : BaseFragment() {
         check = 0
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_chat,container , false)
 
+
+        myActivity.bottomNavigationGone()
         roomId = arguments?.getString("roomId")?:"x"
 
         opponentUser = arguments?.getParcelable<User>("opponentUser")!!
@@ -83,11 +88,11 @@ class ChatFragment : BaseFragment() {
         manager.stackFromEnd = true
         rcv.layoutManager  = manager
         rcv.scrollToPosition(adapter.itemCount-1)
-            model = ViewModelProvider(this).get(ChatViewModel::class.java)
+        model = ViewModelProvider(this).get(ChatViewModel::class.java)
         model.setReadTrue(roomId)
         binding.model = model
         model.setSnapShot(roomId)
-        onScrollListener(rcv,adapter)
+//        onScrollListener(rcv,adapter)
             CoroutineScope(Dispatchers.Main).launch {
                 if(Chat.getInstance().get(roomId)==null){
                     if(model.initView(roomId)){

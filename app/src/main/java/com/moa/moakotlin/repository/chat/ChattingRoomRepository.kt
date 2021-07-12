@@ -23,6 +23,11 @@ class ChattingRoomRepository {
                 for(document in it.documents){
                     var chattingRoom = document.toObject(ChattingRoom::class.java)
 
+                    if (chattingRoom != null) {
+                        if(chattingRoom.latestMessage!=null){
+                            result.add(chattingRoom)
+                        }
+                    }
                 }
             }.await()
 

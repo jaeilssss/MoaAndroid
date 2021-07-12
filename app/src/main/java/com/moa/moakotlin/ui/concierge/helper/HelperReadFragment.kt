@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -131,7 +132,7 @@ class HelperReadFragment : BaseFragment() {
         setUpBoardingIndicators(helper?.images!!.size)
         setCurrentOnboardingIndicator(0)
         setUpFragment(ConciergeReadIntroduceFragment(helper,null))
-
+        checkVisible()
         setWriterInfo()
         setHelperData(helper)
         return binding.root
@@ -141,7 +142,13 @@ class HelperReadFragment : BaseFragment() {
         navController.popBackStack()
     }
 
-
+    private fun checkVisible(){
+        if(helper.uid != User.getInstance().uid){
+            binding.HelperReadOption.isVisible = false
+        }else{
+            binding.HelperReadChatLayout.isVisible = false
+        }
+    }
 
     private fun setUpBoardingIndicators(size : Int){
         binding.HelperReadIndicators.removeAllViews()
@@ -170,10 +177,7 @@ class HelperReadFragment : BaseFragment() {
         if(requestCode== REQUEST_MODIFY_CODE && resultCode == REQUEST_MODIFY_CODE){
 
             data?.getParcelableExtra<Helper>("newHelper")?.let {
-
                 model.newHelper.value = it
-
-
             }
 
         }

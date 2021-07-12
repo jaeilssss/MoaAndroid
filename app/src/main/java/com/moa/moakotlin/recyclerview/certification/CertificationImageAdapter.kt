@@ -28,10 +28,7 @@ class CertificationImageAdapter() : ListAdapter<String, CertificationImageAdapte
         holder.binding(currentList[position])
     }
 
-
-
     inner class CertificationViewModel(var binding : ItemAptCertificationBinding) : RecyclerView.ViewHolder(binding.root){
-
         init {
             binding.itemAptCertificationClose.setOnClickListener(ButtonClick())
         }
@@ -50,7 +47,6 @@ class CertificationImageAdapter() : ListAdapter<String, CertificationImageAdapte
                     }
                 }
             }
-
         }
     }
 

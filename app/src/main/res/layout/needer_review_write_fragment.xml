@@ -75,6 +75,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginTop="15dp"
+        android:text="@={model.content}"
         android:hint="솔직한 피드백은 이웃들에게 많은 도움이 됩니다"
         android:gravity="top"
         android:padding="15dp"

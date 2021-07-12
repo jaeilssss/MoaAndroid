@@ -16,6 +16,7 @@ import androidx.navigation.NavController
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.ChattingRoom
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.repository.user.UserRepository
@@ -34,6 +35,11 @@ class ChattingRoomAdapter(var context: Context,var list: ArrayList<ChattingRoom>
     lateinit var roomList: ArrayList<String>
     var userList  = HashMap<Int,User>()
     var i  = 0
+
+    lateinit var mListener : OnItemClickListener
+    fun setOnItemClickListener(mListener : OnItemClickListener){
+        this.mListener = mListener
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
         var view = LayoutInflater.from(parent.context).inflate(R.layout.chatting_room_item,parent,false)
@@ -46,28 +52,28 @@ class ChattingRoomAdapter(var context: Context,var list: ArrayList<ChattingRoom>
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         var response = list.get(position)
-        holder as ChattingRoomViewHolder
-//        if(holder is ChattingRoomViewHolder){
+        if(holder is ChattingRoomViewHolder){
             holder.bind(response)
-//            var repository = UserRepository()
-//            CoroutineScope(Dispatchers.Main).launch {
-//                var user = repository.getUserInfo(response.opponentUid)
-//                    holder.nickname.text = user?.nickName
-//                val sdf = SimpleDateFormat("dd/MM/yy hh:mm a")
-//                var date = sdf.format(response.timeStamp.toDate())
-//                    holder.latest_time.text = date
-//                if(user==null){
-//                }
-//                if (user != null) {
-//                    userList.put(position,user)
-//                }
-//                if(user!=null && user.profileImage!=null){
-//                    Glide.with(context).load(user.profileImage).into(holder.profile_Image)
-//                }else if(user?.profileImage==null){
-//                    holder.profile_Image.setImageResource(R.drawable.profile_human)
-//                }
-//            }
-//        }
+            var repository = UserRepository()
+            CoroutineScope(Dispatchers.Main).launch {
+                var user = repository.getUserInfo(response.opponentUid)
+
+                    holder.nickname.text = user?.nickName
+                val sdf = SimpleDateFormat("yyyy년 MM월 dd일 hh:mm a")
+                var date = sdf.format(response.timeStamp.toDate())
+                    holder.latest_time.text = date
+                if(user==null){
+                }
+                if (user != null) {
+                    userList.put(position,user)
+                }
+                if(user!=null && user.profileImage!=null){
+                    Glide.with(context).load(user.profileImage).into(holder.profile_Image)
+                }else if(user?.profileImage==null){
+                    holder.profile_Image.setImageResource(R.drawable.profile_human)
+                }
+            }
+        }
     }
     fun addList(chattingRoom: ChattingRoom){
         list.add(chattingRoom)
@@ -75,14 +81,7 @@ class ChattingRoomAdapter(var context: Context,var list: ArrayList<ChattingRoom>
     fun resetting(){
         notifyDataSetChanged()
     }
-
-//    fun goToChat(position: Int){
-//        var bundle  = Bundle()
-//        bundle.putString("roomId",roomList.get(position))
-//        bundle.putParcelable("opponentUser",userList.get(position))
-//        navconroller.navigate(R.id.action_chattingRoomFragment_to_ChatFragment,bundle)
-//    }
-    class ChattingRoomViewHolder(var view : View, var adapter: ChattingRoomAdapter): RecyclerView.ViewHolder(view),View.OnClickListener {
+    inner class ChattingRoomViewHolder(var view : View, var adapter: ChattingRoomAdapter): RecyclerView.ViewHolder(view),View.OnClickListener {
             lateinit var latestMessage : TextView
 
             lateinit var latest_time : TextView
@@ -97,6 +96,7 @@ class ChattingRoomAdapter(var context: Context,var list: ArrayList<ChattingRoom>
             lateinit var nickname : TextView
 
         init {
+                nickname = view.findViewById(R.id.itemChattingRoomNickname)
                 latestMessage = view.findViewById(R.id.itemChattingRoomLatestMessage)
                 latest_time = view.findViewById(R.id.itemChattingRoomDate)
                 profile_Image = view.findViewById(R.id.itemChattingRoomProfile)
@@ -110,20 +110,18 @@ class ChattingRoomAdapter(var context: Context,var list: ArrayList<ChattingRoom>
 
                 linearLayout.setOnClickListener(this)
 
-
-
-                if(chattingRoom.isRead ==false){
-                    println("true 로 바뀜")
-                    readCheck.isVisible = true
-                }else{
-                    println("false 로 바뀜")
-                    readCheck.isVisible = false
-                }
+                readCheck.isVisible = chattingRoom.isRead ==false
             }
 
         override fun onClick(v: View?) {
             when(v?.id){
-//                R.id.chatting_room_layout -> adapter.goToChat(adapterPosition)
+                R.id.chatting_room_layout -> {
+                    if(mListener!=null){
+                        if(adapterPosition!=RecyclerView.NO_POSITION){
+                            mListener?.onItemClick(view,adapterPosition)
+                        }
+                    }
+                }
             }
         }
     }

@@ -6,88 +6,101 @@
             name="model"
             type="com.moa.moakotlin.ui.chat.ChatViewModel" />
     </data>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/back"
-        android:layout_width="9.8dp"
-        android:layout_height="17dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/ic_back"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="댕세구 주인"
-        android:fontFamily="@font/notosanscjkkr_medium"
-        android:id="@+id/ChatOponentNickname"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        app:layout_constraintTop_toTopOf="@id/back"
-        app:layout_constraintBottom_toBottomOf="@id/back"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@id/back"
-        android:id="@+id/ChatRcv"/>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    android:background="#f7f7f7"
-    android:padding="10dp"
-    app:layout_constraintBottom_toBottomOf="parent">
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/ic_baseline_image_24"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginStart="10dp"
-        android:id="@+id/ChatGoToAlbum"/>
-    <EditText
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:minHeight="50dp"
-        app:layout_constraintStart_toEndOf="@id/ChatGoToAlbum"
-        app:layout_constraintEnd_toStartOf="@id/ChatSend"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/shape_white_radius_15dp"
-        android:hint="메시지를 입력하세요"
-        android:gravity="center_vertical"
-        android:padding="5dp"
-        android:text="@={model.talk}"
-        app:layout_constraintTop_toTopOf="parent"
-        android:fontFamily="@font/notosanscjkkr_medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:id="@+id/ChatEdit"/>
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/ic_send"
-        android:layout_marginEnd="10dp"
-        android:id="@+id/ChatSend"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/ChatRcvLayout"
+            >
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="9.8dp"
+                android:layout_height="17dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/ic_back"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="댕세구 주인"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:id="@+id/ChatOponentNickname"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                app:layout_constraintTop_toTopOf="@id/back"
+                app:layout_constraintBottom_toBottomOf="@id/back"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:scrollbars="vertical"
+                app:stackFromEnd="true"
+                app:layout_constrainedHeight="true"
+                app:layout_constraintTop_toBottomOf="@id/ChatOponentNickname"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/ChatRcv"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="#f7f7f7"
+            android:padding="10dp"
+            android:id="@+id/ChatEditLayout">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/ic_baseline_image_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="10dp"
+                android:id="@+id/ChatGoToAlbum"/>
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                app:layout_constraintStart_toEndOf="@id/ChatGoToAlbum"
+                app:layout_constraintEnd_toStartOf="@id/ChatSend"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/shape_white_radius_15dp"
+                android:hint="메시지를 입력하세요"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                android:includeFontPadding="false"
+                android:text="@={model.talk}"
+                app:layout_constraintTop_toTopOf="parent"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/ChatEdit"/>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@drawable/ic_send"
+                android:layout_marginEnd="10dp"
+                android:id="@+id/ChatSend"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>

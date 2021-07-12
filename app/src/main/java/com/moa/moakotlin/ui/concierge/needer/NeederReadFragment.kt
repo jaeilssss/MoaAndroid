@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -126,19 +127,32 @@ class NeederReadFragment : BaseFragment() {
         setUpFragment(ConciergeReadIntroduceFragment(null,needer))
         setWriterInfo()
         setNeederData()
+        checkVisible()
 
     }
 
+
+    private fun checkVisible(){
+        if(needer.uid != User.getInstance().uid){
+            binding.NeederReadOption.isVisible = false
+            binding.NeederReadGearImg.isVisible = false
+        }else{
+            binding.NeederReadChatLayout.isVisible = false
+        }
+        if(needer.hireStatus.equals("모집완료")){
+            binding.NeederReadGearImg.isVisible = false
+        }
+    }
     private fun setWriterInfo(){
         binding.NeederReadNickName.text = writer?.nickName
     }
     private fun setNeederData(){
         binding.NeederMainTitle.text = needer.title
         binding.NeederReadNickName.text = writer?.nickName
-        binding.NeederReadMainCategory.text = needer.mainCategory
+        binding.NeederReadMainCategory.text = "${needer.mainCategory} / ${needer.subCategory}"
         binding.NeederReadHopeDate.text = needer.hopeDate
         binding.NeederReadHireStatusText.text = needer.hireStatus
-        val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일 HH:mm")
+        val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm ")
         binding.NeederReadDate.text=dateFormat.format(needer.timeStamp.toDate())
     }
     fun setUpFragment(fragment : Fragment){

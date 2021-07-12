@@ -26,6 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="선정 시터 선택"
+            android:includeFontPadding="false"
             android:textColor="@color/moaBlack"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,14 +37,16 @@
             app:layout_constraintBottom_toBottomOf="@id/back"
             android:id="@+id/NeederCompletionTextView"/>
         <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/NeederCompletionLaterBtn"
+            app:layout_constraintTop_toBottomOf="@id/NeederCompletionTextView"
            >
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="50dp"
-                >
+                android:layout_height="match_parent">
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
@@ -75,6 +78,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginStart="25dp"
                     tools:background="#bdbdbd"
+                    android:scaleType="fitXY"
                     app:layout_constraintTop_toBottomOf="@id/NeederCompletionMessage"
                     android:layout_marginTop="40dp"
                     android:id="@+id/NeederCompletionContentImage"/>
@@ -98,10 +102,11 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/NeederCompletionContentImage"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="15dp"
                     android:id="@+id/NeederCompletionRcv"

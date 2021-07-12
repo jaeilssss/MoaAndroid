@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.databinding.NeederMainFragmentBinding
@@ -27,7 +28,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class NeederMainFragment : Fragment() {
+class NeederMainFragment : BaseFragment() {
 
     private lateinit var viewModel: NeederMainViewModel
 
@@ -109,6 +110,26 @@ class NeederMainFragment : Fragment() {
         setClickListener(borrowAdapter)
         setClickListener(sharingAdapter)
 
+        setGoingAllCategory()
+    }
+
+    private fun setGoingAllCategory(){
+        binding.NeederMainBorrowAllBtn.setOnClickListener { goToAllCategory("빌려주세요") }
+        binding.NeederMaininteriorAllBtn.setOnClickListener { goToAllCategory("인테리어") }
+        binding.NeederMainEduAllBtn.setOnClickListener { goToAllCategory("교육") }
+        binding.NeederMainEtcAllBtn.setOnClickListener { goToAllCategory("기타") }
+        binding.NeederMainKidAllBtn.setOnClickListener { goToAllCategory("육아") }
+        binding.NeederMainPetAllBtn.setOnClickListener { goToAllCategory("반려동물케어") }
+        binding.NeederMainSharingAllBtn.setOnClickListener { goToAllCategory("품앗이") }
+    }
+
+    private fun goToAllCategory(mainCategory : String){
+
+        navController.navigate()
+
+    }
+    override fun onBackPressed() {
+        navController.popBackStack(R.id.ConciergeMainFragment,false)
     }
 
     fun setClickListener(adapter: NeederMainAdapter){

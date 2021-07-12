@@ -5,10 +5,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.moa.moakotlin.data.Helper
-import com.moa.moakotlin.data.Needer
-import com.moa.moakotlin.data.User
-import com.moa.moakotlin.data.aptList
+import com.moa.moakotlin.data.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -146,5 +143,27 @@ class NeederRepository {
         return result
     }
 
+    suspend fun writeReview(review : Review,uid : String) : Boolean {
+        var result = false
+        var db = FirebaseFirestore.getInstance()
 
+        db.collection("User")
+            .document(uid)
+            .collection("Review")
+            .add(review)
+            .addOnCompleteListener {
+                if(it.isSuccessful){
+                    result = true
+                }
+            }.await()
+        return result
+    }
+
+    fun hireCompletion(needer : Needer){
+        var db = FirebaseFirestore.getInstance()
+        db.collection("Needer").document(needer.mainCategory)
+            .collection(needer.mainCategory)
+            .document(needer.documentID!!)
+            .set(needer)
+    }
 }

@@ -45,7 +45,6 @@ class ChattingRoomViewModel() : ViewModel(){
                             list?.add(chattingRoom)
                      }
                      DocumentChange.Type.MODIFIED -> {
-                         println("modify")
                          var chattingRoom = dc.document.toObject(ChattingRoom::class.java)
                              var index = roomList?.indexOf(dc.document.id) ?: -1
                          list?.removeAt(index)
@@ -54,6 +53,7 @@ class ChattingRoomViewModel() : ViewModel(){
                          roomList.add(0,dc.document.id)
                      }
                      DocumentChange.Type.REMOVED -> {
+
                      }
                  }
              }

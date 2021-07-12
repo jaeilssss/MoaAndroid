@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.ChattingRoom
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.databinding.NeederCompletionFragmentBinding
@@ -61,6 +62,7 @@ class NeederCompletionFragment : Fragment() {
         }
 
         getChatData()
+
     }
 
    private fun setData(){
@@ -74,19 +76,22 @@ class NeederCompletionFragment : Fragment() {
     private fun getChatData(){
         CoroutineScope(Dispatchers.Main).launch {
             var list = viewModel.getChattingRoomList()
-            list.add(ChattingRoom())
-            list.add(ChattingRoom())
-            list.add(ChattingRoom())
-            list.add(ChattingRoom())
-            list.add(ChattingRoom())
-            list.add(ChattingRoom())
+
             adapter = ChattingRoomAdapter(activity?.applicationContext!!,list)
 
             binding.NeederCompletionRcv.adapter = adapter
 
             binding.NeederCompletionRcv.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
 
+            adapter.setOnItemClickListener(object : OnItemClickListener{
+                override fun onItemClick(v: View, position: Int) {
+                    var bundle = Bundle()
+                    bundle.putParcelable("Needer",needer)
+                    bundle.putParcelable("opponentUser",adapter.userList.get(position))
+                    navController.navigate(R.id.neederReviewWriteFragment,bundle)
+                }
 
+            })
         }
     }
 

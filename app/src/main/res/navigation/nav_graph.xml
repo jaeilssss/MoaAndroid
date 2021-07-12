@@ -269,6 +269,9 @@
         <action
             android:id="@+id/action_neederMainFragment_to_neederReadFragment"
             app:destination="@id/neederReadFragment" />
+        <action
+            android:id="@+id/action_neederMainFragment_to_categoryNeederMainFragment"
+            app:destination="@id/categoryNeederMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/neederReadFragment"
@@ -282,6 +285,25 @@
         android:id="@+id/neederCompletionFragment"
         android:name="com.moa.moakotlin.ui.concierge.needer.NeederCompletionFragment"
         android:label="needer_completion_fragment"
-        tools:layout="@layout/needer_completion_fragment" />
+        tools:layout="@layout/needer_completion_fragment" >
+        <action
+            android:id="@+id/action_neederCompletionFragment_to_neederReviewWriteFragment"
+            app:destination="@id/neederReviewWriteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/neederReviewWriteFragment"
+        android:name="com.moa.moakotlin.ui.concierge.needer.NeederReviewWriteFragment"
+        android:label="needer_review_write_fragment"
+        tools:layout="@layout/needer_review_write_fragment" />
+    <fragment
+        android:id="@+id/helperReadReviewFragment"
+        android:name="com.moa.moakotlin.ui.concierge.helper.HelperReadReviewFragment"
+        android:label="helper_read_review_fragment"
+        tools:layout="@layout/helper_read_review_fragment" />
+    <fragment
+        android:id="@+id/categoryNeederMainFragment"
+        android:name="com.moa.moakotlin.ui.concierge.needer.CategoryNeederMainFragment"
+        android:label="category_needer_main_fragment"
+        tools:layout="@layout/category_needer_main_fragment" />
 
 </navigation>
