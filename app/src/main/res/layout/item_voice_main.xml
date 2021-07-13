@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -27,11 +27,12 @@
             android:lineSpacingExtra="4.5sp"
             android:gravity="center_horizontal"
             android:text="[육아]뽀로로 친구와 고민을 나누어요"
+            android:includeFontPadding="false"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:textStyle="bold"
             android:textColor="@color/moaBlack"
             android:id="@+id/itemVoiceMainTitle"
-            android:textSize="18sp"/>
+            android:textSize="16sp"/>
 
         <ImageView
             android:layout_width="112dp"
@@ -40,6 +41,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/itemVoiceMainTitle"
             android:layout_marginStart="15dp"
+            android:scaleType="fitXY"
             android:layout_marginTop="15dp"
             android:id="@+id/itemVoiceMainImage"/>
         <TextView
@@ -49,18 +51,19 @@
             android:background="@drawable/shape_main_color_radius_5"
             app:layout_constraintTop_toTopOf="@id/itemVoiceMainImage"
             android:text="전국"
+            android:includeFontPadding="false"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:layout_marginStart="15dp"
             android:padding="5dp"
             android:textColor="@color/moaBlack"
-            android:id="@+id/itemVoiceMainType"/>
+            android:id="@+id/itemVoiceMainRange"/>
         
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:layout_constraintStart_toEndOf="@id/itemVoiceMainImage"
             android:background="@drawable/ic_room_maker"
-            app:layout_constraintTop_toBottomOf="@id/itemVoiceMainType"
+            app:layout_constraintTop_toBottomOf="@id/itemVoiceMainRange"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
             android:id="@+id/itemVoiceMainRoomMakerImg"/>
@@ -72,6 +75,7 @@
             app:layout_constraintTop_toTopOf="@id/itemVoiceMainRoomMakerImg"
             app:layout_constraintBottom_toBottomOf="@id/itemVoiceMainRoomMakerImg"
             android:text="파이리123"
+            android:includeFontPadding="false"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:layout_marginStart="10dp"
             android:textColor="@color/moaBlack"
@@ -100,6 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="101"
+                android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkr_medium"
                 app:layout_constraintTop_toTopOf="@id/itemVoiceMainAudienceImg"
                 app:layout_constraintBottom_toBottomOf="@id/itemVoiceMainAudienceImg"
@@ -115,18 +120,20 @@
                 app:layout_constraintBottom_toBottomOf="@id/itemVoiceMainAudienceImg"
                 app:layout_constraintStart_toEndOf="@id/itemVoiceMainAudienceCount"
                 android:background="@drawable/ic_voice_main_mic"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="10dp"
                 android:id="@+id/itemVoiceMainMicImg"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="15"
+                android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkr_medium"
                 app:layout_constraintTop_toTopOf="@id/itemVoiceMainMicImg"
                 app:layout_constraintBottom_toBottomOf="@id/itemVoiceMainMicImg"
                 app:layout_constraintStart_toEndOf="@id/itemVoiceMainMicImg"
                 android:layout_marginStart="5dp"
                 android:textStyle="bold"
+                android:layout_marginEnd="15dp"
                 android:textColor="@color/moaBlack"
                 android:id="@+id/itemVoiceMainSpeakerCount"
                 />

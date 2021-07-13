@@ -18,7 +18,7 @@ import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.databinding.SingleImagePickerFragmentBinding
 import com.moa.moakotlin.recyclerview.imagepickrcv.ConciergeImagePickerAdapter
 
-class SingleImagePickerFragment() : Fragment() {
+class SingleImagePickerFragment(var selectedPictures : ArrayList<String>) : Fragment() {
 
     private lateinit var viewModel: SingleImagePickerViewModel
 
@@ -63,11 +63,19 @@ class SingleImagePickerFragment() : Fragment() {
             override fun onItemClick(v: View, position: Int) {
                 if(adapter.selectedPicture.contains(adapter.list[position])){
                     adapter.selectedPicture.remove(adapter.list[position])
-                    adapter.checkBox = -1
+                    adapter.checkBoxList.clear()
+                    adapter.resetting()
+                    viewModel.selectedPictureList.value = adapter.selectedPicture
+
                 }else{
+                    adapter.selectedPicture.clear()
                     adapter.selectedPicture.add(adapter.list[position])
-                    adapter.checkBox = position
+                    adapter.checkBoxList.clear()
+                    adapter.checkBoxList.add(position)
+                    adapter.resetting()
+                    viewModel.selectedPictureList.value = adapter.selectedPicture
                 }
+
             }
 
 

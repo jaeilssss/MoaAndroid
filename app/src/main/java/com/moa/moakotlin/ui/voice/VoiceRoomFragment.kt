@@ -17,6 +17,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
 import com.moa.moakotlin.data.User
+import com.moa.moakotlin.data.VoiceChatRoom
 import com.moa.moakotlin.databinding.VoiceRoomFragmentBinding
 import io.agora.rtc.Constants
 import io.agora.rtc.IRtcEngineEventHandler
@@ -62,6 +63,7 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
         binding.model = viewModel
 
         var token = arguments?.get("token") as String
+        var voiceChatRoom : VoiceChatRoom? = arguments?.getParcelable<VoiceChatRoom>("voiceChatRoom")
 //        var token= "0061186f40c5f4743a7b0650c9a6a0565d6IAD01n1Idgg/ZL6VRRGjX+Cm0ULxUXIyX/iQTPFmaXlAbgx+f9gAAAAAEABZxLUYNfSoYAEAAQA19Khg"
         navController= findNavController()
        createIRtcEnginHandler()
@@ -73,11 +75,12 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
         rtcEngine.setEnableSpeakerphone(true)
         rtcEngine.enableAudioVolumeIndication(200, 3, false) // 200 ms
 
+
         rtcEngine.setLogFile(Environment.getExternalStorageDirectory()
                 .toString() + File.separator + activity?.applicationContext?.getPackageName() + "/log/agora-rtc.log")
         rtcEngine.setClientRole(1)
 //        rtcEngine.joinChannel(token, "test","Extra Optional Data", User.getInstance().phoneNumber.toInt())
-        rtcEngine.joinChannel(token, "test","Extra Optional Data", 2)
+        rtcEngine.joinChannel(token, voiceChatRoom?.documentID,"Extra Optional Data", User.getInstance().phoneNumber.toInt())
 //        binding.muteBtn.setOnClickListener {
 //            if(muteState==false){
 //                muteState = true
@@ -125,6 +128,8 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
                 )
             )
         }
+
+
         setChannelProfile()
     }
     // Listen for the onJoinChannelSuccess callback.
@@ -149,7 +154,18 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
               super.onError(err)
               println("error")
           }
-      }
+
+            override fun onActiveSpeaker(uid: Int) {
+                super.onActiveSpeaker(uid)
+            }
+
+            override fun onRemoteAudioStateChanged(uid: Int, state: Int, reason: Int, elapsed: Int) {
+                super.onRemoteAudioStateChanged(uid, state, reason, elapsed)
+                when(state){
+
+                }
+            }
+        }
     }
     private fun setChannelProfile() {
         rtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING)

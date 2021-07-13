@@ -125,7 +125,20 @@
         android:layout_marginStart="10dp"
         android:background="@drawable/shape_radius_10"
         android:id="@+id/VoiceRoomInsertImage"
-        android:visibility="gone"/>
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        />
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/shape_moa_black_radius_10"
+        android:src="@drawable/ic_white_x"
+        android:layout_marginStart="70dp"
+        app:layout_constraintEnd_toEndOf="@id/VoiceRoomInsertImage"
+        app:layout_constraintTop_toTopOf="@id/VoiceRoomInsertImage"
+        android:id="@+id/itemAptCertificationClose"
+        android:visibility="gone"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -143,7 +156,7 @@
     android:layout_width="0dp"
     android:layout_height="0dp"
     app:layout_constraintDimensionRatio="H,1:1"
-    android:background="#ffffbfbf"
+    android:background="#bdbdbd"
     app:layout_constraintStart_toStartOf="parent"
     android:id="@+id/VoiceRoomAroundMyApt"
     android:layout_marginStart="15dp"
@@ -167,7 +180,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="H,1:1"
-        android:background="@color/mainColor"
+        android:background="#bdbdbd"
         android:id="@+id/VoiceRoomAroundNb"
         android:layout_marginEnd="10dp"
         app:layout_constraintStart_toEndOf="@id/VoiceRoomAroundMyApt"
@@ -256,6 +269,19 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toBottomOf="@id/VoiceRoomMakeSubmit"/>
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="?android:progressBarStyleLarge"
+        android:indeterminateTint="@color/mainColor"
+        android:visibility="gone"
+        android:id="@+id/NeederWriteLoading"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

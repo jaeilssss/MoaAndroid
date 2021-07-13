@@ -33,7 +33,7 @@ class ImagePickerActivity : AppCompatActivity() {
             finish()
         }
         if(check!=null){
-
+            initSingleImageFragment()
         }else{
             initFragment()
         }
@@ -48,6 +48,7 @@ class ImagePickerActivity : AppCompatActivity() {
     }
 
     fun initSingleImageFragment(){
-
+        var fragment = SingleImagePickerFragment(selectedPictures)
+        supportFragmentManager.beginTransaction().replace(R.id.ActivityImagePickerFragment,fragment).commit()
     }
 }

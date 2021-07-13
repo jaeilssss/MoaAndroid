@@ -2,6 +2,7 @@ package com.moa.moakotlin.ui.voice
 
 import android.Manifest
 import android.app.AlertDialog
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,13 +12,18 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
+import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.VoiceMainFragmentBinding
+import com.moa.moakotlin.recyclerview.voice.VoiceMainAdapter
 import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -31,6 +37,15 @@ class VoiceMainFragment : BaseFragment() {
 
     private lateinit var navController: NavController
 
+    private lateinit var adapter : VoiceMainAdapter
+
+    private lateinit var myActivity : MainActivity
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        myActivity = activity as MainActivity
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,13 +53,45 @@ class VoiceMainFragment : BaseFragment() {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.voice_main_fragment,container,false)
         viewModel = ViewModelProvider(this).get(VoiceMainViewModel::class.java)
+
         binding.model = viewModel
 
         navController = findNavController()
+        myActivity.bottomNavigationVisible()
+
+        adapter = VoiceMainAdapter()
+
+        binding.VoiceMainRcv.adapter = adapter
+
+        binding.VoiceMainRcv.layoutManager = LinearLayoutManager(activity?.applicationContext)
+
 
         permission()
 
         binding.VoiceMainCreageRoomBtn.setOnClickListener {checkAptCertification()}
+        viewModel.voiceChatRoomList.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it)
+        })
+        CoroutineScope(Dispatchers.Main).launch {
+            viewModel.initGetVoiceChatRoomList()
+        }
+
+        adapter.setOnItemClickListener(object :OnItemClickListener{
+            override fun onItemClick(v: View, position: Int) {
+                CoroutineScope(Dispatchers.Main).launch {
+                    var token = adapter.currentList[position].documentID?.let { viewModel.generateToken(it) }
+
+                    var bundle = Bundle()
+
+                    bundle.putString("token",token)
+                    bundle.putParcelable("voiceChatRoom",adapter.currentList[position])
+
+                    navController.navigate(R.id.voiceRoomFragment,bundle)
+                }
+
+            }
+
+        })
         return binding.root
     }
 
