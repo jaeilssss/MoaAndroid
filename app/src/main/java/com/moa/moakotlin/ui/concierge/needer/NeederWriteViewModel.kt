@@ -32,7 +32,7 @@ class NeederWriteViewModel():ViewModel() {
     var list = ArrayList<String>()
     var hopeDate = MutableLiveData<String>()
     var i = 0
-    var selectedPictureList = MutableLiveData<ArrayList<String>>()
+    var selectedPictureList = MutableLiveData<ArrayList<String>>(ArrayList())
     var mainCategory = MutableLiveData<String>("")
     var subCategory = MutableLiveData<String>("")
     var newNeeder = MutableLiveData<Needer>()

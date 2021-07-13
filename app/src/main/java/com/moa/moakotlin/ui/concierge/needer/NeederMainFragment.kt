@@ -125,7 +125,10 @@ class NeederMainFragment : BaseFragment() {
 
     private fun goToAllCategory(mainCategory : String){
 
-        navController.navigate()
+        var bundle = Bundle()
+
+        bundle.putString("mainCategory",mainCategory)
+        navController.navigate(R.id.categoryNeederMainFragment,bundle)
 
     }
     override fun onBackPressed() {

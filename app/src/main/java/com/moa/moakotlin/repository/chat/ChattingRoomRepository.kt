@@ -36,9 +36,9 @@ class ChattingRoomRepository {
      fun setSnapShotListener(uid : String): Query{
         var db = FirebaseFirestore.getInstance()
         var listener =  db.collection("User").document(uid)
-            .collection("ChattingRoom").orderBy("timeStamp", Query.Direction.DESCENDING)
+            .collection("ChattingRoom")
 
-
+//                .orderBy("timeStamp", Query.Direction.DESCENDING)
         return listener
     }
 

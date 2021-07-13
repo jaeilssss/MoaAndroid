@@ -16,6 +16,12 @@ class FlexBoxAdapter() : ListAdapter<String, FlexBoxAdapter.FlexViewHolder>(diff
 
     private var mListener : OnItemClickListener ?= null
 
+    var checked = -1
+
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
     fun setOnItemClickListener(mListener : OnItemClickListener){
         this.mListener = mListener
     }
@@ -27,6 +33,11 @@ class FlexBoxAdapter() : ListAdapter<String, FlexBoxAdapter.FlexViewHolder>(diff
     }
     inner class FlexViewHolder(var binding : ItemSubCategoryBinding) : RecyclerView.ViewHolder(binding.root){
         fun binding(subCategory : String){
+            if(checked ==adapterPosition) {
+                binding.itemSubCategory.setBackgroundResource(R.drawable.shape_main_color_radius_25)
+            }else{
+                binding.itemSubCategory.setBackgroundResource(R.drawable.shape_f7f7f7_radius_25)
+            }
             binding.itemSubCategory.text = subCategory
             binding.itemSubCategory.setOnClickListener(ButtonClick())
         }

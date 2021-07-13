@@ -7,6 +7,6 @@ class RequestApart(
     var address: String,
     var contact : String,
     var name : String,
-    var timestamp: Timestamp
+    var timeStamp: Timestamp
 ) {
 }

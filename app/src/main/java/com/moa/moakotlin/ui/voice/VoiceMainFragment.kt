@@ -15,12 +15,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.VoiceMainFragmentBinding
+import kotlinx.android.synthetic.main.fragment_login.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class VoiceMainFragment : Fragment() {
+class VoiceMainFragment : BaseFragment() {
 
     private lateinit var viewModel: VoiceMainViewModel
 
@@ -41,23 +44,21 @@ class VoiceMainFragment : Fragment() {
 
         permission()
 
-
-
-//        binding.join.setOnClickListener {
-//
-//            if(viewModel.checkChannelName()){
-//                CoroutineScope(Dispatchers.Main).launch {
-//                 var result = viewModel.generateToken()
-//                    var bundle = Bundle()
-//                    bundle.putString("token",result)
-//                     navController.navigate(R.id.voiceRoomFragment,bundle)
-//                }
-//
-//            }
-//        }
+        binding.VoiceMainCreageRoomBtn.setOnClickListener {checkAptCertification()}
         return binding.root
     }
 
+    override fun onBackPressed() {
+        navController.popBackStack()
+    }
+
+    fun checkAptCertification(){
+        if(User.getInstance().certificationStatus.equals("인증").not()){
+            Toast.makeText(context,"아파트 인증된 회원만 방을 개설 할 수 있습니다",Toast.LENGTH_SHORT).show()
+        }else{
+            navController.navigate(R.id.voiceRoomMakeFragment)
+        }
+    }
     private fun showContextPopupPermission(){
         AlertDialog.Builder(activity?.applicationContext!!).setTitle("권한이 필요합니다")
             .setMessage("음성 컨탠츠를 이용하시려면 필요한 권한이 있습니다")

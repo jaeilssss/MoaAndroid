@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.ktx.Firebase
@@ -153,6 +154,29 @@ class HelperRepository {
                    }
                }.await()
        return check
+    }
+
+    suspend fun getNextData(mainCategory: String,timeStamp : Timestamp) : ArrayList<Helper>{
+        var db = FirebaseFirestore.getInstance()
+        var result = ArrayList<Helper>()
+        db.collection("Helper")
+            .document(mainCategory)
+            .collection(mainCategory)
+            .whereArrayContains("aroundApt", User.getInstance().aptCode)
+            .orderBy("timeStamp", Query.Direction.DESCENDING)
+            .startAfter(timeStamp)
+            .limit(5)
+            .get()
+            .addOnSuccessListener {
+                for(document in it.documents){
+                    var data = document.toObject(Helper::class.java)
+                    data?.documentID = document.id
+                    if (data != null) {
+                        result.add(data)
+                    }
+                }
+            }.await()
+        return result
     }
 }
 

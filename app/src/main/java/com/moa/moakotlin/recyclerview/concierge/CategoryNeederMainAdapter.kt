@@ -1,22 +1,79 @@
 package com.moa.moakotlin.recyclerview.concierge
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
+import com.moa.moakotlin.R
+import com.moa.moakotlin.base.OnItemClickListener
+import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.databinding.ItemCategoryMainBinding
+import java.text.SimpleDateFormat
 
 class CategoryNeederMainAdapter() : ListAdapter<Needer, CategoryNeederMainAdapter.CategoryViewHolder>(diffUtil) {
+
+    private lateinit var mListener : OnItemClickListener
+
+    fun setOnItemClickListener(mListener : OnItemClickListener){
+        this.mListener = mListener
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryNeederMainAdapter.CategoryViewHolder {
         return CategoryViewHolder(ItemCategoryMainBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.binding(currentList[position])
     }
-    inner class CategoryViewHolder(binding : ItemCategoryMainBinding) : RecyclerView.ViewHolder(binding.root)
+
+    override fun getItemViewType(position: Int): Int {
+            return position
+    }
+
+    inner class CategoryViewHolder(var binding : ItemCategoryMainBinding) : RecyclerView.ViewHolder(binding.root){
+        fun binding(needer : Needer){
+            if(needer.images?.size!=0){
+                Glide.with(binding.root).load(needer.images?.get(0)).apply(
+                        RequestOptions.bitmapTransform(
+                                RoundedCorners(16)
+                        ))
+                        .into(binding.itemCategoryImage)
+            }
+            binding.itemCategoryAptName.text = needer.aptName
+            binding.itemCategoryContent.text = needer.content
+            val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm")
+            binding.itemCategoryHopeDate.text = dateFormat.format(needer.timeStamp.toDate())
+            if(needer.isNego.not()){
+                binding.CategoryMainIsNego.isVisible = false
+            }
+            binding.itemCategoryPrice.text = needer.hopeWage
+            binding.CategoryHelperLayout.setOnClickListener(ButtonClick())
+
+
+
+        }
+        inner class ButtonClick : View.OnClickListener{
+            override fun onClick(view: View?) {
+                when(view?.id){
+                    R.id.CategoryHelperLayout->{
+                        if(mListener!=null){
+                            if(adapterPosition != RecyclerView.NO_POSITION){
+                                mListener!!.onItemClick(view,adapterPosition)
+                            }
+                        }
+                    }
+                }
+
+            }
+
+        }
+    }
 
     companion object{
         val diffUtil = object : DiffUtil.ItemCallback<Needer>(){

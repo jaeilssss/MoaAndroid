@@ -26,7 +26,7 @@ class HomeViewModel() : ViewModel() {
     private lateinit var functions: FirebaseFunctions
 
     fun init(){
-//        deleteAtPath("test")
+//        deleteAtPath("test123/sss/test456")
 //        registerPushToken()
 //        var push = FcmPush()
 //
@@ -34,12 +34,12 @@ class HomeViewModel() : ViewModel() {
 //        push.sendMessage(token,"test!!","하이 재일99")
 
 
-        var pushRepository = FcmRepository()
-        var token  = "fQoVy4jPQAWKipC6njohvq:APA91bEsOr04SUHcLGNod8lS56rFzQHDuhu6B3frj9nmXaBhONKtvEFUp0MXJNUOu8FJrnmKyMdi4WGtBWt5uFWKq_wDCFdQS0Wus7XLaGq5naVbrxV8FTRNcrNIsd9ZCsDmNpDsKVo0"
-        var message = PushMessage("Moa","당신의 게시글을 좋아요 눌렀습니다!",token)
-        pushRepository.sendPushMessage(message)
-
-        FirebaseMessaging.getInstance().subscribeToTopic("test")
+//        var pushRepository = FcmRepository()
+//        var token  = "fQoVy4jPQAWKipC6njohvq:APA91bEsOr04SUHcLGNod8lS56rFzQHDuhu6B3frj9nmXaBhONKtvEFUp0MXJNUOu8FJrnmKyMdi4WGtBWt5uFWKq_wDCFdQS0Wus7XLaGq5naVbrxV8FTRNcrNIsd9ZCsDmNpDsKVo0"
+//        var message = PushMessage("Moa","당신의 게시글을 좋아요 눌렀습니다!",token)
+//        pushRepository.sendPushMessage(message)
+//
+//        FirebaseMessaging.getInstance().subscribeToTopic("test")
 
     }
     fun goToKid() {

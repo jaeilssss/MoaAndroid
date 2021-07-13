@@ -77,7 +77,6 @@ class HelperReadFragment : BaseFragment() {
         arguments?.let {
             helper = it.getParcelable<Helper>("data")!!
             writer = it.getParcelable<User>("writer")!!
-
         }
 
         binding.HelperReadOption.setOnClickListener {

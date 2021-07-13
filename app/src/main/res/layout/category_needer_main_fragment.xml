@@ -1,13 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.concierge.needer.CategoryNeederMainFragment">
-
-    <TextView
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+<data>
+    <variable
+        name="model"
+        type="com.moa.moakotlin.ui.concierge.needer.CategoryNeederMainViewModel" />
+</data>
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        >
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="9.8dp"
+            android:layout_height="17dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/ic_back"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="육아"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:id="@+id/CategoryNeederMainText"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            app:layout_constraintTop_toTopOf="@id/back"
+            app:layout_constraintBottom_toBottomOf="@id/back"/>
 
-</FrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/back"
+            android:layout_marginTop="10dp"
+            android:paddingBottom="?attr/actionBarSize"
+            android:id="@+id/CategoryNeederMainRcv"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

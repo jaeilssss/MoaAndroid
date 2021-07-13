@@ -74,7 +74,7 @@ class NeederWriteFragment : Fragment() {
         model.selectedPictureList.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
             adapter.notifyDataSetChanged()
-            binding.NeederWriteCountPicture.text = adapter.itemCount.toString()
+            binding.NeederWriteCountPicture.text = it.size.toString()
         })
         model.newNeeder.observe(viewLifecycleOwner, Observer {
 
@@ -149,7 +149,6 @@ class NeederWriteFragment : Fragment() {
                 selectedPictureList.addAll(list)
                 adapter.submitList(selectedPictureList)
                 adapter.notifyDataSetChanged()
-                binding.NeederWriteCountPicture.text = selectedPictureList.size.toString()
                 model.selectedPictureList.value = selectedPictureList
             }
         }

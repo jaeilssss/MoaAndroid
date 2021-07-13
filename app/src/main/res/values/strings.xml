@@ -74,6 +74,18 @@
         <item>"대학생"</item>
         <item>"선생님"</item>
     </string-array>
+    <string-array name="voiceChatTheme">
+        <item>"수다"</item>
+        <item>"커피친구"</item>
+        <item>"드라마"</item>
+        <item>"반려동물"</item>
+        <item>"운동"</item>
+        <item>"맛집"</item>
+        <item>"부동산"</item>
+        <item>"지역개발"</item>
+        <item>"입주자대회"</item>
+        <item>"기타"</item>
+    </string-array>
     <string name="title_activity_loading_fragment">LoadingFragment</string>
     <!--
     This string is used for square devices and overridden by hello_world in

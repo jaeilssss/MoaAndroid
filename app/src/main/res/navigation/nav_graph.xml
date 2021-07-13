@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_HomeFragment_to_ConciergeMainFragment"
             app:destination="@id/ConciergeMainFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_voiceMainFragment"
+            app:destination="@id/voiceMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/MyPageFragment"
@@ -208,7 +211,11 @@
         android:id="@+id/voiceMainFragment"
         android:name="com.moa.moakotlin.ui.voice.VoiceMainFragment"
         android:label="voice_main_fragment"
-        tools:layout="@layout/voice_main_fragment" />
+        tools:layout="@layout/voice_main_fragment" >
+        <action
+            android:id="@+id/action_voiceMainFragment_to_voiceRoomMakeFragment"
+            app:destination="@id/voiceRoomMakeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/voiceRoomFragment"
         android:name="com.moa.moakotlin.ui.voice.VoiceRoomFragment"
@@ -305,5 +312,10 @@
         android:name="com.moa.moakotlin.ui.concierge.needer.CategoryNeederMainFragment"
         android:label="category_needer_main_fragment"
         tools:layout="@layout/category_needer_main_fragment" />
+    <fragment
+        android:id="@+id/voiceRoomMakeFragment"
+        android:name="com.moa.moakotlin.ui.voice.VoiceRoomMakeFragment"
+        android:label="voice_room_make_fragment"
+        tools:layout="@layout/voice_room_make_fragment" />
 
 </navigation>

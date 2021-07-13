@@ -8,15 +8,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.OnItemClickListener
+import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.databinding.CategoryMainFragmentBinding
 import com.moa.moakotlin.recyclerview.concierge.CategoryHelperMainAdapter
+import com.moa.moakotlin.recyclerview.concierge.CategoryNeederMainAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -34,7 +38,7 @@ class CategoryMainFragment : Fragment() {
     private lateinit var navController: NavController
 
     private lateinit var adapterHelper : CategoryHelperMainAdapter
-
+    private var helperList = ArrayList<Helper>()
     lateinit var myActivity : MainActivity
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -48,7 +52,9 @@ class CategoryMainFragment : Fragment() {
 
         return binding.root
     }
-
+// helper 스크롤 할때 데이터 가저오는지 테스트 해봐야하고 처음에 데이터 20개로 세팅할것!  그리고 이제 로딩중에 화면 터치 못하게 만들어야함
+    // 그리고 모집중 모집완료 띠 만들어야함 시발
+    // 내일 아침에 하자 재일아 고생햇따 오늘 많이 못했네
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         myActivity.bottomNavigationGone()
@@ -69,8 +75,16 @@ class CategoryMainFragment : Fragment() {
                 binding.CategoryMainText.text = mainCategory
             }
         }
+        viewModel.neederList.observe(viewLifecycleOwner, Observer {
+            helperList = it
+            var newDataSize = it.size
 
+            adapterHelper.submitList(helperList)
+            adapterHelper.notifyDataSetChanged()
+
+        })
         setAdapterClickListener()
+        onScrollListener(binding.CategoryMainRcv,adapterHelper)
     }
 
     fun setAdapterClickListener(){
@@ -99,5 +113,18 @@ class CategoryMainFragment : Fragment() {
             adapterHelper.submitList(list)
         }
     }
-
+    fun onScrollListener(rcv: RecyclerView, adapter: CategoryHelperMainAdapter){
+        rcv.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                var firstCompletelyVisibleItemPosition = (rcv.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+                var lastCompletelyVisibleItemPosition = (rcv.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+                if(lastCompletelyVisibleItemPosition == adapterHelper.itemCount-1){
+                    CoroutineScope(Dispatchers.Main).launch {
+                        viewModel.Scrolling(adapter.currentList[0].mainCategory,
+                            adapterHelper.currentList[adapterHelper.itemCount-1].timeStamp)
+                    }
+                }
+            }
+        })
+    }
 }

@@ -21,6 +21,8 @@ class ImagePickerActivity : AppCompatActivity() {
         var intent = intent
 
        selectedPictures = intent.getStringArrayListExtra("selectedPictureList")!!
+        var check : String ?=null
+        check = intent.getStringExtra("singleImage")
 
         var submit = findViewById<TextView>(R.id.ActivityImagePickerSubmit)
 
@@ -30,7 +32,12 @@ class ImagePickerActivity : AppCompatActivity() {
             setResult(1000,intent)
             finish()
         }
-        initFragment()
+        if(check!=null){
+
+        }else{
+            initFragment()
+        }
+
     }
 
 
@@ -38,5 +45,9 @@ class ImagePickerActivity : AppCompatActivity() {
     fun initFragment(){
         var fragment = ImagePickerViewFragment(selectedPictures)
         supportFragmentManager.beginTransaction().replace(R.id.ActivityImagePickerFragment,fragment).commit()
+    }
+
+    fun initSingleImageFragment(){
+
     }
 }

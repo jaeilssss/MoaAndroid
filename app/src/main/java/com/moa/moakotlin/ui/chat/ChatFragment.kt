@@ -76,7 +76,7 @@ class ChatFragment : BaseFragment() {
 
         opponentUser = arguments?.getParcelable<User>("opponentUser")!!
 
-
+        needer?.images?.map { print(it)  }
         needer = arguments?.getParcelable<Needer>("Needer") ?:null
         navController = findNavController()
          rcv = binding.ChatRcv
@@ -115,11 +115,13 @@ class ChatFragment : BaseFragment() {
             if(model.msg.value!!.uid.equals(User.getInstance().uid)){
                 rcv.scrollToPosition(adapter.itemCount-1)
             }else{
+
                 // 상대방이 쓴 채팅은 밑으로 안내려가짐 !!
+
             }
         })
         binding.ChatGoToAlbum.setOnClickListener{
-        requestPhoto()
+            requestPhoto()
         }
         binding.ChatSend.setOnClickListener {
             if(model.talk.get()?.length!! >0){
@@ -192,6 +194,10 @@ class ChatFragment : BaseFragment() {
                         rcv.scrollToPosition(size+lastCompletelyVisibleItemPosition)
                     }
                 }
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
             }
         })
     }

@@ -44,7 +44,7 @@ class CategoryHelperMainAdapter(): ListAdapter<Helper, CategoryHelperMainAdapter
             }
             binding.itemCategoryAptName.text = helper.aptName
             binding.itemCategoryContent.text = helper.content
-            val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일 HH:mm")
+            val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm")
             binding.itemCategoryHopeDate.text = dateFormat.format(helper.timeStamp.toDate())
             if(helper.isNego.not()){
                 binding.CategoryMainIsNego.isVisible = false

@@ -1,6 +1,7 @@
 package com.moa.moakotlin.repository.concierge
 
 import android.net.Uri
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
@@ -130,7 +131,7 @@ class NeederRepository {
                 .document(mainCategory)
                 .collection(mainCategory)
                 .whereArrayContains("aroundApt", User.getInstance().aptCode)
-                .orderBy("timeStamp", Query.Direction.DESCENDING).limit(50)
+                .orderBy("timeStamp", Query.Direction.DESCENDING).limit(10)
                 .get().addOnSuccessListener {
                     for(document in it.documents){
                         var data = document.toObject(Needer::class.java)
@@ -165,5 +166,29 @@ class NeederRepository {
             .collection(needer.mainCategory)
             .document(needer.documentID!!)
             .set(needer)
+    }
+
+
+    suspend fun getNextData(mainCategory: String,timeStamp : Timestamp) : ArrayList<Needer>{
+        var db = FirebaseFirestore.getInstance()
+        var result = ArrayList<Needer>()
+        db.collection("Needer")
+                .document(mainCategory)
+                .collection(mainCategory)
+                .whereArrayContains("aroundApt", User.getInstance().aptCode)
+                .orderBy("timeStamp", Query.Direction.DESCENDING)
+                .startAfter(timeStamp)
+                .limit(5)
+                .get()
+                .addOnSuccessListener {
+                    for(document in it.documents){
+                        var data = document.toObject(Needer::class.java)
+                        data?.documentID = document.id
+                        if (data != null) {
+                            result.add(data)
+                        }
+                    }
+                }.await()
+        return result
     }
 }

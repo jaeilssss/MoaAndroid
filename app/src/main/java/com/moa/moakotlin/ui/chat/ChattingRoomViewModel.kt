@@ -36,15 +36,22 @@ class ChattingRoomViewModel() : ViewModel(){
              return@addSnapshotListener
          }
          var list = chattingRoomData.value
+
          if (snapshot != null) {
+            println("snapshot.documents.size -> ${snapshot.documents.size}")
              for(dc in snapshot.documentChanges){
-                 when(dc.type) {
+                    println("몇번일까요?")
+                    when(dc.type) {
                      DocumentChange.Type.ADDED -> {
+
                          var chattingRoom = dc.document.toObject(ChattingRoom::class.java)
+
                          roomList.add(dc.document.id)
-                            list?.add(chattingRoom)
+
+                         list?.add(chattingRoom)
                      }
                      DocumentChange.Type.MODIFIED -> {
+                         println("modify..")
                          var chattingRoom = dc.document.toObject(ChattingRoom::class.java)
                              var index = roomList?.indexOf(dc.document.id) ?: -1
                          list?.removeAt(index)
@@ -54,12 +61,15 @@ class ChattingRoomViewModel() : ViewModel(){
                      }
                      DocumentChange.Type.REMOVED -> {
 
+                     }else ->{
+                         println("여기 채팅룸...")
                      }
                  }
              }
              chattingRoomData.value = list!!
          }
      }
+
 }
 
 }

@@ -106,9 +106,8 @@ lateinit var transfer: Transfer
         megazinAdapter.submitList(megazinList)
 
 
-        binding.homeTalentSharingBnt.setOnClickListener {
-            navController.navigate(R.id.ConciergeMainFragment)
-        }
+        binding.homeTalentSharingBnt.setOnClickListener { navController.navigate(R.id.ConciergeMainFragment) }
+        binding.homeMoaVoiceChatBtn.setOnClickListener { navController.navigate(R.id.voiceMainFragment) }
         return binding.root
     }
 
