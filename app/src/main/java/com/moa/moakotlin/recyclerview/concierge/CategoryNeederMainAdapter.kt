@@ -55,7 +55,7 @@ class CategoryNeederMainAdapter() : ListAdapter<Needer, CategoryNeederMainAdapte
             binding.itemCategoryPrice.text = needer.hopeWage
             binding.CategoryHelperLayout.setOnClickListener(ButtonClick())
 
-
+            binding.ItemCategoryStatus.text = needer.hireStatus
 
         }
         inner class ButtonClick : View.OnClickListener{

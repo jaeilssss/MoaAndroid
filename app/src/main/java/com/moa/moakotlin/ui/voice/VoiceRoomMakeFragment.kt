@@ -223,13 +223,14 @@ class VoiceRoomMakeFragment : Fragment() {
             var token = viewModel.submit()
             var voiceChatRoom = viewModel.voiceChatRoom
             voiceChatRoom.documentID = viewModel.documentID
+            if(viewModel.makeVoiceUser(voiceChatRoom.documentID)){
+                var bundle = Bundle()
+                bundle.putString("token",token)
+                bundle.putParcelable("voiceChatRoom",voiceChatRoom)
+                binding.NeederWriteLoading.hide()
+                navController.navigate(R.id.voiceRoomFragment,bundle)
+            }
 
-            var bundle = Bundle()
-
-            bundle.putString("token",token)
-            bundle.putParcelable("voiceChatRoom",voiceChatRoom)
-            binding.NeederWriteLoading.show()
-            navController.navigate(R.id.voiceRoomFragment,bundle)
         }
     }
 }

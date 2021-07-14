@@ -2,6 +2,7 @@ package com.moa.moakotlin.repository.voice
 
 import android.net.Uri
 import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.functions.FirebaseFunctions
@@ -11,6 +12,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.VoiceChatRoom
+import com.moa.moakotlin.data.VoiceUser
 import com.moa.moakotlin.data.aptList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -98,5 +100,54 @@ class VoiceRepository  {
                 }.await()
 
         return voiceChatRoomList
+    }
+
+    suspend fun goToVoiceRoom(voiceRoomDocumentID:String,voiceUser : VoiceUser) : Boolean{
+        var check = false
+        var db = FirebaseFirestore.getInstance()
+
+        db.collection("VoiceChatRoom")
+                .document(voiceRoomDocumentID)
+                .collection("VoiceUser")
+                .document(voiceUser.uid)
+                .set(voiceUser)
+                .addOnSuccessListener {
+                    check = true
+                }.await()
+        return check
+    }
+
+    fun setSnapShot(voiceChatID : String) : Query{
+        var db = FirebaseFirestore.getInstance()
+        var query =  db.collection("VoiceChatRoom").document(voiceChatID)
+                .collection("VoiceUser")
+        return query
+    }
+
+    fun update(voiceChatRoom: VoiceChatRoom){
+        var db = FirebaseFirestore.getInstance()
+
+        db.collection("VoiceChatRoom")
+                .document(voiceChatRoom.documentID)
+                .set(voiceChatRoom)
+
+    }
+
+    fun changeVoiceChatRoomCount(documentID: String,num : Long){
+        var db = FirebaseFirestore.getInstance()
+
+        db.collection("VoiceChatRoom")
+                .document(documentID)
+                .update("speakersCount", FieldValue.increment(num))
+    }
+
+    fun deleteVoiceUser(voiceChatRoomDocumentID : String ,voiceUser: VoiceUser){
+        var db = FirebaseFirestore.getInstance()
+
+        db.collection("VoiceChatRoom")
+                .document(voiceChatRoomDocumentID)
+                .collection("VoiceUser")
+                .document(voiceUser.uid)
+                .delete()
     }
     }

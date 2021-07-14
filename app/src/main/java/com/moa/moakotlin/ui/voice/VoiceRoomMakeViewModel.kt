@@ -6,6 +6,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.Timestamp
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.VoiceChatRoom
+import com.moa.moakotlin.data.VoiceUser
 import com.moa.moakotlin.data.aptList
 import com.moa.moakotlin.repository.voice.VoiceRepository
 import kotlinx.coroutines.CoroutineScope
@@ -55,5 +56,16 @@ class VoiceRoomMakeViewModel : ViewModel() {
         return theme.value?.length!!>0 &&
                 title.value?.length!!>0 &&
                 range.value?.length!!>0
+    }
+
+    suspend fun makeVoiceUser (documentId : String) : Boolean{
+        var repository = VoiceRepository()
+        var voiceUser = VoiceUser()
+        voiceUser.role = "owner"
+        voiceUser.profileImage = User.getInstance().profileImage
+        voiceUser.uid = User.getInstance().uid
+        voiceUser.nickName = User.getInstance().nickName
+        voiceUser.phoneNumber = User.getInstance().phoneNumber
+        return  repository.goToVoiceRoom(documentId,voiceUser)
     }
 }

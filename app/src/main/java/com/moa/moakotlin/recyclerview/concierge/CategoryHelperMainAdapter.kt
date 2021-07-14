@@ -33,6 +33,10 @@ class CategoryHelperMainAdapter(): ListAdapter<Helper, CategoryHelperMainAdapter
             holder.binding(currentList[position])
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
     inner class CategoryViewHolder(var binding : ItemCategoryMainBinding) : RecyclerView.ViewHolder(binding.root){
         fun binding(helper : Helper){
             if(helper.images?.size!=0){
@@ -52,7 +56,7 @@ class CategoryHelperMainAdapter(): ListAdapter<Helper, CategoryHelperMainAdapter
             binding.itemCategoryPrice.text = helper.hopeWage
             binding.CategoryHelperLayout.setOnClickListener(ButtonClick())
 
-
+            binding.ItemCategoryStatus.isVisible =false
 
         }
         inner class ButtonClick : View.OnClickListener{

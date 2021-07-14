@@ -74,7 +74,7 @@ class HelperRepository {
                 .collection(mainCaregory)
                 .whereArrayContains("aroundApt", User.getInstance().aptCode)
                 .orderBy("timeStamp",Query.Direction.DESCENDING)
-                .limit(50)
+                .limit(20)
                 .get().addOnSuccessListener {
                     for(document in it.documents){
                         var data = document.toObject(Helper::class.java)
@@ -165,7 +165,7 @@ class HelperRepository {
             .whereArrayContains("aroundApt", User.getInstance().aptCode)
             .orderBy("timeStamp", Query.Direction.DESCENDING)
             .startAfter(timeStamp)
-            .limit(5)
+            .limit(20)
             .get()
             .addOnSuccessListener {
                 for(document in it.documents){

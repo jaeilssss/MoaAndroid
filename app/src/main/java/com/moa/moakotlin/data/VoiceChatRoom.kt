@@ -5,7 +5,7 @@ import com.google.firebase.Timestamp
 import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class VoiceChatRoom(
-        var documentID : String ?="",
+        var documentID : String ="",
         var name : String ="",
         var range : String="",
         var timeStamp : Timestamp= Timestamp.now(),

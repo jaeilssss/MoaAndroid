@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.VoiceChatRoom
+import com.moa.moakotlin.data.VoiceUser
 import com.moa.moakotlin.repository.voice.VoiceRepository
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
@@ -35,4 +36,26 @@ class VoiceMainViewModel : ViewModel() {
         voiceChatRoomList.value = list
     }
 
-}
+
+    suspend fun goToVoiceRoom(documentID: String) : Boolean{
+        var repository = VoiceRepository()
+        var voiceUser = VoiceUser()
+//
+        voiceUser.nickName = User.getInstance().nickName
+        voiceUser.phoneNumber = User.getInstance().phoneNumber
+        voiceUser.profileImage = User.getInstance().profileImage
+        voiceUser.uid = User.getInstance().uid
+        voiceUser.role = "audience"
+
+
+        return repository.goToVoiceRoom(documentID,voiceUser)
+    }
+
+    fun increasePeopleCount(position : Int){
+
+
+        var repository = VoiceRepository()
+
+        repository.changeVoiceChatRoomCount(voiceChatRoomList.value?.get(position)!!.documentID,1)
+    }
+    }

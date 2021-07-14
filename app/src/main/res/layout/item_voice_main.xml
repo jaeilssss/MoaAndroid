@@ -112,13 +112,13 @@
                 android:layout_marginStart="5dp"
                 android:textStyle="bold"
                 android:textColor="@color/moaBlack"
-                android:id="@+id/itemVoiceMainAudienceCount"/>
+                android:id="@+id/itemVoiceMainPeopleCount"/>
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 app:layout_constraintTop_toTopOf="@id/itemVoiceMainAudienceImg"
                 app:layout_constraintBottom_toBottomOf="@id/itemVoiceMainAudienceImg"
-                app:layout_constraintStart_toEndOf="@id/itemVoiceMainAudienceCount"
+                app:layout_constraintStart_toEndOf="@id/itemVoiceMainPeopleCount"
                 android:background="@drawable/ic_voice_main_mic"
                 android:layout_marginStart="10dp"
                 android:id="@+id/itemVoiceMainMicImg"/>

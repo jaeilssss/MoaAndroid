@@ -16,7 +16,7 @@ data class User(
     var certificationStatus : String ="미인증",
     var nickName :  String = "",
     var phoneNumber : String = "",
-    var profileImage :String ?="",
+    var profileImage :String ="",
     var address : String ="",
     var aptName : String ="",
     var signUpDate : Timestamp = Timestamp.now(),

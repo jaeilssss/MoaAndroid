@@ -32,6 +32,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="모집중"
+            android:textColor="@color/white"
+            android:background="@drawable/shape_moa_black_radius_5_border_white"
+            app:layout_constraintStart_toStartOf="@id/itemCategoryImage"
+            app:layout_constraintTop_toTopOf="@id/itemCategoryImage"
+            android:padding="5dp"
+            android:textSize="14sp"
+            android:layout_margin="5dp"
+            android:id="@+id/ItemCategoryStatus"/>
 
         <TextView
             android:id="@+id/itemCategoryAptName"

@@ -57,6 +57,7 @@ class VoiceMainFragment : BaseFragment() {
         binding.model = viewModel
 
         navController = findNavController()
+
         myActivity.bottomNavigationVisible()
 
         adapter = VoiceMainAdapter()
@@ -64,7 +65,6 @@ class VoiceMainFragment : BaseFragment() {
         binding.VoiceMainRcv.adapter = adapter
 
         binding.VoiceMainRcv.layoutManager = LinearLayoutManager(activity?.applicationContext)
-
 
         permission()
 
@@ -79,14 +79,22 @@ class VoiceMainFragment : BaseFragment() {
         adapter.setOnItemClickListener(object :OnItemClickListener{
             override fun onItemClick(v: View, position: Int) {
                 CoroutineScope(Dispatchers.Main).launch {
-                    var token = adapter.currentList[position].documentID?.let { viewModel.generateToken(it) }
+                    binding.VoiceMainLoadingProgressBar.show()
+                    if(viewModel.goToVoiceRoom(adapter.currentList[position].documentID)){
 
-                    var bundle = Bundle()
+                        var token = adapter.currentList[position].documentID?.let { viewModel.generateToken(it) }
 
-                    bundle.putString("token",token)
-                    bundle.putParcelable("voiceChatRoom",adapter.currentList[position])
+                        var bundle = Bundle()
 
-                    navController.navigate(R.id.voiceRoomFragment,bundle)
+                        bundle.putString("token",token)
+                        bundle.putParcelable("voiceChatRoom",adapter.currentList[position])
+                        viewModel.increasePeopleCount(position)
+                        binding.VoiceMainLoadingProgressBar.hide()
+                        navController.navigate(R.id.voiceRoomFragment,bundle)
+                    }else{
+                        binding.VoiceMainLoadingProgressBar.hide()
+                        showToast(activity?.applicationContext!!,"접속이 불가능합니다")
+                    }
                 }
 
             }

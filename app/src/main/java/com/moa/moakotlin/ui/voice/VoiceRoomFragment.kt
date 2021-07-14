@@ -12,13 +12,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.moa.moakotlin.R
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.VoiceChatRoom
 import com.moa.moakotlin.databinding.VoiceRoomFragmentBinding
+import com.moa.moakotlin.recyclerview.voice.VoiceRoomAdapter
 import io.agora.rtc.Constants
 import io.agora.rtc.IRtcEngineEventHandler
 import io.agora.rtc.RtcEngine
@@ -64,23 +67,35 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
 
         var token = arguments?.get("token") as String
         var voiceChatRoom : VoiceChatRoom? = arguments?.getParcelable<VoiceChatRoom>("voiceChatRoom")
-//        var token= "0061186f40c5f4743a7b0650c9a6a0565d6IAD01n1Idgg/ZL6VRRGjX+Cm0ULxUXIyX/iQTPFmaXlAbgx+f9gAAAAAEABZxLUYNfSoYAEAAQA19Khg"
         navController= findNavController()
        createIRtcEnginHandler()
         initRtcEngine()
-
-        // Sets the channel profile of the Agora RtcEngine.
-        // The Agora RtcEngine differentiates channel profiles and applies different optimization algorithms accordingly. For example, it prioritizes smoothness and low latency for a video call, and prioritizes video quality for a video broadcast.
         rtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING)
-        rtcEngine.setEnableSpeakerphone(true)
-        rtcEngine.enableAudioVolumeIndication(200, 3, false) // 200 ms
 
+        rtcEngine.setEnableSpeakerphone(true)
 
         rtcEngine.setLogFile(Environment.getExternalStorageDirectory()
                 .toString() + File.separator + activity?.applicationContext?.getPackageName() + "/log/agora-rtc.log")
         rtcEngine.setClientRole(1)
-//        rtcEngine.joinChannel(token, "test","Extra Optional Data", User.getInstance().phoneNumber.toInt())
+        rtcEngine.enableAudioVolumeIndication(200, 3, false)
         rtcEngine.joinChannel(token, voiceChatRoom?.documentID,"Extra Optional Data", User.getInstance().phoneNumber.toInt())
+        binding.VoiceRoomSpeakerRcv.layoutManager = GridLayoutManager(activity?.applicationContext!!,4)
+        binding.VoiceRoomAudienceRcv.layoutManager = GridLayoutManager(activity?.applicationContext!!,4)
+
+        var speakerAdapter = VoiceRoomAdapter()
+
+        binding.VoiceRoomSpeakerRcv.adapter = speakerAdapter
+        var audienceAdapter = VoiceRoomAdapter()
+
+        binding.VoiceRoomAudienceRcv.adapter =  audienceAdapter
+
+
+        binding.VoiceRoomExitBtn.setOnClickListener {
+
+        }
+
+
+
 //        binding.muteBtn.setOnClickListener {
 //            if(muteState==false){
 //                muteState = true
@@ -90,6 +105,21 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
 //        rtcEngine.muteLocalAudioStream(muteState)
 //
 //        }
+
+        if (voiceChatRoom != null) {
+            viewModel.setSnapShotListener(voiceChatRoom.documentID)
+        }
+
+        viewModel.audiences.observe(viewLifecycleOwner, Observer {
+            audienceAdapter.submitList(it)
+            audienceAdapter.notifyDataSetChanged()
+        })
+        viewModel.speakers.observe(viewLifecycleOwner, Observer {
+                speakerAdapter.submitList(it)
+            audienceAdapter.notifyDataSetChanged()
+        })
+
+
         return binding.root
     }
 
@@ -128,8 +158,6 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
                 )
             )
         }
-
-
         setChannelProfile()
     }
     // Listen for the onJoinChannelSuccess callback.
@@ -152,7 +180,7 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
 
           override fun onError(err: Int) {
               super.onError(err)
-              println("error")
+              println("error handler rtc engin")
           }
 
             override fun onActiveSpeaker(uid: Int) {
@@ -183,6 +211,11 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
         val envelop = Message()
         envelop.what = ACTION_WORKER_CONFIG_ENGINE
         envelop.obj = arrayOf<Any>(Constants.CLIENT_ROLE_BROADCASTER)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        rtcEngine.leaveChannel()
     }
 }
 

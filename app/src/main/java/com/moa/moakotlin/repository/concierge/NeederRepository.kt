@@ -131,7 +131,7 @@ class NeederRepository {
                 .document(mainCategory)
                 .collection(mainCategory)
                 .whereArrayContains("aroundApt", User.getInstance().aptCode)
-                .orderBy("timeStamp", Query.Direction.DESCENDING).limit(10)
+                .orderBy("timeStamp", Query.Direction.DESCENDING).limit(20)
                 .get().addOnSuccessListener {
                     for(document in it.documents){
                         var data = document.toObject(Needer::class.java)
@@ -178,7 +178,7 @@ class NeederRepository {
                 .whereArrayContains("aroundApt", User.getInstance().aptCode)
                 .orderBy("timeStamp", Query.Direction.DESCENDING)
                 .startAfter(timeStamp)
-                .limit(5)
+                .limit(20)
                 .get()
                 .addOnSuccessListener {
                     for(document in it.documents){

@@ -44,7 +44,8 @@ class VoiceMainAdapter() : ListAdapter<VoiceChatRoom, VoiceMainAdapter.VoiceMain
             binding.itemVoiceMainRoomMakerNickname.text = voiceChatRoom.nickName
             binding.itemVoiceMainTitle.text = "[${voiceChatRoom.topic}] ${voiceChatRoom.name}"
             binding.itemVoiceMainRange.text = voiceChatRoom.range
-
+            binding.itemVoiceMainPeopleCount.text = voiceChatRoom.peopleCount.toString()
+            binding.itemVoiceMainSpeakerCount.text = voiceChatRoom.speakersCount.toString()
             binding.itemVoiceMainLayout.setOnClickListener(ButtonClick())
         }
         inner class ButtonClick : View.OnClickListener{
@@ -59,9 +60,6 @@ class VoiceMainAdapter() : ListAdapter<VoiceChatRoom, VoiceMainAdapter.VoiceMain
 
         }
     }
-
-
-
     }
     companion object{
         val diffUtil = object : DiffUtil.ItemCallback<VoiceChatRoom>(){

@@ -52,7 +52,7 @@ class CategoryMainFragment : Fragment() {
 
         return binding.root
     }
-// helper 스크롤 할때 데이터 가저오는지 테스트 해봐야하고 처음에 데이터 20개로 세팅할것!  그리고 이제 로딩중에 화면 터치 못하게 만들어야함
+// 그리고 이제 로딩중에 화면 터치 못하게 만들어야함
     // 그리고 모집중 모집완료 띠 만들어야함 시발
     // 내일 아침에 하자 재일아 고생햇따 오늘 많이 못했네
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -79,7 +79,7 @@ class CategoryMainFragment : Fragment() {
             helperList = it
             var newDataSize = it.size
 
-            adapterHelper.submitList(helperList)
+            adapterHelper.submitList(it)
             adapterHelper.notifyDataSetChanged()
 
         })
@@ -109,8 +109,8 @@ class CategoryMainFragment : Fragment() {
     }
     fun getList(mainCategory : String){
         CoroutineScope(Dispatchers.Main).launch {
-            var list = viewModel.getList(mainCategory)
-            adapterHelper.submitList(list)
+            viewModel.list = viewModel.getList(mainCategory)
+            viewModel.neederList.value = viewModel.list
         }
     }
     fun onScrollListener(rcv: RecyclerView, adapter: CategoryHelperMainAdapter){

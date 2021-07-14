@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
@@ -55,7 +56,6 @@ class HelperWritePageFragment : Fragment() {
 
 
         binding.HelperWriteCategoryLayout.setOnClickListener {
-
             var intent = Intent(activity,HelperCategoryActivity::class.java)
             startActivityForResult(intent,2000)
         }
@@ -66,12 +66,16 @@ class HelperWritePageFragment : Fragment() {
         binding.HelperWriteSubmit.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 binding.HelperWriteLoading.show()
+                activity?.getWindow()?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                model.submit()
                model.newHelper.observe(viewLifecycleOwner, Observer {
                    var bundle = Bundle()
                    bundle.putParcelable("helper",it)
                    Toast.makeText(activity?.applicationContext,"작성이 완료되었습니다",Toast.LENGTH_SHORT).show()
                    activity?.finish()
+                   activity?.getWindow()?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                    binding.HelperWriteLoading.hide()
                })
             }
