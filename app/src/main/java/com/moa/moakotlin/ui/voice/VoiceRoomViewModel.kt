@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.ListenerRegistration
+import com.moa.moakotlin.data.RequestUser
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.VoiceUser
 import com.moa.moakotlin.repository.voice.VoiceRepository
@@ -21,6 +22,7 @@ class VoiceRoomViewModel : ViewModel() {
      var speakers = MutableLiveData<ArrayList<String>>()
 
     lateinit var mlistener: ListenerRegistration
+    lateinit var requestSpeakerListener : ListenerRegistration
 
      var audiences = MutableLiveData<ArrayList<String>>()
      var speakerList = ArrayList<String>()
@@ -29,69 +31,61 @@ class VoiceRoomViewModel : ViewModel() {
     var speakerListMap = HashMap<String,VoiceUser>()
     var audienceListMap = HashMap<String,VoiceUser>()
     var isDelete = MutableLiveData<Boolean>(false)
+    var myVoiceUser = MutableLiveData<VoiceUser>()
+
+    var requestUsers = MutableLiveData<ArrayList<RequestUser>>()
+    var requestUserList = ArrayList<RequestUser>()
+    var requestUsermap = HashMap<String,RequestUser>()
+
+    var temp = ArrayList<String>()
 
      var channelID = ""
-    private val ACTION_WORKER_CONFIG_ENGINE = 0X2012
-
     private var muteState = false;
 
-    var EVENT_TYPE_ON_USER_AUDIO_MUTED = 7
 
-    var EVENT_TYPE_ON_SPEAKER_STATS = 8
+    fun setRequestSpeakerSnapShotListener(channelID: String){
+        var db = VoiceRepository()
+        var snapshot = db.setRequestSpeakerUser(channelID)
 
-    var EVENT_TYPE_ON_AGORA_MEDIA_ERROR = 9
-
-    var EVENT_TYPE_ON_AUDIO_QUALITY = 10
-
-    var EVENT_TYPE_ON_APP_ERROR = 13
-
-    var EVENT_TYPE_ON_AUDIO_ROUTE_CHANGED = 18
-
-
-    fun goToVoiceRoom(token: String) {
-
-    }
-
-    private fun createIRtcEnginHandler() {
-
-        mRtcEventHandler = object : IRtcEngineEventHandler() {
-            override fun onJoinChannelSuccess(channel: String?, uid: Int, elapsed: Int) {
-                println("성공!!!@@@@@@")
+        requestSpeakerListener = snapshot.addSnapshotListener { value, error ->
+            if (error != null) {
+                Log.w(TAG, "Listen failed.", error)
+                return@addSnapshotListener
             }
+            if(snapshot != null){
+                println(User.getInstance().phoneNumber)
+                for(dc in value!!.documentChanges){
 
-            override fun onUserJoined(uid: Int, elapsed: Int) {
-                super.onUserJoined(uid, elapsed)
-                println("join~~~~~%%%%%%")
-            }
+                    var requestUser = dc.document.toObject(RequestUser::class.java)
 
-            override fun onUserOffline(uid: Int, reason: Int) {
-                super.onUserOffline(uid, reason)
-                println("offline")
-            }
+                    when(dc.type){
+                        DocumentChange.Type.ADDED ->{
+                            requestUserList.add(requestUser)
 
-            override fun onError(err: Int) {
-                super.onError(err)
-                println("error")
-            }
+                        }
+                        DocumentChange.Type.MODIFIED->{
 
-            override fun onActiveSpeaker(uid: Int) {
-                super.onActiveSpeaker(uid)
-            }
+                        }
+                        DocumentChange.Type.REMOVED->{
 
-            override fun onRemoteAudioStateChanged(uid: Int, state: Int, reason: Int, elapsed: Int) {
-                super.onRemoteAudioStateChanged(uid, state, reason, elapsed)
-                when (state) {
+                        }else ->{
 
+                    }
+                    }
+                }
+                if(requestUserList.size!=0){
+                    requestUsers.value = requestUserList
                 }
             }
+
         }
     }
-
 
     fun setSnapShotListener(channelID: String) {
         var db = VoiceRepository()
         var snapShot = db.setSnapShot(channelID)
         var owner = false
+
         mlistener = snapShot.addSnapshotListener { snapshot, e ->
             if (e != null) {
                 Log.w(TAG, "Listen failed.", e)
@@ -103,7 +97,9 @@ class VoiceRoomViewModel : ViewModel() {
                     var voiceUser = dc.document.toObject(VoiceUser::class.java)
                     when(dc.type){
                         DocumentChange.Type.ADDED ->{
-
+                            if(voiceUser.uid==User.getInstance().uid){
+                                myVoiceUser.value = voiceUser
+                            }
                             println("added")
                             if(voiceUser.role.equals("audience")){
                                 audienceList.add("${voiceUser.phoneNumber.toString()}")
@@ -117,6 +113,9 @@ class VoiceRoomViewModel : ViewModel() {
                             }
                         }
                         DocumentChange.Type.MODIFIED->{
+                            if(voiceUser.uid==User.getInstance().uid){
+
+                            }
                             println("수정됨!!!")
                         }
                         DocumentChange.Type.REMOVED->{
@@ -139,7 +138,6 @@ class VoiceRoomViewModel : ViewModel() {
                 }
                 audiences.value = audienceList
 
-
                 if(owner ==false){
                     println("오너가 없어요")
                 }
@@ -150,7 +148,7 @@ class VoiceRoomViewModel : ViewModel() {
    fun changeAudienceCount(documentID : String){
         var repository = VoiceRepository()
 
-       repository.deCreaseSpeakersCount(documentID,-1.0)
+       repository.deCreasePeopleCount(documentID,-1.0)
    }
 
     fun changeSpeakersCount(documentID: String,num: Long){
@@ -167,6 +165,10 @@ class VoiceRoomViewModel : ViewModel() {
 
     fun deleteSnapShot(){
         mlistener.remove()
+        if(requestSpeakerListener!=null){
+            requestSpeakerListener.remove()
+        }
+
     }
 
     fun deleteVoiceChatRoom(documentID: String){
@@ -174,4 +176,25 @@ class VoiceRoomViewModel : ViewModel() {
         repository.deleteVoiceChatRoom(documentID)
 
     }
+
+    fun deleteRequestUser(documentID: String,uid:String){
+        var repository = VoiceRepository()
+
+        repository.deleteRequestUser(documentID,uid)
+    }
+    fun requestSpeakerUser(documentID: String){
+        var repository = VoiceRepository()
+
+        var requestUser = RequestUser()
+
+        requestUser.uid =myVoiceUser.value!!.uid
+        requestUser.nickName = myVoiceUser.value!!.nickName
+        requestUser.phoneNumber = myVoiceUser.value!!.phoneNumber
+        requestUser.role = myVoiceUser.value!!.role
+
+        requestUser.profileImage = myVoiceUser.value!!.profileImage
+        repository.requestSpeaker(documentID,requestUser)
+
+    }
+
 }

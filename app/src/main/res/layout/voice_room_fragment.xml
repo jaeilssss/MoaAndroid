@@ -31,6 +31,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:textStyle="bold"
                 android:textSize="18dp"
+                android:layout_marginStart="15dp"
                 android:id="@+id/VoiceRoomExitBtn"
                 app:layout_constraintHorizontal_chainStyle="packed"/>
 
@@ -39,20 +40,37 @@
             android:layout_height="60dp"
             app:layout_constraintStart_toEndOf="@id/VoiceRoomExitBtn"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/selector_voice_room_request"
+            android:background="@drawable/shape_selected_hand"
             android:src="@drawable/ic_hand"
             android:id="@+id/VoiceRoomHandBtn"
-
+            app:layout_constraintEnd_toStartOf="@id/VoiceRoomMicBtn"
             android:clickable="true"/>
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/shape_oval_red"
+                app:layout_constraintTop_toTopOf="@id/VoiceRoomHandBtn"
+                app:layout_constraintEnd_toEndOf="@id/VoiceRoomHandBtn"
+                android:text="3"
+                android:visibility="gone"
+                android:textSize="10dp"
+                android:gravity="center"
+                android:id="@+id/VoiceRoomHandCount"
+                android:textColor="@color/white"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                />
 
             <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 app:layout_constraintStart_toEndOf="@id/VoiceRoomHandBtn"
                 app:layout_constraintTop_toTopOf="parent"
                 android:src="@drawable/ic_voice_room_mic"
                 android:clickable="true"
-                android:background="@drawable/selector_voice_room_request"/>
+                android:id="@+id/VoiceRoomMicBtn"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@drawable/shape_selected_hand"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

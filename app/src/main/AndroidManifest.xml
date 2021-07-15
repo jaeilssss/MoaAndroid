@@ -31,7 +31,7 @@
         <activity android:name=".ui.concierge.needer.CustomCalendarActivity" />
         <activity android:name=".ui.imagepicker.ImagePickerActivity" />
         <activity android:name=".ui.concierge.category.HelperCategoryActivity" />
-        <activity android:name=".ui.concierge.category.NeederMainCategoryActivity" /> <!-- <meta-data -->
+        <!-- <meta-data -->
         <!-- android:name="com.google.firebase.messaging.default_notification_icon" -->
         <!-- android:resource="@drawable/moa_kid_default" /> -->
         <!-- &lt;!&ndash; Set color used with incoming notification messages. This is used when no color is set for the incoming -->
@@ -47,7 +47,8 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
+        <service android:name=".ui.service.ForecdTerminationService"
+            android:stopWithTask="false"/>
         <activity
             android:name=".LoadingActivity"
             android:theme="@style/AppTheme.NoActionBar.NoActionBar"

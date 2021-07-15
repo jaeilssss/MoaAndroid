@@ -58,7 +58,7 @@ class VoiceMainFragment : BaseFragment() {
 
         navController = findNavController()
 
-        myActivity.bottomNavigationVisible()
+        myActivity.bottomNavigationGone()
 
         adapter = VoiceMainAdapter()
 
@@ -88,6 +88,7 @@ class VoiceMainFragment : BaseFragment() {
 
                         bundle.putString("token",token)
                         bundle.putParcelable("voiceChatRoom",adapter.currentList[position])
+
                         viewModel.increasePeopleCount(position)
                         binding.VoiceMainLoadingProgressBar.hide()
                         navController.navigate(R.id.voiceRoomFragment,bundle)

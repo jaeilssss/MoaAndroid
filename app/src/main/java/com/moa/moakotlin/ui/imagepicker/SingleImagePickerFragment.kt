@@ -77,11 +77,7 @@ class SingleImagePickerFragment(var selectedPictures : ArrayList<String>) : Frag
                 }
 
             }
-
-
         })
-
-
     }
     private fun getGalleryPhotos(){
 //        list.add(" ")
@@ -102,8 +98,8 @@ class SingleImagePickerFragment(var selectedPictures : ArrayList<String>) : Frag
             }
         }else{
             Log.e("getGalleryPhotos","error")
-
         }
+
         list.reverse()
 
         adapter = ConciergeImagePickerAdapter(activity?.applicationContext!!,list)

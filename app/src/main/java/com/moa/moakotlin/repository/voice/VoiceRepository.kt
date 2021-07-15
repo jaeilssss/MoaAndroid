@@ -10,10 +10,7 @@ import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.moa.moakotlin.data.User
-import com.moa.moakotlin.data.VoiceChatRoom
-import com.moa.moakotlin.data.VoiceUser
-import com.moa.moakotlin.data.aptList
+import com.moa.moakotlin.data.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -124,6 +121,15 @@ class VoiceRepository  {
         return query
     }
 
+    fun setRequestSpeakerUser(voiceChatID : String) : Query{
+        var db = FirebaseFirestore.getInstance()
+
+        var query = db.collection("VoiceChatRoom")
+                .document(voiceChatID)
+                .collection("RequestUser")
+        return query
+    }
+
     fun update(voiceChatRoom: VoiceChatRoom){
         var db = FirebaseFirestore.getInstance()
 
@@ -148,11 +154,12 @@ class VoiceRepository  {
                 .document(documentID)
                 .update("speakersCount", FieldValue.increment(num))
     }
-    fun deCreaseSpeakersCount(documentID: String,num: Double){
+    fun deCreasePeopleCount(documentID: String,num: Double){
         var db = FirebaseFirestore.getInstance()
+
         db.collection("VoiceChatRoom")
                 .document(documentID)
-                .update("speakersCount", FieldValue.increment(num))
+                .update("peopleCount", FieldValue.increment(-1))
     }
     suspend fun deleteVoiceUser(voiceChatRoomDocumentID : String ,uid: String) : Boolean{
         var db = FirebaseFirestore.getInstance()
@@ -174,6 +181,28 @@ class VoiceRepository  {
         var db = FirebaseFirestore.getInstance()
         db.collection("VoiceChatRoom")
                 .document(documentId)
+                .delete()
+    }
+
+
+    fun requestSpeaker(documentID: String,requestUser: RequestUser){
+        var db = FirebaseFirestore.getInstance()
+
+        db.collection("VoiceChatRoom")
+                .document(documentID)
+                .collection("RequestUser")
+                .document(requestUser.uid)
+                .set(requestUser)
+
+    }
+
+    fun deleteRequestUser(documentID: String, uid : String){
+        var db = FirebaseFirestore.getInstance()
+
+        db.collection("VoiceChatRoom")
+                .document(documentID)
+                .collection("RequestUser")
+                .document(uid)
                 .delete()
     }
     }

@@ -1,5 +1,6 @@
 package com.moa.moakotlin.ui.voice
 
+import android.content.Intent
 import android.media.AudioManager
 import android.os.*
 import android.util.Log
@@ -7,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -22,6 +24,7 @@ import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.VoiceChatRoom
 import com.moa.moakotlin.databinding.VoiceRoomFragmentBinding
 import com.moa.moakotlin.recyclerview.voice.VoiceRoomAdapter
+import com.moa.moakotlin.ui.service.ForecdTerminationService
 import io.agora.rtc.Constants
 import io.agora.rtc.IRtcEngineEventHandler
 import io.agora.rtc.RtcEngine
@@ -51,6 +54,7 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
     lateinit  var voiceChatRoom : VoiceChatRoom
 
     var countDownTimer: CountDownTimer ?=null
+    var isRequest = false
 
     var EVENT_TYPE_ON_USER_AUDIO_MUTED = 7
 
@@ -73,6 +77,9 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
         viewModel = ViewModelProvider(this).get(VoiceRoomViewModel::class.java)
         binding.model = viewModel
 
+        activity?.startService(Intent(activity?.applicationContext,ForecdTerminationService::class.java))
+
+ 
         var token = arguments?.get("token") as String
          voiceChatRoom  = arguments?.getParcelable<VoiceChatRoom>("voiceChatRoom")!!
         if (voiceChatRoom != null) {
@@ -89,7 +96,7 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
         rtcEngine.setLogFile(Environment.getExternalStorageDirectory()
                 .toString() + File.separator + activity?.applicationContext?.getPackageName() + "/log/agora-rtc.log")
         rtcEngine.setClientRole(1)
-        rtcEngine.enableAudioVolumeIndication(200, 3, false)
+//        rtcEngine.enableAudioVolumeIndication(200, 3, false)
         rtcEngine.joinChannel(token, voiceChatRoom?.documentID,"Extra Optional Data", User.getInstance().phoneNumber.toInt())
         binding.VoiceRoomSpeakerRcv.layoutManager = GridLayoutManager(activity?.applicationContext!!,4)
         binding.VoiceRoomAudienceRcv.layoutManager = GridLayoutManager(activity?.applicationContext!!,4)
@@ -104,17 +111,11 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
 
         binding.VoiceRoomExitBtn.setOnClickListener { voiceChatRoomExit() }
 
-//        binding.muteBtn.setOnClickListener {
-//            if(muteState==false){
-//                muteState = true
-//            }else{
-//                muteState = false
-//            }
-//        rtcEngine.muteLocalAudioStream(muteState)
-//
-//        }
+        binding.VoiceRoomHandBtn.setOnClickListener { requestSpeaker() }
 
 
+
+//        requestUser도 지워야함 지그므
 
         viewModel.audiences.observe(viewLifecycleOwner, Observer {
             audienceAdapter.submitList(it)
@@ -139,14 +140,42 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
                             .show()
                 }
             }
+        })
 
+        viewModel.myVoiceUser.observe(viewLifecycleOwner, Observer {
+            if(it.role.equals("owner")){
+                viewModel.setRequestSpeakerSnapShotListener(voiceChatRoom.documentID)
+
+            } else if(it.role.equals("audience")){
+                rtcEngine.muteLocalAudioStream(true)
+                binding.VoiceRoomMicBtn.background = resources.getDrawable(R.drawable.shape_un_selected_hand)
+                binding.VoiceRoomMicBtn.isClickable = false
+
+            }else{
+                rtcEngine.muteLocalAudioStream(false)
+            }
+
+        })
+
+        viewModel.requestUsers.observe(viewLifecycleOwner, Observer {
+            binding.VoiceRoomHandCount.isVisible = true
+            binding.VoiceRoomHandCount.text = it.size.toString()
         })
 
         return binding.root
     }
 
+    fun requestSpeaker(){
+
+        viewModel.requestSpeakerUser(voiceChatRoom.documentID)
+        Toast.makeText(activity?.applicationContext,"발언권을 요청하였습니다",Toast.LENGTH_SHORT).show()
+        isRequest = true
+    }
+    fun setRole(){
+
+    }
     private fun createCountDownTimer(initialMililis : Long) =
-            object : CountDownTimer(initialMililis,1000L){
+            object : CountDownTimer(initialMililis,10*100L){
                 override fun onFinish() {
                     countDownTimer = null
 
@@ -163,14 +192,17 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
 
             // 방 나갈때 방을 나가시겠습니까? 라고 물어봐야하지않을까??
             if(viewModel.deleteVoiceUser(voiceChatRoom?.documentID!!,User.getInstance().uid)){
-                viewModel.changeAudienceCount(User.getInstance().uid)
+                viewModel.changeAudienceCount(voiceChatRoom?.documentID)
                 rtcEngine.leaveChannel()
                 viewModel.deleteSnapShot()
                 if(voiceChatRoom.owner.equals(User.getInstance().uid)){
                     viewModel.deleteVoiceChatRoom(voiceChatRoom.documentID)
                 }
                 if(viewModel.speakerList.contains("${User.getInstance().phoneNumber}")){
-                    viewModel.changeSpeakersCount(User.getInstance().phoneNumber,-1)
+                    viewModel.changeSpeakersCount(voiceChatRoom.documentID,-1)
+                }
+                if(isRequest==true){
+                    viewModel.deleteRequestUser(voiceChatRoom.documentID,User.getInstance().uid)
                 }
                 navController.popBackStack(R.id.voiceMainFragment,false)
             }
@@ -224,7 +256,6 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
     // Listen for the onJoinChannelSuccess callback.
     // This callback occurs when the local user successfully joins the channel.
     private fun createIRtcEnginHandler() {
-
         mRtcEventHandler =  object : IRtcEngineEventHandler() {
             override fun onJoinChannelSuccess(channel: String?, uid: Int, elapsed: Int) {
               println("성공!!!@@@@@@")
@@ -275,8 +306,9 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
     }
 
     override fun onDestroy() {
+        voiceChatRoomExit()
+        println("여기  찍힘???")
         super.onDestroy()
-        rtcEngine.leaveChannel()
     }
 
     override fun onBackPressed() {
