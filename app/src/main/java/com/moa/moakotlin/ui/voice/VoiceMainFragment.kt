@@ -67,14 +67,14 @@ class VoiceMainFragment : BaseFragment() {
         binding.VoiceMainRcv.layoutManager = LinearLayoutManager(activity?.applicationContext)
 
         permission()
+        initView()
 
         binding.VoiceMainCreageRoomBtn.setOnClickListener {checkAptCertification()}
         viewModel.voiceChatRoomList.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
+            adapter.notifyDataSetChanged()
         })
-        CoroutineScope(Dispatchers.Main).launch {
-            viewModel.initGetVoiceChatRoomList()
-        }
+
 
         adapter.setOnItemClickListener(object :OnItemClickListener{
             override fun onItemClick(v: View, position: Int) {
@@ -103,6 +103,12 @@ class VoiceMainFragment : BaseFragment() {
         return binding.root
     }
 
+
+    fun initView(){
+        CoroutineScope(Dispatchers.Main).launch {
+            viewModel.initGetVoiceChatRoomList()
+        }
+    }
     override fun onBackPressed() {
         navController.popBackStack()
     }

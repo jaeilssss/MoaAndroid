@@ -138,16 +138,42 @@ class VoiceRepository  {
 
         db.collection("VoiceChatRoom")
                 .document(documentID)
-                .update("speakersCount", FieldValue.increment(num))
+                .update("peopleCount", FieldValue.increment(num))
+                .addOnSuccessListener {  }
     }
 
-    fun deleteVoiceUser(voiceChatRoomDocumentID : String ,voiceUser: VoiceUser){
+    fun changeSpeakersCount(documentID: String,num: Long){
         var db = FirebaseFirestore.getInstance()
+        db.collection("VoiceChatRoom")
+                .document(documentID)
+                .update("speakersCount", FieldValue.increment(num))
+    }
+    fun deCreaseSpeakersCount(documentID: String,num: Double){
+        var db = FirebaseFirestore.getInstance()
+        db.collection("VoiceChatRoom")
+                .document(documentID)
+                .update("speakersCount", FieldValue.increment(num))
+    }
+    suspend fun deleteVoiceUser(voiceChatRoomDocumentID : String ,uid: String) : Boolean{
+        var db = FirebaseFirestore.getInstance()
+        var check = false
 
         db.collection("VoiceChatRoom")
                 .document(voiceChatRoomDocumentID)
                 .collection("VoiceUser")
-                .document(voiceUser.uid)
+                .document(uid)
+                .delete()
+                .addOnSuccessListener {
+                    check = true
+                }.await()
+
+        return check
+    }
+
+    fun deleteVoiceChatRoom(documentId :String){
+        var db = FirebaseFirestore.getInstance()
+        db.collection("VoiceChatRoom")
+                .document(documentId)
                 .delete()
     }
     }

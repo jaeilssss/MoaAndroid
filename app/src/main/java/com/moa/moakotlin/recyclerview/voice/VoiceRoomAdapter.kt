@@ -11,9 +11,9 @@ import com.moa.moakotlin.data.VoiceChatRoom
 import com.moa.moakotlin.data.VoiceUser
 import com.moa.moakotlin.databinding.ItemVoiceUserBinding
 
-class VoiceRoomAdapter() : ListAdapter<VoiceUser, VoiceRoomAdapter.VoiceRoomViewHolder>(diffUtil){
+class VoiceRoomAdapter() : ListAdapter<String, VoiceRoomAdapter.VoiceRoomViewHolder>(diffUtil){
 
-
+    var map  = HashMap<String,VoiceUser>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VoiceRoomViewHolder {
         return VoiceRoomViewHolder(ItemVoiceUserBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
@@ -28,24 +28,25 @@ class VoiceRoomAdapter() : ListAdapter<VoiceUser, VoiceRoomAdapter.VoiceRoomView
 
     inner class VoiceRoomViewHolder(var binding : ItemVoiceUserBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun binding(voiceUser : VoiceUser){
-            binding.ItemVoiceUserNickName.text = voiceUser.nickName
-            if(voiceUser.profileImage.isNotEmpty()){
-                Glide.with(binding.root).load(voiceUser.profileImage).into(binding.ItemVoiceUserImage)
+        fun binding(phoneNumber : String){
+            var voiceUser = map.get(phoneNumber)
+            binding.ItemVoiceUserNickName.text = voiceUser?.nickName
+            if(voiceUser?.profileImage?.isNotEmpty() == true){
+                Glide.with(binding.root).load(voiceUser?.profileImage).into(binding.ItemVoiceUserImage)
             }
-            if(voiceUser.role.equals("owner").not()){
+            if(voiceUser?.role.equals("owner").not()){
                 binding.ItemVoiceUserRoomMakerImg.isVisible = false
             }
         }
     }
     companion object{
-        val diffUtil = object : DiffUtil.ItemCallback<VoiceUser>(){
-            override fun areItemsTheSame(oldItem: VoiceUser, newItem: VoiceUser): Boolean {
+        val diffUtil = object : DiffUtil.ItemCallback<String>(){
+            override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
                 return oldItem ==newItem
             }
 
-            override fun areContentsTheSame(oldItem: VoiceUser, newItem: VoiceUser): Boolean {
-                return oldItem.uid == newItem.uid
+            override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
+                return oldItem == newItem
             }
 
         }

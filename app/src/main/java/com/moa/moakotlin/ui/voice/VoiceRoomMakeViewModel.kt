@@ -41,7 +41,7 @@ class VoiceRoomMakeViewModel : ViewModel() {
         if(range.value?.equals("전국") == true){
             voiceChatRoom = VoiceChatRoom("",title.value!!,
                     range.value!!, Timestamp.now(), User.getInstance().nickName,User.getInstance().uid,1,1,path,
-                    arrayListOf("ALL"),theme.value!!)
+                    arrayListOf("All"),theme.value!!)
         }else if(range.value?.equals("인근")==true){
             voiceChatRoom = VoiceChatRoom("",title.value!!,
                     range.value!!, Timestamp.now(), User.getInstance().nickName,User.getInstance().uid,1,1,path,
@@ -57,7 +57,6 @@ class VoiceRoomMakeViewModel : ViewModel() {
                 title.value?.length!!>0 &&
                 range.value?.length!!>0
     }
-
     suspend fun makeVoiceUser (documentId : String) : Boolean{
         var repository = VoiceRepository()
         var voiceUser = VoiceUser()

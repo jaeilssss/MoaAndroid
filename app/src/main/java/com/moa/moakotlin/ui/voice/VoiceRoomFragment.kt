@@ -1,10 +1,7 @@
 package com.moa.moakotlin.ui.voice
 
 import android.media.AudioManager
-import android.os.Bundle
-import android.os.Environment
-import android.os.Handler
-import android.os.Message
+import android.os.*
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +15,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
+import com.moa.moakotlin.costumdialog.CostumAlertDialog
+import com.moa.moakotlin.costumdialog.SinglePositiveButtonDialog
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.VoiceChatRoom
 import com.moa.moakotlin.databinding.VoiceRoomFragmentBinding
@@ -25,11 +25,15 @@ import com.moa.moakotlin.recyclerview.voice.VoiceRoomAdapter
 import io.agora.rtc.Constants
 import io.agora.rtc.IRtcEngineEventHandler
 import io.agora.rtc.RtcEngine
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.DisposableHandle
+import kotlinx.coroutines.launch
 import java.io.File
 
 
-class VoiceRoomFragment : Fragment() ,AGEventHandler{
-
+class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
+    var lastTimeBackPressed : Long = 0
     private lateinit var viewModel: VoiceRoomViewModel
 
     private lateinit var binding: VoiceRoomFragmentBinding
@@ -43,6 +47,10 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
     private val ACTION_WORKER_CONFIG_ENGINE = 0X2012
 
     private var muteState = false;
+
+    lateinit  var voiceChatRoom : VoiceChatRoom
+
+    var countDownTimer: CountDownTimer ?=null
 
     var EVENT_TYPE_ON_USER_AUDIO_MUTED = 7
 
@@ -66,7 +74,11 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
         binding.model = viewModel
 
         var token = arguments?.get("token") as String
-        var voiceChatRoom : VoiceChatRoom? = arguments?.getParcelable<VoiceChatRoom>("voiceChatRoom")
+         voiceChatRoom  = arguments?.getParcelable<VoiceChatRoom>("voiceChatRoom")!!
+        if (voiceChatRoom != null) {
+            viewModel.setSnapShotListener(voiceChatRoom.documentID)
+            setView(voiceChatRoom)
+        }
         navController= findNavController()
        createIRtcEnginHandler()
         initRtcEngine()
@@ -85,16 +97,12 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
         var speakerAdapter = VoiceRoomAdapter()
 
         binding.VoiceRoomSpeakerRcv.adapter = speakerAdapter
+
         var audienceAdapter = VoiceRoomAdapter()
 
         binding.VoiceRoomAudienceRcv.adapter =  audienceAdapter
 
-
-        binding.VoiceRoomExitBtn.setOnClickListener {
-
-        }
-
-
+        binding.VoiceRoomExitBtn.setOnClickListener { voiceChatRoomExit() }
 
 //        binding.muteBtn.setOnClickListener {
 //            if(muteState==false){
@@ -106,24 +114,77 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
 //
 //        }
 
-        if (voiceChatRoom != null) {
-            viewModel.setSnapShotListener(voiceChatRoom.documentID)
-        }
+
 
         viewModel.audiences.observe(viewLifecycleOwner, Observer {
             audienceAdapter.submitList(it)
+            audienceAdapter.map = viewModel.audienceListMap
             audienceAdapter.notifyDataSetChanged()
         })
         viewModel.speakers.observe(viewLifecycleOwner, Observer {
+            speakerAdapter.map = viewModel.speakerListMap
                 speakerAdapter.submitList(it)
-            audienceAdapter.notifyDataSetChanged()
+            speakerAdapter.notifyDataSetChanged()
         })
+        viewModel.isDelete.observe(viewLifecycleOwner, Observer {
+            if(it){
+                countDownTimer =  createCountDownTimer(1000L)
+                countDownTimer?.start()
+                context?.let {
+                    SinglePositiveButtonDialog(it)
+                            .setMessage("해당 방송이 종료되었습니다!")
+                            .setPositiveButton("나가기"){
+                                voiceChatRoomExit()
+                            }
+                            .show()
+                }
+            }
 
+        })
 
         return binding.root
     }
 
+    private fun createCountDownTimer(initialMililis : Long) =
+            object : CountDownTimer(initialMililis,1000L){
+                override fun onFinish() {
+                    countDownTimer = null
 
+                    voiceChatRoomExit()
+                }
+
+                override fun onTick(remainTime: Long) {
+
+                }
+
+            }
+    private fun voiceChatRoomExit(){
+        CoroutineScope(Dispatchers.Main).launch {
+
+            // 방 나갈때 방을 나가시겠습니까? 라고 물어봐야하지않을까??
+            if(viewModel.deleteVoiceUser(voiceChatRoom?.documentID!!,User.getInstance().uid)){
+                viewModel.changeAudienceCount(User.getInstance().uid)
+                rtcEngine.leaveChannel()
+                viewModel.deleteSnapShot()
+                if(voiceChatRoom.owner.equals(User.getInstance().uid)){
+                    viewModel.deleteVoiceChatRoom(voiceChatRoom.documentID)
+                }
+                if(viewModel.speakerList.contains("${User.getInstance().phoneNumber}")){
+                    viewModel.changeSpeakersCount(User.getInstance().phoneNumber,-1)
+                }
+                navController.popBackStack(R.id.voiceMainFragment,false)
+            }
+        }
+    }
+    private fun setView(voiceChatRoom: VoiceChatRoom){
+        binding.VoiceRoomTitle.text = voiceChatRoom.name
+
+        binding.VoiceRoomTopic.text = voiceChatRoom.topic
+
+        binding.VoiceRoomType.text = voiceChatRoom.range
+
+                // 나중에 type 과 range 이름 변경하자..
+    }
     private fun setToast(msg : String){
         Toast.makeText(activity?.baseContext!!,msg , Toast.LENGTH_SHORT).show()
     }
@@ -216,6 +277,15 @@ class VoiceRoomFragment : Fragment() ,AGEventHandler{
     override fun onDestroy() {
         super.onDestroy()
         rtcEngine.leaveChannel()
+    }
+
+    override fun onBackPressed() {
+        if(System.currentTimeMillis() - lastTimeBackPressed < 1500){
+            voiceChatRoomExit()
+            return
+        }
+        lastTimeBackPressed = System.currentTimeMillis();
+        Toast.makeText(context,"종료하려면 한번 더 누르세요",Toast.LENGTH_SHORT).show()
     }
 }
 

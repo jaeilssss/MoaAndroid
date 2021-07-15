@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.ListenerRegistration
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.VoiceUser
 import com.moa.moakotlin.repository.voice.VoiceRepository
 import io.agora.rtc.IRtcEngineEventHandler
@@ -17,13 +18,18 @@ class VoiceRoomViewModel : ViewModel() {
     var TAG = "VoiceRoomViewModel"
     private lateinit var mRtcEventHandler: IRtcEngineEventHandler
 
-     var speakers = MutableLiveData<ArrayList<VoiceUser>>()
+     var speakers = MutableLiveData<ArrayList<String>>()
 
     lateinit var mlistener: ListenerRegistration
 
-     var audiences = MutableLiveData<ArrayList<VoiceUser>>()
-     var speakerList = ArrayList<VoiceUser>()
-     var audienceList = ArrayList<VoiceUser>()
+     var audiences = MutableLiveData<ArrayList<String>>()
+     var speakerList = ArrayList<String>()
+     var audienceList = ArrayList<String>()
+
+    var speakerListMap = HashMap<String,VoiceUser>()
+    var audienceListMap = HashMap<String,VoiceUser>()
+    var isDelete = MutableLiveData<Boolean>(false)
+
      var channelID = ""
     private val ACTION_WORKER_CONFIG_ENGINE = 0X2012
 
@@ -92,31 +98,47 @@ class VoiceRoomViewModel : ViewModel() {
                 return@addSnapshotListener
             }
             if(snapshot != null){
-                println("dc size - > ${snapshot.documentChanges.size}")
+                println(User.getInstance().phoneNumber)
                 for(dc in snapshot.documentChanges){
+                    var voiceUser = dc.document.toObject(VoiceUser::class.java)
                     when(dc.type){
                         DocumentChange.Type.ADDED ->{
-                            var voiceUser = dc.document.toObject(VoiceUser::class.java)
+
                             println("added")
                             if(voiceUser.role.equals("audience")){
-                                audienceList.add(voiceUser)
+                                audienceList.add("${voiceUser.phoneNumber.toString()}")
+                                audienceListMap.put(voiceUser.phoneNumber,voiceUser)
                             }else{
-                                speakerList.add(voiceUser)
+                                speakerList.add("${voiceUser.phoneNumber.toString()}")
+                                speakerListMap.put(voiceUser.phoneNumber,voiceUser)
                             }
                             if(voiceUser.role.equals("owner")){
                                 owner = true
                             }
                         }
                         DocumentChange.Type.MODIFIED->{
-                        println("수정됨!!!")
+                            println("수정됨!!!")
                         }
                         DocumentChange.Type.REMOVED->{
-
+                            println("삭제됨!!!")
+                            if(voiceUser.role.equals("audience")){
+                                audienceList.remove("${voiceUser.phoneNumber.toString()}")
+                                audienceListMap.remove(voiceUser.phoneNumber)
+                            }
+                            if(voiceUser.role.equals("owner")){
+                                speakerList.remove("${voiceUser.phoneNumber}")
+                                isDelete.value = true
+                            }
+                        }else ->{
+                            println("else")
                         }
                     }
                 }
+                if(speakerList.size!=0){
+                    speakers.value = speakerList
+                }
                 audiences.value = audienceList
-                speakers.value = speakerList
+
 
                 if(owner ==false){
                     println("오너가 없어요")
@@ -125,9 +147,31 @@ class VoiceRoomViewModel : ViewModel() {
         }
     }
 
-   fun updateVoiceChatRoom(documentID : String){
+   fun changeAudienceCount(documentID : String){
         var repository = VoiceRepository()
 
-       repository.changeVoiceChatRoomCount(documentID,-1)
+       repository.deCreaseSpeakersCount(documentID,-1.0)
    }
+
+    fun changeSpeakersCount(documentID: String,num: Long){
+        var repository = VoiceRepository()
+
+        repository.changeSpeakersCount(documentID,num)
+    }
+
+  suspend  fun deleteVoiceUser(voiceChatRoomID : String,uid :String) : Boolean{
+        var repository = VoiceRepository()
+
+      return repository.deleteVoiceUser(voiceChatRoomID,uid)
+    }
+
+    fun deleteSnapShot(){
+        mlistener.remove()
+    }
+
+    fun deleteVoiceChatRoom(documentID: String){
+        var repository = VoiceRepository()
+        repository.deleteVoiceChatRoom(documentID)
+
+    }
 }

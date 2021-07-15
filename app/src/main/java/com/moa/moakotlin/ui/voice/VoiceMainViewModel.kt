@@ -32,7 +32,6 @@ class VoiceMainViewModel : ViewModel() {
         var repository = VoiceRepository()
 
         var list = repository.getVoiceRoomList()
-
         voiceChatRoomList.value = list
     }
 
