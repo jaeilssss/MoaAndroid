@@ -32,7 +32,7 @@ class NeederMainAdapter() : ListAdapter<Needer, RecyclerView.ViewHolder>(diffUti
         if(currentList[position].documentID.equals("-1")){
             return -1
         }else{
-            return 0
+            return position
         }
     }
 

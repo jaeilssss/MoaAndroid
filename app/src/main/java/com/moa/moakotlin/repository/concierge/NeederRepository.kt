@@ -21,7 +21,7 @@ class NeederRepository {
         var result =false
         db.collection("Needer")
                 .document(mainCategory)
-                .collection(mainCategory)
+                .collection("NeederContent")
                 .add(needer).addOnSuccessListener{
                 needer.documentID = it.id
                 }.await()
@@ -30,7 +30,7 @@ class NeederRepository {
     suspend fun modify(mainCategory: String,needer : Needer) : Needer{
         var db = FirebaseFirestore.getInstance()
         db.collection("Needer").document(mainCategory)
-            .collection(mainCategory)
+                .collection("NeederContent")
             .document(needer.documentID!!)
             .set(needer).addOnCompleteListener {
             }.await()
@@ -40,7 +40,7 @@ class NeederRepository {
         var db = FirebaseFirestore.getInstance()
         var result = ArrayList<Needer>()
         db.collection("Needer").document(mainCategory)
-            .collection(mainCategory)
+            .collection("NeederContent")
             .whereArrayContains("aroundApt", User.getInstance().aptCode)
             .orderBy("timeStamp",Query.Direction.DESCENDING)
             .limit(5).get().addOnSuccessListener {
@@ -61,7 +61,7 @@ class NeederRepository {
         var check = false
         db.collection("Needer")
                 .document(mainCaregory)
-                .collection(mainCaregory)
+                .collection("NeederContent")
                 .document(documentId)
                 .delete()
                 .addOnCompleteListener {
@@ -129,7 +129,7 @@ class NeederRepository {
         var result = ArrayList<Needer>()
         db.collection("Needer")
                 .document(mainCategory)
-                .collection(mainCategory)
+                .collection("NeederContent")
                 .whereArrayContains("aroundApt", User.getInstance().aptCode)
                 .orderBy("timeStamp", Query.Direction.DESCENDING).limit(20)
                 .get().addOnSuccessListener {
@@ -174,7 +174,7 @@ class NeederRepository {
         var result = ArrayList<Needer>()
         db.collection("Needer")
                 .document(mainCategory)
-                .collection(mainCategory)
+                .collection("NeederContent")
                 .whereArrayContains("aroundApt", User.getInstance().aptCode)
                 .orderBy("timeStamp", Query.Direction.DESCENDING)
                 .startAfter(timeStamp)

@@ -13,10 +13,10 @@ data class Needer(
         @field:JvmField
         var isNego : Boolean=false,
         var timeStamp: Timestamp = Timestamp.now(),
-        var images : ArrayList<String> ?= ArrayList<String>(),
+        var images : ArrayList<String> = ArrayList<String>(),
         var content : String = "",
         var hopeWage : String="",
-        var documentID : String ?="",
+        var documentID : String ="",
         var hireStatus : String = "",
         var uid : String="",
         var aptCode : String="",

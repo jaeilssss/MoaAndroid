@@ -130,4 +130,6 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
     override fun setClickableButton(index: Int) {
         TODO("Not yet implemented")
     }
+
+
 }

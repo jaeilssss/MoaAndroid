@@ -14,6 +14,8 @@ import com.moa.moakotlin.databinding.ItemVoiceUserBinding
 class VoiceRoomAdapter() : ListAdapter<String, VoiceRoomAdapter.VoiceRoomViewHolder>(diffUtil){
 
     var map  = HashMap<String,VoiceUser>()
+
+    var list = ArrayList<String>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VoiceRoomViewHolder {
         return VoiceRoomViewHolder(ItemVoiceUserBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }

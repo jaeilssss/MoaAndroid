@@ -145,7 +145,6 @@ class VoiceRepository  {
         db.collection("VoiceChatRoom")
                 .document(documentID)
                 .update("peopleCount", FieldValue.increment(num))
-                .addOnSuccessListener {  }
     }
 
     fun changeSpeakersCount(documentID: String,num: Long){
@@ -161,7 +160,7 @@ class VoiceRepository  {
                 .document(documentID)
                 .update("peopleCount", FieldValue.increment(-1))
     }
-    suspend fun deleteVoiceUser(voiceChatRoomDocumentID : String ,uid: String) : Boolean{
+     fun deleteVoiceUser(voiceChatRoomDocumentID : String ,uid: String){
         var db = FirebaseFirestore.getInstance()
         var check = false
 
@@ -170,11 +169,7 @@ class VoiceRepository  {
                 .collection("VoiceUser")
                 .document(uid)
                 .delete()
-                .addOnSuccessListener {
-                    check = true
-                }.await()
-
-        return check
+                .addOnSuccessListener { println("deleteVoiceUser") }
     }
 
     fun deleteVoiceChatRoom(documentId :String){

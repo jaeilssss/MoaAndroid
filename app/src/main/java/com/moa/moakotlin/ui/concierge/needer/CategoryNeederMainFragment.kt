@@ -22,6 +22,7 @@ import com.moa.moakotlin.databinding.CategoryNeederMainFragmentBinding
 import com.moa.moakotlin.recyclerview.chat.ChatAdapter
 import com.moa.moakotlin.recyclerview.concierge.CategoryHelperMainAdapter
 import com.moa.moakotlin.recyclerview.concierge.CategoryNeederMainAdapter
+import com.moa.moakotlin.recyclerview.concierge.NeederMainAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,9 +41,11 @@ class CategoryNeederMainFragment : BaseFragment() {
 
     private lateinit var myActivity  : MainActivity
 
-    private lateinit var adapterNeeder : CategoryNeederMainAdapter
+    private  var adapterNeeder = CategoryNeederMainAdapter()
 
     private var neederList = ArrayList<Needer>()
+
+    var mainCategory= ""
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -63,31 +66,39 @@ class CategoryNeederMainFragment : BaseFragment() {
         viewModel = ViewModelProvider(this).get(CategoryNeederMainViewModel::class.java)
         binding.CategoryNeederMainRcv.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
 
-        adapterNeeder = CategoryNeederMainAdapter()
+
         binding.back.setOnClickListener {
             navController.popBackStack()
         }
 
         navController = findNavController()
-        binding.CategoryNeederMainRcv.adapter = adapterNeeder
+
         viewModel.neederList.observe(viewLifecycleOwner, Observer {
             neederList = it
             var newDataSize = it.size
-
+            adapterNeeder = CategoryNeederMainAdapter()
+            binding.CategoryNeederMainRcv.adapter = adapterNeeder
             adapterNeeder.submitList(neederList)
-            adapterNeeder.notifyDataSetChanged()
+            binding.CategoryNeederMainSwipeRefreshLayout.isRefreshing = false
 
         })
+        onScrollListener(binding.CategoryNeederMainRcv,adapterNeeder)
+        setAdapterClickListener()
         arguments.let {
-            var mainCategory = it?.getString("mainCategory")
+             mainCategory = it?.getString("mainCategory")!!
             if (mainCategory != null) {
                 getList(mainCategory)
                 binding.CategoryNeederMainText.text = mainCategory
             }
         }
 
-        onScrollListener(binding.CategoryNeederMainRcv,adapterNeeder)
-        setAdapterClickListener()
+        binding.CategoryNeederMainSwipeRefreshLayout.setOnRefreshListener {
+
+
+                getList(mainCategory)
+
+
+        }
     }
 
     override fun onBackPressed() {

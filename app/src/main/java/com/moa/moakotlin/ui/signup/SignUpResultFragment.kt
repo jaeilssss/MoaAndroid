@@ -1,5 +1,6 @@
 package com.moa.moakotlin.ui.signup
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.FirebaseFirestore
+import com.moa.moakotlin.LoadingActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.databinding.FragmentSignUpInfoBinding
 import com.moa.moakotlin.databinding.FragmentSignUpResultBinding
@@ -43,8 +45,13 @@ class SignUpResultFragment : Fragment() {
         }
 
 
+        // 오늘아침에 회원가입 테스트 해보기 아이디 하나 더 만들어서
+
+
         binding.signUpResultNext.setOnClickListener {
-            navController.navigate(R.id.HomeFragment)
+//            navController.navigate(R.id.HomeFragment)
+            var intent = Intent(activity?.applicationContext,LoadingActivity::class.java)
+            startActivity(intent)
         }
         return binding.root
     }

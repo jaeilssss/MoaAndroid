@@ -29,7 +29,7 @@ class HelperRepository {
     suspend fun submit(mainCaregory: String,helper : Helper) : Helper{
         var db = FirebaseFirestore.getInstance()
         db.collection("Helper").document(mainCaregory)
-                .collection(mainCaregory)
+                .collection("HelperContent")
                 .add(helper).addOnSuccessListener {
                     helper.documentID = it.id
 
@@ -39,7 +39,7 @@ class HelperRepository {
     suspend fun modify(mainCategory: String,helper : Helper) : Helper{
         var db = FirebaseFirestore.getInstance()
         db.collection("Helper").document(mainCategory)
-                .collection(mainCategory)
+                .collection("HelperContent")
                 .document(helper.documentID)
                 .set(helper).addOnCompleteListener {
                 }.await()
@@ -49,18 +49,20 @@ class HelperRepository {
         var db = FirebaseFirestore.getInstance()
       var result = ArrayList<Helper>()
             db.collection("Helper").document(mainCategory)
-                    .collection(mainCategory)
+                    .collection("HelperContent")
                     .whereArrayContains("aroundApt", User.getInstance().aptCode)
                     .orderBy("timeStamp",Query.Direction.DESCENDING)
                     .limit(5).get().addOnSuccessListener {
-
-                        for(document in it.documents){
-                            var data = document.toObject(Helper::class.java)
-                            data?.documentID = document.id
-                            if (data != null) {
-                                result.add(data)
+                        if(!it.isEmpty){
+                            for(document in it.documents){
+                                var data = document.toObject(Helper::class.java)
+                                data?.documentID = document.id
+                                if (data != null) {
+                                    result.add(data)
+                                }
                             }
                         }
+
                     }.await()
       return result
 
@@ -71,7 +73,7 @@ class HelperRepository {
         var result = ArrayList<Helper>()
         db.collection("Helper")
                 .document(mainCaregory)
-                .collection(mainCaregory)
+                .collection("HelperContent")
                 .whereArrayContains("aroundApt", User.getInstance().aptCode)
                 .orderBy("timeStamp",Query.Direction.DESCENDING)
                 .limit(20)
@@ -145,7 +147,7 @@ class HelperRepository {
        var check = false
        db.collection("Helper")
                .document(mainCaregory)
-               .collection(mainCaregory)
+               .collection("HelperContent")
                .document(documentId)
                .delete()
                .addOnCompleteListener {
@@ -161,7 +163,7 @@ class HelperRepository {
         var result = ArrayList<Helper>()
         db.collection("Helper")
             .document(mainCategory)
-            .collection(mainCategory)
+                .collection("HelperContent")
             .whereArrayContains("aroundApt", User.getInstance().aptCode)
             .orderBy("timeStamp", Query.Direction.DESCENDING)
             .startAfter(timeStamp)

@@ -31,7 +31,7 @@ class HelperMainAdapter() :ListAdapter<Helper, RecyclerView.ViewHolder>(diffUtil
         if(currentList[position].documentID=="-1"){
             return -1
         }else{
-            return 0
+            return position
         }
     }
 

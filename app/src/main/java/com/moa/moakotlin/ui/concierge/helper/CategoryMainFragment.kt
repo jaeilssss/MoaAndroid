@@ -40,6 +40,8 @@ class CategoryMainFragment : Fragment() {
     private lateinit var adapterHelper : CategoryHelperMainAdapter
     private var helperList = ArrayList<Helper>()
     lateinit var myActivity : MainActivity
+
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         myActivity = activity as MainActivity
@@ -62,12 +64,12 @@ class CategoryMainFragment : Fragment() {
 
         binding.CategoryMainRcv.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
 
-        adapterHelper = CategoryHelperMainAdapter()
+
         binding.back.setOnClickListener {
             navController.popBackStack()
         }
         navController = findNavController()
-        binding.CategoryMainRcv.adapter = adapterHelper
+
         arguments.let {
             var mainCategory = it?.getString("mainCategory")
             if (mainCategory != null) {
@@ -79,12 +81,18 @@ class CategoryMainFragment : Fragment() {
             helperList = it
             var newDataSize = it.size
 
+            adapterHelper = CategoryHelperMainAdapter()
+            binding.CategoryMainRcv.adapter = adapterHelper
             adapterHelper.submitList(it)
-            adapterHelper.notifyDataSetChanged()
 
         })
         setAdapterClickListener()
         onScrollListener(binding.CategoryMainRcv,adapterHelper)
+
+    binding.CategoryMainSwipeRefreshLayout.setOnRefreshListener {
+
+
+    }
     }
 
     fun setAdapterClickListener(){
@@ -111,6 +119,7 @@ class CategoryMainFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             viewModel.list = viewModel.getList(mainCategory)
             viewModel.neederList.value = viewModel.list
+
         }
     }
     fun onScrollListener(rcv: RecyclerView, adapter: CategoryHelperMainAdapter){

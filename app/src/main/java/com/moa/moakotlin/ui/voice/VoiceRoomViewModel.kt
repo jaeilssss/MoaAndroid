@@ -22,7 +22,7 @@ class VoiceRoomViewModel : ViewModel() {
      var speakers = MutableLiveData<ArrayList<String>>()
 
     lateinit var mlistener: ListenerRegistration
-    lateinit var requestSpeakerListener : ListenerRegistration
+     var requestSpeakerListener : ListenerRegistration ? =null
 
      var audiences = MutableLiveData<ArrayList<String>>()
      var speakerList = ArrayList<String>()
@@ -157,7 +157,7 @@ class VoiceRoomViewModel : ViewModel() {
         repository.changeSpeakersCount(documentID,num)
     }
 
-  suspend  fun deleteVoiceUser(voiceChatRoomID : String,uid :String) : Boolean{
+    fun deleteVoiceUser(voiceChatRoomID : String,uid :String) {
         var repository = VoiceRepository()
 
       return repository.deleteVoiceUser(voiceChatRoomID,uid)
@@ -165,9 +165,7 @@ class VoiceRoomViewModel : ViewModel() {
 
     fun deleteSnapShot(){
         mlistener.remove()
-        if(requestSpeakerListener!=null){
-            requestSpeakerListener.remove()
-        }
+        requestSpeakerListener?.remove()
 
     }
 

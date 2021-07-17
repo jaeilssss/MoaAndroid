@@ -111,8 +111,34 @@ class NeederMainFragment : BaseFragment() {
         setClickListener(sharingAdapter)
 
         setGoingAllCategory()
+
+        binding.NeederMainSwipeRefreshLayout.setOnRefreshListener {
+
+            initGetData(kidAdapter,"육아")
+            initGetData(interiorAdapter,"인테리어")
+            initGetData(petAdapter,"반려동물케어")
+            initGetData(educationAdapter,"교육")
+            initGetData(etcAdapter,"기타")
+            initGetData(borrowAdapter,"빌려주세요")
+            initGetData(sharingAdapter,"품앗이")
+
+            binding.NeederMainKidRcv.scrollToPosition(0)
+            binding.NeederMainSwipeRefreshLayout.isRefreshing = false
+        
+
+        }
     }
 
+
+    fun setFocusing(){
+        binding.NeederMainBorrowRcv.scrollToPosition(0)
+        binding.NeederMainSharingRcv.scrollToPosition(0)
+        binding.NeederMainEducationRcv.scrollToPosition(0)
+        binding.NeederMainEtcRcv.scrollToPosition(0)
+        binding.NeederMainInteriorRcv.scrollToPosition(0)
+        binding.NeederMainKidRcv.scrollToPosition(0)
+        binding.NeederMainpetRcv.scrollToPosition(0)
+    }
     private fun setGoingAllCategory(){
         binding.NeederMainBorrowAllBtn.setOnClickListener { goToAllCategory("빌려주세요") }
         binding.NeederMaininteriorAllBtn.setOnClickListener { goToAllCategory("인테리어") }
@@ -159,6 +185,25 @@ class NeederMainFragment : BaseFragment() {
                 list.add(emptyNeeder)
             }
             adapter.submitList(list)
+
+
+                if(mainCategory.equals("육아")){
+                    binding.NeederMainKidRcv.scrollToPosition(0)
+                }else if(mainCategory.equals("교육")){
+                    binding.NeederMainEducationRcv.scrollToPosition(0)
+                }else if(mainCategory.equals("인테리어")){
+                    binding.NeederMainInteriorRcv.scrollToPosition(0)
+                }else if(mainCategory.equals("반려동물케어")){
+                    binding.NeederMainpetRcv.scrollToPosition(0)
+                }else if(mainCategory.equals("빌려주세요")){
+                    binding.NeederMainBorrowRcv.scrollToPosition(0)
+                }else if(mainCategory.equals("품앗이")){
+                    binding.NeederMainSharingRcv.scrollToPosition(0)
+                }else if(mainCategory.equals("기타")){
+                    binding.NeederMainEtcRcv.scrollToPosition(0)
+                }
+
+
         }
     }
 
