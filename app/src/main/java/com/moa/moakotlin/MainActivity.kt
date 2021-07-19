@@ -131,5 +131,18 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
         TODO("Not yet implemented")
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        var db = FirebaseFirestore.getInstance()
+
+
+        db.collection("VoiceChatRoom")
+                .document("32Zcy9DPjd1lBGzyoNKT")
+                .delete()
+
+
+
+
+    }
 
 }

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.moa.moakotlin.data.VoiceChatRoom
+import com.moa.moakotlin.R
 import com.moa.moakotlin.data.VoiceUser
 import com.moa.moakotlin.databinding.ItemVoiceUserBinding
 
@@ -21,6 +21,7 @@ class VoiceRoomAdapter() : ListAdapter<String, VoiceRoomAdapter.VoiceRoomViewHol
     }
 
     override fun onBindViewHolder(holder: VoiceRoomViewHolder, position: Int) {
+
         holder.binding(currentList[position])
     }
 
@@ -31,8 +32,18 @@ class VoiceRoomAdapter() : ListAdapter<String, VoiceRoomAdapter.VoiceRoomViewHol
     inner class VoiceRoomViewHolder(var binding : ItemVoiceUserBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun binding(phoneNumber : String){
+
             var voiceUser = map.get(phoneNumber)
             binding.ItemVoiceUserNickName.text = voiceUser?.nickName
+            if(list.contains(voiceUser?.phoneNumber).not()){
+                println("포함안됨!!viewHoler")
+            }else
+            {   println("포함됨! 여기는 viewHolder")
+                binding.ItemVoiceUserBorder.setBackgroundResource(R.drawable.shape_oval_main_color)
+
+                binding.ItemVoiceUserNickName.text = "말하는사람"
+            }
+
             if(voiceUser?.profileImage?.isNotEmpty() == true){
                 Glide.with(binding.root).load(voiceUser?.profileImage).into(binding.ItemVoiceUserImage)
             }

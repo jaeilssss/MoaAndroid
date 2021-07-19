@@ -9,6 +9,7 @@ import android.util.Log
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.moa.moakotlin.data.Needer
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.VoiceUser
 import com.moa.moakotlin.firebase.TAG
 import kotlinx.coroutines.CoroutineScope
@@ -41,20 +42,12 @@ var documentID = ""
 
     }
     override fun onTaskRemoved(rootIntent: Intent?) {
-        val db = FirebaseFirestore.getInstance()
-        db.collection("VoiceChatRoom")
-                .document(documentID)
-                .delete()
-                .addOnSuccessListener { println("dd") }
 
-//        CoroutineScope(Dispatchers.Main).launch {
-//            println("dd")
-//            db.collection("VoiceChatRoom")
-//                    .document(documentID)
-//                    .delete()
-//                    .addOnSuccessListener { println("good...tlqkf ") }
-//            println("오호")
-//        }
+        CoroutineScope(Dispatchers.Main).launch {
+
+            controller()
+
+        }
 
 
     }
@@ -63,74 +56,93 @@ suspend fun controller(){
 
 
     if(voiceUser?.role.equals("speaker")){
+        println("11")
         decrementPeopleCount()
         decrementSpeakerCount()
         deleteVoiceUser()
         println("speaker")
+        stopSelf()
 
 
     }else if(voiceUser?.role.equals("audience")){
+        println("22")
         decrementPeopleCount()
         deleteRequestUser()
         deleteVoiceUser()
         println("audience")
+        stopSelf()
+
 
     }else{
-        deleteVoiceUser()
-        deleteVoiceChatRoom()
-        println("owner")
+        println("33")
+        CoroutineScope(Dispatchers.Main).launch {
+            deleteVoiceUser()
+            deleteVoiceChatRoom()
+            println("owner")
+            stopSelf()
+
+        }
+
 
     }
 }
 
-   suspend fun decrementPeopleCount(){
-       val db = FirebaseFirestore.getInstance()
-        db.collection("VoiceChatRoom")
-                .document(documentID)
-                .update("peopleCount", FieldValue.increment(-1)).await()
+    fun decrementPeopleCount(){
+        CoroutineScope(Dispatchers.Main).launch {
+            val db = FirebaseFirestore.getInstance()
+            db.collection("VoiceChatRoom")
+                    .document(documentID)
+                    .update("peopleCount", FieldValue.increment(-1))
+        }
+
     }
-    suspend fun decrementSpeakerCount(){
-        val db = FirebaseFirestore.getInstance()
-        db.collection("VoiceChatRoom")
-                .document(documentID)
-                .update("speakersCount", FieldValue.increment(-1)).await()
+     fun decrementSpeakerCount(){
+        CoroutineScope(Dispatchers.Main).launch {
+            val db = FirebaseFirestore.getInstance()
+            db.collection("VoiceChatRoom")
+                    .document(documentID)
+                    .update("speakersCount", FieldValue.increment(-1))
+        }
+
     }
-    suspend fun deleteRequestUser(){
-        val db = FirebaseFirestore.getInstance()
-        db.collection("VoiceChatRoom")
-                .document(documentID)
-                .collection("RequestUser")
-                .document(voiceUser.uid)
-                .delete().await()
+     fun deleteRequestUser(){
+         CoroutineScope(Dispatchers.Main).launch {
+             val db = FirebaseFirestore.getInstance()
+             db.collection("VoiceChatRoom")
+                     .document(documentID)
+                     .collection("RequestUser")
+                     .document(voiceUser.uid)
+                     .delete()
+         }
+
     }
-  suspend  fun deleteVoiceUser(){
-      val db = FirebaseFirestore.getInstance()
-        db.collection("VoiceChatRoom")
-                .document(documentID)
-                .collection("VoiceUser")
-                .document(voiceUser.uid)
-                .delete()
-                .await()
+    fun deleteVoiceUser(){
+        CoroutineScope(Dispatchers.Main).launch {
+            val db = FirebaseFirestore.getInstance()
+            db.collection("VoiceChatRoom")
+                    .document(documentID)
+                    .collection("VoiceUser")
+                    .document(voiceUser.uid)
+                    .delete()
+        }
+
+
     }
 
 
     // 코루틴으로 해보자 ..  !!
 
 
-   suspend fun deleteVoiceChatRoom() : String{
-       var test = ""
-        println("dd...")
-       val db = FirebaseFirestore.getInstance()
-        db.collection("VoiceChatRoom")
-                .document(documentID)
-                .delete()
-                .addOnSuccessListener {
-                    println(".....")
-                    test  = "good"
-                }.addOnFailureListener {
-                    println("fail")
-                }.await()
-return test
+    fun deleteVoiceChatRoom(){
+        CoroutineScope(Dispatchers.Main).launch {
+            var test = ""
+            println("dd...")
+            val db = FirebaseFirestore.getInstance()
+            db.collection("VoiceChatRoom")
+                    .document(documentID)
+                    .delete()
+
+        }
     }
 
 

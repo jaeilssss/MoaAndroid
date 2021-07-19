@@ -150,7 +150,6 @@ class VoiceMainFragment : BaseFragment() {
                     )==PackageManager.PERMISSION_GRANTED
             ->{
                 var bundle = Bundle()
-
             }
             shouldShowRequestPermissionRationale(android.Manifest.permission.RECORD_AUDIO)->{
                 //교육용!!

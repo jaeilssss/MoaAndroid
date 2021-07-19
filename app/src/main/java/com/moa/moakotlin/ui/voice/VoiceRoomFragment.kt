@@ -21,12 +21,17 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
+import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.costumdialog.SinglePositiveButtonDialog
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.VoiceChatRoom
 import com.moa.moakotlin.databinding.VoiceRoomFragmentBinding
+import com.moa.moakotlin.recyclerview.voice.NewVoiceRoomAdapter
 import com.moa.moakotlin.recyclerview.voice.VoiceRoomAdapter
 import com.moa.moakotlin.repository.voice.VoiceRepository
+import com.moa.moakotlin.ui.bottomsheet.ConciergeReadBottomSheetFragment
+import com.moa.moakotlin.ui.bottomsheet.VoiceRoomRequestUserFragment
+import com.moa.moakotlin.ui.bottomsheet.VoiceRoomUserProfileBottomSheet
 import com.moa.moakotlin.ui.service.ForecdTerminationService
 import io.agora.rtc.Constants
 import io.agora.rtc.IRtcEngineEventHandler
@@ -37,7 +42,7 @@ import kotlinx.coroutines.launch
 import java.io.File
 
 
-class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
+class VoiceRoomFragment : BaseFragment() {
     var lastTimeBackPressed : Long = 0
     private lateinit var viewModel: VoiceRoomViewModel
 
@@ -54,9 +59,11 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
     private var muteState = false;
 
     lateinit  var voiceChatRoom : VoiceChatRoom
+    var speakerAdapter = NewVoiceRoomAdapter()
 
     var countDownTimer: CountDownTimer ?=null
     var isRequest = false
+
 
     var EVENT_TYPE_ON_USER_AUDIO_MUTED = 7
 
@@ -70,6 +77,8 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
 
     var EVENT_TYPE_ON_AUDIO_ROUTE_CHANGED = 18
 
+    var isInitData  = false
+    var audienceAdapter = NewVoiceRoomAdapter()
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -86,51 +95,64 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
         if (voiceChatRoom != null) {
             viewModel.setSnapShotListener(voiceChatRoom.documentID)
             setView(voiceChatRoom)
+
         }
-        navController= findNavController()
-       createIRtcEnginHandler()
+
+        createIRtcEnginHandler()
         initRtcEngine()
         rtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING)
 
-        rtcEngine.setEnableSpeakerphone(true)
-
-        rtcEngine.setLogFile(Environment.getExternalStorageDirectory()
-                .toString() + File.separator + activity?.applicationContext?.getPackageName() + "/log/agora-rtc.log")
         rtcEngine.setClientRole(1)
-//        rtcEngine.enableAudioVolumeIndication(200, 3, false)
+
+        rtcEngine.enableAudioVolumeIndication(0,100,true)
+
         rtcEngine.joinChannel(token, voiceChatRoom?.documentID, "Extra Optional Data", User.getInstance().phoneNumber.toInt())
+
+        navController= findNavController()
+
         binding.VoiceRoomSpeakerRcv.layoutManager = GridLayoutManager(activity?.applicationContext!!, 4)
         binding.VoiceRoomAudienceRcv.layoutManager = GridLayoutManager(activity?.applicationContext!!, 4)
 
-        var speakerAdapter = VoiceRoomAdapter()
-
         binding.VoiceRoomSpeakerRcv.adapter = speakerAdapter
 
-        var audienceAdapter = VoiceRoomAdapter()
+        binding.VoiceRoomMicBtn.setOnClickListener {
+            if(!muteState){
+                rtcEngine.muteLocalAudioStream(true)
+                muteState = true
+                binding.VoiceRoomMicBtn.background = resources.getDrawable(R.drawable.shape_un_selected_hand)
+                binding.VoiceRoomMicBtn.setImageResource(R.drawable.ic_mic_off)
+            }else{
 
+                rtcEngine.muteLocalAudioStream(false)
+                muteState = false
+                binding.VoiceRoomMicBtn.background = resources.getDrawable(R.drawable.shape_selected_hand)
+                binding.VoiceRoomMicBtn.setImageResource(R.drawable.ic_mic_on)
+            }
+        }
         binding.VoiceRoomAudienceRcv.adapter =  audienceAdapter
 
         binding.VoiceRoomExitBtn.setOnClickListener { voiceChatRoomExit() }
 
-        binding.VoiceRoomHandBtn.setOnClickListener { requestSpeaker() }
-
-
+        binding.VoiceRoomHandBtn.setOnClickListener { clickHandBtn() }
 
 //        requestUser도 지워야함 지그므
 
         viewModel.audiences.observe(viewLifecycleOwner, Observer {
-            audienceAdapter.submitList(it)
             audienceAdapter.map = viewModel.audienceListMap
+
+            audienceAdapter.list = it
             audienceAdapter.notifyDataSetChanged()
+
         })
         viewModel.speakers.observe(viewLifecycleOwner, Observer {
             speakerAdapter.map = viewModel.speakerListMap
-            speakerAdapter.submitList(it)
+
+            speakerAdapter.list= it
             speakerAdapter.notifyDataSetChanged()
         })
         viewModel.isDelete.observe(viewLifecycleOwner, Observer {
             if (it) {
-                countDownTimer = createCountDownTimer(1000L)
+                countDownTimer = createCountDownTimer(2000L)
                 countDownTimer?.start()
                 context?.let {
                     SinglePositiveButtonDialog(it)
@@ -147,28 +169,60 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
             setStartService()
             if (it.role.equals("owner")) {
                 viewModel.setRequestSpeakerSnapShotListener(voiceChatRoom.documentID)
-
+                binding.VoiceRoomMicBtn.isClickable = true
             } else if (it.role.equals("audience")) {
                 rtcEngine.muteLocalAudioStream(true)
                 binding.VoiceRoomMicBtn.background = resources.getDrawable(R.drawable.shape_un_selected_hand)
                 binding.VoiceRoomMicBtn.isClickable = false
+                binding.VoiceRoomMicBtn.setImageResource(R.drawable.ic_mic_off)
 
             } else {
                 rtcEngine.muteLocalAudioStream(false)
+                binding.VoiceRoomMicBtn.background = resources.getDrawable(R.drawable.shape_selected_hand)
+                binding.VoiceRoomMicBtn.isClickable = true
+                binding.VoiceRoomMicBtn.setImageResource(R.drawable.ic_mic_on)
+
             }
+
 
         })
 
         viewModel.requestUsers.observe(viewLifecycleOwner, Observer {
-            binding.VoiceRoomHandCount.isVisible = true
-            binding.VoiceRoomHandCount.text = it.size.toString()
+            if(it.size==0){
+                binding.VoiceRoomHandCount.isVisible = false
+            }else{
+                binding.VoiceRoomHandCount.isVisible = true
+                binding.VoiceRoomHandCount.text = it.size.toString()
+            }
+
         })
 
+        setAdapterClickListener(speakerAdapter)
+        setAdapterClickListener(audienceAdapter)
+        viewModel.checkVoiceRoom()
         return binding.root
     }
 
 
+    fun setAdapterClickListener(adapter: NewVoiceRoomAdapter){
+       adapter.setOnItemClickListener(object : OnItemClickListener{
+           override fun onItemClick(v: View, position: Int) {
+               val option : VoiceRoomUserProfileBottomSheet = VoiceRoomUserProfileBottomSheet(adapter.map.get(adapter.list[position])!!,voiceChatRoom,viewModel.myVoiceUser.value!!) {
+                   when(it){
+                       0 -> {
 
+                       }
+                       1 -> {
+
+                       }
+                   }
+
+               }
+               option.show(activity?.supportFragmentManager!!,"bottomsheet")
+           }
+
+       })
+    }
     private fun setStartService(){
         var intent = Intent(activity?.applicationContext,ForecdTerminationService::class.java)
         intent.putExtra("documentID",voiceChatRoom.documentID)
@@ -176,18 +230,8 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
         activity?.startService(intent)
     }
 
-
-    fun requestSpeaker(){
-
-        viewModel.requestSpeakerUser(voiceChatRoom.documentID)
-        Toast.makeText(activity?.applicationContext, "발언권을 요청하였습니다", Toast.LENGTH_SHORT).show()
-        isRequest = true
-    }
-    fun setRole(){
-
-    }
     private fun createCountDownTimer(initialMililis: Long) =
-            object : CountDownTimer(initialMililis, 10 * 100L){
+            object : CountDownTimer(initialMililis, 20 * 100L){
                 override fun onFinish() {
                     countDownTimer = null
 
@@ -199,6 +243,27 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
                 }
 
             }
+
+    fun clickHandBtn(){
+        if(viewModel.myVoiceUser.value?.role.equals("owner")){
+            val option : VoiceRoomRequestUserFragment = VoiceRoomRequestUserFragment(voiceChatRoom.documentID) {
+                when(it){
+                    0 -> {
+
+                    }
+                    1 -> {
+
+                    }
+                }
+
+            }
+            option.show(activity?.supportFragmentManager!!,"bottomsheet")
+        }else if(viewModel.myVoiceUser.value?.role.equals("audience")){
+            viewModel.requestSpeakerUser(voiceChatRoom.documentID)
+            Toast.makeText(activity?.applicationContext, "발언권을 요청하였습니다", Toast.LENGTH_SHORT).show()
+            isRequest = true
+        }
+    }
     private fun voiceChatRoomExit(){
         CoroutineScope(Dispatchers.Main).launch {
 
@@ -211,7 +276,8 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
                     println("voiceChatRoomExit -> owner ")
                     viewModel.deleteVoiceChatRoom(voiceChatRoom.documentID)
                 }
-                if(viewModel.speakerList.contains("${User.getInstance().phoneNumber}")){
+                if(viewModel.myVoiceUser.value?.role.equals("speaker")){
+                    println("여기 호출됨!!")
                     viewModel.changeSpeakersCount(voiceChatRoom.documentID, -1)
                 }
                 if(isRequest==true){
@@ -234,17 +300,7 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
         Toast.makeText(activity?.baseContext!!, msg, Toast.LENGTH_SHORT).show()
     }
 
-    override fun onJoinChannelSuccess(channel: String?, uid: Int, elapsed: Int) {
-        TODO("Not yet implemented")
-    }
 
-    override fun onUserOffline(uid: Int, reason: Int) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onExtraCallback(type: Int, vararg data: Any?) {
-        TODO("Not yet implemented")
-    }
 
     private fun initRtcEngine(){
         try {
@@ -254,7 +310,7 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
                     mRtcEventHandler
             )
 
-            optional()
+//            optional()
         } catch (e: Exception) {
             Log.e("TAG", Log.getStackTraceString(e))
             println("error 나오네 initRtcEngine")
@@ -264,7 +320,7 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
                     )
             )
         }
-        setChannelProfile()
+//        setChannelProfile()
     }
     // Listen for the onJoinChannelSuccess callback.
     // This callback occurs when the local user successfully joins the channel.
@@ -292,21 +348,41 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
               super.onError(err)
               println("error handler rtc engin")
           }
-
-            override fun onActiveSpeaker(uid: Int) {
-                super.onActiveSpeaker(uid)
-            }
-
             override fun onRemoteAudioStateChanged(uid: Int, state: Int, reason: Int, elapsed: Int) {
 //                super.onRemoteAudioStateChanged(uid, state, reason, elapsed)
                 when(reason){
                     1 ->{
-                        println("이야기중!! ${uid}")
-                    }
-                    2->{
-                        println("이야기 멈춤")
-                    }
+                        println("이야기중!! 0${uid}")
+                        CoroutineScope(Dispatchers.Main).launch {
+                            viewModel.talking.add("0${uid}")
+                            speakerAdapter.talking.add("0${uid}")
+                            speakerAdapter.notifyDataSetChanged()
+                        }
 
+
+                    }
+                    0->{
+//                    CoroutineScope(Dispatchers.Main).launch {
+//                        viewModel.talking.remove("0${uid}")
+//                        speakerAdapter.talking.remove("0${uid}")
+//                        speakerAdapter.notifyDataSetChanged()
+//                    }
+                        println("0 인대 여기서 멈추는거아님?")
+
+                    }2->{
+                    println(">>>")
+                    CoroutineScope(Dispatchers.Main).launch {
+                        viewModel.talking.remove("0${uid}")
+                        speakerAdapter.talking.remove("0${uid}")
+                        speakerAdapter.notifyDataSetChanged()
+                    }
+                    }
+                    3->{
+                        println("333")
+                    }
+                    4->{
+                        println("4444")
+                    }
 
                 }
             }
@@ -331,8 +407,18 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
     }
 
     override fun onDestroy() {
-        rtcEngine.leaveChannel()
         super.onDestroy()
+        CoroutineScope(Dispatchers.Main).launch {
+            println("dd??000---")
+            if(viewModel.myVoiceUser.value?.role.equals("owner")){
+                viewModel.deleteVoiceChatRoom(voiceChatRoom.documentID)
+                viewModel.deleteVoiceUser(voiceChatRoom.documentID,User.getInstance().uid)
+            }else if(viewModel.myVoiceUser.value?.role.equals("audience")){
+
+            }
+            rtcEngine.leaveChannel()
+
+        }
     }
 
     override fun onBackPressed() {
@@ -341,45 +427,7 @@ class VoiceRoomFragment : BaseFragment() ,AGEventHandler{
             return
         }
         lastTimeBackPressed = System.currentTimeMillis();
-        Toast.makeText(context, "종료하려면 한번 더 누르세요", Toast.LENGTH_SHORT).show()
     }
 
-
-
-    override fun onDetach() {
-
-        super.onDetach()
-    }
-
-
-
-    override fun onDestroyView() {
-//        println("프레그먼트 강제종료 destroyview")
-//        if(voiceChatRoom.owner.equals(User.getInstance().uid)){
-//            println("voiceChatRoomExit2323232323232 -> owner ")
-//            viewModel.deleteVoiceChatRoom(voiceChatRoom.documentID)
-//        }else{
-//            if(viewModel.speakerList.contains("${User.getInstance().phoneNumber}")){
-//                viewModel.changeSpeakersCount(voiceChatRoom.documentID, -1)
-//            }
-//            if(isRequest==true){
-//                viewModel.deleteRequestUser(voiceChatRoom.documentID, User.getInstance().uid)
-//            }
-//        }
-//        var db = FirebaseFirestore.getInstance()
-//        db.collection("VoiceChatRoom")
-//                .document(voiceChatRoom.documentID)
-//                .delete()
-
-//        rtcEngine.leaveChannel()
-//        viewModel.deleteSnapShot()
-
-
-
-
-
-
-        super.onDestroyView()
-    }
 }
 

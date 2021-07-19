@@ -200,4 +200,18 @@ class VoiceRepository  {
                 .document(uid)
                 .delete()
     }
+
+    suspend fun checkVoiceRoomOwner(documentID: String) : Boolean{
+        var check = false
+        var db = FirebaseFirestore.getInstance()
+
+        db.collection("VoiceChatRoom")
+                .document(documentID)
+                .get()
+                .addOnSuccessListener {
+                    check = !it.exists()
+                }.await()
+
+        return check
+    }
     }
