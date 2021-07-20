@@ -58,7 +58,7 @@ class UserProfileFragment : BaseFragment() {
     }
 
     private fun setViewData(){
-        
+
         if(user.profileImage.isNotEmpty()){
             Glide.with(binding.root).load(user.profileImage).into(binding.UserProfileImage)
         }

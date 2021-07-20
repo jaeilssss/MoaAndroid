@@ -60,5 +60,7 @@ class MyPageFragment : Fragment() {
         }
 
         binding.MyPageUserAptInfoText.text = "${User.getInstance().aptName}"
+
+
     }
 }

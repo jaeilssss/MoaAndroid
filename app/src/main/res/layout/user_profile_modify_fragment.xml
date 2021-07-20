@@ -12,103 +12,59 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FF5E00"
         tools:context=".ui.mypage.UserProfileModifyFragment">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="60dp"
-            android:id="@+id/user_profile_modify_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/user_profile_layout_shape"
-            >
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/profile_human"
-            tools:layout_editor_absoluteX="154dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBaseline_toBaselineOf="parent"
-            android:id="@+id/user_profile_modify_image"
-            tools:layout_editor_absoluteY="9dp" />
-        <Button
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            app:layout_constraintEnd_toEndOf="@id/user_profile_modify_image"
-            app:layout_constraintBottom_toBottomOf="@id/user_profile_modify_image"
-            android:background="@android:drawable/ic_menu_camera"/>
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="뉴나리"
-            android:text="@={model.nickname}"
-            app:layout_constraintTop_toBottomOf="@id/user_profile_modify_image"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="10dp"
-            android:textColor="#000000"
-            android:id="@+id/user_profile_modify_nick"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_profile_modify_nick"
-            tools:text="만현마을 쌍용1차"
-            android:textColor="#000000"
-            android:layout_marginTop="5dp"
-            android:id="@+id/user_profile_modify_apt_name"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/user_profile_modify_apt_name"
-            tools:text="인증"
-            android:layout_marginTop="5dp"
-            app:layout_constraintTop_toBottomOf="@id/user_profile_modify_nick"
-            android:layout_marginLeft="10dp"/>
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_profile_modify_apt_name"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="40dp"
-            android:minHeight="50dp"
-            android:padding="10dp"
-            android:background="@drawable/sign_up_shape"
-            android:text="@={model.introduction}"
-            tools:text="이웃 주민과 정보 공유하며 \n 커피 친구를 사귀고픈 6세 아들맘이에요 ! :)"
-            android:id="@+id/user_profile_modify_my_self"
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="20dp"
+            android:background="@drawable/ic_back"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
-            android:textColor="#000000"/>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/user_profile_modify_my_self"
-            android:layout_marginTop="15dp"
-            android:background="#bdbdbd"
-            android:id="@+id/user_profile_modify_line"/>
-
-<Button
-    android:layout_width="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/UserProfileModifyBackBtn"/>
+<TextView
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/user_profile_modify_line"
-    android:layout_marginTop="20dp"
-    android:id="@+id/user_modify_btn"
-    android:text="수정하기"/>
+    app:layout_constraintTop_toTopOf="@id/UserProfileModifyBackBtn"
+    app:layout_constraintBottom_toBottomOf="@id/UserProfileModifyBackBtn"
+    android:text="프로필 편집"
+    android:textSize="18sp"
+    android:textColor="@color/moaBlack"
+    android:textStyle="bold"
+    android:id="@+id/UserProfileModifyTextView"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="114dp"
+            android:layout_height="114dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/UserProfileModifyTextView"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/profile_woman"
+            android:id="@+id/UserProfileModifyImage"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_yellow_camara"
+            app:layout_constraintEnd_toEndOf="@id/UserProfileModifyImage"
+            app:layout_constraintBottom_toBottomOf="@id/UserProfileModifyImage"
+            android:id="@+id/UserModify"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="닉네임"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/UserProfileModifyImage"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="15dp"
+            android:textColor="@color/moaBlack"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:textSize="16sp"
+            android:id="@+id/UserProfileModifyNickNameTextView"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

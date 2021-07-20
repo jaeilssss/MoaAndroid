@@ -35,7 +35,11 @@
         android:textSize="18sp"
         android:id="@+id/UserProfileTextView"
         android:textColor="@color/moaBlack"/>
-
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    >
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="59dp"
         android:layout_height="59dp"
@@ -130,7 +134,7 @@
         android:id="@+id/UserProfileRcv"/>
 
 
-
+</androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

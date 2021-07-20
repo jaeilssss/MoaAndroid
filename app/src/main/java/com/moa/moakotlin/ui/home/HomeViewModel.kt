@@ -36,7 +36,7 @@ class HomeViewModel() : ViewModel() {
 
 
 //        var pushRepository = FcmRepository()
-//        var token  = "fQoVy4jPQAWKipC6njohvq:APA91bEsOr04SUHcLGNod8lS56rFzQHDuhu6B3frj9nmXaBhONKtvEFUp0MXJNUOu8FJrnmKyMdi4WGtBWt5uFWKq_wDCFdQS0Wus7XLaGq5naVbrxV8FTRNcrNIsd9ZCsDmNpDsKVo0"
+//        var token  = "ezguf8fRReS_QUofFuI-DL:APA91bEtIYVddI-SEu2XTGndm4HYCKgJDd81oabRvy18AgVFpiImLJBVN5eJXvt-wc_KIUAWwNRLAov3nYO2LW8FKb5bN7AwAWXATpMM_vmtLcumI4Vba0ztNVKJo0XGuvZqmwJfoE2S"
 //        var message = PushMessage("Moa","당신의 게시글을 좋아요 눌렀습니다!",token)
 //        pushRepository.sendPushMessage(message)
 //
@@ -66,7 +66,7 @@ class HomeViewModel() : ViewModel() {
                     System.out.println("실패..!!!")
                 }
     }
-    private fun registerPushToken() {
+     fun registerPushToken() {
         //v17.0.0 이전까지는
         ////var pushToken = FirebaseInstanceId.getInstance().token
         //v17.0.1 이후부터는 onTokenRefresh()-depriciated
@@ -76,6 +76,8 @@ class HomeViewModel() : ViewModel() {
         var map = mutableMapOf<String, Any>()
         FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener { instanceIdResult ->
             pushToken = instanceIdResult.token
+            println("dddw3232")
+            println(pushToken)
             map["pushtoken"] = pushToken!!
             FirebaseFirestore.getInstance().collection("pushtokens").document(uid!!).set(map)
         }
