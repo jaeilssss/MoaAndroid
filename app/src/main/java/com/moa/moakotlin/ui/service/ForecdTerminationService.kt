@@ -8,12 +8,16 @@ import android.os.Messenger
 import android.util.Log
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.functions.FirebaseFunctions
+import com.google.firebase.functions.ktx.functions
+import com.google.firebase.ktx.Firebase
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.VoiceUser
 import com.moa.moakotlin.firebase.TAG
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
@@ -21,7 +25,7 @@ class ForecdTerminationService() : Service() {
 
 var documentID = ""
     var voiceUser = VoiceUser()
-
+val db = FirebaseFirestore.getInstance()
 
     override fun onBind(p0: Intent?): IBinder? {
 
@@ -41,17 +45,19 @@ var documentID = ""
 
 
     }
+
     override fun onTaskRemoved(rootIntent: Intent?) {
 
-        CoroutineScope(Dispatchers.Main).launch {
 
-            controller()
-
-        }
-
+        println("Thread sleep")
+        Thread.sleep(5000)
+        println("꺠어남 스레드")
+//        super.onTaskRemoved(rootIntent)
+        stopSelf()
 
     }
-suspend fun controller(){
+
+    suspend fun controller(){
     println("...ㅇㅇㅈㄷㅈ")
 
 
@@ -89,7 +95,7 @@ suspend fun controller(){
 
     fun decrementPeopleCount(){
         CoroutineScope(Dispatchers.Main).launch {
-            val db = FirebaseFirestore.getInstance()
+
             db.collection("VoiceChatRoom")
                     .document(documentID)
                     .update("peopleCount", FieldValue.increment(-1))
@@ -98,7 +104,7 @@ suspend fun controller(){
     }
      fun decrementSpeakerCount(){
         CoroutineScope(Dispatchers.Main).launch {
-            val db = FirebaseFirestore.getInstance()
+
             db.collection("VoiceChatRoom")
                     .document(documentID)
                     .update("speakersCount", FieldValue.increment(-1))
@@ -107,7 +113,7 @@ suspend fun controller(){
     }
      fun deleteRequestUser(){
          CoroutineScope(Dispatchers.Main).launch {
-             val db = FirebaseFirestore.getInstance()
+
              db.collection("VoiceChatRoom")
                      .document(documentID)
                      .collection("RequestUser")
@@ -118,7 +124,7 @@ suspend fun controller(){
     }
     fun deleteVoiceUser(){
         CoroutineScope(Dispatchers.Main).launch {
-            val db = FirebaseFirestore.getInstance()
+
             db.collection("VoiceChatRoom")
                     .document(documentID)
                     .collection("VoiceUser")
@@ -137,7 +143,6 @@ suspend fun controller(){
         CoroutineScope(Dispatchers.Main).launch {
             var test = ""
             println("dd...")
-            val db = FirebaseFirestore.getInstance()
             db.collection("VoiceChatRoom")
                     .document(documentID)
                     .delete()

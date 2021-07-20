@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.moa.moakotlin.base.ConnectionStateMonitor
 import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.data.User
@@ -47,4 +48,14 @@ lateinit var model : LoadingViewModel
 
         }
     }// startLoading Method..
+
+
+    override fun onDestroy() {
+
+
+
+        super.onDestroy()
+
+
+    }
 }// MainActiv

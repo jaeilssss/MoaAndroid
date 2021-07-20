@@ -224,7 +224,7 @@ class VoiceRoomFragment : BaseFragment() {
        })
     }
     private fun setStartService(){
-        var intent = Intent(activity?.applicationContext,ForecdTerminationService::class.java)
+        var intent = Intent(activity?.baseContext,ForecdTerminationService::class.java)
         intent.putExtra("documentID",voiceChatRoom.documentID)
         intent.putExtra("voiceUser",viewModel.myVoiceUser.value!!)
         activity?.startService(intent)
@@ -326,8 +326,24 @@ class VoiceRoomFragment : BaseFragment() {
     // This callback occurs when the local user successfully joins the channel.
     private fun createIRtcEnginHandler() {
         mRtcEventHandler =  object : IRtcEngineEventHandler() {
-            override fun onLeaveChannel(stats: RtcStats?) {
 
+            override fun onLeaveChannel(stats: RtcStats?) {
+                Thread().run{
+
+                    var handler = Handler()
+
+                    handler.post(Runnable {
+                        var db = FirebaseFirestore.getInstance()
+                        db.collection("cities")
+                                .document("test2")
+                                .delete()
+                        db.collection("cities")
+                                .document("test3")
+                                .delete()
+                    })
+
+
+                }
                 super.onLeaveChannel(stats)
             }
 
@@ -358,7 +374,6 @@ class VoiceRoomFragment : BaseFragment() {
                             speakerAdapter.talking.add("0${uid}")
                             speakerAdapter.notifyDataSetChanged()
                         }
-
 
                     }
                     0->{
@@ -407,18 +422,13 @@ class VoiceRoomFragment : BaseFragment() {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
-        CoroutineScope(Dispatchers.Main).launch {
-            println("dd??000---")
-            if(viewModel.myVoiceUser.value?.role.equals("owner")){
-                viewModel.deleteVoiceChatRoom(voiceChatRoom.documentID)
-                viewModel.deleteVoiceUser(voiceChatRoom.documentID,User.getInstance().uid)
-            }else if(viewModel.myVoiceUser.value?.role.equals("audience")){
-
-            }
-            rtcEngine.leaveChannel()
-
+        viewModel.deleteVoiceUser(voiceChatRoom.documentID,User.getInstance().uid)
+        if(viewModel.myVoiceUser.value?.role.equals("owner")) {
+            viewModel.deleteVoiceChatRoom(voiceChatRoom.documentID)
         }
+        rtcEngine.leaveChannel()
+        super.onDestroy()
+
     }
 
     override fun onBackPressed() {
@@ -428,6 +438,32 @@ class VoiceRoomFragment : BaseFragment() {
         }
         lastTimeBackPressed = System.currentTimeMillis();
     }
+
+    override fun onDetach() {
+        var db = FirebaseFirestore.getInstance()
+        db.collection("cities")
+                .document("test4")
+                .delete()
+        db.collection("cities")
+                .document("test5")
+                .delete()
+        db.collection("cities")
+                .document("test")
+                .delete()
+        db.collection("cities")
+                .document("test2")
+                .delete()
+        db.collection("cities")
+                .document("test3")
+                .delete()
+        super.onDetach()
+    }
+
+    override fun onDestroyView() {
+
+        super.onDestroyView()
+    }
+
 
 }
 

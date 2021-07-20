@@ -14,6 +14,9 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.functions.FirebaseFunctions
+import com.google.firebase.functions.ktx.functions
+import com.google.firebase.ktx.Firebase
 import com.moa.moakotlin.base.BottomNavController
 import com.moa.moakotlin.base.Transfer
 import com.moa.moakotlin.base.onBackPressedListener
@@ -85,6 +88,7 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
                 else ->return@setOnNavigationItemSelectedListener false
             }
         }
+
     }
 
 
@@ -132,17 +136,23 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
     }
 
     override fun onDestroy() {
+//        var db = FirebaseFirestore.getInstance()
+//        db.collection("cities")
+//                .document("test4")
+//                .delete()
+//        db.collection("cities")
+//                .document("test5")
+//                .delete()
+//        db.collection("cities")
+//                .document("test")
+//                .delete()
+//        db.collection("cities")
+//                .document("test2")
+//                .delete()
+//        db.collection("cities")
+//                .document("test3")
+//                .delete()
         super.onDestroy()
-        var db = FirebaseFirestore.getInstance()
-
-
-        db.collection("VoiceChatRoom")
-                .document("32Zcy9DPjd1lBGzyoNKT")
-                .delete()
-
-
-
-
     }
 
 }
