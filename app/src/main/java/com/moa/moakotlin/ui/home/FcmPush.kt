@@ -49,7 +49,6 @@ class FcmPush() {
                         .build()
                     okHttpClient?.newCall(request)?.enqueue(object : Callback {//푸시 전송
 
-
                         override fun onFailure(request: Request?, e: IOException?) {
                             TODO("Not yet implemented")
                         }

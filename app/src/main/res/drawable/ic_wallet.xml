@@ -1,0 +1,30 @@
+<vector android:height="20.922113dp" android:viewportHeight="86.597"
+    android:viewportWidth="92.714" android:width="22.4dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#00000000"
+        android:pathData="M25.968,17.812h-18.357a6.007,6.007 0,0 0,-6.111 6.117"
+        android:strokeColor="#333" android:strokeLineCap="round"
+        android:strokeLineJoin="round" android:strokeWidth="3"/>
+    <path android:fillColor="#00000000"
+        android:pathData="M76.942,30.046L76.942,17.812L58.591,17.812"
+        android:strokeColor="#333" android:strokeLineCap="round"
+        android:strokeLineJoin="round" android:strokeWidth="3"/>
+    <path android:fillColor="#00000000"
+        android:pathData="M70.825,30.045L42.279,1.5 13.734,30.045"
+        android:strokeColor="#333" android:strokeLineCap="round"
+        android:strokeLineJoin="round" android:strokeWidth="3"/>
+    <path android:fillColor="#ffe402"
+        android:pathData="M56.552,30.046l-9.932,-9.985q-4.325,4.328 -8.649,0l-9.979,9.981z"
+        android:strokeColor="#333" android:strokeLineCap="round"
+        android:strokeLineJoin="round" android:strokeWidth="3"/>
+    <path android:fillColor="#00000000"
+        android:pathData="M87.136,68.786v16.312h-79.519a6.013,6.013 0,0 1,-6.117 -6.117L1.5,23.929a6.013,6.013 0,0 0,6.117 6.117h79.519v14.273"
+        android:strokeColor="#333" android:strokeLineCap="round"
+        android:strokeLineJoin="round" android:strokeWidth="3"/>
+    <path android:fillColor="#00000000"
+        android:pathData="M62.669,48.396a10.195,10.195 0,1 0,0 20.39h22.429a6.116,6.116 0,0 0,6.117 -6.117v-16.312A2.04,2.04 0,0 0,89.174 44.318h-2.039a4.435,4.435 0,0 1,-4.078 4.078h-20.39"
+        android:strokeColor="#333" android:strokeLineCap="round"
+        android:strokeLineJoin="round" android:strokeWidth="3"/>
+    <path android:fillColor="#00000000"
+        android:pathData="M60.739,58.728L64.441,58.728"
+        android:strokeColor="#333" android:strokeWidth="3"/>
+</vector>

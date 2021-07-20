@@ -328,22 +328,6 @@ class VoiceRoomFragment : BaseFragment() {
         mRtcEventHandler =  object : IRtcEngineEventHandler() {
 
             override fun onLeaveChannel(stats: RtcStats?) {
-                Thread().run{
-
-                    var handler = Handler()
-
-                    handler.post(Runnable {
-                        var db = FirebaseFirestore.getInstance()
-                        db.collection("cities")
-                                .document("test2")
-                                .delete()
-                        db.collection("cities")
-                                .document("test3")
-                                .delete()
-                    })
-
-
-                }
                 super.onLeaveChannel(stats)
             }
 
@@ -422,12 +406,10 @@ class VoiceRoomFragment : BaseFragment() {
     }
 
     override fun onDestroy() {
-        viewModel.deleteVoiceUser(voiceChatRoom.documentID,User.getInstance().uid)
-        if(viewModel.myVoiceUser.value?.role.equals("owner")) {
-            viewModel.deleteVoiceChatRoom(voiceChatRoom.documentID)
-        }
+
         rtcEngine.leaveChannel()
         super.onDestroy()
+
 
     }
 
@@ -440,22 +422,18 @@ class VoiceRoomFragment : BaseFragment() {
     }
 
     override fun onDetach() {
-        var db = FirebaseFirestore.getInstance()
-        db.collection("cities")
-                .document("test4")
-                .delete()
-        db.collection("cities")
-                .document("test5")
-                .delete()
-        db.collection("cities")
-                .document("test")
-                .delete()
-        db.collection("cities")
-                .document("test2")
-                .delete()
-        db.collection("cities")
-                .document("test3")
-                .delete()
+
+        viewModel.deleteVoiceUser(voiceChatRoom.documentID,User.getInstance().uid)
+
+        if(viewModel.myVoiceUser.value?.role.equals("owner")) {
+            viewModel.deleteVoiceChatRoom(voiceChatRoom.documentID)
+        }else if(viewModel.myVoiceUser.value?.role.equals("speaker")){
+            viewModel.changeSpeakersCount(voiceChatRoom.documentID,-1)
+            viewModel.changeAudienceCount(voiceChatRoom.documentID)
+        }else {
+            viewModel.deleteRequestUser(voiceChatRoom.documentID,User.getInstance().uid)
+            viewModel.changeAudienceCount(voiceChatRoom.documentID)
+        }
         super.onDetach()
     }
 

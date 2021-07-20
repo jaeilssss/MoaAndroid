@@ -22,7 +22,11 @@ data class User(
     var signUpDate : Timestamp = Timestamp.now(),
     var introduction :String = "",
     @field:JvmField
-    var isAgreeMarketing : Boolean = false
+    var isAgreeMarketing : Boolean = false,
+    @field:JvmField
+    var isAgreeEventAlarm : Boolean = true,
+    @field:JvmField
+    var isAgreeChattingAlarm : Boolean = true
 ): Parcelable{
     companion object{
         // 자기변수 선언하기

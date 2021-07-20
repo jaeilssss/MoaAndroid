@@ -32,30 +32,33 @@ class MyPageFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_my_page,container,false)
 
-        binding.myPageAptName.text = User.getInstance().aptName
+        return binding.root
+    }
 
-        binding.myPageAptNick.text = User.getInstance().nickName
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
 
         model = ViewModelProvider(this).get(MyPageViewModel::class.java)
-
+        binding.model = model
         navController = findNavController()
+        setViewData()
 
-        binding.myPageProfileBtn.setOnClickListener {
 
+        binding.myPageGoToProfileBtn.setOnClickListener {
             var bundle = Bundle()
-
-            bundle.putParcelable("user", User.getInstance())
-
+            bundle.putParcelable("user",User.getInstance())
             navController.navigate(R.id.action_MyPageFragment_to_userProfileFragment,bundle)
         }
 
-        if(User.getInstance().profileImage!=null){
-            context?.let { Glide.with(it).load(User.getInstance().profileImage).into(binding.myPageProfileImage) }
+    }
+
+    fun setViewData(){
+        binding.MyPageNickName.text = User.getInstance().nickName
+        if(User.getInstance().profileImage.isNotEmpty()){
+            Glide.with(binding.root).load(User.getInstance().profileImage).into(binding.MyPageUserProfile)
         }
-        binding.myPageLogout.setOnClickListener {
-            activity?.let { it1 -> model.logOut(it1) }
-            navController.navigate(R.id.firstViewFragment)
-        }
-        return binding.root
+
+        binding.MyPageUserAptInfoText.text = "${User.getInstance().aptName}"
     }
 }
