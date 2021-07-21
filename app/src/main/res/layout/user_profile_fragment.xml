@@ -37,14 +37,20 @@
         android:textColor="@color/moaBlack"/>
 <androidx.core.widget.NestedScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/UserProfileBackBtn"
     android:fillViewport="true"
     >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_width="59dp"
         android:layout_height="59dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/UserProfileBackBtn"
+        app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/profile_woman"
         android:layout_marginStart="15dp"
         android:layout_marginTop="30dp"
@@ -132,7 +138,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
         android:id="@+id/UserProfileRcv"/>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>
 
