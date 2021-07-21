@@ -3,10 +3,9 @@ package com.moa.moakotlin.ui.imagepicker
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.moa.moakotlin.R
+import com.moa.moakotlin.databinding.ActivityImagePickerBinding
 
 
 class ImagePickerActivity : AppCompatActivity() {
@@ -18,6 +17,10 @@ class ImagePickerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_picker)
 
+        var back = findViewById<ImageButton>(R.id.imagePickerBack)
+        back.setOnClickListener {
+            finish()
+        }
         var intent = intent
 
        selectedPictures = intent.getStringArrayListExtra("selectedPictureList")!!
@@ -37,6 +40,8 @@ class ImagePickerActivity : AppCompatActivity() {
         }else{
             initFragment()
         }
+
+
 
     }
 

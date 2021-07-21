@@ -11,6 +11,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.moa.moakotlin.R
+import com.moa.moakotlin.costumdialog.AptCertificationImageAlertDialog
+import com.moa.moakotlin.costumdialog.CostumAlertDialog
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentMyPageBinding
 
@@ -49,6 +51,18 @@ class MyPageFragment : Fragment() {
             var bundle = Bundle()
             bundle.putParcelable("user",User.getInstance())
             navController.navigate(R.id.action_MyPageFragment_to_userProfileFragment,bundle)
+        }
+
+        binding.myPageAptCertification.setOnClickListener {
+            context?.let { it1 ->
+                AptCertificationImageAlertDialog(it1)
+                        .setMessage(resources.getString(R.string.ReAptCertification))
+                        .setPositiveButton("네"){
+
+                        }.setNegativeButton {
+
+                        }.show()
+            }
         }
 
     }

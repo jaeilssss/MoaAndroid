@@ -46,31 +46,26 @@ class UserProfileFragment : BaseFragment() {
         navController = findNavController()
 
         arguments?.let {
-            user = it.getParcelable<User>("user")!!
+            if(it.getParcelable<User>("user")==null){
+                user = User.getInstance()
+            }else{
+                user = it.getParcelable<User>("user")!!
+            }
+
         }
 
-        setViewData()
+        setProfileImage()
 
+        binding.UserprofileModifyBtn.setOnClickListener { navController.navigate(R.id.action_userProfileFragment_to_userProfileModifyFragment) }
     }
-
-    override fun onBackPressed() {
-        navController.popBackStack()
-    }
-
-    private fun setViewData(){
-
+    fun setProfileImage(){
         if(user.profileImage.isNotEmpty()){
             Glide.with(binding.root).load(user.profileImage).into(binding.UserProfileImage)
         }
-
-        binding.UserProfileNickName.text = user.nickName
-
-        binding.UserProfileUserAptInfo.text = user.aptName
-
-        binding.UserprofileIntroduction.text = user.introduction
-
+    }
+    override fun onBackPressed() {
+        navController.popBackStack(R.id.MyPageFragment,false)
 
     }
-
 
 }

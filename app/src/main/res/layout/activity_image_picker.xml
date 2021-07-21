@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.imagepicker.ImagePickerActivity">
-    <ImageView
-        android:id="@+id/back"
-        android:layout_width="9.8dp"
-        android:layout_height="17dp"
-        android:layout_marginStart="16dp"
+    <ImageButton
+        android:id="@+id/imagePickerBack"
+        android:layout_width="11.8dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/ic_back"
         android:textStyle="bold"
+        android:clickable="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,8 +25,8 @@
         android:textColor="@color/moaBlack"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="@id/back"
-        app:layout_constraintBottom_toBottomOf="@id/back"
+        app:layout_constraintTop_toTopOf="@id/imagePickerBack"
+        app:layout_constraintBottom_toBottomOf="@id/imagePickerBack"
         android:text="이미지 선택"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:id="@+id/ActivityImagePickerText"

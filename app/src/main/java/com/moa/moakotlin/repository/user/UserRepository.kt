@@ -1,12 +1,16 @@
 package com.moa.moakotlin.repository.user
 
+import android.net.Uri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import com.moa.moakotlin.data.ApartCertification
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.aptList
 import kotlinx.coroutines.tasks.await
-
+import java.io.File
+import java.io.FileInputStream
 
 
 class UserRepository {
@@ -83,4 +87,37 @@ class UserRepository {
 
         }
     }
+
+    suspend fun upload(path : String ): String{
+
+        var result =""
+        var storageRef : StorageReference = FirebaseStorage.getInstance().reference
+
+
+        var file = Uri.fromFile(File(path))
+
+        var inputstream = FileInputStream(File(path))
+
+        val riversRef = storageRef.child("UserProfile"+"/" + file.lastPathSegment)
+        val uploadTask = riversRef.putStream(inputstream)
+
+        uploadTask.continueWithTask { riversRef.downloadUrl }.addOnCompleteListener { task ->
+            result = task.result.toString()
+        }.await()
+        return result
+    }
+
+
+
+    suspend fun modify(user : User) : Boolean{
+        var db = FirebaseFirestore.getInstance()
+        var check = false
+        db.collection("User").document(User.getInstance().uid)
+                .set(user)
+                .addOnSuccessListener {
+                    check = true
+                }.await()
+        return check
+    }
+
 }

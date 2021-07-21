@@ -40,6 +40,7 @@
     <string name="ConciergeWriteGuide">어떤 더움을 원하시는지(콘크리트벽 못박기 \n도와주세요,등하원 도우미 구해요) 와 위치,\n 특별히 요청하는 사항 등에 대해서 적어주세요</string>
     <string name="goToGuideLine"><u>재능공유 운영 정책 보러가기</u></string>
     <string name="loadingMessage">우리아파트도\n따듯해질수 있어요</string>
+    <string name="ReAptCertification">이미 아파트 인증을 완료하셨습니다\n새로운 아파트로 인증을 원하시나요? </string>
 
     <string-array name="mainCategory">
         <item>"인테리어"</item>

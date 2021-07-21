@@ -45,10 +45,16 @@ class HelperMainAdapter() :ListAdapter<Helper, RecyclerView.ViewHolder>(diffUtil
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if(holder is ConciergeViewHolder)  holder.binding(currentList[position])
-
+        else (holder as EmptyConciergeViewHolder).binding()
     }
 
-    inner class EmptyConciergeViewHolder(var binding : ItemEmptyConciergeBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class EmptyConciergeViewHolder(var binding : ItemEmptyConciergeBinding) : RecyclerView.ViewHolder(binding.root){
+            fun binding(){
+                binding.itemConciergeEmptyImg.setImageResource(R.drawable.img_empty_data)
+            }
+
+
+    }
     inner class ConciergeViewHolder(var binding: ItemConciergeBinding) : RecyclerView.ViewHolder(binding.root){
         fun binding(helper: Helper){
             if(helper.images?.size!!>0){
