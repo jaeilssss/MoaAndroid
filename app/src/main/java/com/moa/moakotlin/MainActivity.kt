@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
 //                    bottomSheet.show(supportFragmentManager, bottomSheet.tag)
                     var intent = Intent(this,ConciergeWriteActivity::class.java)
                     startActivityForResult(intent,REQUEST_WRITE_CODE)
-                    return@setOnNavigationItemSelectedListener true
+                    return@setOnNavigationItemSelectedListener false
                 }
                 R.id.HomeFragment ->{
                     navController.navigate(R.id.HomeFragment)
@@ -83,6 +83,9 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
                 }
                 R.id.chattingRoomFragment->{
                     navController.navigate(R.id.chattingRoomFragment)
+                    return@setOnNavigationItemSelectedListener true
+                }
+                R.id.Alarm ->{
                     return@setOnNavigationItemSelectedListener true
                 }
                 else ->return@setOnNavigationItemSelectedListener false

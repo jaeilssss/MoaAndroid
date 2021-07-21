@@ -137,7 +137,7 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/ic_sharing"
+            android:background="@drawable/ic_home_claim"
             app:layout_constraintStart_toEndOf="@id/homeGroupBuyingBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/indicators"
@@ -190,7 +190,7 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="나눔 중고"
+        android:text="민원 신청"
         android:fontFamily="@font/notosanscjkkr_medium"
         app:layout_constraintStart_toStartOf="@id/homeHandPurchaseBtn"
         app:layout_constraintEnd_toEndOf="@id/homeHandPurchaseBtn"
@@ -199,83 +199,14 @@
         android:textColor="@color/moaBlack"
         android:textSize="14sp"
         android:id="@+id/homeHandPurchaseText"/>
-<ImageView
-    android:layout_width="0dp"
-    android:layout_height="0dp"
-    app:layout_constraintStart_toStartOf="@id/homeVoiceChatText"
-    app:layout_constraintEnd_toEndOf="@id/homeVoiceChatText"
-    app:layout_constraintTop_toBottomOf="@id/homeVoiceChatText"
-    app:layout_constraintDimensionRatio="H,1:1"
-    android:layout_marginTop="14dp"
-    android:background="@drawable/ic_neighborhood_board"
-    android:id="@+id/homemyNeighborhoodBoardBtn"
-    />
 
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="@id/hometalentSharingText"
-        app:layout_constraintEnd_toEndOf="@id/hometalentSharingText"
-        app:layout_constraintTop_toBottomOf="@id/hometalentSharingText"
-        android:layout_marginTop="14dp"
-        app:layout_constraintDimensionRatio="H,1:1"
-        android:background="@drawable/ic_home_office"
-        android:id="@+id/homeofficeBoardBtn"/>
-
-    <ImageView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="@id/homeGroupBuyingText"
-        app:layout_constraintEnd_toEndOf="@id/homeGroupBuyingText"
-        app:layout_constraintTop_toBottomOf="@id/homeGroupBuyingText"
-        android:layout_marginTop="14dp"
-        android:background="@drawable/ic_home_claim"
-        app:layout_constraintDimensionRatio="H,1:1"
-        android:id="@+id/homeclaimBtn"/>
-<TextView
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
-    app:layout_constraintStart_toStartOf="@id/homemyNeighborhoodBoardBtn"
-    app:layout_constraintEnd_toEndOf="@id/homemyNeighborhoodBoardBtn"
-    app:layout_constraintTop_toBottomOf="@id/homemyNeighborhoodBoardBtn"
-    android:text="이웃 이야기"
-    android:fontFamily="@font/notosanscjkkr_medium"
-    android:gravity="center"
-    android:textSize="14sp"
-    android:textColor="@color/moaBlack"
-    android:id="@+id/homemyNeighborhoodBoardText"/>
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/homeofficeBoardBtn"
-        app:layout_constraintEnd_toEndOf="@id/homeofficeBoardBtn"
-        app:layout_constraintTop_toBottomOf="@id/homeofficeBoardBtn"
-        android:text="관리실 공지"
-        android:textSize="14sp"
-        android:gravity="center"
-        android:fontFamily="@font/notosanscjkkr_medium"
-        android:textColor="@color/moaBlack"
-        android:id="@+id/homeOfficeBoardText"/>
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@id/homeclaimBtn"
-        app:layout_constraintEnd_toEndOf="@id/homeclaimBtn"
-        app:layout_constraintTop_toBottomOf="@id/homeclaimBtn"
-        android:text="민원 신청"
-        android:fontFamily="@font/notosanscjkkr_medium"
-        android:textSize="14sp"
-        android:gravity="center"
-        android:textColor="@color/moaBlack"
-        android:id="@+id/homeclaimText"
-        />
 
 <TextView
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/homeclaimText"
+    app:layout_constraintTop_toBottomOf="@id/homeHandPurchaseText"
     android:layout_marginTop="15dp"
     android:text="모아 매거진"
     android:fontFamily="@font/notosanscjkkr_medium"
