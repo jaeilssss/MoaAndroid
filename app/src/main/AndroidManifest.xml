@@ -51,7 +51,7 @@
             android:stopWithTask="false"/>
         <activity
             android:name=".LoadingActivity"
-            android:theme="@style/AppTheme.NoActionBar.NoActionBar"
+            android:theme="@style/LoadingTheme"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -62,7 +62,9 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"
+        android:theme="@style/MainTheme"
+            />
 
         <provider
             android:name="androidx.core.content.FileProvider"
