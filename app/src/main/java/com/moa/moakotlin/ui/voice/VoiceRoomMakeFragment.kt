@@ -78,27 +78,28 @@ class VoiceRoomMakeFragment : Fragment() {
             binding.itemAptCertificationClose.isVisible = false
             binding.VoiceRoomInsertImage.isVisible=false
             viewModel.image = ""
+            binding.VoiceRoomImageCount.text = "0/1"
         }
 
         binding.VoiceRoomMakeSubmit.setOnClickListener { submit() }
 
         binding.VoiceRoomAroundMyApt.setOnClickListener {
-            setBackGround(it,true)
-            setBackGround(binding.VoiceRoomAll,false)
-            setBackGround(binding.VoiceRoomAroundNb,false)
+            setBackGround(it,true,binding.VoiceRoomMyAptImg,"우리아파트만")
+            setBackGround(binding.VoiceRoomAll,false,binding.VoiceRoomAllImg,"전국")
+            setBackGround(binding.VoiceRoomAroundNb,false,binding.VoiceRoomAroundAptImg,"인근아파트까지")
 
             viewModel.range.value = "우리아파트"
         }
         binding.VoiceRoomAroundNb.setOnClickListener {
-            setBackGround(it,true)
-            setBackGround(binding.VoiceRoomAll,false)
-            setBackGround(binding.VoiceRoomAroundMyApt,false)
+            setBackGround(it,true,binding.VoiceRoomAroundAptImg,"인근아파트까지")
+            setBackGround(binding.VoiceRoomAll,false,binding.VoiceRoomAllImg,"전국")
+            setBackGround(binding.VoiceRoomAroundMyApt,false,binding.VoiceRoomMyAptImg,"우리아파트만")
             viewModel.range.value = "인근"
         }
         binding.VoiceRoomAll.setOnClickListener {
-            setBackGround(it,true)
-            setBackGround(binding.VoiceRoomAroundNb,false)
-            setBackGround(binding.VoiceRoomAroundMyApt,false)
+            setBackGround(it,true,binding.VoiceRoomAllImg,"전국")
+            setBackGround(binding.VoiceRoomAroundNb,false,binding.VoiceRoomAroundAptImg,"인근아파트까지")
+            setBackGround(binding.VoiceRoomAroundMyApt,false,binding.VoiceRoomMyAptImg,"우리아파트만")
             viewModel.range.value = "전국"
         }
         FlexboxLayoutManager(activity?.applicationContext)
@@ -199,21 +200,32 @@ class VoiceRoomMakeFragment : Fragment() {
             var list = data?.getStringArrayListExtra("selectedPictures")
 
             if (list != null) {
-                binding.VoiceRoomInsertImage.isVisible = true
-                binding.itemAptCertificationClose.isVisible = true
-                Glide.with(activity?.applicationContext!!).load(list.get(0))
+                if(list.size>0){
+                    binding.VoiceRoomInsertImage.isVisible = true
+                    binding.itemAptCertificationClose.isVisible = true
+                    Glide.with(activity?.applicationContext!!).load(list.get(0))
                         .into(binding.VoiceRoomInsertImage)
-                viewModel.image = list.get(0)
+                    viewModel.image = list.get(0)
+
+                    binding.VoiceRoomImageCount.text = "1/1"
+                }
+
             }
         }
     }
 
 
-    fun setBackGround(view : View ,boolean : Boolean){
+    fun setBackGround(view : View ,boolean : Boolean,img : View,type : String){
         if(boolean){
             view.setBackgroundResource(R.drawable.button_shape_main_color)
+            if(type.equals("우리아파트만")) img.setBackgroundResource(R.drawable.ic_voice_my_apt_active)
+            else if(type.equals("인근아파트까지")) img.setBackgroundResource(R.drawable.ic_voice_around_apt_active)
+            else if(type.equals("전국")) img.setBackgroundResource(R.drawable.ic_voice_all_active)
         }else{
-            view.setBackgroundResource(R.drawable.shape_unable_radius_15)
+            view.setBackgroundResource(R.drawable.shape_grey_radius_15)
+            if(type.equals("우리아파트만")) img.setBackgroundResource(R.drawable.ic_voice_my_apt_default)
+            else if(type.equals("인근아파트까지")) img.setBackgroundResource(R.drawable.ic_voice_my_around_apt_default)
+            else if(type.equals("전국")) img.setBackgroundResource(R.drawable.ic_voice_all_default)
         }
     }
 

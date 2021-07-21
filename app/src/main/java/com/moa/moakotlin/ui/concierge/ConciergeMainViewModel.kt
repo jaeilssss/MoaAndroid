@@ -18,8 +18,7 @@ class ConciergeMainViewModel(): ViewModel(){
     var HelperData = MutableLiveData<HashMap<String,ArrayList<Helper>>>()
 
 
-    var nickname = "${User.getInstance().nickName}님"
-
+    var nickname = "${User.getInstance().nickName}님!"
 
     companion object{
         val mainHelperCategoryList = arrayListOf<String>("육아","기타","인테리어","반려동물케어","교육")

@@ -47,7 +47,7 @@ class CustomCalendarActivity : AppCompatActivity() {
             var intent = Intent()
             intent.putExtra("hopeYear",selectedDate.year.toString())
             intent.putExtra("hopeMonth",selectedDate.monthValue.toString())
-            intent.putExtra("hopeDay",calendarAdapter.currentList[calendarAdapter.selectPosition])
+            intent.putExtra("hopeDay",calendarAdapter.list[calendarAdapter.selectPosition])
             setResult(6000,intent)
             finish()
         }
@@ -78,17 +78,20 @@ class CustomCalendarActivity : AppCompatActivity() {
     }
 
     private fun setMonthView() {
+
+
         monthYearText!!.text = selectedDate?.let { monthYearFromDate(it) }
         val daysInMonth = selectedDate?.let { daysInMonthArray(it) }
         visibleTextPrev()
-         calendarAdapter = CalendarAdapter()
+
         if (daysInMonth != null) {
             check(daysInMonth)
             if(isDelete){
                 removeWeek(daysInMonth)
             }
         }
-        calendarAdapter.submitList(daysInMonth)
+        calendarAdapter = CalendarAdapter(daysInMonth,nowYear,nowMonth,nowDay,selectedDate)
+
 
         val layoutManager: RecyclerView.LayoutManager = GridLayoutManager(applicationContext, 7)
         calendarRecyclerView!!.layoutManager = layoutManager
@@ -96,7 +99,7 @@ class CustomCalendarActivity : AppCompatActivity() {
 
         calendarAdapter.setOnItemClickListener(object : OnItemClickListener{
             override fun onItemClick(v: View, position: Int) {
-                if(calendarAdapter.currentList[position].equals("").not()){
+                if(calendarAdapter.list[position].equals("").not()){
                     if(selectedDate?.year!! > selectedDate2?.year!!){
                         calendarAdapter.selectPosition = position
                         calendarAdapter.notifyDataSetChanged()
@@ -107,7 +110,7 @@ class CustomCalendarActivity : AppCompatActivity() {
                             calendarAdapter.notifyDataSetChanged()
                             setButtonBackgroundChange(true)
                         }else{
-                            if(nowDay.toInt()<=calendarAdapter.currentList[position].toInt()){
+                            if(nowDay.toInt()<=calendarAdapter.list[position].toInt()){
                                 calendarAdapter.selectPosition = position
                                 calendarAdapter.notifyDataSetChanged()
                                 setButtonBackgroundChange(true)

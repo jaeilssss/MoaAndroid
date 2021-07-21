@@ -113,7 +113,7 @@
         app:layout_constraintStart_toStartOf="@id/VoiceRoomGoToAlbum"
         app:layout_constraintEnd_toEndOf="@id/VoiceRoomGoToAlbum"
         app:layout_constraintBottom_toBottomOf="@id/VoiceRoomGoToAlbum"
-        android:text="1/1"
+        android:text="0/1"
         android:layout_marginBottom="5dp"
         android:id="@+id/VoiceRoomImageCount"/>
     <ImageView
@@ -156,13 +156,23 @@
     android:layout_width="0dp"
     android:layout_height="0dp"
     app:layout_constraintDimensionRatio="H,1:1"
-    android:background="#bdbdbd"
+    android:background="@drawable/shape_grey_radius_15"
     app:layout_constraintStart_toStartOf="parent"
     android:id="@+id/VoiceRoomAroundMyApt"
     android:layout_marginStart="15dp"
     android:layout_marginEnd="10dp"
     app:layout_constraintEnd_toStartOf="@id/VoiceRoomAroundNb"
     app:layout_constraintTop_toBottomOf="@id/VoiceRoomAroundText">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_voice_my_apt_default"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/VoiceRoomMyAptImg"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -180,12 +190,22 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="H,1:1"
-        android:background="#bdbdbd"
+        android:background="@drawable/shape_grey_radius_15"
         android:id="@+id/VoiceRoomAroundNb"
         android:layout_marginEnd="10dp"
         app:layout_constraintStart_toEndOf="@id/VoiceRoomAroundMyApt"
         app:layout_constraintEnd_toStartOf="@id/VoiceRoomAll"
         app:layout_constraintTop_toBottomOf="@id/VoiceRoomAroundText">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_voice_my_around_apt_default"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/VoiceRoomAroundAptImg"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -202,12 +222,22 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="H,1:1"
-        android:background="#bdbdbd"
+        android:background="@drawable/shape_grey_radius_15"
         android:id="@+id/VoiceRoomAll"
         android:layout_marginEnd="15dp"
         app:layout_constraintStart_toEndOf="@id/VoiceRoomAroundNb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/VoiceRoomAroundText">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_voice_all_default"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/VoiceRoomAllImg"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

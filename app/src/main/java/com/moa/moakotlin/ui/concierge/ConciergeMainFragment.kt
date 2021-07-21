@@ -33,6 +33,7 @@ class ConciergeMainFragment : BaseFragment() {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_concierge_main,container,false)
 
+
         navController = findNavController()
 
         model = ViewModelProvider(this).get(ConciergeMainViewModel::class.java)

@@ -2,6 +2,7 @@ package com.moa.moakotlin.recyclerview.concierge
 
 
 import android.R
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.View
@@ -9,13 +10,19 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.moa.moakotlin.base.OnItemClickListener
-import com.moa.moakotlin.databinding.ActivityCustomCalendarBinding
 import com.moa.moakotlin.databinding.ItemCalendarBinding
 
 
-class CalendarAdapter() : ListAdapter<String, CalendarAdapter.CalendarViewHolder>(diffUtil) {
+import java.time.LocalDateTime
+
+
+class CalendarAdapter(var list : ArrayList<String>,var currentYear : String , var currentMonth : String , var currentDay : String, var selectDate : LocalDateTime) : RecyclerView.Adapter<CalendarAdapter.CalendarViewHolder>() {
 
     private var mListener : OnItemClickListener ?= null
+
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
 
     fun setOnItemClickListener(mListener : OnItemClickListener){
         this.mListener = mListener
@@ -38,20 +45,39 @@ class CalendarAdapter() : ListAdapter<String, CalendarAdapter.CalendarViewHolder
 
 
     override fun onBindViewHolder(holder: CalendarViewHolder, position: Int) {
-        holder.binding(currentList[position])
+        holder.binding(list[position])
         if(position==selectPosition){
             holder.setChangeBackGround()
+        }else{
+            holder.setChangeBackGroundDefault()
         }
 
     }
     inner class CalendarViewHolder(var binding: ItemCalendarBinding) : RecyclerView.ViewHolder(binding.root){
         fun binding(day : String){
-            binding.cellDayText.text = day
-            binding.cellDayText.setOnClickListener(ButtonClick())
+
+
+            if(day.isEmpty()){
+                binding.cellDayText.text = day
+            } else if(currentYear.equals("${selectDate.year.toString()}년")&&
+                    currentMonth.equals("${selectDate.monthValue.toString()}월") &&
+                    currentDay.toInt()>day.toInt()){
+                    binding.cellDayText.text = day
+                    binding.cellDayText.setTextColor(Color.GRAY)
+
+
+            }else{
+                binding.cellDayText.text = day
+                binding.cellDayText.setOnClickListener(ButtonClick())
+            }
+
 
         }
         fun setChangeBackGround(){
             binding.cellDayText.setBackgroundResource(com.moa.moakotlin.R.drawable.shpae_oval_calendar_active)
+        }
+        fun setChangeBackGroundDefault(){
+        binding.cellDayText.setBackgroundResource(com.moa.moakotlin.R.drawable.shape_oval_calendar_default)
         }
         inner class ButtonClick : View.OnClickListener{
             override fun onClick(v: View?) {
@@ -79,6 +105,10 @@ class CalendarAdapter() : ListAdapter<String, CalendarAdapter.CalendarViewHolder
             }
 
         }
+    }
+
+    override fun getItemCount(): Int {
+        return list.size
     }
 
 
