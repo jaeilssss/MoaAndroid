@@ -32,7 +32,6 @@ class ConciergeReadIntroduceFragment(var helper : Helper ? ,var needer : Needer 
         viewModel = ViewModelProvider(this).get(ConciergeReadIntroduceViewModel::class.java)
         binding.model = viewModel
         settingData()
-
     }
 
     private fun settingData(){

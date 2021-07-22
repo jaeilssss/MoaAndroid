@@ -38,10 +38,13 @@ class MyConciergeListFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
+        myActivity.bottomNavigationGone()
+
         binding = DataBindingUtil.inflate(inflater ,R.layout.my_concierge_list_fragment,container,false)
         viewPagerAdapter = MyConciergeAdapter(childFragmentManager)
         binding.MyConciergeViewPager.adapter = viewPagerAdapter
         binding.MyConciergeTabLayout.setupWithViewPager(binding.MyConciergeViewPager)
+        (context as MainActivity).backListener = this
         return binding.root
     }
 
@@ -53,9 +56,6 @@ class MyConciergeListFragment : BaseFragment() {
         binding.model = viewModel
 
         navController = findNavController()
-
-
-
 
 
     }

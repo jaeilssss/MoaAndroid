@@ -41,6 +41,9 @@
         <action
             android:id="@+id/action_MyPageFragment_to_aptModifyFragment"
             app:destination="@id/aptModifyFragment" />
+        <action
+            android:id="@+id/action_MyPageFragment_to_aptModifyCertificationNoticeFragment"
+            app:destination="@id/aptModifyCertificationNoticeFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -344,6 +347,15 @@
         android:id="@+id/aptModifyFragment"
         android:name="com.moa.moakotlin.ui.mypage.AptModifyFragment"
         android:label="apt_modify_fragment"
-        tools:layout="@layout/apt_modify_fragment" />
+        tools:layout="@layout/apt_modify_fragment" >
+        <action
+            android:id="@+id/action_aptModifyFragment_to_aptModifyCertificationNoticeFragment"
+            app:destination="@id/aptModifyCertificationNoticeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aptModifyCertificationNoticeFragment"
+        android:name="com.moa.moakotlin.ui.mypage.AptModifyCertificationNoticeFragment"
+        android:label="apt_modify_certification_notice_fragment"
+        tools:layout="@layout/apt_modify_certification_notice_fragment" />
 
 </navigation>

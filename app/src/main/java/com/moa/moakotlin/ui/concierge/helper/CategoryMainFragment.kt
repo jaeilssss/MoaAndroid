@@ -54,9 +54,7 @@ class CategoryMainFragment : Fragment() {
 
         return binding.root
     }
-// 그리고 이제 로딩중에 화면 터치 못하게 만들어야함
-    // 그리고 모집중 모집완료 띠 만들어야함 시발
-    // 내일 아침에 하자 재일아 고생햇따 오늘 많이 못했네
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         myActivity.bottomNavigationGone()
@@ -68,6 +66,7 @@ class CategoryMainFragment : Fragment() {
         binding.back.setOnClickListener {
             navController.popBackStack()
         }
+
         navController = findNavController()
 
         arguments.let {
@@ -80,11 +79,9 @@ class CategoryMainFragment : Fragment() {
         viewModel.neederList.observe(viewLifecycleOwner, Observer {
             helperList = it
             var newDataSize = it.size
-
             adapterHelper = CategoryHelperMainAdapter()
             binding.CategoryMainRcv.adapter = adapterHelper
             adapterHelper.submitList(it)
-
         })
         setAdapterClickListener()
         onScrollListener(binding.CategoryMainRcv,adapterHelper)
@@ -112,7 +109,6 @@ class CategoryMainFragment : Fragment() {
                     }
                 }
             }
-
         })
     }
     fun getList(mainCategory : String){

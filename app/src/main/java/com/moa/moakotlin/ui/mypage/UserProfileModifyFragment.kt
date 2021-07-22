@@ -20,7 +20,9 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.UserProfileModifyFragmentBinding
@@ -29,7 +31,7 @@ import com.moa.moakotlin.ui.voice.VoiceRoomMakeFragment
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.coroutines.*
 
-class UserProfileModifyFragment : Fragment() {
+class UserProfileModifyFragment : BaseFragment() {
 
     private lateinit var viewModel: UserProfileModifyViewModel
 
@@ -49,7 +51,7 @@ class UserProfileModifyFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(UserProfileModifyViewModel::class.java)
 
         binding = DataBindingUtil.inflate(inflater, R.layout.user_profile_modify_fragment, container, false)
-
+        (context as MainActivity).backListener = this
         binding.UserModifyCamera.setOnClickListener { checkPermission() }
         binding.model = viewModel
 
@@ -109,7 +111,12 @@ class UserProfileModifyFragment : Fragment() {
         return binding.root
 
     }
-private fun setProfileImage(){
+
+    override fun onBackPressed() {
+        TODO("Not yet implemented")
+    }
+
+    private fun setProfileImage(){
 
     if(User.getInstance().profileImage.isNotEmpty()){
         Glide.with(binding.root).load(User.getInstance().profileImage).into(binding.UserProfileModifyImage)

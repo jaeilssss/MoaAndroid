@@ -12,7 +12,9 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.databinding.MyNeederFragmentBinding
 import com.moa.moakotlin.recyclerview.concierge.CategoryNeederMainAdapter
@@ -20,7 +22,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MyNeederFragment : Fragment() {
+class MyNeederFragment : BaseFragment() {
 
 
     private lateinit var viewModel: MyNeederViewModel
@@ -36,7 +38,7 @@ class MyNeederFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.my_needer_fragment,container , false)
 
-
+        (context as MainActivity).backListener = this
         return binding.root
     }
 
@@ -54,6 +56,10 @@ class MyNeederFragment : Fragment() {
             adapter.submitList(it)
         })
 
+    }
+
+    override fun onBackPressed() {
+        TODO("Not yet implemented")
     }
 
     private fun setAdapter(){

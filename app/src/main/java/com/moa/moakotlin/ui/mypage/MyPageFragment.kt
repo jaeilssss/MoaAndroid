@@ -73,16 +73,11 @@ class MyPageFragment : BaseFragment() {
         }
 
         binding.myPageAptCertification.setOnClickListener {
-            context?.let { it1 ->
-                AptCertificationImageAlertDialog(it1)
-                        .setMessage(resources.getString(R.string.ReAptCertification))
-                        .setPositiveButton("네"){
-                        navController.navigate(R.id.action_MyPageFragment_to_aptModifyFragment)
-
-                        }.setNegativeButton {
-
-                        }.show()
-            }
+        if(User.getInstance().certificationStatus.equals("인증")){
+            showAlertDialog(resources.getString(R.string.ReAptCertification))
+        }else{
+            navController.navigate(R.id.action_MyPageFragment_to_aptModifyCertificationNoticeFragment)
+        }
         }
 
         binding.myPageTalentSharingText.setOnClickListener { navController.navigate(R.id.action_MyPageFragment_to_myConciergeListFragment) }
@@ -104,5 +99,23 @@ class MyPageFragment : BaseFragment() {
             Glide.with(binding.root).load(User.getInstance().profileImage).into(binding.MyPageUserProfile)
         }
         binding.MyPageUserAptInfoText.text = "${User.getInstance().aptName}"
+    }
+
+    fun showAlertDialog(str : String){
+        context?.let { it1 ->
+            AptCertificationImageAlertDialog(it1)
+                .setMessage(str)
+                .setPositiveButton("네"){
+                    if(User.getInstance().certificationStatus.equals("인증")) {
+                        navController.navigate(R.id.action_MyPageFragment_to_aptModifyFragment)
+                    }else{
+                        navController.navigate(R.id.action_MyPageFragment_to_aptModifyCertificationNoticeFragment)
+                    }
+
+
+                }.setNegativeButton {
+
+                }.show()
+        }
     }
 }

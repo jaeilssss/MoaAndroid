@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:context=".ui.mypage.AptModifyCertificationNoticeFragment">
+<data>
+    <variable
+        name="model"
+        type="com.moa.moakotlin.ui.mypage.AptModifyCertificationNoticeViewModel" />
+</data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="9.8sp"
+                android:layout_height="17sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/ic_back"
+                android:id="@+id/back"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="8.8sp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:id="@+id/aptCertificationText"
+                app:layout_constraintTop_toTopOf="@id/back"
+                app:layout_constraintBottom_toBottomOf="@id/back"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="인증하기"
+                tools:text="인증하기" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/aptCertificationText"
+                app:layout_constraintDimensionRatio="H,5:6"
+                android:layout_marginStart="125dp"
+                android:layout_marginEnd="125dp"
+                android:layout_marginTop="37dp"
+                android:background="@drawable/apt_certification"
+                android:id="@+id/aptCertificationImage"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintDimensionRatio="H,5:1"
+                android:text="@string/CertificationMessageFirst"
+                app:layout_constraintTop_toBottomOf="@id/aptCertificationImage"
+                android:layout_marginTop="38dp"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:textColor="@color/moaBlack"
+                android:gravity="center"
+                android:id="@+id/CertificationFirstText"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/CertificationFirstText"
+                android:layout_marginTop="5dp"
+                android:text="@string/CertificationMessageSecond"
+                app:layout_constraintDimensionRatio="H,4:1"
+                android:gravity="center"
+                android:textSize="14sp"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:textColor="@color/moaBlack"
+                android:id="@+id/CertificationSecondText"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/CertificationSecondText"
+                app:layout_constraintDimensionRatio="H,4.5:1"
+                android:layout_marginTop="25dp"
+                android:text="@string/CertificationMessageThird"
+                android:textSize="14sp"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:background="@drawable/login_edit_text_radius_15"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:gravity="center"
+
+                android:id="@+id/CertificationThirdText"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintDimensionRatio="H, 6:1"
+                android:background="@drawable/button_shape_black_radius_15"
+                app:layout_constraintTop_toBottomOf="@id/CertificationThirdText"
+                android:layout_marginTop="10dp"
+                android:text="다음에 인증하기"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:textColor="@color/white"
+                android:id="@+id/skipCertificationBtn"
+                android:textSize="18sp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/skipCertificationBtn"
+                android:layout_marginTop="10dp"
+                app:layout_constraintDimensionRatio="H,6:1"
+                android:background="@drawable/button_shape_main_color"
+                android:text="인증하기"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:id="@+id/CertificationBtn"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/moaBlack"
+                android:layout_marginBottom="15dp"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

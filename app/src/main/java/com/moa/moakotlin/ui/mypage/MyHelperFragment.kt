@@ -45,7 +45,7 @@ class MyHelperFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MyHelperViewModel::class.java)
         navController = findNavController()
-
+        (context as MainActivity).backListener = this
         setAdapter()
 
         binding.MyHelperRcv.adapter = adapter

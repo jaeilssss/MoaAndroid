@@ -55,8 +55,6 @@ class HelperMainFragment : BaseFragment() {
 
         myActivity.bottomNavigationVisible()
 
-
-
         binding.HelperMainKidRcv.adapter = kidAdapter
         binding.HelperMainpetRcv.adapter = petAdapter
         binding.HelperMainEducationRcv.adapter =educationAdapter
@@ -107,6 +105,7 @@ class HelperMainFragment : BaseFragment() {
         var adapter = HomeViewPagerAdapter(arrayListOf(R.drawable.banner_help_main))
 
         binding.HelperMainBanner.adapter = adapter
+
         binding.HelperMainBanner.offscreenPageLimit =3
 
         binding.HelperMainBanner.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER

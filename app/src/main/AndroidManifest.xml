@@ -26,19 +26,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoaKotlin"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.signup.AptSearchActivity"></activity>
+
         <activity android:name=".ui.concierge.category.NeederCategoryActivity" />
         <activity android:name=".ui.concierge.ConciergeWriteActivity" />
         <activity android:name=".ui.concierge.needer.CustomCalendarActivity" />
         <activity android:name=".ui.imagepicker.ImagePickerActivity" />
-        <activity android:name=".ui.concierge.category.HelperCategoryActivity" /> <!-- <meta-data -->
-        <!-- android:name="com.google.firebase.messaging.default_notification_icon" -->
-        <!-- android:resource="@drawable/moa_kid_default" /> -->
-        <!-- &lt;!&ndash; Set color used with incoming notification messages. This is used when no color is set for the incoming -->
-        <!-- notification message. See README(https://goo.gl/6BKBk7) for more. &ndash;&gt; -->
-        <!-- <meta-data -->
-        <!-- android:name="com.google.firebase.messaging.default_notification_color" -->
-        <!-- android:resource="@color/colorAccent" /> -->
+        <activity android:name=".ui.concierge.category.HelperCategoryActivity" />
+
         <service
             android:name=".repository.push.FcmService"
             android:directBootAware="true"
@@ -50,7 +44,9 @@
         <service
             android:name=".ui.service.ForecdTerminationService"
             android:stopWithTask="false" />
-
+        <activity android:name=".ui.signup.AptSearchActivity"
+            android:theme="@style/MainTheme"
+            />
         <activity
             android:name=".LoadingActivity"
             android:theme="@style/LoadingTheme"

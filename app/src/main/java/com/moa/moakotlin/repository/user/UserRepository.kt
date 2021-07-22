@@ -120,4 +120,19 @@ class UserRepository {
         return check
     }
 
+    suspend fun modifyApt(aptName :String , aptCode : String , address : String) : Boolean {
+        var db = FirebaseFirestore.getInstance()
+        var check = false
+        db.collection("User")
+                .document(User.getInstance().uid)
+                .update("aptName", aptName,
+                        "aptCode", aptCode,
+                        "address", address,
+                        "certificationStatus", "미인증")
+                .addOnSuccessListener {
+                    check = true
+                }.await()
+        return check
+    }
+
 }

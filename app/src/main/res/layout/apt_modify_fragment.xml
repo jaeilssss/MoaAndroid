@@ -29,9 +29,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/AptModifyBack"
         app:layout_constraintBottom_toBottomOf="@id/AptModifyBack"
-        android:text="아파트 인증하기"
+        android:text="아파트 정보 입력"
+        android:textColor="@color/moaBlack"
         android:textStyle="bold"
-
         android:fontFamily="@font/notosanscjkkr_medium"
         android:includeFontPadding="false"
         android:textSize="18dp"/>
@@ -77,7 +77,11 @@
         app:layout_constraintTop_toBottomOf="@id/AptModifyAptEdit"
         android:layout_marginTop="10dp"
         android:hint="동"
+        android:text="@={model.dong}"
+        android:textColor="@color/moaBlack"
         android:paddingStart="15dp"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
         android:inputType="number"
         android:id="@+id/AptModifyDongEdit"/>
     <EditText
@@ -91,6 +95,10 @@
         android:layout_marginStart="10dp"
         android:inputType="number"
         android:hint="호"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        android:textColor="@color/moaBlack"
+        android:text="@={model.hosoo}"
         android:paddingStart="15dp"
         app:layout_constraintTop_toBottomOf="@id/AptModifyAptEdit"
         android:id="@+id/AptModifyHosooEdit"/>
@@ -109,6 +117,7 @@
         android:fontFamily="@font/notosanscjkkr_medium"
         android:includeFontPadding="false"
         android:textStyle="bold"
+        android:id="@+id/AptmodifySubmit"
         android:textSize="17dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
