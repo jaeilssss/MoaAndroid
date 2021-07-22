@@ -88,6 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="교육"
+        android:textSize="15dp"
         android:fontFamily="@font/notosanscjkkr_medium"
         app:layout_constraintStart_toStartOf="@id/HelperMainCategoryEdu"
         app:layout_constraintEnd_toEndOf="@id/HelperMainCategoryEdu"
@@ -129,6 +130,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="반려동물케어"
+        android:textSize="15dp"
         android:fontFamily="@font/notosanscjkkr_medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -160,16 +162,19 @@
 <ImageView
     android:layout_width="0dp"
     android:layout_height="0dp"
-    android:layout_margin="15dp"
+    android:layout_margin="30dp"
     app:layout_constraintDimensionRatio="H,1:1"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    android:src="@drawable/ic_category_kid"/>
+
+    android:src="@drawable/ic_category_interior"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="인테리어"
+            android:textSize="15dp"
+            android:includeFontPadding="false"
             android:fontFamily="@font/notosanscjkkr_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -213,6 +218,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="기타"
+        android:textSize="15dp"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:textColor="@color/moaBlack"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -42,7 +42,6 @@ class MyPageFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-
         model = ViewModelProvider(this).get(MyPageViewModel::class.java)
         binding.model = model
         navController = findNavController()
@@ -63,6 +62,7 @@ class MyPageFragment : Fragment() {
                             var intent = Intent(activity?.applicationContext,AptSearchActivity::class.java)
 
                             startActivity(intent)
+
                         }.setNegativeButton {
 
                         }.show()
@@ -74,13 +74,13 @@ class MyPageFragment : Fragment() {
     }
 
     fun setViewData(){
+
         binding.MyPageNickName.text = User.getInstance().nickName
         if(User.getInstance().profileImage.isNotEmpty()){
             Glide.with(binding.root).load(User.getInstance().profileImage).into(binding.MyPageUserProfile)
         }
 
         binding.MyPageUserAptInfoText.text = "${User.getInstance().aptName}"
-
 
     }
 }
