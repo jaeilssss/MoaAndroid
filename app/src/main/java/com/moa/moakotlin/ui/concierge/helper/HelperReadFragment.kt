@@ -49,7 +49,7 @@ class HelperReadFragment : BaseFragment() {
     lateinit var  bundle : Bundle
     var helper = Helper()
     var writer = User()
-    var myActivity = MainActivity()
+//    var myActivity = MainActivity()
     lateinit var adapter : ConciergeReadViewpagerAdapter
     companion object{
         val REQUEST_MODIFY_CODE = 4000
@@ -141,6 +141,7 @@ class HelperReadFragment : BaseFragment() {
         navController.popBackStack()
     }
 
+
     private fun checkVisible(){
         if(helper.uid != User.getInstance().uid){
             binding.HelperReadOption.isVisible = false
@@ -218,7 +219,7 @@ class HelperReadFragment : BaseFragment() {
                 .setPositiveButton("예"){
                     CoroutineScope(Dispatchers.Main).launch {
                         if(model.delete(helper.mainCategory,helper.documentID)){
-                            showToast(activity?.applicationContext!!,"삭제가 완료되었습니다")
+                            Toast.makeText(context,"삭제가 완료되었습니다", Toast.LENGTH_SHORT).show()
                             navController.popBackStack()
                         }
                     }

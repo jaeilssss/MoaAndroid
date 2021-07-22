@@ -43,7 +43,7 @@ class NeederReadFragment : BaseFragment() {
 
     private lateinit var viewModel: NeederReadViewModel
 
-    private lateinit var myActivity : MainActivity
+//    private lateinit var myActivity : MainActivity
 
     private lateinit var navController: NavController
 

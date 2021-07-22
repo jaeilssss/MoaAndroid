@@ -88,7 +88,7 @@
     android:background="@drawable/ic_bulb"
     android:id="@+id/myPageBulbIcon"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:text="재능공유"
         android:fontFamily="@font/notosanscjkkr_medium"
@@ -110,7 +110,7 @@
         android:layout_marginTop="30dp"
         android:id="@+id/myPageAlarmSettingIcon"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="@id/myPageAlarmSettingIcon"
         app:layout_constraintBottom_toBottomOf="@id/myPageAlarmSettingIcon"
@@ -135,7 +135,7 @@
         android:id="@+id/myPageNoticeIcon"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/myPageAlarmSetting"
         app:layout_constraintEnd_toEndOf="@id/myPageAlarmSetting"
@@ -157,7 +157,7 @@
     android:layout_marginTop="30dp"
     android:id="@+id/myPageQuestionIcon"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/myPageNotice"
         app:layout_constraintTop_toTopOf="@id/myPageQuestionIcon"
@@ -179,7 +179,7 @@
         android:layout_marginTop="30dp"
         android:id="@+id/myPageMyAccountSettingIcon"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:fontFamily="@font/notosanscjkkr_medium"
@@ -201,7 +201,7 @@
         android:layout_marginTop="30dp"
         android:id="@+id/myPageAptCertificationIcon"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:text="아파트 인증"

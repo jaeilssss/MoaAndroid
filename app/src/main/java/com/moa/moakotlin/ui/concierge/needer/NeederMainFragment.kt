@@ -36,7 +36,7 @@ class NeederMainFragment : BaseFragment() {
 
     private lateinit var navController: NavController
 
-    lateinit var myActivity : MainActivity
+//    lateinit var myActivity : MainActivity
 
     var kidAdapter = NeederMainAdapter()
     var interiorAdapter = NeederMainAdapter()

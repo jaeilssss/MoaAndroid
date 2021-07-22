@@ -52,7 +52,7 @@ class ChatFragment : BaseFragment() {
     lateinit var transfer : Transfer
     lateinit var rcv : RecyclerView
      var needer : Needer ? = null
-    lateinit var myActivity : MainActivity
+//    lateinit var myActivity : MainActivity
     var firebase  = FirebaseFirestore.getInstance()
     override fun onAttach(context: Context) {
         super.onAttach(context)

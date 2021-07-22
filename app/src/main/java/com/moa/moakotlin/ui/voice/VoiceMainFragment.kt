@@ -39,7 +39,7 @@ class VoiceMainFragment : BaseFragment() {
 
     private lateinit var adapter : VoiceMainAdapter
 
-    private lateinit var myActivity : MainActivity
+//    private lateinit var myActivity : MainActivity
     override fun onAttach(context: Context) {
         super.onAttach(context)
 

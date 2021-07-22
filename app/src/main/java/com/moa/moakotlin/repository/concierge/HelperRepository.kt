@@ -187,12 +187,13 @@ class HelperRepository {
         var db = FirebaseFirestore.getInstance()
         var list = ArrayList<Helper>()
         db.collectionGroup("HelperContent")
-            .whereArrayContains("aroundApt",User.getInstance().aptCode)
+            .whereEqualTo("uid",User.getInstance().uid)
             .orderBy("timeStamp",Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener {
                 for(document in it.documents){
                     var newHelper = document.toObject(Helper::class.java)
+                    newHelper?.documentID = document.id
                     if (newHelper != null) {
                         list.add(newHelper)
                     }

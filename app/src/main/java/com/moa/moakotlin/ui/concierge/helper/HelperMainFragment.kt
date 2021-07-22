@@ -38,7 +38,7 @@ class HelperMainFragment : BaseFragment() {
     var etcAdapter= HelperMainAdapter()
     var educationAdapter = HelperMainAdapter()
     var petAdapter = HelperMainAdapter()
-    lateinit var myActivity : MainActivity
+//    lateinit var myActivity : MainActivity
     override fun onAttach(context: Context) {
         super.onAttach(context)
         myActivity = activity as MainActivity
@@ -54,6 +54,8 @@ class HelperMainFragment : BaseFragment() {
         model = ViewModelProvider(this).get(HelperMainViewModel::class.java)
 
         myActivity.bottomNavigationVisible()
+
+
 
         binding.HelperMainKidRcv.adapter = kidAdapter
         binding.HelperMainpetRcv.adapter = petAdapter
@@ -120,7 +122,7 @@ class HelperMainFragment : BaseFragment() {
         })
     }
 
-    override fun onBackPressed( ) {
+    override fun onBackPressed() {
         navController.popBackStack()
     }
     fun initGetData(adapter: HelperMainAdapter,mainCategory : String){

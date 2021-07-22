@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_MyPageFragment_to_myConciergeListFragment"
             app:destination="@id/myConciergeListFragment" />
+        <action
+            android:id="@+id/action_MyPageFragment_to_aptModifyFragment"
+            app:destination="@id/aptModifyFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -328,11 +331,19 @@
         <action
             android:id="@+id/action_myConciergeListFragment_to_HelperReadFragment"
             app:destination="@id/HelperReadFragment" />
+        <action
+            android:id="@+id/action_myConciergeListFragment_to_neederReadFragment"
+            app:destination="@id/neederReadFragment" />
     </fragment>
     <fragment
         android:id="@+id/myHelperFragment"
         android:name="com.moa.moakotlin.ui.mypage.MyHelperFragment"
         android:label="my_helper_fragment"
         tools:layout="@layout/my_helper_fragment" />
+    <fragment
+        android:id="@+id/aptModifyFragment"
+        android:name="com.moa.moakotlin.ui.mypage.AptModifyFragment"
+        android:label="apt_modify_fragment"
+        tools:layout="@layout/apt_modify_fragment" />
 
 </navigation>

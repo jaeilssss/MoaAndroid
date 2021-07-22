@@ -131,7 +131,7 @@
             app:layout_constraintTop_toBottomOf="@id/indicators"
             android:layout_marginTop="10dp"
             app:layout_constraintDimensionRatio="H,1:1"
-            app:layout_constraintEnd_toStartOf="@id/homeHandPurchaseBtn"
+            app:layout_constraintEnd_toStartOf="@id/homeClaimBtn"
             android:id="@+id/homeGroupBuyingBtn"
             />
         <ImageView
@@ -143,7 +143,7 @@
             app:layout_constraintTop_toBottomOf="@id/indicators"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="15dp"
-            android:id="@+id/homeHandPurchaseBtn"
+            android:id="@+id/homeClaimBtn"
             app:layout_constraintDimensionRatio="H,1:1"
             />
         <TextView
@@ -192,9 +192,9 @@
         android:layout_height="wrap_content"
         android:text="민원 신청"
         android:fontFamily="@font/notosanscjkkr_medium"
-        app:layout_constraintStart_toStartOf="@id/homeHandPurchaseBtn"
-        app:layout_constraintEnd_toEndOf="@id/homeHandPurchaseBtn"
-        app:layout_constraintTop_toBottomOf="@id/homeHandPurchaseBtn"
+        app:layout_constraintStart_toStartOf="@id/homeClaimBtn"
+        app:layout_constraintEnd_toEndOf="@id/homeClaimBtn"
+        app:layout_constraintTop_toBottomOf="@id/homeClaimBtn"
         android:gravity="center"
         android:textColor="@color/moaBlack"
         android:textSize="14sp"

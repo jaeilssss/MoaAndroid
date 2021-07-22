@@ -1,5 +1,6 @@
 package com.moa.moakotlin.ui.mypage
 
+import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +12,9 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.databinding.MyHelperFragmentBinding
 import com.moa.moakotlin.recyclerview.concierge.CategoryHelperMainAdapter
@@ -20,7 +23,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MyHelperFragment : Fragment() {
+class MyHelperFragment : BaseFragment() {
 
 
     private lateinit var viewModel: MyHelperViewModel
@@ -55,6 +58,10 @@ class MyHelperFragment : Fragment() {
 
     }
 
+    override fun onBackPressed() {
+        navController.popBackStack()
+    }
+
     private fun setAdapter(){
         adapter = CategoryHelperMainAdapter()
         adapter.setOnItemClickListener(object : OnItemClickListener{
@@ -68,7 +75,6 @@ class MyHelperFragment : Fragment() {
                     bundle.putParcelable("data",adapter.currentList[position])
 
                     navController.navigate(R.id.action_myConciergeListFragment_to_HelperReadFragment,bundle)
-
 
                 }
             }

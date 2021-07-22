@@ -85,6 +85,8 @@ lateinit var transfer: Transfer
 
         binding.homeViewPager.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
 
+
+
         setUpBoardingIndicators()
 
         setCurrentOnboardingIndicator(0)
@@ -115,6 +117,7 @@ lateinit var transfer: Transfer
 
         binding.homeTalentSharingBnt.setOnClickListener { navController.navigate(R.id.ConciergeMainFragment) }
         binding.homeMoaVoiceChatBtn.setOnClickListener { navController.navigate(R.id.voiceMainFragment) }
+        binding.homeClaimBtn.setOnClickListener { Toast.makeText(context,"준비중입니다",Toast.LENGTH_SHORT).show() }
         return binding.root
     }
 

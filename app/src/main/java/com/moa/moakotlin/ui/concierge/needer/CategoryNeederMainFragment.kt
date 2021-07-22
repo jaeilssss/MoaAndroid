@@ -39,7 +39,7 @@ class CategoryNeederMainFragment : BaseFragment() {
 
     private lateinit var navController: NavController
 
-    private lateinit var myActivity  : MainActivity
+//    private lateinit var myActivity  : MainActivity
 
     private  var adapterNeeder = CategoryNeederMainAdapter()
 

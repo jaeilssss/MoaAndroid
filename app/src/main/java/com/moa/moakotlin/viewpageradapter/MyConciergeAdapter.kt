@@ -1,6 +1,5 @@
 package com.moa.moakotlin.viewpageradapter
 
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -10,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.moa.moakotlin.ui.mypage.MyHelperFragment
 import com.moa.moakotlin.ui.mypage.MyNeederFragment
 
-class MyConciergeAdapter(var fm : FragmentManager) : FragmentStatePagerAdapter(fm){
+class MyConciergeAdapter(var fm: FragmentManager) : FragmentStatePagerAdapter(fm!!){
    var list = ArrayList<Fragment>()
     init {
         println("init")

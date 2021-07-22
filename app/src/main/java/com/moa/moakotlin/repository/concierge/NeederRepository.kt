@@ -191,4 +191,25 @@ class NeederRepository {
                 }.await()
         return result
     }
+
+    suspend fun getMyNeederData() : ArrayList<Needer>{
+        var db = FirebaseFirestore.getInstance()
+        var list = ArrayList<Needer>()
+
+        db.collectionGroup("NeederContent")
+            .whereEqualTo("uid",User.getInstance().uid)
+            .orderBy("timeStamp",Query.Direction.DESCENDING)
+            .get()
+            .addOnSuccessListener {
+                for(document in it.documents){
+                    var newNeeder = document.toObject(Needer::class.java)
+                    newNeeder?.documentID = document.id
+
+                    if(newNeeder!=null){
+                        list.add(newNeeder)
+                    }
+                }
+            }.await()
+        return list
+    }
 }
