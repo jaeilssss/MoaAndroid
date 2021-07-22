@@ -38,7 +38,8 @@ class HelperRepository {
     }
     suspend fun modify(mainCategory: String,helper : Helper) : Helper{
         var db = FirebaseFirestore.getInstance()
-        db.collection("Helper").document(mainCategory)
+        db.collection("Helper")
+                .document(mainCategory)
                 .collection("HelperContent")
                 .document(helper.documentID)
                 .set(helper).addOnCompleteListener {
@@ -154,7 +155,8 @@ class HelperRepository {
                    if(it.isSuccessful){
                        check=true
                    }
-               }.await()
+               }
+               .await()
        return check
     }
 
@@ -179,6 +181,25 @@ class HelperRepository {
                 }
             }.await()
         return result
+    }
+
+   suspend fun getMyHelperData() : ArrayList<Helper>{
+        var db = FirebaseFirestore.getInstance()
+        var list = ArrayList<Helper>()
+        db.collectionGroup("HelperContent")
+            .whereArrayContains("aroundApt",User.getInstance().aptCode)
+            .orderBy("timeStamp",Query.Direction.DESCENDING)
+            .get()
+            .addOnSuccessListener {
+                for(document in it.documents){
+                    var newHelper = document.toObject(Helper::class.java)
+                    if (newHelper != null) {
+                        list.add(newHelper)
+                    }
+                }
+            }.await()
+
+       return list
     }
 }
 

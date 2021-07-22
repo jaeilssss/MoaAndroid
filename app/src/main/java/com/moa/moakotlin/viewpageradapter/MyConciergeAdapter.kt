@@ -1,27 +1,36 @@
 package com.moa.moakotlin.viewpageradapter
 
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.moa.moakotlin.databinding.MyConciergeViewPagerItemFragmentBinding
 
-class MyConciergeAdapter<T>(var list : ArrayList<T>) :RecyclerView.Adapter<RecyclerView.ViewHolder>(){
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        TODO("Not yet implemented")
+import com.moa.moakotlin.ui.mypage.MyHelperFragment
+import com.moa.moakotlin.ui.mypage.MyNeederFragment
+
+class MyConciergeAdapter(var fm : FragmentManager) : FragmentStatePagerAdapter(fm){
+   var list = ArrayList<Fragment>()
+    init {
+        println("init")
+        list.add(MyHelperFragment())
+        list.add(MyNeederFragment())
+    }
+    override fun getCount(): Int {
+        return list.size
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+    override fun getItem(position: Int): Fragment {
+        println("getItem..")
+       return list.get(position)
     }
 
-    override fun getItemCount(): Int {
-       return list.size
-    }
-
-    override fun getItemViewType(position: Int): Int {
-        return position
-    }
-
-    inner class MyConciergeViewHolder(var binding: MyConciergeViewPagerItemFragmentBinding) :RecyclerView.ViewHolder(binding.root){
-
+    override fun getPageTitle(position: Int): CharSequence? {
+        if(position==0){
+            return "재능공유"
+        }else{
+            return "도움요청"
+        }
     }
 }

@@ -10,7 +10,7 @@
         android:layout_width="11.8dp"
         android:layout_height="19dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/ic_back"
         android:textStyle="bold"
         android:clickable="true"

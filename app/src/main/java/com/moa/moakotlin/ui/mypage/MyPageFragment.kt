@@ -1,5 +1,6 @@
 package com.moa.moakotlin.ui.mypage
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.moa.moakotlin.costumdialog.AptCertificationImageAlertDialog
 import com.moa.moakotlin.costumdialog.CostumAlertDialog
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentMyPageBinding
+import com.moa.moakotlin.ui.signup.AptSearchActivity
 
 
 class MyPageFragment : Fragment() {
@@ -58,12 +60,16 @@ class MyPageFragment : Fragment() {
                 AptCertificationImageAlertDialog(it1)
                         .setMessage(resources.getString(R.string.ReAptCertification))
                         .setPositiveButton("네"){
+                            var intent = Intent(activity?.applicationContext,AptSearchActivity::class.java)
 
+                            startActivity(intent)
                         }.setNegativeButton {
 
                         }.show()
             }
         }
+
+        binding.myPageTalentSharingText.setOnClickListener { navController.navigate(R.id.action_MyPageFragment_to_myConciergeListFragment) }
 
     }
 

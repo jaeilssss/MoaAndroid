@@ -35,6 +35,9 @@
         <action
             android:id="@+id/action_MyPageFragment_to_userProfileFragment"
             app:destination="@id/userProfileFragment" />
+        <action
+            android:id="@+id/action_MyPageFragment_to_myConciergeListFragment"
+            app:destination="@id/myConciergeListFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -317,5 +320,19 @@
         android:name="com.moa.moakotlin.ui.voice.VoiceRoomMakeFragment"
         android:label="voice_room_make_fragment"
         tools:layout="@layout/voice_room_make_fragment" />
+    <fragment
+        android:id="@+id/myConciergeListFragment"
+        android:name="com.moa.moakotlin.ui.mypage.MyConciergeListFragment"
+        android:label="my_concierge_list_fragment"
+        tools:layout="@layout/my_concierge_list_fragment" >
+        <action
+            android:id="@+id/action_myConciergeListFragment_to_HelperReadFragment"
+            app:destination="@id/HelperReadFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myHelperFragment"
+        android:name="com.moa.moakotlin.ui.mypage.MyHelperFragment"
+        android:label="my_helper_fragment"
+        tools:layout="@layout/my_helper_fragment" />
 
 </navigation>

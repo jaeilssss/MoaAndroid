@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.bottom_sheet_concierge_read_option.view.*
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        var view = inflater.inflate(R.layout.bottom_sheet_voice_user, container,false)
+        var view = inflater.inflate(R.layout.bottom_sheet_concierge_read_option, container,false)
         return view
     }
 

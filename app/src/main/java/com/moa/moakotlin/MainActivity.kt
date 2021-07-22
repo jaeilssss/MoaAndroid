@@ -139,22 +139,7 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
     }
 
     override fun onDestroy() {
-//        var db = FirebaseFirestore.getInstance()
-//        db.collection("cities")
-//                .document("test4")
-//                .delete()
-//        db.collection("cities")
-//                .document("test5")
-//                .delete()
-//        db.collection("cities")
-//                .document("test")
-//                .delete()
-//        db.collection("cities")
-//                .document("test2")
-//                .delete()
-//        db.collection("cities")
-//                .document("test3")
-//                .delete()
+
         super.onDestroy()
     }
 
