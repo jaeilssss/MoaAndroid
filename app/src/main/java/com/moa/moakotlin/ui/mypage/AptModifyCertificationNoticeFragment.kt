@@ -42,7 +42,7 @@ class AptModifyCertificationNoticeFragment : BaseFragment() {
         navController = findNavController()
         myActivity.bottomNavigationGone()
 
-        binding.CertificationBtn.setOnClickListener {  }
+        binding.CertificationBtn.setOnClickListener { navController.navigate(R.id.action_aptModifyCertificationNoticeFragment_to_aptModifyCertificationFragment) }
         binding.skipCertificationBtn.setOnClickListener {
             Toast.makeText(context,"아파트 인증을 미루었습니다 ",Toast.LENGTH_SHORT).show()
             navController.popBackStack(R.id.MyPageFragment,false)

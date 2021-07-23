@@ -41,6 +41,7 @@
     <string name="goToGuideLine"><u>재능공유 운영 정책 보러가기</u></string>
     <string name="loadingMessage">우리아파트도\n따듯해질수 있어요</string>
     <string name="ReAptCertification">이미 아파트 인증을 완료하셨습니다\n새로운 아파트로 인증을 원하시나요? </string>
+    <string name="CertificationEndMessage">아파트 인증 절차를 마무리했습니다\n제출하신 서류를 모아 고객안전팀에서\n 승인 검토중입니다.\n(2일 이내 승인) </string>
 
     <string-array name="mainCategory">
         <item>"인테리어"</item>

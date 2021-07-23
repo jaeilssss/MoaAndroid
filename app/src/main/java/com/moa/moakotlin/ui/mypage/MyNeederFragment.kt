@@ -59,7 +59,7 @@ class MyNeederFragment : BaseFragment() {
     }
 
     override fun onBackPressed() {
-        TODO("Not yet implemented")
+        navController.popBackStack()
     }
 
     private fun setAdapter(){

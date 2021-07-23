@@ -356,6 +356,14 @@
         android:id="@+id/aptModifyCertificationNoticeFragment"
         android:name="com.moa.moakotlin.ui.mypage.AptModifyCertificationNoticeFragment"
         android:label="apt_modify_certification_notice_fragment"
-        tools:layout="@layout/apt_modify_certification_notice_fragment" />
+        tools:layout="@layout/apt_modify_certification_notice_fragment" >
+        <action
+            android:id="@+id/action_aptModifyCertificationNoticeFragment_to_aptModifyCertificationFragment"
+            app:destination="@id/aptModifyCertificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aptModifyCertificationFragment"
+        android:name="com.moa.moakotlin.ui.mypage.AptModifyCertificationFragment"
+        android:label="AptModifyCertificationFragment" />
 
 </navigation>

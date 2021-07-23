@@ -11,121 +11,121 @@
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.certification.AptCertificationFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.certification.AptCertificationFragment">
 
-    <ImageView
-        android:id="@+id/back"
-        android:layout_width="9.8dp"
-        android:layout_height="17dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:background="@drawable/ic_back"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="9.8dp"
+            android:layout_height="17dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/ic_back"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="아파트 주민 인증"
-        android:textColor="@color/moaBlack"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/notosanscjkkr_medium"
-        app:layout_constraintTop_toTopOf="@id/back"
-        app:layout_constraintBottom_toBottomOf="@id/back"
-        android:id="@+id/AptCertificationText"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아파트 주민 인증"
+            android:textColor="@color/moaBlack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            app:layout_constraintTop_toTopOf="@id/back"
+            app:layout_constraintBottom_toBottomOf="@id/back"
+            android:id="@+id/AptCertificationText"/>
 
-<androidx.recyclerview.widget.RecyclerView
-    android:layout_width="wrap_content"
-    android:layout_height="150dp"
-    app:layout_constraintStart_toEndOf="@id/itemGoToAlbum"
-    app:layout_constraintTop_toBottomOf="@id/AptCertificationText"
-    android:id="@+id/aptCertificationRcv"
-    android:layout_marginTop="40dp"
-    android:orientation="horizontal"
-    />
-    <ImageView
-        android:id="@+id/itemGoToAlbum"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/shape_grey_radius_10"
-        app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@id/AptCertificationText" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="wrap_content"
+            android:layout_height="150dp"
+            app:layout_constraintStart_toEndOf="@id/itemGoToAlbum"
+            app:layout_constraintTop_toBottomOf="@id/AptCertificationText"
+            android:id="@+id/aptCertificationRcv"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal"
+            />
+        <ImageView
+            android:id="@+id/itemGoToAlbum"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/shape_grey_radius_10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/AptCertificationText" />
 
-    <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/shape_shape_oval_grey"
-        android:src="@drawable/ic_plus"
-        android:id="@+id/AptCertificationPlusImage"
-        app:layout_constraintVertical_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="@id/itemGoToAlbum"
-        app:layout_constraintTop_toTopOf="@id/itemGoToAlbum" />
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/aptCertificationRcv"
-        android:text="필요한 준비물"
-        android:fontFamily="@font/notosanscjkkr_medium"
-        android:id="@+id/aptCertificationSupplies"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="18sp"/>
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/shape_shape_oval_grey"
+            android:src="@drawable/ic_plus"
+            android:id="@+id/AptCertificationPlusImage"
+            app:layout_constraintVertical_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="@id/itemGoToAlbum"
+            app:layout_constraintTop_toTopOf="@id/itemGoToAlbum" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aptCertificationRcv"
+            android:text="필요한 준비물"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:id="@+id/aptCertificationSupplies"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/aptCertificationSupplies"
-        android:text="@string/AptCertificationSuppliesText"
-        android:gravity="center"
-        android:textSize="16sp"
-        android:fontFamily="@font/notosanscjkkr_medium"
-        android:id="@+id/aptCertificationSuppliesText"
-        />
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        app:layout_constraintTop_toBottomOf="@id/aptCertificationSuppliesText"
-        android:layout_marginTop="80dp"
-        android:gravity="center"
-        android:fontFamily="@font/notosanscjkkr_medium"
-        android:background="@drawable/login_edit_text_radius_15"
-        android:text="@string/AptCertificationSuppliesDetail"
-        android:id="@+id/AptCertificationSuppliesDetail"
-        />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/aptCertificationSupplies"
+            android:text="@string/AptCertificationSuppliesText"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:id="@+id/aptCertificationSuppliesText"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:layout_constraintTop_toBottomOf="@id/aptCertificationSuppliesText"
+            android:layout_marginTop="80dp"
+            android:gravity="center"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:background="@drawable/login_edit_text_radius_15"
+            android:text="@string/AptCertificationSuppliesDetail"
+            android:id="@+id/AptCertificationSuppliesDetail"
+            />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="0dp"
-        android:layout_height="55dp"
-        android:text="다음"
-        android:background="@drawable/button_shape_main_color"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/AptCertificationSuppliesDetail"
-        android:layout_marginTop="15dp"
-        android:textStyle="bold"
-        android:fontFamily="@font/notosanscjkkr_medium"
-        android:textSize="18sp"
-        android:id="@+id/AptCertificationNext"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:text="다음"
+            android:background="@drawable/button_shape_main_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/AptCertificationSuppliesDetail"
+            android:layout_marginTop="15dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:textSize="18sp"
+            android:id="@+id/AptCertificationNext"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
 </layout>
