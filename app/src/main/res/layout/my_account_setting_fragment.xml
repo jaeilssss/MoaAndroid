@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.mypage.MyAccountSettingFragment">
+    <data>
+        <variable
+            name="model"
+            type="com.moa.moakotlin.ui.mypage.MyAccountSettingViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="12dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="15dp"
+        android:background="@drawable/ic_back"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/MyAccountBack"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/MyAccountBack"
+        app:layout_constraintBottom_toBottomOf="@id/MyAccountBack"
+        android:text="계정관리"
+        android:textSize="18dp"
+        android:textColor="@color/moaBlack"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="가입 한 휴대폰 번호"
+        app:layout_constraintTop_toBottomOf="@id/MyAccountBack"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/moaBlack"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        android:layout_marginStart="15dp"
+        android:textSize="14sp"
+        android:id="@+id/MyAccountPhonNumberText"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/MyAccountPhonNumberText"
+        android:background="@drawable/shape_grey_radius_15"
+        app:layout_constraintEnd_toStartOf="@id/MyAccountPhoneNumberNewCheck"
+        android:id="@+id/MyAccountPhoneNumberEdit"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        android:textColor="@color/moaBlack"
+        android:textStyle="bold"
+        android:gravity="center_vertical"
+        android:textSize="16sp"
+        android:text="@={model.phoneNumber}"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp"
+        android:paddingStart="10dp"
+        />
+    <Button
+        android:layout_width="130dp"
+        android:layout_height="55dp"
+        app:layout_constraintStart_toEndOf="@id/MyAccountPhoneNumberEdit"
+        app:layout_constraintTop_toTopOf="@id/MyAccountPhoneNumberEdit"
+        app:layout_constraintBottom_toBottomOf="@id/MyAccountPhoneNumberEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/button_shape_black_radius_15"
+        android:text="변경하기"
+        android:textStyle="bold"
+        android:layout_marginEnd="15dp"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        android:id="@+id/MyAccountPhoneNumberNewCheck"/>
+
+<TextView
+    android:layout_width="230dp"
+    android:layout_height="40dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/MyAccountPhoneNumberEdit"
+    android:layout_marginStart="15dp"
+    android:text="모두의 아파트 운영 정책"
+    android:textColor="@color/moaBlack"
+    android:layout_marginTop="40dp"
+    android:textSize="16sp"
+    android:fontFamily="@font/notosanscjkkr_medium"
+    android:id="@+id/MyAccountMoaPolicy"/>
+    <TextView
+        android:layout_width="230dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="@id/MyAccountMoaPolicy"
+        app:layout_constraintTop_toBottomOf="@id/MyAccountMoaPolicy"
+        android:text="개인정보 처리방침"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/moaBlack"
+        android:textSize="16sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:id="@+id/MyAccountPrivatePolicy"/>
+
+    <TextView
+        android:layout_width="230dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="@id/MyAccountPrivatePolicy"
+        app:layout_constraintTop_toBottomOf="@id/MyAccountPrivatePolicy"
+        android:text="로그아웃"
+        android:textColor="@color/moaBlack"
+        android:textSize="16sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:layout_marginTop="20dp"
+        android:id="@+id/MyAccountLogout"/>
+
+    <TextView
+        android:layout_width="230dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="@id/MyAccountLogout"
+        app:layout_constraintTop_toBottomOf="@id/MyAccountLogout"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        android:text="회원 탈퇴 신청"
+        android:textColor="@color/moaBlack"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:id="@+id/MyAccountSignOut"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

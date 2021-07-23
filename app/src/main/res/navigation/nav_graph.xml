@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_MyPageFragment_to_aptModifyCertificationNoticeFragment"
             app:destination="@id/aptModifyCertificationNoticeFragment" />
+        <action
+            android:id="@+id/action_MyPageFragment_to_myAccountSettingFragment"
+            app:destination="@id/myAccountSettingFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -365,5 +368,19 @@
         android:id="@+id/aptModifyCertificationFragment"
         android:name="com.moa.moakotlin.ui.mypage.AptModifyCertificationFragment"
         android:label="AptModifyCertificationFragment" />
+    <fragment
+        android:id="@+id/myAccountSettingFragment"
+        android:name="com.moa.moakotlin.ui.mypage.MyAccountSettingFragment"
+        android:label="my_account_setting_fragment"
+        tools:layout="@layout/my_account_setting_fragment" >
+        <action
+            android:id="@+id/action_myAccountSettingFragment_to_changeMyPhoneNumberFragment"
+            app:destination="@id/changeMyPhoneNumberFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeMyPhoneNumberFragment"
+        android:name="com.moa.moakotlin.ui.mypage.ChangeMyPhoneNumberFragment"
+        android:label="change_my_phone_number_fragment"
+        tools:layout="@layout/change_my_phone_number_fragment" />
 
 </navigation>

@@ -81,7 +81,7 @@ class MyPageFragment : BaseFragment() {
         }
 
         binding.myPageTalentSharingText.setOnClickListener { navController.navigate(R.id.action_MyPageFragment_to_myConciergeListFragment) }
-
+        binding.myPageMyAccountSetting.setOnClickListener { navController.navigate(R.id.action_MyPageFragment_to_myAccountSettingFragment) }
     }
 
     override fun onBackPressed() {

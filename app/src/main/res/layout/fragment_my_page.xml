@@ -92,7 +92,7 @@
         android:layout_height="wrap_content"
         android:text="재능공유"
         android:fontFamily="@font/notosanscjkkr_medium"
-        android:includeFontPadding="false"
+
         app:layout_constraintStart_toEndOf="@id/myPageBulbIcon"
         app:layout_constraintTop_toTopOf="@id/myPageBulbIcon"
         app:layout_constraintBottom_toBottomOf="@id/myPageBulbIcon"
@@ -116,12 +116,10 @@
         app:layout_constraintBottom_toBottomOf="@id/myPageAlarmSettingIcon"
         app:layout_constraintStart_toStartOf="@id/myPageTalentSharingText"
         app:layout_constraintEnd_toEndOf="@id/myPageTalentSharingText"
-
         android:text="알림설정"
         android:textSize="14sp"
         android:textColor="@color/moaBlack"
         android:fontFamily="@font/notosanscjkkr_medium"
-        android:includeFontPadding="false"
         android:id="@+id/myPageAlarmSetting"/>
 
     <ImageView
@@ -142,7 +140,6 @@
         android:text="공지사항"
         android:textColor="@color/moaBlack"
         android:fontFamily="@font/notosanscjkkr_medium"
-        android:includeFontPadding="false"
         android:textSize="14sp"
         app:layout_constraintTop_toTopOf="@id/myPageNoticeIcon"
         app:layout_constraintBottom_toBottomOf="@id/myPageNoticeIcon"
@@ -166,7 +163,6 @@
         android:textSize="14sp"
         android:textColor="@color/moaBlack"
         android:fontFamily="@font/notosanscjkkr_medium"
-        android:includeFontPadding="false"
         android:id="@+id/myPageQuestion"/>
 
     <ImageView
@@ -183,7 +179,6 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:fontFamily="@font/notosanscjkkr_medium"
-        android:includeFontPadding="false"
         android:text="계정관리"
         android:id="@+id/myPageMyAccountSetting"
         app:layout_constraintStart_toStartOf="@id/myPageQuestion"
@@ -210,7 +205,6 @@
         app:layout_constraintStart_toStartOf="@id/myPageMyAccountSetting"
         android:textColor="@color/moaBlack"
         android:fontFamily="@font/notosanscjkkr_medium"
-        android:includeFontPadding="false"
         android:id="@+id/myPageAptCertification"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
