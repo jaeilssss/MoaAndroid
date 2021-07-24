@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.MyPageFragment->{
-                    binding.mainBottomNavigation.menu.get(0).isChecked = true
+//                    binding.mainBottomNavigation.menu.get(0).isChecked = true
                     navController.navigate(R.id.MyPageFragment)
                     return@setOnNavigationItemSelectedListener true
                 }

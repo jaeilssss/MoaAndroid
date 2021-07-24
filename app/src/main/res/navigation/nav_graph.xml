@@ -47,6 +47,9 @@
         <action
             android:id="@+id/action_MyPageFragment_to_myAccountSettingFragment"
             app:destination="@id/myAccountSettingFragment" />
+        <action
+            android:id="@+id/action_MyPageFragment_to_alarmSettingFragment"
+            app:destination="@id/alarmSettingFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -376,11 +379,19 @@
         <action
             android:id="@+id/action_myAccountSettingFragment_to_changeMyPhoneNumberFragment"
             app:destination="@id/changeMyPhoneNumberFragment" />
+        <action
+            android:id="@+id/action_myAccountSettingFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
     </fragment>
     <fragment
         android:id="@+id/changeMyPhoneNumberFragment"
         android:name="com.moa.moakotlin.ui.mypage.ChangeMyPhoneNumberFragment"
         android:label="change_my_phone_number_fragment"
         tools:layout="@layout/change_my_phone_number_fragment" />
+    <fragment
+        android:id="@+id/alarmSettingFragment"
+        android:name="com.moa.moakotlin.ui.mypage.AlarmSettingFragment"
+        android:label="alarm_setting_fragment"
+        tools:layout="@layout/alarm_setting_fragment" />
 
 </navigation>

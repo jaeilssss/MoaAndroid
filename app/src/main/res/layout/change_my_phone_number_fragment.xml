@@ -73,6 +73,7 @@
         android:layout_marginTop="10dp"
         android:hint="핸드폰 번호를 입력해주세요"
         android:padding="10dp"
+        android:text="@={model.phoneNumber}"
         android:inputType="number"
         android:maxLength="11"
         android:fontFamily="@font/notosanscjkkr_medium"
@@ -94,11 +95,13 @@
         android:fontFamily="@font/notosanscjkkr_medium"
         android:includeFontPadding="false"
         android:padding="10dp"
+        android:visibility="gone"
         android:inputType="number"
+        android:text="@={model.code}"
         android:id="@+id/ChangeCertificationCodeEdit"/>
 
-    
-    <Button
+
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="0dp"
         android:layout_height="55dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -110,6 +113,8 @@
         android:layout_marginBottom="15dp"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:includeFontPadding="false"
         android:id="@+id/ChangeNewPhoneSubmit"

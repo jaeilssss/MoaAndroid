@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
+import com.moa.moakotlin.costumdialog.AptCertificationImageAlertDialog
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.MyAccountSettingFragmentBinding
 
@@ -44,7 +45,18 @@ class MyAccountSettingFragment : Fragment() {
 
         binding.model = viewModel
 
-        binding.MyAccountPhoneNumberNewCheck.setOnClickListener {  }
+        binding.MyAccountPhoneNumberNewCheck.setOnClickListener { navController.navigate(R.id.action_myAccountSettingFragment_to_changeMyPhoneNumberFragment)}
+
+        binding.MyAccountLogout.setOnClickListener {
+            context?.let {
+                AptCertificationImageAlertDialog(it)
+                    .setMessage("로그아웃 하시겠습니까?")
+                    .setPositiveButton("예"){
+                        viewModel.logout()
+                        navController.navigate(R.id.action_myAccountSettingFragment_to_FirstFragment)
+                    }.show()
+            }
+        }
     }
 
 

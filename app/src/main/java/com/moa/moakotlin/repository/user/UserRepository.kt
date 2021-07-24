@@ -135,4 +135,15 @@ class UserRepository {
         return check
     }
 
+
+    fun updateAlarmSetting(){
+        var db = FirebaseFirestore.getInstance()
+
+        db.collection("User")
+            .document(User.getInstance().uid)
+            .update("isAgreeChattingAlarm",User.getInstance().isAgreeChattingAlarm,
+            "isAgreeEventAlarm",User.getInstance().isAgreeEventAlarm,
+            "isAgreeMarketing",User.getInstance().isAgreeMarketing)
+
+    }
 }

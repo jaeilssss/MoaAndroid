@@ -212,4 +212,28 @@ class NeederRepository {
             }.await()
         return list
     }
+    fun modifyConciergeList() {
+        var db = FirebaseFirestore.getInstance()
+        db.collectionGroup("NeederContent")
+            .whereEqualTo("uid",User.getInstance().uid)
+            .get()
+            .addOnSuccessListener {
+                for(document in it.documents){
+                    var needer = document.toObject(Needer::class.java)
+                    needer?.documentID = document.id
+                    modifyNeederUid(needer!!)
+                }
+            }
+    }
+
+    fun modifyNeederUid(needer : Needer){
+        var db = FirebaseFirestore.getInstance()
+
+        db.collection("Needer")
+            .document("NeederContent")
+            .collection(needer.mainCategory)
+            .document(needer.documentID)
+            .update("uid",User.getInstance().uid)
+    }
+
 }

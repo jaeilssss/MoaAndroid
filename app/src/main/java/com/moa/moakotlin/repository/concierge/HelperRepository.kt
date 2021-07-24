@@ -202,6 +202,30 @@ class HelperRepository {
 
        return list
     }
+
+    fun modifyConciergeList() {
+        var db = FirebaseFirestore.getInstance()
+        db.collectionGroup("HelperContent")
+            .whereEqualTo("uid",User.getInstance().uid)
+            .get()
+            .addOnSuccessListener {
+                for(document in it.documents){
+                    var helper = document.toObject(Helper::class.java)
+                    helper?.documentID = document.id
+                    modifyHelperUid(helper!!)
+                }
+            }
+    }
+
+    fun modifyHelperUid(helper : Helper){
+        var db = FirebaseFirestore.getInstance()
+
+        db.collection("Helper")
+            .document("HelperContent")
+            .collection(helper.mainCategory)
+            .document(helper.documentID)
+            .update("uid",User.getInstance().uid)
+    }
 }
 
 

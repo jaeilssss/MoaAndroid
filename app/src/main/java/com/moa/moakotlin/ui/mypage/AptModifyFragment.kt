@@ -67,7 +67,6 @@ class AptModifyFragment : BaseFragment() {
                     navController.navigate(R.id.action_aptModifyFragment_to_aptModifyCertificationNoticeFragment)
                 }
             }
-
         }
     }
 

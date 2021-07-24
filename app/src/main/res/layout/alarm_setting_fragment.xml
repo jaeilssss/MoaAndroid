@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.mypage.AlarmSettingFragment">
+    <data>
+        <variable
+            name="model"
+            type="com.moa.moakotlin.ui.mypage.AlarmSettingViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="12dp"
+        android:layout_height="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/ic_back"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/AlarmSettingBack"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/AlarmSettingBack"
+        app:layout_constraintBottom_toBottomOf="@id/AlarmSettingBack"
+        android:text="알림 설정"
+        android:textColor="@color/moaBlack"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="15dp"
+        android:text="채팅알림"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        app:layout_constraintTop_toBottomOf="@id/AlarmSettingBack"
+        android:layout_marginTop="25dp"
+        android:textColor="@color/moaBlack"
+        android:id="@+id/AlarmSettingText"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/AlarmSettingText"
+        android:text="채팅알림"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/moaBlack"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:textSize="16sp"
+        android:id="@+id/AlarmSettingChattingAlarm"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/AlarmSettingChattingAlarm"
+        app:layout_constraintTop_toBottomOf="@id/AlarmSettingChattingAlarm"
+        android:text="채팅 메시지 알림"
+        android:includeFontPadding="false"
+        android:id="@+id/AlarmSettingChattingAlarmDetail"
+        />
+    <androidx.appcompat.widget.SwitchCompat
+        android:layout_width="wrap_content"
+        android:layout_height="31dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/AlarmSettingChattingAlarm"
+        app:layout_constraintBottom_toBottomOf="@id/AlarmSettingChattingAlarmDetail"
+        app:track="@drawable/selector_track_switch"
+        android:thumb="@drawable/switch_thumb"
+        android:layout_marginEnd="15dp"
+        android:switchMinWidth="0dp"
+        android:textOff=""
+        android:textOn=""
+        android:checked="@={model.isAgreeChattingAlarm()}"
+        android:thumbTextPadding="15dp"
+        android:id="@+id/AlarmSettingChattingSwitch"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/AlarmSettingChattingAlarmDetail"
+        app:layout_constraintTop_toBottomOf="@id/AlarmSettingChattingAlarmDetail"
+        android:layout_marginTop="20dp"
+        android:text="활동알림"
+        android:textSize="16sp"
+        android:textColor="@color/moaBlack"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:id="@+id/AlarmSettingActivityAlarm"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/AlarmSettingActivityAlarm"
+        app:layout_constraintStart_toStartOf="@id/AlarmSettingActivityAlarm"
+        android:text="리뷰 알림"
+        android:id="@+id/AlarmSettingActivityDetailAlarm"/>
+    <androidx.appcompat.widget.SwitchCompat
+        android:layout_width="wrap_content"
+        android:layout_height="31dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/AlarmSettingActivityAlarm"
+        app:layout_constraintBottom_toBottomOf="@id/AlarmSettingActivityDetailAlarm"
+        app:track="@drawable/selector_track_switch"
+        android:thumb="@drawable/switch_thumb"
+        android:layout_marginEnd="15dp"
+        android:checked="@={model.isAgreeEventAlarm()}"
+        android:id="@+id/AlarmSettingActivitySwitch"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/AlarmSettingActivityDetailAlarm"
+        app:layout_constraintTop_toBottomOf="@id/AlarmSettingActivityDetailAlarm"
+        android:layout_marginTop="20dp"
+        android:text="마케팅 알림"
+        android:textColor="@color/moaBlack"
+        android:textSize="16sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:id="@+id/AlarmSettingMarketingAlarm"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/AlarmSettingMarketingAlarm"
+        app:layout_constraintTop_toBottomOf="@id/AlarmSettingMarketingAlarm"
+        android:text="마케팅 수신 동의"
+        android:id="@+id/AlarmSettingMarketingDetailAlarm"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:layout_width="wrap_content"
+        android:layout_height="31dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/AlarmSettingMarketingAlarm"
+        app:layout_constraintBottom_toBottomOf="@id/AlarmSettingMarketingDetailAlarm"
+        app:track="@drawable/selector_track_switch"
+        android:thumb="@drawable/switch_thumb"
+        android:layout_marginEnd="15dp"
+        android:checked="@={model.isAgreeMarketingAlarm()}"
+        android:id="@+id/AlarmSettingMarketingSwitch"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
