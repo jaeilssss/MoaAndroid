@@ -22,6 +22,7 @@
     android:textColor="#777777"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
+    android:includeFontPadding="false"
     android:id="@+id/ConciergeReadContentText"/>
     <TextView
         android:layout_width="0dp"
@@ -33,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ConciergeReadContentText"
         android:textColor="@color/moaBlack"
-        android:padding="5dp"
+        android:layout_marginEnd="15dp"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:paddingStart="15dp"
         android:text="@={model.content}"/>
@@ -44,6 +45,7 @@
         android:layout_marginStart="15dp"
         app:layout_constraintTop_toBottomOf="@id/ConciergeReadContent"
         android:text="이웃정보"
+        android:includeFontPadding="false"
         android:textSize="12sp"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:textColor="#777777"
@@ -57,6 +59,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ConciergeReadAptNameText"
         android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         android:text="@={model.aptName}"
         android:textSize="16sp"
         android:fontFamily="@font/notosanscjkkr_medium"
@@ -74,6 +77,7 @@
         android:textSize="12sp"
         android:textColor="#777777"
         android:layout_marginTop="15dp"
+        android:includeFontPadding="false"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:layout_marginStart="15dp"
         android:id="@+id/ConciergeReadHopeWageText"/>
@@ -88,6 +92,7 @@
         android:fontFamily="@font/notosanscjkkr_medium"
         android:text="@={model.hopeWage}"
         android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         android:id="@+id/ConciergeReadHopeWage"/>
     <View
         android:layout_width="0dp"

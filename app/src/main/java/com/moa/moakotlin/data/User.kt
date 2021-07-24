@@ -51,6 +51,9 @@ data class User(
         instance?.signUpDate = user.signUpDate
         instance?.aptName = user.aptName
         instance?.introduction = user.introduction
+        instance?.isAgreeMarketing = user.isAgreeMarketing
+        instance?.isAgreeEventAlarm = user.isAgreeEventAlarm
+        instance?.isAgreeChattingAlarm = user.isAgreeChattingAlarm
     }
         fun deleteUser(){
             instance = null

@@ -66,7 +66,7 @@ class HelperMainAdapter() :ListAdapter<Helper, RecyclerView.ViewHolder>(diffUtil
             binding.itemConciergeHopeWage.text = helper.hopeWage
             binding.itemConciergeContent.text = helper.content
             binding.itemConciergeAptName.text = helper.aptName
-            val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일 HH:mm")
+            val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일")
 
             binding.itemConciergeDate.text =  dateFormat.format(helper.timeStamp.toDate())
 

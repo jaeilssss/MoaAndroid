@@ -58,6 +58,7 @@
             android:textStyle="bold"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:textSize="16sp"
+            android:ellipsize="end"
             android:id="@+id/UserAptName"
             />
 

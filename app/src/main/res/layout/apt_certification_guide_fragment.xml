@@ -16,8 +16,8 @@
     tools:context=".ui.certification.AptCertificationGuideFragment">
     <ImageView
         android:id="@+id/back"
-        android:layout_width="9.8dp"
-        android:layout_height="17dp"
+        android:layout_width="12dp"
+        android:layout_height="20dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/ic_back"
@@ -64,6 +64,7 @@
         android:textColor="@color/moaBlack"
         android:textSize="18sp"
         android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
         android:textStyle="bold"/>
     <TextView
         android:layout_width="0dp"
@@ -102,6 +103,7 @@
         android:textColor="@color/moaBlack"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:includeFontPadding="false"
         app:layout_constraintEnd_toEndOf="parent"
         android:fontFamily="@font/notosanscjkkr_medium"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -139,6 +141,7 @@
         android:textColor="@color/moaBlack"
         android:textSize="18sp"
         android:textStyle="bold"
+        android:includeFontPadding="false"
         android:fontFamily="@font/notosanscjkkr_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"

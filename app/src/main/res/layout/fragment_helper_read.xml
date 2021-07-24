@@ -140,29 +140,42 @@
                 android:layout_marginTop="18dp"
                 android:id="@+id/HelperMainGreyLine"/>
 
-            <androidx.appcompat.widget.AppCompatButton
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="55dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/HelperMainReview"
-                app:layout_constraintTop_toBottomOf="@id/HelperMainGreyLine"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                android:id="@+id/HelperMainIntroduce"
-                android:fontFamily="@font/notosanscjkkr_medium"
-                android:text="프로필"/>
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/HelperMainIntroduce"
-                app:layout_constraintTop_toBottomOf="@id/HelperMainGreyLine"
-                android:text="받은후기"
-                android:fontFamily="@font/notosanscjkkr_medium"
-                android:id="@+id/HelperMainReview"/>
+                android:id="@+id/HelperReadBtnLayout"
+                app:layout_constraintTop_toBottomOf="@id/HelperMainGreyLine">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/HelperMainReview"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    android:id="@+id/HelperMainIntroduce"
+                    android:background="@drawable/shape_black_rectangle"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:text="프로필"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/HelperMainIntroduce"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="받은후기"
+                    android:textColor="@color/white"
+                    android:background="@drawable/shape_grey_rectangle"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:id="@+id/HelperMainReview"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
                 <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/HelperMainReview"
+                    app:layout_constraintTop_toBottomOf="@id/HelperReadBtnLayout"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:id="@+id/HelperMainFragmentView"/>

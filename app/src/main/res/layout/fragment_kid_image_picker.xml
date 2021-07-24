@@ -32,7 +32,7 @@
                 android:layout_height="40dp"
                 android:layout_alignParentStart="true"
                 android:onClick="@{()->model.prev()}"
-                android:background="@drawable/moa_temp_back"
+                android:background="@drawable/ic_back"
                 android:id="@+id/image_picker_back"/>
         </RelativeLayout>
         <androidx.recyclerview.widget.RecyclerView

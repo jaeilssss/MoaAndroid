@@ -13,8 +13,8 @@
     tools:context=".ui.signup.ClaimNewAptFragment">
 
     <ImageView
-        android:layout_width="9.8dp"
-        android:layout_height="17dp"
+        android:layout_width="12dp"
+        android:layout_height="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="16dp"
@@ -28,7 +28,6 @@
         android:gravity="center_horizontal"
         android:lineSpacingExtra="8.8sp"
         android:textSize="18sp"
-
         android:textColor="#000000"
         android:id="@+id/claimNewAptText"
         app:layout_constraintTop_toTopOf="@id/back"

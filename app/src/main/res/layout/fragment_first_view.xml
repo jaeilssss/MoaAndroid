@@ -14,30 +14,42 @@
         android:layout_height="match_parent"
         tools:context=".ui.firstview.FirstViewFragment">
 
-        <com.synnapps.carouselview.CarouselView
-            android:id="@+id/carousview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:autoPlay="false"
-            app:fillColor="#ffffff"
-            android:background="#221122"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:pageColor="#000000"
-            app:radius="6dp"
-            app:indicatorMarginVertical="100dp"
-            app:strokeColor="#ff777777"
-            app:strokeWidth="1dp" />
-
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/FirstViewFragmentViewPager"
+        app:layout_constraintBottom_toTopOf="@id/indicators"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:id="@+id/indicators"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/GotoMoaBtn"
+            android:layout_marginBottom="10dp"
+            android:padding="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            />
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:text="모두의 아파트 시작하기"
+            android:layout_height="55dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text="시작하기"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:id="@+id/GotoMoaBtn"
             android:onClick="@{()->model.login()}"
             android:background="@drawable/login_button_shape"
-            app:layout_constraintBottom_toBottomOf="@+id/carousview"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>

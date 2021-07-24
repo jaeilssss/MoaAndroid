@@ -26,7 +26,6 @@ class UserRepository {
 
                     user = it.toObject(User::class.java)!!
                     user!!.uid = it.id
-
                 }else{
                     user = null
                 }

@@ -66,6 +66,7 @@ class CategoryMainFragment : Fragment() {
         binding.back.setOnClickListener {
             navController.popBackStack()
         }
+        adapterHelper = CategoryHelperMainAdapter()
 
         navController = findNavController()
 
@@ -79,7 +80,6 @@ class CategoryMainFragment : Fragment() {
         viewModel.neederList.observe(viewLifecycleOwner, Observer {
             helperList = it
             var newDataSize = it.size
-            adapterHelper = CategoryHelperMainAdapter()
             binding.CategoryMainRcv.adapter = adapterHelper
             adapterHelper.submitList(it)
         })

@@ -17,7 +17,7 @@
         android:layout_marginEnd="15dp"
         android:layout_marginTop="10dp"
         tools:text="만현마을 쌍용 1차 아파트"
-        android:paddingStart="10dp"
+        android:padding="10dp"
         android:textSize="16sp"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:textColor="@color/moaBlack"

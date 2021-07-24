@@ -5,6 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.google.firebase.functions.FirebaseFunctions
+import com.google.firebase.functions.ktx.functions
+import com.google.firebase.ktx.Firebase
 import com.moa.moakotlin.data.ChattingRoom
 import com.moa.moakotlin.data.User
 import kotlinx.coroutines.CoroutineScope
@@ -96,4 +99,17 @@ class ChattingRoomRepository {
                 println("failure")
             }
     }
+    fun deleteAtPath(path: String) {
+        var functions: FirebaseFunctions = Firebase.functions("asia-northeast3")
+        val deleteFn = functions.getHttpsCallable("recursiveDelete")
+        deleteFn.call(hashMapOf("path" to path))
+            .addOnSuccessListener {
+
+            }
+            .addOnFailureListener {
+
+            }
+    }
+
+
 }

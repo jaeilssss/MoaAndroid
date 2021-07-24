@@ -81,6 +81,8 @@ class ChangeMyPhoneNumberViewModel : ViewModel() {
     fun settingConciergeData(){
         var neederRepository = NeederRepository()
         var helperRepository = HelperRepository()
+        // 리뷰 있어야함 시발 ..
+
 
         neederRepository.modifyConciergeList()
         helperRepository.modifyConciergeList()

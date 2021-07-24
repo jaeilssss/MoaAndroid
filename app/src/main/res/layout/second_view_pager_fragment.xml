@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.firstview.SecondViewPagerFragment">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="80dp"
+        android:text="소소한 나의"
+        android:gravity="center"
+        android:textColor="@color/moaBlack"
+        android:textStyle="bold"
+        android:textSize="19dp"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:id="@+id/SecondViewTopText"
+        android:includeFontPadding="false"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/SecondViewTopText"
+        app:layout_constraintTop_toBottomOf="@id/SecondViewTopText"
+        android:text="재능을 "
+        android:textColor="@color/moaBlack"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:textSize="19dp"
+        android:includeFontPadding="false"
+        android:textStyle="bold"
+        android:id="@+id/SecondVIewtopDetailText"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/SecondVIewtopDetailText"
+        app:layout_constraintTop_toTopOf="@id/SecondVIewtopDetailText"
+        app:layout_constraintBottom_toBottomOf="@id/SecondVIewtopDetailText"
+        android:text="모아"
+        android:textStyle="bold"
+        android:textColor="@color/mainColor"
+        android:textSize="19dp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/notosanscjkkr_medium"/>
+
+    <ImageView
+        android:layout_width="328.8dp"
+        android:layout_height="346.2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/img_second_view"
+        android:id="@+id/SecondViewPagerImg"/>
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/SecondViewPagerImg"
+    android:text="이웃간 재능 공유"
+    android:textColor="@color/moaBlack"
+    android:fontFamily="@font/notosanscjkkr_medium"
+    android:includeFontPadding="false"
+    android:textStyle="bold"
+    android:textSize="19dp"
+    android:layout_marginTop="20dp"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

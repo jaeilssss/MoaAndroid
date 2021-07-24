@@ -28,7 +28,8 @@ class HelperRepository {
     }
     suspend fun submit(mainCaregory: String,helper : Helper) : Helper{
         var db = FirebaseFirestore.getInstance()
-        db.collection("Helper").document(mainCaregory)
+        db.collection("Helper")
+            .document(mainCaregory)
                 .collection("HelperContent")
                 .add(helper).addOnSuccessListener {
                     helper.documentID = it.id

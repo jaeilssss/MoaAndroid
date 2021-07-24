@@ -1,9 +1,11 @@
 package com.moa.moakotlin
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -20,6 +22,7 @@ lateinit var model : LoadingViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loading)
+        FirebaseAuth.getInstance().signOut()
         model = ViewModelProvider(this).get(LoadingViewModel::class.java)
         CoroutineScope(Dispatchers.Main).launch {
             startLoading()
@@ -34,6 +37,7 @@ lateinit var model : LoadingViewModel
                 finish()
             }else{
                 var result = FirebaseAuth.getInstance().currentUser?.let { model.initApp(it.uid,this) }
+
                 if(result == true){
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
@@ -42,8 +46,6 @@ lateinit var model : LoadingViewModel
                     finish()
                 }
             }
-
-
         }catch (e :Exception) {
 
         }

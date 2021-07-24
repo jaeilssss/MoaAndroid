@@ -51,8 +51,10 @@ class CategoryNeederMainAdapter() : ListAdapter<Needer, CategoryNeederMainAdapte
             binding.itemCategoryHopeDate.text = dateFormat.format(needer.timeStamp.toDate())
             if(needer.isNego.not()){
                 binding.CategoryMainIsNego.isVisible = false
+                binding.itemCategoryPrice.text = "${needer.hopeWage}원"
+            }else{
+                binding.itemCategoryPrice.text = "${needer.hopeWage}원(협의가능)"
             }
-            binding.itemCategoryPrice.text = needer.hopeWage
             binding.CategoryHelperLayout.setOnClickListener(ButtonClick())
 
             binding.ItemCategoryStatus.text = needer.hireStatus

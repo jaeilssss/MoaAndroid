@@ -72,11 +72,11 @@ class CategoryNeederMainFragment : BaseFragment() {
         }
 
         navController = findNavController()
-
+        adapterNeeder = CategoryNeederMainAdapter()
         viewModel.neederList.observe(viewLifecycleOwner, Observer {
             neederList = it
             var newDataSize = it.size
-            adapterNeeder = CategoryNeederMainAdapter()
+
             binding.CategoryNeederMainRcv.adapter = adapterNeeder
             adapterNeeder.submitList(neederList)
             binding.CategoryNeederMainSwipeRefreshLayout.isRefreshing = false

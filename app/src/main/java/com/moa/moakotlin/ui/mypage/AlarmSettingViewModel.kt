@@ -1,5 +1,6 @@
 package com.moa.moakotlin.ui.mypage
 
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.moa.moakotlin.data.User
@@ -14,13 +15,24 @@ class AlarmSettingViewModel : ViewModel() {
 
 
     fun updateAlarmSetting(){
-        User.getInstance().isAgreeMarketing = isAgreeChattingAlarm.value!!
+        User.getInstance().isAgreeChattingAlarm = isAgreeChattingAlarm.value!!
         User.getInstance().isAgreeEventAlarm = isAgreeEventAlarm.value!!
         User.getInstance().isAgreeMarketing = isAgreeMarketingAlarm.value!!
 
         var repository = UserRepository()
 
         repository.updateAlarmSetting()
+
+
+
+    }
+
+    fun init(){
+        isAgreeChattingAlarm.value = User.getInstance().isAgreeChattingAlarm
+
+        isAgreeEventAlarm.value = User.getInstance().isAgreeEventAlarm
+
+        isAgreeMarketingAlarm.value = User.getInstance().isAgreeMarketing
     }
 
 }

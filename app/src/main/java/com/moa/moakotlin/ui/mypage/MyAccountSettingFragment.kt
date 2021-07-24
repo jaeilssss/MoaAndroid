@@ -45,7 +45,7 @@ class MyAccountSettingFragment : Fragment() {
 
         binding.model = viewModel
 
-        binding.MyAccountPhoneNumberNewCheck.setOnClickListener { navController.navigate(R.id.action_myAccountSettingFragment_to_changeMyPhoneNumberFragment)}
+        binding.MyAccountPhoneNumberNewCheck.setOnClickListener { goToChangePhoneNumber()}
 
         binding.MyAccountLogout.setOnClickListener {
             context?.let {
@@ -60,6 +60,21 @@ class MyAccountSettingFragment : Fragment() {
     }
 
 
+    fun goToChangePhoneNumber(){
+
+        context?.let {
+            AptCertificationImageAlertDialog(it)
+                .setMessage("전화번호 변경 시 채팅 내용이 다 지워집니다!" +
+                        "변경하시겠습니까? ")
+                .setPositiveButton("예"){
+                    navController.navigate(R.id.action_myAccountSettingFragment_to_changeMyPhoneNumberFragment)
+                }
+                .setNegativeButton {
+
+                }
+                .show()
+        }
+    }
 
 
 }

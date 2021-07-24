@@ -62,14 +62,14 @@ lateinit var transfer: Transfer
         // Inflate the layout for this fragment
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false)
-
+        (context as MainActivity).backListener = this
         navController = findNavController()
 
         model = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         model.init()
 
-        binding.UserAptName.text = User.getInstance().aptName
+        binding.UserAptName.text = "${User.getInstance().aptName} ${User.getInstance().nickName}님"
 
         var list = ArrayList<Int>()
 
@@ -85,7 +85,7 @@ lateinit var transfer: Transfer
 
         binding.homeViewPager.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
 
-
+        val data = activity?.getSharedPreferences("isChattingAlarm",Context.MODE_PRIVATE)
 
         setUpBoardingIndicators()
 

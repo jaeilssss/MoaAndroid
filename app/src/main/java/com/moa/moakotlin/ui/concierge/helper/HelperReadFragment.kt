@@ -105,9 +105,13 @@ class HelperReadFragment : BaseFragment() {
 
         binding.HelperMainIntroduce.setOnClickListener {
             setUpFragment(ConciergeReadIntroduceFragment(helper,null))
+            binding.HelperMainIntroduce.setBackgroundResource(R.drawable.shape_black_rectangle)
+            binding.HelperMainReview.setBackgroundResource(R.drawable.shape_grey_rectangle)
         }
         binding.HelperMainReview.setOnClickListener {
             setUpFragment(HelperReadReviewFragment())
+            binding.HelperMainReview.setBackgroundResource(R.drawable.shape_black_rectangle)
+            binding.HelperMainIntroduce.setBackgroundResource(R.drawable.shape_grey_rectangle)
         }
 
         binding.HelperReadViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
@@ -189,7 +193,7 @@ class HelperReadFragment : BaseFragment() {
         binding.HelperMainTitle.text = helper.title
     }
     private fun setWriterInfo(){
-        val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일 HH:mm")
+        val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm")
         binding.HelperReadNickName.text = writer.nickName
         binding.HelperReadDate.text = dateFormat.format(helper.timeStamp.toDate())
     }

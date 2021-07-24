@@ -1,11 +1,13 @@
 package com.moa.moakotlin
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
@@ -49,6 +51,7 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
             navController.graph = navGraph
         }else if(FirebaseAuth.getInstance().currentUser!=null){
             // 이미 로그인 된 유저는 start destination 바뀜
+                init()
             Toast.makeText(applicationContext, "환영합니다 ${User.getInstance().nickName}님!",Toast.LENGTH_SHORT).show()
             navGraph = navController.graph
             navGraph.startDestination = R.id.HomeFragment
@@ -59,10 +62,6 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
 
         badge.backgroundColor = Color.parseColor("#ffe402")
 
-        binding.mainBottomNavigation.get(0).setOnClickListener {
-
-            Toast.makeText(applicationContext, "환영합니다 ${User.getInstance().nickName}님!",Toast.LENGTH_SHORT).show()
-        }
         binding.mainBottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.writeSelectFragment ->{
@@ -94,7 +93,15 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
 
     }
 
-
+fun init(){
+getSharedPreferences("AlarmSetting", Context.MODE_PRIVATE)!!
+        .edit {
+            putBoolean("isChattingAlarm",User.getInstance().isAgreeChattingAlarm)
+            putBoolean("isEventAlarm",User.getInstance().isAgreeEventAlarm)
+            putBoolean("isMarketingAlarm",User.getInstance().isAgreeMarketing)
+            commit()
+        }
+}
 
     override fun bottomVisible() {
         binding.mainBottomNavigation.visibility= View.VISIBLE

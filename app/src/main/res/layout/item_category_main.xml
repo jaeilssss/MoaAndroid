@@ -48,11 +48,13 @@
         <TextView
             android:id="@+id/itemCategoryAptName"
             android:layout_width="wrap_content"
+            android:maxWidth="200dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="10dp"
             android:includeFontPadding="false"
             android:text="만현마을 쌍용 1차"
+            android:ellipsize="end"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:textColor="#2c2c2c"
             android:textSize="14sp"
@@ -69,19 +71,22 @@
             android:layout_marginTop="10dp"
             android:includeFontPadding="false"
             android:text="파이리123"
+            android:textSize="13dp"
             app:layout_constraintStart_toEndOf="@id/itemCategoryAptName"
             app:layout_constraintTop_toBottomOf="@id/itemCategoryImage" />
 
         <TextView
             android:id="@+id/itemCategoryContent"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="18.2dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:includeFontPadding="false"
+            android:layout_marginEnd="15dp"
             android:text="유아 미술 교육 전공자 입니다"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/itemCategoryAptName" />
 
         <ImageView
@@ -107,7 +112,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/itemWonSign"
-            app:layout_constraintTop_toBottomOf="@id/itemCategoryContent" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <!--        협의가능 넣어야함... 귀찮아.. -->
         <!--        -->
@@ -116,13 +121,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="21dp"
-            android:background="@drawable/shape_main_color_radius_5"
+            android:background="@drawable/button_shape_main_color"
             android:includeFontPadding="false"
             android:text="협의가능"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:padding="5dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:textColor="@color/moaBlack"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="@id/itemCategoryPrice"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/itemCategoryPrice" />
