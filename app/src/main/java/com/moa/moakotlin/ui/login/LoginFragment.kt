@@ -3,6 +3,7 @@ package com.moa.moakotlin.ui.login
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Color.WHITE
 import android.opengl.Visibility
@@ -21,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.moa.moakotlin.LoadingActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.*
 import com.moa.moakotlin.data.User
@@ -84,6 +86,9 @@ class LoginFragment : BaseScrollFragment() {
                             loginViewModel.getUserInfo(
                                 it1.uid)
                         } == true){
+                            var intent = Intent(context,LoadingActivity::class.java)
+                        startActivity(intent)
+                        activity?.finish()
                         navController.navigate(R.id.HomeFragment)
                     }else{
                         navController.navigate(R.id.policyFragment)

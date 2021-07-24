@@ -125,10 +125,11 @@ class AptCertificationFragment : BaseFragment() {
                             CoroutineScope(Dispatchers.Main).launch {
                                 viewModel.signUp()
                                 viewModel.certification(adapter.currentList)
+                                var bundle = Bundle()
+                                bundle.putBoolean("isCertified",true)
+                                navController.navigate(R.id.signUpResultFragment,bundle)
                             }
-                            var bundle = Bundle()
-                            bundle.putBoolean("isCertified",true)
-                            navController.navigate(R.id.signUpResultFragment,bundle)
+
                         }
                         .setNegativeButton() {
 

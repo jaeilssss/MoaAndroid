@@ -101,6 +101,12 @@ class SignUpInfoViewModel() : ViewModel(){
         User.getInstance().birthday = birthDay.value!!
 
         User.getInstance().address = " ${User.getInstance().address} ${dong.value.toString()}동 ${hosoo.value.toString()}호"
+
+        if(User.getInstance().isMan==true){
+            User.getInstance().profileImage = "https://firebasestorage.googleapis.com/v0/b/moakr-8c0ab.appspot.com/o/MoAImages%2FMAN_DEFAULT.png?alt=media&token=18861244-4379-42b5-a6d6-37c1e77f5266"
+        }else{
+            User.getInstance().profileImage = "https://firebasestorage.googleapis.com/v0/b/moakr-8c0ab.appspot.com/o/MoAImages%2FWOMEN_DFAULT.png?alt=media&token=8ec5f0be-b61e-4355-b1d2-0763fd867385"
+        }
     }
 
 }

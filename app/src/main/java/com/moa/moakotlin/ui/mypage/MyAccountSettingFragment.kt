@@ -1,5 +1,6 @@
 package com.moa.moakotlin.ui.mypage
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -11,6 +12,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.moa.moakotlin.LoadingActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.costumdialog.AptCertificationImageAlertDialog
 import com.moa.moakotlin.data.User
@@ -53,7 +55,9 @@ class MyAccountSettingFragment : Fragment() {
                     .setMessage("로그아웃 하시겠습니까?")
                     .setPositiveButton("예"){
                         viewModel.logout()
-                        navController.navigate(R.id.action_myAccountSettingFragment_to_FirstFragment)
+                        var intent = Intent(context, LoadingActivity::class.java)
+                        startActivity(intent)
+                        activity?.finish()
                     }.show()
             }
         }

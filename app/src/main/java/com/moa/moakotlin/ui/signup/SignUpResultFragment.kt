@@ -50,8 +50,9 @@ class SignUpResultFragment : Fragment() {
 
         binding.signUpResultNext.setOnClickListener {
 //            navController.navigate(R.id.HomeFragment)
-            var intent = Intent(activity?.applicationContext,LoadingActivity::class.java)
+            var intent = Intent(context,LoadingActivity::class.java)
             startActivity(intent)
+            activity?.finish()
         }
         return binding.root
     }
