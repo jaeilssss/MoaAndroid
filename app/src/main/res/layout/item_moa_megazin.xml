@@ -8,10 +8,10 @@
     <ImageView
         android:layout_width="155dp"
         android:layout_height="205dp"
-        android:background="#bdbdbd"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:padding="10dp"
         android:id="@+id/itemMegazinImage"/>
     <TextView
         android:layout_width="130dp"

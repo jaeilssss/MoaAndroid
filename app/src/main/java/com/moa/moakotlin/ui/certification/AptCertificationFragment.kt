@@ -14,6 +14,7 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.view.isVisible
@@ -123,11 +124,16 @@ class AptCertificationFragment : BaseFragment() {
                         .setMessage(getString(R.string.AptCertificationImagesText))
                         .setPositiveButton("예"){
                             CoroutineScope(Dispatchers.Main).launch {
+                                binding.CertificationLoadingProgressBar.show()
+                                activity?.getWindow()?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                                 viewModel.signUp()
                                 viewModel.certification(adapter.currentList)
                                 var bundle = Bundle()
                                 bundle.putBoolean("isCertified",true)
                                 navController.navigate(R.id.signUpResultFragment,bundle)
+                                activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                                binding.CertificationLoadingProgressBar.hide()
                             }
 
                         }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
@@ -67,6 +68,10 @@ class SignUpInfoFragment : BaseScrollFragment() {
         }
 
         binding.next.setOnClickListener{
+            binding.signUpLoadingProgressBar.show()
+            activity?.getWindow()?.setFlags(
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
             binding.next.isClickable =false
             model.setUserInstance()
             // 먼저 이웃리스트를 가지고 온다
@@ -86,11 +91,11 @@ class SignUpInfoFragment : BaseScrollFragment() {
     private fun goToMyNeighborhood(){
         CoroutineScope(Dispatchers.Main).launch {
             binding.signUpLoadingProgressBar.isVisible = true
-            binding.signUpLoadingProgressBar.show()
             var neighboorhood = model.getMyAroundNeighborhood(aptList.getInstance().aroundApt)
             var bundle = Bundle()
             bundle.putStringArrayList("neighborhood",neighboorhood)
             navController.navigate(R.id.myNeighborhoodFragment,bundle)
+            activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             binding.signUpLoadingProgressBar.hide()
         }
 

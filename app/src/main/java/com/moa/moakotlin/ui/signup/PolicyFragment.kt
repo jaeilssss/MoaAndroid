@@ -33,6 +33,7 @@ class PolicyFragment : Fragment() {
         binding.nextBtn.setOnClickListener {
 
             if(viewModel.checkBox()){
+                viewModel.setPolicy()
                 navController.navigate(R.id.signUpInfoFragment)
             }
         }

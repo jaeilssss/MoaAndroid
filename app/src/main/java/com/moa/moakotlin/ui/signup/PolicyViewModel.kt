@@ -3,6 +3,7 @@ package com.moa.moakotlin.ui.signup
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.moa.moakotlin.data.User
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -28,6 +29,9 @@ class PolicyViewModel : ViewModel() {
         }
     }
 
+    fun setPolicy(){
+        User.getInstance().isAgreeMarketing = checkBoxFourth.value!!
+    }
     fun checkBoxCheck() {
        if(checkBoxSecond.value==false){
             checkBoxFirst.value = false

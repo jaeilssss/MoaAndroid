@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -78,6 +79,10 @@ class LoginFragment : BaseScrollFragment() {
 
             // 인증코드가 맞는지도 확인 할 것!!!
             CoroutineScope(Dispatchers.Main).launch {
+                binding.loginLoadingProgressBar.show()
+                activity?.getWindow()?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
                 if(loginViewModel.checkCertificationMessage()){
                     User.getInstance().phoneNumber = binding.phoneNumberEditText.text.toString()
                     User.getInstance().uid = FirebaseAuth.getInstance().uid.toString()
@@ -90,11 +95,17 @@ class LoginFragment : BaseScrollFragment() {
                         startActivity(intent)
                         activity?.finish()
                         navController.navigate(R.id.HomeFragment)
+                        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                        binding.loginLoadingProgressBar.hide()
                     }else{
                         navController.navigate(R.id.policyFragment)
+                        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                        binding.loginLoadingProgressBar.hide()
                     }
                 }else{
                     showToast(activity?.applicationContext!!,"정확하지 않은 인증번호 입니다")
+                    activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    binding.loginLoadingProgressBar.hide()
                 }
 
             }

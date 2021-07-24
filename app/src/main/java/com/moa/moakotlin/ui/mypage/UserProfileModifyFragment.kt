@@ -113,7 +113,7 @@ class UserProfileModifyFragment : BaseFragment() {
     }
 
     override fun onBackPressed() {
-        TODO("Not yet implemented")
+        navController.popBackStack()
     }
 
     private fun setProfileImage(){
