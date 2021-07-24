@@ -37,7 +37,7 @@ lateinit var model : LoadingViewModel
                 finish()
             }else{
                 var result = FirebaseAuth.getInstance().currentUser?.let { model.initApp(it.uid,this) }
-
+                println("여기??,,")
                 if(result == true){
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
@@ -47,6 +47,7 @@ lateinit var model : LoadingViewModel
                 }
             }
         }catch (e :Exception) {
+            println("exception")
 
         }
     }// startLoading Method..

@@ -1,6 +1,7 @@
 package com.moa.moakotlin.repository.banner
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.moa.moakotlin.data.Banner
 import com.moa.moakotlin.data.Magazine
 import kotlinx.coroutines.tasks.await
 
@@ -26,5 +27,22 @@ class BannerRepository{
     }
 
 
-//    suspend fun getHomeBanner()
+    suspend fun getHomeBanner() : ArrayList<Banner>{
+        var list = ArrayList<Banner>()
+
+        var db = FirebaseFirestore.getInstance()
+
+        db.collection("Banner")
+            .get()
+            .addOnSuccessListener {
+                for(document in it.documents){
+                    var banner = document.toObject(Banner::class.java)
+                    if (banner != null) {
+                        list.add(banner)
+                    }
+                }
+            }.await()
+
+        return list
+    }
 }
