@@ -28,6 +28,7 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.Transfer
 import com.moa.moakotlin.data.Chat
+import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentChatBinding
@@ -52,6 +53,7 @@ class ChatFragment : BaseFragment() {
     lateinit var transfer : Transfer
     lateinit var rcv : RecyclerView
      var needer : Needer ? = null
+    var helper : Helper ? = null
 //    lateinit var myActivity : MainActivity
     var firebase  = FirebaseFirestore.getInstance()
     override fun onAttach(context: Context) {
@@ -70,6 +72,7 @@ class ChatFragment : BaseFragment() {
         check = 0
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_chat,container , false)
 
+        (context as MainActivity).backListener = this
 
         myActivity.bottomNavigationGone()
         roomId = arguments?.getString("roomId")?:"x"
@@ -78,6 +81,7 @@ class ChatFragment : BaseFragment() {
 
         needer?.images?.map { print(it)  }
         needer = arguments?.getParcelable<Needer>("Needer") ?:null
+        helper = arguments?.getParcelable<Helper>("helper") ?:null
         navController = findNavController()
          rcv = binding.ChatRcv
         rcv.setHasFixedSize(true)
@@ -133,7 +137,7 @@ class ChatFragment : BaseFragment() {
     }
 
     fun requestPhoto(){
-                    when{
+        when{
                 ContextCompat.checkSelfPermission(
                         activity?.applicationContext!!,
                         android.Manifest.permission.READ_EXTERNAL_STORAGE
@@ -170,15 +174,26 @@ class ChatFragment : BaseFragment() {
 
     override fun onBackPressed() {
 
-        if(needer!=null){
-            var bundle = Bundle()
+//        if(needer!=null){
+//            var bundle = Bundle()
+//
+//            bundle.putParcelable("needer",needer)
+//            bundle.putParcelable("writer",opponentUser)
+//
+//            navController.popBackStack()
+//            //이거 .. Pop백스택 해야하는대?....
+////            navController.navigate(R.id.neederReadFragment,bundle)
+//        }else{
+//            navController.popBackStack()
+//        }
 
-            bundle.putParcelable("needer",needer)
-            bundle.putParcelable("writer",opponentUser)
-            navController.navigate(R.id.neederReadFragment,bundle)
-        }else{
+//        if(helper!=null){
+//            var bundle = Bundle()
+//            bundle.putParcelable("data",helper)
+//            bundle.putParcelable("writer",opponentUser)
+//            navController.popBackStack(R.id.HelperReadFragment,false)
+//        }
             navController.popBackStack()
-        }
 
     }
     fun onScrollListener(rcv: RecyclerView,adapter: ChatAdapter){

@@ -26,7 +26,20 @@
             android:layout_marginTop="15dp"
             android:scaleType="fitXY"
             android:id="@+id/itemConciergeImage"/>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/itemConciergeImage"
+            app:layout_constraintTop_toTopOf="@id/itemConciergeImage"
+            android:text="모집중"
+            android:textSize="11dp"
+            android:padding="3dp"
+            android:gravity="center"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:textColor="@color/white"
+            android:background="@drawable/shape_moa_black_radius_5_border_white"
+            android:id="@+id/itemConciergeHireStatus"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"

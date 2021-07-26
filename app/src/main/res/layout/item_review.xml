@@ -1,6 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/shape_grey_radius_15"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:src="#ffffff"
+            android:id="@+id/itemReviewUserProfile"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/itemReviewUserProfile"
+            app:layout_constraintTop_toTopOf="@id/itemReviewUserProfile"
+            app:layout_constraintBottom_toTopOf="@id/itemReviewAptName"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:text="뉴냐리"
+            android:textSize="16sp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/moaBlack"
+            android:id="@+id/itemReviewUserNickName"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:text="만현마을 "
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            app:layout_constraintStart_toStartOf="@id/itemReviewUserNickName"
+            app:layout_constraintTop_toBottomOf="@id/itemReviewUserNickName"
+            app:layout_constraintBottom_toBottomOf="@id/itemReviewUserProfile"
+            android:id="@+id/itemReviewAptName"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/itemReviewUserNickName"
+            app:layout_constraintBottom_toBottomOf="@id/itemReviewAptName"
+            android:text="2021년"
+            android:textSize="12dp"
+            android:layout_marginEnd="15dp"
+            android:id="@+id/itemReviewDate"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/itemReviewAptName"
+            app:layout_constraintTop_toBottomOf="@id/itemReviewAptName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="10dp"
+            android:text="ㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇ\ndsdsdsdsdsdsds\nds]\mds\]\ndsdsdsdsdsd\ndsdsds"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/moaBlack"
+            android:textSize="14sp"
+            android:id="@+id/itemReviewContent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

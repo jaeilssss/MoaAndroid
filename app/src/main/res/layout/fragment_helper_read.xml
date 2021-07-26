@@ -15,6 +15,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -140,54 +141,31 @@
                 android:layout_marginTop="18dp"
                 android:id="@+id/HelperMainGreyLine"/>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="55dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:id="@+id/HelperReadBtnLayout"
-                app:layout_constraintTop_toBottomOf="@id/HelperMainGreyLine">
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/HelperMainReview"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintHorizontal_chainStyle="packed"
-                    android:id="@+id/HelperMainIntroduce"
-                    android:background="@drawable/shape_black_rectangle"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/notosanscjkkr_medium"
-                    android:text="프로필"/>
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/HelperMainIntroduce"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:text="받은후기"
-                    android:textColor="@color/white"
-                    android:background="@drawable/shape_grey_rectangle"
-                    android:fontFamily="@font/notosanscjkkr_medium"
-                    android:id="@+id/HelperMainReview"/>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+<com.google.android.material.tabs.TabLayout
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/HelperMainGreyLine"
+    android:id="@+id/HelperReadTab">
+    <com.google.android.material.tabs.TabItem
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="프로필"/>
+    <com.google.android.material.tabs.TabItem
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="받은 후기"/>
+</com.google.android.material.tabs.TabLayout>
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/HelperReadBtnLayout"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:id="@+id/HelperMainFragmentView"/>
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                app:layout_constraintTop_toBottomOf="@id/HelperReadNickName"-->
-<!--                app:layout_constraintStart_toEndOf="@id/HelperReadProfileImage"-->
-<!--                android:layout_marginStart="5dp"-->
-<!--                android:text="만현마을 쌍용1차"-->
-<!--                android:textSize="11.3sp"-->
-<!--                android:textColor="moa"-->
+<com.moa.moakotlin.custom.CustomViewPager
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/HelperReadTab"
+    android:id="@+id/HelperReadContentViewPager"
+    />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

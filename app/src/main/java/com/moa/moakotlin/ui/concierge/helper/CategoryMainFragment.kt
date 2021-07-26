@@ -60,7 +60,6 @@ class CategoryMainFragment : BaseFragment() {
         adapterHelper = CategoryHelperMainAdapter()
         binding.CategoryMainRcv.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
         binding.CategoryMainRcv.adapter = adapterHelper
-
         adapterHelper.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
 
         binding.back.setOnClickListener {
@@ -80,6 +79,7 @@ class CategoryMainFragment : BaseFragment() {
             var newDataSize = it.size
             adapterHelper.submitList(it)
             adapterHelper.notifyDataSetChanged()
+
             activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             binding.CategoryMainSwipeRefreshLayout.isRefreshing = false
         })
@@ -112,6 +112,7 @@ class CategoryMainFragment : BaseFragment() {
                                 var bundle = Bundle()
                                 bundle.putParcelable("data",adapterHelper.currentList[position])
                                 bundle.putParcelable("writer",writer)
+                                viewModel.lastPosition = position
                                 navController.navigate(R.id.HelperReadFragment,bundle)
                             }
                         }

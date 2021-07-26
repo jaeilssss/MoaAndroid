@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="model"
             type="com.moa.moakotlin.ui.concierge.helper.ConciergeReadIntroduceViewModel" />
     </data>
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
 <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.concierge.helper.ConciergeReadIntroduceFragment">
@@ -35,6 +41,7 @@
         app:layout_constraintTop_toBottomOf="@id/ConciergeReadContentText"
         android:textColor="@color/moaBlack"
         android:layout_marginEnd="15dp"
+        android:includeFontPadding="false"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:paddingStart="15dp"
         android:text="@={model.content}"/>
@@ -61,6 +68,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:text="@={model.aptName}"
+        android:includeFontPadding="false"
         android:textSize="16sp"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:textColor="@color/moaBlack"
@@ -73,7 +81,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ConciergeReadIntroduceAptName"
-        android:text="희망 시급 협의가능"
+        android:text="희망 시급"
         android:textSize="12sp"
         android:textColor="#777777"
         android:layout_marginTop="15dp"
@@ -88,20 +96,22 @@
         app:layout_constraintTop_toBottomOf="@id/ConciergeReadHopeWageText"
         android:textColor="@color/moaBlack"
         android:textStyle="bold"
+        android:includeFontPadding="false"
         android:textSize="20sp"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:text="@={model.hopeWage}"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:id="@+id/ConciergeReadHopeWage"/>
-    <View
-        android:layout_width="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ConciergeReadHopeWage"
-        android:layout_height="80dp"/>
-
-
+<View
+    android:layout_width="0dp"
+    android:layout_height="80dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/ConciergeReadHopeWage"
+    app:layout_constraintBottom_toBottomOf="parent"
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

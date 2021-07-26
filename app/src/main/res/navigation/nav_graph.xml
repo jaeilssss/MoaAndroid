@@ -271,7 +271,11 @@
     <fragment
         android:id="@+id/HelperReadFragment"
         android:name="com.moa.moakotlin.ui.concierge.helper.HelperReadFragment"
-        android:label="NeederReadFragment" />
+        android:label="NeederReadFragment" >
+        <action
+            android:id="@+id/action_HelperReadFragment_to_ChatFragment"
+            app:destination="@id/ChatFragment" />
+    </fragment>
     <fragment
         android:id="@+id/conciergeWriteFragment"
         android:name="com.moa.moakotlin.ui.concierge.ConciergeWriteFragment"

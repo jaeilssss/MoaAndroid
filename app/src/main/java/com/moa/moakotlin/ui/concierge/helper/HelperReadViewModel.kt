@@ -8,6 +8,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.moa.moakotlin.data.ChattingRoom
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.User
+import com.moa.moakotlin.repository.chat.ChattingRoomRepository
 import com.moa.moakotlin.repository.concierge.HelperRepository
 
 class HelperReadViewModel() : ViewModel() {
@@ -15,66 +16,35 @@ class HelperReadViewModel() : ViewModel() {
     lateinit var writerUid :String
 
     var newHelper = MutableLiveData<Helper>()
-    fun goToChatting(writerUid : String){
-        this.writerUid = writerUid
-        var db = FirebaseFirestore.getInstance()
-            var list = ArrayList<String>()
-        list.add(User.getInstance().uid)
-        list.add(writerUid)
-        db.collection("User").document(User.getInstance().uid)
-            .collection("ChattingRoom").whereEqualTo("opponentUid",writerUid)
-            .get().addOnSuccessListener {
-                if(it.isEmpty){
-                    makChattingRoom(User.getInstance().uid,writerUid)
-                }else {
-                    var bundle = Bundle()
-                    bundle.putString("roomId",it.documents.get(0).id)
-                    println("roomId : ${it.documents.get(0).id}")
-                    bundle.putString("writerUid",writerUid)
-//                    navController.navigate(R.id.action_kidReadFragment_to_ChatFragment,bundle)
-                }
-            }
-    }
-
-    fun makChattingRoom(uid: String,opponentUid :String){
-        var chattingRoom = ChattingRoom()
-        chattingRoom.timeStamp = Timestamp.now()
-        chattingRoom.latestMessage=null
-        chattingRoom.opponentUid = opponentUid
-        var db = FirebaseFirestore.getInstance()
-        db.collection("User").document(uid)
-            .collection("ChattingRoom")
-            .add(chattingRoom).addOnSuccessListener {documentReference ->
-               opponentChatting(documentReference.id,opponentUid)
-                var bundle = Bundle()
-                bundle.putString("roomId",documentReference.id)
-                bundle.putString("opponentUid",opponentUid)
-//                navController.navigate(R.id.action_kidReadFragment_to_ChatFragment,bundle)
-            }.addOnFailureListener{
-                println("failure")
-            }
-    }
-
-    fun opponentChatting(roomId : String , opponentUid: String){
-        var chattingRoom = ChattingRoom()
-        chattingRoom.timeStamp = Timestamp.now()
-        chattingRoom.latestMessage=null
-        chattingRoom.opponentUid = User.getInstance().uid
-        var db = FirebaseFirestore.getInstance()
-        db.collection("User").document(opponentUid)
-            .collection("ChattingRoom")
-            .document(roomId)
-            .set(chattingRoom).addOnSuccessListener {documentReference ->
-
-            }.addOnFailureListener{
-                println("failure")
-            }
-    }
+    var roomId = MutableLiveData<String>()
 
     suspend fun delete(mainCategory : String , documentId : String) : Boolean{
         var repository = HelperRepository()
 
         return repository.delete(mainCategory,documentId)
+    }
+
+
+    suspend fun getChattingRoom(writerUid: String){
+
+        var repository = ChattingRoomRepository()
+
+        var result = repository.goToChatting(writerUid)
+
+        if(result.equals("").not()){
+            roomId.value = result
+        }else{
+            makeChattingRoom(writerUid)
+        }
+    }
+
+    suspend fun makeChattingRoom(writerUid: String){
+
+        var repository = ChattingRoomRepository()
+        var result =  repository.makeChattingRoom(User.getInstance().uid,writerUid)
+        repository.opponentChatting(result,writerUid)
+        roomId.value = result
+
     }
 
 }

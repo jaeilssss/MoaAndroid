@@ -49,11 +49,9 @@ class CategoryNeederMainAdapter() : ListAdapter<Needer, CategoryNeederMainAdapte
             binding.itemCategoryContent.text = needer.content
             val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm")
             binding.itemCategoryHopeDate.text = dateFormat.format(needer.timeStamp.toDate())
+            binding.itemCategoryPrice.text = "${needer.hopeWage}원"
             if(needer.isNego.not()){
                 binding.CategoryMainIsNego.isVisible = false
-                binding.itemCategoryPrice.text = "${needer.hopeWage}원"
-            }else{
-                binding.itemCategoryPrice.text = "${needer.hopeWage}원(협의가능)"
             }
             binding.CategoryHelperLayout.setOnClickListener(ButtonClick())
 

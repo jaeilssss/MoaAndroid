@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
@@ -31,6 +32,7 @@ import com.moa.moakotlin.databinding.FragmentHelperReadBinding
 import com.moa.moakotlin.ui.bottomsheet.ConciergeReadBottomSheetFragment
 import com.moa.moakotlin.ui.concierge.ConciergeWriteActivity
 import com.moa.moakotlin.viewpageradapter.ConciergeReadViewpagerAdapter
+import com.moa.moakotlin.viewpageradapter.HelperReadViewPagerAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -50,6 +52,8 @@ class HelperReadFragment : BaseFragment() {
     var writer = User()
 //    var myActivity = MainActivity()
     lateinit var adapter : ConciergeReadViewpagerAdapter
+
+    lateinit var viewPagerAdapter : HelperReadViewPagerAdapter
     companion object{
         val REQUEST_MODIFY_CODE = 4000
     }
@@ -64,13 +68,17 @@ class HelperReadFragment : BaseFragment() {
         navController = findNavController()
 
         model = ViewModelProvider(this).get(HelperReadViewModel::class.java)
+        model.roomId.value = "x"
         (context as MainActivity).backListener = this
         myActivity.bottomNavigationGone()
         binding.model = model
         myActivity.bottomNavigationGone()
         arguments?.let {
+
             helper = it.getParcelable<Helper>("data")!!
             writer = it.getParcelable<User>("writer")!!
+            println("오호??")
+            println(helper.aptName)
         }
         binding.back.setOnClickListener { navController.popBackStack() }
         binding.HelperReadOption.setOnClickListener {
@@ -83,7 +91,6 @@ class HelperReadFragment : BaseFragment() {
                     costumDialog()
                 }
             }
-
         }
             option.show(activity?.supportFragmentManager!!,"bottomsheet")
         }
@@ -94,26 +101,21 @@ class HelperReadFragment : BaseFragment() {
         binding.HelperReadViewPager.adapter = adapter
 
         binding.back.setOnClickListener {
-            navController.popBackStack()
+            onBackPressed()
         }
 
-        binding.HelperMainIntroduce.setOnClickListener {
-            setUpFragment(ConciergeReadIntroduceFragment(helper,null))
-            binding.HelperMainIntroduce.setBackgroundResource(R.drawable.shape_black_rectangle)
-            binding.HelperMainReview.setBackgroundResource(R.drawable.shape_grey_rectangle)
-        }
-        binding.HelperMainReview.setOnClickListener {
-            setUpFragment(HelperReadReviewFragment())
-            binding.HelperMainReview.setBackgroundResource(R.drawable.shape_black_rectangle)
-            binding.HelperMainIntroduce.setBackgroundResource(R.drawable.shape_grey_rectangle)
-        }
+        viewPagerAdapter = HelperReadViewPagerAdapter(childFragmentManager,helper)
+
+        binding.HelperReadContentViewPager.adapter = viewPagerAdapter
+
+        binding.HelperReadTab.setupWithViewPager(binding.HelperReadContentViewPager)
 
         binding.HelperReadViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 setCurrentOnboardingIndicator(position)
             }
         })
-
+        binding.HelperReadChatBtn.setOnClickListener { goToChat() }
         model.newHelper.observe(viewLifecycleOwner, Observer {
                             helper = it
                 adapter.list = ArrayList()
@@ -122,16 +124,27 @@ class HelperReadFragment : BaseFragment() {
 
                 setHelperData(it)
                 setUpBoardingIndicators(it.images!!.size)
-                setUpFragment(ConciergeReadIntroduceFragment(it,null))
                 setCurrentOnboardingIndicator(0)
 
         })
         setUpBoardingIndicators(helper?.images!!.size)
         setCurrentOnboardingIndicator(0)
-        setUpFragment(ConciergeReadIntroduceFragment(helper,null))
         checkVisible()
         setWriterInfo()
         setHelperData(helper)
+
+
+        model.roomId.observe(viewLifecycleOwner, Observer {
+            if(it.equals("x").not()){
+                var bundle = Bundle()
+                bundle.putString("roomId",it)
+                bundle.putParcelable("opponentUser",writer)
+                bundle.putParcelable("helper",helper)
+                navController.navigate(R.id.action_HelperReadFragment_to_ChatFragment,bundle)
+            }
+        })
+
+
         return binding.root
     }
 
@@ -190,6 +203,7 @@ class HelperReadFragment : BaseFragment() {
         val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm")
         binding.HelperReadNickName.text = writer.nickName
         binding.HelperReadDate.text = dateFormat.format(helper.timeStamp.toDate())
+        Glide.with(this).load(writer.profileImage).into(binding.HelperReadProfileImage)
     }
     private fun setCurrentOnboardingIndicator( index : Int){
         var childCount = binding.HelperReadIndicators?.childCount
@@ -204,11 +218,7 @@ class HelperReadFragment : BaseFragment() {
             }
         }
     }
-    fun setUpFragment(fragment : Fragment){
-        val fragmentManager: FragmentManager = activity?.supportFragmentManager!!
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.HelperMainFragmentView, fragment).commit()
-    }
+
 
     fun costumDialog(){
         context?.let {
@@ -230,6 +240,14 @@ class HelperReadFragment : BaseFragment() {
 
 
     }
+
+    fun goToChat(){
+        CoroutineScope(Dispatchers.Main).launch {
+            model.getChattingRoom(helper.uid)
+        }
+    }
+
+
     fun goToModify(){
         var intent = Intent(activity,ConciergeWriteActivity::class.java)
         intent.putExtra("helper",helper)

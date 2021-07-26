@@ -31,23 +31,24 @@ class ConciergeReadIntroduceFragment(var helper : Helper ? ,var needer : Needer 
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(ConciergeReadIntroduceViewModel::class.java)
         binding.model = viewModel
+
         settingData()
     }
 
     private fun settingData(){
         if(helper!=null){
             viewModel.content.set(helper!!.content)
-            viewModel.hopeWage.set("${helper!!.hopeWage} 원")
+            viewModel.hopeWage.set("${helper!!.hopeWage} 원 (협의가능)")
             viewModel.aptName.set(helper!!.aptName)
             if(helper!!.isNego.not()){
-                binding.ConciergeReadHopeWageText.text= "희망 가격"
+                viewModel.hopeWage.set("${helper!!.hopeWage} 원")
             }
         }else if(needer!=null){
             viewModel.content.set(needer!!.content)
-            viewModel.hopeWage.set("${needer!!.hopeWage} 원")
+            viewModel.hopeWage.set("${needer!!.hopeWage} 원 (협의가능)")
             viewModel.aptName.set(needer!!.aptName)
             if(needer!!.isNego.not()){
-                binding.ConciergeReadHopeWageText.text= "희망 가격"
+                viewModel.hopeWage.set("${needer!!.hopeWage} 원")
             }
         }
 

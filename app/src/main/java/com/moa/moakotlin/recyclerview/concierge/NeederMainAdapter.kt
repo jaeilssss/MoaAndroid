@@ -67,10 +67,13 @@ class NeederMainAdapter() : ListAdapter<Needer, RecyclerView.ViewHolder>(diffUti
             if(helper.isNego.not()){
                 binding.itemConciergeNego.isVisible = false
             }
+            if(helper.hireStatus.equals("모집완료")){
+                binding.itemConciergeHireStatus.text = "모집완료"
+            }
             binding.itemConciergeHopeWage.text = "${helper.hopeWage}원"
             binding.itemConciergeContent.text = helper.content
             binding.itemConciergeAptName.text = helper.aptName
-            val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm")
+            val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일")
 
             binding.itemConciergeDate.text =  dateFormat.format(helper.timeStamp.toDate())
 

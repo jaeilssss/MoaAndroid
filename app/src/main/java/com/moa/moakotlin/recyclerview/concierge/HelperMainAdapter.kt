@@ -57,6 +57,7 @@ class HelperMainAdapter() :ListAdapter<Helper, RecyclerView.ViewHolder>(diffUtil
     }
     inner class ConciergeViewHolder(var binding: ItemConciergeBinding) : RecyclerView.ViewHolder(binding.root){
         fun binding(helper: Helper){
+            binding.itemConciergeHireStatus.isVisible  = false
             if(helper.images?.size!!>0){
                 Glide.with(binding.root).load(helper.images?.get(0)).apply(RequestOptions.bitmapTransform(RoundedCorners(15))).into(binding.itemConciergeImage)
             }

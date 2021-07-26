@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -66,17 +67,19 @@ class CategoryNeederMainFragment : BaseFragment() {
         viewModel = ViewModelProvider(this).get(CategoryNeederMainViewModel::class.java)
         binding.CategoryNeederMainRcv.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
         binding.CategoryNeederMainRcv.adapter = adapterNeeder
-
+        adapterNeeder.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         binding.back.setOnClickListener {
             navController.popBackStack()
         }
 
         navController = findNavController()
-        adapterNeeder = CategoryNeederMainAdapter()
         viewModel.neederList.observe(viewLifecycleOwner, Observer {
             neederList = it
             var newDataSize = it.size
-            adapterNeeder.submitList(neederList)
+
+            adapterNeeder.submitList(it)
+            adapterNeeder.notifyDataSetChanged()
+            activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             binding.CategoryNeederMainSwipeRefreshLayout.isRefreshing = false
         })
         onScrollListener(binding.CategoryNeederMainRcv,adapterNeeder)
@@ -90,10 +93,10 @@ class CategoryNeederMainFragment : BaseFragment() {
         }
 
         binding.CategoryNeederMainSwipeRefreshLayout.setOnRefreshListener {
-
-
+            myActivity?.getWindow()?.setFlags(
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                 getList(mainCategory)
-
 
         }
     }
@@ -134,10 +137,14 @@ class CategoryNeederMainFragment : BaseFragment() {
                 var firstCompletelyVisibleItemPosition = (rcv.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
                 var lastCompletelyVisibleItemPosition = (rcv.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
                 if(lastCompletelyVisibleItemPosition == adapterNeeder.itemCount-1){
-                    CoroutineScope(Dispatchers.Main).launch {
-                        viewModel.Scrolling(adapterNeeder.currentList[0].mainCategory,
-                            adapterNeeder.currentList[adapterNeeder.itemCount-1].timeStamp)
+
+                    if(newState == RecyclerView.SCROLL_STATE_DRAGGING){
+                        CoroutineScope(Dispatchers.Main).launch {
+                            viewModel.Scrolling(adapterNeeder.currentList[0].mainCategory,
+                                adapterNeeder.currentList[adapterNeeder.itemCount-1].timeStamp)
+                        }
                     }
+
                 }
             }
         })

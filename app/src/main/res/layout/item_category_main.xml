@@ -24,8 +24,7 @@
             android:id="@+id/itemCategoryImage"
             android:layout_width="0dp"
             android:layout_height="0dp"
-
-            android:background="@drawable/shape_white_top_radius_10"
+            android:background="@drawable/shape_grey_radius_10"
             android:scaleType="fitXY"
             app:layout_constraintDimensionRatio="H,33:17"
             app:layout_constraintEnd_toEndOf="parent"

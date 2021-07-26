@@ -56,7 +56,7 @@ class NeederMainFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.needer_main_fragment,container,false)
-
+        (context as MainActivity).backListener = this
         myActivity.bottomNavigationVisible()
         return binding.root
     }
@@ -79,6 +79,7 @@ class NeederMainFragment : BaseFragment() {
         binding.NeederMainBorrowRcv.adapter = borrowAdapter
 
 
+
         binding.NeederMainKidRcv.layoutManager = LinearLayoutManager(activity?.applicationContext!!,
             LinearLayoutManager.HORIZONTAL,false)
         binding.NeederMainpetRcv.layoutManager= LinearLayoutManager(activity?.applicationContext!!,
@@ -93,7 +94,7 @@ class NeederMainFragment : BaseFragment() {
             LinearLayoutManager.HORIZONTAL,false)
         binding.NeederMainSharingRcv.layoutManager =  LinearLayoutManager(activity?.applicationContext!!,
             LinearLayoutManager.HORIZONTAL,false)
-
+        binding.back.setOnClickListener { onBackPressed() }
 
         initGetData(kidAdapter,"육아")
         initGetData(interiorAdapter,"인테리어")
@@ -125,9 +126,27 @@ class NeederMainFragment : BaseFragment() {
 
             binding.NeederMainKidRcv.scrollToPosition(0)
             binding.NeederMainSwipeRefreshLayout.isRefreshing = false
-        
+
 
         }
+
+        var adapter = HomeViewPagerAdapter(arrayListOf(R.drawable.banner_concierge))
+
+        binding.NeederMainBanner.adapter = adapter
+
+        binding.NeederMainBanner.offscreenPageLimit =3
+
+        binding.NeederMainBanner.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
+
+        setUpBoardingIndicators(arrayListOf(R.drawable.banner_concierge))
+
+        setCurrentOnboardingIndicator(0)
+
+        binding.NeederMainBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                setCurrentOnboardingIndicator(position)
+            }
+        })
     }
 
 
@@ -141,13 +160,27 @@ class NeederMainFragment : BaseFragment() {
         binding.NeederMainpetRcv.scrollToPosition(0)
     }
     private fun setGoingAllCategory(){
-        binding.NeederMainBorrowAllBtn.setOnClickListener { goToAllCategory("빌려주세요") }
-        binding.NeederMaininteriorAllBtn.setOnClickListener { goToAllCategory("인테리어") }
-        binding.NeederMainEduAllBtn.setOnClickListener { goToAllCategory("교육") }
-        binding.NeederMainEtcAllBtn.setOnClickListener { goToAllCategory("기타") }
-        binding.NeederMainKidAllBtn.setOnClickListener { goToAllCategory("육아") }
-        binding.NeederMainPetAllBtn.setOnClickListener { goToAllCategory("반려동물케어") }
-        binding.NeederMainSharingAllBtn.setOnClickListener { goToAllCategory("품앗이") }
+        binding.NeederMainBorrowAllBtn.setOnClickListener {
+            if(borrowAdapter.currentList[0].documentID.equals("-1").not())
+            goToAllCategory("빌려주세요") }
+        binding.NeederMaininteriorAllBtn.setOnClickListener {
+            if(interiorAdapter.currentList[0].documentID.equals("-1").not())
+                goToAllCategory("인테리어") }
+        binding.NeederMainEduAllBtn.setOnClickListener {
+            if(educationAdapter.currentList[0].documentID.equals("-1").not())
+            goToAllCategory("교육") }
+        binding.NeederMainEtcAllBtn.setOnClickListener {
+            if(etcAdapter.currentList[0].documentID.equals("-1").not())
+            goToAllCategory("기타") }
+        binding.NeederMainKidAllBtn.setOnClickListener {
+            if(kidAdapter.currentList[0].documentID.equals("-1").not())
+            goToAllCategory("육아") }
+        binding.NeederMainPetAllBtn.setOnClickListener {
+            if(petAdapter.currentList[0].documentID.equals("-1").not())
+            goToAllCategory("반려동물케어") }
+        binding.NeederMainSharingAllBtn.setOnClickListener {
+            if(sharingAdapter.currentList[0].documentID.equals("-1").not())
+            goToAllCategory("품앗이") }
     }
 
     private fun goToAllCategory(mainCategory : String){
@@ -155,7 +188,8 @@ class NeederMainFragment : BaseFragment() {
         var bundle = Bundle()
 
         bundle.putString("mainCategory",mainCategory)
-        navController.navigate(R.id.categoryNeederMainFragment,bundle)
+
+        navController.navigate(R.id.action_neederMainFragment_to_categoryNeederMainFragment ,bundle)
 
     }
     override fun onBackPressed() {
@@ -172,7 +206,6 @@ class NeederMainFragment : BaseFragment() {
                     bundle.putParcelable("writer",writer)
                     navController.navigate(R.id.action_neederMainFragment_to_neederReadFragment,bundle)
                 }
-
             }
         })
     }

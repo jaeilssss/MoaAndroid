@@ -19,6 +19,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
@@ -62,6 +63,7 @@ class NeederReadFragment : BaseFragment() {
                               savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.needer_read_fragment,container,false)
+        (context as MainActivity).backListener = this
         return binding.root
     }
 
@@ -72,14 +74,14 @@ class NeederReadFragment : BaseFragment() {
         myActivity.bottomNavigationGone()
         binding.model = viewModel
 
-
+        viewModel.roomId.value = "x"
 
         arguments?.let {
             needer = it.getParcelable<Needer>("needer")!!
             writer = it.getParcelable<User>("writer")!!
             // 서브 카테고리는 어디서 보여주지??...
         }
-
+        binding.back.setOnClickListener { onBackPressed() }
         binding.NeederReadChatBtn.setOnClickListener { goToChat() }
         binding.NeederReadGearImg.setOnClickListener {
             val option = NeederHireStatusBottomSheet{
@@ -98,19 +100,18 @@ class NeederReadFragment : BaseFragment() {
                         customDialog()
                     }
                 }
-
             }
             option.show(activity?.supportFragmentManager!!,"bottomsheet")
         }
 
-
         viewModel.roomId.observe(viewLifecycleOwner, Observer {
-            var bundle = Bundle()
-            bundle.putString("roomId",it)
-            bundle.putParcelable("opponentUser",writer)
-            bundle.putParcelable("Needer",needer)
-            navController.navigate(R.id.ChatFragment,bundle)
-
+            if(it.equals("x").not()){
+                var bundle = Bundle()
+                bundle.putString("roomId",it)
+                bundle.putParcelable("opponentUser",writer)
+                bundle.putParcelable("Needer",needer)
+                navController.navigate(R.id.ChatFragment,bundle)
+            }
         })
         adapter = needer.images?.let { it1 -> ConciergeReadViewpagerAdapter(activity?.applicationContext!!, it1) }!!
 
@@ -152,6 +153,8 @@ class NeederReadFragment : BaseFragment() {
         binding.NeederReadHireStatusText.text = needer.hireStatus
         val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm ")
         binding.NeederReadDate.text=dateFormat.format(needer.timeStamp.toDate())
+
+        Glide.with(binding.root).load(writer.profileImage).into(binding.NeederReadProfileImage)
     }
     fun setUpFragment(fragment : Fragment){
         val fragmentManager: FragmentManager = activity?.supportFragmentManager!!

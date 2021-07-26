@@ -24,12 +24,11 @@
                 >
                 <ImageView
                     android:id="@+id/back"
-                    android:layout_width="9.8dp"
-                    android:layout_height="17dp"
+                    android:layout_width="12dp"
+                    android:layout_height="20dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/ic_back"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
                 <ImageView

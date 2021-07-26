@@ -131,7 +131,8 @@ class NeederRepository {
                 .document(mainCategory)
                 .collection("NeederContent")
                 .whereArrayContains("aroundApt", User.getInstance().aptCode)
-                .orderBy("timeStamp", Query.Direction.DESCENDING).limit(20)
+                .orderBy("timeStamp", Query.Direction.DESCENDING)
+            .limit(20)
                 .get().addOnSuccessListener {
                     for(document in it.documents){
                         var data = document.toObject(Needer::class.java)
