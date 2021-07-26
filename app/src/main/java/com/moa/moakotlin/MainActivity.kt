@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
     private lateinit var navController: NavController
     lateinit var navGraph : NavGraph
     lateinit var backListener : onBackPressedListener
+    lateinit var model : MainViewModel
 
     companion object
     {
@@ -149,5 +150,7 @@ getSharedPreferences("AlarmSetting", Context.MODE_PRIVATE)!!
 
         super.onDestroy()
     }
+
+
 
 }

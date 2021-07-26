@@ -1,4 +1,4 @@
-package com.moa.moakotlin.costumdialog
+package com.moa.moakotlin.custom
 
 import android.app.AlertDialog
 import android.content.Context

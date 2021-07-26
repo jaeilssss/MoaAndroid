@@ -10,7 +10,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.aptList
 import com.moa.moakotlin.databinding.MyNeighborhoodFragmentBinding
@@ -19,7 +21,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MyNeighborhoodFragment : Fragment() {
+class MyNeighborhoodFragment : BaseFragment() {
 
     private lateinit var viewModel: MyNeighborhoodViewModel
 
@@ -41,9 +43,9 @@ class MyNeighborhoodFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(MyNeighborhoodViewModel::class.java)
         navController = findNavController()
         binding.model = viewModel
-
+        binding.back.setOnClickListener { navController.popBackStack() }
         binding.myAptText.text = User.getInstance().aptName
-
+        (context as MainActivity).backListener = this
         arguments?.let {
             var neighborhood = it.getStringArrayList("neighborhood")
             if (neighborhood != null) {
@@ -54,6 +56,10 @@ class MyNeighborhoodFragment : Fragment() {
         binding.neighborhoodNextBtn.setOnClickListener {
             goToAptCertificationNotice()
         }
+    }
+
+    override fun onBackPressed() {
+        navController.popBackStack()
     }
 
     private fun goToAptCertificationNotice(){

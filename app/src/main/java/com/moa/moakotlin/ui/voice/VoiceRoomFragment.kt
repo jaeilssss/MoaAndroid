@@ -1,9 +1,6 @@
 package com.moa.moakotlin.ui.voice
 
-import android.content.ComponentName
-import android.content.Context
 import android.content.Intent
-import android.content.ServiceConnection
 import android.media.AudioManager
 import android.os.*
 import android.util.Log
@@ -18,18 +15,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.firebase.firestore.FirebaseFirestore
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
-import com.moa.moakotlin.costumdialog.SinglePositiveButtonDialog
+import com.moa.moakotlin.custom.SinglePositiveButtonDialog
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.VoiceChatRoom
 import com.moa.moakotlin.databinding.VoiceRoomFragmentBinding
 import com.moa.moakotlin.recyclerview.voice.NewVoiceRoomAdapter
-import com.moa.moakotlin.recyclerview.voice.VoiceRoomAdapter
-import com.moa.moakotlin.repository.voice.VoiceRepository
-import com.moa.moakotlin.ui.bottomsheet.ConciergeReadBottomSheetFragment
 import com.moa.moakotlin.ui.bottomsheet.VoiceRoomRequestUserFragment
 import com.moa.moakotlin.ui.bottomsheet.VoiceRoomUserProfileBottomSheet
 import com.moa.moakotlin.ui.service.ForecdTerminationService
@@ -39,7 +32,6 @@ import io.agora.rtc.RtcEngine
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.io.File
 
 
 class VoiceRoomFragment : BaseFragment() {

@@ -31,6 +31,7 @@ class FirstViewFragment : BaseFragment() {
 
    lateinit var adapter : FirstViewPagerAdapter
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,30 +43,12 @@ class FirstViewFragment : BaseFragment() {
         navController =  findNavController()
         viewModel = context?.let {FirstViewViewModel(navController,it)}!!
         binding.model = viewModel
-
+        myActivity.bottomNavigationGone()
         adapter = FirstViewPagerAdapter(childFragmentManager)
 
         binding.FirstViewFragmentViewPager.adapter = adapter
         setUpBoardingIndicators()
         setCurrentOnboardingIndicator(0)
-
-//        binding.FirstViewFragmentViewPager.addOnAdapterChangeListener(object : ViewPager.OnPageChangeListener() {
-//            override fun onPageScrolled(
-//                position: Int,
-//                positionOffset: Float,
-//                positionOffsetPixels: Int
-//            ) {
-//                TODO("Not yet implemented")
-//            }
-//
-//            override fun onPageSelected(position: Int) {
-
-//            }
-//
-//            override fun onPageScrollStateChanged(state: Int) {
-//                TODO("Not yet implemented")
-//            }
-//        })
 
         binding.FirstViewFragmentViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrolled(
@@ -113,7 +96,6 @@ class FirstViewFragment : BaseFragment() {
         }
     }
 
-
     private fun setUpBoardingIndicators(){
         val indicators =
             arrayOfNulls<ImageView>(3)
@@ -130,9 +112,7 @@ class FirstViewFragment : BaseFragment() {
                 activity?.applicationContext!!,
                 R.drawable.onboarding_indicator_inactive
             ))
-
             indicators[i]?.layoutParams = layoutParams
-
             binding.indicators?.addView(indicators[i])
         }
     }

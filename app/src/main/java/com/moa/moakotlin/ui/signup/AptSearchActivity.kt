@@ -35,7 +35,7 @@ class AptSearchActivity : AppCompatActivity() {
         var adapter = SearchAptAdapter()
 
         binding.searchAptActivityRcv.adapter = adapter
-
+        binding.back.setOnClickListener { finish() }
         binding.searchAptActivityRcv.layoutManager = LinearLayoutManager(this)
 
         binding.aptSearchEdit.addTextChangedListener {

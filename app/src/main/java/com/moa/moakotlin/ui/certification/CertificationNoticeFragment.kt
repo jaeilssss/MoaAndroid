@@ -10,14 +10,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentCertificationNoticeBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CertificationNoticeFragment : Fragment() {
+class CertificationNoticeFragment : BaseFragment() {
 
     lateinit var binding: FragmentCertificationNoticeBinding
 
@@ -35,7 +37,7 @@ class CertificationNoticeFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_certification_notice,container,false)
 
         navController = findNavController()
-
+        (context as MainActivity).backListener = this
         model = ViewModelProvider(this).get(CertificationNoticeViewModel::class.java)
 
         binding.model = model
@@ -50,11 +52,16 @@ class CertificationNoticeFragment : Fragment() {
             }
         }
 
+        binding.back.setOnClickListener { navController.popBackStack() }
         binding.CertificationBtn.setOnClickListener {
             navController.navigate(R.id.aptCertificationGuideFragment)
         }
 
         return binding.root
+    }
+
+    override fun onBackPressed() {
+        navController.popBackStack()
     }
 
 

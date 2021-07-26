@@ -22,16 +22,14 @@ import androidx.viewpager2.widget.ViewPager2
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
-import com.moa.moakotlin.costumdialog.CostumAlertDialog
+import com.moa.moakotlin.custom.CostumAlertDialog
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.NeederReadFragmentBinding
-import com.moa.moakotlin.recyclerview.imagepickrcv.ImagePickerViewAdapter
 import com.moa.moakotlin.ui.bottomsheet.ConciergeReadBottomSheetFragment
 import com.moa.moakotlin.ui.bottomsheet.NeederHireStatusBottomSheet
 import com.moa.moakotlin.ui.concierge.ConciergeWriteActivity
 import com.moa.moakotlin.ui.concierge.helper.ConciergeReadIntroduceFragment
-import com.moa.moakotlin.ui.concierge.helper.HelperReadFragment
 import com.moa.moakotlin.viewpageradapter.ConciergeReadViewpagerAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

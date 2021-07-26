@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
@@ -47,6 +48,8 @@ lateinit var model : AptSearchViewModel
 
         var adapter = SearchAptAdapter()
 
+        (context as MainActivity).backListener = this
+        binding.back.setOnClickListener { navController.popBackStack() }
         binding.searchAptRcv.adapter = adapter
 
         binding.searchAptRcv.layoutManager = LinearLayoutManager(context)

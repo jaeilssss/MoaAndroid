@@ -12,11 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.view.isVisible
@@ -27,8 +25,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
-import com.moa.moakotlin.costumdialog.AptCertificationImageAlertDialog
-import com.moa.moakotlin.costumdialog.SinglePositiveButtonDialog
+import com.moa.moakotlin.custom.AptCertificationImageAlertDialog
+import com.moa.moakotlin.custom.SinglePositiveButtonDialog
 import com.moa.moakotlin.databinding.AptModifyCertificationFragmentBinding
 import com.moa.moakotlin.recyclerview.certification.CertificationImageAdapter
 import kotlinx.coroutines.CoroutineScope

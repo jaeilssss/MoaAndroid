@@ -1,9 +1,7 @@
 package com.moa.moakotlin.ui.mypage
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,11 +14,9 @@ import com.bumptech.glide.Glide
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
-import com.moa.moakotlin.costumdialog.AptCertificationImageAlertDialog
-import com.moa.moakotlin.costumdialog.CostumAlertDialog
+import com.moa.moakotlin.custom.AptCertificationImageAlertDialog
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentMyPageBinding
-import com.moa.moakotlin.ui.signup.AptSearchActivity
 
 
 class MyPageFragment : BaseFragment() {

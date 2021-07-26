@@ -10,9 +10,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
-import com.moa.moakotlin.costumdialog.SinglePositiveButtonDialog
+import com.moa.moakotlin.custom.SinglePositiveButtonDialog
 import com.moa.moakotlin.databinding.ClaimNewAptFragmentBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -43,8 +44,8 @@ class ClaimNewAptFragment : BaseFragment() {
         viewModel = ViewModelProvider(this).get(ClaimNewAptViewModel::class.java)
 
         navController = findNavController()
-
-
+        (context as MainActivity).backListener = this
+        binding.back.setOnClickListener { navController.popBackStack() }
         binding.model = viewModel
         setChangeButton()
         binding.claimNewAptSubmit.setOnClickListener {

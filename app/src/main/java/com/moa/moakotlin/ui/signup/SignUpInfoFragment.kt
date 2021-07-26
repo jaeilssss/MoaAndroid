@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.BaseScrollFragment
@@ -41,8 +42,9 @@ class SignUpInfoFragment : BaseScrollFragment() {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_sign_up_info,container,false)
         navController = findNavController()
+        binding.back.setOnClickListener { navController.popBackStack() }
         model  = ViewModelProvider(this).get(SignUpInfoViewModel::class.java)
-
+        (context as MainActivity).backListener = this
         binding.model = model
 
         if(model.nickCheck.get()==true){

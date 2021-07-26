@@ -13,6 +13,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -27,6 +28,7 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.Transfer
 import com.moa.moakotlin.base.onBackPressedListener
+import com.moa.moakotlin.data.Banner
 import com.moa.moakotlin.data.Megazin
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentHomeBinding
@@ -46,6 +48,8 @@ lateinit var transfer: Transfer
     lateinit var binding: FragmentHomeBinding
 
     lateinit var navController: NavController
+    var megazinList = ArrayList<Megazin>()
+    var megazinAdapter = MegazinAdapter()
 
     lateinit var model: HomeViewModel
     override fun onAttach(context: Context) {
@@ -77,15 +81,14 @@ lateinit var transfer: Transfer
         list.add(R.drawable.banner_home_second)
         list.add(R.drawable.banner_home_third)
 
-        var adapter = HomeViewPagerAdapter(list)
+
+                var adapter = HomeViewPagerAdapter(list)
 
         binding.homeViewPager.adapter = adapter
 
         binding.homeViewPager.offscreenPageLimit =3
 
         binding.homeViewPager.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
-
-        val data = activity?.getSharedPreferences("isChattingAlarm",Context.MODE_PRIVATE)
 
         setUpBoardingIndicators()
 
@@ -96,28 +99,25 @@ lateinit var transfer: Transfer
                 setCurrentOnboardingIndicator(position)
             }
         })
+
         binding.model = model
 
         transfer.bottomVisible()
 
-        var megazinList = ArrayList<Megazin>()
-        megazinList.add(Megazin())
-        megazinList.add(Megazin())
-        megazinList.add(Megazin())
-        megazinList.add(Megazin())
 
-        var megazinAdapter = MegazinAdapter()
 
         binding.homeMegazinRcv.adapter = megazinAdapter
 
         binding.homeMegazinRcv.layoutManager = GridLayoutManager(activity?.applicationContext!!,2)
 
-        megazinAdapter.submitList(megazinList)
+
 
 
         binding.homeTalentSharingBnt.setOnClickListener { navController.navigate(R.id.ConciergeMainFragment) }
         binding.homeMoaVoiceChatBtn.setOnClickListener { navController.navigate(R.id.voiceMainFragment) }
         binding.homeClaimBtn.setOnClickListener { Toast.makeText(context,"준비중입니다",Toast.LENGTH_SHORT).show() }
+        getMoaMagazine()
+//        getHomeBanner()
         return binding.root
     }
 
@@ -152,7 +152,7 @@ lateinit var transfer: Transfer
             binding.indicators?.addView(indicators[i])
         }
     }
-    private fun setCurrentOnboardingIndicator( index : Int){
+    private fun setCurrentOnboardingIndicator(index : Int){
         var childCount = binding.indicators?.childCount
         for(i in  0 until childCount!!){
             var imageView = binding.indicators?.getChildAt(i) as ImageView
@@ -170,4 +170,45 @@ lateinit var transfer: Transfer
 
         super.onDestroy()
     }
+
+    fun getMoaMagazine(){
+        CoroutineScope(Dispatchers.Main).launch {
+            model.getMoaMagazine()
+        }
+       model.magazineList.observe(viewLifecycleOwner, Observer {
+           megazinAdapter.submitList(it)
+       })
+
+    }
+//
+//    fun getHomeBanner(){
+//        CoroutineScope(Dispatchers.Main).launch {
+//            model.getHomeBanner()
+//
+//        }
+//        model.homeBannerList.observe(viewLifecycleOwner, Observer {
+////            setBannerViewPager(it)
+//
+//        })
+//    }
+
+//    fun setBannerViewPager(list : ArrayList<Banner>){
+//        var adapter = HomeViewPagerAdapter(list)
+//
+//        binding.homeViewPager.adapter = adapter
+//
+//        binding.homeViewPager.offscreenPageLimit =3
+//
+//        binding.homeViewPager.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
+//
+//        setUpBoardingIndicators()
+//
+//        setCurrentOnboardingIndicator(0)
+//
+//        binding.homeViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+//            override fun onPageSelected(position: Int) {
+//                setCurrentOnboardingIndicator(position)
+//            }
+//        })
+//    }
 }

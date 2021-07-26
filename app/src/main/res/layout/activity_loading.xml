@@ -22,7 +22,7 @@
     android:layout_height="wrap_content"
     android:text="@string/loadingMessage"
     android:fontFamily="@font/notosanscjkkr_medium"
-    android:textSize="15dp"
+    android:textSize="17dp"
     android:textColor="@color/moaBlack"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"

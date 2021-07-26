@@ -47,7 +47,7 @@ class NeederMainAdapter() : ListAdapter<Needer, RecyclerView.ViewHolder>(diffUti
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if(holder is ConciergeViewHolder) holder.binding(currentList[position])
-        else (holder as HelperMainAdapter.EmptyConciergeViewHolder).binding()
+        else (holder as NeederMainAdapter.EmptyConciergeViewHolder).binding()
     }
 
     inner class EmptyConciergeViewHolder(var binding: ItemEmptyConciergeBinding) : RecyclerView.ViewHolder(binding.root){

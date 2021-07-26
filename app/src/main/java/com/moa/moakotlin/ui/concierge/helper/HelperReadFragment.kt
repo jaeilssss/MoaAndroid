@@ -23,10 +23,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
-import com.moa.moakotlin.costumdialog.CostumAlertDialog
+import com.moa.moakotlin.custom.CostumAlertDialog
 
 import com.moa.moakotlin.data.Helper
-import com.moa.moakotlin.data.Kid
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentHelperReadBinding
 import com.moa.moakotlin.ui.bottomsheet.ConciergeReadBottomSheetFragment

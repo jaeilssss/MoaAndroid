@@ -17,29 +17,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.signup.PolicyFragment">
 
-    <ImageView
-        android:id="@+id/backButton"
-        android:layout_width="9.8dp"
-        android:layout_height="17dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/ic_back"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="약관동의"
-        app:layout_constraintBottom_toBottomOf="@id/backButton"
         android:textSize="18sp"
+        android:layout_marginTop="10dp"
         android:textColor="@color/moaBlack"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:textStyle="bold"
         android:id="@+id/policyTextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/backButton"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView

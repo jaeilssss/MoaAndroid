@@ -33,11 +33,13 @@ class BannerRepository{
         var db = FirebaseFirestore.getInstance()
 
         db.collection("Banner")
+                .whereEqualTo("type","main")
             .get()
             .addOnSuccessListener {
                 for(document in it.documents){
                     var banner = document.toObject(Banner::class.java)
                     if (banner != null) {
+                        println("홈 배너")
                         list.add(banner)
                     }
                 }

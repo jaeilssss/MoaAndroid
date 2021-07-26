@@ -18,6 +18,7 @@ import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
+import com.moa.moakotlin.data.Banner
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.databinding.FragmentHelperMainBinding
@@ -102,23 +103,23 @@ class HelperMainFragment : BaseFragment() {
     }
 
     fun setViewPager(){
-        var adapter = HomeViewPagerAdapter(arrayListOf(R.drawable.banner_help_main))
-
-        binding.HelperMainBanner.adapter = adapter
-
-        binding.HelperMainBanner.offscreenPageLimit =3
-
-        binding.HelperMainBanner.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
-
-        setUpBoardingIndicators(arrayListOf(R.drawable.banner_help_main))
-
-        setCurrentOnboardingIndicator(0)
-
-        binding.HelperMainBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                setCurrentOnboardingIndicator(position)
-            }
-        })
+//        var adapter = HomeViewPagerAdapter(ArrayList<Banner>())
+//
+//        binding.HelperMainBanner.adapter = adapter
+//
+//        binding.HelperMainBanner.offscreenPageLimit =3
+//
+//        binding.HelperMainBanner.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
+//
+//        setUpBoardingIndicators(arrayListOf(R.drawable.banner_help_main))
+//
+//        setCurrentOnboardingIndicator(0)
+//
+//        binding.HelperMainBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+//            override fun onPageSelected(position: Int) {
+//                setCurrentOnboardingIndicator(position)
+//            }
+//        })
     }
 
     override fun onBackPressed() {

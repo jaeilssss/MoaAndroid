@@ -2,6 +2,7 @@ package com.moa.moakotlin.ui.home
 
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import com.google.android.gms.tasks.Task
@@ -14,8 +15,11 @@ import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.moa.moakotlin.base.BaseViewModel
+import com.moa.moakotlin.data.Banner
+import com.moa.moakotlin.data.Magazine
 import com.moa.moakotlin.data.PushDTO
 import com.moa.moakotlin.data.PushMessage
+import com.moa.moakotlin.repository.banner.BannerRepository
 import com.moa.moakotlin.repository.push.FcmRepository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -26,6 +30,9 @@ class HomeViewModel() : ViewModel() {
 
     private lateinit var functions: FirebaseFunctions
 
+      var magazineList = MutableLiveData<ArrayList<Magazine>>()
+
+    var homeBannerList = MutableLiveData<ArrayList<Banner>>()
     fun init(){
 //        deleteAtPath("test123/sss/test456")
 //        registerPushToken()
@@ -81,6 +88,24 @@ class HomeViewModel() : ViewModel() {
             map["pushtoken"] = pushToken!!
             FirebaseFirestore.getInstance().collection("pushtokens").document(uid!!).set(map)
         }
+    }
+
+
+   suspend fun getMoaMagazine(){
+        var repository = BannerRepository()
+
+       var list= repository.getMoaMagazine()
+
+       magazineList.value = list
+
+    }
+
+    suspend fun getHomeBanner(){
+        var repository = BannerRepository()
+
+        var list = repository.getHomeBanner()
+
+        homeBannerList.value = list
     }
 
 

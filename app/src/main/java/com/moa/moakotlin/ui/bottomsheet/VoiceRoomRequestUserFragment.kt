@@ -4,20 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.firestore.FirebaseFirestore
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.OnItemClickListener
-import com.moa.moakotlin.costumdialog.AptCertificationImageAlertDialog
-import com.moa.moakotlin.costumdialog.CostumAlertDialog
-import com.moa.moakotlin.costumdialog.SinglePositiveButtonDialog
+import com.moa.moakotlin.custom.AptCertificationImageAlertDialog
 import com.moa.moakotlin.data.RequestUser
 import com.moa.moakotlin.recyclerview.bottom.VoiceRoomRequestAdapter
-import kotlinx.android.synthetic.main.bottom_sheet_concierge_read_option.view.*
 
 class VoiceRoomRequestUserFragment(var documentID : String  , val itemCLick: (Int) -> Unit): BottomSheetDialogFragment() {
 

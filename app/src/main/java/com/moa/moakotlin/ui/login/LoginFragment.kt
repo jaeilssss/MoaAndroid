@@ -24,6 +24,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.moa.moakotlin.LoadingActivity
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.*
 import com.moa.moakotlin.data.User
@@ -56,7 +57,7 @@ class LoginFragment : BaseScrollFragment() {
 
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         binding.model = loginViewModel
-
+        (context as MainActivity).backListener = this
         binding.lifecycleOwner=this
         activity?.let { loginViewModel.init(it) }
         binding.sendMessageBtn.setOnClickListener {
@@ -130,6 +131,8 @@ class LoginFragment : BaseScrollFragment() {
         loginViewModel.phoneNumber.observe(viewLifecycleOwner, Observer {
             setChangeButton()
         })
+        binding.backButton.setOnClickListener {  navController.popBackStack() }
+
         return binding.root
     }
 

@@ -12,11 +12,13 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.firestore.FirebaseFirestore
 import com.moa.moakotlin.LoadingActivity
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.databinding.FragmentSignUpInfoBinding
 import com.moa.moakotlin.databinding.FragmentSignUpResultBinding
 
-class SignUpResultFragment : Fragment() {
+class SignUpResultFragment : BaseFragment() {
 
     lateinit var binding: FragmentSignUpResultBinding
 
@@ -36,7 +38,7 @@ class SignUpResultFragment : Fragment() {
         navController = findNavController()
 
         model = ViewModelProvider(this).get(SignUpResultViewModel::class.java)
-
+        (context as MainActivity).backListener = this
         binding.model = model
         var bundle = arguments as Bundle
         var check = bundle.getBoolean("isCertified")
@@ -55,6 +57,10 @@ class SignUpResultFragment : Fragment() {
             activity?.finish()
         }
         return binding.root
+    }
+
+    override fun onBackPressed() {
+
     }
 
 

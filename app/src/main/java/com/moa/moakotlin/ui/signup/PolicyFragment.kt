@@ -10,11 +10,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.PolicyFragmentBinding
 
-class PolicyFragment : Fragment() {
+class PolicyFragment : BaseFragment() {
 
     private lateinit var binding: PolicyFragmentBinding
 
@@ -28,7 +30,7 @@ class PolicyFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(PolicyViewModel::class.java)
         binding.model = viewModel
         navController = findNavController()
-
+        (context as MainActivity).backListener = this
 
         binding.nextBtn.setOnClickListener {
 
@@ -39,6 +41,10 @@ class PolicyFragment : Fragment() {
         }
         observeViewModel()
         return binding.root
+    }
+
+    override fun onBackPressed() {
+         navController.popBackStack()
     }
 
     fun observeViewModel(){

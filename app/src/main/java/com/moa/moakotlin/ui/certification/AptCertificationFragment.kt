@@ -23,10 +23,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
-import com.moa.moakotlin.costumdialog.AptCertificationImageAlertDialog
+import com.moa.moakotlin.custom.AptCertificationImageAlertDialog
 import com.moa.moakotlin.databinding.AptCertificationFragmentBinding
 import com.moa.moakotlin.recyclerview.certification.CertificationImageAdapter
 import kotlinx.coroutines.CoroutineScope
@@ -74,14 +75,14 @@ class AptCertificationFragment : BaseFragment() {
         navController = findNavController()
 
         binding.model = viewModel
-
+        (context as MainActivity).backListener = this
         list = ArrayList<String>()
 
 
         adapter = CertificationImageAdapter()
 
         binding.aptCertificationRcv.adapter = adapter
-
+        binding.back.setOnClickListener { navController.popBackStack() }
 
         adapter.setOnItemCLickListener(object : OnItemClickListener{
             override fun onItemClick(v: View, position: Int) {
