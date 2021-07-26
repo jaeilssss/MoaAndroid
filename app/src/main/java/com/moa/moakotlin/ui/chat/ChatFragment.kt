@@ -109,6 +109,7 @@ class ChatFragment : BaseFragment() {
                     rcv.scrollToPosition(adapter.itemCount-1)
                 }
             }
+
         model.msg.observe(viewLifecycleOwner,Observer{
             adapter.list.add(model.msg.value!!)
             adapter.resetting()

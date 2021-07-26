@@ -16,6 +16,7 @@ class CategoryMainViewModel : ViewModel() {
 
     var list = ArrayList<Helper>()
     var newDatasize =0
+    var lastPosition = 0
     suspend fun getList(mainCategory : String) :ArrayList<Helper>{
         list.clear()
         var repository = HelperRepository()

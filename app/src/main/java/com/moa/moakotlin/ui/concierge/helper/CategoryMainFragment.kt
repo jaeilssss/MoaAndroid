@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -59,6 +61,8 @@ class CategoryMainFragment : BaseFragment() {
         binding.CategoryMainRcv.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
         binding.CategoryMainRcv.adapter = adapterHelper
 
+        adapterHelper.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+
         binding.back.setOnClickListener {
             navController.popBackStack()
         }
@@ -76,16 +80,18 @@ class CategoryMainFragment : BaseFragment() {
             var newDataSize = it.size
             adapterHelper.submitList(it)
             adapterHelper.notifyDataSetChanged()
-            println("새로은 데이터")
+            activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             binding.CategoryMainSwipeRefreshLayout.isRefreshing = false
-
         })
 
         setAdapterClickListener()
         onScrollListener(binding.CategoryMainRcv,adapterHelper)
 
     binding.CategoryMainSwipeRefreshLayout.setOnRefreshListener {
+        myActivity?.getWindow()?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
         getList(mainCategory)
+
     }
 
         binding.back.setOnClickListener { navController.popBackStack() }
@@ -126,12 +132,9 @@ class CategoryMainFragment : BaseFragment() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 var firstCompletelyVisibleItemPosition = (rcv.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
                 var lastCompletelyVisibleItemPosition = (rcv.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
-                println("last - .#${lastCompletelyVisibleItemPosition}")
                 if(lastCompletelyVisibleItemPosition == adapter.itemCount-1){
                     if(newState == RecyclerView.SCROLL_STATE_DRAGGING)
                     CoroutineScope(Dispatchers.Main).launch {
-                        println("scroll")
-                        lastSize = adapter.itemCount
                         viewModel.Scrolling(adapter.currentList[0].mainCategory,
                                 adapter.currentList[adapter.itemCount-1].timeStamp)
 

@@ -53,7 +53,7 @@ class CategoryHelperMainAdapter(): ListAdapter<Helper, CategoryHelperMainAdapter
             if(helper.isNego.not()){
                 binding.CategoryMainIsNego.isVisible = false
             }
-            binding.itemCategoryPrice.text = helper.hopeWage
+            binding.itemCategoryPrice.text = "${helper.hopeWage}원"
             binding.CategoryHelperLayout.setOnClickListener(ButtonClick())
 
             binding.ItemCategoryStatus.isVisible =false
