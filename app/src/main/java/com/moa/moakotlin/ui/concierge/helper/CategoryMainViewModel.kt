@@ -15,7 +15,9 @@ class CategoryMainViewModel : ViewModel() {
     var neederList =  MutableLiveData<ArrayList<Helper>>()
 
     var list = ArrayList<Helper>()
+    var newDatasize =0
     suspend fun getList(mainCategory : String) :ArrayList<Helper>{
+        list.clear()
         var repository = HelperRepository()
 
         return repository.getList(mainCategory)
@@ -34,7 +36,7 @@ class CategoryMainViewModel : ViewModel() {
         var repository = HelperRepository()
 
         var data = repository.getNextData(mainCategory,timeStamp)
-
+        newDatasize = data.size
         list.addAll(data)
 
         println("lise.size - >${list.size}")

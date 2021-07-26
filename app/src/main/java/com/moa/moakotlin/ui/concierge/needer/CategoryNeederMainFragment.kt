@@ -65,7 +65,7 @@ class CategoryNeederMainFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(CategoryNeederMainViewModel::class.java)
         binding.CategoryNeederMainRcv.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
-
+        binding.CategoryNeederMainRcv.adapter = adapterNeeder
 
         binding.back.setOnClickListener {
             navController.popBackStack()
@@ -76,11 +76,8 @@ class CategoryNeederMainFragment : BaseFragment() {
         viewModel.neederList.observe(viewLifecycleOwner, Observer {
             neederList = it
             var newDataSize = it.size
-
-            binding.CategoryNeederMainRcv.adapter = adapterNeeder
             adapterNeeder.submitList(neederList)
             binding.CategoryNeederMainSwipeRefreshLayout.isRefreshing = false
-
         })
         onScrollListener(binding.CategoryNeederMainRcv,adapterNeeder)
         setAdapterClickListener()

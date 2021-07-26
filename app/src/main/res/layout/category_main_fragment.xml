@@ -30,6 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:text="육아"
         android:textStyle="bold"
+        android:textColor="@color/moaBlack"
         android:textSize="18sp"
         android:id="@+id/CategoryMainText"
         android:fontFamily="@font/notosanscjkkr_medium"
@@ -52,7 +53,7 @@
     app:layout_constraintTop_toBottomOf="@id/back"
     android:layout_marginTop="10dp"
     android:scrollbars="vertical"
-    android:paddingBottom="?attr/actionBarSize"
+
     android:id="@+id/CategoryMainRcv"/>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

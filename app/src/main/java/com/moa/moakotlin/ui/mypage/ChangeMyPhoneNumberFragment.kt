@@ -39,8 +39,6 @@ class ChangeMyPhoneNumberFragment : Fragment() {
 
     var countDownTimer: CountDownTimer ?=null
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -83,8 +81,6 @@ class ChangeMyPhoneNumberFragment : Fragment() {
         viewModel.phoneNumber.observe(viewLifecycleOwner, Observer {
             setBackGroundChange()
         })
-
-
     }
 
     private fun createCountDownTimer(initialMililis : Long) =

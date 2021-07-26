@@ -55,7 +55,7 @@ class VoiceRoomFragment : BaseFragment() {
 
     var countDownTimer: CountDownTimer ?=null
     var isRequest = false
-
+    var isClose = false
 
     var EVENT_TYPE_ON_USER_AUDIO_MUTED = 7
 
@@ -275,7 +275,10 @@ class VoiceRoomFragment : BaseFragment() {
                 if(isRequest==true){
                     viewModel.deleteRequestUser(voiceChatRoom.documentID, User.getInstance().uid)
                 }
+            isClose = true
                 navController.popBackStack(R.id.voiceMainFragment, false)
+
+
             }
 
     }
@@ -414,18 +417,20 @@ class VoiceRoomFragment : BaseFragment() {
     }
 
     override fun onDetach() {
+        if(isClose==false){
 
+            if(viewModel.myVoiceUser.value?.role.equals("owner")) {
+                viewModel.deleteVoiceChatRoom(voiceChatRoom.documentID)
+            }else if(viewModel.myVoiceUser.value?.role.equals("speaker")){
+                viewModel.changeSpeakersCount(voiceChatRoom.documentID,-1)
+                viewModel.changeAudienceCount(voiceChatRoom.documentID)
+            }else {
+                viewModel.deleteRequestUser(voiceChatRoom.documentID,User.getInstance().uid)
+                viewModel.changeAudienceCount(voiceChatRoom.documentID)
+            }
+        }
         viewModel.deleteVoiceUser(voiceChatRoom.documentID,User.getInstance().uid)
 
-        if(viewModel.myVoiceUser.value?.role.equals("owner")) {
-            viewModel.deleteVoiceChatRoom(voiceChatRoom.documentID)
-        }else if(viewModel.myVoiceUser.value?.role.equals("speaker")){
-            viewModel.changeSpeakersCount(voiceChatRoom.documentID,-1)
-            viewModel.changeAudienceCount(voiceChatRoom.documentID)
-        }else {
-            viewModel.deleteRequestUser(voiceChatRoom.documentID,User.getInstance().uid)
-            viewModel.changeAudienceCount(voiceChatRoom.documentID)
-        }
         super.onDetach()
     }
 

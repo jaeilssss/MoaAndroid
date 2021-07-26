@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.databinding.FragmentConciergeMainBinding
@@ -32,7 +33,7 @@ class ConciergeMainFragment : BaseFragment() {
         // Inflate the layout for this fragment
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_concierge_main,container,false)
-
+        (context as MainActivity).backListener = this
 
         navController = findNavController()
 
@@ -45,12 +46,14 @@ class ConciergeMainFragment : BaseFragment() {
         binding.ConciergeMainHelpLayout.setOnClickListener {
             navController.navigate(R.id.action_ConciergeMainFragment_to_neederMainFragment)
         }
+
+        binding.back.setOnClickListener { navController.popBackStack() }
         binding.model =model
         return binding.root
     }
 
     override fun onBackPressed() {
-        navController.navigate(R.id.HomeFragment)
+        navController.popBackStack()
     }
 
 }

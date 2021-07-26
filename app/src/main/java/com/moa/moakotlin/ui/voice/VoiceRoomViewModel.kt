@@ -64,13 +64,14 @@ class VoiceRoomViewModel : ViewModel() {
                     when(dc.type){
                         DocumentChange.Type.ADDED ->{
                             requestUserList.add("${requestUser.phoneNumber}")
-
+                            //
                         }
                         DocumentChange.Type.MODIFIED->{
 
                         }
                         DocumentChange.Type.REMOVED->{
                             requestUserList.remove("${requestUser.phoneNumber}")
+                            //
                         }else ->{
 
                     }

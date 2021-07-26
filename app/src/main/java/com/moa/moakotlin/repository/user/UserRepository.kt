@@ -69,7 +69,8 @@ class UserRepository {
 
         var db = FirebaseFirestore.getInstance()
 
-        db.collection("User").whereEqualTo("nickName",nickname)
+        db.collection("User")
+                .whereEqualTo("nickName",nickname)
                 .get().addOnSuccessListener {
                     if(it.isEmpty){
                         result = true
@@ -98,6 +99,7 @@ class UserRepository {
         var inputstream = FileInputStream(File(path))
 
         val riversRef = storageRef.child("UserProfile"+"/" + file.lastPathSegment)
+
         val uploadTask = riversRef.putStream(inputstream)
 
         uploadTask.continueWithTask { riversRef.downloadUrl }.addOnCompleteListener { task ->

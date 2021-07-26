@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Needer
@@ -25,7 +26,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CategoryMainFragment : Fragment() {
+class CategoryMainFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = CategoryMainFragment()
@@ -39,19 +40,14 @@ class CategoryMainFragment : Fragment() {
 
     private lateinit var adapterHelper : CategoryHelperMainAdapter
     private var helperList = ArrayList<Helper>()
-    lateinit var myActivity : MainActivity
-
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        myActivity = activity as MainActivity
-    }
-
+    private lateinit var mainCategory : String
+    var lastSize = 0
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.category_main_fragment,container,false)
-
+        (context as MainActivity).backListener = this
+        myActivity.bottomNavigationGone()
         return binding.root
     }
 
@@ -59,37 +55,44 @@ class CategoryMainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         myActivity.bottomNavigationGone()
         viewModel = ViewModelProvider(this).get(CategoryMainViewModel::class.java)
-
+        adapterHelper = CategoryHelperMainAdapter()
         binding.CategoryMainRcv.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
-
+        binding.CategoryMainRcv.adapter = adapterHelper
 
         binding.back.setOnClickListener {
             navController.popBackStack()
         }
-        adapterHelper = CategoryHelperMainAdapter()
 
         navController = findNavController()
 
         arguments.let {
-            var mainCategory = it?.getString("mainCategory")
-            if (mainCategory != null) {
+             mainCategory = it?.getString("mainCategory")!!
                 getList(mainCategory)
                 binding.CategoryMainText.text = mainCategory
-            }
         }
+
         viewModel.neederList.observe(viewLifecycleOwner, Observer {
             helperList = it
             var newDataSize = it.size
-            binding.CategoryMainRcv.adapter = adapterHelper
             adapterHelper.submitList(it)
+            adapterHelper.notifyDataSetChanged()
+            println("새로은 데이터")
+            binding.CategoryMainSwipeRefreshLayout.isRefreshing = false
+
         })
+
         setAdapterClickListener()
         onScrollListener(binding.CategoryMainRcv,adapterHelper)
 
     binding.CategoryMainSwipeRefreshLayout.setOnRefreshListener {
-
-
+        getList(mainCategory)
     }
+
+        binding.back.setOnClickListener { navController.popBackStack() }
+    }
+
+    override fun onBackPressed() {
+        navController.popBackStack()
     }
 
     fun setAdapterClickListener(){
@@ -123,10 +126,15 @@ class CategoryMainFragment : Fragment() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 var firstCompletelyVisibleItemPosition = (rcv.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
                 var lastCompletelyVisibleItemPosition = (rcv.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
-                if(lastCompletelyVisibleItemPosition == adapterHelper.itemCount-1){
+                println("last - .#${lastCompletelyVisibleItemPosition}")
+                if(lastCompletelyVisibleItemPosition == adapter.itemCount-1){
+                    if(newState == RecyclerView.SCROLL_STATE_DRAGGING)
                     CoroutineScope(Dispatchers.Main).launch {
+                        println("scroll")
+                        lastSize = adapter.itemCount
                         viewModel.Scrolling(adapter.currentList[0].mainCategory,
-                            adapterHelper.currentList[adapterHelper.itemCount-1].timeStamp)
+                                adapter.currentList[adapter.itemCount-1].timeStamp)
+
                     }
                 }
             }

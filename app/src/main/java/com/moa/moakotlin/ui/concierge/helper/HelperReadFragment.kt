@@ -53,12 +53,6 @@ class HelperReadFragment : BaseFragment() {
     companion object{
         val REQUEST_MODIFY_CODE = 4000
     }
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        myActivity = activity as MainActivity
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -70,14 +64,15 @@ class HelperReadFragment : BaseFragment() {
         navController = findNavController()
 
         model = ViewModelProvider(this).get(HelperReadViewModel::class.java)
-        
+        (context as MainActivity).backListener = this
+        myActivity.bottomNavigationGone()
         binding.model = model
         myActivity.bottomNavigationGone()
         arguments?.let {
             helper = it.getParcelable<Helper>("data")!!
             writer = it.getParcelable<User>("writer")!!
         }
-
+        binding.back.setOnClickListener { navController.popBackStack() }
         binding.HelperReadOption.setOnClickListener {
         val option : ConciergeReadBottomSheetFragment = ConciergeReadBottomSheetFragment {
             when(it){

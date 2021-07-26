@@ -53,7 +53,7 @@ class HelperMainFragment : BaseFragment() {
         navController = findNavController()
 
         model = ViewModelProvider(this).get(HelperMainViewModel::class.java)
-
+        (context as MainActivity).backListener = this
         myActivity.bottomNavigationVisible()
 
         binding.HelperMainKidRcv.adapter = kidAdapter
@@ -71,20 +71,36 @@ class HelperMainFragment : BaseFragment() {
         binding.model = model
 
         binding.HelperMainKidAllBtn.setOnClickListener {
-            goToCategoryMain("육아")
-        }
+            if(!kidAdapter.currentList[0].documentID.equals("-1")){
+                goToCategoryMain("육아")
+            }
 
+        }
         binding.HelperMainEduAllBtn.setOnClickListener {
+            if(educationAdapter.currentList[0].documentID.equals("-1").not())
             goToCategoryMain("교육")
         }
         binding.HelperMainPetAllBtn.setOnClickListener {
+            if(!petAdapter.currentList[0].documentID.equals("-1"))
             goToCategoryMain("반려동물케어")
         }
         binding.HelperMaininteriorAllBtn.setOnClickListener {
+            if(interiorAdapter.currentList[0].documentID.equals("-1").not())
             goToCategoryMain("인테리어")
         }
         binding.HelperMainEtcAllBtn.setOnClickListener {
+            if(etcAdapter.currentList[0].documentID.equals("-1").not())
             goToCategoryMain("기타")
+        }
+        binding.back.setOnClickListener { navController.popBackStack() }
+
+        binding.HelperMainRefresh.setOnRefreshListener {
+            initGetData(kidAdapter,"육아")
+            initGetData(interiorAdapter,"인테리어")
+            initGetData(petAdapter,"반려동물케어")
+            initGetData(educationAdapter,"교육")
+            initGetData(etcAdapter,"기타")
+            binding.HelperMainRefresh.isRefreshing = false
         }
 
         initGetData(kidAdapter,"육아")
@@ -99,6 +115,24 @@ class HelperMainFragment : BaseFragment() {
         setClickListener(etcAdapter)
 
         setViewPager()
+
+                var adapter = HomeViewPagerAdapter(arrayListOf(R.drawable.banner_concierge))
+
+        binding.HelperMainBanner.adapter = adapter
+
+        binding.HelperMainBanner.offscreenPageLimit =3
+
+        binding.HelperMainBanner.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
+
+        setUpBoardingIndicators(arrayListOf(R.drawable.banner_help_main))
+
+        setCurrentOnboardingIndicator(0)
+
+        binding.HelperMainBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                setCurrentOnboardingIndicator(position)
+            }
+        })
         return binding.root
     }
 

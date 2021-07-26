@@ -55,7 +55,8 @@ class MyAccountSettingFragment : Fragment() {
                         var intent = Intent(context, LoadingActivity::class.java)
                         startActivity(intent)
                         activity?.finish()
-                    }.show()
+                    }.setNegativeButton {  }
+                        .show()
             }
         }
     }

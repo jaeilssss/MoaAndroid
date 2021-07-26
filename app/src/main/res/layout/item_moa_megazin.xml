@@ -2,20 +2,22 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <ImageView
-        android:layout_width="155dp"
-        android:layout_height="205dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:padding="5dp"
+        app:layout_constraintDimensionRatio="H,3:4"
         android:scaleType="fitXY"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:src="@drawable/shape_white_radius_15dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
         android:id="@+id/itemMegazinImage"/>
     <com.moa.moakotlin.custom.OutlineTextView
         android:layout_width="0dp"
@@ -32,7 +34,7 @@
         android:includeFontPadding="false"
         app:textStroke="true"
         android:textSize="12dp"
-        app:textStrokeWidth="6.0"
+        app:textStrokeWidth="3.0"
         android:layout_marginBottom="10dp"
         android:maxLines="3"
         app:textStrokeColor="@color/moaBlack"

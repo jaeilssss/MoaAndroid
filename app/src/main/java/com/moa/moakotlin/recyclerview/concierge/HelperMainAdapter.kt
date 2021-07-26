@@ -58,12 +58,12 @@ class HelperMainAdapter() :ListAdapter<Helper, RecyclerView.ViewHolder>(diffUtil
     inner class ConciergeViewHolder(var binding: ItemConciergeBinding) : RecyclerView.ViewHolder(binding.root){
         fun binding(helper: Helper){
             if(helper.images?.size!!>0){
-                Glide.with(binding.root).load(helper.images?.get(0)).apply(RequestOptions.bitmapTransform(RoundedCorners(10))).into(binding.itemConciergeImage)
+                Glide.with(binding.root).load(helper.images?.get(0)).apply(RequestOptions.bitmapTransform(RoundedCorners(15))).into(binding.itemConciergeImage)
             }
             if(helper.isNego.not()){
                 binding.itemConciergeNego.isVisible = false
             }
-            binding.itemConciergeHopeWage.text = helper.hopeWage
+            binding.itemConciergeHopeWage.text = "${helper.hopeWage}원"
             binding.itemConciergeContent.text = helper.content
             binding.itemConciergeAptName.text = helper.aptName
             val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일")
