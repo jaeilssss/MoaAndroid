@@ -11,7 +11,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.ChattingRoom
 import com.moa.moakotlin.data.Needer
@@ -21,7 +23,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class NeederCompletionFragment : Fragment() {
+class NeederCompletionFragment : BaseFragment() {
 
 
 
@@ -40,7 +42,7 @@ class NeederCompletionFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater , R.layout.needer_completion_fragment,container,false)
-
+        (context as MainActivity).backListener = this
         return binding.root
     }
 
@@ -65,7 +67,11 @@ class NeederCompletionFragment : Fragment() {
 
     }
 
-   private fun setData(){
+    override fun onBackPressed() {
+        navController.popBackStack()
+    }
+
+    private fun setData(){
         if(needer.images!!.size>0){
             Glide.with(activity?.applicationContext!!).load(needer.images!!.get(0)).into(binding.NeederCompletionContentImage)
         }

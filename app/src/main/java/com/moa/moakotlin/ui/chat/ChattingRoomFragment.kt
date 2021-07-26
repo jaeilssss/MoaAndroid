@@ -19,6 +19,7 @@ import com.google.firebase.firestore.*
 import com.google.firebase.ktx.Firebase
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
+import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.ChattingRoom
 import com.moa.moakotlin.databinding.FragmentChattingRoomBinding
@@ -48,15 +49,26 @@ class ChattingRoomFragment : BaseFragment() {
 
         binding.model = model
 
-//        var rcv = binding.chattingRoomRecyclerview
+        var rcv = binding.ChattingRoomRcv
 
         adapter = context?.let { ChattingRoomAdapter(it,ArrayList<ChattingRoom>()) }!!
 
-//        rcv.layoutManager=  LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-//
-//        rcv.adapter = adapter
+        rcv.layoutManager=  LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+
+        rcv.adapter = adapter
+
+        adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
 
         model.setSnapShot()
+
+        adapter.setOnItemClickListener(object : OnItemClickListener{
+            override fun onItemClick(v: View, position: Int) {
+                var bundle = Bundle()
+                bundle.putString("roomId",adapter.roomList[position])
+                bundle.putParcelable("opponentUser",adapter.userList.get(position))
+                navController.navigate(R.id.action_chattingRoomFragment_to_ChatFragment,bundle)
+            }
+        })
 
         model.chattingRoomData.observe(viewLifecycleOwner, Observer {
             adapter.list = model.chattingRoomData.value!!

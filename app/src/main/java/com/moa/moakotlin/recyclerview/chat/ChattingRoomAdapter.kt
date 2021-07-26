@@ -37,6 +37,12 @@ class ChattingRoomAdapter(var context: Context,var list: ArrayList<ChattingRoom>
     var i  = 0
 
     lateinit var mListener : OnItemClickListener
+
+
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
     fun setOnItemClickListener(mListener : OnItemClickListener){
         this.mListener = mListener
     }
@@ -59,7 +65,7 @@ class ChattingRoomAdapter(var context: Context,var list: ArrayList<ChattingRoom>
                 var user = repository.getUserInfo(response.opponentUid)
 
                     holder.nickname.text = user?.nickName
-                val sdf = SimpleDateFormat("yyyy년 MM월 dd일 hh:mm a")
+                val sdf = SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm ")
                 var date = sdf.format(response.timeStamp.toDate())
                     holder.latest_time.text = date
                 if(user==null){

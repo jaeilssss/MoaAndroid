@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.NeederReviewWriteFragmentBinding
@@ -18,7 +19,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class NeederReviewWriteFragment : Fragment() {
+class NeederReviewWriteFragment : BaseFragment {
 
 
     private lateinit var viewModel: NeederReviewWriteViewModel
@@ -30,6 +31,9 @@ class NeederReviewWriteFragment : Fragment() {
     private lateinit var opponentUser : User
 
     private lateinit var needer : Needer
+
+    constructor() : super()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,7 +59,14 @@ class NeederReviewWriteFragment : Fragment() {
         binding.NeederREviewWriteSubmit.setOnClickListener {
          completeNeeder()
         }
+
+        binding.back.setOnClickListener { onBackPressed() }
     }
+
+    override fun onBackPressed() {
+        navController.popBackStack()
+    }
+
     fun completeNeeder(){
         CoroutineScope(Dispatchers.Main).launch {
             if(viewModel.reviewWrite(opponentUser.uid)){

@@ -75,6 +75,7 @@ class ChatFragment : BaseFragment() {
         (context as MainActivity).backListener = this
 
         myActivity.bottomNavigationGone()
+
         roomId = arguments?.getString("roomId")?:"x"
 
         opponentUser = arguments?.getParcelable<User>("opponentUser")!!

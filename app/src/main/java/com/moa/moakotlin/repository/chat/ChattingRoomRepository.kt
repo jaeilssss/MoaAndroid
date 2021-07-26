@@ -40,6 +40,7 @@ class ChattingRoomRepository {
         var db = FirebaseFirestore.getInstance()
         var listener =  db.collection("User").document(uid)
             .collection("ChattingRoom")
+            .orderBy("timeStamp",Query.Direction.DESCENDING)
 
 //                .orderBy("timeStamp", Query.Direction.DESCENDING)
         return listener

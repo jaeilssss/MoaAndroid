@@ -17,8 +17,8 @@
     android:layout_height="match_parent">
     <ImageView
         android:id="@+id/back"
-        android:layout_width="9.8dp"
-        android:layout_height="17dp"
+        android:layout_width="12dp"
+        android:layout_height="20dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/ic_back"
@@ -41,13 +41,13 @@
         android:id="@+id/NeederReviewWriteText"/>
 
     <ImageView
-        android:layout_width="103dp"
-        android:layout_height="137dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/back"
         android:layout_marginTop="83dp"
-        android:background="#bdbdbd"
+        android:background="@drawable/img_review_write"
         android:id="@+id/NeederReviewWriteImage"/>
 
     <TextView

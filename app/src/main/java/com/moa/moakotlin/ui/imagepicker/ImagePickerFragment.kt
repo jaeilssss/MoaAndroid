@@ -21,6 +21,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.Transfer
 import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.databinding.FragmentImagePickerBinding
@@ -29,7 +30,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ImagePickerFragment : Fragment() {
+class ImagePickerFragment : BaseFragment() {
 
     lateinit var binding: FragmentImagePickerBinding
     lateinit var adapter : ImagePickerAdapter
@@ -72,7 +73,7 @@ class ImagePickerFragment : Fragment() {
             }
         }
 
-
+        binding.imagePickerBack.setOnClickListener { navController.popBackStack() }
         adapter = context?.let { list = Picture.getGalleryPhotos(it)
             ImagePickerAdapter(navController,it,list)
         }!!
@@ -106,6 +107,10 @@ class ImagePickerFragment : Fragment() {
         }
         binding.model = model
         return binding.root
+    }
+
+    override fun onBackPressed() {
+        navController.popBackStack()
     }
 
 

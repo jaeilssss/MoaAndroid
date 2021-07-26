@@ -151,6 +151,7 @@ class NeederReadFragment : BaseFragment() {
         binding.NeederReadMainCategory.text = "${needer.mainCategory} / ${needer.subCategory}"
         binding.NeederReadHopeDate.text = needer.hopeDate
         binding.NeederReadHireStatusText.text = needer.hireStatus
+        if(needer.hireStatus.equals("모집완료")) binding.NeederReadGearImg.isVisible  = false
         val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm ")
         binding.NeederReadDate.text=dateFormat.format(needer.timeStamp.toDate())
 

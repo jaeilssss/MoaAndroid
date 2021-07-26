@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.mypage.DropOutQuestionFragment">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="12dp"
+        android:layout_height="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ic_back"
+        android:id="@+id/DropOutQuestionBack"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/DropOutQuestionBack"
+        app:layout_constraintBottom_toBottomOf="@id/DropOutQuestionBack"
+        android:text="탈퇴하기"
+        android:textSize="18sp"
+        android:textColor="@color/moaBlack"
+        android:textStyle="bold"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/DropOutQuestionBack"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/img_drop_out"
+        android:id="@+id/DropOutQuestionImg"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/DropOutQuestionImg"
+        android:text="모두의 아파트를\n 탈퇴하는 이유를 알려주세요"
+        android:textStyle="bold"
+        android:textColor="@color/moaBlack"
+        android:textSize="19sp"
+        android:gravity="center"
+        android:id="@+id/DropOutQuestionText"/>
+
+<androidx.appcompat.widget.AppCompatCheckBox
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/DropOutQuestionText"
+    android:layout_marginTop="20dp"
+    android:layout_marginStart="15dp"
+    android:scaleX="0.8"
+    android:scaleY="0.8"
+    android:button="@drawable/selector_signup_policy_checkbox"
+    android:id="@+id/DropOutCheckBoxIDModify"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/DropOutCheckBoxIDModify"
+        android:text="아이디 변경 또는 재가입을 위해서"
+        android:textColor="@color/moaBlack"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        app:layout_constraintTop_toTopOf="@id/DropOutCheckBoxIDModify"
+        app:layout_constraintBottom_toBottomOf="@id/DropOutCheckBoxIDModify"/>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/DropOutCheckBoxIDModify"
+        app:layout_constraintTop_toBottomOf="@id/DropOutCheckBoxIDModify"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:button="@drawable/selector_signup_policy_checkbox"
+        android:id="@+id/DropOutCheckBoxEmptyData"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/DropOutCheckBoxEmptyData"
+        app:layout_constraintBottom_toBottomOf="@id/DropOutCheckBoxEmptyData"
+        app:layout_constraintStart_toEndOf="@id/DropOutCheckBoxEmptyData"
+        android:text="나에게 필요한 정보가 부족해서"
+        android:textStyle="bold"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        android:textColor="@color/moaBlack"
+        android:textSize="16sp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

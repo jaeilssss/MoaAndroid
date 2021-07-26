@@ -12,6 +12,7 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.Chat
 import org.w3c.dom.Text
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -99,34 +100,43 @@ class ChatAdapter(var navController: NavController, var context: Context,var lis
       lateinit var talk : TextView
 
         lateinit var nickname : TextView
+        lateinit var date : TextView
         init {
             talk = view.findViewById(R.id.itemLeftChatMessage)
+            date = view.findViewById(R.id.itemChatLeftDate)
         }
             fun bind(chat : Chat){
 
                 talk.setText(chat.talk)
+                val dateFormat = SimpleDateFormat("a hh:mm")
+                date.text = dateFormat.format(chat.timeStamp.toDate())
             }
     }
     class rightViewHolder(var view : View , var adapter: ChatAdapter,var context: Context) : RecyclerView.ViewHolder(view){
         lateinit var talk : TextView
-
+        lateinit var date : TextView
         init {
-
+            date =  view.findViewById(R.id.itemChatRightDate)
         }
         fun bind(chat : Chat){
+            val dateFormat = SimpleDateFormat("a hh:mm")
             talk = view.findViewById(R.id.itemRightChatMessage)
             talk.setText(chat.talk)
+            date.text = dateFormat.format(chat.timeStamp.toDate())
         }
     }
     class rightImageViewHolder(var view : View , var adapter: ChatAdapter,var context: Context) : RecyclerView.ViewHolder(view){
         lateinit var image : ImageView
         lateinit var profile : ImageView
+        lateinit var date : TextView
         lateinit var nickname : TextView
         init {
             profile = view.findViewById(R.id.chat_image_right_profile)
             nickname = view.findViewById(R.id.TextView_nickname)
+
         }
         fun bind(chat : Chat){
+            val dateFormat = SimpleDateFormat("a hh:mm")
             image = view.findViewById(R.id.chat_image_right_image)
             Glide.with(context).load(chat.images?.get(0)).into(image)
         }
@@ -134,12 +144,14 @@ class ChatAdapter(var navController: NavController, var context: Context,var lis
     class leftImageViewHoldfer(var view : View , var adapter: ChatAdapter,var context: Context) : RecyclerView.ViewHolder(view){
         lateinit var image : ImageView
         lateinit var profile : ImageView
+        lateinit var date : TextView
         lateinit var nickname : TextView
         init {
             profile = view.findViewById(R.id.chat_image_left_profile)
             nickname = view.findViewById(R.id.TextView_nickname)
         }
         fun bind(chat : Chat){
+            val dateFormat = SimpleDateFormat("a hh:mm")
             image = view.findViewById(R.id.chat_image_left_image)
             Glide.with(context).load(chat.images?.get(0)).into(image)
         }

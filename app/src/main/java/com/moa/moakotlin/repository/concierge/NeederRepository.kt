@@ -29,7 +29,8 @@ class NeederRepository {
     }
     suspend fun modify(mainCategory: String,needer : Needer) : Needer{
         var db = FirebaseFirestore.getInstance()
-        db.collection("Needer").document(mainCategory)
+        db.collection("Needer")
+            .document(mainCategory)
                 .collection("NeederContent")
             .document(needer.documentID!!)
             .set(needer).addOnCompleteListener {
@@ -84,7 +85,6 @@ class NeederRepository {
 
                 if(i==picturePathList.size-1){
                     CoroutineScope(Dispatchers.Main).async {
-                        println("ddd")
                         action.invoke()
                     }
                 }
@@ -105,7 +105,6 @@ class NeederRepository {
 
                 uploadTask.continueWithTask { riversRef.downloadUrl }.addOnCompleteListener { task ->
                     uploadedList.put(number, task.result.toString())
-                    println("number - > ${number}")
                     if(uploadedList.size==picturePathList.size){
 
                         for(i in 0 until picturePathList.size){
@@ -149,9 +148,7 @@ class NeederRepository {
         var result = false
         var db = FirebaseFirestore.getInstance()
 
-        db.collection("User")
-            .document(uid)
-            .collection("Review")
+        db.collection("Review")
             .add(review)
             .addOnCompleteListener {
                 if(it.isSuccessful){
@@ -163,10 +160,11 @@ class NeederRepository {
 
     fun hireCompletion(needer : Needer){
         var db = FirebaseFirestore.getInstance()
-        db.collection("Needer").document(needer.mainCategory)
-            .collection(needer.mainCategory)
+        db.collection("Needer")
+            .document(needer.mainCategory)
+            .collection("NeederContent")
             .document(needer.documentID!!)
-            .set(needer)
+            .update("hireStatus","모집완료")
     }
 
 
