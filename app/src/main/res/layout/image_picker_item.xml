@@ -23,6 +23,7 @@
             android:id="@+id/image_check_box_button"
             android:gravity="center"
             android:textSize="15dp"
+            android:layout_margin="10dp"
             android:includeFontPadding="false"
             android:textColor="@color/moaBlack"
             android:fontFamily="@font/notosanscjkkr_bold"

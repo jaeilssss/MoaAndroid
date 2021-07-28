@@ -83,7 +83,10 @@ class ImagePickerViewFragment(var selectedPictures : ArrayList<String>) : Fragme
                         viewModel.list.removeAt(index)
                         viewModel.selectedPictureList.value = viewModel.list
                         adapter.i = 1
-                        adapter.resetting()
+                        adapter.resetting(position)
+                        for(num in adapter.checkBoxList){
+                            adapter.resetting(num)
+                        }
                     } else {
                         if (viewModel.selectedPictureList.value!!.size+selectedPictures.size == 10) {
                             Toast.makeText(context , "최대 10개 까지 업로드 가능합니다",Toast.LENGTH_SHORT).show()
@@ -93,7 +96,7 @@ class ImagePickerViewFragment(var selectedPictures : ArrayList<String>) : Fragme
                             viewModel.list.add(adapter.list[position])
                             viewModel.selectedPictureList.value = viewModel.list
                             adapter.i = 1
-                            adapter.resetting()
+                            adapter.resetting(position)
                         }
                     }
                 }

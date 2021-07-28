@@ -47,8 +47,8 @@ class ConciergeImagePickerAdapter(var context: Context, var list : ArrayList<Str
         }
     }
 
-    fun resetting(){
-        notifyDataSetChanged()
+    fun resetting(position : Int){
+            notifyItemChanged(position)
     }
    inner class KidImagePickerViewHolder(view: View) : RecyclerView.ViewHolder(view){
         lateinit var image : ImageView

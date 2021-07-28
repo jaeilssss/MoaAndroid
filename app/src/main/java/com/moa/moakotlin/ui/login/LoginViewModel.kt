@@ -44,8 +44,9 @@ class LoginViewModel() : ViewModel(){
 
 suspend fun getUserInfo(uid : String) : Boolean{
     var repository = UserRepository()
-    return repository.getUserInfo(uid)!=null
+    return repository.getMyUserInfo(uid)!=null
 }
+
     suspend  fun checkCertificationMessage() : Boolean{
 
         if(loginRepository.storedVerificationId==null){

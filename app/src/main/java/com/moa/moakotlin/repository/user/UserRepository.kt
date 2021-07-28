@@ -16,6 +16,20 @@ import java.io.FileInputStream
 
 class UserRepository {
 
+
+    suspend fun getMyUserInfo(phoneUid : String) : User?{
+        var db = FirebaseFirestore.getInstance()
+        var user :User ?=null
+        db.collection("User")
+                .whereEqualTo("phoneUid",phoneUid)
+                .get()
+                .addOnSuccessListener {
+                    for(document in it.documents){
+                        user = document.toObject(User::class.java)
+                    }
+                }.await()
+        return user
+    }
     suspend fun getUserInfo(documentId : String): User ?{
         var user :User ?=null
         User.getInstance()
@@ -25,7 +39,6 @@ class UserRepository {
             .get().addOnSuccessListener {
                 if(it.exists()){
                     user = it.toObject(User::class.java)!!
-                    user!!.uid = it.id
                 }else{
                     user = null
                 }
@@ -34,13 +47,15 @@ class UserRepository {
         return user
     }
 
-    suspend fun signUpUser(user : User) : Boolean{
-        var result = false
+    suspend fun signUpUser(user : User) : String?{
+        var result :String ?=null
         var db = FirebaseFirestore.getInstance()
 
-        db.collection("User").document(FirebaseAuth.getInstance().uid!!).set(user)
+        db.collection("User").add(user)
             .addOnSuccessListener {
-                    result = true
+                user.uid = it.id
+                addUid(user)
+                    result = it.id
             }.await()
         return result
     }
@@ -108,7 +123,12 @@ class UserRepository {
         return result
     }
 
+    fun addUid(user : User){
+        var db = FirebaseFirestore.getInstance()
 
+        db.collection("User").document(user.uid)
+                .set(user)
+    }
 
     suspend fun modify(user : User) : Boolean{
         var db = FirebaseFirestore.getInstance()

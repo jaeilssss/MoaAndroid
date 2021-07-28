@@ -24,10 +24,13 @@ class AptCertificationViewModel : ViewModel() {
     suspend fun signUp(){
         var repository = UserRepository()
 
-        repository.signUpUser(User.getInstance())
+        var uid = repository.signUpUser(User.getInstance())
+        if(uid!=null){
+            User.getInstance().uid = uid
+        }
+
     }
      fun certification(images : List<String>){
-
 
          CoroutineScope(Dispatchers.IO).async {
              var imageUploadRepository = ImagePickerRepository()

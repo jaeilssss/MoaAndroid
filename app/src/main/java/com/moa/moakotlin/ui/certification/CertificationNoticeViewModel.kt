@@ -9,9 +9,13 @@ class CertificationNoticeViewModel() : ViewModel(){
 
    suspend fun signUp(user :User) : Boolean{
         var repository = UserRepository()
-
-      return  repository.signUpUser(user)
-
+      var uid= repository.signUpUser(user)
+       if(uid !=null){
+           User.getInstance().uid =uid
+           return true
+       }else{
+           return false
+       }
     }
 
 

@@ -53,7 +53,8 @@ class LoginFragment : BaseScrollFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_login,container,false)
-            navController = findNavController()
+
+        navController = findNavController()
 
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         binding.model = loginViewModel
@@ -86,7 +87,7 @@ class LoginFragment : BaseScrollFragment() {
 
                 if(loginViewModel.checkCertificationMessage()){
                     User.getInstance().phoneNumber = binding.phoneNumberEditText.text.toString()
-                    User.getInstance().uid = FirebaseAuth.getInstance().uid.toString()
+                    User.getInstance().phoneUid = FirebaseAuth.getInstance().uid.toString()
 
                     if(FirebaseAuth.getInstance().currentUser?.let { it1 ->
                             loginViewModel.getUserInfo(
