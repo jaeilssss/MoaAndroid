@@ -24,7 +24,6 @@ class UserRepository {
         db.collection("User").document(documentId)
             .get().addOnSuccessListener {
                 if(it.exists()){
-
                     user = it.toObject(User::class.java)!!
                     user!!.uid = it.id
                 }else{

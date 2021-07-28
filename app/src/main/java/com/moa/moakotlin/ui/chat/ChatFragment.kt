@@ -78,6 +78,7 @@ class ChatFragment : BaseFragment() {
 
         roomId = arguments?.getString("roomId")?:"x"
 
+        Toast.makeText(context,roomId,Toast.LENGTH_SHORT).show()
         opponentUser = arguments?.getParcelable<User>("opponentUser")!!
 
         needer?.images?.map { print(it)  }

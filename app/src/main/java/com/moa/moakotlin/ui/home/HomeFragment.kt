@@ -121,6 +121,7 @@ lateinit var transfer: Transfer
     }
 
     private fun setUpBoardingIndicators(){
+        binding.indicators?.removeAllViews()
         val indicators =
                 arrayOfNulls<ImageView>(3)
 
@@ -138,7 +139,6 @@ lateinit var transfer: Transfer
             ))
 
             indicators[i]?.layoutParams = layoutParams
-
             binding.indicators?.addView(indicators[i])
         }
     }

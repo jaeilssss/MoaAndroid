@@ -62,7 +62,7 @@
                 app:layout_constraintDimensionRatio="H,5:1"
                 android:text="@string/CertificationMessageFirst"
                 app:layout_constraintTop_toBottomOf="@id/aptCertificationImage"
-                android:layout_marginTop="38dp"
+                android:layout_marginTop="18dp"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/notosanscjkkr_medium"

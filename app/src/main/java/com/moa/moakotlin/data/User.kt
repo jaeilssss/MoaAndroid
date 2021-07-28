@@ -27,7 +27,8 @@ data class User(
     var isAgreeEventAlarm : Boolean = true,
     @field:JvmField
     var isAgreeChattingAlarm : Boolean = true,
-    var pushToken : String=""
+    var pushToken : String="",
+    var phoneUid : String=""
 
 ): Parcelable{
     companion object{

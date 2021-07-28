@@ -101,8 +101,7 @@ getSharedPreferences("AlarmSetting", Context.MODE_PRIVATE)!!
             putBoolean("isChattingAlarm",User.getInstance().isAgreeChattingAlarm)
             putBoolean("isEventAlarm",User.getInstance().isAgreeEventAlarm)
             putBoolean("isMarketingAlarm",User.getInstance().isAgreeMarketing)
-            commit()
-        }
+            commit()  }
 }
 
     override fun bottomVisible() {

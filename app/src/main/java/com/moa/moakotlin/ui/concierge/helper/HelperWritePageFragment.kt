@@ -21,6 +21,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
+import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.databinding.FragmentHelperWritePageBinding
 import com.moa.moakotlin.recyclerview.certification.CertificationImageAdapter
@@ -116,6 +117,14 @@ class HelperWritePageFragment : Fragment() {
         binding.HelperWriteRcv.adapter = adapter
 
         binding.HelperWriteRcv.layoutManager = LinearLayoutManager(activity?.applicationContext!!,LinearLayoutManager.HORIZONTAL,false)
+
+        adapter.setOnItemCLickListener(object :OnItemClickListener{
+            override fun onItemClick(v: View, position: Int) {
+                selectedPictureList.removeAt(position)
+                model.selectedPictureList.value = selectedPictureList
+            }
+
+        })
 
     }
 

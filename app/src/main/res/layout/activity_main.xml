@@ -32,7 +32,6 @@
             android:visibility="gone"
             app:labelVisibilityMode="labeled"
             app:itemTextColor="@color/moaBlack"
-
             android:id="@+id/main_bottom_navigation"
             app:itemIconTint="@drawable/bottom_icon_color"
             app:menu="@menu/menu_bottom" />
