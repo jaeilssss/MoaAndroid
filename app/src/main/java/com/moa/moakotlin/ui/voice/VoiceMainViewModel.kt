@@ -50,11 +50,11 @@ class VoiceMainViewModel : ViewModel() {
         return repository.goToVoiceRoom(documentID,voiceUser)
     }
 
-    fun increasePeopleCount(position : Int){
+    fun increasePeopleCount(documentID : String){
 
 
         var repository = VoiceRepository()
 
-        repository.changeVoiceChatRoomCount(voiceChatRoomList.value?.get(position)!!.documentID,1)
+        repository.changeVoiceChatRoomCount(documentID,1)
     }
     }

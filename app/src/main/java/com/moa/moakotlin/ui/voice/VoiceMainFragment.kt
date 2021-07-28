@@ -24,7 +24,9 @@ import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
+import com.moa.moakotlin.custom.AptCertificationImageAlertDialog
 import com.moa.moakotlin.data.User
+import com.moa.moakotlin.data.VoiceChatRoom
 import com.moa.moakotlin.databinding.VoiceMainFragmentBinding
 import com.moa.moakotlin.recyclerview.voice.VoiceMainAdapter
 import com.moa.moakotlin.viewpageradapter.HomeViewPagerAdapter
@@ -43,6 +45,7 @@ class VoiceMainFragment : BaseFragment() {
 
     private lateinit var adapter : VoiceMainAdapter
 
+    private  var voiceChatRoom: VoiceChatRoom ?=null
 //    private lateinit var myActivity : MainActivity
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -70,10 +73,12 @@ class VoiceMainFragment : BaseFragment() {
 
         binding.VoiceMainRcv.layoutManager = LinearLayoutManager(activity?.applicationContext)
 
-        permission()
         initView()
 
-        binding.VoiceMainCreageRoomBtn.setOnClickListener {checkAptCertification()}
+        binding.VoiceMainCreateRoomBtn.setOnClickListener {
+            permission(2000)
+
+        }
         viewModel.voiceChatRoomList.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
             adapter.notifyDataSetChanged()
@@ -82,27 +87,13 @@ class VoiceMainFragment : BaseFragment() {
 
         adapter.setOnItemClickListener(object :OnItemClickListener{
             override fun onItemClick(v: View, position: Int) {
-                CoroutineScope(Dispatchers.Main).launch {
-                    binding.VoiceMainLoadingProgressBar.show()
-                    if(viewModel.goToVoiceRoom(adapter.currentList[position].documentID)){
+                voiceChatRoom = adapter.currentList[position]
+                permission(1000)
 
-                        var token = adapter.currentList[position].documentID?.let { viewModel.generateToken(it) }
-
-                        var bundle = Bundle()
-
-                        bundle.putString("token",token)
-                        bundle.putParcelable("voiceChatRoom",adapter.currentList[position])
-
-                        viewModel.increasePeopleCount(position)
-                        binding.VoiceMainLoadingProgressBar.hide()
-                        navController.navigate(R.id.voiceRoomFragment,bundle)
-                    }else{
-                        binding.VoiceMainLoadingProgressBar.hide()
-                        showToast(activity?.applicationContext!!,"접속이 불가능합니다")
-                    }
-                }
             }
         })
+
+
 
 //        var adapter = HomeViewPagerAdapter(arrayListOf(R.drawable.banner_voice_main))
 //
@@ -125,7 +116,31 @@ class VoiceMainFragment : BaseFragment() {
 //        })
         return binding.root
     }
+    fun goToVoiceChatRoom(){
 
+        CoroutineScope(Dispatchers.Main).launch {
+
+
+            binding.VoiceMainLoadingProgressBar.show()
+            if(voiceChatRoom?.documentID?.let { viewModel.goToVoiceRoom(it) } == true){
+
+                var token = voiceChatRoom?.documentID?.let { viewModel.generateToken(it) }
+
+                var bundle = Bundle()
+
+                bundle.putString("token",token)
+                bundle.putParcelable("voiceChatRoom",voiceChatRoom)
+
+                viewModel.increasePeopleCount(voiceChatRoom!!.documentID)
+                binding.VoiceMainLoadingProgressBar.hide()
+                navController.navigate(R.id.voiceRoomFragment,bundle)
+            }else{
+                binding.VoiceMainLoadingProgressBar.hide()
+                showToast(activity?.applicationContext!!,"접속이 불가능합니다")
+            }
+        }
+
+    }
 
     fun initView(){
         CoroutineScope(Dispatchers.Main).launch {
@@ -143,24 +158,24 @@ class VoiceMainFragment : BaseFragment() {
             navController.navigate(R.id.voiceRoomMakeFragment)
         }
     }
-    private fun showContextPopupPermission(){
-        AlertDialog.Builder(activity?.applicationContext!!).setTitle("권한이 필요합니다")
-            .setMessage("음성 컨탠츠를 이용하시려면 필요한 권한이 있습니다")
-            .setPositiveButton("동의하기"){ _, _ ->
-                var permissions = ArrayList<String>()
-                permissions.add(android.Manifest.permission.RECORD_AUDIO)
-                permissions.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                var reqPermissionArray: Array<String?>? =
-                    arrayOfNulls(permissions.size)
-                reqPermissionArray = permissions.toArray(reqPermissionArray)
-                requestPermissions(reqPermissionArray,1000)
-                requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),1000)
-            }
-            .setNegativeButton("취소하기") { _, _ ->}
-            .create()
-            .show()
+    private fun showContextPopupPermission(requestCode: Int){
+        context?.let {
+            AptCertificationImageAlertDialog(it)
+                    .setMessage("음성 컨탠츠를 이용하시려면 필요한 권한이 있습니다")
+                    .setPositiveButton("동의하기"){
+                        var permissions = ArrayList<String>()
+                        permissions.add(android.Manifest.permission.RECORD_AUDIO)
+                        permissions.add(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        var reqPermissionArray: Array<String?>? =
+                                arrayOfNulls(permissions.size)
+                        reqPermissionArray = permissions.toArray(reqPermissionArray)
+                        requestPermissions(reqPermissionArray,requestCode)
+                    }
+                    .setNegativeButton() {}
+                    .show()
+        }
     }
-    private fun permission(){
+    private fun permission(requestCode: Int){
         when{
             ContextCompat.checkSelfPermission(
                 activity?.applicationContext!!,
@@ -171,12 +186,18 @@ class VoiceMainFragment : BaseFragment() {
                         android.Manifest.permission.WRITE_EXTERNAL_STORAGE
                     )==PackageManager.PERMISSION_GRANTED
             ->{
-                var bundle = Bundle()
+                if(requestCode==1000){
+                    goToVoiceChatRoom()
+                }else if(requestCode==2000){
+                    checkAptCertification()
+                }
             }
             shouldShowRequestPermissionRationale(android.Manifest.permission.RECORD_AUDIO)->{
                 //교육용!!
-                if(activity!=null){
-                    showContextPopupPermission()
+                if(requestCode==1000){
+                    showContextPopupPermission(1000)
+                }else if(requestCode==2000){
+                    showContextPopupPermission(2000)
                 }
 
             }
@@ -187,9 +208,21 @@ class VoiceMainFragment : BaseFragment() {
                 var reqPermissionArray: Array<String?>? =
                     arrayOfNulls(permissions.size)
                 reqPermissionArray = permissions.toArray(reqPermissionArray)
-                requestPermissions(reqPermissionArray,1000)
+                requestPermissions(reqPermissionArray,requestCode)
             }
         }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(grantResults.get(0)==PackageManager.PERMISSION_GRANTED && grantResults.get(1)==PackageManager.PERMISSION_GRANTED){
+            if(requestCode==1000){
+                goToVoiceChatRoom()
+            }else if(requestCode==2000){
+                checkAptCertification()
+            }
+        }
+
     }
     private fun setUpBoardingIndicators(list : ArrayList<Int>){
         val indicators =

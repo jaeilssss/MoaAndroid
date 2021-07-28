@@ -71,7 +71,7 @@ class NeederMainAdapter() : ListAdapter<Needer, RecyclerView.ViewHolder>(diffUti
                 binding.itemConciergeHireStatus.text = "모집완료"
             }
             binding.itemConciergeHopeWage.text = "${helper.hopeWage}원"
-            binding.itemConciergeContent.text = helper.content
+            binding.itemConciergeTitle.text = helper.title
             binding.itemConciergeAptName.text = helper.aptName
             val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일")
 
