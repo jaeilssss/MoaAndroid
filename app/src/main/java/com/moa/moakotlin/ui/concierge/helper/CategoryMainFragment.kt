@@ -97,6 +97,8 @@ class CategoryMainFragment : BaseFragment() {
         binding.back.setOnClickListener { navController.popBackStack() }
     }
 
+
+
     override fun onBackPressed() {
         navController.popBackStack()
     }

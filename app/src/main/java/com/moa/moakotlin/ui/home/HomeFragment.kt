@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.functions.FirebaseFunctions
@@ -65,7 +66,6 @@ lateinit var transfer: Transfer
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         // Inflate the layout for this fragment
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false)
@@ -83,8 +83,6 @@ lateinit var transfer: Transfer
         binding.model = model
 
         transfer.bottomVisible()
-
-
 
         binding.homeMegazinRcv.adapter = megazinAdapter
 
@@ -184,12 +182,12 @@ lateinit var transfer: Transfer
 
     fun setBannerViewPager(list : ArrayList<Banner>){
         var adapter = HomeViewPagerAdapter(list)
-
+        adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         binding.homeViewPager.adapter = adapter
 
         binding.homeViewPager.offscreenPageLimit =3
 
-        binding.homeViewPager.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
+//        binding.homeViewPager.getChildAt(0).overScrollMode=View.OVER_SCROLL_ALWAYS
 
         setUpBoardingIndicators()
 

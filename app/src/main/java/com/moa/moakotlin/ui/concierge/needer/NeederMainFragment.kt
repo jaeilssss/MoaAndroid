@@ -67,7 +67,7 @@ class NeederMainFragment : BaseFragment() {
         binding.model = viewModel
         navController = findNavController()
 
-        setViewPager()
+        setBanner()
         myActivity.bottomNavigationVisible()
 
         binding.NeederMainKidRcv.adapter = kidAdapter
@@ -241,25 +241,30 @@ class NeederMainFragment : BaseFragment() {
         }
     }
 
-    fun setViewPager(){
-//        var adapter = HomeViewPagerAdapter(ArrayList<Banner>())
-//
-//        binding.NeederMainBanner.adapter = adapter
-//        binding.NeederMainBanner.offscreenPageLimit =3
-//
-//        binding.NeederMainBanner.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
-//
-//        setUpBoardingIndicators(arrayListOf(R.drawable.banner_help_main))
-//
-//        setCurrentOnboardingIndicator(0)
-//
-//        binding.NeederMainBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-//            override fun onPageSelected(position: Int) {
-//                setCurrentOnboardingIndicator(position)
-//            }
-//        })
+    fun setBanner(){
+        CoroutineScope(Dispatchers.Main).launch {
+          var list = viewModel.getBanner()
+            var adapter = HomeViewPagerAdapter(list)
+
+            binding.NeederMainBanner.adapter = adapter
+//            binding.NeederMainBanner.offscreenPageLimit =3
+
+//            binding.NeederMainBanner.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
+
+            setUpBoardingIndicators(list)
+
+            setCurrentOnboardingIndicator(0)
+
+            binding.NeederMainBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    setCurrentOnboardingIndicator(position)
+                }
+            })
+
+        }
+
     }
-    private fun setUpBoardingIndicators(list : ArrayList<Int>){
+    private fun setUpBoardingIndicators(list : ArrayList<Banner>){
         val indicators =
                 arrayOfNulls<ImageView>(list.size)
 

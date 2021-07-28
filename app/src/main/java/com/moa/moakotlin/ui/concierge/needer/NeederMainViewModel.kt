@@ -1,8 +1,10 @@
 package com.moa.moakotlin.ui.concierge.needer
 
 import androidx.lifecycle.ViewModel
+import com.moa.moakotlin.data.Banner
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.data.User
+import com.moa.moakotlin.repository.banner.BannerRepository
 import com.moa.moakotlin.repository.concierge.HelperRepository
 import com.moa.moakotlin.repository.concierge.NeederRepository
 import com.moa.moakotlin.repository.user.UserRepository
@@ -22,5 +24,15 @@ class NeederMainViewModel : ViewModel() {
         var writer = repository.getUserInfo(uid)
 
         return writer
+    }
+
+
+
+    suspend fun getBanner() : ArrayList<Banner>{
+
+        var repository = BannerRepository()
+
+        return repository.getConciergeBanner()
+
     }
 }

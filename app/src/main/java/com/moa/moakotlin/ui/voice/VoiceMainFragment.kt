@@ -19,12 +19,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.custom.AptCertificationImageAlertDialog
+import com.moa.moakotlin.data.Banner
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.VoiceChatRoom
 import com.moa.moakotlin.databinding.VoiceMainFragmentBinding
@@ -94,34 +96,40 @@ class VoiceMainFragment : BaseFragment() {
         })
 
 
+        fun setBanner(){
+            CoroutineScope(Dispatchers.Main).launch {
+                var list = viewModel.getVoiceBanner()
+                var adapter = HomeViewPagerAdapter(list)
+                adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
 
-//        var adapter = HomeViewPagerAdapter(arrayListOf(R.drawable.banner_voice_main))
-//
-//        binding.VoiceMainViewPager.adapter = adapter
-//
-//        binding.VoiceMainViewPager.offscreenPageLimit =3
-//
-//        binding.back.setOnClickListener { onBackPressed() }
-//
-//        binding.VoiceMainViewPager.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
-//
-//        setUpBoardingIndicators(arrayListOf(R.drawable.banner_concierge))
-//
-//        setCurrentOnboardingIndicator(0)
-//
-//        binding.VoiceMainViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-//            override fun onPageSelected(position: Int) {
-//                setCurrentOnboardingIndicator(position)
-//            }
-//        })
+        binding.VoiceMainViewPager.adapter = adapter
+
+        binding.VoiceMainViewPager.offscreenPageLimit =list.size
+
+        binding.back.setOnClickListener { onBackPressed() }
+
+        binding.VoiceMainViewPager.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
+
+        setUpBoardingIndicators(list)
+
+        setCurrentOnboardingIndicator(0)
+
+        binding.VoiceMainViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                setCurrentOnboardingIndicator(position)
+            }
+        })
+            }
+        }
+
+        setBanner()
         return binding.root
     }
     fun goToVoiceChatRoom(){
 
         CoroutineScope(Dispatchers.Main).launch {
-
-
             binding.VoiceMainLoadingProgressBar.show()
+
             if(voiceChatRoom?.documentID?.let { viewModel.goToVoiceRoom(it) } == true){
 
                 var token = voiceChatRoom?.documentID?.let { viewModel.generateToken(it) }
@@ -224,7 +232,7 @@ class VoiceMainFragment : BaseFragment() {
         }
 
     }
-    private fun setUpBoardingIndicators(list : ArrayList<Int>){
+    private fun setUpBoardingIndicators(list : ArrayList<Banner>){
         val indicators =
                 arrayOfNulls<ImageView>(list.size)
 

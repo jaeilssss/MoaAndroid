@@ -114,47 +114,11 @@ class HelperMainFragment : BaseFragment() {
         setClickListener(educationAdapter)
         setClickListener(etcAdapter)
 
-        setViewPager()
+        setBanner()
 
-//                var adapter = HomeViewPagerAdapter(arrayListOf(R.drawable.banner_concierge))
-//
-//        binding.HelperMainBanner.adapter = adapter
-//
-//        binding.HelperMainBanner.offscreenPageLimit =3
-//
-//        binding.HelperMainBanner.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
-//
-//        setUpBoardingIndicators(arrayListOf(R.drawable.banner_help_main))
-//
-//        setCurrentOnboardingIndicator(0)
-//
-//        binding.HelperMainBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-//            override fun onPageSelected(position: Int) {
-//                setCurrentOnboardingIndicator(position)
-//            }
-//        })
         return binding.root
     }
 
-    fun setViewPager(){
-        var adapter = HomeViewPagerAdapter(ArrayList<Banner>())
-
-        binding.HelperMainBanner.adapter = adapter
-
-        binding.HelperMainBanner.offscreenPageLimit =3
-
-        binding.HelperMainBanner.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
-
-        setUpBoardingIndicators(arrayListOf(R.drawable.banner_help_main))
-
-        setCurrentOnboardingIndicator(0)
-
-        binding.HelperMainBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                setCurrentOnboardingIndicator(position)
-            }
-        })
-    }
 
     override fun onBackPressed() {
         navController.popBackStack()
@@ -229,5 +193,30 @@ class HelperMainFragment : BaseFragment() {
         var bundle = Bundle()
         bundle.putString("mainCategory",mainCategory)
         navController.navigate(R.id.categoryMainFragment,bundle)
+    }
+
+
+    fun setBanner(){
+        CoroutineScope(Dispatchers.Main).launch {
+            var list = model.getBanner()
+            var adapter = HomeViewPagerAdapter(list)
+
+            binding.HelperMainBanner.adapter = adapter
+
+            binding.HelperMainBanner.offscreenPageLimit =list.size
+
+            binding.HelperMainBanner.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
+
+            setUpBoardingIndicators(arrayListOf(R.drawable.banner_help_main))
+
+            setCurrentOnboardingIndicator(0)
+
+            binding.HelperMainBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    setCurrentOnboardingIndicator(position)
+                }
+            })
+
+        }
     }
 }

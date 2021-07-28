@@ -3,9 +3,11 @@ package com.moa.moakotlin.ui.concierge.helper
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.Timestamp
+import com.moa.moakotlin.data.Banner
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.data.User
+import com.moa.moakotlin.repository.banner.BannerRepository
 import com.moa.moakotlin.repository.concierge.HelperRepository
 import com.moa.moakotlin.repository.concierge.NeederRepository
 import com.moa.moakotlin.repository.user.UserRepository
@@ -43,4 +45,6 @@ class CategoryMainViewModel : ViewModel() {
         println("lise.size - >${list.size}")
         neederList.value = list!!
     }
+
+
 }

@@ -49,4 +49,47 @@ class BannerRepository{
 
         return list
     }
+
+    suspend fun getVoiceBanner() : ArrayList<Banner>{
+        var list = ArrayList<Banner>()
+
+        var db = FirebaseFirestore.getInstance()
+
+        db.collection("Banner")
+                .whereEqualTo("type","voice")
+                .orderBy("timeStamp",Query.Direction.DESCENDING)
+                .get()
+                .addOnSuccessListener {
+                    for(document in it.documents){
+                        var banner = document.toObject(Banner::class.java)
+                        if (banner != null) {
+                            println("홈 배너")
+                            list.add(banner)
+                        }
+                    }
+                }.await()
+
+        return list
+    }
+    suspend fun getConciergeBanner() : ArrayList<Banner>{
+        var list = ArrayList<Banner>()
+
+        var db = FirebaseFirestore.getInstance()
+
+        db.collection("Banner")
+                .whereEqualTo("type","concierge")
+                .orderBy("timeStamp",Query.Direction.DESCENDING)
+                .get()
+                .addOnSuccessListener {
+                    for(document in it.documents){
+                        var banner = document.toObject(Banner::class.java)
+                        if (banner != null) {
+                            println("홈 배너")
+                            list.add(banner)
+                        }
+                    }
+                }.await()
+
+        return list
+    }
 }

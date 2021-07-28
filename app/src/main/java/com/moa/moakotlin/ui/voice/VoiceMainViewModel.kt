@@ -3,9 +3,11 @@ package com.moa.moakotlin.ui.voice
 import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.moa.moakotlin.data.Banner
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.VoiceChatRoom
 import com.moa.moakotlin.data.VoiceUser
+import com.moa.moakotlin.repository.banner.BannerRepository
 import com.moa.moakotlin.repository.voice.VoiceRepository
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
@@ -56,5 +58,14 @@ class VoiceMainViewModel : ViewModel() {
         var repository = VoiceRepository()
 
         repository.changeVoiceChatRoomCount(documentID,1)
+    }
+
+
+    suspend fun getVoiceBanner() : ArrayList<Banner>{
+
+        var repository = BannerRepository()
+
+        return repository.getVoiceBanner()
+
     }
     }
