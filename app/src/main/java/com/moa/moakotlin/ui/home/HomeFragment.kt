@@ -1,6 +1,7 @@
 package com.moa.moakotlin.ui.home
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
@@ -25,7 +26,9 @@ import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.WebViewActivity
 import com.moa.moakotlin.base.BaseFragment
+import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.base.Transfer
 import com.moa.moakotlin.base.onBackPressedListener
 import com.moa.moakotlin.data.Banner
@@ -77,29 +80,6 @@ lateinit var transfer: Transfer
 
         var list = ArrayList<Int>()
 
-        list.add(R.drawable.banner_home_first)
-        list.add(R.drawable.banner_home_second)
-        list.add(R.drawable.banner_home_third)
-
-
-                var adapter = HomeViewPagerAdapter(list)
-
-        binding.homeViewPager.adapter = adapter
-
-        binding.homeViewPager.offscreenPageLimit =3
-
-        binding.homeViewPager.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
-
-        setUpBoardingIndicators()
-
-        setCurrentOnboardingIndicator(0)
-
-        binding.homeViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                setCurrentOnboardingIndicator(position)
-            }
-        })
-
         binding.model = model
 
         transfer.bottomVisible()
@@ -108,19 +88,29 @@ lateinit var transfer: Transfer
 
         binding.homeMegazinRcv.adapter = megazinAdapter
 
+        megazinAdapter.setOnItemClickListener(object : OnItemClickListener{
+            override fun onItemClick(v: View, position: Int) {
+                var intent = Intent(activity,WebViewActivity::class.java)
+
+                intent.putExtra("url",megazinAdapter.currentList[position].url)
+
+                startActivity(intent)
+            }
+
+        })
         binding.homeMegazinRcv.layoutManager = GridLayoutManager(activity?.applicationContext!!,2)
-
-
-
 
         binding.homeTalentSharingBnt.setOnClickListener { navController.navigate(R.id.ConciergeMainFragment) }
         binding.homeMoaVoiceChatBtn.setOnClickListener { navController.navigate(R.id.voiceMainFragment) }
         binding.homeClaimBtn.setOnClickListener { Toast.makeText(context,"준비중입니다",Toast.LENGTH_SHORT).show() }
         getMoaMagazine()
-//        getHomeBanner()
+        getHomeBanner()
         return binding.root
     }
 
+    fun setOnClickListener(){
+
+    }
     override fun onBackPressed() {
         if(System.currentTimeMillis() - lastTimeBackPressed < 1500){
             activity?.finish()
@@ -180,35 +170,47 @@ lateinit var transfer: Transfer
        })
 
     }
-//
-//    fun getHomeBanner(){
-//        CoroutineScope(Dispatchers.Main).launch {
-//            model.getHomeBanner()
-//
-//        }
-//        model.homeBannerList.observe(viewLifecycleOwner, Observer {
-////            setBannerViewPager(it)
-//
-//        })
-//    }
 
-//    fun setBannerViewPager(list : ArrayList<Banner>){
-//        var adapter = HomeViewPagerAdapter(list)
-//
-//        binding.homeViewPager.adapter = adapter
-//
-//        binding.homeViewPager.offscreenPageLimit =3
-//
-//        binding.homeViewPager.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
-//
-//        setUpBoardingIndicators()
-//
-//        setCurrentOnboardingIndicator(0)
-//
-//        binding.homeViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-//            override fun onPageSelected(position: Int) {
-//                setCurrentOnboardingIndicator(position)
-//            }
-//        })
-//    }
+    fun getHomeBanner(){
+        CoroutineScope(Dispatchers.Main).launch {
+            model.getHomeBanner()
+
+        }
+        model.homeBannerList.observe(viewLifecycleOwner, Observer {
+            setBannerViewPager(it)
+
+        })
+    }
+
+    fun setBannerViewPager(list : ArrayList<Banner>){
+        var adapter = HomeViewPagerAdapter(list)
+
+        binding.homeViewPager.adapter = adapter
+
+        binding.homeViewPager.offscreenPageLimit =3
+
+        binding.homeViewPager.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
+
+        setUpBoardingIndicators()
+
+        setCurrentOnboardingIndicator(0)
+
+        binding.homeViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                setCurrentOnboardingIndicator(position)
+            }
+        })
+
+        adapter.setOnItemClickListener(object : OnItemClickListener{
+            override fun onItemClick(v: View, position: Int) {
+                var intent = Intent(activity,WebViewActivity::class.java)
+
+                intent.putExtra("url",adapter.list[position].url)
+
+                startActivity(intent)
+
+            }
+
+        })
+    }
 }

@@ -130,23 +130,23 @@ class NeederMainFragment : BaseFragment() {
 
         }
 
-        var adapter = HomeViewPagerAdapter(arrayListOf(R.drawable.banner_concierge))
-
-        binding.NeederMainBanner.adapter = adapter
-
-        binding.NeederMainBanner.offscreenPageLimit =3
-
-        binding.NeederMainBanner.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
-
-        setUpBoardingIndicators(arrayListOf(R.drawable.banner_concierge))
-
-        setCurrentOnboardingIndicator(0)
-
-        binding.NeederMainBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                setCurrentOnboardingIndicator(position)
-            }
-        })
+//        var adapter = HomeViewPagerAdapter(arrayListOf(R.drawable.banner_concierge))
+//
+//        binding.NeederMainBanner.adapter = adapter
+//
+//        binding.NeederMainBanner.offscreenPageLimit =3
+//
+//        binding.NeederMainBanner.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
+//
+//        setUpBoardingIndicators(arrayListOf(R.drawable.banner_concierge))
+//
+//        setCurrentOnboardingIndicator(0)
+//
+//        binding.NeederMainBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+//            override fun onPageSelected(position: Int) {
+//                setCurrentOnboardingIndicator(position)
+//            }
+//        })
     }
 
 

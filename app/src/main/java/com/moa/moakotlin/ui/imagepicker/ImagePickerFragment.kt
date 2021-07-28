@@ -77,6 +77,7 @@ class ImagePickerFragment : BaseFragment() {
         adapter = context?.let { list = Picture.getGalleryPhotos(it)
             ImagePickerAdapter(navController,it,list)
         }!!
+
         model = ViewModelProvider(this).get(ImagePickerViewModel::class.java)
         rcv.adapter = adapter
         handler = Handler()
@@ -86,10 +87,8 @@ class ImagePickerFragment : BaseFragment() {
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             //lay hinh tu camera
-            Toast.makeText(context,"여기실행!!",Toast.LENGTH_SHORT).show()
             Libraries.requestPermissionStorage(activity)
         } else {
-            Toast.makeText(context,"여기실행!! else ",Toast.LENGTH_SHORT).show()
 
             object : Thread() {
                 override fun run() {

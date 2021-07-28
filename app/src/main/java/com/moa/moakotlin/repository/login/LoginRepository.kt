@@ -36,6 +36,10 @@ class LoginRepository(var activity: FragmentActivity){
             override fun onVerificationCompleted(credential: PhoneAuthCredential) {
 
                 code2 = credential.smsCode.toString()
+                CoroutineScope(Dispatchers.Main).launch {
+                    signInWithPhoneAuthCredential(credential)
+                }
+
             }
             override fun onVerificationFailed(e: FirebaseException) {
                 // This callback is invoked in an invalid request for verification is made,
@@ -94,5 +98,23 @@ class LoginRepository(var activity: FragmentActivity){
 
 
     }
+private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+    auth.signInWithCredential(credential)
+            .addOnCompleteListener() { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+
+
+                    val user = task.result?.user
+                } else {
+                    // Sign in failed, display a message and update the UI
+
+                    if (task.exception is FirebaseAuthInvalidCredentialsException) {
+                        // The verification code entered was invalid
+                    }
+                    // Update UI
+                }
+            }
+}
 
 

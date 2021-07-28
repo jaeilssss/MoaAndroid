@@ -49,7 +49,7 @@ class ChatFragment : BaseFragment() {
     lateinit var navController: NavController
     lateinit var db : ListenerRegistration
     lateinit var roomId : String
-    lateinit var opponentUser : User
+     lateinit var opponentUser : User
     lateinit var transfer : Transfer
     lateinit var rcv : RecyclerView
      var needer : Needer ? = null
@@ -83,10 +83,14 @@ class ChatFragment : BaseFragment() {
         needer?.images?.map { print(it)  }
         needer = arguments?.getParcelable<Needer>("Needer") ?:null
         helper = arguments?.getParcelable<Helper>("helper") ?:null
+
+        binding.ChatOpponentNickname.text = opponentUser.nickName
+
         navController = findNavController()
          rcv = binding.ChatRcv
         rcv.setHasFixedSize(true)
-        rcv.setItemViewCacheSize(30)
+        rcv.setItemViewCacheSize(100)
+
        var adapter = context?.let { ChatAdapter(navController, it, ArrayList<Chat>(),opponentUser) }!!
 
         var manager= LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
@@ -122,7 +126,7 @@ class ChatFragment : BaseFragment() {
                 rcv.scrollToPosition(adapter.itemCount-1)
             }else{
 
-                // 상대방이 쓴 채팅은 밑으로 안내려가짐 !!
+                // 상대방이 쓴 채팅은 밑으로 안내려가짐
 
             }
         })
@@ -130,7 +134,9 @@ class ChatFragment : BaseFragment() {
             requestPhoto()
         }
         binding.ChatSend.setOnClickListener {
-            if(model.talk.get()?.length!! >0){
+            if(opponentUser.uid.equals("-1")){
+                Toast.makeText(context,"탈퇴한 이용자에게는 메시지를 보낼 수 없습니다",Toast.LENGTH_SHORT).show()
+            } else if(model.talk.get()?.length!! >0){
                 model.send(roomId,opponentUser.uid)
             }
         }

@@ -20,7 +20,6 @@ import com.moa.moakotlin.data.User
 class FcmService() : FirebaseMessagingService() {
 
     override fun onMessageReceived(remotemessage: RemoteMessage) {
-
         val pm =
             getSystemService(Context.POWER_SERVICE) as PowerManager
         @SuppressLint("InvalidWakeLockTag") val wakeLock =
@@ -30,7 +29,12 @@ class FcmService() : FirebaseMessagingService() {
             )
         wakeLock.acquire(3000)
         wakeLock.release()
+        val data = getSharedPreferences("AlarmSetting",Context.MODE_PRIVATE)
+
+        if(data?.getBoolean("isEventAlarm",false) == true){
             remotemessage.data.get("title")?.let { sendNotification(remotemessage.data.get("body")!!, it) }
+        }
+//            remotemessage.data.get("title")?.let { sendNotification(remotemessage.data.get("body")!!, it) }
 
     }
 
@@ -56,13 +60,16 @@ class FcmService() : FirebaseMessagingService() {
         val title = messageTitle
         val content =messageBody
 
+        if(title.equals("성공")){
+            User.getInstance().certificationStatus = "인증"
+        }
         val intent = Intent(baseContext, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 
 
         val builder = NotificationCompat.Builder(this, channelId)
 
-        builder.setSmallIcon(R.drawable.profile_human)
+        builder.setSmallIcon(R.drawable.moa_logo_vector)
         builder.setContentTitle(title)
         builder.setWhen(System.currentTimeMillis())
         builder.setContentText(content)

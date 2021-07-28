@@ -131,14 +131,15 @@ class ChatAdapter(var navController: NavController, var context: Context,var lis
         lateinit var date : TextView
         lateinit var nickname : TextView
         init {
-            profile = view.findViewById(R.id.chat_image_right_profile)
-            nickname = view.findViewById(R.id.TextView_nickname)
+
+        date = view.findViewById(R.id.itemChatRightImgDate)
 
         }
         fun bind(chat : Chat){
             val dateFormat = SimpleDateFormat("a hh:mm")
-            image = view.findViewById(R.id.chat_image_right_image)
+            image = view.findViewById(R.id.itemChatRightImg)
             Glide.with(context).load(chat.images?.get(0)).into(image)
+            date.text = dateFormat.format(chat.timeStamp.toDate())
         }
     }
     class leftImageViewHoldfer(var view : View , var adapter: ChatAdapter,var context: Context) : RecyclerView.ViewHolder(view){
@@ -147,13 +148,13 @@ class ChatAdapter(var navController: NavController, var context: Context,var lis
         lateinit var date : TextView
         lateinit var nickname : TextView
         init {
-            profile = view.findViewById(R.id.chat_image_left_profile)
-            nickname = view.findViewById(R.id.TextView_nickname)
+            date = view.findViewById(R.id.itemChatLeftImgDate)
         }
         fun bind(chat : Chat){
             val dateFormat = SimpleDateFormat("a hh:mm")
-            image = view.findViewById(R.id.chat_image_left_image)
+            image = view.findViewById(R.id.itemChatLeftImg)
             Glide.with(context).load(chat.images?.get(0)).into(image)
+            date.text = dateFormat.format(chat.timeStamp.toDate())
         }
     }
 }

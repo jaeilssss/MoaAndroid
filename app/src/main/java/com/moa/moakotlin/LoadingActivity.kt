@@ -13,6 +13,7 @@ import com.moa.moakotlin.base.ConnectionStateMonitor
 import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.repository.push.FcmService
+import com.moa.moakotlin.repository.user.UserRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -31,14 +32,14 @@ lateinit var model : LoadingViewModel
   suspend fun startLoading() {
         try{
             Picture.deleteInstance()
-
+            var userRepository = UserRepository()
             if(FirebaseAuth.getInstance().currentUser==null){
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }else{
                 var result = FirebaseAuth.getInstance().currentUser?.let { model.initApp(it.uid,this) }
-                println("여기??,,")
                 if(result == true){
+                    userRepository.registerPushToken()
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }else{
@@ -50,12 +51,11 @@ lateinit var model : LoadingViewModel
             println("exception")
 
         }
-    }// startLoading Method..
+    }
+    // startLoading Method..
 
 
     override fun onDestroy() {
-
-
 
         super.onDestroy()
 

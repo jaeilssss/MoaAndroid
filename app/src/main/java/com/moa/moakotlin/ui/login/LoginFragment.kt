@@ -137,7 +137,7 @@ class LoginFragment : BaseScrollFragment() {
     }
 
     override fun onBackPressed() {
-        navController.popBackStack(R.id.FirstFragment,false)
+        navController.popBackStack()
     }
 
     private fun createCountDownTimer(initialMililis : Long) =

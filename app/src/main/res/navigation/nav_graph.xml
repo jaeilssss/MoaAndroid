@@ -387,6 +387,9 @@
         <action
             android:id="@+id/action_myAccountSettingFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_myAccountSettingFragment_to_dropOutQuestionFragment"
+            app:destination="@id/dropOutQuestionFragment" />
     </fragment>
     <fragment
         android:id="@+id/changeMyPhoneNumberFragment"
@@ -398,5 +401,10 @@
         android:name="com.moa.moakotlin.ui.mypage.AlarmSettingFragment"
         android:label="alarm_setting_fragment"
         tools:layout="@layout/alarm_setting_fragment" />
+    <fragment
+        android:id="@+id/dropOutQuestionFragment"
+        android:name="com.moa.moakotlin.ui.mypage.DropOutQuestionFragment"
+        android:label="drop_out_question_fragment"
+        tools:layout="@layout/drop_out_question_fragment" />
 
 </navigation>

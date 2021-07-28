@@ -11,11 +11,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.LoadingActivity
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.custom.AptCertificationImageAlertDialog
 import com.moa.moakotlin.databinding.MyAccountSettingFragmentBinding
 
-class MyAccountSettingFragment : Fragment() {
+class MyAccountSettingFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = MyAccountSettingFragment()
@@ -33,6 +35,7 @@ class MyAccountSettingFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.my_account_setting_fragment,container,false)
+        (context as MainActivity).backListener = this
         return binding.root
     }
 
@@ -59,6 +62,10 @@ class MyAccountSettingFragment : Fragment() {
                         .show()
             }
         }
+    }
+
+    override fun onBackPressed() {
+        navController.popBackStack()
     }
 
 

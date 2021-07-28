@@ -26,7 +26,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoaKotlin"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".WebViewActivity"></activity>
         <activity android:name=".ui.concierge.category.NeederCategoryActivity" />
         <activity android:name=".ui.concierge.ConciergeWriteActivity" />
         <activity android:name=".ui.concierge.needer.CustomCalendarActivity" />
@@ -44,9 +44,10 @@
         <service
             android:name=".ui.service.ForecdTerminationService"
             android:stopWithTask="false" />
-        <activity android:name=".ui.signup.AptSearchActivity"
-            android:theme="@style/MainTheme"
-            />
+
+        <activity
+            android:name=".ui.signup.AptSearchActivity"
+            android:theme="@style/MainTheme" />
         <activity
             android:name=".LoadingActivity"
             android:theme="@style/LoadingTheme"

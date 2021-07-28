@@ -227,6 +227,25 @@ class HelperRepository {
             .document(helper.documentID)
             .update("uid",User.getInstance().uid)
     }
+
+    fun deleteGetMyHelper(){
+        var db = FirebaseFirestore.getInstance()
+        var list = ArrayList<Helper>()
+        db.collectionGroup("HelperContent")
+                .whereEqualTo("uid",User.getInstance().uid)
+                .orderBy("timeStamp",Query.Direction.DESCENDING)
+                .get()
+                .addOnSuccessListener {
+                    for(document in it.documents){
+                        CoroutineScope(Dispatchers.Default).async {
+                            var newHelper = document.toObject(Helper::class.java)
+                            newHelper!!.documentID = document.id
+                            delete(newHelper!!.mainCategory,newHelper!!.documentID)
+                        }
+
+                    }
+                }
+    }
 }
 
 

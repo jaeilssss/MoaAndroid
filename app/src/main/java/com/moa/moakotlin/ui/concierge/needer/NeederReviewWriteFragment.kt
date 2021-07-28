@@ -71,9 +71,10 @@ class NeederReviewWriteFragment : BaseFragment {
         CoroutineScope(Dispatchers.Main).launch {
             if(viewModel.reviewWrite(opponentUser.uid)){
                 needer.hireStatus = "모집완료"
+                viewModel.pushToken(opponentUser)
                 viewModel.hireCompletion(needer)
                 Toast.makeText(context , "모집완료 되었습니다",Toast.LENGTH_SHORT).show()
-                navController.popBackStack(R.id.neederMainFragment,false)
+                navController.popBackStack(R.id.neederReadFragment,false)
             }
         }
 

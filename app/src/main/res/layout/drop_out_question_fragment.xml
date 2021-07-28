@@ -5,6 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.mypage.DropOutQuestionFragment">
+    <data>
+        <variable
+            name="model"
+            type="com.moa.moakotlin.ui.mypage.DropOutQuestionViewModel" />
+    </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -63,6 +71,7 @@
     android:layout_marginStart="15dp"
     android:scaleX="0.8"
     android:scaleY="0.8"
+    android:checked="@={model.modifyCheck}"
     android:button="@drawable/selector_signup_policy_checkbox"
     android:id="@+id/DropOutCheckBoxIDModify"/>
     <TextView
@@ -85,6 +94,7 @@
         app:layout_constraintTop_toBottomOf="@id/DropOutCheckBoxIDModify"
         android:scaleX="0.8"
         android:scaleY="0.8"
+        android:checked="@={model.emptyDataCheck}"
         android:button="@drawable/selector_signup_policy_checkbox"
         android:id="@+id/DropOutCheckBoxEmptyData"/>
     <TextView
@@ -99,8 +109,141 @@
         android:includeFontPadding="false"
         android:textColor="@color/moaBlack"
         android:textSize="16sp"/>
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/DropOutCheckBoxEmptyData"
+        app:layout_constraintTop_toBottomOf="@id/DropOutCheckBoxEmptyData"
+        android:button="@drawable/selector_signup_policy_checkbox"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:checked="@={model.errorCheck}"
+        android:id="@+id/DropOutCheckBoxError"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/DropOutCheckBoxError"
+        app:layout_constraintTop_toTopOf="@id/DropOutCheckBoxError"
+        app:layout_constraintBottom_toBottomOf="@id/DropOutCheckBoxError"
+        android:text="시스템 오류가 많아서"
+        android:textStyle="bold"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        android:textColor="@color/moaBlack"
+        android:textSize="16sp"/>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/DropOutCheckBoxError"
+        app:layout_constraintTop_toBottomOf="@id/DropOutCheckBoxError"
+        android:button="@drawable/selector_signup_policy_checkbox"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:checked="@={model.privateCheck}"
+        android:id="@+id/DropOutCheckBoxPrivate"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/DropOutCheckBoxPrivate"
+        app:layout_constraintTop_toTopOf="@id/DropOutCheckBoxPrivate"
+        app:layout_constraintBottom_toBottomOf="@id/DropOutCheckBoxPrivate"
+        android:text="개인정보 유출 방지 등 보안 상의 문제로"
+        android:textColor="@color/moaBlack"
+        android:textSize="16sp"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        android:textStyle="bold"/>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/DropOutCheckBoxPrivate"
+        app:layout_constraintTop_toBottomOf="@id/DropOutCheckBoxPrivate"
+        android:button="@drawable/selector_signup_policy_checkbox"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:checked="@={model.alreadUseCheck}"
+        android:id="@+id/DropOutCheckBOxalreadUses"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/DropOutCheckBOxalreadUses"
+        app:layout_constraintTop_toTopOf="@id/DropOutCheckBOxalreadUses"
+        app:layout_constraintBottom_toBottomOf="@id/DropOutCheckBOxalreadUses"
+        android:text="유사한 다른 타 어플을 사용 중이라서"
+        android:textColor="@color/moaBlack"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"/>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/DropOutCheckBOxalreadUses"
+        app:layout_constraintTop_toBottomOf="@id/DropOutCheckBOxalreadUses"
+        android:button="@drawable/selector_signup_policy_checkbox"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:id="@+id/DropOutCheckBoxNoManner"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/DropOutCheckBoxNoManner"
+        app:layout_constraintTop_toTopOf="@id/DropOutCheckBoxNoManner"
+        app:layout_constraintBottom_toBottomOf="@id/DropOutCheckBoxNoManner"
+        android:text="비매너 이웃을 만나서"
+        android:textColor="@color/moaBlack"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        />
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/DropOutCheckBoxNoManner"
+        app:layout_constraintTop_toBottomOf="@id/DropOutCheckBoxNoManner"
+        android:button="@drawable/selector_signup_policy_checkbox"
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:checked="@={model.etcCheck}"
+        android:id="@+id/DropOutCheckBoxEtc"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/DropOutCheckBoxEtc"
+        app:layout_constraintTop_toTopOf="@id/DropOutCheckBoxEtc"
+        app:layout_constraintBottom_toBottomOf="@id/DropOutCheckBoxEtc"
+        android:text="기타"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@color/moaBlack"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/DropOutCheckBoxEtc"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/shape_unable_radius_15"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:text="탈퇴하기"
+        android:textColor="@color/moaBlack"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:clickable="false"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        android:id="@+id/DropOutSubmit"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </ScrollView>
 </layout>

@@ -102,8 +102,8 @@ class VoiceRoomFragment : BaseFragment() {
 
         navController= findNavController()
 
-        binding.VoiceRoomSpeakerRcv.layoutManager = GridLayoutManager(activity?.applicationContext!!, 4)
-        binding.VoiceRoomAudienceRcv.layoutManager = GridLayoutManager(activity?.applicationContext!!, 4)
+        binding.VoiceRoomSpeakerRcv.layoutManager = GridLayoutManager(activity?.applicationContext!!, 3)
+        binding.VoiceRoomAudienceRcv.layoutManager = GridLayoutManager(activity?.applicationContext!!, 3)
 
         binding.VoiceRoomSpeakerRcv.adapter = speakerAdapter
 

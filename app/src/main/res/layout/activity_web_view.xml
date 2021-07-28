@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WebViewActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/WebViewBack"
+
+        app:layout_constraintTop_toTopOf="parent">
+<ImageView
+    android:layout_width="12dp"
+    android:layout_height="20dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/ic_back"
+    android:id="@+id/backImage"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="모두의 아파트"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:textStyle="bold"
+            android:textColor="@color/moaBlack"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="@id/backImage"
+            app:layout_constraintBottom_toBottomOf="@id/backImage"
+            app:layout_constraintStart_toEndOf="@id/backImage"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+<WebView
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:id="@+id/webView"
+    android:layout_marginTop="5dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/WebViewBack"
+    app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

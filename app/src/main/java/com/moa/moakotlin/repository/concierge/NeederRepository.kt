@@ -235,4 +235,21 @@ class NeederRepository {
             .update("uid",User.getInstance().uid)
     }
 
+    fun deleteGetMyHelper(){
+        var db = FirebaseFirestore.getInstance()
+        db.collectionGroup("NeederContent")
+                .whereEqualTo("uid",User.getInstance().uid)
+                .orderBy("timeStamp",Query.Direction.DESCENDING)
+                .get()
+                .addOnSuccessListener {
+                    for(document in it.documents){
+                        CoroutineScope(Dispatchers.Default).async {
+                            var newNeeder = document.toObject(Needer::class.java)
+                            newNeeder?.documentID = document.id
+                            delete(newNeeder!!.mainCategory,newNeeder!!.documentID)
+                        }
+                    }
+                }
+    }
+
 }

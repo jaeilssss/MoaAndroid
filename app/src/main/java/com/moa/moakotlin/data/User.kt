@@ -26,7 +26,9 @@ data class User(
     @field:JvmField
     var isAgreeEventAlarm : Boolean = true,
     @field:JvmField
-    var isAgreeChattingAlarm : Boolean = true
+    var isAgreeChattingAlarm : Boolean = true,
+    var pushToken : String=""
+
 ): Parcelable{
     companion object{
         // 자기변수 선언하기
@@ -54,6 +56,7 @@ data class User(
         instance?.isAgreeMarketing = user.isAgreeMarketing
         instance?.isAgreeEventAlarm = user.isAgreeEventAlarm
         instance?.isAgreeChattingAlarm = user.isAgreeChattingAlarm
+        instance?.pushToken = user.pushToken
     }
         fun deleteUser(){
             instance = null

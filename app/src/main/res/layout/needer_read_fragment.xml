@@ -22,7 +22,7 @@
                 android:layout_height="match_parent"
 
                 >
-                <ImageView
+                <Button
                     android:id="@+id/back"
                     android:layout_width="12dp"
                     android:layout_height="20dp"

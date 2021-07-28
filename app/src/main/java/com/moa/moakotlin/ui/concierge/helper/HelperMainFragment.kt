@@ -116,28 +116,7 @@ class HelperMainFragment : BaseFragment() {
 
         setViewPager()
 
-                var adapter = HomeViewPagerAdapter(arrayListOf(R.drawable.banner_concierge))
-
-        binding.HelperMainBanner.adapter = adapter
-
-        binding.HelperMainBanner.offscreenPageLimit =3
-
-        binding.HelperMainBanner.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
-
-        setUpBoardingIndicators(arrayListOf(R.drawable.banner_help_main))
-
-        setCurrentOnboardingIndicator(0)
-
-        binding.HelperMainBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                setCurrentOnboardingIndicator(position)
-            }
-        })
-        return binding.root
-    }
-
-    fun setViewPager(){
-//        var adapter = HomeViewPagerAdapter(ArrayList<Banner>())
+//                var adapter = HomeViewPagerAdapter(arrayListOf(R.drawable.banner_concierge))
 //
 //        binding.HelperMainBanner.adapter = adapter
 //
@@ -154,6 +133,27 @@ class HelperMainFragment : BaseFragment() {
 //                setCurrentOnboardingIndicator(position)
 //            }
 //        })
+        return binding.root
+    }
+
+    fun setViewPager(){
+        var adapter = HomeViewPagerAdapter(ArrayList<Banner>())
+
+        binding.HelperMainBanner.adapter = adapter
+
+        binding.HelperMainBanner.offscreenPageLimit =3
+
+        binding.HelperMainBanner.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
+
+        setUpBoardingIndicators(arrayListOf(R.drawable.banner_help_main))
+
+        setCurrentOnboardingIndicator(0)
+
+        binding.HelperMainBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                setCurrentOnboardingIndicator(position)
+            }
+        })
     }
 
     override fun onBackPressed() {

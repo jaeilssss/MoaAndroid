@@ -22,6 +22,7 @@ class ChattingRoomRepository {
         var result = ArrayList<ChattingRoom>()
         db.collection("User").document(uid)
             .collection("ChattingRoom")
+                .orderBy("timeStamp",Query.Direction.DESCENDING)
             .get().addOnSuccessListener {
                 for(document in it.documents){
                     var chattingRoom = document.toObject(ChattingRoom::class.java)

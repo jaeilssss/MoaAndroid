@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.Matrix
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -16,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
+import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.custom.OutlineTextView
 import com.moa.moakotlin.data.Magazine
 import com.moa.moakotlin.data.Megazin
@@ -23,7 +25,11 @@ import com.moa.moakotlin.databinding.ItemMoaMegazinBinding
 
 class MegazinAdapter() : ListAdapter<Magazine, MegazinAdapter.MegazinViewHolder>(diffUtil) {
 
+    lateinit var mListener : OnItemClickListener
 
+    fun setOnItemClickListener(mListener : OnItemClickListener){
+        this.mListener = mListener
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MegazinViewHolder {
         return MegazinViewHolder(ItemMoaMegazinBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
@@ -41,6 +47,19 @@ class MegazinAdapter() : ListAdapter<Magazine, MegazinAdapter.MegazinViewHolder>
                        .apply(RequestOptions.bitmapTransform(RoundedCorners(25)))
                                .into(binding.itemMegazinImage)
             binding.itemMoaMegazinText.text=magazine.title
+
+            binding.itemMegazinImage.setOnClickListener(ButtonClick())
+
+        }
+
+        inner class ButtonClick() :View.OnClickListener{
+            override fun onClick(v: View?) {
+               if(mListener!=null){
+                   if (v != null) {
+                       mListener.onItemClick(v,adapterPosition)
+                   }
+               }
+            }
 
         }
 

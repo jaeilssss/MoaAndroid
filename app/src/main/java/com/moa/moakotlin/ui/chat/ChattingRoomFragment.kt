@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.*
 import com.google.firebase.ktx.Firebase
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
@@ -28,7 +30,7 @@ import com.moa.moakotlin.recyclerview.chat.ChattingRoomAdapter
 
 class ChattingRoomFragment : BaseFragment() {
 
-
+    var lastTimeBackPressed : Long = 0
     lateinit var binding : FragmentChattingRoomBinding
     var TAG = "ChattingRoom"
     lateinit var navController: NavController
@@ -42,11 +44,11 @@ class ChattingRoomFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_chatting_room,container , false)
-
+        (context as MainActivity).backListener = this
         navController = findNavController()
 
         model = ViewModelProvider(this).get(ChattingRoomViewModel::class.java)
-
+        myActivity.bottomNavigationVisible()
         binding.model = model
 
         var rcv = binding.ChattingRoomRcv
@@ -54,7 +56,8 @@ class ChattingRoomFragment : BaseFragment() {
         adapter = context?.let { ChattingRoomAdapter(it,ArrayList<ChattingRoom>()) }!!
 
         rcv.layoutManager=  LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
-
+        rcv.setHasFixedSize(true)
+        rcv.setItemViewCacheSize(100)
         rcv.adapter = adapter
 
         adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
@@ -84,6 +87,11 @@ class ChattingRoomFragment : BaseFragment() {
     }
 
     override fun onBackPressed() {
-        navController.popBackStack(R.id.HomeFragment,true)
+        if(System.currentTimeMillis() - lastTimeBackPressed < 1500){
+            activity?.finish()
+            return
+        }
+        lastTimeBackPressed = System.currentTimeMillis();
+        Toast.makeText(context,"종료하려면 한번 더 누르세요", Toast.LENGTH_SHORT).show()
     }
 }

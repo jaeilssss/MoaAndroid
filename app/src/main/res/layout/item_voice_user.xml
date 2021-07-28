@@ -11,7 +11,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="10dp"
-
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/ItemVoiceUserBorder"
@@ -23,7 +22,6 @@
         app:layout_constraintEnd_toEndOf="@id/ItemVoiceUserBorder"
         app:layout_constraintTop_toTopOf="@id/ItemVoiceUserBorder"
         app:layout_constraintBottom_toBottomOf="@id/ItemVoiceUserBorder"
-        android:src="@drawable/profile_woman"
         android:id="@+id/ItemVoiceUserImage"/>
     <ImageView
         android:layout_width="20dp"

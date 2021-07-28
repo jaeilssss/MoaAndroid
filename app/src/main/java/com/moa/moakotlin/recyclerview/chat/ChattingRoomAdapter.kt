@@ -35,7 +35,7 @@ class ChattingRoomAdapter(var context: Context,var list: ArrayList<ChattingRoom>
     lateinit var roomList: ArrayList<String>
     var userList  = HashMap<Int,User>()
     var i  = 0
-
+    var defaultImagePath ="https://firebasestorage.googleapis.com/v0/b/moakr-8c0ab.appspot.com/o/MoAImages%2FCONTENT_DEFAULT_200x200.png?alt=media&token=3e986a1b-7c21-4d89-98e8-85e6db5b7b5b"
     lateinit var mListener : OnItemClickListener
 
 
@@ -63,7 +63,12 @@ class ChattingRoomAdapter(var context: Context,var list: ArrayList<ChattingRoom>
             var repository = UserRepository()
             CoroutineScope(Dispatchers.Main).launch {
                 var user = repository.getUserInfo(response.opponentUid)
-
+                if(user==null){
+                    user = User()
+                    user.uid = "-1"
+                    user.nickName = "알수없음"
+                    user.profileImage = defaultImagePath
+                }
                     holder.nickname.text = user?.nickName
                 val sdf = SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm ")
                 var date = sdf.format(response.timeStamp.toDate())

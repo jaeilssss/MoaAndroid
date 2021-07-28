@@ -33,9 +33,9 @@ class ImagePickerAdapter(var navController: NavController,var context: Context ,
         Glide.with(context).load(picture).into((holder as ImagePickerViewHolder).image)
 
         if(checkBox==position){
-//            (holder as ImagePickerViewHolder).check.setImageResource(R.drawable.image_check_image)
+            (holder as ImagePickerViewHolder).check.setBackgroundResource(R.drawable.image_check_image)
         }else{
-//            (holder as ImagePickerViewHolder).check.setImageResource(R.drawable.image_not_check_image)
+            (holder as ImagePickerViewHolder).check.setBackgroundResource(R.drawable.image_not_check_image)
         }
 
     }

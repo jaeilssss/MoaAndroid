@@ -3,6 +3,7 @@ package com.moa.moakotlin.repository.user
 import android.net.Uri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.moa.moakotlin.data.ApartCertification
@@ -147,4 +148,36 @@ class UserRepository {
             "isAgreeMarketing",User.getInstance().isAgreeMarketing)
 
     }
+
+   suspend fun dropOutUser() : Boolean{
+        val user = FirebaseAuth.getInstance().currentUser
+        var check = false
+        user!!.delete()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        check = true
+                    }
+                }
+
+       return check
+    }
+
+    fun registerPushToken() {
+        //v17.0.0 이전까지는
+        ////var pushToken = FirebaseInstanceId.getInstance().token
+        //v17.0.1 이후부터는 onTokenRefresh()-depriciated
+        var pushToken: String? = null
+
+        var uid = FirebaseAuth.getInstance().currentUser!!.uid
+        var map = mutableMapOf<String, Any>()
+        FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener { instanceIdResult ->
+            pushToken = instanceIdResult.token
+            println("dddw3232")
+            println(pushToken)
+            User.getInstance().pushToken = pushToken as String
+            map["pushtoken"] = pushToken!!
+            FirebaseFirestore.getInstance().collection("User").document(User.getInstance().uid).set(User.getInstance())
+        }
+    }
+
 }

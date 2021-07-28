@@ -1,6 +1,7 @@
 package com.moa.moakotlin.repository.banner
 
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.moa.moakotlin.data.Banner
 import com.moa.moakotlin.data.Magazine
 import kotlinx.coroutines.tasks.await
@@ -34,6 +35,7 @@ class BannerRepository{
 
         db.collection("Banner")
                 .whereEqualTo("type","main")
+                .orderBy("timeStamp",Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener {
                 for(document in it.documents){
