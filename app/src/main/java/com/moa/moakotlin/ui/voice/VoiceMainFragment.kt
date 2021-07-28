@@ -3,6 +3,7 @@ package com.moa.moakotlin.ui.voice
 import android.Manifest
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.WebViewActivity
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.custom.AptCertificationImageAlertDialog
@@ -113,7 +115,16 @@ class VoiceMainFragment : BaseFragment() {
         setUpBoardingIndicators(list)
 
         setCurrentOnboardingIndicator(0)
+        adapter.setOnItemClickListener(object :OnItemClickListener{
+            override fun onItemClick(v: View, position: Int) {
+                var intent = Intent(activity, WebViewActivity::class.java)
 
+                intent.putExtra("url",adapter.list[position].url)
+
+                startActivity(intent)
+            }
+
+        })
         binding.VoiceMainViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 setCurrentOnboardingIndicator(position)

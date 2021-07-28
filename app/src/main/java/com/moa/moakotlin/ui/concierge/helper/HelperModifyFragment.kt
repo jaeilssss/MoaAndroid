@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -104,12 +105,13 @@ class HelperModifyFragment : Fragment() {
            activity?.setResult(4000,intent)
 
                 activity?.finish()
-            binding.HelperModifySubmit.isClickable = true
+            activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 binding.HelperModifyLoading.hide()
 
         })
         binding.HelperModifySubmit.setOnClickListener {
-            binding.HelperModifySubmit.isClickable = false
+            activity?.getWindow()?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
             binding.HelperModifyLoading.show()
             CoroutineScope(Dispatchers.Main).launch {
                 viewModel.submit(uploadedPosition,helper)
@@ -150,7 +152,6 @@ class HelperModifyFragment : Fragment() {
                     selectedPictureList.removeAt(position)
                     helper.images?.removeAt(position)
                     viewModel.selectedPictureList.value = selectedPictureList
-
                 }else{
                     selectedPictureList.removeAt(position)
                     viewModel.selectedPictureList.value = selectedPictureList

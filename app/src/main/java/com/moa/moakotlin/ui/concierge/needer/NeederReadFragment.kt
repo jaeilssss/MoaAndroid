@@ -24,6 +24,7 @@ import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.custom.CostumAlertDialog
+import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.NeederReadFragmentBinding
@@ -31,6 +32,7 @@ import com.moa.moakotlin.ui.bottomsheet.ConciergeReadBottomSheetFragment
 import com.moa.moakotlin.ui.bottomsheet.NeederHireStatusBottomSheet
 import com.moa.moakotlin.ui.concierge.ConciergeWriteActivity
 import com.moa.moakotlin.ui.concierge.helper.ConciergeReadIntroduceFragment
+import com.moa.moakotlin.ui.concierge.helper.HelperReadFragment
 import com.moa.moakotlin.viewpageradapter.ConciergeReadViewpagerAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -112,6 +114,16 @@ class NeederReadFragment : BaseFragment() {
                 bundle.putParcelable("Needer",needer)
                 navController.navigate(R.id.ChatFragment,bundle)
             }
+        })
+        viewModel.newNeeder.observe(viewLifecycleOwner, Observer {
+            needer = it
+            adapter.list = ArrayList()
+            adapter.list.addAll(it.images!!)
+            binding.NeederReadViewPager.adapter = adapter
+
+            setNeederData()
+            setUpBoardingIndicators(it.images!!.size)
+            setCurrentOnboardingIndicator(0)
         })
         adapter = needer.images?.let { it1 -> ConciergeReadViewpagerAdapter(activity?.applicationContext!!, it1) }!!
 
@@ -200,7 +212,16 @@ class NeederReadFragment : BaseFragment() {
             }
         }
     }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
+        if(requestCode== HelperReadFragment.REQUEST_MODIFY_CODE && resultCode == HelperReadFragment.REQUEST_MODIFY_CODE){
+
+            data?.getParcelableExtra<Needer>("newNeeder")?.let {
+                viewModel.newNeeder.value = it
+            }
+
+        }
+    }
     fun goToModify(){
         var intent = Intent(activity, ConciergeWriteActivity::class.java)
         intent.putExtra("Needer",needer)

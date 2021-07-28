@@ -8,23 +8,24 @@
             name="model"
             type="com.moa.moakotlin.ui.concierge.helper.ConciergeReadIntroduceViewModel" />
     </data>
-    <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        >
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:fillViewport="true"-->
+<!--        >-->
 <androidx.constraintlayout.widget.ConstraintLayout
 
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.concierge.helper.ConciergeReadIntroduceFragment">
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="신청내용"
+    android:layout_marginTop="15dp"
     android:fontFamily="@font/notosanscjkkr_medium"
     android:layout_marginStart="15dp"
-    android:textSize="12sp"
+    android:textSize="14dp"
     android:textColor="#777777"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
@@ -34,8 +35,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        android:textSize="16sp"
+        android:textSize="16dp"
         android:lineSpacingExtra="9sp"
+        android:layout_marginTop="10dp"
         android:id="@+id/ConciergeReadContent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ConciergeReadContentText"
@@ -53,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@id/ConciergeReadContent"
         android:text="이웃정보"
         android:includeFontPadding="false"
-        android:textSize="12sp"
+        android:textSize="14dp"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:textColor="#777777"
         android:layout_marginTop="15dp"
@@ -82,13 +84,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ConciergeReadIntroduceAptName"
         android:text="희망 시급"
-        android:textSize="12sp"
+        android:textSize="14dp"
         android:textColor="#777777"
         android:layout_marginTop="15dp"
         android:includeFontPadding="false"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:layout_marginStart="15dp"
         android:id="@+id/ConciergeReadHopeWageText"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -113,5 +116,5 @@
     />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+<!--    </androidx.core.widget.NestedScrollView>-->
 </layout>

@@ -1,6 +1,7 @@
 package com.moa.moakotlin.ui.concierge.helper
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.WebViewActivity
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Banner
@@ -211,6 +213,20 @@ class HelperMainFragment : BaseFragment() {
 
             setCurrentOnboardingIndicator(0)
 
+            adapter.setOnItemClickListener(object :OnItemClickListener{
+                override fun onItemClick(v: View, position: Int) {
+                    adapter.setOnItemClickListener(object :OnItemClickListener{
+                        override fun onItemClick(v: View, position: Int) {
+                            var intent = Intent(activity, WebViewActivity::class.java)
+
+                            intent.putExtra("url",adapter.list[position])
+
+                            startActivity(intent)
+                        }
+
+                    })
+                }
+            })
             binding.HelperMainBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     setCurrentOnboardingIndicator(position)

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -81,8 +82,11 @@ class NeederModifyFragment : Fragment() {
         viewModel.content.observe(viewLifecycleOwner, Observer { setSubmitBtnChange() })
         binding.NeederModifyHopeDateText.text = needer.hopeDate
         binding.NeederModifyCategory.text = "${needer.mainCategory}  /  ${needer.subCategory}"
+
+
         binding.NeederModifySubmit.setOnClickListener {
-            binding.NeederModifySubmit.isClickable = false
+            activity?.getWindow()?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
             binding.NeederModifyLoading.show()
             CoroutineScope(Dispatchers.Main).launch {
                 viewModel.submit(uploadedPosition,needer)
@@ -100,12 +104,11 @@ class NeederModifyFragment : Fragment() {
 
             var intent = Intent()
 
-            intent.putExtra("newHelper",it)
+            intent.putExtra("newNeeder",it)
 
             activity?.setResult(4000,intent)
-
+            activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
             activity?.finish()
-            binding.NeederModifySubmit.isClickable = true
             binding.NeederModifyLoading.hide()
 
         })

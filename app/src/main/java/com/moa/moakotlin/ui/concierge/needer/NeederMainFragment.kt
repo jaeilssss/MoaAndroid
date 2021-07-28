@@ -1,6 +1,7 @@
 package com.moa.moakotlin.ui.concierge.needer
 
 import android.content.Context
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.WebViewActivity
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Banner
@@ -130,23 +132,6 @@ class NeederMainFragment : BaseFragment() {
 
         }
 
-//        var adapter = HomeViewPagerAdapter(arrayListOf(R.drawable.banner_concierge))
-//
-//        binding.NeederMainBanner.adapter = adapter
-//
-//        binding.NeederMainBanner.offscreenPageLimit =3
-//
-//        binding.NeederMainBanner.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
-//
-//        setUpBoardingIndicators(arrayListOf(R.drawable.banner_concierge))
-//
-//        setCurrentOnboardingIndicator(0)
-//
-//        binding.NeederMainBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-//            override fun onPageSelected(position: Int) {
-//                setCurrentOnboardingIndicator(position)
-//            }
-//        })
     }
 
 
@@ -255,6 +240,20 @@ class NeederMainFragment : BaseFragment() {
 
             setCurrentOnboardingIndicator(0)
 
+            adapter.setOnItemClickListener(object :OnItemClickListener{
+                override fun onItemClick(v: View, position: Int) {
+                    adapter.setOnItemClickListener(object :OnItemClickListener{
+                        override fun onItemClick(v: View, position: Int) {
+                            var intent = Intent(activity, WebViewActivity::class.java)
+
+                            intent.putExtra("url",adapter.list[position].url)
+
+                            startActivity(intent)
+                        }
+
+                    })
+                }
+            })
             binding.NeederMainBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     setCurrentOnboardingIndicator(position)

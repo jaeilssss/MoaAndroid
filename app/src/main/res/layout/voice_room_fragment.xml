@@ -132,6 +132,8 @@
         app:layout_constraintTop_toTopOf="@id/VoiceRoomType"
         app:layout_constraintBottom_toBottomOf="@id/VoiceRoomType"
         android:text="아파트 리모델링의 절차 및 장단점에 대해 토론해요"
+        android:maxLines="2"
+        android:ellipsize="end"
         android:textSize="18sp"
         android:includeFontPadding="false"
         android:fontFamily="@font/notosanscjkkr_medium"

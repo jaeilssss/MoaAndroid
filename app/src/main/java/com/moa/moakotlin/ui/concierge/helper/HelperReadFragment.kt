@@ -192,7 +192,6 @@ class HelperReadFragment : BaseFragment() {
             }
 
         }
-        super.onActivityResult(requestCode, resultCode, data)
     }
 
     private fun setHelperData(helper : Helper){

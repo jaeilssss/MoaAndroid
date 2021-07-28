@@ -2,6 +2,7 @@ package com.moa.moakotlin.ui.concierge.needer
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.repository.chat.ChattingRoomRepository
 import com.moa.moakotlin.repository.concierge.NeederRepository
@@ -13,6 +14,8 @@ import kotlinx.coroutines.launch
 class NeederReadViewModel : ViewModel() {
 
     var roomId = MutableLiveData<String>()
+
+    var newNeeder = MutableLiveData<Needer>()
 
     suspend fun delete(mainCategory : String , documentId : String) : Boolean{
 

@@ -1,11 +1,12 @@
  package com.moa.moakotlin
 
 import android.graphics.Bitmap
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+
 
  class WebViewActivity : AppCompatActivity() {
     lateinit var webView: WebView
@@ -14,6 +15,12 @@ import androidx.constraintlayout.widget.ConstraintLayout
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_web_view)
         webView = findViewById(R.id.webView)
+        webView.getSettings().setJavaScriptEnabled(true);
+
+        val settings = webView.settings
+        settings.domStorageEnabled = true
+
+        
         back  = findViewById(R.id.WebViewBack)
         var url  = intent.getStringExtra("url")
         if (url != null) {
@@ -24,7 +31,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
         }
     }
 
-     private fun init(url : String){
+     private fun init(url: String){
          webView.webViewClient = object : WebViewClient(){
              override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                  super.onPageStarted(view, url, favicon)
