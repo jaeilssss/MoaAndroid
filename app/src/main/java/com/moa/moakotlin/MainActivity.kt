@@ -59,8 +59,9 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
             navController.graph = navGraph
         }
         binding.mainBottomNavigation.itemIconTintList = null
+
 //      var badge =   binding.mainBottomNavigation.getOrCreateBadge(R.id.writeSelectFragment)
-//
+
 //        badge.backgroundColor = Color.parseColor("#ffe402")
 
         binding.mainBottomNavigation.setOnNavigationItemSelectedListener {
