@@ -21,7 +21,7 @@ class NeederMainAdapter() : ListAdapter<Needer, RecyclerView.ViewHolder>(diffUti
 
     private var mListener : OnItemClickListener?=null
 
-
+    var defaultUrl = "https://firebasestorage.googleapis.com/v0/b/moakr-8c0ab.appspot.com/o/CONCIERGE_DEFAULT_200x200.png?alt=media&token=8ba33ee5-1b36-4d39-b400-6af648439187"
     fun setOnItemClickListener(mListener : OnItemClickListener){
         this.mListener = mListener
 
@@ -63,6 +63,11 @@ class NeederMainAdapter() : ListAdapter<Needer, RecyclerView.ViewHolder>(diffUti
                     RequestOptions.bitmapTransform(
                         RoundedCorners(10)
                     )).into(binding.itemConciergeImage)
+            }else{
+                Glide.with(binding.root).load(defaultUrl).apply(
+                        RequestOptions.bitmapTransform(
+                                RoundedCorners(10)
+                        )).into(binding.itemConciergeImage)
             }
             if(helper.isNego.not()){
                 binding.itemConciergeNego.isVisible = false

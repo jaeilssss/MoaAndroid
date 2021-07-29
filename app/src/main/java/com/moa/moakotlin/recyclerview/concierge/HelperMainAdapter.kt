@@ -21,6 +21,7 @@ class HelperMainAdapter() :ListAdapter<Helper, RecyclerView.ViewHolder>(diffUtil
 
     private var mListener : OnItemClickListener ?=null
 
+    var defaultUrl = "https://firebasestorage.googleapis.com/v0/b/moakr-8c0ab.appspot.com/o/CONCIERGE_DEFAULT_200x200.png?alt=media&token=8ba33ee5-1b36-4d39-b400-6af648439187"
 
     fun setOnItemClickListener(mListener : OnItemClickListener){
        this.mListener = mListener
@@ -60,6 +61,10 @@ class HelperMainAdapter() :ListAdapter<Helper, RecyclerView.ViewHolder>(diffUtil
             binding.itemConciergeHireStatus.isVisible  = false
             if(helper.images?.size!!>0){
                 Glide.with(binding.root).load(helper.images?.get(0)).apply(RequestOptions.bitmapTransform(RoundedCorners(15))).into(binding.itemConciergeImage)
+            }else{
+                Glide.with(binding.root).load(defaultUrl)
+                        .apply(RequestOptions.bitmapTransform(RoundedCorners(15))).into(binding.itemConciergeImage)
+
             }
             if(helper.isNego.not()){
                 binding.itemConciergeNego.isVisible = false

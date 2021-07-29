@@ -37,7 +37,6 @@ class NeederWriteViewModel():ViewModel() {
     var subCategory = MutableLiveData<String>("")
     var newNeeder = MutableLiveData<Needer>()
 
-    var defaultImagePath ="https://firebasestorage.googleapis.com/v0/b/moakr-8c0ab.appspot.com/o/MoAImages%2FCONTENT_DEFAULT_200x200.png?alt=media&token=3e986a1b-7c21-4d89-98e8-85e6db5b7b5b"
     fun check() : Boolean{
         return title.value?.length!!>0 &&
                 content.value?.length!!>0 &&
@@ -66,7 +65,6 @@ class NeederWriteViewModel():ViewModel() {
         needer.isNego = isNego.value!!
 
         if(selectedPictureList.value!!.size==0){
-            needer.images.add(defaultImagePath)
             newNeeder.value = repository.submit(needer.mainCategory,needer)
         }else{
             repository.upload(-1,needer.mainCategory, selectedPictureList.value!!,needer) {

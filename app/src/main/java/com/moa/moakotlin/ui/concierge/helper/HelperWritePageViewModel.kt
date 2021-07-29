@@ -21,7 +21,6 @@ class HelperWritePageViewModel() :ViewModel(){
     var hopeWage = MutableLiveData<String>("")
     var content = MutableLiveData<String>("")
 
- var defaultImagePath ="https://firebasestorage.googleapis.com/v0/b/moakr-8c0ab.appspot.com/o/MoAImages%2FCONTENT_DEFAULT_200x200.png?alt=media&token=3e986a1b-7c21-4d89-98e8-85e6db5b7b5b"
 
 
  var uploadedPathList = ArrayList<String>()
@@ -56,8 +55,6 @@ class HelperWritePageViewModel() :ViewModel(){
 
 
   if(selectedPictureList.value!!.size==0){
-   println("??왜 0이야???")
-   helper.images.add(defaultImagePath)
    newHelper.value = repository.submit(helper.mainCategory,helper)
   }else{
 

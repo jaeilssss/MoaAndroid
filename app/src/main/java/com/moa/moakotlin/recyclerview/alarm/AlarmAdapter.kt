@@ -12,6 +12,9 @@ import com.moa.moakotlin.databinding.ItemAlarmBinding
 import java.text.SimpleDateFormat
 
 class AlarmAdapter : ListAdapter<Notification,AlarmAdapter.AlarmViewHoler >(diffUtil) {
+
+    var defaultUrl = "https://firebasestorage.googleapis.com/v0/b/moakr-8c0ab.appspot.com/o/CONCIERGE_DEFAULT_200x200.png?alt=media&token=8ba33ee5-1b36-4d39-b400-6af648439187"
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlarmAdapter.AlarmViewHoler {
         return AlarmViewHoler(ItemAlarmBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
@@ -29,6 +32,9 @@ class AlarmAdapter : ListAdapter<Notification,AlarmAdapter.AlarmViewHoler >(diff
             binding.itemAlarmDate.text = dateFormat.format(notification.timeStamp.toDate())
             if(notification.image.isNotEmpty()){
                 Glide.with(binding.root).load(notification.image).into(binding.itemAlarmProfileImg)
+            }else{
+                Glide.with(binding.root).load(defaultUrl).into(binding.itemAlarmProfileImg)
+
             }
         }
     }

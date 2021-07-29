@@ -21,7 +21,7 @@ class CategoryHelperMainAdapter(): ListAdapter<Helper, CategoryHelperMainAdapter
 
 
     private var mListener : OnItemClickListener ?=null
-
+    var defaultUrl = "https://firebasestorage.googleapis.com/v0/b/moakr-8c0ab.appspot.com/o/CONCIERGE_DEFAULT.png?alt=media&token=8623aaa7-4f88-44fb-a05e-64d2a02cb683"
     fun setOnItemClickListener(mListener : OnItemClickListener){
         this.mListener = mListener
     }
@@ -45,6 +45,12 @@ class CategoryHelperMainAdapter(): ListAdapter<Helper, CategoryHelperMainAdapter
                         RoundedCorners(16)
                     ))
                     .into(binding.itemCategoryImage)
+            }else{
+                Glide.with(binding.root).load(defaultUrl).apply(
+                        RequestOptions.bitmapTransform(
+                                RoundedCorners(16)
+                        ))
+                        .into(binding.itemCategoryImage)
             }
             binding.itemCategoryAptName.text = helper.aptName
             binding.itemCategoryContent.text = helper.content

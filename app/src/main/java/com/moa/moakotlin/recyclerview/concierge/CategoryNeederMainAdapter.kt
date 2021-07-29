@@ -20,7 +20,7 @@ import java.text.SimpleDateFormat
 class CategoryNeederMainAdapter() : ListAdapter<Needer, CategoryNeederMainAdapter.CategoryViewHolder>(diffUtil) {
 
     private lateinit var mListener : OnItemClickListener
-
+    var defaultUrl = "https://firebasestorage.googleapis.com/v0/b/moakr-8c0ab.appspot.com/o/CONCIERGE_DEFAULT.png?alt=media&token=8623aaa7-4f88-44fb-a05e-64d2a02cb683"
     fun setOnItemClickListener(mListener : OnItemClickListener){
         this.mListener = mListener
     }
@@ -40,6 +40,14 @@ class CategoryNeederMainAdapter() : ListAdapter<Needer, CategoryNeederMainAdapte
         fun binding(needer : Needer){
             if(needer.images?.size!=0){
                 Glide.with(binding.root).load(needer.images?.get(0)).apply(
+                        RequestOptions.bitmapTransform(
+                                RoundedCorners(16)
+                        ))
+                        .into(binding.itemCategoryImage)
+
+
+            }else{
+                Glide.with(binding.root).load(defaultUrl).apply(
                         RequestOptions.bitmapTransform(
                                 RoundedCorners(16)
                         ))
