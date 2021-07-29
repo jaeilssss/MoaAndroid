@@ -6,13 +6,19 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.ListenerRegistration
+import com.moa.moakotlin.data.ChattingRoom
 import com.moa.moakotlin.data.Notification
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.firebase.TAG
 import com.moa.moakotlin.repository.alarm.AlarmRepository
+import com.moa.moakotlin.repository.chat.ChattingRoomRepository
 
 class MainViewModel : ViewModel() {
 
     lateinit var notificationListener : ListenerRegistration
+
+    lateinit var chattingRoomListener : ListenerRegistration
+
 
      var notificationList = ArrayList<Notification>()
 
@@ -20,11 +26,15 @@ class MainViewModel : ViewModel() {
 
 
     var isRead = MutableLiveData<Boolean>(true)
+    var isChattingRoomRead = MutableLiveData<Boolean>(true)
     var num = 0
-    fun setAlarmSnapShot(){
+
+    var lastAlarmDocumentID = ""
+    var lastChattingRoomTimestamp=""
+    fun setAlarmSnapShot(lastAlarmDocumentID : String){
         var repository = AlarmRepository()
 
-        notificationListener = repository.setSnapShot().addSnapshotListener{value, error ->
+        notificationListener = repository.getSnapShotLimit().addSnapshotListener{value, error ->
 
             if (error != null) {
                 Log.w(TAG, "Alarm Listen failed.", error)
@@ -37,35 +47,41 @@ class MainViewModel : ViewModel() {
                     var notification = dc.document.toObject(Notification::class.java)
 
                     notification.documentID = dc.document.id
-
-                    when(dc.type){
-                        DocumentChange.Type.ADDED ->{
-                            println(notification.title)
-                            notificationList.add(notification)
-                            if(num<1){
-                                isRead.value = true
-                            }else{
-                                isRead.value = false
-                            }
-
-                        }
-                        DocumentChange.Type.MODIFIED->{
-
-                        }
-                        DocumentChange.Type.REMOVED->{
-
-                        }else ->{
-
+                    if(dc.document.id.equals(lastAlarmDocumentID)){
+                        this.lastAlarmDocumentID = lastAlarmDocumentID
+                        isRead.value = true
+                    }else{
+                        this.lastAlarmDocumentID = lastAlarmDocumentID
+                        isRead.value = false
                     }
-                    }
-
                 }
-                notificationLiveData.value = notificationList
                 num++
             }
         }
     }
 
+    fun setChattingRoomSnapShot(lastChattingRoomTimestamp : String){
+        var repository = ChattingRoomRepository()
+      chattingRoomListener = repository.setSnapShotLimitListener(User.getInstance().uid).addSnapshotListener{value, error ->
+            if(value!=null){
+
+                for(dc in value.documentChanges){
+
+                    var chattingRoom = dc.document.toObject(ChattingRoom::class.java)
+
+                    if(chattingRoom.timeStamp.toString()==lastChattingRoomTimestamp){
+                        this.lastChattingRoomTimestamp = lastChattingRoomTimestamp
+                        isChattingRoomRead.value = true
+                    }else{
+                        this.lastChattingRoomTimestamp = lastChattingRoomTimestamp
+                        isChattingRoomRead.value = false
+                    }
+                }
+                num++
+            }
+
+        }
+    }
     fun removeListener(){
         notificationListener.remove()
     }

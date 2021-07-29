@@ -61,13 +61,13 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
             navGraph = navController.graph
             navGraph.startDestination = R.id.HomeFragment
             navController.graph = navGraph
-            model.setAlarmSnapShot()
+            var data = getSharedPreferences("MyLatestNotification",Context.MODE_PRIVATE)
+            data.getString("documentID","")?.let { model.setAlarmSnapShot(it)
+            }
+            var chattingRoomData = getSharedPreferences("MyLatestChattingRoomTimeStamp",Context.MODE_PRIVATE)
+            chattingRoomData.getString("timeStamp","")?.let { model.setChattingRoomSnapShot(it) }
         }
         binding.mainBottomNavigation.itemIconTintList = null
-
-//      var badge =   binding.mainBottomNavigation.getOrCreateBadge(R.id.writeSelectFragment)
-
-//        badge.backgroundColor = Color.parseColor("#ffe402")
 
         model.isRead.observe(this, Observer {
             if(it){
@@ -79,8 +79,14 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
             }
         })
 
-        model.notificationLiveData.observe(this , Observer {
+        model.isChattingRoomRead.observe(this, Observer {
+            if(it){
+                binding.mainBottomNavigation.removeBadge(R.id.chattingRoomFragment)
+            }else{
+                var badge = binding.mainBottomNavigation.getOrCreateBadge(R.id.chattingRoomFragment)
+                badge.backgroundColor = Color.parseColor("#ffe402")
 
+            }
         })
         binding.mainBottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
@@ -102,13 +108,11 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
                 }
                 R.id.chattingRoomFragment->{
                     navController.navigate(R.id.chattingRoomFragment)
+                    model.isChattingRoomRead.value = true
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.Alarm ->{
-                    println(">>>>>_____")
-                    var bundle = Bundle()
-                    bundle.putParcelableArrayList("notificationList",model.notificationLiveData.value)
-                    navController.navigate(R.id.alarmFragment,bundle)
+                    navController.navigate(R.id.alarmFragment)
                     model.isRead.value = true
                     return@setOnNavigationItemSelectedListener true
                 }

@@ -42,8 +42,15 @@ class ChattingRoomRepository {
         var listener =  db.collection("User").document(uid)
             .collection("ChattingRoom")
             .orderBy("timeStamp",Query.Direction.DESCENDING)
+        return listener
+    }
 
-//                .orderBy("timeStamp", Query.Direction.DESCENDING)
+    fun setSnapShotLimitListener(uid : String):Query{
+        var db = FirebaseFirestore.getInstance()
+        var listener =  db.collection("User").document(uid)
+                .collection("ChattingRoom")
+                .orderBy("timeStamp",Query.Direction.DESCENDING)
+                .limit(1)
         return listener
     }
 

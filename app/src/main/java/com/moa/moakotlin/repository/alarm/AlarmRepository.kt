@@ -10,7 +10,15 @@ class AlarmRepository {
 
 
 
-    fun setSnapShot() : Query {
+    fun getSnapShot() :Query{
+        var db = FirebaseFirestore.getInstance()
+        var query =  db.collection("User")
+                .document(User.getInstance().uid)
+                .collection("Notification")
+                .orderBy("timeStamp",Query.Direction.DESCENDING)
+        return query
+    }
+    fun getSnapShotLimit() : Query {
         var db = FirebaseFirestore.getInstance()
         var query =  db.collection("User")
                 .document(User.getInstance().uid)
