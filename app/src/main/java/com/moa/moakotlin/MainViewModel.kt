@@ -23,7 +23,7 @@ class MainViewModel : ViewModel() {
      var notificationList = ArrayList<Notification>()
 
     var notificationLiveData = MutableLiveData<ArrayList<Notification>>(ArrayList())
-
+    var latestChatRoom = MutableLiveData<String>("")
 
     var isRead = MutableLiveData<Boolean>(true)
     var isChattingRoomRead = MutableLiveData<Boolean>(true)
@@ -60,7 +60,7 @@ class MainViewModel : ViewModel() {
         }
     }
 
-    fun setChattingRoomSnapShot(lastChattingRoomTimestamp : String){
+    fun setChattingRoomSnapShot(){
         var repository = ChattingRoomRepository()
       chattingRoomListener = repository.setSnapShotLimitListener(User.getInstance().uid).addSnapshotListener{value, error ->
             if(value!=null){
@@ -68,14 +68,7 @@ class MainViewModel : ViewModel() {
                 for(dc in value.documentChanges){
 
                     var chattingRoom = dc.document.toObject(ChattingRoom::class.java)
-
-                    if(chattingRoom.timeStamp.toString()==lastChattingRoomTimestamp){
-                        this.lastChattingRoomTimestamp = lastChattingRoomTimestamp
-                        isChattingRoomRead.value = true
-                    }else{
-                        this.lastChattingRoomTimestamp = lastChattingRoomTimestamp
-                        isChattingRoomRead.value = false
-                    }
+                    latestChatRoom.value = chattingRoom.timeStamp.toString()
                 }
                 num++
             }

@@ -64,8 +64,8 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
             var data = getSharedPreferences("MyLatestNotification",Context.MODE_PRIVATE)
             data.getString("documentID","")?.let { model.setAlarmSnapShot(it)
             }
-            var chattingRoomData = getSharedPreferences("MyLatestChattingRoomTimeStamp",Context.MODE_PRIVATE)
-            chattingRoomData.getString("timeStamp","")?.let { model.setChattingRoomSnapShot(it) }
+
+            model.setChattingRoomSnapShot()
         }
         binding.mainBottomNavigation.itemIconTintList = null
 
@@ -79,15 +79,23 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
             }
         })
 
-        model.isChattingRoomRead.observe(this, Observer {
-            if(it){
+        model.latestChatRoom.observe(this, Observer {
+            var chattingRoomData = getSharedPreferences("MyLatestChattingRoomTimeStamp",Context.MODE_PRIVATE)
+            if(it==chattingRoomData.getString("timeStamp","")){
                 binding.mainBottomNavigation.removeBadge(R.id.chattingRoomFragment)
             }else{
                 var badge = binding.mainBottomNavigation.getOrCreateBadge(R.id.chattingRoomFragment)
                 badge.backgroundColor = Color.parseColor("#ffe402")
-
             }
         })
+//        model.isChattingRoomRead.observe(this, Observer {
+//            if(it){
+//                binding.mainBottomNavigation.removeBadge(R.id.chattingRoomFragment)
+//            }else{
+//                var badge = binding.mainBottomNavigation.getOrCreateBadge(R.id.chattingRoomFragment)
+//                badge.backgroundColor = Color.parseColor("#ffe402")
+//            }
+//        })
         binding.mainBottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.writeSelectFragment ->{
@@ -107,13 +115,15 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.chattingRoomFragment->{
-                    navController.navigate(R.id.chattingRoomFragment)
+                    binding.mainBottomNavigation.removeBadge(R.id.chattingRoomFragment)
                     model.isChattingRoomRead.value = true
+                    navController.navigate(R.id.chattingRoomFragment)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.Alarm ->{
-                    navController.navigate(R.id.alarmFragment)
+                    binding.mainBottomNavigation.removeBadge(R.id.Alarm)
                     model.isRead.value = true
+                    navController.navigate(R.id.alarmFragment)
                     return@setOnNavigationItemSelectedListener true
                 }
                 else ->return@setOnNavigationItemSelectedListener false

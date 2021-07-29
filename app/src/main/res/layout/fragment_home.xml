@@ -44,7 +44,7 @@
         android:layout_marginTop="7.5dp"
         android:layout_marginStart="10dp"
         android:id="@+id/compass"/>
-        v<TextView
+        <TextView
             android:layout_width="0dp"
             android:layout_height="55dp"
             android:gravity="center_vertical"
@@ -55,7 +55,7 @@
             android:layout_marginStart="10dp"
             android:includeFontPadding="false"
             android:textColor="@color/moaBlack"
-            android:textStyle="bold"
+            android:lines="1"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:textSize="16sp"
             android:ellipsize="end"
