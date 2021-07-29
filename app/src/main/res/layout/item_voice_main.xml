@@ -37,7 +37,6 @@
         <ImageView
             android:layout_width="112dp"
             android:layout_height="112dp"
-            android:background="#bdbdbd"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/itemVoiceMainTitle"
             android:layout_marginStart="15dp"

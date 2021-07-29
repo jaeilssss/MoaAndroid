@@ -71,7 +71,10 @@ class UserProfileModifyFragment : BaseFragment() {
                        binding.UserProfileModifyLoading.hide()
                        var bundle = Bundle()
                        bundle.putParcelable("user",User.getInstance())
-                       navController.navigate(R.id.userProfileFragment,bundle)
+                       User.getInstance().nickName = viewModel.nickname.value.toString()
+                       User.getInstance().introduction = viewModel.introduction.value.toString()
+                       User.getInstance().profileImage = viewModel.image
+                       navController.popBackStack()
 
                    }else{
                        Toast.makeText(context,"프로필 수정을 실패 했습니다!",Toast.LENGTH_SHORT).show()

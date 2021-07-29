@@ -9,7 +9,7 @@ import com.moa.moakotlin.repository.review.ReviewRepository
 class UserProfileViewModel : ViewModel() {
 
 
-    var nickName = MutableLiveData<String>(User.getInstance().nickName)
+    var nickName = MutableLiveData<String>("")
     var aptName = MutableLiveData<String>(User.getInstance().aptName)
     var introduction = MutableLiveData<String>("")
 

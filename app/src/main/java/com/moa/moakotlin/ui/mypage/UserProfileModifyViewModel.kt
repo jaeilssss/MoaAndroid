@@ -59,6 +59,7 @@ class UserProfileModifyViewModel : ViewModel() {
         tempUser.isAgreeChattingAlarm = User.getInstance().isAgreeChattingAlarm
         tempUser.isAgreeEventAlarm = User.getInstance().isAgreeEventAlarm
         tempUser.isAgreeMarketing = User.getInstance().isAgreeMarketing
+        tempUser.phoneUid = User.getInstance().phoneUid
         return tempUser
     }
 

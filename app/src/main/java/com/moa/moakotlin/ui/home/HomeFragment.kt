@@ -32,6 +32,7 @@ import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.base.Transfer
 import com.moa.moakotlin.base.onBackPressedListener
+import com.moa.moakotlin.custom.SinglePositiveButtonDialog
 import com.moa.moakotlin.data.Banner
 import com.moa.moakotlin.data.Megazin
 import com.moa.moakotlin.data.User
@@ -100,12 +101,22 @@ lateinit var transfer: Transfer
 
         binding.homeTalentSharingBnt.setOnClickListener { navController.navigate(R.id.ConciergeMainFragment) }
         binding.homeMoaVoiceChatBtn.setOnClickListener { navController.navigate(R.id.voiceMainFragment) }
-        binding.homeClaimBtn.setOnClickListener { Toast.makeText(context,"준비중입니다",Toast.LENGTH_SHORT).show() }
+        binding.homeClaimBtn.setOnClickListener { homeClaimAlertDialog() }
         getMoaMagazine()
         getHomeBanner()
         return binding.root
     }
 
+
+    fun homeClaimAlertDialog(){
+        context?.let {
+            SinglePositiveButtonDialog(it)
+                .setMessage("민원신청 기능은 아파트와 계약이 필요해요\n관리 사무소에 문의해주세요")
+                .setPositiveButton("확인"){
+
+                }.show()
+        }
+    }
     fun setOnClickListener(){
 
     }

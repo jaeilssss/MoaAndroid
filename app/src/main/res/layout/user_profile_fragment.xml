@@ -103,7 +103,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/UserprofileModifyBtn"
+        app:layout_constraintTop_toBottomOf="@id/UserProfileImage"
         android:layout_marginTop="20dp"
         tools:text="@string/loadingMessage"
         android:text="@={model.introduction}"

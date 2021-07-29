@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -66,8 +67,8 @@ class UserProfileFragment : BaseFragment() {
         }
 
         setProfileImage()
-        setIntroduce()
-
+        setData()
+        visibleModifyBtn()
 
         var adapter = ReviewAdapter()
 
@@ -90,15 +91,22 @@ class UserProfileFragment : BaseFragment() {
         }
     }
     override fun onBackPressed() {
-        navController.popBackStack(R.id.MyPageFragment,false)
-
+//        navController.popBackStack(R.id.MyPageFragment,false)
+            navController.popBackStack()
+    }
+    fun visibleModifyBtn(){
+        if(User.getInstance().uid != user.uid){
+            binding.UserprofileModifyBtn.isVisible =false
+        }
     }
 
-    fun setIntroduce(){
+    fun setData(){
         if(user.introduction.isEmpty()){
             viewModel.introduction.value="아직 자기 소개를 작성하지 않으셨습니다!"
         }else{
             viewModel.introduction.value = user.introduction
         }
+        viewModel.aptName.value = User.getInstance().aptName
+        viewModel.nickName.value = User.getInstance().nickName
     }
 }

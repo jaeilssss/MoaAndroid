@@ -9,6 +9,7 @@ import com.google.firebase.firestore.ListenerRegistration
 import com.moa.moakotlin.data.RequestUser
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.VoiceUser
+import com.moa.moakotlin.repository.user.UserRepository
 import com.moa.moakotlin.repository.voice.VoiceRepository
 import io.agora.rtc.IRtcEngineEventHandler
 import io.agora.rtc.RtcEngine
@@ -45,7 +46,27 @@ class VoiceRoomViewModel : ViewModel() {
      var channelID = ""
     private var muteState = false;
 
+    fun clearViewModel(){
+         speakers = MutableLiveData<ArrayList<String>>()
+         talking = ArrayList<String>()
 
+
+
+       audiences = MutableLiveData<ArrayList<String>>()
+         speakerList = ArrayList<String>()
+         audienceList = ArrayList<String>()
+
+         speakerListMap = HashMap<String,VoiceUser>()
+         audienceListMap = HashMap<String,VoiceUser>()
+         isDelete = MutableLiveData<Boolean>(false)
+         myVoiceUser = MutableLiveData<VoiceUser>()
+
+         requestUsers = MutableLiveData<ArrayList<String>>()
+         requestUserList = ArrayList<String>()
+         requestUsermap = HashMap<String,RequestUser>()
+
+         temp = ArrayList<String>()
+    }
     fun setRequestSpeakerSnapShotListener(channelID: String){
         var db = VoiceRepository()
         var snapshot = db.setRequestSpeakerUser(channelID)
@@ -235,6 +256,15 @@ class VoiceRoomViewModel : ViewModel() {
             }
         }
 
+    }
+
+  suspend  fun getUserInfo(voiceUser: VoiceUser) : User?{
+
+        var repository = UserRepository()
+
+      var user = repository.getUserInfo(voiceUser.uid)
+
+      return user
     }
 
 }

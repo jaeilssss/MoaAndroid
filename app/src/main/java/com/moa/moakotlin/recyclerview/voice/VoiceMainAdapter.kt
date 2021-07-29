@@ -19,7 +19,7 @@ class VoiceMainAdapter() : ListAdapter<VoiceChatRoom, VoiceMainAdapter.VoiceMain
 
 
     private var mListener : OnItemClickListener ?=null
-
+    var defaultUrl ="https://firebasestorage.googleapis.com/v0/b/moakr-8c0ab.appspot.com/o/CONCIERGE_DEFAULT_200x200.png?alt=media&token=8ba33ee5-1b36-4d39-b400-6af648439187"
     fun setOnItemClickListener(mListener : OnItemClickListener){
         this.mListener = mListener
     }
@@ -40,6 +40,8 @@ class VoiceMainAdapter() : ListAdapter<VoiceChatRoom, VoiceMainAdapter.VoiceMain
         fun binding(voiceChatRoom: VoiceChatRoom){
             if(voiceChatRoom.image.isNotEmpty()){
                 Glide.with(binding.root).load(voiceChatRoom.image).into(binding.itemVoiceMainImage)
+            }else{
+                Glide.with(binding.root).load(defaultUrl).into(binding.itemVoiceMainImage)
             }
             binding.itemVoiceMainRoomMakerNickname.text = voiceChatRoom.nickName
             binding.itemVoiceMainTitle.text = "[${voiceChatRoom.topic}] ${voiceChatRoom.name}"

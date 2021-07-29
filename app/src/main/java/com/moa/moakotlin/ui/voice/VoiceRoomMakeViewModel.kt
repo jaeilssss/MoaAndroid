@@ -23,16 +23,15 @@ class VoiceRoomMakeViewModel : ViewModel() {
    suspend fun submit() : String{
         var repository = VoiceRepository()
         if(image.isNotEmpty()){
-
                 var path = repository.upload(image)
                goToCheck(path)
                  documentID = repository.makeVoiceRoom(voiceChatRoom)
-            var  token= repository.generateToken(documentID,User.getInstance().phoneNumber.toInt())
+            var token= repository.generateToken(documentID,User.getInstance().phoneNumber.toInt())
             return token
         }else{
                 goToCheck("")
              documentID = repository.makeVoiceRoom(voiceChatRoom)
-            var  token= repository.generateToken(documentID,User.getInstance().phoneNumber.toInt())
+            var token= repository.generateToken(documentID,User.getInstance().phoneNumber.toInt())
             return token
         }
     }

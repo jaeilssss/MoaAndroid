@@ -24,7 +24,7 @@ class AptModifyViewModel : ViewModel() {
 
     suspend  fun modifyApt() : Boolean{
         var repository = UserRepository()
-        address = "${address} ${dong}동 ${hosoo}호"
+        address = "${address} ${dong.value}동 ${hosoo.value}호"
         if(repository.modifyApt(aptName.value!!,aptCode.value!!, address)){
             User.getInstance().aptName = aptName.value!!
             User.getInstance().aptCode = aptCode.value!!

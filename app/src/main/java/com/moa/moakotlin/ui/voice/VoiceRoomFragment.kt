@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
+import com.moa.moakotlin.custom.AptCertificationImageAlertDialog
 import com.moa.moakotlin.custom.SinglePositiveButtonDialog
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.VoiceChatRoom
@@ -123,7 +124,7 @@ class VoiceRoomFragment : BaseFragment() {
         }
         binding.VoiceRoomAudienceRcv.adapter =  audienceAdapter
 
-        binding.VoiceRoomExitBtn.setOnClickListener { voiceChatRoomExit() }
+        binding.VoiceRoomExitBtn.setOnClickListener { checkOwnerExit() }
 
         binding.VoiceRoomHandBtn.setOnClickListener { clickHandBtn() }
 
@@ -199,12 +200,21 @@ class VoiceRoomFragment : BaseFragment() {
     fun setAdapterClickListener(adapter: NewVoiceRoomAdapter){
        adapter.setOnItemClickListener(object : OnItemClickListener{
            override fun onItemClick(v: View, position: Int) {
+               var voiceUser = adapter.map.get(adapter.list[position])!!
                val option : VoiceRoomUserProfileBottomSheet = VoiceRoomUserProfileBottomSheet(adapter.map.get(adapter.list[position])!!,voiceChatRoom,viewModel.myVoiceUser.value!!) {
                    when(it){
                        0 -> {
 
                        }
                        1 -> {
+                                // 프로필 화면 이동
+                           CoroutineScope(Dispatchers.Main).launch {
+                               var user = viewModel.getUserInfo(voiceUser)
+                               var bundle = Bundle()
+                               bundle.putParcelable("user",user)
+                               navController.navigate(R.id.action_voiceRoomFragment_to_userProfileFragment,bundle)
+                           }
+
 
                        }
                    }
@@ -254,6 +264,19 @@ class VoiceRoomFragment : BaseFragment() {
             viewModel.requestSpeakerUser(voiceChatRoom.documentID)
             Toast.makeText(activity?.applicationContext, "발언권을 요청하였습니다", Toast.LENGTH_SHORT).show()
             isRequest = true
+        }
+    }
+    fun checkOwnerExit(){
+        if(viewModel.myVoiceUser.value?.role.equals("owner")){
+            context?.let {
+                AptCertificationImageAlertDialog(it)
+                        .setMessage("해당 방송을 종료하시겠습니까?")
+                        .setPositiveButton("예"){
+                            voiceChatRoomExit()
+                        }.setNegativeButton {  }.show()
+            }
+        }else{
+            voiceChatRoomExit()
         }
     }
     private fun voiceChatRoomExit(){
@@ -398,6 +421,12 @@ class VoiceRoomFragment : BaseFragment() {
         val envelop = Message()
         envelop.what = ACTION_WORKER_CONFIG_ENGINE
         envelop.obj = arrayOf<Any>(Constants.CLIENT_ROLE_BROADCASTER)
+    }
+
+    override fun onStop() {
+        viewModel.deleteSnapShot()
+        viewModel.clearViewModel()
+        super.onStop()
     }
 
     override fun onDestroy() {

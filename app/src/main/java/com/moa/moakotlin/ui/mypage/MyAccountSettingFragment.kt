@@ -62,6 +62,8 @@ class MyAccountSettingFragment : BaseFragment() {
                         .show()
             }
         }
+
+        binding.MyAccountSignOut.setOnClickListener { navController.navigate(R.id.action_myAccountSettingFragment_to_dropOutQuestionFragment) }
     }
 
     override fun onBackPressed() {
