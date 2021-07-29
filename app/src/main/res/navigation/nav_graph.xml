@@ -406,5 +406,10 @@
         android:name="com.moa.moakotlin.ui.mypage.DropOutQuestionFragment"
         android:label="drop_out_question_fragment"
         tools:layout="@layout/drop_out_question_fragment" />
+    <fragment
+        android:id="@+id/alarmFragment"
+        android:name="com.moa.moakotlin.ui.alarm.AlarmFragment"
+        android:label="alarm_fragment"
+        tools:layout="@layout/alarm_fragment" />
 
 </navigation>

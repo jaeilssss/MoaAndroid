@@ -111,14 +111,12 @@ class ChatFragment : BaseFragment() {
                         // initView 가 false 인 결
                     }
                 }else{
-
                     if(Chat.getInstance().get(roomId)?.size!=0){
                         Chat.getInstance().get(roomId)?.let { model.nextChat(roomId, it) }
                         adapter.list = Chat.getInstance().get(roomId)!!
                         rcv.adapter = adapter
                         rcv.scrollToPosition(adapter.itemCount-1)
                     }
-
                 }
             }
 

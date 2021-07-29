@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph
 import androidx.navigation.findNavController
@@ -27,6 +29,7 @@ import com.moa.moakotlin.data.aptList
 import com.moa.moakotlin.databinding.ActivityMainBinding
 import com.moa.moakotlin.ui.bottomsheet.WriteSelectFragment
 import com.moa.moakotlin.ui.concierge.ConciergeWriteActivity
+import kotlinx.coroutines.CoroutineScope
 
 class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
     private lateinit var binding: ActivityMainBinding
@@ -44,6 +47,7 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
 //        setContentView(R.layout.activity_main)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        model = ViewModelProvider(this).get(MainViewModel::class.java)
         binding.lifecycleOwner = this
          navController = findNavController(R.id.mainFragment)
         if(User.getInstance().uid.equals("")){
@@ -57,6 +61,7 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
             navGraph = navController.graph
             navGraph.startDestination = R.id.HomeFragment
             navController.graph = navGraph
+            model.setAlarmSnapShot()
         }
         binding.mainBottomNavigation.itemIconTintList = null
 
@@ -64,6 +69,19 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
 
 //        badge.backgroundColor = Color.parseColor("#ffe402")
 
+        model.isRead.observe(this, Observer {
+            if(it){
+                binding.mainBottomNavigation.removeBadge(R.id.Alarm)
+            }else{
+                var badge = binding.mainBottomNavigation.getOrCreateBadge(R.id.Alarm)
+                badge.backgroundColor = Color.parseColor("#ffe402")
+
+            }
+        })
+
+        model.notificationLiveData.observe(this , Observer {
+
+        })
         binding.mainBottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.writeSelectFragment ->{
@@ -87,6 +105,11 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.Alarm ->{
+                    println(">>>>>_____")
+                    var bundle = Bundle()
+                    bundle.putParcelableArrayList("notificationList",model.notificationLiveData.value)
+                    navController.navigate(R.id.alarmFragment,bundle)
+                    model.isRead.value = true
                     return@setOnNavigationItemSelectedListener true
                 }
                 else ->return@setOnNavigationItemSelectedListener false

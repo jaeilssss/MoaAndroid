@@ -10,9 +10,11 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.Timestamp
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.data.Needer
+import com.moa.moakotlin.data.Notification
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.NeederReviewWriteFragmentBinding
 import kotlinx.coroutines.CoroutineScope
@@ -71,8 +73,17 @@ class NeederReviewWriteFragment : BaseFragment {
         CoroutineScope(Dispatchers.Main).launch {
             if(viewModel.reviewWrite(opponentUser.uid)){
                 needer.hireStatus = "모집완료"
-                viewModel.pushToken(opponentUser)
+                var notification =  Notification()
+                notification.timeStamp = Timestamp.now()
+                notification.title = "${User.getInstance().nickName}님이 ${needer.title}에 리뷰를 작성하셨습니다"
+                if(needer.images[0].isNotEmpty()){
+                    notification.image = needer.images[0]
+                }
+
+                viewModel.pushToken(opponentUser,notification)
                 viewModel.hireCompletion(needer)
+
+
                 Toast.makeText(context , "모집완료 되었습니다",Toast.LENGTH_SHORT).show()
                 navController.popBackStack(R.id.neederReadFragment,false)
             }
