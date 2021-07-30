@@ -7,10 +7,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.moa.moakotlin.R
-import com.moa.moakotlin.data.AppQuestion
-import com.moa.moakotlin.data.Kid
-import com.moa.moakotlin.data.Picture
-import com.moa.moakotlin.data.User
+import com.moa.moakotlin.data.*
 import kotlinx.coroutines.tasks.await
 import java.io.File
 import java.io.FileInputStream
@@ -75,6 +72,25 @@ class MyPageRepository {
                     }
                 }
             }.await()
+        return list
+    }
+
+    suspend fun getAppNotice() : ArrayList<Notice>{
+        var db  = FirebaseFirestore.getInstance()
+        var list = ArrayList<Notice>()
+
+        db.collection("MyPage")
+                .document("MyPage")
+                .collection("Notice")
+                .get()
+                .addOnSuccessListener {
+                    for(document in it.documents){
+                        var notice  = document.toObject(Notice::class.java)
+                        if(notice!=null){
+                            list.add(notice)
+                        }
+                    }
+                }.await()
         return list
     }
 }

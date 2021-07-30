@@ -14,11 +14,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
 import com.moa.moakotlin.WebViewActivity
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.databinding.QuestionFragmentBinding
 import com.moa.moakotlin.recyclerview.mypage.QuestionAdapter
 
-class QuestionFragment : Fragment() {
+class QuestionFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = QuestionFragment()
@@ -31,6 +32,8 @@ class QuestionFragment : Fragment() {
     private lateinit var navController: NavController
 
     private lateinit var adapter : QuestionAdapter
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -53,7 +56,7 @@ class QuestionFragment : Fragment() {
             adapter.submitList(it)
         })
 
-
+        binding.questionBack.setOnClickListener{onBackPressed()}
         adapter.setOnItemClickListener(object : OnItemClickListener{
             override fun onItemClick(v: View, position: Int) {
                 var intent = Intent(context,WebViewActivity::class.java)
@@ -62,9 +65,11 @@ class QuestionFragment : Fragment() {
 
                 startActivity(intent)
             }
-
-
         })
+    }
+
+    override fun onBackPressed() {
+        navController.popBackStack()
     }
 
 }

@@ -7,6 +7,7 @@ class Notice(
         var body : String = "",
         var id : String ="",
         var timeStamp : Timestamp = Timestamp.now(),
-        var url : String =""
+        var url : String ="",
+        var title : String =""
 ){
 }
