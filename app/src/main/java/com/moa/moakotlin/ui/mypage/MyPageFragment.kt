@@ -55,7 +55,7 @@ class MyPageFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        (context as MainActivity).backListener = this
+
 
         model = ViewModelProvider(this).get(MyPageViewModel::class.java)
         binding.model = model

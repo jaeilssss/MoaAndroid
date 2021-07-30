@@ -49,6 +49,23 @@ class MyAccountSettingFragment : BaseFragment() {
 
         binding.MyAccountPhoneNumberNewCheck.setOnClickListener { goToChangePhoneNumber()}
 
+        binding.MyAccountMoaPolicy.setOnClickListener {
+            var bundle = Bundle()
+            var url = resources.getString(R.string.MoaOperationUrl)
+            bundle.putString("url",url)
+            bundle.putString("title","모두의 아파트 운영정책")
+            navController.navigate(R.id.action_myAccountSettingFragment_to_moaOperationPolicy,bundle)
+        }
+
+        binding.MyAccountPrivatePolicy.setOnClickListener {
+            var bundle = Bundle()
+            var url = resources.getString(R.string.MoaPrivatePolicyUrl)
+
+            bundle.putString("url",url)
+            bundle.putString("title","개인정보 처리방침")
+            navController.navigate(R.id.action_myAccountSettingFragment_to_moaOperationPolicy,bundle)
+        }
+
         binding.MyAccountLogout.setOnClickListener {
             context?.let {
                 AptCertificationImageAlertDialog(it)

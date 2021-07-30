@@ -111,6 +111,7 @@
             android:fontFamily="@font/notosanscjkkr_medium"
             android:lineSpacingExtra="6.5sp"
             android:layout_marginTop="10dp"
+            android:id="@+id/PolicyServieText"
             app:layout_constraintBaseline_toBaselineOf="@id/servicePolicyCheck"
             app:layout_constraintStart_toEndOf="@id/servicePolicyCheck"
             android:textColor="@color/moaBlack"/>
@@ -131,6 +132,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
+            android:id="@+id/PolicyPolicyText"
             android:text="개인정보 취급방침 (필수)"
             android:lineSpacingExtra="6.5sp"
             android:fontFamily="@font/notosanscjkkr_medium"
@@ -157,6 +159,7 @@
             android:textSize="16sp"
             android:lineSpacingExtra="6.5sp"
             android:text="마케팅 수신동의 (선택)"
+            android:id="@+id/policyMarketingText"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:layout_marginTop="20dp"
             app:layout_constraintBaseline_toBaselineOf="@id/maketingPolicyCheck"

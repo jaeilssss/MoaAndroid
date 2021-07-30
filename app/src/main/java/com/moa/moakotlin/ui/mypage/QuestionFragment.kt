@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.WebViewActivity
 import com.moa.moakotlin.base.BaseFragment
@@ -38,6 +39,7 @@ class QuestionFragment : BaseFragment() {
                               savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.question_fragment,container,false)
+        (context as MainActivity).backListener = this
         return binding.root
     }
 

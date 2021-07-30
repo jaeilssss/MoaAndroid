@@ -1,3 +1,4 @@
+
 package com.moa.moakotlin.ui.mypage
 
 import androidx.lifecycle.ViewModelProvider
@@ -9,10 +10,12 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.databinding.MoaOperationPolicyFragmentBinding
 
-class MoaOperationPolicy : Fragment() {
+class MoaOperationPolicy : BaseFragment() {
 
     companion object {
         fun newInstance() = MoaOperationPolicy()
@@ -28,6 +31,7 @@ class MoaOperationPolicy : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater , R.layout.moa_operation_policy_fragment,container,false)
+        (context as MainActivity).backListener = this
         return binding.root
     }
 
@@ -36,14 +40,25 @@ class MoaOperationPolicy : Fragment() {
         viewModel = ViewModelProvider(this).get(MoaOperationPolicyViewModel::class.java)
         navController = findNavController()
         binding.model = viewModel
-
-        binding.MoaOperationWebView.loadUrl("https://moduapt.com/terms/use")
+        var url = ""
+        var title =""
+        arguments?.let {
+            url = it.getString("url")!!
+            title = it.getString("title")!!
+        }
+        binding.MoaOperationWebView.loadUrl(url)
+        binding.MoaOperationWebViewTitle.text = title
         binding.MoaOperationWebView.settings.javaScriptEnabled = true
 
         binding.MoaOperationWebView.settings.domStorageEnabled= true
+        binding.moaPolicyBack.setOnClickListener { navController.popBackStack() }
 
 
 
+    }
+
+    override fun onBackPressed() {
+        navController.popBackStack()
     }
 
 }
