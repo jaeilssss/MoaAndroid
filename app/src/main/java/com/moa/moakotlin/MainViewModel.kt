@@ -28,6 +28,7 @@ class MainViewModel : ViewModel() {
     var isRead = MutableLiveData<Boolean>(true)
     var isChattingRoomRead = MutableLiveData<Boolean>(true)
     var num = 0
+    var chattingRoom = MutableLiveData<ChattingRoom>()
 
     var lastAlarmDocumentID = ""
     var lastChattingRoomTimestamp=""
@@ -69,6 +70,7 @@ class MainViewModel : ViewModel() {
 
                     var chattingRoom = dc.document.toObject(ChattingRoom::class.java)
                     latestChatRoom.value = chattingRoom.timeStamp.toString()
+                    this.chattingRoom.value = chattingRoom
                 }
                 num++
             }

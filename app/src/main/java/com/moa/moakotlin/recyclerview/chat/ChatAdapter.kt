@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -96,7 +98,7 @@ class ChatAdapter(var navController: NavController, var context: Context,var lis
         }
     }
 
-    class leftViewHolder(var view : View,var adapter: ChatAdapter,var context: Context) : RecyclerView.ViewHolder(view) {
+    inner class leftViewHolder(var view : View,var adapter: ChatAdapter,var context: Context) : RecyclerView.ViewHolder(view) {
       lateinit var talk : TextView
 
         lateinit var nickname : TextView
@@ -106,26 +108,48 @@ class ChatAdapter(var navController: NavController, var context: Context,var lis
             date = view.findViewById(R.id.itemChatLeftDate)
         }
             fun bind(chat : Chat){
+                val dateFormat2 = SimpleDateFormat("yyyy년 MM월 dd일")
+                if(adapterPosition!=0){
+                    if(dateFormat2.format(list[adapterPosition-1].timeStamp.toDate())==dateFormat2.format(list[adapterPosition].timeStamp.toDate())){
+                        view.findViewById<TextView>(R.id.itemChatDate).isVisible = false
+                    }else{
+                        view.findViewById<TextView>(R.id.itemChatDate).text = dateFormat2.format(chat.timeStamp.toDate())
+                    }
+                }else{
+                    view.findViewById<TextView>(R.id.itemChatDate).text = dateFormat2.format(chat.timeStamp.toDate())
 
+                }
                 talk.setText(chat.talk)
                 val dateFormat = SimpleDateFormat("a hh:mm")
                 date.text = dateFormat.format(chat.timeStamp.toDate())
             }
     }
-    class rightViewHolder(var view : View , var adapter: ChatAdapter,var context: Context) : RecyclerView.ViewHolder(view){
+    inner class rightViewHolder(var view : View , var adapter: ChatAdapter,var context: Context) : RecyclerView.ViewHolder(view){
         lateinit var talk : TextView
         lateinit var date : TextView
         init {
             date =  view.findViewById(R.id.itemChatRightDate)
         }
         fun bind(chat : Chat){
+            val dateFormat2 = SimpleDateFormat("yyyy년 MM월 dd일")
+            if(adapterPosition!=0){
+                if(dateFormat2.format(list[adapterPosition-1].timeStamp.toDate())==dateFormat2.format(list[adapterPosition].timeStamp.toDate())){
+                    view.findViewById<TextView>(R.id.itemChatDate).isVisible = false
+                }else{
+                    view.findViewById<TextView>(R.id.itemChatDate).text = dateFormat2.format(chat.timeStamp.toDate())
+
+                }
+            }else{
+                view.findViewById<TextView>(R.id.itemChatDate).text = dateFormat2.format(chat.timeStamp.toDate())
+
+            }
             val dateFormat = SimpleDateFormat("a hh:mm")
             talk = view.findViewById(R.id.itemRightChatMessage)
             talk.setText(chat.talk)
             date.text = dateFormat.format(chat.timeStamp.toDate())
         }
     }
-    class rightImageViewHolder(var view : View , var adapter: ChatAdapter,var context: Context) : RecyclerView.ViewHolder(view){
+    inner class rightImageViewHolder(var view : View , var adapter: ChatAdapter,var context: Context) : RecyclerView.ViewHolder(view){
         lateinit var image : ImageView
         lateinit var profile : ImageView
         lateinit var date : TextView
@@ -136,13 +160,25 @@ class ChatAdapter(var navController: NavController, var context: Context,var lis
 
         }
         fun bind(chat : Chat){
+            val dateFormat2 = SimpleDateFormat("yyyy년 MM월 dd일")
+            if(adapterPosition!=0){
+
+                if(dateFormat2.format(list[adapterPosition-1].timeStamp.toDate())==dateFormat2.format(list[adapterPosition].timeStamp.toDate())){
+                    view.findViewById<TextView>(R.id.itemChatDate).isVisible = false
+                }else{
+                    view.findViewById<TextView>(R.id.itemChatDate).text = dateFormat2.format(chat.timeStamp.toDate())
+                }
+            }else{
+                view.findViewById<TextView>(R.id.itemChatDate).text = dateFormat2.format(chat.timeStamp.toDate())
+
+            }
             val dateFormat = SimpleDateFormat("a hh:mm")
             image = view.findViewById(R.id.itemChatRightImg)
             Glide.with(context).load(chat.images?.get(0)).into(image)
             date.text = dateFormat.format(chat.timeStamp.toDate())
         }
     }
-    class leftImageViewHoldfer(var view : View , var adapter: ChatAdapter,var context: Context) : RecyclerView.ViewHolder(view){
+    inner class leftImageViewHoldfer(var view : View , var adapter: ChatAdapter,var context: Context) : RecyclerView.ViewHolder(view){
         lateinit var image : ImageView
         lateinit var profile : ImageView
         lateinit var date : TextView
@@ -151,6 +187,18 @@ class ChatAdapter(var navController: NavController, var context: Context,var lis
             date = view.findViewById(R.id.itemChatLeftImgDate)
         }
         fun bind(chat : Chat){
+            val dateFormat2 = SimpleDateFormat("yyyy년 MM월 dd일")
+            if(adapterPosition!=0){
+
+                if(dateFormat2.format(list[adapterPosition-1].timeStamp.toDate())==dateFormat2.format(list[adapterPosition].timeStamp.toDate())){
+                    view.findViewById<TextView>(R.id.itemChatDate).isVisible = false
+                }else{
+                    view.findViewById<TextView>(R.id.itemChatDate).text = dateFormat2.format(chat.timeStamp.toDate())
+                }
+            }else{
+                view.findViewById<TextView>(R.id.itemChatDate).text = dateFormat2.format(chat.timeStamp.toDate())
+
+            }
             val dateFormat = SimpleDateFormat("a hh:mm")
             image = view.findViewById(R.id.itemChatLeftImg)
             Glide.with(context).load(chat.images?.get(0)).into(image)

@@ -40,6 +40,28 @@ class PolicyFragment : BaseFragment() {
             }
         }
         observeViewModel()
+
+        binding.PolicyServieText.setOnClickListener {
+            var url = resources.getString(R.string.MoaOperationUrl)
+            var bundle = Bundle()
+            bundle.putString("url",url)
+            bundle.putString("title","모두의 아파트 운영정책")
+            navController.navigate(R.id.action_policyFragment_to_moaOperationFragment,bundle)
+        }
+        binding.PolicyPolicyText.setOnClickListener {
+            var url = resources.getString(R.string.MoaPrivatePolicyUrl)
+            var bundle = Bundle()
+            bundle.putString("url",url)
+            bundle.putString("title","개인정보 처리방침")
+            navController.navigate(R.id.action_policyFragment_to_moaOperationFragment,bundle)
+        }
+        binding.policyMarketingText.setOnClickListener {
+            var url = resources.getString(R.string.marketingPolicyUrl)
+            var bundle = Bundle()
+            bundle.putString("url",url)
+            bundle.putString("title","마케팅 정보 활용 동의")
+            navController.navigate(R.id.action_policyFragment_to_moaOperationFragment,bundle)
+        }
         return binding.root
     }
 

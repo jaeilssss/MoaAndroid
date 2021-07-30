@@ -250,7 +250,11 @@
     <fragment
         android:id="@+id/policyFragment"
         android:name="com.moa.moakotlin.ui.signup.PolicyFragment"
-        android:label="PolicyFragment" />
+        android:label="PolicyFragment" >
+        <action
+            android:id="@+id/action_policyFragment_to_moaOperationFragment"
+            app:destination="@id/moaOperationPolicy"/>
+    </fragment>
     <fragment
         android:id="@+id/aptCertificationGuideFragment"
         android:name="com.moa.moakotlin.ui.certification.AptCertificationGuideFragment"

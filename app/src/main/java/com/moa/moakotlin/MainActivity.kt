@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
      }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_main)
+
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         model = ViewModelProvider(this).get(MainViewModel::class.java)
@@ -84,8 +84,13 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
             if(it==chattingRoomData.getString("timeStamp","")){
                 binding.mainBottomNavigation.removeBadge(R.id.chattingRoomFragment)
             }else{
-                var badge = binding.mainBottomNavigation.getOrCreateBadge(R.id.chattingRoomFragment)
-                badge.backgroundColor = Color.parseColor("#ffe402")
+                if(model.chattingRoom.value?.isRead==true){
+                    binding.mainBottomNavigation.removeBadge(R.id.chattingRoomFragment)
+                }else{
+                    var badge = binding.mainBottomNavigation.getOrCreateBadge(R.id.chattingRoomFragment)
+                    badge.backgroundColor = Color.parseColor("#ffe402")
+                }
+
             }
         })
 //        model.isChattingRoomRead.observe(this, Observer {
