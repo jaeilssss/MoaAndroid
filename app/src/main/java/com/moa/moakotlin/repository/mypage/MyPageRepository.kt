@@ -7,6 +7,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.moa.moakotlin.R
+import com.moa.moakotlin.data.AppQuestion
 import com.moa.moakotlin.data.Kid
 import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.data.User
@@ -56,5 +57,24 @@ class MyPageRepository {
          result = task.result.toString()
         }.await()
         return result
+    }
+
+    suspend fun getAppQuestion() : ArrayList<AppQuestion>{
+        var db  = FirebaseFirestore.getInstance()
+        var list = ArrayList<AppQuestion>()
+
+        db.collection("MyPage")
+            .document("MyPage")
+            .collection("Question")
+            .get()
+            .addOnSuccessListener {
+                for(document in it.documents){
+                    var appQuestion  = document.toObject(AppQuestion::class.java)
+                    if(appQuestion!=null){
+                        list.add(appQuestion)
+                    }
+                }
+            }.await()
+        return list
     }
 }

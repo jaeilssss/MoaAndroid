@@ -79,6 +79,8 @@ class MyPageFragment : BaseFragment() {
         binding.myPageTalentSharingText.setOnClickListener { navController.navigate(R.id.action_MyPageFragment_to_myConciergeListFragment) }
         binding.myPageMyAccountSetting.setOnClickListener { navController.navigate(R.id.action_MyPageFragment_to_myAccountSettingFragment) }
         binding.myPageAlarmSetting.setOnClickListener { navController.navigate(R.id.action_MyPageFragment_to_alarmSettingFragment) }
+        binding.myPageQuestion.setOnClickListener { navController.navigate(R.id.action_MyPageFragment_to_questionFragment) }
+        binding.myPageNotice.setOnClickListener { navController.navigate(R.id.action_MyPageFragment_to_noticeFragment) }
     }
 
     override fun onBackPressed() {

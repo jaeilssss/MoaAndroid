@@ -51,6 +51,12 @@
         <action
             android:id="@+id/action_MyPageFragment_to_alarmSettingFragment"
             app:destination="@id/alarmSettingFragment" />
+        <action
+            android:id="@+id/action_MyPageFragment_to_questionFragment"
+            app:destination="@id/questionFragment" />
+        <action
+            android:id="@+id/action_MyPageFragment_to_noticeFragment"
+            app:destination="@id/noticeFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -415,5 +421,15 @@
         android:name="com.moa.moakotlin.ui.alarm.AlarmFragment"
         android:label="alarm_fragment"
         tools:layout="@layout/alarm_fragment" />
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="com.moa.moakotlin.ui.mypage.QuestionFragment"
+        android:label="question_fragment"
+        tools:layout="@layout/question_fragment" />
+    <fragment
+        android:id="@+id/noticeFragment"
+        android:name="com.moa.moakotlin.ui.mypage.NoticeFragment"
+        android:label="notice_fragment"
+        tools:layout="@layout/notice_fragment" />
 
 </navigation>

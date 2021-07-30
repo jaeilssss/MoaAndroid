@@ -129,10 +129,10 @@ lateinit var transfer: Transfer
         Toast.makeText(context,"종료하려면 한번 더 누르세요",Toast.LENGTH_SHORT).show()
     }
 
-    private fun setUpBoardingIndicators(){
+    private fun setUpBoardingIndicators(list : ArrayList<Banner>){
         binding.indicators?.removeAllViews()
         val indicators =
-                arrayOfNulls<ImageView>(3)
+                arrayOfNulls<ImageView>(list.size)
 
         var layoutParams = LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT
@@ -196,11 +196,11 @@ lateinit var transfer: Transfer
         adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         binding.homeViewPager.adapter = adapter
 
-        binding.homeViewPager.offscreenPageLimit =3
+//        binding.homeViewPager.offscreenPageLimit =3
 
 //        binding.homeViewPager.getChildAt(0).overScrollMode=View.OVER_SCROLL_ALWAYS
 
-        setUpBoardingIndicators()
+        setUpBoardingIndicators(list)
 
         setCurrentOnboardingIndicator(0)
 
