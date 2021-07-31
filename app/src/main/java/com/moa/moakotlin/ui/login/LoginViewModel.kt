@@ -50,6 +50,7 @@ suspend fun getUserInfo(uid : String) : Boolean{
     suspend  fun checkCertificationMessage() : Boolean{
 
         if(loginRepository.storedVerificationId==null){
+            println("1111111")
             return isChecked
         }else{
 
@@ -60,6 +61,8 @@ suspend fun getUserInfo(uid : String) : Boolean{
 
         if(isChecked){
             User.getInstance().phoneNumber = phoneNumber.value.toString()
+        }else{
+            println("2222")
         }
         return isChecked
 

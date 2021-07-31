@@ -44,7 +44,7 @@ class CertificationNoticeFragment : BaseFragment() {
 
         binding.skipCertificationBtn.setOnClickListener{
             CoroutineScope(Dispatchers.Main).launch {
-                if(model.signUp(User.getInstance())){
+                if(model.signUp()){
                     var bundle = Bundle()
                     bundle.putBoolean("isCertification",false)
                     navController.navigate(R.id.signUpResultFragment,bundle)

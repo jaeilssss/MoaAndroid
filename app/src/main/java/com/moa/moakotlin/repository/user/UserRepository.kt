@@ -3,10 +3,14 @@ package com.moa.moakotlin.repository.user
 import android.net.Uri
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.functions.FirebaseFunctions
+import com.google.firebase.functions.ktx.functions
 import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.moa.moakotlin.data.ApartCertification
+import com.moa.moakotlin.data.DropOut
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.aptList
 import kotlinx.coroutines.tasks.await
@@ -26,6 +30,7 @@ class UserRepository {
                 .addOnSuccessListener {
                     for(document in it.documents){
                         user = document.toObject(User::class.java)
+                        user?.uid = document.id
                     }
                 }.await()
         return user
@@ -35,10 +40,12 @@ class UserRepository {
         User.getInstance()
         var db  = FirebaseFirestore.getInstance()
 
-        db.collection("User").document(documentId)
+        db.collection("User").whereEqualTo("phoneUid",documentId)
             .get().addOnSuccessListener {
-                if(it.exists()){
-                    user = it.toObject(User::class.java)!!
+                if(!it.isEmpty){
+
+                    user = it.documents.get(0).toObject(User::class.java)
+                    user?.uid = it.documents.get(0).id
                 }else{
                     user = null
                 }
@@ -198,6 +205,32 @@ class UserRepository {
             map["pushtoken"] = pushToken!!
             FirebaseFirestore.getInstance().collection("User").document(User.getInstance().uid).set(User.getInstance())
         }
+    }
+
+    fun deleteAtPath(path: String) {
+        var functions: FirebaseFunctions = Firebase.functions("asia-northeast3")
+        val deleteFn = functions.getHttpsCallable("recursiveDelete")
+        deleteFn.call(hashMapOf("path" to path))
+                .addOnSuccessListener {
+                    // Delete Success
+                    // ...
+                    System.out.println("성공!!!")
+                }
+                .addOnFailureListener {
+                    // Delete Failed
+                    // ...
+                    System.out.println("실패..!!!")
+                }
+    }
+
+    fun writeDropOutReason(dropOut: DropOut){
+
+        var db = FirebaseFirestore.getInstance()
+
+        db.collection("MyPage")
+                .document("MyPage")
+                .collection("Dropout")
+                .add(dropOut)
     }
 
 }

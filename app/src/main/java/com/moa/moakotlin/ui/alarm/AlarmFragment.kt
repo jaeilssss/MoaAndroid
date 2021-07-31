@@ -64,7 +64,9 @@ class AlarmFragment : Fragment() {
         viewModel.notificationList.observe(viewLifecycleOwner, Observer {
             activity?.getSharedPreferences("MyLatestNotification", Context.MODE_PRIVATE)!!
                     .edit {
-                        putString("documentID",it[0].documentID)
+                        if(it.size!=0){
+                            putString("documentID",it[0].documentID)
+                        }
                         commit()
                     }
                     adapter.submitList(it)

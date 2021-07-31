@@ -1,5 +1,6 @@
 package com.moa.moakotlin.ui.mypage
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,9 +11,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.moa.moakotlin.LoadingActivity
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
+import com.moa.moakotlin.custom.AptCertificationImageAlertDialog
 import com.moa.moakotlin.databinding.DropOutQuestionFragmentBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -50,8 +53,9 @@ class DropOutQuestionFragment : BaseFragment() {
         navController = findNavController()
 
         viewModel.alreadUseCheck.observe(viewLifecycleOwner, Observer {
+            binding.DropOutCheckBOxalreadUses.isChecked = it
+            viewModel.setCheckedMessage()
             if(it){
-                viewModel.checked.value = "유사한 다른 타 어플을 사용 중이라서"
                 viewModel.errorCheck.value = false
                 viewModel.emptyDataCheck.value = false
                 viewModel.etcCheck.value = false
@@ -59,12 +63,11 @@ class DropOutQuestionFragment : BaseFragment() {
                 viewModel.noMannerCheck.value = false
                 viewModel.privateCheck.value = false
             }
-
-
         })
         viewModel.emptyDataCheck.observe(viewLifecycleOwner, Observer {
+            binding.DropOutCheckBoxEmptyData.isChecked = it
+            viewModel.setCheckedMessage()
             if(it){
-                viewModel.checked.value = "나에게 필요한 정보가 부족해서"
                 viewModel.errorCheck.value = false
                 viewModel.alreadUseCheck.value = false
                 viewModel.etcCheck.value = false
@@ -75,8 +78,9 @@ class DropOutQuestionFragment : BaseFragment() {
 
         })
         viewModel.errorCheck.observe(viewLifecycleOwner, Observer {
+            binding.DropOutCheckBoxError.isChecked = it
+            viewModel.setCheckedMessage()
             if(it){
-                viewModel.checked.value = "시스템 오류가 많아서"
                 viewModel.emptyDataCheck.value = false
                 viewModel.alreadUseCheck.value = false
                 viewModel.etcCheck.value = false
@@ -86,8 +90,9 @@ class DropOutQuestionFragment : BaseFragment() {
             }
         })
         viewModel.etcCheck.observe(viewLifecycleOwner, Observer {
+            binding.DropOutCheckBoxEtc.isChecked  = it
+            viewModel.setCheckedMessage()
             if(it){
-                viewModel.checked.value = "기타"
                 viewModel.emptyDataCheck.value = false
                 viewModel.alreadUseCheck.value = false
                 viewModel.errorCheck.value = false
@@ -97,8 +102,10 @@ class DropOutQuestionFragment : BaseFragment() {
             }
         })
         viewModel.modifyCheck.observe(viewLifecycleOwner, Observer {
+
+            binding.DropOutCheckBoxIDModify.isChecked = it
+            viewModel.setCheckedMessage()
             if(it){
-                viewModel.checked.value="아이디 변경 또는 재가입을 위해서"
                 viewModel.emptyDataCheck.value = false
                 viewModel.alreadUseCheck.value = false
                 viewModel.errorCheck.value = false
@@ -108,9 +115,10 @@ class DropOutQuestionFragment : BaseFragment() {
             }
         })
         viewModel.noMannerCheck.observe(viewLifecycleOwner, Observer {
+            binding.DropOutCheckBoxNoManner.isChecked = it
+            viewModel.setCheckedMessage()
 
             if(it){
-                viewModel.checked.value = "비매너 이웃을 만나서"
                 viewModel.emptyDataCheck.value = false
                 viewModel.alreadUseCheck.value = false
                 viewModel.errorCheck.value = false
@@ -120,8 +128,9 @@ class DropOutQuestionFragment : BaseFragment() {
             }
         })
         viewModel.privateCheck.observe(viewLifecycleOwner, Observer {
+            binding.DropOutCheckBoxPrivate. isChecked = it
+            viewModel.setCheckedMessage()
             if(it){
-                viewModel.checked.value="개인정보 유출 방지 등 보안 상의 문제로"
                 viewModel.emptyDataCheck.value = false
                 viewModel.alreadUseCheck.value = false
                 viewModel.errorCheck.value = false
@@ -134,15 +143,37 @@ class DropOutQuestionFragment : BaseFragment() {
             if(it.length>0){
                 binding.DropOutSubmit.isClickable  = true
                 binding.DropOutSubmit.setBackgroundResource(R.drawable.button_shape_main_color)
+            }else{
+                binding.DropOutSubmit.isClickable  = false
+                binding.DropOutSubmit.setBackgroundResource(R.drawable.shape_unable_radius_15)
+            }
+        })
+
+        viewModel.delete.observe(viewLifecycleOwner, Observer {
+            if(it){
+                println("아니 왜 ㅡㅡ ")
+                var intent = Intent(context, LoadingActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
             }
         })
 
         binding.DropOutSubmit.setOnClickListener {
-            CoroutineScope(Dispatchers.Main).launch {
-                if(viewModel.dropOut()){
-                    navController.navigate(R.id.FirstFragment)
-                }
+
+            context?.let { it1 -> AptCertificationImageAlertDialog(it1)
+                    .setMessage("회원탈퇴를 진행하시겠습니까?\n 탈퇴를 진행 할 경우 그동안 작성하신 글은 제거됩니다!")
+                    .setPositiveButton("네"){
+                        CoroutineScope(Dispatchers.Main).launch {
+                            if(viewModel.dropOut()){
+
+                            }
+                        }
+                    }
+                    .setNegativeButton {
+
+                    }.show()
             }
+
              }
     }
 

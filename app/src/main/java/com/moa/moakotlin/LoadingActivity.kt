@@ -34,6 +34,7 @@ lateinit var model : LoadingViewModel
             Picture.deleteInstance()
             var userRepository = UserRepository()
             if(FirebaseAuth.getInstance().currentUser==null){
+                println("널이야?... ")
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }else{

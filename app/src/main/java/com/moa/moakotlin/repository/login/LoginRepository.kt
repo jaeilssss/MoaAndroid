@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit
 class LoginRepository(var activity: FragmentActivity){
     var isChecked = false
     lateinit var resendToken : PhoneAuthProvider.ForceResendingToken
-    lateinit var code2 : String
+     var code2 : String? =null
      var storedVerificationId : String ? =null
     var TAG = "firebase sendMessage"
     fun sendMessage(phoneNumber : String){
@@ -75,18 +75,22 @@ class LoginRepository(var activity: FragmentActivity){
 
        credential  = PhoneAuthProvider.getCredential(storedVerificationId!!,code)
        return try{
-           CoroutineScope(Dispatchers.Default).async {
 
-           }
-           auth.signInWithCredential(credential)
-                   .addOnSuccessListener {
-                       isChecked=true
+               auth.signInWithCredential(credential)
+                       .addOnSuccessListener {
+                           isChecked=true
 
-                   }.
-                   addOnFailureListener {
-                       isChecked=false
-                   }.await()
-                    isChecked
+                       }.
+                       addOnFailureListener {
+                           if(code2!=null && code2.equals(code)){
+                               isChecked =true
+                           }else{
+                               isChecked=false
+                           }
+                       }.await()
+            return   isChecked
+           
+
        }catch (e :FirebaseException){
            isChecked
        }

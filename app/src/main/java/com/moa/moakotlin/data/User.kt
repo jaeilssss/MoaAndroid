@@ -58,6 +58,7 @@ data class User(
         instance?.isAgreeEventAlarm = user.isAgreeEventAlarm
         instance?.isAgreeChattingAlarm = user.isAgreeChattingAlarm
         instance?.pushToken = user.pushToken
+        instance?.phoneUid = user.phoneUid
     }
         fun deleteUser(){
             instance = null

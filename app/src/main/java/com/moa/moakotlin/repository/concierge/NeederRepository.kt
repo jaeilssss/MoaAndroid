@@ -233,9 +233,10 @@ class NeederRepository {
             .collection(needer.mainCategory)
             .document(needer.documentID)
             .update("uid",User.getInstance().uid)
+
     }
 
-    fun deleteGetMyHelper(){
+    fun deleteGetMyNeeder(){
         var db = FirebaseFirestore.getInstance()
         db.collectionGroup("NeederContent")
                 .whereEqualTo("uid",User.getInstance().uid)

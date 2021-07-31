@@ -201,7 +201,7 @@ class AptCertificationFragment : BaseFragment() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(requestCode==1000){
+        if(requestCode==1000 && grantResults.get(0) == PackageManager.PERMISSION_GRANTED && grantResults.get(1)==PackageManager.PERMISSION_GRANTED){
                 takeCapture()
         }
     }

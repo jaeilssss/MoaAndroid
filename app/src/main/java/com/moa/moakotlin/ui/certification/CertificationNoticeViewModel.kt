@@ -1,15 +1,17 @@
 package com.moa.moakotlin.ui.certification
 
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseAuth
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.repository.user.UserRepository
 
 class CertificationNoticeViewModel() : ViewModel(){
 
 
-   suspend fun signUp(user :User) : Boolean{
+   suspend fun signUp() : Boolean{
         var repository = UserRepository()
-      var uid= repository.signUpUser(user)
+       User.getInstance().phoneUid = FirebaseAuth.getInstance().currentUser?.uid!!
+      var uid= repository.signUpUser(User.getInstance())
        if(uid !=null){
            User.getInstance().uid =uid
            return true

@@ -23,10 +23,11 @@ class AptCertificationViewModel : ViewModel() {
 
     suspend fun signUp(){
         var repository = UserRepository()
-
+        User.getInstance().phoneUid = FirebaseAuth.getInstance().currentUser?.uid!!
         var uid = repository.signUpUser(User.getInstance())
         if(uid!=null){
             User.getInstance().uid = uid
+            repository.modify(User.getInstance())
         }
 
     }
