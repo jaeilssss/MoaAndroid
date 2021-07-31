@@ -14,6 +14,7 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.data.CurrentChat
 import com.moa.moakotlin.data.User
 
 
@@ -21,37 +22,46 @@ class FcmService() : FirebaseMessagingService() {
 
     override fun onMessageReceived(remotemessage: RemoteMessage) {
         println("메소드 올라옴.1.")
-//        val pm =
-//            getSystemService(Context.POWER_SERVICE) as PowerManager
-//        @SuppressLint("InvalidWakeLockTag") val wakeLock =
-//            pm.newWakeLock(
-//                PowerManager.SCREEN_DIM_WAKE_LOCK
-//                        or PowerManager.ACQUIRE_CAUSES_WAKEUP, "TAG"
-//            )
-//        wakeLock.acquire(3000)
-//        wakeLock.release()
-//        val data = getSharedPreferences("AlarmSetting",Context.MODE_PRIVATE)
-
-//        if(data?.getBoolean("isEventAlarm",false) == true){
-//            remotemessage.data.get("title")?.let { sendNotification(remotemessage.data.get("body")!!, it) }
-//        }
+        val pm =
+            getSystemService(Context.POWER_SERVICE) as PowerManager
+        @SuppressLint("InvalidWakeLockTag") val wakeLock =
+            pm.newWakeLock(
+                PowerManager.SCREEN_DIM_WAKE_LOCK
+                        or PowerManager.ACQUIRE_CAUSES_WAKEUP, "TAG"
+            )
+        wakeLock.acquire(3000)
+        wakeLock.release()
+        val data = getSharedPreferences("AlarmSetting",Context.MODE_PRIVATE)
         if(remotemessage.notification!=null){
-            println("오오오......")
-            println(remotemessage.notification!!.title.toString())
-            sendNotification(remotemessage.notification?.body!!,remotemessage.notification?.title!!)
-        }
-//        if(remotemessage.data.get("title")==null){
-//            sendNotificationAptMessage(remotemessage.data.get("body")!!)
-//        }else{
-//
-//        }
+            if(remotemessage!!.notification?.title.equals("아파트 인증")){
+                if( remotemessage!!.notification?.body!!.contains("앱을 재실행 해주세요")){
+                    println("ddd-->>")
+                    sendNotification(remotemessage.notification?.body!!,remotemessage.notification?.title!!)
+                    User.getInstance().certificationStatus = "인증"
+                }else if(remotemessage!!.notification?.body!!.contains("인증이 반려되었습니다")){
+                    sendNotification(remotemessage.notification?.body!!,remotemessage.notification?.title!!)
+                    User.getInstance().certificationStatus = "반려"
+                }
+                else{
+                    println("왜 여기야?,,")
+                    sendNotification(remotemessage.notification?.body!!,remotemessage.notification?.title!!)
+                }
+            }
+            else if(data?.getBoolean("isMarketingAlarm",false) ==true){
+                println("왜 여기야?>>>--,,")
+                sendNotification(remotemessage.notification?.body!!,remotemessage.notification?.title!!)
+            }
+        }else if(data?.getBoolean("isEventAlarm",false) == true && remotemessage.data.get("title").equals("리뷰")){
             remotemessage.data.get("title")?.let { sendNotification(remotemessage.data.get("body")!!, it) }
-            println("끝...")
+        }else if(data?.getBoolean("isChattingAlarm",false)==true && !CurrentChat.getInstance().boolean){
+            remotemessage.data.get("title")?.let { sendNotification(remotemessage.data.get("body")!!, it) }
+        }else if(data?.getBoolean("isMarketingAlarm",false) ==true && remotemessage.data.get("title").equals("이벤트")){
+            remotemessage.data.get("title")?.let { sendNotification(remotemessage.data.get("body")!!, it) }
+        }
     }
 
     private fun createNotificationChannel(context: Context, importance: Int, showBadge: Boolean,
                                           name: String, description: String) {
-        println("channelnotificationchannel")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channelId = "${context.packageName}-$name "
             val channel = NotificationChannel(channelId, name, importance)
@@ -73,11 +83,11 @@ class FcmService() : FirebaseMessagingService() {
         val channelId = "$packageName-${getString(R.string.app_name)} "
         val title = messageTitle
         val content =messageBody
-
-       if(messageBody.contains("앱을 재실행 해주세요")){
-           User.getInstance().certificationStatus = "인증"
-           println("ddd-> ${User.getInstance().certificationStatus}")
-       }
+//
+//       if(messageBody.contains("앱을 재실행 해주세요")){
+//           User.getInstance().certificationStatus = "인증"
+//           println("ddd-> ${User.getInstance().certificationStatus}")
+//       }
         val intent = Intent(baseContext, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 

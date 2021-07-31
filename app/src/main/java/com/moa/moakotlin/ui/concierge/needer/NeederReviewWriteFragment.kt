@@ -76,9 +76,14 @@ class NeederReviewWriteFragment : BaseFragment {
                 var notification =  Notification()
                 notification.timeStamp = Timestamp.now()
                 notification.title = "${User.getInstance().nickName}님이 ${needer.title}에 리뷰를 작성하셨습니다"
-                if(needer.images[0].isNotEmpty()){
-                    notification.image = needer.images[0]
+                if(needer.images.size==0){
+                    notification.image = ""
+                }else{
+                    if(needer.images[0].isNotEmpty()){
+                        notification.image = needer.images[0]
+                    }
                 }
+
 
                 viewModel.pushToken(opponentUser,notification)
                 viewModel.hireCompletion(needer)

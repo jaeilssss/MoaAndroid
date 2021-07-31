@@ -15,6 +15,7 @@ import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.custom.AptCertificationImageAlertDialog
+import com.moa.moakotlin.custom.SinglePositiveButtonDialog
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentMyPageBinding
 
@@ -71,8 +72,10 @@ class MyPageFragment : BaseFragment() {
         binding.myPageAptCertification.setOnClickListener {
         if(User.getInstance().certificationStatus.equals("인증")){
             showAlertDialog(resources.getString(R.string.ReAptCertification))
-        }else{
-            navController.navigate(R.id.action_MyPageFragment_to_aptModifyCertificationNoticeFragment)
+        }else if(User.getInstance().certificationStatus.equals("심사중")){
+                showAlertDialog()
+        } else{
+            navController.navigate(R.id.action_MyPageFragment_to_aptModifyFragment)
         }
         }
 
@@ -100,6 +103,16 @@ class MyPageFragment : BaseFragment() {
         binding.MyPageUserAptInfoText.text = "${User.getInstance().aptName}"
     }
 
+
+    fun showAlertDialog(){
+        context?.let { it1 ->
+            SinglePositiveButtonDialog(it1)
+                    .setMessage("지금 심사중입니다\n인증절차는 최대 2일 소요됩니다")
+                    .setPositiveButton("네"){
+
+                    }.show()
+        }
+    }
     fun showAlertDialog(str : String){
         context?.let { it1 ->
             AptCertificationImageAlertDialog(it1)

@@ -5,6 +5,10 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.moa.moakotlin.data.User
+import com.moa.moakotlin.repository.user.UserRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MyAccountSettingViewModel : ViewModel() {
     var phoneNumber = MutableLiveData<String>(User.getInstance().phoneNumber)
@@ -12,5 +16,11 @@ class MyAccountSettingViewModel : ViewModel() {
 
     fun logout(){
         FirebaseAuth.getInstance().signOut()
+        User.getInstance().pushToken = ""
+        var repository = UserRepository()
+        CoroutineScope(Dispatchers.Main).launch {
+            repository.modify(User.getInstance())
+            User.deleteUser()
+        }
     }
 }

@@ -27,10 +27,7 @@ import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.Transfer
-import com.moa.moakotlin.data.Chat
-import com.moa.moakotlin.data.Helper
-import com.moa.moakotlin.data.Needer
-import com.moa.moakotlin.data.User
+import com.moa.moakotlin.data.*
 import com.moa.moakotlin.databinding.FragmentChatBinding
 import com.moa.moakotlin.recyclerview.chat.ChatAdapter
 import kotlinx.android.synthetic.main.chatting_room_item.*
@@ -68,6 +65,8 @@ class ChatFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+
+        CurrentChat.getInstance().boolean = true
         transfer.bottomVisible()
         check = 0
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_chat,container , false)
@@ -123,7 +122,8 @@ class ChatFragment : BaseFragment() {
         model.msg.observe(viewLifecycleOwner,Observer{
             adapter.list.add(model.msg.value!!)
             adapter.resetting()
-            if(model.msg.value!!.uid.equals(User.getInstance().uid)){
+            var lastCompletelyVisibleItemPosition = (rcv.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+            if(!model.msg.value!!.uid.equals(User.getInstance().uid) && lastCompletelyVisibleItemPosition==adapter.itemCount-2){
                 rcv.scrollToPosition(adapter.itemCount-1)
             }else{
 
@@ -138,10 +138,15 @@ class ChatFragment : BaseFragment() {
             if(opponentUser.uid.equals("-1")){
                 Toast.makeText(context,"탈퇴한 이용자에게는 메시지를 보낼 수 없습니다",Toast.LENGTH_SHORT).show()
             } else if(model.talk.get()?.length!! >0){
-                model.send(roomId,opponentUser.uid)
+                model.send(roomId,opponentUser)
             }
         }
         return binding.root
+    }
+
+    override fun onPause() {
+        CurrentChat.getInstance().boolean = false
+        super.onPause()
     }
 
     fun requestPhoto(){

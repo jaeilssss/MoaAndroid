@@ -28,6 +28,7 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.custom.AptCertificationImageAlertDialog
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.AptCertificationFragmentBinding
 import com.moa.moakotlin.recyclerview.certification.CertificationImageAdapter
 import kotlinx.coroutines.CoroutineScope
@@ -128,6 +129,7 @@ class AptCertificationFragment : BaseFragment() {
                                 binding.CertificationLoadingProgressBar.show()
                                 activity?.getWindow()?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                                     WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+                                User.getInstance().certificationStatus = "심사중"
                                 viewModel.signUp()
                                 viewModel.certification(adapter.currentList)
                                 var bundle = Bundle()

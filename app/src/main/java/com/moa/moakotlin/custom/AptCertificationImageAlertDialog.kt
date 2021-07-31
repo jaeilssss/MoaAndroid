@@ -6,10 +6,13 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.view.isVisible
+import androidx.core.widget.ContentLoadingProgressBar
 import com.moa.moakotlin.R
 
 class AptCertificationImageAlertDialog (private val context : Context) {
 
+    lateinit var loading : ContentLoadingProgressBar
     private val builder : AlertDialog.Builder by lazy {
         AlertDialog.Builder(context).setView(view)
     }
@@ -23,6 +26,8 @@ class AptCertificationImageAlertDialog (private val context : Context) {
     // 터치 리스너 구현
     private val onTouchListener = View.OnTouchListener { _, motionEvent ->
         if (motionEvent.action == MotionEvent.ACTION_UP) {
+            loading.isVisible = true
+            loading.show()
             android.os.Handler().postDelayed({
                 dismiss()
             }, 5)
@@ -36,6 +41,8 @@ class AptCertificationImageAlertDialog (private val context : Context) {
     }
     fun setPositiveButton(text: CharSequence, listener: (view: View) -> (Unit)): AptCertificationImageAlertDialog {
         view.findViewById<Button>(R.id.aptCertificationSubmit).apply {
+            loading = view.findViewById(R.id.CertificationModifyLoadingProgressBar)
+
             setOnClickListener(listener)
 
             setOnTouchListener(onTouchListener)

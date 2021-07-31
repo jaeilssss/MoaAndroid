@@ -14,10 +14,9 @@ import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.ktx.Firebase
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseViewModel
-import com.moa.moakotlin.data.User
-import com.moa.moakotlin.data.Chat
-import com.moa.moakotlin.data.ChattingRoom
+import com.moa.moakotlin.data.*
 import com.moa.moakotlin.repository.chat.ChatRepository
+import com.moa.moakotlin.repository.push.FcmRepository
 
 
 class ChatViewModel() : ViewModel(){
@@ -39,14 +38,15 @@ lateinit var mlistener : ListenerRegistration
 
     }
 
-    fun send(roomId: String,opponentUid: String){
+    fun send(roomId: String,opponentUser: User){
             var repository = ChatRepository(roomId)
         var chat = Chat()
         chat.timeStamp = Timestamp.now()
         chat.talk = talk.get().toString()
         chat.uid = User.getInstance().uid
 
-        repository.send(chat,opponentUid)
+        repository.send(chat,opponentUser.uid)
+        pushToken(opponentUser,chat.talk)
         talk.set("")
     }
 
@@ -102,5 +102,13 @@ lateinit var mlistener : ListenerRegistration
             }
 
         }
+    }
+
+    fun pushToken(user:User, message : String){
+        var pushRepository = FcmRepository()
+        var message = PushMessage("${User.getInstance().nickName}",talk.get().toString(),user.pushToken)
+
+        println(message.body)
+        pushRepository.sendPushMessage(message)
     }
 }

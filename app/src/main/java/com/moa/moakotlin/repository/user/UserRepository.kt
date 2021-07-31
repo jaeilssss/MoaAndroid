@@ -98,7 +98,8 @@ class UserRepository {
 
         var db = FirebaseFirestore.getInstance()
 
-        db.collection("ApartCertification").add(certification).addOnSuccessListener {
+        db.collection("ApartCertification").add(certification)
+                .addOnSuccessListener {
 
         }
     }

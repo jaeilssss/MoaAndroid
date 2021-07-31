@@ -4,11 +4,13 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.moa.moakotlin.data.ApartCertification
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.repository.imagePicker.ImagePickerRepository
 import com.moa.moakotlin.repository.user.UserRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 class AptModifyCertificationViewModel : ViewModel() {
 
@@ -17,7 +19,7 @@ class AptModifyCertificationViewModel : ViewModel() {
     fun certification(images : List<String>){
 
 
-        CoroutineScope(Dispatchers.IO).async {
+        CoroutineScope(Dispatchers.Main).launch {
             var imageUploadRepository = ImagePickerRepository()
 
             var imagePathList = ArrayList<String>()
@@ -36,6 +38,12 @@ class AptModifyCertificationViewModel : ViewModel() {
             }
         }
 
+    }
+
+    suspend fun userCertificationModify(){
+        var repository = UserRepository()
+
+        repository.modify(User.getInstance())
     }
 
 

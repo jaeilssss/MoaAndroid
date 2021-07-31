@@ -15,9 +15,12 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.ProgressBar
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.view.isVisible
+import androidx.core.widget.ContentLoadingProgressBar
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -27,6 +30,7 @@ import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.custom.AptCertificationImageAlertDialog
 import com.moa.moakotlin.custom.SinglePositiveButtonDialog
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.AptModifyCertificationFragmentBinding
 import com.moa.moakotlin.recyclerview.certification.CertificationImageAdapter
 import kotlinx.coroutines.CoroutineScope
@@ -118,15 +122,16 @@ class AptModifyCertificationFragment : BaseFragment() {
     }
 
     binding.AptModifyCertificationNext.setOnClickListener {
+
         context?.let { it1 ->
             AptCertificationImageAlertDialog(it1)
 
                 .setMessage(getString(R.string.AptCertificationImagesText))
                 .setPositiveButton("예"){
-                    CoroutineScope(Dispatchers.Main).launch {
-                        viewModel.certification(adapter.currentList)
-                    }
-                    certificationAlertDialog()
+                    activity?.getWindow()?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+                    uploadCertificationImage()
+                    activity?.getWindow()?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                     //
                 }
                 .setNegativeButton() {
@@ -134,10 +139,26 @@ class AptModifyCertificationFragment : BaseFragment() {
                 }
                 .show()
         }
+
     }
     settingEnableButton()
 }
 
+    fun uploadCertificationImage(){
+
+
+            CoroutineScope(Dispatchers.Main).launch {
+
+                viewModel.certification(adapter.currentList)
+                User.getInstance().certificationStatus = "심사중"
+                viewModel.userCertificationModify()
+
+
+            }
+
+            certificationAlertDialog()
+
+    }
 private fun settingEnableButton(){
     if(adapter.itemCount==0){
         binding.AptModifyCertificationNext.setBackgroundResource(R.drawable.shape_unable_radius_15)
@@ -250,6 +271,7 @@ override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) 
 
                 .setMessage(getString(R.string.CertificationEndMessage))
                 .setPositiveButton("예"){
+
                     navController.popBackStack(R.id.MyPageFragment,false)
                 }
 
