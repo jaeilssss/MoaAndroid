@@ -72,6 +72,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
+                android:includeFontPadding="false"
                 android:fontFamily="@font/notosanscjkkr_medium"
                 app:layout_constraintTop_toBottomOf="@id/NeederModifyTitleText"
                 android:layout_marginTop="10dp"
@@ -120,6 +121,7 @@
                     android:textSize="16sp"
                     android:textColor="@color/moaBlack"
                     android:paddingStart="10dp"/>
+
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="37dp"

@@ -74,6 +74,7 @@
                 android:background="@drawable/shape_grey_radius_10"
                 android:padding="10dp"
                 android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
                 android:hint="제목을 작성해주세요"
                 android:text="@={model.title}"
                 android:id="@+id/HelperModifyTitleEdit"/>
@@ -113,6 +114,7 @@
                     android:gravity="center_vertical"
                     android:textColor="@color/moaBlack"
                     android:id="@+id/HelperModifyCategory"
+                    android:includeFontPadding="false"
                     android:text="@={model.category}"
                     android:textSize="16sp"
                     android:padding="10dp"/>
@@ -170,6 +172,7 @@
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:hint="희망시급"
                 android:text="@={model.hopeWage}"
+                android:includeFontPadding="false"
                 android:inputType="number"
                 android:id="@+id/HelperModifyHopeWageEdit"/>
 
@@ -200,6 +203,7 @@
                 app:layout_constraintTop_toBottomOf="@id/HelperModifyContentText"
                 android:layout_marginTop="10dp"
                 android:text="@={model.content}"
+                android:includeFontPadding="false"
                 android:id="@+id/HelperModifyContentEdit"/>
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
