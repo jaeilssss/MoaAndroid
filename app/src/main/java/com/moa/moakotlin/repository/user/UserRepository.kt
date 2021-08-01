@@ -31,6 +31,7 @@ class UserRepository {
                     for(document in it.documents){
                         user = document.toObject(User::class.java)
                         user?.uid = document.id
+                        println("반복문에서 -> ${user?.uid}")
                     }
                 }.await()
         return user
@@ -40,12 +41,12 @@ class UserRepository {
         User.getInstance()
         var db  = FirebaseFirestore.getInstance()
 
-        db.collection("User").whereEqualTo("phoneUid",documentId)
+        db.collection("User").document(documentId)
             .get().addOnSuccessListener {
-                if(!it.isEmpty){
+                if(it.exists()){
 
-                    user = it.documents.get(0).toObject(User::class.java)
-                    user?.uid = it.documents.get(0).id
+                    user = it.toObject(User::class.java)
+                    user?.uid = it.id
                 }else{
                     user = null
                 }

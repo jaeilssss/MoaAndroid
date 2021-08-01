@@ -16,6 +16,7 @@ import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.MyHelperFragmentBinding
 import com.moa.moakotlin.recyclerview.concierge.CategoryHelperMainAdapter
 import com.moa.moakotlin.recyclerview.concierge.HelperMainAdapter
@@ -68,10 +69,11 @@ class MyHelperFragment : BaseFragment() {
             override fun onItemClick(v: View, position: Int) {
                 CoroutineScope(Dispatchers.Main).launch {
                     var writer = viewModel.getUserInfo(adapter.currentList[position].uid)
-
+                    println(adapter.currentList[position].uid)
+                    println("writer -> ${writer}")
                     var bundle = Bundle()
 
-                    bundle.putParcelable("writer",writer)
+                    bundle.putParcelable("writer", User.getInstance())
                     bundle.putParcelable("data",adapter.currentList[position])
 
                     navController.navigate(R.id.action_myConciergeListFragment_to_HelperReadFragment,bundle)

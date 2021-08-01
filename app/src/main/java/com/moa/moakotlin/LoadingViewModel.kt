@@ -13,11 +13,11 @@ class LoadingViewModel : ViewModel() {
 
         var repository = UserRepository()
 
-        var user = repository.getUserInfo(uid)
+        var user = repository.getMyUserInfo(uid)
+        User.setInstance(user!!)
         if(user==null){
             return false
         }
-        User.setInstance(user!!)
         if(user!=null){
             var aptList =  repository.getaroundApt(user.aptCode)
             if(aptList!=null){

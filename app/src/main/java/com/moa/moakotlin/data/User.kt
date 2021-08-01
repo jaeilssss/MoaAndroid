@@ -41,24 +41,24 @@ data class User(
             }
         }
     fun setInstance(user : User){
-        instance?.name= user.name
-        instance?.uid = user.uid
-        instance?.birthday = user.birthday
-        instance?.isMan = user.isMan
-        instance?.aptCode = user.aptCode
-        instance?.certificationStatus = user.certificationStatus
-        instance?.nickName = user.nickName
-        instance?.phoneNumber = user.phoneNumber
-        instance?.profileImage = user.profileImage
-        instance?.address = user.address
-        instance?.signUpDate = user.signUpDate
-        instance?.aptName = user.aptName
-        instance?.introduction = user.introduction
-        instance?.isAgreeMarketing = user.isAgreeMarketing
-        instance?.isAgreeEventAlarm = user.isAgreeEventAlarm
-        instance?.isAgreeChattingAlarm = user.isAgreeChattingAlarm
-        instance?.pushToken = user.pushToken
-        instance?.phoneUid = user.phoneUid
+        getInstance()?.name= user.name
+        getInstance()?.uid = user.uid
+        getInstance()?.birthday = user.birthday
+        getInstance()?.isMan = user.isMan
+        getInstance()?.aptCode = user.aptCode
+        getInstance()?.certificationStatus = user.certificationStatus
+        getInstance()?.nickName = user.nickName
+        getInstance()?.phoneNumber = user.phoneNumber
+        getInstance()?.profileImage = user.profileImage
+        getInstance()?.address = user.address
+        getInstance()?.signUpDate = user.signUpDate
+        getInstance()?.aptName = user.aptName
+        getInstance()?.introduction = user.introduction
+        getInstance()?.isAgreeMarketing = user.isAgreeMarketing
+        getInstance()?.isAgreeEventAlarm = user.isAgreeEventAlarm
+        getInstance()?.isAgreeChattingAlarm = user.isAgreeChattingAlarm
+        getInstance()?.pushToken = user.pushToken
+        getInstance()?.phoneUid = user.phoneUid
     }
         fun deleteUser(){
             instance = null
