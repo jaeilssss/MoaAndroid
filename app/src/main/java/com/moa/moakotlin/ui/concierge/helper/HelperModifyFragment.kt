@@ -198,7 +198,7 @@ class HelperModifyFragment : Fragment() {
         }
     }
     private fun showContextPopupPermission(){
-        AlertDialog.Builder(activity?.applicationContext!!).setTitle("권한이 필요합니다")
+        AlertDialog.Builder(context).setTitle("권한이 필요합니다")
             .setMessage("사진을 불러오기 위해 권한이 필요합니다")
             .setPositiveButton("동의하기"){ _, _ ->
                 requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),1000)

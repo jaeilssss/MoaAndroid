@@ -58,6 +58,8 @@ class VoiceRoomFragment : BaseFragment() {
     var isRequest = false
     var isClose = false
 
+
+
     var EVENT_TYPE_ON_USER_AUDIO_MUTED = 7
 
     var EVENT_TYPE_ON_SPEAKER_STATS = 8
@@ -76,12 +78,10 @@ class VoiceRoomFragment : BaseFragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-
+        var initCount = 0
         binding = DataBindingUtil.inflate(inflater, R.layout.voice_room_fragment, container, false)
         viewModel = ViewModelProvider(this).get(VoiceRoomViewModel::class.java)
         binding.model = viewModel
-
-
 
         var token = arguments?.get("token") as String
          voiceChatRoom  = arguments?.getParcelable<VoiceChatRoom>("voiceChatRoom")!!
@@ -104,6 +104,7 @@ class VoiceRoomFragment : BaseFragment() {
         navController= findNavController()
 
         binding.VoiceRoomSpeakerRcv.layoutManager = GridLayoutManager(activity?.applicationContext!!, 3)
+
         binding.VoiceRoomAudienceRcv.layoutManager = GridLayoutManager(activity?.applicationContext!!, 3)
 
         binding.VoiceRoomSpeakerRcv.adapter = speakerAdapter
@@ -168,12 +169,31 @@ class VoiceRoomFragment : BaseFragment() {
                 binding.VoiceRoomMicBtn.background = resources.getDrawable(R.drawable.shape_un_selected_hand)
                 binding.VoiceRoomMicBtn.isClickable = false
                 binding.VoiceRoomMicBtn.setImageResource(R.drawable.ic_mic_off)
+                if(initCount!=0){
+                    context?.let { it1 -> SinglePositiveButtonDialog(it1)
+                            .setMessage("청중으로 역할이 변경되었습니다!")
+                            .setPositiveButton("확인"){
 
+                            }.show()
+                    }
+                }else{
+                    initCount++
+                }
             } else {
                 rtcEngine.muteLocalAudioStream(false)
                 binding.VoiceRoomMicBtn.background = resources.getDrawable(R.drawable.shape_selected_hand)
                 binding.VoiceRoomMicBtn.isClickable = true
                 binding.VoiceRoomMicBtn.setImageResource(R.drawable.ic_mic_on)
+                if(initCount!=0){
+                    context?.let { it1 -> SinglePositiveButtonDialog(it1)
+                            .setMessage("스피커로 역할이 변경되었습니다!")
+                            .setPositiveButton("확인"){
+
+                            }.show()
+                    }
+                }else{
+                    initCount++
+                }
 
             }
 
@@ -368,34 +388,41 @@ class VoiceRoomFragment : BaseFragment() {
           }
             override fun onRemoteAudioStateChanged(uid: Int, state: Int, reason: Int, elapsed: Int) {
 //                super.onRemoteAudioStateChanged(uid, state, reason, elapsed)
-                when(reason){
+                when(state){
                     1 ->{
                         println("이야기중!! 0${uid}")
+
+
+                    }
+                    2->{
+                        println("이야기하는중...")
                         CoroutineScope(Dispatchers.Main).launch {
                             viewModel.talking.add("0${uid}")
                             speakerAdapter.talking.add("0${uid}")
-                            speakerAdapter.notifyDataSetChanged()
+                            var index = speakerAdapter.list.indexOf("0${uid}")
+                            speakerAdapter.notifyItemChanged(index)
+//                            speakerAdapter.notifyDataSetChanged()
                         }
 
-                    }
-                    0->{
-//                    CoroutineScope(Dispatchers.Main).launch {
-//                        viewModel.talking.remove("0${uid}")
-//                        speakerAdapter.talking.remove("0${uid}")
-//                        speakerAdapter.notifyDataSetChanged()
-//                    }
-                        println("0 인대 여기서 멈추는거아님?")
-
-                    }2->{
+                    }0->{
                     println(">>>")
                     CoroutineScope(Dispatchers.Main).launch {
                         viewModel.talking.remove("0${uid}")
                         speakerAdapter.talking.remove("0${uid}")
-                        speakerAdapter.notifyDataSetChanged()
+                        var index = speakerAdapter.list.indexOf("0${uid}")
+                        speakerAdapter.notifyItemChanged(index)
+//                        speakerAdapter.notifyDataSetChanged()
                     }
                     }
                     3->{
                         println("333")
+                        CoroutineScope(Dispatchers.Main).launch {
+                            viewModel.talking.remove("0${uid}")
+                            speakerAdapter.talking.remove("0${uid}")
+                            var index = speakerAdapter.list.indexOf("0${uid}")
+                        speakerAdapter.notifyItemChanged(index)
+//                            speakerAdapter.notifyDataSetChanged()
+                        }
                     }
                     4->{
                         println("4444")

@@ -58,6 +58,7 @@ class UserProfileFragment : BaseFragment() {
             if(it.getParcelable<User>("user")==null){
                 user = User.getInstance()
             }else{
+                println("유저 널.. 이야 ")
                 user = it.getParcelable<User>("user")!!
             }
 
@@ -106,7 +107,7 @@ class UserProfileFragment : BaseFragment() {
         }else{
             viewModel.introduction.value = user.introduction
         }
-        viewModel.aptName.value = User.getInstance().aptName
-        viewModel.nickName.value = User.getInstance().nickName
+        viewModel.aptName.value = user.aptName
+        viewModel.nickName.value = user.nickName
     }
 }

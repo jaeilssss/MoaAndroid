@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -151,7 +153,10 @@ class DropOutQuestionFragment : BaseFragment() {
 
         viewModel.delete.observe(viewLifecycleOwner, Observer {
             if(it){
-                println("아니 왜 ㅡㅡ ")
+                activity?.getWindow()?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
+                binding.DropOutLoading.hide()
+                Toast.makeText(context, "탈퇴가 완료되었습니다",Toast.LENGTH_SHORT).show()
                 var intent = Intent(context, LoadingActivity::class.java)
                 startActivity(intent)
                 activity?.finish()
@@ -164,9 +169,13 @@ class DropOutQuestionFragment : BaseFragment() {
                     .setMessage("회원탈퇴를 진행하시겠습니까?\n 탈퇴를 진행 할 경우 그동안 작성하신 글은 제거됩니다!")
                     .setPositiveButton("네"){
                         CoroutineScope(Dispatchers.Main).launch {
-                            if(viewModel.dropOut()){
+                            activity?.getWindow()?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+                            binding.DropOutLoading.show()
+                            viewModel.delete.value = viewModel.dropOut()
+                            println(viewModel.delete.value!!)
 
-                            }
+
                         }
                     }
                     .setNegativeButton {

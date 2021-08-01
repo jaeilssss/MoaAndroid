@@ -151,7 +151,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="0dp"
     android:layout_height="wrap_content"
-    android:background="@drawable/shape_grey_radius_10"
+    android:background="@drawable/shape_white_radius_15_border_grey"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     android:layout_margin="15dp"
@@ -197,7 +197,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         app:layout_constraintTop_toBottomOf="@id/VoiceRoomSpeakerLayout"
-        android:background="@drawable/shape_grey_radius_10"
+        android:background="@drawable/shape_white_radius_15_border_grey"
         android:padding="10dp"
         android:layout_marginTop="10dp">
         <ImageView

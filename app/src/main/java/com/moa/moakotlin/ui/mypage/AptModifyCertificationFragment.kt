@@ -66,6 +66,11 @@ class AptModifyCertificationFragment : BaseFragment() {
         Manifest.permission.READ_EXTERNAL_STORAGE
     )
 
+
+    val permissionArray = arrayListOf<String>(
+            android.Manifest.permission.READ_EXTERNAL_STORAGE,
+            android.Manifest.permission.CAMERA
+    )
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.apt_modify_certification_fragment,container,false)
@@ -111,8 +116,12 @@ class AptModifyCertificationFragment : BaseFragment() {
                     )== PackageManager.PERMISSION_GRANTED -> {
                 takeCapture()
             }
-            shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE) -> {
+            shouldShowRequestPermissionRationale(android.Manifest.permission.CAMERA) -> {
                 //교육용 팝업
+                showContextPopUpPermission()
+            }
+            shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE)->
+            {
                 showContextPopUpPermission()
             }
             else -> {
@@ -209,7 +218,7 @@ override fun onBackPressed() {
 
 override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
     super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    if(requestCode==1000){
+    if(requestCode==1000 && grantResults.get(0) == PackageManager.PERMISSION_GRANTED && grantResults.get(1)==PackageManager.PERMISSION_GRANTED){
         takeCapture()
     }
 }

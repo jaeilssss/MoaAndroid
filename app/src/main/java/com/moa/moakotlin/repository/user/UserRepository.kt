@@ -184,7 +184,7 @@ class UserRepository {
                     if (task.isSuccessful) {
                         check = true
                     }
-                }
+                }.await()
 
        return check
     }

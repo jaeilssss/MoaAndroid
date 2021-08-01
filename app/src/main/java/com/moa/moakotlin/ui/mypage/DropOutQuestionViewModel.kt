@@ -35,10 +35,11 @@ class DropOutQuestionViewModel : ViewModel() {
       userRepository.deleteAtPath("User/${User.getInstance().uid}")
       var dropOut = DropOut(User.getInstance().address,User.getInstance().birthday,User.getInstance().isMan,
       checked.value!!, Timestamp.now())
+
       userRepository.writeDropOutReason(dropOut)
 //      delete.value =userRepository.dropOutUser()
-      delete.value = true
-      return delete.value!!
+
+      return userRepository.dropOutUser()
     }
 
 

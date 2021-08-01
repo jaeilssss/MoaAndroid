@@ -113,6 +113,10 @@ class AptCertificationFragment : BaseFragment() {
                     //교육용 팝업
                     showContextPopUpPermission()
                 }
+                shouldShowRequestPermissionRationale(android.Manifest.permission.READ_EXTERNAL_STORAGE)->
+                {
+                    showContextPopUpPermission()
+                }
                 else -> {
                     requestPermissions(requiredPermissions, 1000)
                 }
