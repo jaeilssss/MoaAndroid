@@ -187,7 +187,7 @@ class HelperWritePageFragment : Fragment() {
 
         when (requestCode){
             1000->{
-                if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     goToAlbum()
                 }else{
                     Toast.makeText(context,"권한이 거부되었습니다!", Toast.LENGTH_SHORT).show()

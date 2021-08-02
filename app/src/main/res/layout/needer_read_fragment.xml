@@ -91,7 +91,7 @@
                     app:layout_constraintTop_toTopOf="@id/NeederReadProfileImage"
                     app:layout_constraintBottom_toTopOf="@id/NeederReadDate"
                     android:layout_marginStart="5dp"
-                    android:textSize="14sp"
+                    android:textSize="14dp"
                     android:textStyle="bold"
                     app:layout_constraintHorizontal_chainStyle="packed"
                     android:textColor="@color/moaBlack"
@@ -105,7 +105,7 @@
                     app:layout_constraintBottom_toBottomOf="@id/NeederReadProfileImage"
                     android:fontFamily="@font/notosanscjkkr_medium"
                     android:layout_marginStart="5dp"
-                    android:textSize="11.3sp"
+                    android:textSize="11.3dp"
                     app:layout_constraintHorizontal_chainStyle="packed"
                     android:id="@+id/NeederReadDate"/>
 
@@ -120,7 +120,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="18dp"
                     android:padding="5dp"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     android:textColor="@color/moaBlack"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -132,7 +132,7 @@
                     app:layout_constraintBottom_toBottomOf="@id/NeederReadMainCategory"
                     android:layout_marginStart="10dp"
                     android:includeFontPadding="false"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:textStyle="bold"
                     android:fontFamily="@font/notosanscjkkr_medium"
                     android:textColor="@color/moaBlack" />
@@ -150,7 +150,7 @@
                     android:fontFamily="@font/notosanscjkkr_medium"
                     android:includeFontPadding="false"
                     android:paddingStart="5dp"
-                    android:textSize="12sp"
+                    android:textSize="12dp"
                     android:paddingEnd="5dp"
                     android:id="@+id/NeederReadHireStatusText"/>
 
@@ -161,7 +161,7 @@
                     android:includeFontPadding="false"
                     app:layout_constraintStart_toEndOf="@id/NeederReadHireStatusText"
                     android:layout_marginStart="10dp"
-                    android:textSize="12sp"
+                    android:textSize="12dp"
                     android:text="희망날짜(시작날짜)"
                     app:layout_constraintTop_toTopOf="@id/NeederReadHireStatusText"
                     app:layout_constraintBottom_toBottomOf="@id/NeederReadHireStatusText"
@@ -173,7 +173,7 @@
                         app:layout_constraintTop_toTopOf="@id/NeederReadHopeDateText"
                         app:layout_constraintBottom_toBottomOf="@id/NeederReadHopeDateText"
                         android:text="2021년 1월 22일"
-                        android:textSize="12sp"
+                        android:textSize="12dp"
                         android:id="@+id/NeederReadHopeDate"
                         android:fontFamily="@font/notosanscjkkr_medium"
                         android:includeFontPadding="false"
@@ -239,7 +239,7 @@
                 android:text="이웃과 채팅하기"
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:textColor="#000000"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:layout_marginEnd="15dp"

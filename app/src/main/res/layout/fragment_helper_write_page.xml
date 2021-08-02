@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/back"
         app:layout_constraintBottom_toBottomOf="@id/back"
-        android:textSize="18sp"
+        android:textSize="18dp"
         android:textColor="@color/moaBlack"
         android:textStyle="bold"
         android:id="@+id/HelperWriteText"/>
@@ -53,9 +53,9 @@
         app:layout_constraintTop_toBottomOf="@id/back"
         android:layout_marginStart="15dp"
         android:layout_marginTop="50dp"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:textColor="@color/moaBlack"
-        android:lineSpacingExtra="8.5sp"
+        android:lineSpacingExtra="8.5dp"
         android:id="@+id/HelperWriteTitleText"/>
 
     <EditText
@@ -82,9 +82,9 @@
         app:layout_constraintTop_toBottomOf="@id/HelperWriteTitleEdit"
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:textColor="@color/moaBlack"
-        android:lineSpacingExtra="8.5sp"
+        android:lineSpacingExtra="8.5dp"
         android:id="@+id/HelperWriteCategoryText"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -107,7 +107,7 @@
                 android:gravity="center_vertical"
                 android:textColor="@color/moaBlack"
                 android:id="@+id/HelperWriteCategory"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 android:padding="10dp"/>
             <ImageView
                 android:layout_width="30dp"
@@ -126,9 +126,9 @@
         app:layout_constraintStart_toStartOf="parent"
         android:text="희망시급"
         android:layout_marginStart="15dp"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:textColor="@color/moaBlack"
-        android:lineSpacingExtra="8.5sp"
+        android:lineSpacingExtra="8.5dp"
         android:id="@+id/HelperWriteHopeWageText"/>
 
     <androidx.appcompat.widget.AppCompatCheckBox
@@ -139,7 +139,7 @@
         android:scaleX="0.8"
         android:scaleY="0.8"
         android:text="협의가능"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:checked="@={model.isNego}"
         android:layout_marginEnd="15dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -195,7 +195,7 @@
             android:layout_height="wrap_content"
             android:text=" 글 작성하기 전에 알려드려요"
             android:textColor="@color/moaBlack"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/HelperWriteGuideCheckImg"
             app:layout_constraintEnd_toEndOf="parent"
@@ -215,13 +215,13 @@
             android:textSize="16dp"
             android:textColor="@color/moaBlack"
             android:gravity="center"
-            android:lineSpacingExtra="9sp" />
+            android:lineSpacingExtra="9dp" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/goToGuideLine"
-            android:textSize="16sp"
+            android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -240,7 +240,7 @@
     android:layout_marginStart="15dp"
     android:layout_marginTop="10dp"
     android:textColor="@color/moaBlack"
-    android:textSize="14sp"
+    android:textSize="14dp"
     android:id="@+id/HelperWriteContentText"/>
     <EditText
         android:layout_width="0dp"
@@ -283,7 +283,7 @@
     android:layout_height="wrap_content"
     tools:text="3"
     android:textStyle="bold"
-    android:textSize="16sp"
+    android:textSize="16dp"
     android:textColor="@color/moaBlack"
     app:layout_constraintTop_toBottomOf="@id/AptCertificationPlusImage"
     app:layout_constraintEnd_toStartOf="@id/HelperWritePictureTotal"
@@ -296,7 +296,7 @@
         android:id="@+id/HelperWritePictureTotal"
         app:layout_constraintTop_toBottomOf="@id/AptCertificationPlusImage"
         android:text="/10"
-        android:textSize="16sp"
+        android:textSize="16dp"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@id/HelperWriteCountPicture"
         app:layout_constraintEnd_toEndOf="@id/HelperWriteAlbum"/>
@@ -321,7 +321,7 @@
         android:background="@drawable/button_shape_main_color"
         android:textColor="@color/moaBlack"
         android:text="다음"
-        android:textSize="18sp"
+        android:textSize="18dp"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
         android:id="@+id/HelperWriteSubmit"/>

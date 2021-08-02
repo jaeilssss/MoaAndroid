@@ -37,7 +37,7 @@
         android:text="육아"
         android:textStyle="bold"
         android:textColor="@color/moaBlack"
-        android:textSize="18sp"
+        android:textSize="18dp"
         android:id="@+id/CategoryMainText"
         android:fontFamily="@font/notosanscjkkr_medium"
         app:layout_constraintTop_toTopOf="@id/back"

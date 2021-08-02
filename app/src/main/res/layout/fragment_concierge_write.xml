@@ -113,7 +113,7 @@
                         android:includeFontPadding="false"
                         android:fontFamily="@font/notosanscjkkr_medium"
                         android:textStyle="bold"
-                        android:textSize="20sp"
+                        android:textSize="20dp"
                         android:textColor="@color/moaBlack"
                         android:id="@+id/ConciergeWriteTalentSharingText"/>
                     <TextView
@@ -127,7 +127,7 @@
                         android:includeFontPadding="false"
                         app:layout_constraintVertical_chainStyle="packed"
                         android:text="@string/ConciergeMainTalent"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:id="@+id/ConciergeWriteTalentSharingDetailText"
                         android:fontFamily="@font/notosanscjkkr_medium"
                         android:textColor="@color/colorGray"/>
@@ -181,7 +181,7 @@
                         android:text="도움 요청"
                         android:fontFamily="@font/notosanscjkkr_medium"
                         android:textStyle="bold"
-                        android:textSize="20sp"
+                        android:textSize="20dp"
                         android:textColor="@color/moaBlack"
                         android:id="@+id/ConciergeWriteHelpSharingText"/>
                     <TextView
@@ -193,7 +193,7 @@
                         android:layout_marginEnd="60dp"
                         android:includeFontPadding="false"
                         android:text="@string/ConciergeMainHelp"
-                        android:textSize="14sp"
+                        android:textSize="14dp"
                         android:id="@+id/ConciergeWriteHelpSharingDetailText"
                         app:layout_constraintVertical_chainStyle="packed"
                         android:fontFamily="@font/notosanscjkkr_medium"

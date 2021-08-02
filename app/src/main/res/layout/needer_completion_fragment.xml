@@ -36,7 +36,7 @@
             android:textColor="@color/moaBlack"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:textStyle="bold"
             android:fontFamily="@font/notosanscjkkr_medium"
             app:layout_constraintTop_toTopOf="@id/back"
@@ -72,7 +72,7 @@
                     app:layout_constraintTop_toBottomOf="@id/NeederCompletionCheckImg"
                     android:layout_marginTop="25dp"
                     android:text="@string/NeederCompletionText"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:fontFamily="@font/notosanscjkkr_medium"
                     android:textColor="@color/moaBlack"
                     android:textStyle="bold"
@@ -102,7 +102,7 @@
                     app:layout_constraintTop_toTopOf="@id/NeederCompletionContentImage"
                     app:layout_constraintBottom_toBottomOf="@id/NeederCompletionContentImage"
                     android:textStyle="bold"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:id="@+id/NeederCompletionContentTitle"
                     android:textColor="@color/moaBlack"/>
 
@@ -131,7 +131,7 @@
     android:text="나중에"
     android:fontFamily="@font/notosanscjkkr_medium"
     android:textStyle="bold"
-    android:textSize="18sp"
+    android:textSize="18dp"
     android:id="@+id/NeederCompletionLaterBtn"/>
 
 

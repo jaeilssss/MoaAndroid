@@ -42,7 +42,7 @@
             android:textColor="@color/moaBlack"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:textStyle="bold"
             android:fontFamily="@font/notosanscjkkr_medium"
             app:layout_constraintTop_toTopOf="@id/back"
@@ -90,7 +90,7 @@
             android:gravity="center"
             android:textStyle="bold"
             android:textColor="@color/moaBlack"
-            android:textSize="18sp"/>
+            android:textSize="18dp"/>
 
         <TextView
             android:layout_width="0dp"
@@ -102,7 +102,7 @@
             app:layout_constraintTop_toBottomOf="@id/aptCertificationSupplies"
             android:text="@string/AptCertificationSuppliesText"
             android:gravity="center"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:id="@+id/aptCertificationSuppliesText"
             />
@@ -134,7 +134,7 @@
             android:layout_marginTop="15dp"
             android:textStyle="bold"
             android:fontFamily="@font/notosanscjkkr_medium"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:id="@+id/AptCertificationNext"/>
         <androidx.core.widget.ContentLoadingProgressBar
             android:layout_width="50dp"

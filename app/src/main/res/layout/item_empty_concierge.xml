@@ -29,8 +29,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:text="아직 작성된 글이 없어요"
         android:fontFamily="@font/notosanscjkkr_medium"
-        android:textSize="16sp"
-        android:lineSpacingExtra="9sp"
+        android:textSize="16dp"
+        android:lineSpacingExtra="9dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="10dp"
         android:id="@+id/itemConciergeEmptyText"/>

@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
-            android:lineSpacingExtra="4.5sp"
+            android:lineSpacingExtra="4.5dp"
             android:gravity="center_horizontal"
             android:text="[육아]뽀로로 친구와 고민을 나누어요"
             android:includeFontPadding="false"
@@ -32,7 +32,7 @@
             android:textStyle="bold"
             android:textColor="@color/moaBlack"
             android:id="@+id/itemVoiceMainTitle"
-            android:textSize="16sp"/>
+            android:textSize="16dp"/>
 
         <ImageView
             android:layout_width="112dp"

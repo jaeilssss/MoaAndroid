@@ -42,7 +42,7 @@
             android:textColor="@color/moaBlack"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:includeFontPadding="false"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="@id/back"
@@ -59,7 +59,7 @@
             android:includeFontPadding="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/userInfoTextView"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:id="@+id/userInfoNameTextView"/>
         <EditText
@@ -78,7 +78,7 @@
             android:text="@={model.name}"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:padding="10dp"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:id="@+id/userInfoEditName"/>
 
     <TextView
@@ -109,7 +109,7 @@
             android:maxLength="6"
             android:padding="10dp"
             android:inputType="number"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:text="@={model.birthDay}"
             app:layout_constraintEnd_toEndOf="@id/horizontalBar"
             app:layout_constraintStart_toStartOf="parent"
@@ -202,7 +202,7 @@
             android:fontFamily="@font/notosanscjkkr_medium"
             android:layout_marginEnd="15dp"
             android:textColor="@color/white"
-            android:textSize="18sp"
+            android:textSize="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/userNickNameEdit"
             app:layout_constraintTop_toBottomOf="@id/userNickNameText" />
@@ -219,7 +219,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="22dp"
             android:textColor="@color/moaBlack"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:id="@+id/apartCertificationText"/>
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="0dp"
@@ -285,11 +285,11 @@
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             android:includeFontPadding="false"
-            android:lineSpacingExtra="4.5sp"
+            android:lineSpacingExtra="4.5dp"
                 android:fontFamily="@font/notosanscjkkr_medium"
             android:text="다음"
             android:id="@+id/next"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:textColor="#000000"
             android:textStyle="bold"/>
 

@@ -36,12 +36,12 @@
             app:layout_constraintTop_toTopOf="parent"
             android:text="안녕하세요!dddddddddddddddddddddddddddedddsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsddddd"
             android:padding="15dp"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:layout_marginTop="15dp"
             android:includeFontPadding="false"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:textColor="@color/moaBlack"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="6dp"
             android:maxWidth="200dp"
             android:id="@+id/itemRightChatMessage"/>
         <TextView

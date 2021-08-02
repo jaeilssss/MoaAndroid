@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="약관동의"
-        android:textSize="18sp"
+        android:textSize="18dp"
         android:layout_marginTop="10dp"
         android:textColor="@color/moaBlack"
         android:fontFamily="@font/notosanscjkkr_medium"
@@ -73,13 +73,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:text="모두 확인, 동의합니다"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:layout_marginTop="10dp"
             app:layout_constraintBaseline_toBaselineOf="@id/policyAllAgreeCheck"
             app:layout_constraintStart_toEndOf="@id/policyAllAgreeCheck"
-            android:lineSpacingExtra="6.5sp"
+            android:lineSpacingExtra="6.5dp"
             android:textColor="@color/moaBlack"/>
         <View
             android:layout_width="0dp"
@@ -106,10 +106,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:text="서비스 이용약관 (필수)"
             android:fontFamily="@font/notosanscjkkr_medium"
-            android:lineSpacingExtra="6.5sp"
+            android:lineSpacingExtra="6.5dp"
             android:layout_marginTop="10dp"
             android:id="@+id/PolicyServieText"
             app:layout_constraintBaseline_toBaselineOf="@id/servicePolicyCheck"
@@ -131,10 +131,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:id="@+id/PolicyPolicyText"
             android:text="개인정보 취급방침 (필수)"
-            android:lineSpacingExtra="6.5sp"
+            android:lineSpacingExtra="6.5dp"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:layout_marginTop="20dp"
             app:layout_constraintBaseline_toBaselineOf="@id/personalPolicyCheck"
@@ -156,8 +156,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:lineSpacingExtra="6.5sp"
+            android:textSize="16dp"
+            android:lineSpacingExtra="6.5dp"
             android:text="마케팅 수신동의 (선택)"
             android:id="@+id/policyMarketingText"
             android:fontFamily="@font/notosanscjkkr_medium"
@@ -175,7 +175,7 @@
     app:layout_constraintTop_toBottomOf="@id/policyCheckBoxLayout"
     android:layout_marginTop="30dp"
     android:text="다음"
-    android:textSize="18sp"
+    android:textSize="18dp"
     android:id="@+id/nextBtn"
     android:textStyle="bold"/>
 

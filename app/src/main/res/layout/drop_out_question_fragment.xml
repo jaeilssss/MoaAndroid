@@ -42,7 +42,7 @@
         app:layout_constraintTop_toTopOf="@id/DropOutQuestionBack"
         app:layout_constraintBottom_toBottomOf="@id/DropOutQuestionBack"
         android:text="탈퇴하기"
-        android:textSize="18sp"
+        android:textSize="18dp"
         android:textColor="@color/moaBlack"
         android:textStyle="bold"/>
 
@@ -65,7 +65,7 @@
         android:text="모두의 아파트를\n 탈퇴하는 이유를 알려주세요"
         android:textStyle="bold"
         android:textColor="@color/moaBlack"
-        android:textSize="19sp"
+        android:textSize="19dp"
         android:gravity="center"
         android:id="@+id/DropOutQuestionText"/>
 
@@ -87,7 +87,7 @@
         app:layout_constraintStart_toEndOf="@id/DropOutCheckBoxIDModify"
         android:text="아이디 변경 또는 재가입을 위해서"
         android:textColor="@color/moaBlack"
-        android:textSize="16sp"
+        android:textSize="16dp"
         android:textStyle="bold"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:includeFontPadding="false"
@@ -115,7 +115,7 @@
         android:fontFamily="@font/notosanscjkkr_medium"
         android:includeFontPadding="false"
         android:textColor="@color/moaBlack"
-        android:textSize="16sp"/>
+        android:textSize="16dp"/>
     <androidx.appcompat.widget.AppCompatCheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -137,7 +137,7 @@
         android:fontFamily="@font/notosanscjkkr_medium"
         android:includeFontPadding="false"
         android:textColor="@color/moaBlack"
-        android:textSize="16sp"/>
+        android:textSize="16dp"/>
 
     <androidx.appcompat.widget.AppCompatCheckBox
         android:layout_width="wrap_content"
@@ -157,7 +157,7 @@
         app:layout_constraintBottom_toBottomOf="@id/DropOutCheckBoxPrivate"
         android:text="개인정보 유출 방지 등 보안 상의 문제로"
         android:textColor="@color/moaBlack"
-        android:textSize="16sp"
+        android:textSize="16dp"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:includeFontPadding="false"
         android:textStyle="bold"/>
@@ -180,7 +180,7 @@
         app:layout_constraintBottom_toBottomOf="@id/DropOutCheckBOxalreadUses"
         android:text="유사한 다른 타 어플을 사용 중이라서"
         android:textColor="@color/moaBlack"
-        android:textSize="16sp"
+        android:textSize="16dp"
         android:textStyle="bold"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:includeFontPadding="false"/>
@@ -203,7 +203,7 @@
         app:layout_constraintBottom_toBottomOf="@id/DropOutCheckBoxNoManner"
         android:text="비매너 이웃을 만나서"
         android:textColor="@color/moaBlack"
-        android:textSize="16sp"
+        android:textSize="16dp"
         android:textStyle="bold"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:includeFontPadding="false"
@@ -226,7 +226,7 @@
         app:layout_constraintBottom_toBottomOf="@id/DropOutCheckBoxEtc"
         android:text="기타"
         android:textStyle="bold"
-        android:textSize="16sp"
+        android:textSize="16dp"
         android:textColor="@color/moaBlack"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:includeFontPadding="false"/>
@@ -244,7 +244,7 @@
         android:layout_marginEnd="15dp"
         android:text="탈퇴하기"
         android:textColor="@color/moaBlack"
-        android:textSize="16sp"
+        android:textSize="16dp"
         android:textStyle="bold"
         android:clickable="false"
         android:fontFamily="@font/notosanscjkkr_medium"

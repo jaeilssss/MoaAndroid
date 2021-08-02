@@ -24,7 +24,7 @@
         android:layout_marginTop="10dp"
         android:text="뉴나리"
         android:fontFamily="@font/notosanscjkkr_medium"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:id="@+id/bottomSheetNickName"/>
 
     <View
@@ -43,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/bottomSheetNickName"
         android:layout_marginTop="40dp"
-        android:textSize="18sp"
+        android:textSize="18dp"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:includeFontPadding="false"
         android:textColor="@color/moaBlack"
@@ -72,6 +72,6 @@
         android:includeFontPadding="false"
         android:id="@+id/bottomSheetVoiceUserDeprive"
         android:clickable="false"
-        android:textSize="18sp"/>
+        android:textSize="18dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

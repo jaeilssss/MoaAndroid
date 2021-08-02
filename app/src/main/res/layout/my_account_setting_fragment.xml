@@ -53,7 +53,7 @@
         android:fontFamily="@font/notosanscjkkr_medium"
         android:includeFontPadding="false"
         android:layout_marginStart="15dp"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:id="@+id/MyAccountPhonNumberText"/>
 
     <TextView
@@ -70,7 +70,7 @@
         android:textColor="@color/moaBlack"
         android:textStyle="bold"
         android:gravity="center_vertical"
-        android:textSize="16sp"
+        android:textSize="16dp"
         android:text="@={model.phoneNumber}"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="10dp"
@@ -101,7 +101,7 @@
     android:text="모두의 아파트 운영 정책"
     android:textColor="@color/moaBlack"
     android:layout_marginTop="40dp"
-    android:textSize="16sp"
+    android:textSize="16dp"
     android:fontFamily="@font/notosanscjkkr_medium"
     android:id="@+id/MyAccountMoaPolicy"/>
     <TextView
@@ -112,7 +112,7 @@
         android:text="개인정보 처리방침"
         android:layout_marginTop="20dp"
         android:textColor="@color/moaBlack"
-        android:textSize="16sp"
+        android:textSize="16dp"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:id="@+id/MyAccountPrivatePolicy"/>
 
@@ -123,7 +123,7 @@
         app:layout_constraintTop_toBottomOf="@id/MyAccountPrivatePolicy"
         android:text="로그아웃"
         android:textColor="@color/moaBlack"
-        android:textSize="16sp"
+        android:textSize="16dp"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:layout_marginTop="20dp"
         android:id="@+id/MyAccountLogout"/>
@@ -133,7 +133,7 @@
         android:layout_height="40dp"
         app:layout_constraintStart_toStartOf="@id/MyAccountLogout"
         app:layout_constraintTop_toBottomOf="@id/MyAccountLogout"
-        android:textSize="16sp"
+        android:textSize="16dp"
         android:layout_marginTop="20dp"
         android:text="회원 탈퇴 신청"
         android:textColor="@color/moaBlack"

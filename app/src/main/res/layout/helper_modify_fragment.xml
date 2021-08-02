@@ -43,7 +43,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/back"
                 app:layout_constraintBottom_toBottomOf="@id/back"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 android:textColor="@color/moaBlack"
                 android:textStyle="bold"
                 android:id="@+id/HelperModifyText"/>
@@ -57,9 +57,9 @@
                 app:layout_constraintTop_toBottomOf="@id/back"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="50dp"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:textColor="@color/moaBlack"
-                android:lineSpacingExtra="8.5sp"
+                android:lineSpacingExtra="8.5dp"
                 android:id="@+id/HelperModifyTitleText"/>
 
             <EditText
@@ -88,9 +88,9 @@
                 app:layout_constraintTop_toBottomOf="@id/HelperModifyTitleEdit"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="20dp"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:textColor="@color/moaBlack"
-                android:lineSpacingExtra="8.5sp"
+                android:lineSpacingExtra="8.5dp"
                 android:id="@+id/HelperModifyCategoryText"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -116,7 +116,7 @@
                     android:id="@+id/HelperModifyCategory"
                     android:includeFontPadding="false"
                     android:text="@={model.category}"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     android:padding="10dp"/>
                 <ImageView
                     android:layout_width="30dp"
@@ -136,9 +136,9 @@
                 android:text="희망시급"
                 android:layout_marginStart="15dp"
                 android:fontFamily="@font/notosanscjkkr_medium"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:textColor="@color/moaBlack"
-                android:lineSpacingExtra="8.5sp"
+                android:lineSpacingExtra="8.5dp"
                 android:id="@+id/HelperModifyHopeWageText"/>
 
             <androidx.appcompat.widget.AppCompatCheckBox
@@ -150,7 +150,7 @@
                 android:scaleY="0.8"
                 android:text="협의가능"
                 android:fontFamily="@font/notosanscjkkr_medium"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:checked="@={model.isNego}"
                 android:layout_marginEnd="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -186,7 +186,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/moaBlack"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:id="@+id/HelperModifyContentText"/>
             <EditText
                 android:layout_width="0dp"
@@ -238,7 +238,7 @@
                     android:text=" 글 작성하기 전에 알려드려요"
                     android:textColor="@color/moaBlack"
                     android:fontFamily="@font/notosanscjkkr_medium"
-                    android:textSize="18sp"
+                    android:textSize="18dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/NeederModifyGuideCheckImg"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -259,13 +259,13 @@
                     android:textSize="16dp"
                     android:textColor="@color/moaBlack"
                     android:gravity="center"
-                    android:lineSpacingExtra="9sp" />
+                    android:lineSpacingExtra="9dp" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/goToGuideLine"
-                    android:textSize="16sp"
+                    android:textSize="16dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -301,7 +301,7 @@
                 tools:text="3"
                 android:textStyle="bold"
                 android:fontFamily="@font/notosanscjkkr_medium"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 android:textColor="@color/moaBlack"
                 app:layout_constraintTop_toBottomOf="@id/AptCertificationPlusImage"
                 app:layout_constraintEnd_toStartOf="@id/HelperModifyPictureTotal"
@@ -315,7 +315,7 @@
                 app:layout_constraintTop_toBottomOf="@id/AptCertificationPlusImage"
                 android:text="/10"
                 android:fontFamily="@font/notosanscjkkr_medium"
-                android:textSize="16sp"
+                android:textSize="16dp"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toEndOf="@id/HelperModifyCountPicture"
                 app:layout_constraintEnd_toEndOf="@id/HelperModifyAlbum"/>
@@ -341,7 +341,7 @@
                 android:textColor="@color/moaBlack"
                 android:text="다음"
                 android:fontFamily="@font/notosanscjkkr_medium"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 android:textStyle="bold"
                 android:layout_marginTop="20dp"
                 android:id="@+id/HelperModifySubmit"/>

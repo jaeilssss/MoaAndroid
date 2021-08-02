@@ -35,7 +35,7 @@
             app:layout_constraintTop_toTopOf="@id/MyConciergeListBack"
             app:layout_constraintBottom_toBottomOf="@id/MyConciergeListBack"
             android:text="재능공유"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:textStyle="bold"
             android:textColor="@color/moaBlack"/>

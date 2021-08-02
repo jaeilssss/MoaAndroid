@@ -93,7 +93,7 @@
                 app:layout_constraintTop_toTopOf="@id/HelperReadProfileImage"
                 app:layout_constraintBottom_toTopOf="@id/HelperReadDate"
                 android:layout_marginStart="5dp"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:textStyle="bold"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 android:textColor="@color/moaBlack"
@@ -107,7 +107,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/HelperReadProfileImage"
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:layout_marginStart="5dp"
-                android:textSize="11.3sp"
+                android:textSize="11.3dp"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 android:id="@+id/HelperReadDate"/>
 
@@ -122,7 +122,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="18dp"
                 android:padding="5dp"
-                android:textSize="15sp"
+                android:textSize="15dp"
                 android:textColor="@color/moaBlack"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -133,7 +133,7 @@
                 app:layout_constraintTop_toTopOf="@id/HelperReadMainCategory"
                 app:layout_constraintBottom_toBottomOf="@id/HelperReadMainCategory"
                 android:layout_marginStart="10dp"
-                android:textSize="18sp"
+                android:textSize="18dp"
                 android:textStyle="bold"
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:textColor="@color/moaBlack" />
@@ -205,7 +205,7 @@
             android:text="이웃과 채팅하기"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:textColor="#000000"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginEnd="15dp"

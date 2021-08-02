@@ -41,7 +41,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textColor="@color/moaBlack"
-        android:textSize="18sp"
+        android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="@id/back"
         app:layout_constraintBottom_toBottomOf="@id/back"
@@ -60,10 +60,10 @@
         android:layout_marginTop="30dp"
         android:textColor="@color/moaBlack"
         android:layout_marginStart="15dp"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:id="@+id/NeederWriteTitleText"
-        android:lineSpacingExtra="8.5sp"/>
+        android:lineSpacingExtra="8.5dp"/>
     <EditText
         android:layout_width="0dp"
         android:layout_height="55dp"
@@ -91,9 +91,9 @@
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:textColor="@color/moaBlack"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:fontFamily="@font/notosanscjkkr_medium"
-        android:lineSpacingExtra="8.5sp"
+        android:lineSpacingExtra="8.5dp"
         android:id="@+id/NeederWriteCategoryText"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -116,7 +116,7 @@
             android:fontFamily="@font/notosanscjkkr_medium"
             android:gravity="center_vertical"
             android:id="@+id/NeederWriteCategory"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:textColor="@color/moaBlack"
             android:paddingStart="10dp"/>
         <ImageView
@@ -139,7 +139,7 @@
         android:layout_marginEnd="15dp"
         android:textColor="@color/moaBlack"
         android:fontFamily="@font/notosanscjkkr_medium"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:id="@+id/NeederWriteHopeWageText"/>
 
     <androidx.appcompat.widget.AppCompatCheckBox
@@ -147,7 +147,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="협의가능"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:checked="@={model.isNego}"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:button="@drawable/selector_signup_policy_checkbox"
@@ -186,7 +186,7 @@
         android:textColor="@color/moaBlack"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:id="@+id/NeederWriteHopeDateTextView"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:text="희망 날짜"/>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
@@ -209,7 +209,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:gravity="center_vertical"
             android:id="@+id/NeederWriteHopeDateText"
-            android:textSize="16sp"
+            android:textSize="16dp"
 
             android:paddingStart="10dp"/>
         <ImageView
@@ -253,7 +253,7 @@
             android:text=" 글 작성하기 전에 알려드려요"
             android:textColor="@color/moaBlack"
             android:fontFamily="@font/notosanscjkkr_medium"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/NeederWriteGuideCheckImg"
             app:layout_constraintEnd_toEndOf="parent"
@@ -274,13 +274,13 @@
             android:textSize="16dp"
             android:textColor="@color/moaBlack"
             android:gravity="center"
-            android:lineSpacingExtra="9sp" />
+            android:lineSpacingExtra="9dp" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/goToGuideLine"
-            android:textSize="16sp"
+            android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -300,7 +300,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:textColor="@color/moaBlack"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:id="@+id/NeederWriteContentTextView"/>
 
     <EditText
@@ -347,7 +347,7 @@
         android:layout_height="wrap_content"
         android:text="0"
         android:textStyle="bold"
-        android:textSize="16sp"
+        android:textSize="16dp"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:textColor="@color/moaBlack"
         app:layout_constraintTop_toBottomOf="@id/AptCertificationPlusImage"
@@ -362,7 +362,7 @@
         app:layout_constraintTop_toBottomOf="@id/AptCertificationPlusImage"
         android:text="/10"
         android:fontFamily="@font/notosanscjkkr_medium"
-        android:textSize="16sp"
+        android:textSize="16dp"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@id/NeederWriteCountPicture"
         app:layout_constraintEnd_toEndOf="@id/NeederWriteAlbum"/>
@@ -389,7 +389,7 @@
         android:text="다음"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:clickable="false"
-        android:textSize="18sp"
+        android:textSize="18dp"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
         android:id="@+id/NeederWriteSubmit"/>

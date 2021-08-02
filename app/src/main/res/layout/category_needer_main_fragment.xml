@@ -36,7 +36,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:text="육아"
             android:textStyle="bold"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:textColor="@color/moaBlack"
             android:id="@+id/CategoryNeederMainText"
             android:fontFamily="@font/notosanscjkkr_medium"

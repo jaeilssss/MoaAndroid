@@ -154,9 +154,9 @@
             android:text="모아 라디오"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:gravity="center"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:textColor="@color/moaBlack"
-            android:lineSpacingExtra="6sp"
+            android:lineSpacingExtra="6dp"
             android:id="@+id/homeVoiceChatText"
             />
     <TextView
@@ -168,9 +168,9 @@
         android:text="재능 공유"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:gravity="center"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:textColor="@color/moaBlack"
-        android:lineSpacingExtra="6sp"
+        android:lineSpacingExtra="6dp"
         android:id="@+id/hometalentSharingText"/>
 
     <TextView
@@ -180,11 +180,11 @@
         app:layout_constraintEnd_toEndOf="@id/homeGroupBuyingBtn"
         app:layout_constraintTop_toBottomOf="@id/homeGroupBuyingBtn"
         android:text="공동구매"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:gravity="center"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:textColor="@color/moaBlack"
-        android:lineSpacingExtra="6sp"
+        android:lineSpacingExtra="6dp"
         android:id="@+id/homeGroupBuyingText"/>
     <TextView
         android:layout_width="0dp"
@@ -196,7 +196,7 @@
         app:layout_constraintTop_toBottomOf="@id/homeClaimBtn"
         android:gravity="center"
         android:textColor="@color/moaBlack"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:id="@+id/homeHandPurchaseText"/>
 
 
@@ -211,9 +211,9 @@
     android:fontFamily="@font/notosanscjkkr_medium"
     android:layout_marginStart="15dp"
     android:textColor="@color/moaBlack"
-    android:textSize="18sp"
+    android:textSize="18dp"
     android:textStyle="bold"
-    android:lineSpacingExtra="9.5sp"
+    android:lineSpacingExtra="9.5dp"
     android:id="@+id/homeMoaMegazinText"/>
 
     <androidx.recyclerview.widget.RecyclerView

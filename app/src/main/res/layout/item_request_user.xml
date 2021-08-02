@@ -18,7 +18,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="뉴나리"
-        android:textSize="14sp"
+        android:textSize="14dp"
         android:textColor="#777777"
         android:lines="1"
         android:includeFontPadding="false"
