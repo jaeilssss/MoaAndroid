@@ -68,9 +68,13 @@ class SingleImagePickerFragment(var selectedPictures : ArrayList<String>) : Frag
                     viewModel.selectedPictureList.value = adapter.selectedPicture
 
                 }else{
-                    adapter.selectedPicture.clear()
+                    if(adapter.selectedPicture.size==1){
+                        var index = adapter.checkBoxList.get(0)
+                        adapter.resetting(index)
+                        adapter.selectedPicture.clear()
+                        adapter.checkBoxList.clear()
+                    }
                     adapter.selectedPicture.add(adapter.list[position])
-                    adapter.checkBoxList.clear()
                     adapter.checkBoxList.add(position)
                     adapter.resetting(position)
                     viewModel.selectedPictureList.value = adapter.selectedPicture
