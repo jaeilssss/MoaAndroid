@@ -52,6 +52,7 @@ lateinit var transfer: Transfer
 
     lateinit var binding: FragmentHomeBinding
 
+    val groupUrl = "https://m.post.naver.com/viewer/postView.naver?volumeNo=32031386&memberNo=25160931"
     lateinit var navController: NavController
     var megazinList = ArrayList<Megazin>()
     var megazinAdapter = MegazinAdapter()
@@ -102,12 +103,19 @@ lateinit var transfer: Transfer
         binding.homeTalentSharingBnt.setOnClickListener { navController.navigate(R.id.ConciergeMainFragment) }
         binding.homeMoaVoiceChatBtn.setOnClickListener { navController.navigate(R.id.voiceMainFragment) }
         binding.homeClaimBtn.setOnClickListener { homeClaimAlertDialog() }
+        binding.homeGroupBuyingBtn.setOnClickListener{goToGroupBuyingBtn()}
         getMoaMagazine()
         getHomeBanner()
         return binding.root
     }
 
+    fun goToGroupBuyingBtn(){
+        var intent = Intent(activity,WebViewActivity::class.java)
 
+        intent.putExtra("url",groupUrl)
+
+        startActivity(intent)
+    }
     fun homeClaimAlertDialog(){
         context?.let {
             SinglePositiveButtonDialog(it)

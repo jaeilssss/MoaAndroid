@@ -189,6 +189,7 @@ class AptCertificationFragment : BaseFragment() {
             }
         }
     }
+
     // 이미지 파일 생성
     private fun createImageFile(): File {
         val timestamp : String  = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())

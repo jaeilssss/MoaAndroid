@@ -26,10 +26,12 @@
         android:layout_marginStart="10dp"
         android:layout_marginBottom="5dp"
         android:textColor="@color/moaBlack"
+        android:ellipsize="end"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:includeFontPadding="false"
         app:layout_constraintVertical_chainStyle="packed"
         android:id="@+id/itemAlarmTitle"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

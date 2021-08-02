@@ -3,6 +3,7 @@ package com.moa.moakotlin.repository.push
 import android.annotation.SuppressLint
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -12,6 +13,7 @@ import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.moa.moakotlin.LoadingActivity
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.data.CurrentChat
@@ -33,6 +35,7 @@ class FcmService() : FirebaseMessagingService() {
         wakeLock.release()
         val data = getSharedPreferences("AlarmSetting",Context.MODE_PRIVATE)
         if(remotemessage.notification!=null){
+            println("포그라운드????...")
             if(remotemessage!!.notification?.title.equals("아파트 인증")){
                 if( remotemessage!!.notification?.body!!.contains("앱을 재실행 해주세요")){
                     println("ddd-->>")
@@ -88,8 +91,7 @@ class FcmService() : FirebaseMessagingService() {
 //           User.getInstance().certificationStatus = "인증"
 //           println("ddd-> ${User.getInstance().certificationStatus}")
 //       }
-        val intent = Intent(baseContext, MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
 
 
         val builder = NotificationCompat.Builder(this, channelId)
@@ -98,13 +100,17 @@ class FcmService() : FirebaseMessagingService() {
         if(title!=null){
             builder.setContentTitle(title)
         }
+        val intent = Intent(this,LoadingActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        val pendingIntent : PendingIntent = PendingIntent.getActivities(this,0, arrayOf(intent) ,PendingIntent.FLAG_NO_CREATE)
         builder.setWhen(System.currentTimeMillis())
         builder.setContentText(content)
         builder.priority = NotificationCompat.PRIORITY_HIGH // 3
 
         builder.setCategory(NotificationCompat.CATEGORY_MESSAGE)
         builder.setAutoCancel(true)
-
+        builder.setContentIntent(pendingIntent)
         val notificationManager = NotificationManagerCompat.from(this)
         notificationManager.notify(1001, builder.build())
     }

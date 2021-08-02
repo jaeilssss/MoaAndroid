@@ -58,11 +58,17 @@ class ChattingRoomViewModel() : ViewModel(){
                          var chattingRoom = dc.document.toObject(ChattingRoom::class.java)
                              var index = roomList?.indexOf(dc.document.id) ?: -1
 
-                         println("index -> ${index}")
-                         list?.removeAt(index)
-                         list?.add(0,chattingRoom)
-                         roomList.removeAt(index)
-                         roomList.add(0,dc.document.id)
+                         if(index==-1){
+                             list?.add(chattingRoom)
+                             roomList.add(dc.document.id)
+                         }else{
+                             println("index -> ${index}")
+                             list?.removeAt(index)
+                             list?.add(0,chattingRoom)
+                             roomList.removeAt(index)
+                             roomList.add(0,dc.document.id)
+                         }
+
                      }
                      DocumentChange.Type.REMOVED -> {
 

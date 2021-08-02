@@ -49,6 +49,7 @@
     <string name="MoaPrivatePolicyUrl">https://moduapt.com/terms/privacy</string>
     <string name="marketingPolicyUrl">https://moduapt.com/terms/marketing</string>
     <string name="groupBuyingUrl">https://m.post.naver.com/viewer/postView.naver?volumeNo=32031386&amp;memberNo=25160931</string>
+    <string name="appVersion">1.0.0</string>
     <string-array name="mainCategory">
         <item>"인테리어"</item>
         <item>"육아,교육"</item>
