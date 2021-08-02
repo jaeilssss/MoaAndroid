@@ -23,11 +23,9 @@ class ImagePickerActivity : AppCompatActivity() {
             finish()
         }
         var intent = intent
-
        selectedPictures = intent.getStringArrayListExtra("selectedPictureList")!!
         var check : String ?=null
         check = intent.getStringExtra("singleImage")
-
         var submit = findViewById<TextView>(R.id.ActivityImagePickerSubmit)
 
         submit.setOnClickListener {
@@ -37,6 +35,7 @@ class ImagePickerActivity : AppCompatActivity() {
             finish()
         }
         if(check!=null){
+
             initSingleImageFragment()
         }else{
             initFragment()
@@ -48,12 +47,13 @@ class ImagePickerActivity : AppCompatActivity() {
 
 
 
-    fun initFragment(){
-        var fragment = ImagePickerViewFragment(selectedPictures)
+    private fun initFragment(){
+
+        var fragment = ImagePickerSecondFragment(selectedPictures)
         supportFragmentManager.beginTransaction().replace(R.id.ActivityImagePickerFragment,fragment).commit()
     }
 
-    fun initSingleImageFragment(){
+    private fun initSingleImageFragment(){
         var fragment = SingleImagePickerFragment(selectedPictures)
         supportFragmentManager.beginTransaction().replace(R.id.ActivityImagePickerFragment,fragment).commit()
     }

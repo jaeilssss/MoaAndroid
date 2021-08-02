@@ -200,7 +200,6 @@ class HelperWritePageFragment : Fragment() {
     }
 
     private fun goToAlbum(){
-
         var intent = Intent(activity,ImagePickerActivity::class.java)
         intent.putExtra("selectedPictureList",selectedPictureList)
         startActivityForResult(intent,1000)

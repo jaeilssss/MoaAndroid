@@ -66,13 +66,10 @@ class ImagePickerViewFragment(var selectedPictures : ArrayList<String>) : Fragme
         viewModel = ViewModelProvider(this).get(ImagePickerViewViewModel::class.java)
         binding.model = viewModel
 
-
-
         viewModel.selectedPictureList.observe(viewLifecycleOwner, Observer {
             myActivity?.selectedPictures = viewModel.selectedPictureList.value!!
         })
         getGalleryPhotos()
-
         adapter.setOnItemClickListener(object : OnItemClickListener{
             override fun onItemClick(v: View, position: Int) {
 
@@ -122,15 +119,14 @@ class ImagePickerViewFragment(var selectedPictures : ArrayList<String>) : Fragme
 
                 var indexPath = cursor.getColumnIndex(MediaStore.MediaColumns.DATA)
                 list.add(cursor.getString(indexPath))
-
             }
         }else{
             Log.e("getGalleryPhotos","error")
-
         }
+
         list.reverse()
 
-        adapter = ConciergeImagePickerAdapter(activity?.applicationContext!!,list)
+        adapter = context?.let { ConciergeImagePickerAdapter(it, list) }!!
 
         binding.imageRcv.adapter = adapter
 
