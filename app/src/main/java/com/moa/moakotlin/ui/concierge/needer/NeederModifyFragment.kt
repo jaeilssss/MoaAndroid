@@ -18,6 +18,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.databinding.NeederModifyFragmentBinding
@@ -73,7 +74,7 @@ class NeederModifyFragment : Fragment() {
 
         binding.NeederModifyAlbum.setOnClickListener { checkPermission() }
 
-
+        binding.back.setOnClickListener {  }
 
         viewModel.title.observe(viewLifecycleOwner, Observer {setSubmitBtnChange()})
         viewModel.mainCategory.observe(viewLifecycleOwner, Observer {setSubmitBtnChange()})

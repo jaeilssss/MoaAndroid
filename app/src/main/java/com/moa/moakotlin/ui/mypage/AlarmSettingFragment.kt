@@ -13,11 +13,13 @@ import androidx.core.content.edit
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.AlarmSettingFragmentBinding
 
-class AlarmSettingFragment : Fragment() {
+class AlarmSettingFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = AlarmSettingFragment()
@@ -35,7 +37,7 @@ class AlarmSettingFragment : Fragment() {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.alarm_setting_fragment,container,false)
 
-
+        (context as MainActivity).backListener = this
         return binding.root
     }
 
@@ -45,6 +47,7 @@ class AlarmSettingFragment : Fragment() {
 
         binding.model = viewModel
 
+        binding.AlarmSettingBack.setOnClickListener { navController.popBackStack() }
         navController = findNavController()
 
     }
@@ -63,5 +66,9 @@ class AlarmSettingFragment : Fragment() {
 
 
         super.onStop()
+    }
+
+    override fun onBackPressed() {
+        navController.popBackStack()
     }
 }

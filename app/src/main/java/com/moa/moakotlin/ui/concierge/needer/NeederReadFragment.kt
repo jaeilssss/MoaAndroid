@@ -60,6 +60,7 @@ class NeederReadFragment : BaseFragment() {
     companion object{
         var REQUEST_MODIFY_CODE = 4000
     }
+    var defaultUrl = "https://firebasestorage.googleapis.com/v0/b/moakr-8c0ab.appspot.com/o/CONCIERGE_DEFAULT.png?alt=media&token=8623aaa7-4f88-44fb-a05e-64d2a02cb683"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -125,7 +126,13 @@ class NeederReadFragment : BaseFragment() {
             setUpBoardingIndicators(it.images!!.size)
             setCurrentOnboardingIndicator(0)
         })
-        adapter = needer.images?.let { it1 -> ConciergeReadViewpagerAdapter(activity?.applicationContext!!, it1) }!!
+        adapter = needer.images?.let { it1 ->
+
+            if(it1.size==0){
+                it1.add(defaultUrl)
+            }
+            ConciergeReadViewpagerAdapter(activity?.applicationContext!!, it1)
+        }!!
 
         binding.NeederReadViewPager.adapter = adapter
         binding.NeederReadViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {

@@ -64,6 +64,7 @@ class HelperReadFragment : BaseFragment() {
         // Inflate the layout for this fragment
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_helper_read, container, false)
+        var defaultUrl = "https://firebasestorage.googleapis.com/v0/b/moakr-8c0ab.appspot.com/o/CONCIERGE_DEFAULT.png?alt=media&token=8623aaa7-4f88-44fb-a05e-64d2a02cb683"
 
         navController = findNavController()
 
@@ -96,7 +97,13 @@ class HelperReadFragment : BaseFragment() {
         }
 
 
-         adapter = helper.images?.let { it1 -> ConciergeReadViewpagerAdapter(activity?.applicationContext!!, it1) }!!
+         adapter = helper.images?.let { it1 ->
+             if(it1.size==0){
+                 it1.add(defaultUrl)
+             }
+             ConciergeReadViewpagerAdapter(activity?.applicationContext!!, it1)
+
+         }!!
 
         binding.HelperReadViewPager.adapter = adapter
 

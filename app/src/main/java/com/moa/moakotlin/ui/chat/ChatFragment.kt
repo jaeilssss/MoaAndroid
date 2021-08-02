@@ -83,7 +83,7 @@ class ChatFragment : BaseFragment() {
         helper = arguments?.getParcelable<Helper>("helper") ?:null
 
         binding.ChatOpponentNickname.text = opponentUser.nickName
-
+        binding.back.setOnClickListener { onBackPressed() }
         navController = findNavController()
          rcv = binding.ChatRcv
         rcv.setHasFixedSize(true)

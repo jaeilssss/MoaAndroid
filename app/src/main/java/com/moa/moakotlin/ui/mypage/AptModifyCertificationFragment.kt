@@ -88,7 +88,7 @@ class AptModifyCertificationFragment : BaseFragment() {
         adapter = CertificationImageAdapter()
 
         binding.aptModifyCertificationRcv.adapter = adapter
-
+        binding.back.setOnClickListener { onBackPressed() }
 
 
         adapter.setOnItemCLickListener(object : OnItemClickListener {

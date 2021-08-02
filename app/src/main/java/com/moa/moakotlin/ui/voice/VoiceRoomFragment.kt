@@ -109,6 +109,10 @@ class VoiceRoomFragment : BaseFragment() {
 
         binding.VoiceRoomSpeakerRcv.adapter = speakerAdapter
 
+        binding.back.setOnClickListener {
+            voiceChatRoomExit()
+        }
+
         binding.VoiceRoomMicBtn.setOnClickListener {
             if(!muteState){
                 rtcEngine.muteLocalAudioStream(true)

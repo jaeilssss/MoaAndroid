@@ -12,6 +12,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.moa.moakotlin.R
 
 class ConciergeReadViewpagerAdapter(var context : Context , var list : ArrayList<String>) :  RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.item_concierge_read_viewpager,parent,false)
         return ConciergeReadViewHolder(view)
@@ -19,9 +21,11 @@ class ConciergeReadViewpagerAdapter(var context : Context , var list : ArrayList
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
-        Glide.with(context).load(list.get(position))
-            .apply(RequestOptions.bitmapTransform(RoundedCorners(16)))
-            .into((holder as ConciergeReadViewHolder).image)
+            Glide.with(context).load(list.get(position))
+                    .apply(RequestOptions.bitmapTransform(RoundedCorners(16)))
+                    .into((holder as ConciergeReadViewHolder).image)
+
+
     }
 
     override fun getItemCount(): Int {

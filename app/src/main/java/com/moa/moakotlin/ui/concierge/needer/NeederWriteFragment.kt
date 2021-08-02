@@ -55,7 +55,7 @@ class NeederWriteFragment : Fragment() {
         model = ViewModelProvider(this).get(NeederWriteViewModel::class.java)
 
         binding.model = model
-
+        binding.back.setOnClickListener { activity?.finish() }
         binding.NeederWriteCategoryLayout.setOnClickListener { selectCategory() }
         binding.NeederWriteHopeDateLayout.setOnClickListener { selectHopeDate() }
         binding.NeederWriteAlbum.setOnClickListener { checkPermission() }

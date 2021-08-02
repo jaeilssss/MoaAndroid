@@ -55,7 +55,7 @@ class HelperWritePageFragment : Fragment() {
         model = ViewModelProvider(this).get(HelperWritePageViewModel::class.java)
         binding.model = model
 
-
+        binding.back.setOnClickListener { activity?.finish() }
         binding.HelperWriteCategoryLayout.setOnClickListener {
             var intent = Intent(activity,HelperCategoryActivity::class.java)
             startActivityForResult(intent,2000)

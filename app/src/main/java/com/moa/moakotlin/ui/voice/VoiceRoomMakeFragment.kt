@@ -22,7 +22,9 @@ import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.databinding.VoiceRoomFragmentBinding
 import com.moa.moakotlin.databinding.VoiceRoomMakeFragmentBinding
@@ -32,7 +34,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class VoiceRoomMakeFragment : Fragment() {
+class VoiceRoomMakeFragment : BaseFragment() {
 
 
     private lateinit var viewModel: VoiceRoomMakeViewModel
@@ -55,6 +57,7 @@ class VoiceRoomMakeFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.voice_room_make_fragment, container, false)
+        (context as MainActivity).backListener = this
         return binding.root
     }
 
@@ -70,7 +73,7 @@ class VoiceRoomMakeFragment : Fragment() {
         viewModel.title.observe(viewLifecycleOwner, Observer { setSubmitBackGroundChange() })
         viewModel.range.observe(viewLifecycleOwner, Observer { setSubmitBackGroundChange() })
         binding.VoiceRoomGoToAlbum.setOnClickListener { checkPermission() }
-
+        binding.back.setOnClickListener { navController.popBackStack() }
         val flexBoxAdapter = FlexBoxAdapter()
 
         binding.itemAptCertificationClose.setOnClickListener {
@@ -121,6 +124,10 @@ class VoiceRoomMakeFragment : Fragment() {
                 viewModel.theme.value = flexBoxAdapter.currentList[position]
             }
         })
+    }
+
+    override fun onBackPressed() {
+        navController.popBackStack()
     }
 
     private fun setSubmitBackGroundChange() {

@@ -42,6 +42,7 @@ class MyConciergeListFragment : BaseFragment() {
 
         binding = DataBindingUtil.inflate(inflater ,R.layout.my_concierge_list_fragment,container,false)
         viewPagerAdapter = MyConciergeAdapter(childFragmentManager)
+        binding.MyConciergeListBack.setOnClickListener { navController.popBackStack() }
         binding.MyConciergeViewPager.adapter = viewPagerAdapter
         binding.MyConciergeTabLayout.setupWithViewPager(binding.MyConciergeViewPager)
         (context as MainActivity).backListener = this

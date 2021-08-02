@@ -62,7 +62,11 @@ class NeederCompletionFragment : BaseFragment() {
             needer  = it.getParcelable<Needer>("Needer")!!
             setData()
         }
-
+        binding.NeederCompletionLaterBtn.setOnClickListener{
+            needer.hireStatus = "모집완료"
+            viewModel.skipReview(needer)
+            navController.popBackStack(R.id.neederReadFragment,false)
+        }
         getChatData()
 
     }

@@ -47,6 +47,8 @@ class MyAccountSettingFragment : BaseFragment() {
 
         binding.model = viewModel
 
+        binding.MyAccountBack.setOnClickListener { navController.popBackStack() }
+
         binding.MyAccountPhoneNumberNewCheck.setOnClickListener { goToChangePhoneNumber()}
 
         binding.MyAccountMoaPolicy.setOnClickListener {
