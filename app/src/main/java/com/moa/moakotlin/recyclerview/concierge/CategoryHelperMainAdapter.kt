@@ -53,7 +53,7 @@ class CategoryHelperMainAdapter(): ListAdapter<Helper, CategoryHelperMainAdapter
                         .into(binding.itemCategoryImage)
             }
             binding.itemCategoryAptName.text = helper.aptName
-            binding.itemCategoryContent.text = helper.content
+            binding.itemCategoryTitle.text = helper.title
             val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm")
             binding.itemCategoryHopeDate.text = dateFormat.format(helper.timeStamp.toDate())
             if(helper.isNego.not()){

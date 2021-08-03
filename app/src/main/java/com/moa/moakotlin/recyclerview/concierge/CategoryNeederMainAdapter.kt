@@ -54,7 +54,7 @@ class CategoryNeederMainAdapter() : ListAdapter<Needer, CategoryNeederMainAdapte
                         .into(binding.itemCategoryImage)
             }
             binding.itemCategoryAptName.text = needer.aptName
-            binding.itemCategoryContent.text = needer.content
+            binding.itemCategoryTitle.text = needer.title
             val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일 a hh:mm")
             binding.itemCategoryHopeDate.text = dateFormat.format(needer.timeStamp.toDate())
             binding.itemCategoryPrice.text = "${needer.hopeWage}원"

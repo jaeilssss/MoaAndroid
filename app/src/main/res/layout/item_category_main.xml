@@ -75,7 +75,7 @@
             app:layout_constraintTop_toBottomOf="@id/itemCategoryImage" />
 
         <TextView
-            android:id="@+id/itemCategoryContent"
+            android:id="@+id/itemCategoryTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="18.2dp"
