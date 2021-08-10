@@ -64,7 +64,6 @@ class HelperMainAdapter() :ListAdapter<Helper, RecyclerView.ViewHolder>(diffUtil
             }else{
                 Glide.with(binding.root).load(defaultUrl)
                         .apply(RequestOptions.bitmapTransform(RoundedCorners(15))).into(binding.itemConciergeImage)
-
             }
             if(helper.isNego.not()){
                 binding.itemConciergeNego.isVisible = false

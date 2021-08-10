@@ -38,12 +38,11 @@ lateinit var model : LoadingViewModel
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }else{
-                println("??...")
-                println("ㅇㄴㅇㄴ-.> ${FirebaseAuth.getInstance().currentUser!!.uid}")
                 var result = FirebaseAuth.getInstance().currentUser?.let { model.initApp(it.uid,this) }
                 if(result == true){
-                    println("시발 - >${User.getInstance().uid}")
+
                     userRepository.registerPushToken()
+
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }else{

@@ -100,12 +100,13 @@ class FcmService() : FirebaseMessagingService() {
         if(title!=null){
             builder.setContentTitle(title)
         }
-        val intent = Intent(this,LoadingActivity::class.java).apply {
+        val intent = Intent(applicationContext,LoadingActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
-        val pendingIntent : PendingIntent = PendingIntent.getActivities(this,0, arrayOf(intent) ,PendingIntent.FLAG_NO_CREATE)
+        val pendingIntent : PendingIntent = PendingIntent.getActivities(applicationContext,0, arrayOf(intent) ,PendingIntent.FLAG_ONE_SHOT)
         builder.setWhen(System.currentTimeMillis())
         builder.setContentText(content)
+
         builder.priority = NotificationCompat.PRIORITY_HIGH // 3
 
         builder.setCategory(NotificationCompat.CATEGORY_MESSAGE)

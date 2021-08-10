@@ -71,7 +71,6 @@ class LoginFragment : BaseScrollFragment() {
                 binding.certificationCode.isVisible = true
                 binding.checkCertificationCodeBtn.isVisible = true
             }
-
         }
 
         binding.checkCertificationCodeBtn.setOnClickListener {
