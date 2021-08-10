@@ -1,6 +1,7 @@
 package com.moa.moakotlin.repository.push
 
 import android.annotation.SuppressLint
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -10,6 +11,7 @@ import android.os.Build
 import android.os.PowerManager
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.navigation.NavController
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -21,6 +23,8 @@ import com.moa.moakotlin.data.User
 
 
 class FcmService() : FirebaseMessagingService() {
+
+
 
     override fun onMessageReceived(remotemessage: RemoteMessage) {
         println("메소드 올라옴.1.")
@@ -52,7 +56,8 @@ class FcmService() : FirebaseMessagingService() {
                 sendNotificationForGround(remotemessage.notification?.body!!,remotemessage.notification?.title!!)
             }
         }else if(data?.getBoolean("isEventAlarm",false) == true && remotemessage.data.get("title").equals("리뷰")){
-            remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
+            remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it)
+            }
         }else if(data?.getBoolean("isChattingAlarm",false)==true && !CurrentChat.getInstance().boolean){
             remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
         }else if(data?.getBoolean("isMarketingAlarm",false) ==true && remotemessage.data.get("title").equals("이벤트")){
@@ -135,18 +140,29 @@ class FcmService() : FirebaseMessagingService() {
         if(title!=null){
             builder.setContentTitle(title)
         }
-        val intent = Intent(applicationContext,LoadingActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+        val intent = Intent(applicationContext,MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            action = Intent.ACTION_MAIN
+            addCategory(Intent.CATEGORY_LAUNCHER)
         }
-        val pendingIntent : PendingIntent = PendingIntent.getActivities(applicationContext,0, arrayOf(intent) ,PendingIntent.FLAG_ONE_SHOT)
+
+
+        if(title.equals("리뷰") || title.equals("아파트 인증")){
+            intent.putExtra("request","알림")
+        }else {
+            intent.putExtra("request","채팅")
+        }
+
+        val pendingIntent : PendingIntent = PendingIntent.getActivity(baseContext,0, null ,PendingIntent.FLAG_UPDATE_CURRENT)
         builder.setWhen(System.currentTimeMillis())
         builder.setContentText(content)
 
         builder.priority = NotificationCompat.PRIORITY_HIGH // 3
-
         builder.setCategory(NotificationCompat.CATEGORY_MESSAGE)
+        builder.setContentIntent(pendingIntent)
         builder.setAutoCancel(true)
-        val notificationManager = NotificationManagerCompat.from(this)
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
         notificationManager.notify(1001, builder.build())
     }
 }

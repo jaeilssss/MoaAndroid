@@ -8,19 +8,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.edit
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.data.Notification
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.AlarmFragmentBinding
 import com.moa.moakotlin.recyclerview.alarm.AlarmAdapter
 
-class AlarmFragment : Fragment() {
+class AlarmFragment : BaseFragment() {
 
 
     private lateinit var viewModel: AlarmViewModel
@@ -35,7 +38,7 @@ class AlarmFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.alarm_fragment,container,false)
-
+        (context as MainActivity).backListener = this
         return binding.root
     }
 
@@ -51,6 +54,7 @@ class AlarmFragment : Fragment() {
         binding.model = viewModel
 
         navController = findNavController()
+        myActivity.bottomNavigationVisible()
 
         var adapter = AlarmAdapter()
 
@@ -82,5 +86,9 @@ class AlarmFragment : Fragment() {
         viewModel.removeSnapShot()
 
         super.onStop()
+    }
+
+    override fun onBackPressed() {
+        navController.popBackStack()
     }
 }

@@ -15,7 +15,7 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.databinding.AptModifyCertificationNoticeFragmentBinding
 
-class AptModifyCertificationNoticeFragment : BaseFragment() {
+class  질AptModifyCertificationNoticeFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = AptModifyCertificationNoticeFragment()
