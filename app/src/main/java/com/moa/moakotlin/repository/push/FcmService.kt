@@ -38,28 +38,25 @@ class FcmService() : FirebaseMessagingService() {
             println("포그라운드????...")
             if(remotemessage!!.notification?.title.equals("아파트 인증")){
                 if( remotemessage!!.notification?.body!!.contains("앱을 재실행 해주세요")){
-                    println("ddd-->>")
-                    sendNotification(remotemessage.notification?.body!!,remotemessage.notification?.title!!)
+                    sendNotificationForGround(remotemessage.notification?.body!!,remotemessage.notification?.title!!)
                     User.getInstance().certificationStatus = "인증"
                 }else if(remotemessage!!.notification?.body!!.contains("인증이 반려되었습니다")){
-                    sendNotification(remotemessage.notification?.body!!,remotemessage.notification?.title!!)
+                    sendNotificationForGround(remotemessage.notification?.body!!,remotemessage.notification?.title!!)
                     User.getInstance().certificationStatus = "반려"
                 }
                 else{
-                    println("왜 여기야?,,")
-                    sendNotification(remotemessage.notification?.body!!,remotemessage.notification?.title!!)
+                    sendNotificationForGround(remotemessage.notification?.body!!,remotemessage.notification?.title!!)
                 }
             }
             else if(data?.getBoolean("isMarketingAlarm",false) ==true){
-                println("왜 여기야?>>>--,,")
-                sendNotification(remotemessage.notification?.body!!,remotemessage.notification?.title!!)
+                sendNotificationForGround(remotemessage.notification?.body!!,remotemessage.notification?.title!!)
             }
         }else if(data?.getBoolean("isEventAlarm",false) == true && remotemessage.data.get("title").equals("리뷰")){
-            remotemessage.data.get("title")?.let { sendNotification(remotemessage.data.get("body")!!, it) }
+            remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
         }else if(data?.getBoolean("isChattingAlarm",false)==true && !CurrentChat.getInstance().boolean){
-            remotemessage.data.get("title")?.let { sendNotification(remotemessage.data.get("body")!!, it) }
+            remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
         }else if(data?.getBoolean("isMarketingAlarm",false) ==true && remotemessage.data.get("title").equals("이벤트")){
-            remotemessage.data.get("title")?.let { sendNotification(remotemessage.data.get("body")!!, it) }
+            remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
         }
     }
 
@@ -78,7 +75,7 @@ class FcmService() : FirebaseMessagingService() {
     }
 
 
-    private fun sendNotification(messageBody : String, messageTitle : String){
+    private fun sendNotificationBackGround(messageBody : String, messageTitle : String){
         println(">?>??")
         createNotificationChannel(this, NotificationManagerCompat.IMPORTANCE_HIGH, false,
                 getString(R.string.app_name), "App notification channel")   // 1
@@ -112,6 +109,43 @@ class FcmService() : FirebaseMessagingService() {
         builder.setCategory(NotificationCompat.CATEGORY_MESSAGE)
         builder.setAutoCancel(true)
         builder.setContentIntent(pendingIntent)
+        val notificationManager = NotificationManagerCompat.from(this)
+        notificationManager.notify(1001, builder.build())
+    }
+
+    private fun sendNotificationForGround(messageBody : String, messageTitle : String){
+        println(">?>??")
+        createNotificationChannel(this, NotificationManagerCompat.IMPORTANCE_HIGH, false,
+                getString(R.string.app_name), "App notification channel")   // 1
+
+        val channelId = "$packageName-${getString(R.string.app_name)} "
+        val title = messageTitle
+        val content =messageBody
+//
+//       if(messageBody.contains("앱을 재실행 해주세요")){
+//           User.getInstance().certificationStatus = "인증"
+//           println("ddd-> ${User.getInstance().certificationStatus}")
+//       }
+
+
+
+        val builder = NotificationCompat.Builder(this, channelId)
+
+        builder.setSmallIcon(R.mipmap.ic_launcher)
+        if(title!=null){
+            builder.setContentTitle(title)
+        }
+        val intent = Intent(applicationContext,LoadingActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        val pendingIntent : PendingIntent = PendingIntent.getActivities(applicationContext,0, arrayOf(intent) ,PendingIntent.FLAG_ONE_SHOT)
+        builder.setWhen(System.currentTimeMillis())
+        builder.setContentText(content)
+
+        builder.priority = NotificationCompat.PRIORITY_HIGH // 3
+
+        builder.setCategory(NotificationCompat.CATEGORY_MESSAGE)
+        builder.setAutoCancel(true)
         val notificationManager = NotificationManagerCompat.from(this)
         notificationManager.notify(1001, builder.build())
     }
