@@ -39,7 +39,7 @@
     <string name="ConciergeMainHelp">나의 필요(요청)을 올리고\n도움을 받고 싶어요</string>
     <string name="NeederCompletionText">서비스가 완료되었어요\n실제 재능을 공유한 이웃을 선택해주세요</string>
     <string name="NeederWriteGuide">어떤 도움을 원하시는지(콘크리트벽 못박기 \n도와주세요,등하원 도우미 구해요) 와 위치,\n 특별히 요청하는 사항 등에 대해서 적어주세요</string>
-    <string name="HelperWriteGuide">어떤 재능으로 이웃에게 도움을 주실 수 있는지\n(등하원 돕기, 학습지도, 가구옮기기, 반려동물케어)등\n와 자신의 위치, 활동 가능한 시간 및 간단 자기소개를 적어주세요.</string>
+    <string name="HelperWriteGuide">어떤 재능으로 이웃에게 도움을 주실 수 있는지\n(등하원 돕기, 학습지도, 가구옮기기, 반려동물케어)등\n자신의 위치, 활동 가능한 시간 및 간단 자기소개를 적어주세요.</string>
     <string name="goToGuideLine"><u>재능공유 운영 정책 보러가기</u></string>
     <string name="loadingMessage">우리아파트도\n따듯해질수 있어요</string>
     <string name="ReAptCertification">이미 아파트 인증을 완료하셨습니다\n새로운 아파트로 인증을 원하시나요? </string>

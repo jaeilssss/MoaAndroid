@@ -9,6 +9,7 @@ class Magazine(
     var thumbnail : String ="",
     var timestamp: Timestamp = Timestamp.now(),
     var title : String = "",
-    var url : String =""
+    var url : String ="",
+    var order : Int = 0
 ): Parcelable {
 }

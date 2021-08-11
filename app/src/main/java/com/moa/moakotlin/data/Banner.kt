@@ -9,6 +9,7 @@ class Banner(
     var image : String ="",
     var timeStamp : Timestamp = Timestamp.now(),
     var type : String = "",
-    var url : String = ""
+    var url : String = "",
+    var order : Int = 0
 ) : Parcelable {
 }
