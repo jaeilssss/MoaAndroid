@@ -20,6 +20,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
+import com.moa.moakotlin.WebViewActivity
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Helper
@@ -42,7 +43,7 @@ class HelperWritePageFragment : Fragment() {
 
     var selectedPictureList = ArrayList<String>()
 
-
+    var url = "https://moaapt.notion.site/6d1c2fe592af434692501480dfe92d23"
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,7 +64,7 @@ class HelperWritePageFragment : Fragment() {
         binding.HelperWriteAlbum.setOnClickListener {
             checkPermission()
         }
-
+        binding.HelperWriteGoToGuide.setOnClickListener { goToWebView() }
         binding.HelperWriteSubmit.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 binding.HelperWriteLoading.show()
@@ -102,7 +103,13 @@ class HelperWritePageFragment : Fragment() {
 
         return binding.root
     }
+    fun goToWebView(){
+        var intent = Intent(activity, WebViewActivity::class.java)
 
+        intent.putExtra("url",url)
+
+        startActivity(intent)
+    }
     fun setSubmitBtnChange(){
         if(model.checkEdit()){
             binding.HelperWriteSubmit.setBackgroundResource(R.drawable.button_shape_main_color)

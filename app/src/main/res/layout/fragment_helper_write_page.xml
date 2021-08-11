@@ -76,7 +76,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="당신의 전문 분야"
+        android:text="재능을 공유할 영역"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/HelperWriteTitleEdit"
@@ -209,10 +209,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
-            android:text="@string/ConciergeWriteGuide"
+            android:text="@string/HelperWriteGuide"
             app:layout_constraintTop_toBottomOf="@id/HelperWriteGuideTextView"
+            app:layout_constraintBottom_toTopOf="@id/HelperWriteGoToGuide"
             android:layout_marginTop="10dp"
             android:textSize="16dp"
+            android:layout_marginBottom="10dp"
             android:textColor="@color/moaBlack"
             android:gravity="center"
             android:lineSpacingExtra="9dp" />

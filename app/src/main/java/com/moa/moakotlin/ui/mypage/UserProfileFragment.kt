@@ -66,7 +66,7 @@ class UserProfileFragment : BaseFragment() {
         CoroutineScope(Dispatchers.Main).launch {
             viewModel.getReviewList(user.uid)
         }
-
+        binding.UserProfileBackBtn.setOnClickListener{onBackPressed()}
         setProfileImage()
         setData()
         visibleModifyBtn()

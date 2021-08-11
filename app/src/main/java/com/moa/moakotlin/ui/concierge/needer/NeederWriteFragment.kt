@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
+import com.moa.moakotlin.WebViewActivity
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.databinding.FragmentNeederWriteBinding
@@ -39,6 +40,8 @@ class NeederWriteFragment : Fragment() {
     var selectedPictureList = ArrayList<String>()
 
     lateinit var adapter : CertificationImageAdapter
+
+    var url = "https://moaapt.notion.site/6d1c2fe592af434692501480dfe92d23"
 
     companion object{
         var REQUEST_CATEGORY_SELECTION = 2000
@@ -68,13 +71,14 @@ class NeederWriteFragment : Fragment() {
             }
 
         }
+
+        binding.NeederWriteGoToGuide.setOnClickListener { goToWebView() }
         model.title.observe(viewLifecycleOwner, Observer {setButtonBackgroundChange()})
         model.content.observe(viewLifecycleOwner, Observer { setButtonBackgroundChange() })
         model.wage.observe(viewLifecycleOwner, Observer { setButtonBackgroundChange() })
         model.mainCategory.observe(viewLifecycleOwner, Observer { setButtonBackgroundChange() })
         model.subCategory.observe(viewLifecycleOwner, Observer { setButtonBackgroundChange() })
         model.hopeDate.observe(viewLifecycleOwner, Observer { setButtonBackgroundChange() })
-
         model.selectedPictureList.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
             adapter.notifyDataSetChanged()
@@ -95,6 +99,13 @@ class NeederWriteFragment : Fragment() {
     }
 
 
+    fun goToWebView(){
+        var intent = Intent(activity, WebViewActivity::class.java)
+
+        intent.putExtra("url",url)
+
+        startActivity(intent)
+    }
 
 
     fun setButtonBackgroundChange(){

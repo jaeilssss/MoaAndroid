@@ -100,7 +100,9 @@ class MyPageFragment : BaseFragment() {
         if(User.getInstance().profileImage.isNotEmpty()){
             Glide.with(binding.root).load(User.getInstance().profileImage).into(binding.MyPageUserProfile)
         }
-        binding.MyPageUserAptInfoText.text = "${User.getInstance().aptName}"
+
+        var strList = User.getInstance().address.split(" ")
+        binding.MyPageUserAptInfoText.text = "${strList.get(strList.size-3)} ${strList.get(strList.size-2)} ${strList.get(strList.size-1)}"
     }
 
 

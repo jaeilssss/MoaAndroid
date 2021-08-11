@@ -64,7 +64,6 @@ class HelperRepository {
                                 }
                             }
                         }
-
                     }.await()
       return result
 

@@ -154,7 +154,7 @@ class HelperMainFragment : BaseFragment() {
         })
     }
 
-    private fun setUpBoardingIndicators(list : ArrayList<Int>){
+    private fun setUpBoardingIndicators(list : ArrayList<Banner>){
         val indicators =
                 arrayOfNulls<ImageView>(list.size)
 
@@ -209,7 +209,7 @@ class HelperMainFragment : BaseFragment() {
 
             binding.HelperMainBanner.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
 
-            setUpBoardingIndicators(arrayListOf(R.drawable.banner_help_main))
+            setUpBoardingIndicators(list)
 
             setCurrentOnboardingIndicator(0)
 
@@ -219,7 +219,7 @@ class HelperMainFragment : BaseFragment() {
                         override fun onItemClick(v: View, position: Int) {
                             var intent = Intent(activity, WebViewActivity::class.java)
 
-                            intent.putExtra("url",adapter.list[position])
+                            intent.putExtra("url",adapter.list[position].url)
 
                             startActivity(intent)
                         }

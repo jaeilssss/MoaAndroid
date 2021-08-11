@@ -17,6 +17,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
+import com.moa.moakotlin.WebViewActivity
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.databinding.HelperModifyFragmentBinding
@@ -38,7 +39,7 @@ class HelperModifyFragment : Fragment() {
     private lateinit var binding : HelperModifyFragmentBinding
 
     lateinit var adapter : CertificationImageAdapter
-
+    var url = "https://moaapt.notion.site/6d1c2fe592af434692501480dfe92d23"
     var selectedPictureList = ArrayList<String>()
 
     private  lateinit var helper : Helper
@@ -117,6 +118,16 @@ class HelperModifyFragment : Fragment() {
                 viewModel.submit(uploadedPosition,helper)
             }
         }
+
+        binding.NeederModifyGoToGuide.setOnClickListener { goToWebView() }
+    }
+
+    fun goToWebView(){
+        var intent = Intent(activity, WebViewActivity::class.java)
+
+        intent.putExtra("url",url)
+
+        startActivity(intent)
     }
     private fun setData(helper : Helper){
         viewModel.title.value = helper.title

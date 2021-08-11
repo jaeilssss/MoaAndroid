@@ -52,15 +52,19 @@
         app:layout_constraintBottom_toTopOf="@id/MyPageUserAptInfoText"
         android:id="@+id/MyPageNickName"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/MyPageUserProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="15dp"
+        android:ellipsize="end"
         app:layout_constraintTop_toBottomOf="@id/MyPageNickName"
         app:layout_constraintBottom_toBottomOf="@id/MyPageUserProfile"
         android:text="만현마을 쌍용1차 710동 601호"
         android:includeFontPadding="false"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
+        android:textSize="12dp"
         app:layout_constraintVertical_chainStyle="packed"
         android:id="@+id/MyPageUserAptInfoText"/>
 <androidx.appcompat.widget.AppCompatButton

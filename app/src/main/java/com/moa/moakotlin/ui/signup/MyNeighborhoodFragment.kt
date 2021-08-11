@@ -49,6 +49,7 @@ class MyNeighborhoodFragment : BaseFragment() {
         arguments?.let {
             var neighborhood = it.getStringArrayList("neighborhood")
             if (neighborhood != null) {
+                neighborhood.remove(User.getInstance().aptName)
                 settingMyNeighborhood(neighborhood)
             }
         }

@@ -29,7 +29,9 @@ class AptCertificationGuideFragment : BaseFragment() {
 
 
         binding = DataBindingUtil.inflate(inflater,R.layout.apt_certification_guide_fragment,container,false)
+
         (context as MainActivity).backListener = this
+
         navController = findNavController()
 
         viewModel = ViewModelProvider(this).get(AptCertificationGuideViewModel::class.java)
@@ -40,7 +42,6 @@ class AptCertificationGuideFragment : BaseFragment() {
 
         binding.back.setOnClickListener { navController.popBackStack() }
         return binding.root
-
     }
 
     override fun onBackPressed() {

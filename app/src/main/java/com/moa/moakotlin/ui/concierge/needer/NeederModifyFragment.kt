@@ -18,6 +18,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
+import com.moa.moakotlin.WebViewActivity
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Needer
@@ -44,6 +45,8 @@ class NeederModifyFragment : Fragment() {
     var selectedPictureList = ArrayList<String>()
 
     lateinit var adapter : CertificationImageAdapter
+
+    var url = "https://moaapt.notion.site/6d1c2fe592af434692501480dfe92d23"
 
     companion object{
         var REQUEST_CATEGORY_SELECTION = 2000
@@ -114,6 +117,17 @@ class NeederModifyFragment : Fragment() {
 
         })
 
+        binding.NeederModifyGoToGuide.setOnClickListener { goToWebView() }
+
+    }
+
+
+    fun goToWebView(){
+        var intent = Intent(activity, WebViewActivity::class.java)
+
+        intent.putExtra("url",url)
+
+        startActivity(intent)
     }
 
     fun selectCategory(){
