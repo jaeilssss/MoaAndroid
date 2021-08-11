@@ -73,23 +73,32 @@ class VoiceRoomFragment : BaseFragment() {
     var EVENT_TYPE_ON_AUDIO_ROUTE_CHANGED = 18
 
     var isInitData  = false
+    var initCount = 0
     var audienceAdapter = NewVoiceRoomAdapter()
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+//        if (voiceChatRoom != null) {
+//            setVoiceRoomListener()
+//
+//        }
+    }
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        var initCount = 0
+
         binding = DataBindingUtil.inflate(inflater, R.layout.voice_room_fragment, container, false)
         viewModel = ViewModelProvider(this).get(VoiceRoomViewModel::class.java)
         binding.model = viewModel
 
         var token = arguments?.get("token") as String
          voiceChatRoom  = arguments?.getParcelable<VoiceChatRoom>("voiceChatRoom")!!
-        if (voiceChatRoom != null) {
-            viewModel.setSnapShotListener(voiceChatRoom.documentID)
-            setView(voiceChatRoom)
-
+        if(initCount==0){
+            setVoiceRoomListener()
+            initCount++
         }
+        setView(voiceChatRoom)
 
         createIRtcEnginHandler()
         initRtcEngine()
@@ -220,6 +229,10 @@ class VoiceRoomFragment : BaseFragment() {
         return binding.root
     }
 
+    fun setVoiceRoomListener(){
+        viewModel.setSnapShotListener(voiceChatRoom.documentID)
+
+    }
 
     fun setAdapterClickListener(adapter: NewVoiceRoomAdapter){
        adapter.setOnItemClickListener(object : OnItemClickListener{
@@ -455,8 +468,9 @@ class VoiceRoomFragment : BaseFragment() {
     }
 
     override fun onStop() {
-        viewModel.deleteSnapShot()
-        viewModel.clearViewModel()
+//        println("오호...")
+//        viewModel.deleteSnapShot()
+//        viewModel.clearViewModel()
         super.onStop()
     }
 

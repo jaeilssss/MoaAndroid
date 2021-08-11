@@ -39,8 +39,6 @@ lateinit var model : LoadingViewModel
                 finish()
             }else{
                 var result = FirebaseAuth.getInstance().currentUser?.let { model.initApp(it.uid,this) }
-
-                println("???여기인강쇼  ")
                 if(result == true){
 
                     userRepository.registerPushToken()
