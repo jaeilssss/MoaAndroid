@@ -52,7 +52,7 @@ class HelperRepository {
       var result = ArrayList<Helper>()
             db.collection("Helper").document(mainCategory)
                     .collection("HelperContent")
-                    .whereArrayContains("aroundApt", User.getInstance().aptCode)
+                    .whereArrayContainsAny("aroundApt", arrayListOf(User.getInstance().aptCode,"All"))
                     .orderBy("timeStamp",Query.Direction.DESCENDING)
                     .limit(5).get().addOnSuccessListener {
                         if(!it.isEmpty){
@@ -75,7 +75,7 @@ class HelperRepository {
         db.collection("Helper")
                 .document(mainCaregory)
                 .collection("HelperContent")
-                .whereArrayContains("aroundApt", User.getInstance().aptCode)
+                .whereArrayContainsAny("aroundApt", arrayListOf(User.getInstance().aptCode,"All"))
                 .orderBy("timeStamp",Query.Direction.DESCENDING)
                 .limit(20)
                 .get().addOnSuccessListener {
@@ -166,7 +166,7 @@ class HelperRepository {
         db.collection("Helper")
             .document(mainCategory)
                 .collection("HelperContent")
-            .whereArrayContains("aroundApt", User.getInstance().aptCode)
+                .whereArrayContainsAny("aroundApt", arrayListOf(User.getInstance().aptCode,"All"))
             .orderBy("timeStamp", Query.Direction.DESCENDING)
             .startAfter(timeStamp)
             .limit(20)

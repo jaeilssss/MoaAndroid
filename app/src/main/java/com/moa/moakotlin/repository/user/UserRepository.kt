@@ -73,7 +73,8 @@ class UserRepository {
         var result = false
         var db = FirebaseFirestore.getInstance()
         aptList.getInstance()
-        db.collection("Apart").document(aptCode)
+
+        db.collection("Aparts").document(aptCode)
             .get().addOnSuccessListener {
                 if(it.exists()){
                     var list = it.toObject(aptList::class.java)

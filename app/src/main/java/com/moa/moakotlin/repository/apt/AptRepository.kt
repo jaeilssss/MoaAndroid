@@ -10,7 +10,9 @@ class AptRepository  {
    suspend fun getMyAroundNeighborhood(aptCode : String) : String {
         var db = FirebaseFirestore.getInstance()
         var aptName =""
-        db.collection("Apart").document(aptCode).get()
+       println(aptCode)
+       println("l;;sd;sdkd;sdkl;s")
+        db.collection("Aparts").document(aptCode).get()
                 .addOnSuccessListener {
                     if(it.exists()){
 

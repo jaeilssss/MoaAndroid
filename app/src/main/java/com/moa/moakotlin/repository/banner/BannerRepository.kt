@@ -24,7 +24,6 @@ class BannerRepository{
                     }
                 }
             }.await()
-
         return list
     }
 
@@ -42,7 +41,6 @@ class BannerRepository{
                 for(document in it.documents){
                     var banner = document.toObject(Banner::class.java)
                     if (banner != null) {
-                        println("홈 배너")
                         list.add(banner)
                     }
                 }
@@ -64,7 +62,6 @@ class BannerRepository{
                     for(document in it.documents){
                         var banner = document.toObject(Banner::class.java)
                         if (banner != null) {
-                            println("홈 배너")
                             list.add(banner)
                         }
                     }
@@ -85,7 +82,6 @@ class BannerRepository{
                     for(document in it.documents){
                         var banner = document.toObject(Banner::class.java)
                         if (banner != null) {
-                            println("홈 배너")
                             list.add(banner)
                         }
                     }

@@ -42,7 +42,7 @@ class NeederRepository {
         var result = ArrayList<Needer>()
         db.collection("Needer").document(mainCategory)
             .collection("NeederContent")
-            .whereArrayContains("aroundApt", User.getInstance().aptCode)
+                .whereArrayContainsAny("aroundApt", arrayListOf(User.getInstance().aptCode,"All"))
             .orderBy("timeStamp",Query.Direction.DESCENDING)
             .limit(5).get().addOnSuccessListener {
                 for(document in it.documents){
@@ -129,7 +129,7 @@ class NeederRepository {
         db.collection("Needer")
                 .document(mainCategory)
                 .collection("NeederContent")
-                .whereArrayContains("aroundApt", User.getInstance().aptCode)
+                .whereArrayContainsAny("aroundApt", arrayListOf(User.getInstance().aptCode,"All"))
                 .orderBy("timeStamp", Query.Direction.DESCENDING)
             .limit(20)
                 .get().addOnSuccessListener {
@@ -174,7 +174,7 @@ class NeederRepository {
         db.collection("Needer")
                 .document(mainCategory)
                 .collection("NeederContent")
-                .whereArrayContains("aroundApt", User.getInstance().aptCode)
+                .whereArrayContainsAny("aroundApt", arrayListOf(User.getInstance().aptCode,"All"))
                 .orderBy("timeStamp", Query.Direction.DESCENDING)
                 .startAfter(timeStamp)
                 .limit(20)
@@ -196,7 +196,7 @@ class NeederRepository {
         var list = ArrayList<Needer>()
 
         db.collectionGroup("NeederContent")
-            .whereEqualTo("uid",User.getInstance().uid)
+                .whereArrayContainsAny("aroundApt", arrayListOf(User.getInstance().aptCode,"All"))
             .orderBy("timeStamp",Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener {
