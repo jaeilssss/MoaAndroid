@@ -142,8 +142,6 @@ class VoiceRoomFragment : BaseFragment() {
 
         binding.VoiceRoomHandBtn.setOnClickListener { clickHandBtn() }
 
-//        requestUser도 지워야함 지그므
-
         viewModel.audiences.observe(viewLifecycleOwner, Observer {
             audienceAdapter.map = viewModel.audienceListMap
 

@@ -90,7 +90,6 @@ lateinit var mlistener : ListenerRegistration
                             if(chat?.timeStamp !=Chat.getInstance().get(roomId)?.get(size-1)?.timeStamp){
                                 if (chat != null) {
                                     msg.value = chat!!
-                                    println("snapShot이 움직임!!")
                                     setReadTrue(roomId)
                                 }
                             }
@@ -107,8 +106,6 @@ lateinit var mlistener : ListenerRegistration
     fun pushToken(user:User, message : String){
         var pushRepository = FcmRepository()
         var message = PushMessage("${User.getInstance().nickName}",talk.get().toString(),user.pushToken)
-
-        println(message.body)
         pushRepository.sendPushMessage(message)
     }
 }

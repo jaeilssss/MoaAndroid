@@ -55,14 +55,17 @@ class FcmService() : FirebaseMessagingService() {
             else if(data?.getBoolean("isMarketingAlarm",false) ==true){
                 sendNotificationForGround(remotemessage.notification?.body!!,remotemessage.notification?.title!!)
             }
-        }else if(data?.getBoolean("isEventAlarm",false) == true && remotemessage.data.get("title").equals("리뷰")){
-            remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it)
+        }else if(remotemessage.data.isNotEmpty()){
+             if(data?.getBoolean("isEventAlarm",false) == true && remotemessage.data.get("title").equals("리뷰")){
+                remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it)
+                }
+            }else if(data?.getBoolean("isChattingAlarm",false)==true && !CurrentChat.getInstance().boolean){
+                remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
+            }else if(data?.getBoolean("isMarketingAlarm",false) ==true && remotemessage.data.get("title").equals("이벤트")){
+                remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
             }
-        }else if(data?.getBoolean("isChattingAlarm",false)==true && !CurrentChat.getInstance().boolean){
-            remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
-        }else if(data?.getBoolean("isMarketingAlarm",false) ==true && remotemessage.data.get("title").equals("이벤트")){
-            remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
         }
+
     }
 
     private fun createNotificationChannel(context: Context, importance: Int, showBadge: Boolean,
@@ -103,9 +106,15 @@ class FcmService() : FirebaseMessagingService() {
             builder.setContentTitle(title)
         }
         val intent = Intent(applicationContext,LoadingActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         }
-        val pendingIntent : PendingIntent = PendingIntent.getActivities(applicationContext,0, arrayOf(intent) ,PendingIntent.FLAG_ONE_SHOT)
+
+        if(title.equals("리뷰") || title.equals("아파트 인증")){
+            intent.putExtra("request","알림")
+        }else {
+            intent.putExtra("request","채팅")
+        }
+        val pendingIntent : PendingIntent = PendingIntent.getActivity(applicationContext,0, intent ,PendingIntent.FLAG_CANCEL_CURRENT)
         builder.setWhen(System.currentTimeMillis())
         builder.setContentText(content)
 
@@ -153,13 +162,13 @@ class FcmService() : FirebaseMessagingService() {
             intent.putExtra("request","채팅")
         }
 
-        val pendingIntent : PendingIntent = PendingIntent.getActivity(baseContext,0, null ,PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent : PendingIntent = PendingIntent.getActivity(baseContext,0, intent ,PendingIntent.FLAG_UPDATE_CURRENT)
         builder.setWhen(System.currentTimeMillis())
         builder.setContentText(content)
 
         builder.priority = NotificationCompat.PRIORITY_HIGH // 3
         builder.setCategory(NotificationCompat.CATEGORY_MESSAGE)
-        builder.setContentIntent(pendingIntent)
+//        builder.setContentIntent(pendingIntent)
         builder.setAutoCancel(true)
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
