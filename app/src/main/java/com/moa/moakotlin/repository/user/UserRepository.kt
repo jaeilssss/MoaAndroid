@@ -201,8 +201,6 @@ class UserRepository {
         var map = mutableMapOf<String, Any>()
         FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener { instanceIdResult ->
             pushToken = instanceIdResult.token
-            println("dddw3232")
-            println(pushToken)
             User.getInstance().pushToken = pushToken as String
             map["pushtoken"] = pushToken!!
             FirebaseFirestore.getInstance().collection("User").document(User.getInstance().uid).set(User.getInstance())
