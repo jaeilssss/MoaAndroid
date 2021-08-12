@@ -35,7 +35,13 @@ lateinit var model : LoadingViewModel
             var userRepository = UserRepository()
             if(FirebaseAuth.getInstance().currentUser==null){
 
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, MainActivity::class.java).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    action = Intent.ACTION_MAIN
+                    addCategory(Intent.CATEGORY_LAUNCHER)
+                })
+
+
                 finish()
             }else{
                 var result = FirebaseAuth.getInstance().currentUser?.let { model.initApp(it.uid,this) }

@@ -106,7 +106,9 @@ class FcmService() : FirebaseMessagingService() {
             builder.setContentTitle(title)
         }
         val intent = Intent(applicationContext,LoadingActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            action = Intent.ACTION_MAIN
+            addCategory(Intent.CATEGORY_LAUNCHER)
         }
 
         if(title.equals("리뷰") || title.equals("아파트 인증")){
@@ -128,7 +130,8 @@ class FcmService() : FirebaseMessagingService() {
     }
 
     private fun sendNotificationForGround(messageBody : String, messageTitle : String){
-        println(">?>??")
+
+
         createNotificationChannel(this, NotificationManagerCompat.IMPORTANCE_HIGH, false,
                 getString(R.string.app_name), "App notification channel")   // 1
 
@@ -150,7 +153,6 @@ class FcmService() : FirebaseMessagingService() {
             builder.setContentTitle(title)
         }
         val intent = Intent(applicationContext,MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK
             action = Intent.ACTION_MAIN
             addCategory(Intent.CATEGORY_LAUNCHER)
         }

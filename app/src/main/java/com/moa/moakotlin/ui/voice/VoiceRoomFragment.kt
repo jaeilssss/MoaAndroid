@@ -96,7 +96,6 @@ class VoiceRoomFragment : BaseFragment() {
          voiceChatRoom  = arguments?.getParcelable<VoiceChatRoom>("voiceChatRoom")!!
         if(initCount==0){
             setVoiceRoomListener()
-            initCount++
         }
         setView(voiceChatRoom)
 
@@ -405,7 +404,6 @@ class VoiceRoomFragment : BaseFragment() {
 //                super.onRemoteAudioStateChanged(uid, state, reason, elapsed)
                 when(state){
                     1 ->{
-                        println("이야기중!! 0${uid}")
 
 
                     }
@@ -420,13 +418,12 @@ class VoiceRoomFragment : BaseFragment() {
                         }
 
                     }0->{
-                    println(">>>")
+                    println("stoped")
                     CoroutineScope(Dispatchers.Main).launch {
                         viewModel.talking.remove("0${uid}")
                         speakerAdapter.talking.remove("0${uid}")
                         var index = speakerAdapter.list.indexOf("0${uid}")
                         speakerAdapter.notifyItemChanged(index)
-//                        speakerAdapter.notifyDataSetChanged()
                     }
                     }
                     3->{

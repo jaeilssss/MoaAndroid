@@ -14,7 +14,7 @@ class BannerRepository{
         var db = FirebaseFirestore.getInstance()
         var list = ArrayList<Magazine>()
         db.collection("Magazine")
-                .orderBy("order")
+                .orderBy("order",Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener {
                 for(document in it.documents){
@@ -35,7 +35,7 @@ class BannerRepository{
 
         db.collection("Banner")
                 .whereEqualTo("type","main")
-                .orderBy("order")
+                .orderBy("order",Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener {
                 for(document in it.documents){
@@ -56,7 +56,7 @@ class BannerRepository{
 
         db.collection("Banner")
                 .whereEqualTo("type","voice")
-                .orderBy("order")
+                .orderBy("order",Query.Direction.DESCENDING)
                 .get()
                 .addOnSuccessListener {
                     for(document in it.documents){
@@ -76,7 +76,7 @@ class BannerRepository{
 
         db.collection("Banner")
                 .whereEqualTo("type","concierge")
-                .orderBy("order")
+                .orderBy("order",Query.Direction.DESCENDING)
                 .get()
                 .addOnSuccessListener {
                     for(document in it.documents){
