@@ -28,6 +28,7 @@ class FcmService() : FirebaseMessagingService() {
 
     override fun onMessageReceived(remotemessage: RemoteMessage) {
         println("메소드 올라옴.1.")
+
         val pm =
             getSystemService(Context.POWER_SERVICE) as PowerManager
         @SuppressLint("InvalidWakeLockTag") val wakeLock =
@@ -85,7 +86,7 @@ class FcmService() : FirebaseMessagingService() {
 
     private fun sendNotificationBackGround(messageBody : String, messageTitle : String){
         println(">?>??")
-        createNotificationChannel(this, NotificationManagerCompat.IMPORTANCE_HIGH, false,
+        createNotificationChannel(applicationContext, NotificationManagerCompat.IMPORTANCE_HIGH, true,
                 getString(R.string.app_name), "App notification channel")   // 1
 
         val channelId = "$packageName-${getString(R.string.app_name)} "
@@ -99,16 +100,16 @@ class FcmService() : FirebaseMessagingService() {
 
 
 
-        val builder = NotificationCompat.Builder(this, channelId)
+        val builder = NotificationCompat.Builder(applicationContext, channelId)
 
         builder.setSmallIcon(R.mipmap.ic_launcher)
         if(title!=null){
             builder.setContentTitle(title)
         }
         val intent = Intent(applicationContext,LoadingActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK
-            action = Intent.ACTION_MAIN
-            addCategory(Intent.CATEGORY_LAUNCHER)
+//            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+//            action = Intent.ACTION_MAIN
+//            addCategory(Intent.CATEGORY_LAUNCHER)
         }
 
         if(title.equals("리뷰") || title.equals("아파트 인증")){
@@ -116,21 +117,22 @@ class FcmService() : FirebaseMessagingService() {
         }else {
             intent.putExtra("request","채팅")
         }
-        val pendingIntent : PendingIntent = PendingIntent.getActivity(applicationContext,0, intent ,PendingIntent.FLAG_CANCEL_CURRENT)
-        builder.setWhen(System.currentTimeMillis())
+        val pendingIntent : PendingIntent = PendingIntent.getActivity(applicationContext,0, intent ,PendingIntent.FLAG_ONE_SHOT)
+
         builder.setContentText(content)
+        builder.setDefaults(Notification.DEFAULT_ALL)
 
         builder.priority = NotificationCompat.PRIORITY_HIGH // 3
-
         builder.setCategory(NotificationCompat.CATEGORY_MESSAGE)
+//        builder.setContentIntent(pendingIntent)
+
         builder.setAutoCancel(true)
-        builder.setContentIntent(pendingIntent)
-        val notificationManager = NotificationManagerCompat.from(this)
-        notificationManager.notify(1001, builder.build())
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        notificationManager.notify(1002, builder.build())
     }
 
     private fun sendNotificationForGround(messageBody : String, messageTitle : String){
-
 
         createNotificationChannel(this, NotificationManagerCompat.IMPORTANCE_HIGH, false,
                 getString(R.string.app_name), "App notification channel")   // 1
@@ -171,6 +173,7 @@ class FcmService() : FirebaseMessagingService() {
         builder.priority = NotificationCompat.PRIORITY_HIGH // 3
         builder.setCategory(NotificationCompat.CATEGORY_MESSAGE)
 //        builder.setContentIntent(pendingIntent)
+        builder.setTimeoutAfter(2000)
         builder.setAutoCancel(true)
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 

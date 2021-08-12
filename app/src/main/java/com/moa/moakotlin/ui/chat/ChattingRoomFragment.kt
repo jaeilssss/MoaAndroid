@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.edit
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -76,7 +77,10 @@ class ChattingRoomFragment : BaseFragment() {
         })
 
         model.chattingRoomData.observe(viewLifecycleOwner, Observer {
-            if(it.size!=0) {
+            if(it.size==0){
+                binding.ChattingRoomRcv.isVisible = false
+                binding.chattingRoomEmptyLayout.isVisible = true
+            } else if(it.size!=0) {
                 activity?.getSharedPreferences("MyLatestChattingRoomTimeStamp", Context.MODE_PRIVATE)!!
                         .edit {
 

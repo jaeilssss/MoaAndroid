@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.edit
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
@@ -66,14 +67,20 @@ class AlarmFragment : BaseFragment() {
         viewModel.SnapShot()
 
         viewModel.notificationList.observe(viewLifecycleOwner, Observer {
-            activity?.getSharedPreferences("MyLatestNotification", Context.MODE_PRIVATE)!!
+            if(it.size==0){
+                binding.AlarmFragmentRcv.isVisible = false
+                binding.alarmFragmentEmptyLayout.isVisible = true
+            }else if(it.size>0){
+                activity?.getSharedPreferences("MyLatestNotification", Context.MODE_PRIVATE)!!
                     .edit {
                         if(it.size!=0){
                             putString("documentID",it[0].documentID)
                         }
                         commit()
                     }
-                    adapter.submitList(it)
+                adapter.submitList(it)
+            }
+
         })
     }
 

@@ -18,6 +18,7 @@ import com.moa.moakotlin.repository.chat.ChattingRoomRepository
 class ChattingRoomViewModel() : ViewModel(){
 
     var chattingRoomData = MutableLiveData<ArrayList<ChattingRoom>>()
+    var list = ArrayList<ChattingRoom>()
     var roomList = ArrayList<String>()
     var TAG = "ChattingRoom"
 
@@ -26,7 +27,7 @@ class ChattingRoomViewModel() : ViewModel(){
         mlistener.remove()
     }
  fun setSnapShot(){
-     chattingRoomData.value = ArrayList()
+
     var repository = ChattingRoomRepository()
 
     var snapShot = repository.setSnapShotListener(User.getInstance().uid)
@@ -36,7 +37,6 @@ class ChattingRoomViewModel() : ViewModel(){
              Log.w(TAG, "Listen failed.", e)
              return@addSnapshotListener
          }
-         var list = chattingRoomData.value
 
          if (snapshot != null) {
             println("snapshot.documents.size -> ${snapshot.documents.size}")

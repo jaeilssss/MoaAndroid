@@ -31,12 +31,47 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/AlarmFragmentTextView"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/item_alarm"
+
         android:id="@+id/AlarmFragmentRcv"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/AlarmFragmentTextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/alarmFragmentEmptyLayout">
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/alarmFragmentEmptyText"
+            android:background="@drawable/img_empty_data"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:id="@+id/alarmFragmentEmptyImg"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/alarmFragmentEmptyImg"
+            android:layout_marginTop="10dp"
+            android:text="아직 받은 알림이 없어요"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/alarmFragmentEmptyText"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

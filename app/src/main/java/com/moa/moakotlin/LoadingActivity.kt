@@ -35,11 +35,7 @@ lateinit var model : LoadingViewModel
             var userRepository = UserRepository()
             if(FirebaseAuth.getInstance().currentUser==null){
 
-                startActivity(Intent(this, MainActivity::class.java).apply {
-                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    action = Intent.ACTION_MAIN
-                    addCategory(Intent.CATEGORY_LAUNCHER)
-                })
+                startActivity(Intent(this, MainActivity::class.java))
 
 
                 finish()
@@ -47,9 +43,21 @@ lateinit var model : LoadingViewModel
                 var result = FirebaseAuth.getInstance().currentUser?.let { model.initApp(it.uid,this) }
                 if(result == true){
 
+                    var intent = Intent(this,MainActivity::class.java)
+
                     userRepository.registerPushToken()
 
-                    startActivity(Intent(this, MainActivity::class.java))
+                    if(intent.getStringExtra("request").equals("채팅")){
+                        println("채팅 왔어요~~~~~")
+                        intent.putExtra("request","채팅")
+                        startActivity(intent)
+                    }else if(intent.getStringExtra("request").equals("알림")){
+                        intent.putExtra("request","알림")
+                        startActivity(intent)
+                    }else{
+                        startActivity(intent)
+                    }
+
                     finish()
                 }else{
                     startActivity(Intent(this, MainActivity::class.java))

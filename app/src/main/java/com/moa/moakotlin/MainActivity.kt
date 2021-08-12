@@ -49,9 +49,15 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
         binding.lifecycleOwner = this
          navController = findNavController(R.id.mainFragment)
 
-        println("------------------sibal")
-        println(i++)
-         if(User.getInstance().uid.equals("")){
+        if(intent.getStringExtra("request").equals("채팅")){
+            navGraph = navController.graph
+            navGraph.startDestination = R.id.chattingRoomFragment
+            navController.graph = navGraph
+        }else if(intent.getStringExtra("request").equals("알림")){
+            navGraph = navController.graph
+            navGraph.startDestination = R.id.alarmFragment
+            navController.graph = navGraph
+        } else if(User.getInstance().uid.equals("")){
             navGraph = navController.graph
             navGraph.startDestination = R.id.firstViewFragment
             navController.graph = navGraph
@@ -70,13 +76,7 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
             model.setChattingRoomSnapShot()
         }
 
-        if(intent.getStringExtra("request").equals("채팅")){
-            navController.navigate(R.id.chattingRoomFragment)
-        }else if(intent.getStringExtra("request").equals("알림")){
 
-            navController.navigate(R.id.alarmFragment)
-
-        }
         binding.mainBottomNavigation.itemIconTintList = null
 
         model.isRead.observe(this, Observer {
