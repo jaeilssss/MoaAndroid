@@ -125,15 +125,18 @@
                 android:textSize="15dp"
                 android:textColor="@color/moaBlack"/>
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="놀이로 영어를 배워봐요!"
                 android:id="@+id/HelperMainTitle"
                 app:layout_constraintStart_toEndOf="@id/HelperReadMainCategory"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="15dp"
                 app:layout_constraintTop_toTopOf="@id/HelperReadMainCategory"
                 app:layout_constraintBottom_toBottomOf="@id/HelperReadMainCategory"
                 android:layout_marginStart="10dp"
                 android:textSize="18dp"
+
                 android:textStyle="bold"
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:textColor="@color/moaBlack" />

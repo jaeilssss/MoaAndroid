@@ -123,11 +123,13 @@
                     android:textSize="15dp"
                     android:textColor="@color/moaBlack"/>
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="놀이로 영어를 배워봐요!"
                     android:id="@+id/NeederMainTitle"
                     app:layout_constraintStart_toEndOf="@id/NeederReadMainCategory"
+                    android:layout_marginEnd="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/NeederReadMainCategory"
                     app:layout_constraintBottom_toBottomOf="@id/NeederReadMainCategory"
                     android:layout_marginStart="10dp"
