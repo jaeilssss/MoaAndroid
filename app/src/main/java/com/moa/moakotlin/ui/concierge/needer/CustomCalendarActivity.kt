@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.moa.moakotlin.MyApp
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.recyclerview.concierge.CalendarAdapter
@@ -29,6 +30,7 @@ class CustomCalendarActivity : AppCompatActivity() {
     private lateinit var nowDay : String
     private lateinit var  calendarAdapter : CalendarAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
+        MyApp.isForeground = true
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_custom_calendar)
         initWidgets()

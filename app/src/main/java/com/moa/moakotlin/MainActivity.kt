@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
     lateinit var navGraph : NavGraph
     lateinit var backListener : onBackPressedListener
     lateinit var model : MainViewModel
+
     var i =0
     companion object
     {
@@ -63,16 +64,13 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
             navController.graph = navGraph
         }else if(FirebaseAuth.getInstance().currentUser!=null){
             // 이미 로그인 된 유저는 start destination 바뀜
-
             init()
-            Toast.makeText(applicationContext, "환영합니다 ${User.getInstance().nickName}님!", Toast.LENGTH_SHORT).show()
             navGraph = navController.graph
             navGraph.startDestination = R.id.HomeFragment
             navController.graph = navGraph
             var data = getSharedPreferences("MyLatestNotification", Context.MODE_PRIVATE)
             data.getString("documentID", "")?.let { model.setAlarmSnapShot(it)
             }
-
             model.setChattingRoomSnapShot()
         }
 
@@ -149,6 +147,8 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
 
     }
 
+
+
 fun init(){
 getSharedPreferences("AlarmSetting", Context.MODE_PRIVATE)!!
         .edit {
@@ -188,6 +188,10 @@ getSharedPreferences("AlarmSetting", Context.MODE_PRIVATE)!!
                 }
     }
 
+    override fun onStop() {
+        super.onStop()
+    }
+
     override fun onBackPressed() {
         backListener.onBackPressed()
     }
@@ -199,6 +203,8 @@ getSharedPreferences("AlarmSetting", Context.MODE_PRIVATE)!!
     override fun setClickableButton(index: Int) {
         TODO("Not yet implemented")
     }
+
+
 
     override fun onDestroy() {
 

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.moa.moakotlin.MyApp
 import com.moa.moakotlin.R
 import com.moa.moakotlin.databinding.ActivityImagePickerBinding
 
@@ -17,7 +18,6 @@ class ImagePickerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_picker)
-
         var back = findViewById<ConstraintLayout>(R.id.imagePickerBack)
         back.setOnClickListener {
             finish()

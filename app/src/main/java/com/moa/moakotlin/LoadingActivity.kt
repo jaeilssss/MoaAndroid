@@ -43,18 +43,20 @@ lateinit var model : LoadingViewModel
                 var result = FirebaseAuth.getInstance().currentUser?.let { model.initApp(it.uid,this) }
                 if(result == true){
 
-                    var intent = Intent(this,MainActivity::class.java)
+
 
                     userRepository.registerPushToken()
 
                     if(intent.getStringExtra("request").equals("채팅")){
-                        println("채팅 왔어요~~~~~")
+                        var intent = Intent(this,MainActivity::class.java)
                         intent.putExtra("request","채팅")
                         startActivity(intent)
                     }else if(intent.getStringExtra("request").equals("알림")){
+                        var intent = Intent(this,MainActivity::class.java)
                         intent.putExtra("request","알림")
                         startActivity(intent)
                     }else{
+                        var intent = Intent(this,MainActivity::class.java)
                         startActivity(intent)
                     }
 

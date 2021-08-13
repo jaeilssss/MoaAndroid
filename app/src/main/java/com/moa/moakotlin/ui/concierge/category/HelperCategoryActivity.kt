@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.moa.moakotlin.MyApp
 import com.moa.moakotlin.R
 
 class HelperCategoryActivity : AppCompatActivity() {

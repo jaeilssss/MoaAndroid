@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.fragment.app.replace
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.moa.moakotlin.MyApp
 import com.moa.moakotlin.R
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Needer

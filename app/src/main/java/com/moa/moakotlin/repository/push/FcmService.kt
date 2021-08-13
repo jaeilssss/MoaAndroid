@@ -17,6 +17,7 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.moa.moakotlin.LoadingActivity
 import com.moa.moakotlin.MainActivity
+import com.moa.moakotlin.MyApp
 import com.moa.moakotlin.R
 import com.moa.moakotlin.data.CurrentChat
 import com.moa.moakotlin.data.User
@@ -27,7 +28,6 @@ class FcmService() : FirebaseMessagingService() {
 
 
     override fun onMessageReceived(remotemessage: RemoteMessage) {
-        println("메소드 올라옴.1.")
 
         val pm =
             getSystemService(Context.POWER_SERVICE) as PowerManager
@@ -40,7 +40,6 @@ class FcmService() : FirebaseMessagingService() {
         wakeLock.release()
         val data = getSharedPreferences("AlarmSetting",Context.MODE_PRIVATE)
         if(remotemessage.notification!=null){
-            println("포그라운드????...")
             if(remotemessage!!.notification?.title.equals("아파트 인증")){
                 if( remotemessage!!.notification?.body!!.contains("앱을 재실행 해주세요")){
                     sendNotificationForGround(remotemessage.notification?.body!!,remotemessage.notification?.title!!)
@@ -57,13 +56,31 @@ class FcmService() : FirebaseMessagingService() {
                 sendNotificationForGround(remotemessage.notification?.body!!,remotemessage.notification?.title!!)
             }
         }else if(remotemessage.data.isNotEmpty()){
-             if(data?.getBoolean("isEventAlarm",false) == true && remotemessage.data.get("title").equals("리뷰")){
-                remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it)
+            if(remotemessage!!.data?.get("title").equals("아파트 인증")){
+                if(MyApp.isForeground){
+                    remotemessage.data.get("title")?.let { sendNotificationForGround(remotemessage.data.get("body")!!, it) }
+                }else{
+                    remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
                 }
+            }
+             if(data?.getBoolean("isEventAlarm",false) == true && remotemessage.data.get("title").equals("리뷰")){
+                 if(MyApp.isForeground){
+                     remotemessage.data.get("title")?.let { sendNotificationForGround(remotemessage.data.get("body")!!, it) }
+                 }else{
+                     remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
+                 }
             }else if(data?.getBoolean("isChattingAlarm",false)==true && !CurrentChat.getInstance().boolean){
-                remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
+                 if(MyApp.isForeground){
+                     remotemessage.data.get("title")?.let { sendNotificationForGround(remotemessage.data.get("body")!!, it) }
+                 }else{
+                     remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
+                 }
             }else if(data?.getBoolean("isMarketingAlarm",false) ==true && remotemessage.data.get("title").equals("이벤트")){
-                remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
+                 if(MyApp.isForeground){
+                     remotemessage.data.get("title")?.let { sendNotificationForGround(remotemessage.data.get("body")!!, it) }
+                 }else{
+                     remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
+                 }
             }
         }
 
@@ -85,12 +102,11 @@ class FcmService() : FirebaseMessagingService() {
 
 
     private fun sendNotificationBackGround(messageBody : String, messageTitle : String){
-        println(">?>??")
         createNotificationChannel(applicationContext, NotificationManagerCompat.IMPORTANCE_HIGH, true,
                 getString(R.string.app_name), "App notification channel")   // 1
 
         val channelId = "$packageName-${getString(R.string.app_name)} "
-        val title = messageTitle
+        val title = "${messageTitle} 백그라운드"
         val content =messageBody
 //
 //       if(messageBody.contains("앱을 재실행 해주세요")){
@@ -107,9 +123,9 @@ class FcmService() : FirebaseMessagingService() {
             builder.setContentTitle(title)
         }
         val intent = Intent(applicationContext,LoadingActivity::class.java).apply {
-//            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-//            action = Intent.ACTION_MAIN
-//            addCategory(Intent.CATEGORY_LAUNCHER)
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+            action = Intent.ACTION_MAIN
+            addCategory(Intent.CATEGORY_LAUNCHER)
         }
 
         if(title.equals("리뷰") || title.equals("아파트 인증")){
@@ -124,7 +140,7 @@ class FcmService() : FirebaseMessagingService() {
 
         builder.priority = NotificationCompat.PRIORITY_HIGH // 3
         builder.setCategory(NotificationCompat.CATEGORY_MESSAGE)
-//        builder.setContentIntent(pendingIntent)
+        builder.setContentIntent(pendingIntent)
 
         builder.setAutoCancel(true)
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -138,7 +154,7 @@ class FcmService() : FirebaseMessagingService() {
                 getString(R.string.app_name), "App notification channel")   // 1
 
         val channelId = "$packageName-${getString(R.string.app_name)} "
-        val title = messageTitle
+        val title = "${messageTitle} 포그라운드"
         val content =messageBody
 //
 //       if(messageBody.contains("앱을 재실행 해주세요")){

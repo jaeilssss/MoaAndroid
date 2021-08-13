@@ -22,7 +22,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
             >
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="70dp"
@@ -77,7 +76,6 @@
                 android:layout_height="49dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/HelperReadIndicators"
-                android:src="#dbbdbd"
                 android:layout_marginStart="17dp"
                 android:layout_marginTop="17dp"
                 android:id="@+id/HelperReadProfileImage"/>
@@ -86,7 +84,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:includeFontPadding="false"
-                android:text="뉴나리"
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:maxLines="1"
                 app:layout_constraintStart_toEndOf="@id/HelperReadProfileImage"
@@ -127,7 +124,6 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="놀이로 영어를 배워봐요!"
                 android:id="@+id/HelperMainTitle"
                 app:layout_constraintStart_toEndOf="@id/HelperReadMainCategory"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -136,7 +132,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/HelperReadMainCategory"
                 android:layout_marginStart="10dp"
                 android:textSize="18dp"
-
+                android:includeFontPadding="false"
                 android:textStyle="bold"
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:textColor="@color/moaBlack" />

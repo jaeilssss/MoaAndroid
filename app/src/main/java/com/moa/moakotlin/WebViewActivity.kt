@@ -16,7 +16,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
         setContentView(R.layout.activity_web_view)
         webView = findViewById(R.id.webView)
         webView.getSettings().setJavaScriptEnabled(true);
-
+        MyApp.isForeground = true
         val settings = webView.settings
         settings.domStorageEnabled = true
 

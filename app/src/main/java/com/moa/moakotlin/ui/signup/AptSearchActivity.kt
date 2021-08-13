@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.moa.moakotlin.MyApp
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.User
@@ -31,7 +32,6 @@ class AptSearchActivity : AppCompatActivity() {
         setContentView(binding.root)
         model = ViewModelProvider(this).get(AptSearchActivityViewModel::class.java)
         binding.model  = model
-
         var adapter = SearchAptAdapter()
 
         binding.searchAptActivityRcv.adapter = adapter
