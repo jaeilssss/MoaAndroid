@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseScrollFragment
+import com.moa.moakotlin.custom.SinglePositiveButtonDialog
 import com.moa.moakotlin.databinding.AptModifyNewFragmentBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -61,8 +62,14 @@ class AptModifyNewFragment : Fragment() {
             if(viewModel.check()){
                 CoroutineScope(Dispatchers.Main).launch {
                     if(viewModel.ClaimNewApt()){
-                        Toast.makeText(context,"아파트 추가 요청이 완료되었습니다 \n 등록완료 될 시 연락드리겠습니다",Toast.LENGTH_SHORT).show()
-                        myActivity.finish()
+                        context?.let { it1 ->
+                            SinglePositiveButtonDialog(it1)
+                                .setMessage(getString(R.string.ClaimNewAptDialog))
+                                .setPositiveButton("예"){
+                                    myActivity.finish()
+
+                                }.show()
+                        }
                     }
                 }
 

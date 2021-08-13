@@ -121,7 +121,7 @@ class ChatFragment : BaseFragment() {
 
         model.msg.observe(viewLifecycleOwner,Observer{
             adapter.list.add(model.msg.value!!)
-            adapter.resetting()
+            adapter.notifyItemChanged(adapter.list.size-1)
             var lastCompletelyVisibleItemPosition = (rcv.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
             if(lastCompletelyVisibleItemPosition==adapter.list.size-2){
                 binding.ChatRcv.scrollToPosition(adapter.itemCount-1)

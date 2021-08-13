@@ -56,8 +56,13 @@ class ClaimNewAptFragment : BaseFragment() {
                         .setPositiveButton("예"){
                             CoroutineScope(Dispatchers.Main).launch {
                                 if(viewModel.ClaimNewApt()){
-                                    showToast(activity?.applicationContext!!,"신청이 완료되었습니다! \n 등록되면 연락드리겠습니다")
-                                    navController.navigate(R.id.firstViewFragment)
+                                    context?.let { it1 ->
+                                        SinglePositiveButtonDialog(it1)
+                                            .setMessage(getString(R.string.ClaimNewAptDialog))
+                                            .setPositiveButton("예"){
+                                                navController.navigate(R.id.firstViewFragment)
+                                            }.show()
+                                    }
                                 }else{
 
                                 }
