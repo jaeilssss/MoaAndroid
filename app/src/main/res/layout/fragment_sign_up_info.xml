@@ -142,6 +142,7 @@
             android:inputType="numberDecimal"
             android:text="@={model.gender}"
             android:maxLength="1"
+            android:textSize="13dp"
             android:id="@+id/privateBackEdit"
             android:gravity="center"/>
     <TextView
@@ -184,6 +185,7 @@
             android:padding="10dp"
             android:text="@={model.nickName}"
             android:maxLength="15"
+            android:textSize="16dp"
             app:layout_constraintEnd_toStartOf="@id/nicknameCheckBtn"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"

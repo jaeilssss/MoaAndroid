@@ -18,33 +18,37 @@
     <uses-feature android:name="android.hardware.location.gps" />
 
     <application
+        android:name=".MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".MyApp"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoaKotlin"
         android:usesCleartextTraffic="true">
-        <activity android:name=".WebViewActivity"
+        <activity android:name=".ui.signup.AptModifySearchActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize">
         </activity>
-        <activity android:name=".ui.concierge.category.NeederCategoryActivity"
-            android:windowSoftInputMode="adjustResize"
-            />
-        <activity android:name=".ui.concierge.ConciergeWriteActivity"
-            android:windowSoftInputMode="adjustResize"
-            />
-        <activity android:name=".ui.concierge.needer.CustomCalendarActivity"
-            android:windowSoftInputMode="adjustResize"
-            />
-        <activity android:name=".ui.imagepicker.ImagePickerActivity"
-            android:windowSoftInputMode="adjustResize"
-            />
-        <activity android:name=".ui.concierge.category.HelperCategoryActivity"
-            android:windowSoftInputMode="adjustResize"
-            />
+        <activity
+            android:name=".WebViewActivity"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".ui.concierge.category.NeederCategoryActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.concierge.ConciergeWriteActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.concierge.needer.CustomCalendarActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.imagepicker.ImagePickerActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.concierge.category.HelperCategoryActivity"
+            android:windowSoftInputMode="adjustResize" />
 
         <service
             android:name=".repository.push.FcmService"
@@ -60,12 +64,12 @@
 
         <activity
             android:name=".ui.signup.AptSearchActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:theme="@style/MainTheme" />
+            android:theme="@style/MainTheme"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".LoadingActivity"
-            android:theme="@style/LoadingTheme"
             android:launchMode="singleTop"
+            android:theme="@style/LoadingTheme"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

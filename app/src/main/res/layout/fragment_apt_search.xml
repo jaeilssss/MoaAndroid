@@ -77,6 +77,7 @@
     android:background="@drawable/login_edit_text_radius_15"
     app:layout_constraintTop_toTopOf="parent"
     android:hint="아파트를 입력해주세요"
+    android:textSize="18dp"
     android:fontFamily="@font/notosanscjkkr_medium"
     android:text="@={model.searchContent}"
     android:paddingStart="10dp"

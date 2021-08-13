@@ -106,15 +106,8 @@ class FcmService() : FirebaseMessagingService() {
                 getString(R.string.app_name), "App notification channel")   // 1
 
         val channelId = "$packageName-${getString(R.string.app_name)} "
-        val title = "${messageTitle} 백그라운드"
+        val title = messageTitle
         val content =messageBody
-//
-//       if(messageBody.contains("앱을 재실행 해주세요")){
-//           User.getInstance().certificationStatus = "인증"
-//           println("ddd-> ${User.getInstance().certificationStatus}")
-//       }
-
-
 
         val builder = NotificationCompat.Builder(applicationContext, channelId)
 
@@ -154,15 +147,16 @@ class FcmService() : FirebaseMessagingService() {
                 getString(R.string.app_name), "App notification channel")   // 1
 
         val channelId = "$packageName-${getString(R.string.app_name)} "
-        val title = "${messageTitle} 포그라운드"
+        val title = messageTitle
         val content =messageBody
-//
-//       if(messageBody.contains("앱을 재실행 해주세요")){
-//           User.getInstance().certificationStatus = "인증"
-//           println("ddd-> ${User.getInstance().certificationStatus}")
-//       }
 
-
+        if(content.contains("인증이 완료되었습니다") && title.equals("아파트 인증")){
+            User.getInstance().certificationStatus = "인증"
+        }else if(content.contains("인증이 반려되었습니다") && title.equals("아파트 인증")){
+            User.getInstance().certificationStatus = "반려"
+        }else{
+            User.getInstance().certificationStatus = "심사중"
+        }
 
         val builder = NotificationCompat.Builder(this, channelId)
 

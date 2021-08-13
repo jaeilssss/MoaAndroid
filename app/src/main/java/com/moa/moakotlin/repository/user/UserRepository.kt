@@ -31,7 +31,6 @@ class UserRepository {
                     for(document in it.documents){
                         user = document.toObject(User::class.java)
                         user?.uid = document.id
-                        println("반복문에서 -> ${user?.uid}")
                     }
                 }.await()
         return user

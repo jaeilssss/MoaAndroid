@@ -35,9 +35,9 @@ class AptSearchActivity : AppCompatActivity() {
         var adapter = SearchAptAdapter()
 
         binding.searchAptActivityRcv.adapter = adapter
-        binding.back.setOnClickListener { finish() }
+        binding.back.setOnClickListener { onBackPressed() }
         binding.searchAptActivityRcv.layoutManager = LinearLayoutManager(this)
-
+        binding.claimMyAptBtn.setOnClickListener {  }
         binding.aptSearchEdit.addTextChangedListener {
             CoroutineScope(Dispatchers.Main).launch {
                 model.updateSearchView()

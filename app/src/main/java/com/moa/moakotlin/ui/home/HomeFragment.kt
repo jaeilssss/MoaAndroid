@@ -96,7 +96,6 @@ lateinit var transfer: Transfer
 
                 startActivity(intent)
             }
-
         })
         binding.homeMegazinRcv.layoutManager = GridLayoutManager(activity?.applicationContext!!,2)
 

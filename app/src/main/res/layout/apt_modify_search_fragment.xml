@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.signup.AptSearchActivity">
+    <data>
+        <variable
+            name="model"
+            type="com.moa.moakotlin.ui.signup.AptModifySearchViewModel" />
+    </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/back"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:padding="5dp"
+                app:layout_constraintTop_toTopOf="parent">
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="25dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@drawable/ic_back" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:lineSpacingExtra="8.8dp"
+                android:textSize="18dp"
+                android:textColor="#000000"
+                android:id="@+id/aptSearchText"
+                app:layout_constraintTop_toTopOf="@id/back"
+                app:layout_constraintBottom_toBottomOf="@id/back"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="우리 아파트 검색" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/aptSearchLayout"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintTop_toBottomOf="@id/aptSearchText"
+                android:background="@drawable/login_edit_text_radius_15">
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/ic_search"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:id="@+id/searchIcon"/>
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    app:layout_constraintStart_toEndOf="@id/searchIcon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@drawable/login_edit_text_radius_15"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:hint="아파트를 입력해주세요"
+                    android:fontFamily="@font/notosanscjkkr_medium"
+                    android:includeFontPadding="false"
+                    android:text="@={model.searchContent}"
+                    android:padding="10dp"
+                    android:id="@+id/aptSearchEdit"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--    리사이클러뷰 높이는 좀더 고민 해볼것!-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:minHeight="100dp"
+                app:layout_constraintDimensionRatio="H ,1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/aptSearchLayout"
+                android:layout_marginTop="10dp"
+                android:id="@+id/searchAptActivityRcv"
+                tools:listitem="@layout/item_apt"
+                android:layout_marginStart="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginEnd="15dp"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="55dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/searchAptActivityRcv"
+                android:layout_marginTop="50dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="10dp"
+                android:text="우리 아파트 추가 요청하기"
+                android:textSize="18dp"
+                android:textColor="#ffffff"
+                android:lineSpacingExtra="4.5dp"
+                android:gravity="center"
+                android:id="@+id/claimMyAptBtn"
+                android:background="@drawable/button_shape_black_radius_15"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

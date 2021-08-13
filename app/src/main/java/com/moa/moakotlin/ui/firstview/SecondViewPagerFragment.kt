@@ -33,7 +33,7 @@ class SecondViewPagerFragment : BaseFragment() {
     }
 
     override fun onBackPressed() {
-        TODO("Not yet implemented")
+
     }
 
 }

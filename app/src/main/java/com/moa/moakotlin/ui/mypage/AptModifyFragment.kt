@@ -20,6 +20,7 @@ import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.data.Apt
 import com.moa.moakotlin.databinding.AptModifyFragmentBinding
 import com.moa.moakotlin.repository.user.UserRepository
+import com.moa.moakotlin.ui.signup.AptModifySearchActivity
 import com.moa.moakotlin.ui.signup.AptSearchActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -59,7 +60,7 @@ class AptModifyFragment : BaseFragment() {
         viewModel.aptName.observe(viewLifecycleOwner, Observer { setChangeBackGround() })
         viewModel.dong.observe(viewLifecycleOwner, Observer { setChangeBackGround() })
         viewModel.hosoo.observe(viewLifecycleOwner, Observer { setChangeBackGround()})
-
+        binding.AptModifyBack.setOnClickListener { onBackPressed() }
         binding.AptmodifySubmit.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 if(viewModel.modifyApt()){
@@ -75,7 +76,7 @@ class AptModifyFragment : BaseFragment() {
     }
 
     private fun goToSearchView(){
-    var intent = Intent(context,AptSearchActivity::class.java)
+    var intent = Intent(context,AptModifySearchActivity::class.java)
 
         startActivityForResult(intent, REQUEST_APT_SEARCH)
     }

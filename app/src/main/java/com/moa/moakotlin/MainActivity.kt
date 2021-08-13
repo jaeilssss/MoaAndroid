@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
+import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -54,10 +55,12 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
             navGraph = navController.graph
             navGraph.startDestination = R.id.chattingRoomFragment
             navController.graph = navGraph
+            binding.mainBottomNavigation.menu.get(1).isChecked = true
         }else if(intent.getStringExtra("request").equals("알림")){
             navGraph = navController.graph
             navGraph.startDestination = R.id.alarmFragment
             navController.graph = navGraph
+            binding.mainBottomNavigation.menu.get(3).isChecked = true
         } else if(User.getInstance().uid.equals("")){
             navGraph = navController.graph
             navGraph.startDestination = R.id.firstViewFragment
@@ -73,7 +76,6 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
             }
             model.setChattingRoomSnapShot()
         }
-
 
         binding.mainBottomNavigation.itemIconTintList = null
 
@@ -101,15 +103,6 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
 
             }
         })
-
-//        model.isChattingRoomRead.observe(this, Observer {
-//            if(it){
-//                binding.mainBottomNavigation.removeBadge(R.id.chattingRoomFragment)
-//            }else{
-//                var badge = binding.mainBottomNavigation.getOrCreateBadge(R.id.chattingRoomFragment)
-//                badge.backgroundColor = Color.parseColor("#ffe402")
-//            }
-//        })
         binding.mainBottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.writeSelectFragment -> {
@@ -163,7 +156,8 @@ getSharedPreferences("AlarmSetting", Context.MODE_PRIVATE)!!
     }
 
     override fun bottomGone() {
-        binding.mainBottomNavigation.visibility= View.GONE    }
+        binding.mainBottomNavigation.visibility= View.GONE
+    }
 
 
         fun bottomNavigationGone(){
