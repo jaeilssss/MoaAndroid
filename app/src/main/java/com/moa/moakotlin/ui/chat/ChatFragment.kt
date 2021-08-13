@@ -123,10 +123,12 @@ class ChatFragment : BaseFragment() {
             adapter.list.add(model.msg.value!!)
             adapter.resetting()
             var lastCompletelyVisibleItemPosition = (rcv.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
-            if(!model.msg.value!!.uid.equals(User.getInstance().uid) && lastCompletelyVisibleItemPosition==adapter.itemCount-2){
-                rcv.scrollToPosition(adapter.itemCount-1)
+            if(lastCompletelyVisibleItemPosition==adapter.list.size-2){
+                binding.ChatRcv.scrollToPosition(adapter.itemCount-1)
+            } else if(model.msg.value!!.uid.equals(User.getInstance().uid)){
+                binding.ChatRcv.scrollToPosition(adapter.itemCount-1)
             }else{
-
+                println("왜 ....")
                 // 상대방이 쓴 채팅은 밑으로 안내려가짐
 
             }

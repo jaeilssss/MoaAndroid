@@ -10,6 +10,8 @@ import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.moa.moakotlin.R
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.Chat
@@ -174,7 +176,9 @@ class ChatAdapter(var navController: NavController, var context: Context,var lis
             }
             val dateFormat = SimpleDateFormat("a hh:mm")
             image = view.findViewById(R.id.itemChatRightImg)
-            Glide.with(context).load(chat.images?.get(0)).into(image)
+            Glide.with(context).load(chat.images?.get(0))
+                .apply(RequestOptions.bitmapTransform(RoundedCorners(15)))
+                .into(image)
             date.text = dateFormat.format(chat.timeStamp.toDate())
         }
     }
@@ -201,7 +205,11 @@ class ChatAdapter(var navController: NavController, var context: Context,var lis
             }
             val dateFormat = SimpleDateFormat("a hh:mm")
             image = view.findViewById(R.id.itemChatLeftImg)
-            Glide.with(context).load(chat.images?.get(0)).into(image)
+            Glide.with(context).load(chat.images?.get(0))
+                .apply(RequestOptions.bitmapTransform(
+                    RoundedCorners(15)
+                ))
+                .into(image)
             date.text = dateFormat.format(chat.timeStamp.toDate())
         }
     }
