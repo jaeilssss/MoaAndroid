@@ -25,6 +25,9 @@ class ChattingRoomViewModel() : ViewModel(){
     lateinit var mlistener : ListenerRegistration
     fun deleteSnapShot(){
         mlistener.remove()
+        chattingRoomData = MutableLiveData<ArrayList<ChattingRoom>>()
+         list = ArrayList<ChattingRoom>()
+         roomList = ArrayList<String>()
     }
  fun setSnapShot(){
 

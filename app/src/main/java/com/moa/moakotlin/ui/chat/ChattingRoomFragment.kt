@@ -46,6 +46,7 @@ class ChattingRoomFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        println("채팅룸~~")
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_chatting_room,container , false)
         (context as MainActivity).backListener = this
         navController = findNavController()
@@ -99,6 +100,7 @@ class ChattingRoomFragment : BaseFragment() {
         super.onStop()
         adapter.list.clear()
         model.deleteSnapShot()
+
     }
 
     override fun onBackPressed() {
