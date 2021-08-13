@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -84,8 +85,16 @@ class VoiceMainFragment : BaseFragment() {
 
         }
         viewModel.voiceChatRoomList.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
-            adapter.notifyDataSetChanged()
+            if(it.size>0){
+                binding.VoiceMainEmptyLayout.isVisible = false
+                binding.VoiceMainRcv.isVisible = true
+                adapter.submitList(it)
+                adapter.notifyDataSetChanged()
+            }else{
+                binding.VoiceMainEmptyLayout.isVisible = true
+                binding.VoiceMainRcv.isVisible = false
+            }
+
         })
 
 

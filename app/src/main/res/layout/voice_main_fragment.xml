@@ -100,14 +100,54 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/indicators"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:scrollbars="vertical"
 
             android:layout_marginTop="15dp"
             android:id="@+id/VoiceMainRcv"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/indicators"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="15dp"
+            android:visibility="gone"
+            android:id="@+id/VoiceMainEmptyLayout">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/VoiceMainEmptyText"
+                android:background="@drawable/img_empty_data"
+                app:layout_constraintVertical_chainStyle="packed"
+                android:id="@+id/VoiceMainEmptyImg"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/VoiceMainEmptyImg"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                android:text="아직 개설된 방이 없어요"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:id="@+id/VoiceMainEmptyText"
+                android:layout_marginTop="10dp"
+                android:textSize="16dp"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         <androidx.core.widget.ContentLoadingProgressBar
             android:layout_width="50dp"
