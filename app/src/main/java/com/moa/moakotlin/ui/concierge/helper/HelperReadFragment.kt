@@ -119,17 +119,21 @@ class HelperReadFragment : BaseFragment() {
 
         binding.HelperReadTab.setupWithViewPager(binding.HelperReadContentViewPager)
 
+
         binding.HelperReadContentViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
             }
 
             override fun onPageSelected(position: Int) {
-                    println("------시발")
-                    println(viewPagerAdapter.list[position].view?.height)
 
-               var layoutManager =  LinearLayout(context).layoutParams
-//                layoutManager.height =
-//                binding.HelperReadContentViewPager.layoutParams =
+//                var height = viewPagerAdapter.list[position].view?.height
+//               var layoutManager =  LinearLayout(context).layoutParams
+//                layoutManager.height = height!!
+//                layoutManager.width = 500
+//
+////                layoutManager.height =
+//                binding.HelperReadContentViewPager.layoutParams= layoutManager
+
             }
 
             override fun onPageScrollStateChanged(state: Int) {

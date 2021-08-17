@@ -57,6 +57,8 @@ class ReviewAdapter() : ListAdapter<Review, ReviewAdapter.ReviewViewHolder>(diff
 
     }
 
+
+
     companion object{
         val diffUtil = object : DiffUtil.ItemCallback<Review>(){
             override fun areItemsTheSame(oldItem: Review, newItem: Review): Boolean {

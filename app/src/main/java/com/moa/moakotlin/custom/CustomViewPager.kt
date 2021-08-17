@@ -37,8 +37,11 @@ var str = "11"
                     MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED)
                 )
                 val h = child.measuredHeight
-//                if (h > height) height = h
-                height = h
+                if (h > height) height = h
+                if(height>2000){
+                    height = 2000
+                }
+
             }
 
             heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY)
