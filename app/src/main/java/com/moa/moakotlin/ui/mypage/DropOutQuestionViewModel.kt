@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.messaging.FirebaseMessaging
 import com.moa.moakotlin.data.DropOut
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.repository.concierge.HelperRepository
@@ -35,6 +36,7 @@ class DropOutQuestionViewModel : ViewModel() {
       userRepository.deleteAtPath("User/${User.getInstance().uid}")
       var dropOut = DropOut(User.getInstance().address,User.getInstance().birthday,User.getInstance().isMan,
       checked.value!!, Timestamp.now())
+      FirebaseMessaging.getInstance().unsubscribeFromTopic(User.getInstance().aptCode)
 
       userRepository.writeDropOutReason(dropOut)
 //      delete.value =userRepository.dropOutUser()

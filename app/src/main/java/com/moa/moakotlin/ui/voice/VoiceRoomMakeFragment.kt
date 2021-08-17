@@ -26,6 +26,7 @@ import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.VoiceRoomFragmentBinding
 import com.moa.moakotlin.databinding.VoiceRoomMakeFragmentBinding
 import com.moa.moakotlin.recyclerview.concierge.FlexBoxAdapter
@@ -247,6 +248,11 @@ class VoiceRoomMakeFragment : BaseFragment() {
                 bundle.putString("token",token)
                 bundle.putParcelable("voiceChatRoom",voiceChatRoom)
                 binding.NeederWriteLoading.hide()
+                if(User.getInstance().aptCode.equals("MOA")){
+                    viewModel.sendPushMoa()
+                }else{
+                    viewModel.sendPushMessage()
+                }
                 navController.navigate(R.id.voiceRoomFragment,bundle)
             }
 

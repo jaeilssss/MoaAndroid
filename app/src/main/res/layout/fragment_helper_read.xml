@@ -164,7 +164,7 @@
         android:text="받은 후기"/>
 </com.google.android.material.tabs.TabLayout>
 
-<com.moa.moakotlin.custom.CustomViewPager
+<androidx.viewpager.widget.ViewPager
     android:layout_width="0dp"
     android:layout_height="wrap_content"
     app:layout_constraintStart_toStartOf="parent"

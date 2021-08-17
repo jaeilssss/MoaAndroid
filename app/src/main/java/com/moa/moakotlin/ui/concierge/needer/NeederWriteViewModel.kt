@@ -12,6 +12,7 @@ import com.moa.moakotlin.data.*
 import com.moa.moakotlin.repository.concierge.HelperRepository
 import com.moa.moakotlin.repository.concierge.NeederRepository
 import com.moa.moakotlin.repository.imagePicker.ImagePickerRepository
+import com.moa.moakotlin.repository.push.FcmRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -71,6 +72,20 @@ class NeederWriteViewModel():ViewModel() {
                 newNeeder.value = repository.submit(needer.mainCategory,needer)
             }
         }
+    }
+
+    fun sendPushMessage(){
+        var repository = FcmRepository()
+
+        var message = PushMessage("재능공유","이웃의 새로운 도움요청 글이 작성되었습니다 ",User.getInstance().pushToken)
+        repository.sendPushMessageToNeighborhood(message)
+    }
+
+    fun sendPushMoa(){
+        var repository = FcmRepository()
+
+        var message = PushMessage("재능공유","이웃의 새로운 도움요청 글이 작성되었습니다 ",User.getInstance().pushToken)
+        repository.sendPushMessageToMoa(message)
     }
 
 }

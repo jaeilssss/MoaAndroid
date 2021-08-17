@@ -3,6 +3,7 @@ package com.moa.moakotlin.ui.mypage
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.messaging.FirebaseMessaging
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.repository.user.UserRepository
 
@@ -12,7 +13,7 @@ class AptModifyViewModel : ViewModel() {
     var address = ""
     val dong = MutableLiveData<String>("")
     val hosoo = MutableLiveData<String>("")
-
+    var oldAptCode = ""
     fun check() : Boolean{
         return aptName.value?.length!! >0 &&
                 aptCode.value?.length!!>0 &&
@@ -27,6 +28,7 @@ class AptModifyViewModel : ViewModel() {
         address = "${address} ${dong.value}동 ${hosoo.value}호"
         if(repository.modifyApt(aptName.value!!,aptCode.value!!, address)){
             User.getInstance().aptName = aptName.value!!
+            oldAptCode = User.getInstance().aptCode
             User.getInstance().aptCode = aptCode.value!!
             User.getInstance().address = address
             User.getInstance().certificationStatus = "미인증"
@@ -34,5 +36,10 @@ class AptModifyViewModel : ViewModel() {
         }else{
             return false
         }
+    }
+
+    fun resettingSubscribe(){
+        FirebaseMessaging.getInstance().unsubscribeFromTopic(oldAptCode)
+        FirebaseMessaging.getInstance().subscribeToTopic(User.getInstance().aptCode)
     }
 }

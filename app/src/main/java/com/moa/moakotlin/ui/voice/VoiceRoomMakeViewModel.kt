@@ -4,10 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.tasks.Task
 import com.google.firebase.Timestamp
-import com.moa.moakotlin.data.User
-import com.moa.moakotlin.data.VoiceChatRoom
-import com.moa.moakotlin.data.VoiceUser
-import com.moa.moakotlin.data.aptList
+import com.moa.moakotlin.data.*
+import com.moa.moakotlin.repository.push.FcmRepository
 import com.moa.moakotlin.repository.voice.VoiceRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -65,5 +63,20 @@ class VoiceRoomMakeViewModel : ViewModel() {
         voiceUser.nickName = User.getInstance().nickName
         voiceUser.phoneNumber = User.getInstance().phoneNumber
         return  repository.goToVoiceRoom(documentId,voiceUser)
+    }
+
+
+    fun sendPushMessage(){
+        var repository = FcmRepository()
+
+        var message = PushMessage("모아 라디오","새로운 라디오 방이 생성되었습니다",User.getInstance().pushToken)
+        repository.sendPushMessageToNeighborhood(message)
+    }
+
+    fun sendPushMoa(){
+        var repository = FcmRepository()
+
+        var message = PushMessage("모아 라디오","새로운 라디오 방이 생성되었습니다",User.getInstance().pushToken)
+        repository.sendPushMessageToMoa(message)
     }
 }

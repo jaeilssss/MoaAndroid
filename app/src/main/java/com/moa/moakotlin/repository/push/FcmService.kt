@@ -38,6 +38,7 @@ class FcmService() : FirebaseMessagingService() {
             )
         wakeLock.acquire(3000)
         wakeLock.release()
+        println("리시브드")
         val data = getSharedPreferences("AlarmSetting",Context.MODE_PRIVATE)
         if(remotemessage.notification!=null){
             if(remotemessage!!.notification?.title.equals("아파트 인증")){
@@ -63,13 +64,13 @@ class FcmService() : FirebaseMessagingService() {
                     remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
                 }
             }
-             if(data?.getBoolean("isEventAlarm",false) == true && remotemessage.data.get("title").equals("리뷰")){
+             if(data?.getBoolean("isEventAlarm",false) == true && remotemessage.data.get("uid").equals(User.getInstance().uid).not()){
                  if(MyApp.isForeground){
                      remotemessage.data.get("title")?.let { sendNotificationForGround(remotemessage.data.get("body")!!, it) }
                  }else{
                      remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
                  }
-            }else if(data?.getBoolean("isChattingAlarm",false)==true && !CurrentChat.getInstance().boolean){
+            }else if(data?.getBoolean("isChattingAlarm",false)==true && !CurrentChat.getInstance().boolean && remotemessage.data.get("title").equals("채팅")){
                  if(MyApp.isForeground){
                      remotemessage.data.get("title")?.let { sendNotificationForGround(remotemessage.data.get("body")!!, it) }
                  }else{
@@ -123,7 +124,7 @@ class FcmService() : FirebaseMessagingService() {
 
         if(title.equals("리뷰") || title.equals("아파트 인증")){
             intent.putExtra("request","알림")
-        }else {
+        } else {
             intent.putExtra("request","채팅")
         }
         val pendingIntent : PendingIntent = PendingIntent.getActivity(applicationContext,0, intent ,PendingIntent.FLAG_ONE_SHOT)

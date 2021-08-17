@@ -24,6 +24,7 @@ import com.moa.moakotlin.WebViewActivity
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Helper
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentHelperWritePageBinding
 import com.moa.moakotlin.recyclerview.certification.CertificationImageAdapter
 import com.moa.moakotlin.ui.concierge.category.HelperCategoryActivity
@@ -76,6 +77,11 @@ class HelperWritePageFragment : Fragment() {
                    var bundle = Bundle()
                    bundle.putParcelable("helper",it)
                    Toast.makeText(activity?.applicationContext,"작성이 완료되었습니다",Toast.LENGTH_SHORT).show()
+                   if(User.getInstance().aptCode.equals("MOA")){
+                       model.sendPushMoa()
+                   }else{
+                       model.sendPushMessage()
+                   }
                    activity?.finish()
                    activity?.getWindow()?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                    binding.HelperWriteLoading.hide()

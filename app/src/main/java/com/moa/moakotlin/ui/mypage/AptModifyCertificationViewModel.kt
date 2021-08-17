@@ -3,6 +3,7 @@ package com.moa.moakotlin.ui.mypage
 import androidx.lifecycle.ViewModel
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.messaging.FirebaseMessaging
 import com.moa.moakotlin.data.ApartCertification
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.repository.imagePicker.ImagePickerRepository
@@ -14,7 +15,7 @@ import kotlinx.coroutines.launch
 
 class AptModifyCertificationViewModel : ViewModel() {
 
-
+var oldAptCode =""
 
     fun certification(images : List<String>){
 
@@ -45,6 +46,8 @@ class AptModifyCertificationViewModel : ViewModel() {
 
         repository.modify(User.getInstance())
     }
+
+
 
 
 }

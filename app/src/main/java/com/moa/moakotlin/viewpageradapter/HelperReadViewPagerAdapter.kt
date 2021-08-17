@@ -34,4 +34,13 @@ class HelperReadViewPagerAdapter(var fm: FragmentManager,var helper : Helper ) :
             return "받은후기"
         }
     }
+
+    fun getCurrentViewHeight(){
+        if(fm.fragments[0] is ConciergeReadIntroduceFragment){
+            println("컨시어지 리드 인트ㄹ호두")
+            fm.fragments[0] as ConciergeReadIntroduceFragment
+            fm.fragments[0].view?.height
+        }
+
+    }
 }

@@ -64,6 +64,7 @@ class AptModifyFragment : BaseFragment() {
         binding.AptmodifySubmit.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 if(viewModel.modifyApt()){
+                    viewModel.resettingSubscribe()
                     Toast.makeText(context,"아파트 정보 수정이 완료되었습니다",Toast.LENGTH_SHORT).show()
                     navController.navigate(R.id.action_aptModifyFragment_to_aptModifyCertificationNoticeFragment)
                 }

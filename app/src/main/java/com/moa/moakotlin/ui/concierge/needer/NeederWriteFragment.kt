@@ -21,6 +21,7 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.WebViewActivity
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentNeederWriteBinding
 import com.moa.moakotlin.recyclerview.certification.CertificationImageAdapter
 import com.moa.moakotlin.ui.concierge.category.NeederCategoryActivity
@@ -87,6 +88,11 @@ class NeederWriteFragment : Fragment() {
         model.newNeeder.observe(viewLifecycleOwner, Observer {
 
             Toast.makeText(context,"작성이 완료되었습니다",Toast.LENGTH_SHORT).show()
+            if(User.getInstance().aptCode.equals("MOA")){
+                model.sendPushMoa()
+            }else{
+                model.sendPushMessage()
+            }
             binding.NeederWriteLoading.hide()
             activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
 

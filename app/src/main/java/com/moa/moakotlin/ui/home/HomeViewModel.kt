@@ -45,7 +45,7 @@ class HomeViewModel() : ViewModel() {
 //        var pushRepository = FcmRepository()
 //        var token  = "ezguf8fRReS_QUofFuI-DL:APA91bEtIYVddI-SEu2XTGndm4HYCKgJDd81oabRvy18AgVFpiImLJBVN5eJXvt-wc_KIUAWwNRLAov3nYO2LW8FKb5bN7AwAWXATpMM_vmtLcumI4Vba0ztNVKJo0XGuvZqmwJfoE2S"
 //        var message = PushMessage("Moa","당신의 게시글을 좋아요 눌렀습니다!",token)
-//        pushRepository.sendPushMessage(message)
+//        pushRepository.sendPushMessageTest(message)
 //
 //        FirebaseMessaging.getInstance().subscribeToTopic("test")
 

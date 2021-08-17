@@ -46,9 +46,7 @@ class SignUpResultFragment : BaseFragment() {
             binding.SignUpResultMessage.text = resources.getString(R.string.aptUncertifiedDetail)
         }
 
-
         // 오늘아침에 회원가입 테스트 해보기 아이디 하나 더 만들어서
-
 
         binding.signUpResultNext.setOnClickListener {
 //            navController.navigate(R.id.HomeFragment)
@@ -56,6 +54,7 @@ class SignUpResultFragment : BaseFragment() {
             startActivity(intent)
             activity?.finish()
         }
+
         return binding.root
     }
 

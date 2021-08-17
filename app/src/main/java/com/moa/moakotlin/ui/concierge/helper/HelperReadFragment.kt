@@ -19,6 +19,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.moa.moakotlin.MainActivity
@@ -116,6 +118,27 @@ class HelperReadFragment : BaseFragment() {
         binding.HelperReadContentViewPager.adapter = viewPagerAdapter
 
         binding.HelperReadTab.setupWithViewPager(binding.HelperReadContentViewPager)
+
+        binding.HelperReadContentViewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                    println("------시발")
+                    println(viewPagerAdapter.list[position].view?.height)
+
+               var layoutManager =  LinearLayout(context).layoutParams
+//                layoutManager.height =
+//                binding.HelperReadContentViewPager.layoutParams =
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+
+
+            }
+
+        })
+
 
         binding.HelperReadViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {

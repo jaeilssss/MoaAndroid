@@ -3,10 +3,12 @@ package com.moa.moakotlin.ui.concierge.helper
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.moa.moakotlin.data.Helper
+import com.moa.moakotlin.data.PushMessage
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.aptList
 import com.moa.moakotlin.repository.concierge.HelperRepository
 import com.moa.moakotlin.repository.imagePicker.ImagePickerRepository
+import com.moa.moakotlin.repository.push.FcmRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -64,5 +66,19 @@ class HelperWritePageViewModel() :ViewModel(){
    }
   }
   }
+
+ fun sendPushMessage(){
+  var repository = FcmRepository()
+
+  var message = PushMessage("재능공유","이웃의 새로운 재능공유 글이 작성되었습니다",User.getInstance().pushToken)
+  repository.sendPushMessageToNeighborhood(message)
+ }
+
+ fun sendPushMoa(){
+  var repository = FcmRepository()
+
+  var message = PushMessage("재능공유","이웃의 새로운 재능공유 글이 작성되었습니다",User.getInstance().pushToken)
+  repository.sendPushMessageToMoa(message)
+ }
 
 }

@@ -9,9 +9,11 @@ import androidx.core.content.edit
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.messaging.FirebaseMessaging
 import com.moa.moakotlin.base.ConnectionStateMonitor
 import com.moa.moakotlin.data.Picture
 import com.moa.moakotlin.data.User
+import com.moa.moakotlin.data.aptList
 import com.moa.moakotlin.repository.push.FcmService
 import com.moa.moakotlin.repository.user.UserRepository
 import kotlinx.coroutines.CoroutineScope
@@ -37,13 +39,14 @@ lateinit var model : LoadingViewModel
 
                 startActivity(Intent(this, MainActivity::class.java))
 
-
                 finish()
+
             }else{
                 var result = FirebaseAuth.getInstance().currentUser?.let { model.initApp(it.uid,this) }
                 if(result == true){
 
-
+                    FirebaseMessaging.getInstance().subscribeToTopic("MOA")
+                    FirebaseMessaging.getInstance().subscribeToTopic(User.getInstance().aptCode)
 
                     userRepository.registerPushToken()
 
@@ -61,11 +64,13 @@ lateinit var model : LoadingViewModel
                     }
 
                     finish()
+
                 }else{
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }
             }
+
         }catch (e :Exception) {
            FirebaseAuth.getInstance().signOut()
             startActivity(Intent(this, MainActivity::class.java))

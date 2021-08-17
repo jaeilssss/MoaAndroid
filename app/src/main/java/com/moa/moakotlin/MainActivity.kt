@@ -45,11 +45,10 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         model = ViewModelProvider(this).get(MainViewModel::class.java)
         binding.lifecycleOwner = this
-         navController = findNavController(R.id.mainFragment)
+        navController = findNavController(R.id.mainFragment)
 
         if(intent.getStringExtra("request").equals("채팅")){
             navGraph = navController.graph

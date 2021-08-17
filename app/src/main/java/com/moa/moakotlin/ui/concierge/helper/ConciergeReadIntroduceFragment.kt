@@ -13,6 +13,7 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Needer
 import com.moa.moakotlin.databinding.ConciergeReadIntroduceFragmentBinding
+import kotlin.properties.Delegates
 
 class ConciergeReadIntroduceFragment(var helper : Helper ? ,var needer : Needer ?) : Fragment() {
 
@@ -21,9 +22,12 @@ class ConciergeReadIntroduceFragment(var helper : Helper ? ,var needer : Needer 
 
     private lateinit var binding : ConciergeReadIntroduceFragmentBinding
 
+    private var height by Delegates.notNull<Int>()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.concierge_read_introduce_fragment,container,false)
+        height = binding.root.height
         return binding.root
     }
 
