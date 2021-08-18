@@ -35,6 +35,22 @@ class FcmRepository {
             println("...")
         }
     }
+    fun sendPushMessageToMyApt( message : PushMessage){
+        // function name 수정할것!!
+        val data = hashMapOf(
+                "title" to message.title,
+                "body" to message.body,
+                "aroundApt" to arrayListOf<String>(User.getInstance().aptCode),
+                "uid" to User.getInstance().uid
+        )
+        var functions = Firebase.functions("asia-northeast3")
+        functions.getHttpsCallable("sendCloudMessageToNeighbor").call(data).addOnFailureListener {
+            println("실패")
+            println(it.message)
+        }.addOnSuccessListener {
+            println("...")
+        }
+    }
 
     fun sendPushMessageToMoa( message : PushMessage){
 
