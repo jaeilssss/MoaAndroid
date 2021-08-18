@@ -53,9 +53,7 @@ class FcmRepository {
     }
 
     fun sendPushMessageToMoa( message : PushMessage){
-
         // function name 수정할것!!
-
         val data = hashMapOf(
                 "title" to message.title,
                 "body" to message.body,

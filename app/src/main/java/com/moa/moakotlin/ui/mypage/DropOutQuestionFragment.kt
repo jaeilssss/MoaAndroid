@@ -172,9 +172,7 @@ class DropOutQuestionFragment : BaseFragment() {
                             activity?.getWindow()?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                                     WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                             binding.DropOutLoading.show()
-                            viewModel.delete.value = viewModel.dropOut()
-                            println(viewModel.delete.value!!)
-
+                            viewModel.dropOut()
 
                         }
                     }

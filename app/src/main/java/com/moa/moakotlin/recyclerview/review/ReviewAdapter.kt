@@ -27,6 +27,7 @@ class ReviewAdapter() : ListAdapter<Review, ReviewAdapter.ReviewViewHolder>(diff
     override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
         holder.binding(currentList[position])
     }
+
     inner class ReviewViewHolder(var binding : ItemReviewBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun binding(review : Review){
@@ -39,7 +40,6 @@ class ReviewAdapter() : ListAdapter<Review, ReviewAdapter.ReviewViewHolder>(diff
                 binding.itemReviewContent.text = review.review
                 binding.itemReviewDate.text = dateFormat.format(review.timeStamp.toDate())
 
-
                 if(user==null){
                     binding.itemReviewAptName.text = "알수없음"
                     binding.itemReviewUserNickName.text = "알수없음"
@@ -51,10 +51,7 @@ class ReviewAdapter() : ListAdapter<Review, ReviewAdapter.ReviewViewHolder>(diff
                 }
 
             }
-
-
         }
-
     }
 
 

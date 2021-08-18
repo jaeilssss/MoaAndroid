@@ -26,6 +26,7 @@ import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
 import com.google.firebase.ktx.Firebase
 import com.moa.moakotlin.MainActivity
+import com.moa.moakotlin.MyPhone
 import com.moa.moakotlin.R
 import com.moa.moakotlin.WebViewActivity
 import com.moa.moakotlin.base.BaseFragment

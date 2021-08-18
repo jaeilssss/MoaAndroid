@@ -142,7 +142,7 @@
         android:layout_marginStart="70dp"
         app:layout_constraintEnd_toEndOf="@id/VoiceRoomInsertImage"
         app:layout_constraintTop_toTopOf="@id/VoiceRoomInsertImage"
-        android:id="@+id/itemAptCertificationClose"
+        android:id="@+id/voiceRoomPictureDelete"
         android:visibility="gone"
         />
 

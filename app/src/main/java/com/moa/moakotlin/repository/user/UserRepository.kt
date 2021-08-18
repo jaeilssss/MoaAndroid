@@ -222,14 +222,19 @@ class UserRepository {
                 }
     }
 
-    fun writeDropOutReason(dropOut: DropOut){
+    suspend fun writeDropOutReason(dropOut: DropOut) : Boolean{
 
         var db = FirebaseFirestore.getInstance()
-
+        var result = false
         db.collection("MyPage")
                 .document("MyPage")
                 .collection("Dropout")
                 .add(dropOut)
+                .addOnSuccessListener {
+                    result = true
+                }.await()
+
+        return result
     }
 
 }

@@ -65,5 +65,4 @@ class DropOutQuestionViewModel : ViewModel() {
         }
     }
 
-
 }

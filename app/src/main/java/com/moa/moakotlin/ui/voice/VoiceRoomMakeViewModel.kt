@@ -49,6 +49,7 @@ class VoiceRoomMakeViewModel : ViewModel() {
                     arrayListOf(User.getInstance().aptCode),theme.value!!)
         }
     }
+
     fun check() : Boolean{
         return theme.value?.length!!>0 &&
                 title.value?.length!!>0 &&
@@ -69,14 +70,22 @@ class VoiceRoomMakeViewModel : ViewModel() {
     fun sendPushMessage(){
         var repository = FcmRepository()
 
-        var message = PushMessage("모아 라디오","새로운 라디오 방이 생성되었습니다",User.getInstance().pushToken)
-        repository.sendPushMessageToNeighborhood(message)
+        if(range.value?.equals("인근")==true){
+            var message = PushMessage("모아 라디오","이웃의 새로운 모아 라디오 가 시작했습니다",User.getInstance().pushToken)
+            repository.sendPushMessageToNeighborhood(message)
+        }else if(range.value?.equals("우리아파트")==true){
+            var message = PushMessage("모아 라디오","우리 아파트의 새로운 모아 라디오 가 시작했습니다",User.getInstance().pushToken)
+            repository.sendPushMessageToMyApt(message)
+        }
+
+
     }
 
     fun sendPushMoa(){
         var repository = FcmRepository()
-
-        var message = PushMessage("모아 라디오","새로운 라디오 방이 생성되었습니다",User.getInstance().pushToken)
-        repository.sendPushMessageToMoa(message)
+        if(range.value?.equals("전국")==true){
+            var message = PushMessage("모아 라디오","모아의 새로운 모아 라디오 가 시작했습니다",User.getInstance().pushToken)
+            repository.sendPushMessageToMoa(message)
+        }
     }
 }

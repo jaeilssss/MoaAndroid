@@ -24,11 +24,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.moa.moakotlin.MainActivity
+import com.moa.moakotlin.MyPhone
 import com.moa.moakotlin.R
 import com.moa.moakotlin.WebViewActivity
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.custom.AptCertificationImageAlertDialog
+import com.moa.moakotlin.custom.SinglePositiveButtonDialog
 import com.moa.moakotlin.data.Banner
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.VoiceChatRoom
@@ -146,25 +148,35 @@ class VoiceMainFragment : BaseFragment() {
         return binding.root
     }
     fun goToVoiceChatRoom(){
+        if(context?.let { MyPhone().getBatteryRemain(it) }!! <20 ){
+            context?.let {
+                SinglePositiveButtonDialog(it)
+                        .setMessage("모아라디오를 이용하시려면\n배터리 잔량이 20%이상 있어야 가능합니다!")
+                        .setPositiveButton("예"){
 
-        CoroutineScope(Dispatchers.Main).launch {
-            binding.VoiceMainLoadingProgressBar.show()
+                        }.show()
+            }
 
-            if(voiceChatRoom?.documentID?.let { viewModel.goToVoiceRoom(it) } == true){
+        }else{
+            CoroutineScope(Dispatchers.Main).launch {
+                binding.VoiceMainLoadingProgressBar.show()
 
-                var token = voiceChatRoom?.documentID?.let { viewModel.generateToken(it) }
+                if(voiceChatRoom?.documentID?.let { viewModel.goToVoiceRoom(it) } == true){
 
-                var bundle = Bundle()
+                    var token = voiceChatRoom?.documentID?.let { viewModel.generateToken(it) }
 
-                bundle.putString("token",token)
-                bundle.putParcelable("voiceChatRoom",voiceChatRoom)
+                    var bundle = Bundle()
 
-                viewModel.increasePeopleCount(voiceChatRoom!!.documentID)
-                binding.VoiceMainLoadingProgressBar.hide()
-                navController.navigate(R.id.voiceRoomFragment,bundle)
-            }else{
-                binding.VoiceMainLoadingProgressBar.hide()
-                showToast(activity?.applicationContext!!,"접속이 불가능합니다")
+                    bundle.putString("token",token)
+                    bundle.putParcelable("voiceChatRoom",voiceChatRoom)
+
+                    viewModel.increasePeopleCount(voiceChatRoom!!.documentID)
+                    binding.VoiceMainLoadingProgressBar.hide()
+                    navController.navigate(R.id.voiceRoomFragment,bundle)
+                }else{
+                    binding.VoiceMainLoadingProgressBar.hide()
+                    showToast(activity?.applicationContext!!,"접속이 불가능합니다")
+                }
             }
         }
 

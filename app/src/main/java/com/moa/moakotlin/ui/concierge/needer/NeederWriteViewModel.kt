@@ -84,7 +84,7 @@ class NeederWriteViewModel():ViewModel() {
     fun sendPushMoa(){
         var repository = FcmRepository()
 
-        var message = PushMessage("재능공유","이웃의 새로운 도움요청 글이 작성되었습니다 ",User.getInstance().pushToken)
+        var message = PushMessage("재능공유","모아의 새로운 도움요청 글이 작성되었습니다 ",User.getInstance().pushToken)
         repository.sendPushMessageToMoa(message)
     }
 

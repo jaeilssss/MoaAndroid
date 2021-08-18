@@ -23,9 +23,12 @@ import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
 import com.moa.moakotlin.MainActivity
+import com.moa.moakotlin.MyApp
+import com.moa.moakotlin.MyPhone
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
+import com.moa.moakotlin.custom.SinglePositiveButtonDialog
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.VoiceRoomFragmentBinding
 import com.moa.moakotlin.databinding.VoiceRoomMakeFragmentBinding
@@ -77,9 +80,9 @@ class VoiceRoomMakeFragment : BaseFragment() {
         binding.back.setOnClickListener { navController.popBackStack() }
         val flexBoxAdapter = FlexBoxAdapter()
 
-        binding.itemAptCertificationClose.setOnClickListener {
+        binding.voiceRoomPictureDelete.setOnClickListener {
             list=null
-            binding.itemAptCertificationClose.isVisible = false
+            binding.voiceRoomPictureDelete.isVisible = false
             binding.VoiceRoomInsertImage.isVisible=false
             viewModel.image = ""
             binding.VoiceRoomImageCount.text = "0/1"
@@ -145,7 +148,6 @@ class VoiceRoomMakeFragment : BaseFragment() {
 
     private fun checkPermission() {
         when {
-
             ContextCompat.checkSelfPermission(
                     activity?.applicationContext!!,
                     android.Manifest.permission.READ_EXTERNAL_STORAGE
@@ -210,7 +212,7 @@ class VoiceRoomMakeFragment : BaseFragment() {
             if (list != null) {
                 if(list.size>0){
                     binding.VoiceRoomInsertImage.isVisible = true
-                    binding.itemAptCertificationClose.isVisible = true
+                    binding.voiceRoomPictureDelete.isVisible = true
                     Glide.with(activity?.applicationContext!!).load(list.get(0))
                         .into(binding.VoiceRoomInsertImage)
                     viewModel.image = list.get(0)
@@ -238,24 +240,36 @@ class VoiceRoomMakeFragment : BaseFragment() {
     }
 
     fun submit(){
-        CoroutineScope(Dispatchers.Main).launch {
-            binding.NeederWriteLoading.show()
-            var token = viewModel.submit()
-            var voiceChatRoom = viewModel.voiceChatRoom
-            voiceChatRoom.documentID = viewModel.documentID
-            if(viewModel.makeVoiceUser(voiceChatRoom.documentID)){
-                var bundle = Bundle()
-                bundle.putString("token",token)
-                bundle.putParcelable("voiceChatRoom",voiceChatRoom)
-                binding.NeederWriteLoading.hide()
-                if(User.getInstance().aptCode.equals("MOA")){
-                    viewModel.sendPushMoa()
-                }else{
-                    viewModel.sendPushMessage()
-                }
-                navController.navigate(R.id.voiceRoomFragment,bundle)
+        if(context?.let { MyPhone().getBatteryRemain(it) }!! <20 ){
+            context?.let {
+                SinglePositiveButtonDialog(it)
+                        .setMessage("모아라디오를 이용하시려면\n배터리 잔량이 20%이상 있어야 가능합니다!")
+                        .setPositiveButton("예"){
+
+                        }.show()
             }
 
+        }else{
+            CoroutineScope(Dispatchers.Main).launch {
+                binding.NeederWriteLoading.show()
+                var token = viewModel.submit()
+                var voiceChatRoom = viewModel.voiceChatRoom
+                voiceChatRoom.documentID = viewModel.documentID
+                if(viewModel.makeVoiceUser(voiceChatRoom.documentID)){
+                    var bundle = Bundle()
+                    bundle.putString("token",token)
+                    bundle.putParcelable("voiceChatRoom",voiceChatRoom)
+                    binding.NeederWriteLoading.hide()
+                    if(User.getInstance().aptCode.equals("MOA")){
+                        viewModel.sendPushMoa()
+                    }else{
+                        viewModel.sendPushMessage()
+                    }
+                    navController.navigate(R.id.voiceRoomFragment,bundle)
+                }
+
+            }
         }
+
     }
 }
