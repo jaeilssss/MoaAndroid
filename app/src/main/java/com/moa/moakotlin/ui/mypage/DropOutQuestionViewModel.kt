@@ -24,8 +24,8 @@ class DropOutQuestionViewModel : ViewModel() {
     var etcCheck = MutableLiveData<Boolean>(false)
 
     var checked=MutableLiveData<String>("")
-    var delete = MutableLiveData<Boolean>(false)
-  suspend fun dropOut(): Boolean{
+    var delete = MutableLiveData<Boolean>()
+  suspend fun dropOut(){
         var userRepository = UserRepository()
         var helperRepository = HelperRepository()
         var neederRepository = NeederRepository()
@@ -37,12 +37,12 @@ class DropOutQuestionViewModel : ViewModel() {
       var dropOut = DropOut(User.getInstance().address,User.getInstance().birthday,User.getInstance().isMan,
       checked.value!!, Timestamp.now())
       FirebaseMessaging.getInstance().unsubscribeFromTopic(User.getInstance().aptCode)
-
-      userRepository.writeDropOutReason(dropOut)
 //      delete.value =userRepository.dropOutUser()
+      delete.value = userRepository.writeDropOutReason(dropOut)
 
-      return userRepository.dropOutUser()
-    }
+      FirebaseAuth.getInstance().signOut()
+
+  }
 
 
     fun setCheckedMessage(){
