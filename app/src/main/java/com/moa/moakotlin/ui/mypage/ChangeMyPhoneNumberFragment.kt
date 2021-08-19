@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -16,14 +17,16 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.ChangeMyPhoneNumberFragmentBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ChangeMyPhoneNumberFragment : Fragment() {
+class ChangeMyPhoneNumberFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = ChangeMyPhoneNumberFragment()
@@ -45,7 +48,7 @@ class ChangeMyPhoneNumberFragment : Fragment() {
     ): View? {
 
         binding  = DataBindingUtil.inflate(inflater,R.layout.change_my_phone_number_fragment,container,false)
-
+        (context as MainActivity).backListener = this
 
         return binding.root
     }
@@ -55,32 +58,56 @@ class ChangeMyPhoneNumberFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ChangeMyPhoneNumberViewModel::class.java)
         navController = findNavController()
         binding.model = viewModel
+        myActivity.bottomNavigationGone()
         binding.ChangeMyPhoneDetailText.text= "현재 등록된 전화번호는 ${User.getInstance().phoneNumber.subSequence(0,3)}-${User.getInstance().phoneNumber.subSequence(3,7)}-${User.getInstance().phoneNumber.subSequence(7,11)}"
         activity?.let { viewModel.init(it) }
-
+        binding.ChangeMyPhoneNumberback.setOnClickListener { onBackPressed() }
         binding.ChangeNewPhoneSubmit.setOnClickListener {
             if(isSend){
                 CoroutineScope(Dispatchers.Main).launch {
+                    activity?.getWindow()?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
+                    binding.ChangeMyPhoneNumberLoading.show()
+
                     if(viewModel.checkCertificationMessage()){
                         User.getInstance().phoneNumber = viewModel.phoneNumber.value.toString()
                         User.getInstance().uid = FirebaseAuth.getInstance().uid.toString()
-                        viewModel.settingConciergeData()
-                        Toast.makeText(context , "핸드폰번호 변경이 완료 되었습니다!",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context , "핸드폰 번호 변경이 완료 되었습니다!",Toast.LENGTH_SHORT).show()
+                        binding.ChangeMyPhoneNumberLoading.hide()
+                        activity?.getWindow()?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
+
+                        onBackPressed()
+                    }else{
+                        Toast.makeText(context , "잘못된 인증 번호 입니다!",Toast.LENGTH_SHORT).show()
+                        binding.ChangeMyPhoneNumberLoading.hide()
+                        activity?.getWindow()?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                     }
                 }
-            }else{
-                viewModel.sendMessage()
-                countDownTimer =  createCountDownTimer(1200*100L)
-                countDownTimer?.start()
-                binding.ChangeNewPhoneEdit.isEnabled = false
-                binding.ChangeCertificationCodeEdit.isVisible =true
-
+            }else {
+                CoroutineScope(Dispatchers.Main).launch {
+                    if (viewModel.checkAlreadyPhone()) {
+                        viewModel.sendMessage()
+                        countDownTimer = createCountDownTimer(1200 * 100L)
+                        countDownTimer?.start()
+                        isSend = true
+                        binding.ChangeNewPhoneEdit.isEnabled = false
+                        binding.ChangeCertificationCodeEdit.isVisible = true
+                    } else {
+                        Toast.makeText(context, "이미 가입한 핸드폰 번호 입니다!", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
+
         }
 
         viewModel.phoneNumber.observe(viewLifecycleOwner, Observer {
             setBackGroundChange()
         })
+    }
+
+    override fun onBackPressed() {
+        navController.popBackStack()
     }
 
     private fun createCountDownTimer(initialMililis : Long) =
@@ -108,6 +135,7 @@ class ChangeMyPhoneNumberFragment : Fragment() {
 
         }else{
             if(viewModel.checkPhoneNumber()){
+
                 binding.ChangeNewPhoneSubmit.setBackgroundResource(R.drawable.button_shape_main_color)
                 binding.ChangeNewPhoneSubmit.setTextColor(Color.BLACK)
                 binding.ChangeNewPhoneSubmit.isClickable = true
