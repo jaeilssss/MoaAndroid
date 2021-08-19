@@ -9,6 +9,7 @@ import android.graphics.Color.WHITE
 import android.opengl.Visibility
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,16 +23,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthCredential
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
 import com.moa.moakotlin.LoadingActivity
 import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.*
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentLoginBinding
+import com.moa.moakotlin.firebase.auth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 import kotlin.math.log
 
 class LoginFragment : BaseScrollFragment() {
@@ -41,7 +48,8 @@ class LoginFragment : BaseScrollFragment() {
     lateinit var loginViewModel :LoginViewModel
      var countDownTimer: CountDownTimer ?=null
     lateinit var transfer: Transfer
-
+    var sendPhoneNumber = ""
+    var isSend = false
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if(activity != null){
@@ -62,14 +70,21 @@ class LoginFragment : BaseScrollFragment() {
         binding.lifecycleOwner=this
         activity?.let { loginViewModel.init(it) }
         binding.sendMessageBtn.setOnClickListener {
-            if(countDownTimer !=null){
+            if(sendPhoneNumber.equals(loginViewModel.phoneNumber?.value)){
                 showToast(activity?.applicationContext!!,"이미 인증메시지를 보냈습니다")
-            }else{
-                countDownTimer =  createCountDownTimer(1200*100L)
-                countDownTimer?.start()
-                loginViewModel.sendMessage()
-                binding.certificationCode.isVisible = true
-                binding.checkCertificationCodeBtn.isVisible = true
+            } else{
+
+                        countDownTimer?.cancel()
+                        countDownTimer?.onFinish()
+                    countDownTimer =  createCountDownTimer(1200*100L)
+                    countDownTimer?.start()
+                    loginViewModel.sendMessage()
+                    sendPhoneNumber = loginViewModel.phoneNumber?.value!!
+                    isSend  =true
+                    binding.certificationCode.isVisible = true
+                    binding.checkCertificationCodeBtn.isVisible = true
+
+
             }
         }
 
@@ -113,6 +128,7 @@ class LoginFragment : BaseScrollFragment() {
 
         }
         activity?.window?.let { keyboardVisibility(it,binding.scv) }
+
         transfer.bottomGone()
 
         loginViewModel.code.observe(viewLifecycleOwner, Observer {
@@ -128,7 +144,9 @@ class LoginFragment : BaseScrollFragment() {
         })
 
         setChangeButton()
+
         loginViewModel.phoneNumber.observe(viewLifecycleOwner, Observer {
+
             setChangeButton()
         })
         binding.backButton.setOnClickListener {  navController.popBackStack() }
@@ -153,11 +171,12 @@ class LoginFragment : BaseScrollFragment() {
         }
     @SuppressLint("SetTextI18n")
     private fun updateRemainTime(remainMillis : Long){
+
         val remainSeconds = remainMillis/1000L
 
         val minute = "%02d".format(remainSeconds/60)
         val second = "%02d".format(remainSeconds%60)
-        binding.sendMessageBtn.text = "${minute}분 ${second}초"
+        binding.sendMessageBtn.text = "안증문자 다시 받기 ${minute}분 ${second}초"
     }
 
     private fun setChangeButton(){
@@ -170,6 +189,50 @@ class LoginFragment : BaseScrollFragment() {
             binding.sendMessageBtn.isClickable = false
             binding.sendMessageBtn.setTextColor(Color.WHITE)
         }
+    }
+    private val callbacks by lazy {
+        object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+
+            override fun onVerificationCompleted(phoneAuth: PhoneAuthCredential) {
+                    println(phoneAuth.smsCode.toString())
+
+
+            }
+
+            override fun onVerificationFailed(p0: FirebaseException) {
+
+            }
+        }
+    }
+
+    private fun initViewModelCallback() {
+
+
+        activity?.let {
+            PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                    "+82" + "01077381556", // Phone number to verify
+                    60, // Timeout duration
+                    TimeUnit.SECONDS, // Unit of timeout
+                    it, // Activity (for callback binding)
+                    callbacks
+            )
+        } // OnVerificationStateChangedCallbacks
+
+    }
+
+    private fun startPhoneNumberVerification(phoneNumber: String) {
+        val options = activity?.let {
+            PhoneAuthOptions.newBuilder(auth)
+                .setPhoneNumber(phoneNumber)       // Phone number to verify
+                .setTimeout(90L, TimeUnit.SECONDS) // Timeout and unit
+                .setActivity(it as MainActivity)                 // Activity (for callback binding)
+                .setCallbacks(callbacks)          // OnVerificationStateChangedCallbacks
+                .build()
+        }
+        if (options != null) {
+            PhoneAuthProvider.verifyPhoneNumber(options)
+        }
+
     }
 
 }
