@@ -57,12 +57,10 @@ class MyPageFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
 
-
         model = ViewModelProvider(this).get(MyPageViewModel::class.java)
         binding.model = model
         navController = findNavController()
         setViewData()
-
         binding.myPageGoToProfileBtn.setOnClickListener {
             var bundle = Bundle()
             bundle.putParcelable("user",User.getInstance())

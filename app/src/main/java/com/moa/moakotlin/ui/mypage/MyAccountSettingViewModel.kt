@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MyAccountSettingViewModel : ViewModel() {
-    var phoneNumber = MutableLiveData<String>(User.getInstance().phoneNumber)
+    var phoneNumber = MutableLiveData<String>()
 
 
     fun logout(){

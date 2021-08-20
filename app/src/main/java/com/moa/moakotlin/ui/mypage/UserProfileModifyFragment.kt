@@ -49,6 +49,7 @@ class UserProfileModifyFragment : BaseFragment() {
     ): View? {
 
         viewModel = ViewModelProvider(this).get(UserProfileModifyViewModel::class.java)
+        myActivity.bottomNavigationGone()
 
         binding = DataBindingUtil.inflate(inflater, R.layout.user_profile_modify_fragment, container, false)
         (context as MainActivity).backListener = this

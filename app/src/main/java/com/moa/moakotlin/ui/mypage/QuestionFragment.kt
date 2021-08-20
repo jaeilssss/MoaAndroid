@@ -40,6 +40,8 @@ class QuestionFragment : BaseFragment() {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.question_fragment,container,false)
         (context as MainActivity).backListener = this
+        myActivity.bottomNavigationGone()
+
         return binding.root
     }
 

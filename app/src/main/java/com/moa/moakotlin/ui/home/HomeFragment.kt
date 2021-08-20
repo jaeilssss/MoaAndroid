@@ -104,8 +104,10 @@ lateinit var transfer: Transfer
         binding.homeMoaVoiceChatBtn.setOnClickListener { navController.navigate(R.id.voiceMainFragment) }
         binding.homeClaimBtn.setOnClickListener { homeClaimAlertDialog() }
         binding.homeGroupBuyingBtn.setOnClickListener{goToGroupBuyingBtn()}
+
         getMoaMagazine()
         getHomeBanner()
+
         return binding.root
     }
 

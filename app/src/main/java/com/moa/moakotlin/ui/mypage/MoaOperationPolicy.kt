@@ -32,6 +32,8 @@ class MoaOperationPolicy : BaseFragment() {
 
         binding = DataBindingUtil.inflate(inflater , R.layout.moa_operation_policy_fragment,container,false)
         (context as MainActivity).backListener = this
+        myActivity.bottomNavigationGone()
+
         return binding.root
     }
 

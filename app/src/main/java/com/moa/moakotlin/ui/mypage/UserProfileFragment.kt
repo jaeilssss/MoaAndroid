@@ -40,6 +40,7 @@ class UserProfileFragment : BaseFragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate<UserProfileFragmentBinding>(inflater,R.layout.user_profile_fragment,container,false)
+        myActivity.bottomNavigationGone()
 
         (context as MainActivity).backListener = this
         return binding.root

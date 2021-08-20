@@ -13,10 +13,7 @@ import com.moa.moakotlin.base.BaseViewModel
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.repository.login.LoginRepository
 import com.moa.moakotlin.repository.user.UserRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class LoginViewModel() : ViewModel(){
     var phoneNumber = MutableLiveData<String>("")
@@ -50,19 +47,18 @@ suspend fun getUserInfo(uid : String) : Boolean{
     suspend  fun checkCertificationMessage() : Boolean{
 
         if(loginRepository.storedVerificationId==null){
-            println("1111111")
+
             return isChecked
         }else{
-
-                CoroutineScope(Dispatchers.Default).async {
-                    isChecked =  loginRepository.signInWithPhoneAuthCredential(code.value!!)
-                }.await()
+            withContext(CoroutineScope(Dispatchers.Default).coroutineContext) {
+                isChecked = loginRepository.signInWithPhoneAuthCredential(code.value!!)
+            }
         }
 
         if(isChecked){
             User.getInstance().phoneNumber = phoneNumber.value.toString()
         }else{
-            println("2222")
+
         }
         return isChecked
 

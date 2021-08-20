@@ -43,6 +43,8 @@ class NoticeFragment : BaseFragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.notice_fragment, container , false)
         (context as MainActivity).backListener = this
+        myActivity.bottomNavigationGone()
+
         return binding.root
     }
 

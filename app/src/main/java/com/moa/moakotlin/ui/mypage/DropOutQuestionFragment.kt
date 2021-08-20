@@ -43,6 +43,7 @@ class DropOutQuestionFragment : BaseFragment() {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.drop_out_question_fragment,container, false)
         (context as MainActivity).backListener = this
+        myActivity.bottomNavigationGone()
         return binding.root
     }
 

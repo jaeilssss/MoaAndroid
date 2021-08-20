@@ -38,8 +38,7 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
     lateinit var model : MainViewModel
 
     var i =0
-    companion object
-    {
+    companion object {
         val REQUEST_WRITE_CODE = 1000
      }
     override fun onCreate(savedInstanceState: Bundle?) {

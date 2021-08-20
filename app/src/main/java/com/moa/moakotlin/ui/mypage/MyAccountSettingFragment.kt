@@ -15,6 +15,7 @@ import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.custom.AptCertificationImageAlertDialog
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.MyAccountSettingFragmentBinding
 
 class MyAccountSettingFragment : BaseFragment() {
@@ -44,8 +45,9 @@ class MyAccountSettingFragment : BaseFragment() {
         viewModel = ViewModelProvider(this).get(MyAccountSettingViewModel::class.java)
 
         navController = findNavController()
-
+        initView()
         binding.model = viewModel
+        myActivity.bottomNavigationGone()
 
         binding.MyAccountBack.setOnClickListener { navController.popBackStack() }
 
@@ -85,25 +87,17 @@ class MyAccountSettingFragment : BaseFragment() {
         binding.MyAccountSignOut.setOnClickListener { navController.navigate(R.id.action_myAccountSettingFragment_to_dropOutQuestionFragment) }
     }
 
+    fun initView(){
+        viewModel.phoneNumber.value = User.getInstance().phoneNumber
+
+    }
     override fun onBackPressed() {
         navController.popBackStack()
     }
 
 
     fun goToChangePhoneNumber(){
-
-        context?.let {
-            AptCertificationImageAlertDialog(it)
-                .setMessage("전화번호 변경 시 채팅 내용이 다 지워집니다!" +
-                        "변경하시겠습니까? ")
-                .setPositiveButton("예"){
-                    navController.navigate(R.id.action_myAccountSettingFragment_to_changeMyPhoneNumberFragment)
-                }
-                .setNegativeButton {
-
-                }
-                .show()
-        }
+        navController.navigate(R.id.action_myAccountSettingFragment_to_changeMyPhoneNumberFragment)
     }
 
 

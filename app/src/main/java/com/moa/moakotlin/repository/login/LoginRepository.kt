@@ -23,6 +23,7 @@ class LoginRepository(var activity: FragmentActivity){
      var storedVerificationId : String ? =null
     var TAG = "firebase sendMessage"
     fun sendMessage(phoneNumber : String){
+        auth.setLanguageCode("kr")
         val options = PhoneAuthOptions.newBuilder(auth)
             .setPhoneNumber(phoneNumber)       // Phone number to verify
             .setTimeout(120L, TimeUnit.SECONDS) // Timeout and unit
@@ -30,6 +31,7 @@ class LoginRepository(var activity: FragmentActivity){
             .setCallbacks(callbacks)          // OnVerificationStateChangedCallbacks
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
+
     }
     var callbacks =
         object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -100,8 +102,7 @@ class LoginRepository(var activity: FragmentActivity){
         FirebaseAuth.getInstance().signOut()
     }
 
-
-    }
+}
 private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
     auth.signInWithCredential(credential)
             .addOnCompleteListener() { task ->
@@ -110,6 +111,7 @@ private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
 
 
                     val user = task.result?.user
+
                 } else {
                     // Sign in failed, display a message and update the UI
 

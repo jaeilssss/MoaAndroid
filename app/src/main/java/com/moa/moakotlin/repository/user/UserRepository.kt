@@ -142,7 +142,8 @@ class UserRepository {
     suspend fun modify(user : User) : Boolean{
         var db = FirebaseFirestore.getInstance()
         var check = false
-        db.collection("User").document(User.getInstance().uid)
+        db.collection("User")
+                .document(User.getInstance().uid)
                 .set(user)
                 .addOnSuccessListener {
                     check = true
@@ -232,6 +233,19 @@ class UserRepository {
                 .add(dropOut)
                 .addOnSuccessListener {
                     result = true
+                }.await()
+
+        return result
+    }
+
+    suspend fun checkAlreadyPhone(phoneNumber : String) : Boolean{
+        var db = FirebaseFirestore.getInstance()
+        var result = false
+        db.collection("User")
+                .whereEqualTo("phoneNumber",phoneNumber)
+                .get()
+                .addOnSuccessListener {
+                    result = it.isEmpty
                 }.await()
 
         return result

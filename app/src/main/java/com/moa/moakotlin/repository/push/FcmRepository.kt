@@ -45,10 +45,9 @@ class FcmRepository {
         )
         var functions = Firebase.functions("asia-northeast3")
         functions.getHttpsCallable("sendCloudMessageToNeighbor").call(data).addOnFailureListener {
-            println("실패")
-            println(it.message)
+
         }.addOnSuccessListener {
-            println("...")
+
         }
     }
 

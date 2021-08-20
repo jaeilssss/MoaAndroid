@@ -46,6 +46,7 @@
             android:textColor="@color/moaBlack"
             android:textSize="19dp"
             android:textStyle="bold"
+            android:includeFontPadding="false"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:id="@+id/firstViewBottomMessage"
             />

@@ -56,13 +56,7 @@ class ClaimNewAptFragment : BaseFragment() {
                         .setPositiveButton("예"){
                             CoroutineScope(Dispatchers.Main).launch {
                                 if(viewModel.ClaimNewApt()){
-                                    context?.let { it1 ->
-                                        SinglePositiveButtonDialog(it1)
-                                            .setMessage(getString(R.string.ClaimNewAptDialog))
-                                            .setPositiveButton("예"){
-                                                navController.navigate(R.id.firstViewFragment)
-                                            }.show()
-                                    }
+                                    navController.navigate(R.id.firstViewFragment)
                                 }else{
 
                                 }
@@ -81,9 +75,7 @@ class ClaimNewAptFragment : BaseFragment() {
         viewModel.contact.observe(viewLifecycleOwner, Observer {
             setChangeButton()
         })
-
     }
-
     override fun onBackPressed() {
         navController.popBackStack()
     }
