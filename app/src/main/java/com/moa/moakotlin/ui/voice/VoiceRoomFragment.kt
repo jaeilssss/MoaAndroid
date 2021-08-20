@@ -89,19 +89,19 @@ class VoiceRoomFragment : BaseFragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-
+        myActivity.isResume.value = false
         binding = DataBindingUtil.inflate(inflater, R.layout.voice_room_fragment, container, false)
         viewModel = ViewModelProvider(this).get(VoiceRoomViewModel::class.java)
         binding.model = viewModel
 
         var token = arguments?.get("token") as String
+
+
          voiceChatRoom  = arguments?.getParcelable<VoiceChatRoom>("voiceChatRoom")!!
-        if(initCount==0){
+        if(viewModel.mlistener ==null ){
             setVoiceRoomListener()
         }
         setView(voiceChatRoom)
-
-
 
         createIRtcEnginHandler()
         initRtcEngine()
@@ -122,7 +122,9 @@ class VoiceRoomFragment : BaseFragment() {
         binding.VoiceRoomSpeakerRcv.adapter = speakerAdapter
 
         binding.back.setOnClickListener {
-            voiceChatRoomExit()
+////            voiceChatRoomExit()
+//            navController.popBackStack()
+            checkOwnerExit()
         }
 
         binding.VoiceRoomMicBtn.setOnClickListener {
@@ -167,7 +169,14 @@ class VoiceRoomFragment : BaseFragment() {
                     SinglePositiveButtonDialog(it)
                             .setMessage("해당 방송이 종료되었습니다!")
                             .setPositiveButton("나가기") {
-                                voiceChatRoomExit()
+                                if(countDownTimer!=null){
+                                    (countDownTimer as CountDownTimer).cancel()
+                                    ( countDownTimer as CountDownTimer)
+                                    navController.popBackStack()
+                                }
+//                                navController.popBackStack()
+//                                voiceChatRoomExit()
+
                             }
                             .show()
                 }
@@ -177,7 +186,9 @@ class VoiceRoomFragment : BaseFragment() {
         viewModel.myVoiceUser.observe(viewLifecycleOwner, Observer {
             setStartService()
             if (it.role.equals("owner")) {
-                viewModel.setRequestSpeakerSnapShotListener(voiceChatRoom.documentID)
+                if(viewModel.requestSpeakerListener==null){
+                    viewModel.setRequestSpeakerSnapShotListener(voiceChatRoom.documentID)
+                }
                 binding.VoiceRoomMicBtn.isClickable = true
                 myMicOn()
             } else if (it.role.equals("audience")) {
@@ -232,7 +243,17 @@ class VoiceRoomFragment : BaseFragment() {
         setAdapterClickListener(speakerAdapter)
         setAdapterClickListener(audienceAdapter)
         viewModel.checkVoiceRoom()
-        currentServiceList()
+
+//        myActivity.isResume.observe(viewLifecycleOwner, Observer {
+//            if(it){
+//                if(initCount!=1){
+//                    setVoiceRoomListener()
+//                    myActivity.isResume.value = false
+//                    initCount=2
+//                }
+//
+//            }
+//        })
         return binding.root
     }
 
@@ -243,7 +264,6 @@ class VoiceRoomFragment : BaseFragment() {
 
     fun currentServiceList(){
         var am : ActivityManager = activity?.applicationContext?.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-
 
         var rs : List<ActivityManager.RunningServiceInfo> = am.getRunningServices(1000)
 
@@ -310,9 +330,8 @@ class VoiceRoomFragment : BaseFragment() {
     private fun createCountDownTimer(initialMililis: Long) =
             object : CountDownTimer(initialMililis, 20 * 100L){
                 override fun onFinish() {
-                    countDownTimer = null
-
-                    voiceChatRoomExit()
+                    countDownTimer=null
+                    navController.popBackStack()
                 }
 
                 override fun onTick(remainTime: Long) {
@@ -347,11 +366,13 @@ class VoiceRoomFragment : BaseFragment() {
                 AptCertificationImageAlertDialog(it)
                         .setMessage("해당 방송을 종료하시겠습니까?")
                         .setPositiveButton("예"){
-                            voiceChatRoomExit()
+//                            voiceChatRoomExit()
+                            navController.popBackStack()
                         }.setNegativeButton {  }.show()
             }
         }else{
-            voiceChatRoomExit()
+//            voiceChatRoomExit()
+            navController.popBackStack()
         }
     }
     private fun voiceChatRoomExit(){
@@ -363,11 +384,11 @@ class VoiceRoomFragment : BaseFragment() {
                 rtcEngine.leaveChannel()
                 viewModel.deleteSnapShot()
                 if(voiceChatRoom.owner.equals(User.getInstance().uid)){
-                    println("voiceChatRoomExit -> owner ")
+
                     viewModel.deleteVoiceChatRoom(voiceChatRoom.documentID)
                 }
                 if(viewModel.myVoiceUser.value?.role.equals("speaker")){
-                    println("여기 호출됨!!")
+
                     viewModel.changeSpeakersCount(voiceChatRoom.documentID, -1)
                 }
                 if(isRequest==true){
@@ -480,51 +501,40 @@ class VoiceRoomFragment : BaseFragment() {
             }
         }
     }
+
+
     override fun onStop() {
-//        println("오호...")
-        viewModel.deleteSnapShot()
-        viewModel.clearViewModel()
+
+//        viewModel.deleteSnapShot()
+//        viewModel.clearViewModel()
         super.onStop()
     }
 
     override fun onDestroy() {
-//
-//        if(isClose==false){
-//
-//            if(viewModel.myVoiceUser.value?.role.equals("owner")) {
-//                viewModel.deleteVoiceChatRoom(voiceChatRoom.documentID)
-//            }else if(viewModel.myVoiceUser.value?.role.equals("speaker")){
-//                viewModel.changeSpeakersCount(voiceChatRoom.documentID,-1)
-//                viewModel.changeAudienceCount(voiceChatRoom.documentID)
-//            }else {
-//                viewModel.deleteRequestUser(voiceChatRoom.documentID,User.getInstance().uid)
-//                viewModel.changeAudienceCount(voiceChatRoom.documentID)
-//            }
-//        }
-//        viewModel.deleteVoiceUser(voiceChatRoom.documentID,User.getInstance().uid)
-//        rtcEngine.leaveChannel()
 
 
+        viewModel.deleteSnapShot()
         CoroutineScope(Dispatchers.Main).launch {
 
-            // 방 나갈때 방을 나가시겠습니까? 라고 물어봐야하지않을까??
-            viewModel.deleteVoiceUser(voiceChatRoom?.documentID!!, User.getInstance().uid)
-            viewModel.changeAudienceCount(voiceChatRoom?.documentID)
-            rtcEngine.leaveChannel()
-            viewModel.deleteSnapShot()
-            if(voiceChatRoom.owner.equals(User.getInstance().uid)){
-                println("voiceChatRoomExit -> owner ")
-                viewModel.deleteVoiceChatRoom(voiceChatRoom.documentID)
-            }
-            if(viewModel.myVoiceUser.value?.role.equals("speaker")){
-                println("여기 호출됨!!")
-                viewModel.changeSpeakersCount(voiceChatRoom.documentID, -1)
-            }
-            if(isRequest==true){
-                viewModel.deleteRequestUser(voiceChatRoom.documentID, User.getInstance().uid)
-            }
-            isClose = true
-            navController.popBackStack(R.id.voiceMainFragment, false)
+//            // 방 나갈때 방을 나가시겠습니까? 라고 물어봐야하지않을까??
+//            viewModel.deleteVoiceUser(voiceChatRoom?.documentID!!, User.getInstance().uid)
+//            viewModel.changeAudienceCount(voiceChatRoom?.documentID)
+//            rtcEngine.leaveChannel()
+//            viewModel.deleteSnapShot()
+//            if(voiceChatRoom.owner.equals(User.getInstance().uid)){
+//                println("voiceChatRoomExit -> owner ")
+//                viewModel.deleteVoiceChatRoom(voiceChatRoom.documentID)
+//            }
+//            if(viewModel.myVoiceUser.value?.role.equals("speaker")){
+//                println("여기 호출됨!!")
+//                viewModel.changeSpeakersCount(voiceChatRoom.documentID, -1)
+//            }
+//            if(isRequest==true){
+//                viewModel.deleteRequestUser(voiceChatRoom.documentID, User.getInstance().uid)
+//            }
+//            isClose = true
+//            navController.popBackStack(R.id.voiceMainFragment, false)
+            voiceChatRoomExit()
 
 
         }
@@ -537,7 +547,8 @@ class VoiceRoomFragment : BaseFragment() {
 
     override fun onBackPressed() {
         if(System.currentTimeMillis() - lastTimeBackPressed < 1500){
-            voiceChatRoomExit()
+//            voiceChatRoomExit()
+    navController.popBackStack()
             return
         }
         lastTimeBackPressed = System.currentTimeMillis();
@@ -550,7 +561,6 @@ class VoiceRoomFragment : BaseFragment() {
     }
 
     override fun onDestroyView() {
-
         super.onDestroyView()
     }
 
