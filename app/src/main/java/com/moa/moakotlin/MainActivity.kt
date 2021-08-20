@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import androidx.core.view.get
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -36,11 +37,15 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
     lateinit var navGraph : NavGraph
     lateinit var backListener : onBackPressedListener
     lateinit var model : MainViewModel
+    var isResume = MutableLiveData<Boolean>(false)
 
     var i =0
     companion object {
         val REQUEST_WRITE_CODE = 1000
      }
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -197,7 +202,11 @@ getSharedPreferences("AlarmSetting", Context.MODE_PRIVATE)!!
     }
 
 
-
+    override fun onResume() {
+        println("리섬")
+        isResume.value = true
+        super.onResume()
+    }
     override fun onDestroy() {
 
         super.onDestroy()

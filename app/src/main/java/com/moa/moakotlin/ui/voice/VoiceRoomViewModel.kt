@@ -25,7 +25,7 @@ class VoiceRoomViewModel : ViewModel() {
 
      var speakers = MutableLiveData<ArrayList<String>>()
     var talking = ArrayList<String>()
-    lateinit var mlistener: ListenerRegistration
+     var mlistener: ListenerRegistration ? =null
      var requestSpeakerListener : ListenerRegistration ? =null
 
      var audiences = MutableLiveData<ArrayList<String>>()
@@ -108,6 +108,7 @@ class VoiceRoomViewModel : ViewModel() {
     }
 
     fun setSnapShotListener(channelID: String) {
+        println("set 스냅샷")
         var db = VoiceRepository()
         var snapShot = db.setSnapShot(channelID)
         var owner = false
@@ -154,7 +155,6 @@ class VoiceRoomViewModel : ViewModel() {
                                 audienceListMap.remove(voiceUser.phoneNumber)
                                 speakerList.add("${voiceUser.phoneNumber}")
                                 speakerListMap.put(voiceUser.phoneNumber,voiceUser)
-
 
                             }else if(voiceUser.role.equals("audience")){
                                 if(voiceUser.phoneNumber ==myVoiceUser.value?.phoneNumber){
@@ -216,7 +216,7 @@ class VoiceRoomViewModel : ViewModel() {
     }
 
     fun deleteSnapShot(){
-        mlistener.remove()
+        mlistener?.remove()
         requestSpeakerListener?.remove()
 
     }
