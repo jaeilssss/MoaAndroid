@@ -33,12 +33,19 @@ val db = FirebaseFirestore.getInstance()
     }
 
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        if (intent == null) return Service.START_STICKY
+        else setData(intent)
         return super.onStartCommand(intent, flags, startId);
     }
 
+    fun setData(intent: Intent?){
+        documentID = intent?.getStringExtra("documentID").toString()
+        voiceUser  = intent?.getParcelableExtra<VoiceUser>("voiceUser")!!
 
+
+    }
 
     override fun onTaskRemoved(rootIntent: Intent?) {
 
