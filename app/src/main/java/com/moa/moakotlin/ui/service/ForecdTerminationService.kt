@@ -34,17 +34,11 @@ val db = FirebaseFirestore.getInstance()
 
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        if (intent == null) return Service.START_STICKY
-        else setData(intent)
+
         return super.onStartCommand(intent, flags, startId);
     }
 
-    fun setData(intent: Intent?){
-    documentID = intent?.getStringExtra("documentID").toString()
-    voiceUser  = intent?.getParcelableExtra<VoiceUser>("voiceUser")!!
 
-
-    }
 
     override fun onTaskRemoved(rootIntent: Intent?) {
 
@@ -55,99 +49,6 @@ val db = FirebaseFirestore.getInstance()
 //        super.onTaskRemoved(rootIntent)
         stopSelf()
 
-    }
-
-    suspend fun controller(){
-    println("...ㅇㅇㅈㄷㅈ")
-
-
-    if(voiceUser?.role.equals("speaker")){
-        println("11")
-        decrementPeopleCount()
-        decrementSpeakerCount()
-        deleteVoiceUser()
-        println("speaker")
-        stopSelf()
-
-
-    }else if(voiceUser?.role.equals("audience")){
-        println("22")
-        decrementPeopleCount()
-        deleteRequestUser()
-        deleteVoiceUser()
-        println("audience")
-        stopSelf()
-
-
-    }else{
-        println("33")
-        CoroutineScope(Dispatchers.Main).launch {
-            deleteVoiceUser()
-            deleteVoiceChatRoom()
-            println("owner")
-            stopSelf()
-
-        }
-
-
-    }
-}
-
-    fun decrementPeopleCount(){
-        CoroutineScope(Dispatchers.Main).launch {
-
-            db.collection("VoiceChatRoom")
-                    .document(documentID)
-                    .update("peopleCount", FieldValue.increment(-1))
-        }
-
-    }
-     fun decrementSpeakerCount(){
-        CoroutineScope(Dispatchers.Main).launch {
-
-            db.collection("VoiceChatRoom")
-                    .document(documentID)
-                    .update("speakersCount", FieldValue.increment(-1))
-        }
-
-    }
-     fun deleteRequestUser(){
-         CoroutineScope(Dispatchers.Main).launch {
-
-             db.collection("VoiceChatRoom")
-                     .document(documentID)
-                     .collection("RequestUser")
-                     .document(voiceUser.uid)
-                     .delete()
-         }
-
-    }
-    fun deleteVoiceUser(){
-        CoroutineScope(Dispatchers.Main).launch {
-
-            db.collection("VoiceChatRoom")
-                    .document(documentID)
-                    .collection("VoiceUser")
-                    .document(voiceUser.uid)
-                    .delete()
-        }
-
-
-    }
-
-
-    // 코루틴으로 해보자 ..  !!
-
-
-    fun deleteVoiceChatRoom(){
-        CoroutineScope(Dispatchers.Main).launch {
-            var test = ""
-            println("dd...")
-            db.collection("VoiceChatRoom")
-                    .document(documentID)
-                    .delete()
-
-        }
     }
 
 

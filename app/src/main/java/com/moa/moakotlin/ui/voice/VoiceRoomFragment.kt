@@ -99,6 +99,7 @@ class VoiceRoomFragment : BaseFragment() {
         }
         setView(voiceChatRoom)
 
+        setStartService()
         createIRtcEnginHandler()
         initRtcEngine()
         rtcEngine.setChannelProfile(Constants.CHANNEL_PROFILE_LIVE_BROADCASTING)
@@ -125,12 +126,13 @@ class VoiceRoomFragment : BaseFragment() {
             if(!muteState){
                 rtcEngine.muteLocalAudioStream(true)
                 muteState = true
+                myMicOff()
                 binding.VoiceRoomMicBtn.background = resources.getDrawable(R.drawable.shape_un_selected_hand)
                 binding.VoiceRoomMicBtn.setImageResource(R.drawable.ic_mic_off)
             }else{
-
                 rtcEngine.muteLocalAudioStream(false)
                 muteState = false
+                myMicOn()
                 binding.VoiceRoomMicBtn.background = resources.getDrawable(R.drawable.shape_selected_hand)
                 binding.VoiceRoomMicBtn.setImageResource(R.drawable.ic_mic_on)
             }
@@ -170,31 +172,43 @@ class VoiceRoomFragment : BaseFragment() {
         })
 
         viewModel.myVoiceUser.observe(viewLifecycleOwner, Observer {
-            setStartService()
+
             if (it.role.equals("owner")) {
                 viewModel.setRequestSpeakerSnapShotListener(voiceChatRoom.documentID)
                 binding.VoiceRoomMicBtn.isClickable = true
+                myMicOn()
             } else if (it.role.equals("audience")) {
                 rtcEngine.muteLocalAudioStream(true)
                 binding.VoiceRoomMicBtn.background = resources.getDrawable(R.drawable.shape_un_selected_hand)
                 binding.VoiceRoomMicBtn.isClickable = false
                 binding.VoiceRoomMicBtn.setImageResource(R.drawable.ic_mic_off)
+                myMicOff()
                 if(initCount!=0){
                     context?.let { it1 -> SinglePositiveButtonDialog(it1)
                             .setMessage("청중으로 역할이 변경되었습니다!")
                             .setPositiveButton("확인"){
 
                             }.show()
+
+
                     }
                 }else{
                     initCount++
                 }
             } else {
+                CoroutineScope(Dispatchers.Main).launch {
+                    viewModel.talking.add(User.getInstance().phoneNumber)
+                    speakerAdapter.talking.add(User.getInstance().phoneNumber)
+                    var index = speakerAdapter.list.indexOf(User.getInstance().phoneNumber)
+                    speakerAdapter.notifyItemChanged(index)
+//                            speakerAdapter.notifyDataSetChanged()
+                }
                 rtcEngine.muteLocalAudioStream(false)
                 binding.VoiceRoomMicBtn.background = resources.getDrawable(R.drawable.shape_selected_hand)
                 binding.VoiceRoomMicBtn.isClickable = true
                 binding.VoiceRoomMicBtn.setImageResource(R.drawable.ic_mic_on)
                 if(initCount!=0){
+
                     context?.let { it1 -> SinglePositiveButtonDialog(it1)
                             .setMessage("스피커로 역할이 변경되었습니다!")
                             .setPositiveButton("확인"){
@@ -231,6 +245,23 @@ class VoiceRoomFragment : BaseFragment() {
 
     }
 
+    fun myMicOn(){
+        CoroutineScope(Dispatchers.Main).launch {
+            viewModel.talking.add(User.getInstance().phoneNumber)
+            speakerAdapter.talking.add(User.getInstance().phoneNumber)
+            var index = speakerAdapter.list.indexOf(User.getInstance().phoneNumber)
+            speakerAdapter.notifyItemChanged(index)
+//                            speakerAdapter.notifyDataSetChanged()
+        }
+    }
+    fun myMicOff(){
+        CoroutineScope(Dispatchers.Main).launch {
+            viewModel.talking.remove(User.getInstance().phoneNumber)
+            speakerAdapter.talking.remove(User.getInstance().phoneNumber)
+            var index = speakerAdapter.list.indexOf(User.getInstance().phoneNumber)
+            speakerAdapter.notifyItemChanged(index)
+        }
+    }
     fun setAdapterClickListener(adapter: NewVoiceRoomAdapter){
        adapter.setOnItemClickListener(object : OnItemClickListener{
            override fun onItemClick(v: View, position: Int) {
@@ -261,8 +292,6 @@ class VoiceRoomFragment : BaseFragment() {
     }
     private fun setStartService(){
         var intent = Intent(activity?.baseContext,ForecdTerminationService::class.java)
-        intent.putExtra("documentID",voiceChatRoom.documentID)
-        intent.putExtra("voiceUser",viewModel.myVoiceUser.value!!)
         activity?.startService(intent)
     }
 
