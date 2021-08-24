@@ -105,6 +105,7 @@ lateinit var transfer: Transfer
         binding.homeClaimBtn.setOnClickListener { homeClaimAlertDialog() }
         binding.homeGroupBuyingBtn.setOnClickListener{goToGroupBuyingBtn()}
 
+
         getMoaMagazine()
         getHomeBanner()
 

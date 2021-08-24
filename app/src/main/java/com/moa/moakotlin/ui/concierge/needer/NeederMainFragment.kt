@@ -189,6 +189,7 @@ class NeederMainFragment : BaseFragment() {
                     var bundle = Bundle()
                     bundle.putParcelable("needer",adapter.currentList[position])
                     bundle.putParcelable("writer",writer)
+
                     navController.navigate(R.id.action_neederMainFragment_to_neederReadFragment,bundle)
                 }
             }

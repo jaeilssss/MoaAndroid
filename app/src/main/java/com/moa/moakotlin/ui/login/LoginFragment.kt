@@ -176,7 +176,7 @@ class LoginFragment : BaseScrollFragment() {
 
         val minute = "%02d".format(remainSeconds/60)
         val second = "%02d".format(remainSeconds%60)
-        binding.sendMessageBtn.text = "안증문자 다시 받기 ${minute}분 ${second}초"
+        binding.sendMessageBtn.text = "인증문자 다시 받기 ${minute}분 ${second}초"
     }
 
     private fun setChangeButton(){
