@@ -76,15 +76,11 @@ class FcmService() : FirebaseMessagingService() {
 
             }else  if(data?.getBoolean("isEventAlarm",false) == true && remotemessage.data.get("uid").equals(User.getInstance().uid).not()){
                  if(MyApp.isForeground){
-                     if(remotemessage!!.data?.get("title").equals("모아 라디오")){
-                         if(CurrentVoice.getInstance().boolean.not()){
-                             remotemessage.data.get("title")?.let { sendNotificationForGround(remotemessage.data.get("body")!!, it) }
-                         }
-                     }else{
-                         remotemessage.data.get("title")?.let { sendNotificationForGround(remotemessage.data.get("body")!!, it) }
-                     }
+
+                     remotemessage.data.get("title")?.let { sendNotificationForGround(remotemessage.data.get("body")!!, it) }
+
                  }else{
-                     remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
+                     remotemessage.data.get("title")?.let { sendNotificationForGround(remotemessage.data.get("body")!!, it) }
                  }
             } else if(data?.getBoolean("isMarketingAlarm",false) ==true && remotemessage.data.get("title").equals("이벤트")){
                  if(MyApp.isForeground){
@@ -139,7 +135,12 @@ class FcmService() : FirebaseMessagingService() {
         } else if(title.equals("재능공유")){
 
         }else{
-            intent.putExtra("request","채팅")
+            val data = getSharedPreferences("AlarmSetting",Context.MODE_PRIVATE)
+            if(data?.getBoolean("isChattingAlarm",false)==true){
+                intent.putExtra("request","채팅")
+            }else{
+                return
+            }
         }
         val pendingIntent : PendingIntent = PendingIntent.getActivity(applicationContext,0, intent ,PendingIntent.FLAG_ONE_SHOT)
 
@@ -174,6 +175,8 @@ class FcmService() : FirebaseMessagingService() {
             User.getInstance().certificationStatus = "심사중"
         }else if(title.equals(CurrentChat.getInstance().nickName)){
             return
+        }else if(title.equals("모아 라디오") && CurrentVoice.getInstance().boolean.not()){
+            return
         }
 
         val builder = NotificationCompat.Builder(this, channelId)
@@ -191,7 +194,13 @@ class FcmService() : FirebaseMessagingService() {
         if(title.equals("리뷰") || title.equals("아파트 인증")){
             intent.putExtra("request","알림")
         }else {
-            intent.putExtra("request","채팅")
+            val data = getSharedPreferences("AlarmSetting",Context.MODE_PRIVATE)
+            if(data?.getBoolean("isChattingAlarm",false)==true){
+                intent.putExtra("request","채팅")
+            }else{
+                return
+            }
+
         }
 
         val pendingIntent : PendingIntent = PendingIntent.getActivity(baseContext,0, intent ,PendingIntent.FLAG_UPDATE_CURRENT)
