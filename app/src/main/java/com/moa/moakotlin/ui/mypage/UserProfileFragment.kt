@@ -59,7 +59,6 @@ class UserProfileFragment : BaseFragment() {
             if(it.getParcelable<User>("user")==null){
                 user = User.getInstance()
             }else{
-                println("유저 널.. 이야 ")
                 user = it.getParcelable<User>("user")!!
             }
 
@@ -110,5 +109,11 @@ class UserProfileFragment : BaseFragment() {
         }
         viewModel.aptName.value = user.aptName
         viewModel.nickName.value = user.nickName
+
+        if(user.certificationStatus.equals("인증")){
+            binding.myProfileCertificationImg.isVisible = true
+        }else{
+            binding.myProfileCertificationImg.isVisible = false
+        }
     }
 }

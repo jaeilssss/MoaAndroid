@@ -57,9 +57,6 @@ class AptCertificationImageAlertDialog (private val context : Context) {
         }
         return this
     }
-//    fun create() {
-//        dialog = builder.create()
-//    }
     fun show() {
         dialog = builder.create()
         dialog?.show()

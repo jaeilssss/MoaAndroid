@@ -45,14 +45,13 @@ class NewVoiceRoomAdapter() : RecyclerView.Adapter<NewVoiceRoomAdapter.NewRoomVo
             binding.ItemVoiceUserNickName.text = voiceUser?.nickName
 
             if (talking.contains("${voiceUser?.phoneNumber}").not()) {
-                println("포함안됨!!viewHoler")
                 binding.ItemVoiceUserBorder.setBackgroundResource(R.drawable.shape_oval_white)
             } else {
-                println("포함됨! 여기는 viewHolder")
                 binding.ItemVoiceUserBorder.setBackgroundResource(R.drawable.shape_oval_white_border_main_color)
             }
 
             if (voiceUser?.profileImage?.isNotEmpty() == true) {
+                println("여기 이미지 널아님 ")
                 Glide.with(binding.root).load(voiceUser?.profileImage).into(binding.ItemVoiceUserImage)
             }
             if (voiceUser?.role.equals("owner").not()) {

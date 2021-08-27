@@ -273,11 +273,14 @@
                     android:fontFamily="@font/notosanscjkkr_medium"
                     android:text="@string/NeederWriteGuide"
                     app:layout_constraintTop_toBottomOf="@id/NeederModifyGuideTextView"
-                    android:layout_marginTop="10dp"
+                    app:layout_constraintBottom_toTopOf="@id/NeederModifyGoToGuide"
+                    app:layout_constraintVertical_chainStyle="packed"
                     android:textSize="16dp"
                     android:textColor="@color/moaBlack"
                     android:gravity="center"
-                    android:lineSpacingExtra="9dp" />
+                    android:lineSpacingExtra="9dp"
+                    android:id="@+id/NeederModifyGuideDetail"
+                    />
 
                 <TextView
                     android:layout_width="0dp"
@@ -287,6 +290,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/NeederModifyGuideDetail"
                     android:layout_margin="10dp"
                     android:fontFamily="@font/notosanscjkkr_medium"
                     android:textColor="@color/moaBlack"

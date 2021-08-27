@@ -71,12 +71,23 @@
         app:layout_constraintBottom_toTopOf="@id/UserProfileUserAptInfo"
         android:text="@={model.nickName}"
         android:includeFontPadding="false"
-        android:textSize="16dp"
+        android:textSize="14dp"
+        tools:text="아아아아아아아아아아아아아"
+        android:maxLength="15"
+        android:ellipsize="end"
         android:textColor="@color/moaBlack"
         android:fontFamily="@font/notosanscjkkr_bold"
         android:layout_marginStart="15dp"
         app:layout_constraintVertical_chainStyle="packed"
         android:id="@+id/UserProfileNickName"/>
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            app:layout_constraintStart_toEndOf="@id/UserProfileNickName"
+            app:layout_constraintTop_toTopOf="@id/UserProfileNickName"
+            app:layout_constraintBottom_toBottomOf="@id/UserProfileNickName"
+            android:src="@drawable/ic_certification_user"
+            android:id="@+id/myProfileCertificationImg"/>
 
     <TextView
         android:layout_width="wrap_content"

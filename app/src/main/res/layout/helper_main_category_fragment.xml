@@ -39,8 +39,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/HelperMainKidText"
+
             app:layout_constraintDimensionRatio="H,1:1"
-            android:layout_margin="15dp"
             android:src="@drawable/ic_category_kid"
             android:id="@+id/HelperMainCategoryKid"/>
         <TextView
@@ -48,9 +49,12 @@
             android:layout_height="wrap_content"
             android:text="육아"
             android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
             app:layout_constraintStart_toStartOf="@id/HelperMainCategoryKid"
             app:layout_constraintEnd_toEndOf="@id/HelperMainCategoryKid"
+            app:layout_constraintTop_toBottomOf="@id/HelperMainCategoryKid"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/HelperMainKidText"
             android:textColor="#000000"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -80,8 +84,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/HelperMainCategoryEduText"
         app:layout_constraintDimensionRatio="H,1:1"
-        android:layout_margin="15dp"
+
         android:src="@drawable/ic_category_edu"
         android:id="@+id/HelperMainCategoryEdu"/>
     <TextView
@@ -90,8 +95,10 @@
         android:text="교육"
         android:textSize="15dp"
         android:fontFamily="@font/notosanscjkkr_medium"
+        android:id="@+id/HelperMainCategoryEduText"
         app:layout_constraintStart_toStartOf="@id/HelperMainCategoryEdu"
         app:layout_constraintEnd_toEndOf="@id/HelperMainCategoryEdu"
+        app:layout_constraintTop_toBottomOf="@id/HelperMainCategoryEdu"
         app:layout_constraintBottom_toBottomOf="parent"
         android:textColor="#000000"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -123,14 +130,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/HelperMainCategoryPetText"
         app:layout_constraintDimensionRatio="H,1:1"
-        android:layout_margin="15dp"
+        android:id="@+id/HelperMainCategoryPetImg"
         android:src="@drawable/ic_category_pet"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="반려동물케어"
         android:textSize="15dp"
+        android:id="@+id/HelperMainCategoryPetText"
+        app:layout_constraintTop_toBottomOf="@id/HelperMainCategoryPetImg"
         android:fontFamily="@font/notosanscjkkr_medium"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -162,12 +172,12 @@
 <ImageView
     android:layout_width="0dp"
     android:layout_height="0dp"
-    android:layout_margin="30dp"
     app:layout_constraintDimensionRatio="H,1:1"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-
+    app:layout_constraintBottom_toTopOf="@id/HelperMainCategoryInteriorText"
+    android:id="@+id/HelperMainCategoryInteriorImg"
     android:src="@drawable/ic_category_interior"/>
         <TextView
             android:layout_width="wrap_content"
@@ -178,6 +188,8 @@
             android:fontFamily="@font/notosanscjkkr_medium"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/HelperMainCategoryInteriorImg"
+            android:id="@+id/HelperMainCategoryInteriorText"
             app:layout_constraintBottom_toBottomOf="parent"
             android:textColor="@color/moaBlack"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -210,7 +222,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/ic_category_etc"
-        android:layout_margin="15dp"/>
+        android:id="@+id/HelperMainCategoryEtcImg"
+        app:layout_constraintBottom_toTopOf="@id/HelperMainCategoryEtcText" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -219,7 +232,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="기타"
         android:textSize="15dp"
+        android:id="@+id/HelperMainCategoryEtcText"
         android:fontFamily="@font/notosanscjkkr_medium"
+        app:layout_constraintTop_toBottomOf="@id/HelperMainCategoryEtcImg"
         android:textColor="@color/moaBlack"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

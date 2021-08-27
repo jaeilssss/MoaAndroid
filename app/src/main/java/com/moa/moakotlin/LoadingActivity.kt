@@ -58,7 +58,11 @@ lateinit var model : LoadingViewModel
                         var intent = Intent(this,MainActivity::class.java)
                         intent.putExtra("request","알림")
                         startActivity(intent)
-                    }else{
+                    }else if(intent.getStringExtra("request").equals("모아 라디오")){
+                        var intent = Intent(this,MainActivity::class.java)
+                        intent.putExtra("request","모아 라디오")
+                        startActivity(intent)
+                    } else{
                         var intent = Intent(this,MainActivity::class.java)
                         startActivity(intent)
                     }

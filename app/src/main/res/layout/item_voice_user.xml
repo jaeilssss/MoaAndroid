@@ -2,9 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:background="@color/white"
-    android:layout_margin="20dp"
+
     android:layout_height="wrap_content">
 
     <ImageView
@@ -22,11 +23,15 @@
         app:layout_constraintStart_toStartOf="@id/ItemVoiceUserBorder"
         app:layout_constraintEnd_toEndOf="@id/ItemVoiceUserBorder"
         app:layout_constraintTop_toTopOf="@id/ItemVoiceUserBorder"
+        android:layout_margin="10dp"
+        tools:src="#bdbdbd"
         app:layout_constraintBottom_toBottomOf="@id/ItemVoiceUserBorder"
         android:id="@+id/ItemVoiceUserImage"/>
     <ImageView
         android:layout_width="20dp"
         android:layout_height="20dp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/ItemVoiceUserImage"
         app:layout_constraintEnd_toStartOf="@id/ItemVoiceUserNickName"
         app:layout_constraintTop_toBottomOf="@id/ItemVoiceUserBorder"
         android:background="@drawable/ic_room_maker"
@@ -36,10 +41,10 @@
         android:layout_height="wrap_content"
         android:maxWidth="80dp"
         android:textSize="14dp"
-        app:layout_constraintStart_toStartOf="@id/ItemVoiceUserBorder"
-        app:layout_constraintEnd_toEndOf="@id/ItemVoiceUserBorder"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/ItemVoiceUserRoomMakerImg"
+        app:layout_constraintEnd_toEndOf="@id/ItemVoiceUserImage"
         app:layout_constraintTop_toBottomOf="@id/ItemVoiceUserBorder"
-        android:text="뉴나리"
         android:maxLines="1"
         android:ellipsize="end"
         android:layout_marginStart="5dp"

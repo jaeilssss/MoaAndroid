@@ -36,9 +36,10 @@ class FcmService() : FirebaseMessagingService() {
                 PowerManager.SCREEN_DIM_WAKE_LOCK
                         or PowerManager.ACQUIRE_CAUSES_WAKEUP, "TAG"
             )
+
         wakeLock.acquire(3000)
         wakeLock.release()
-        println("리시브드")
+
         val data = getSharedPreferences("AlarmSetting",Context.MODE_PRIVATE)
         if(remotemessage.notification!=null){
             if(remotemessage!!.notification?.title.equals("아파트 인증")){
@@ -124,12 +125,17 @@ class FcmService() : FirebaseMessagingService() {
 
         if(title.equals("리뷰") || title.equals("아파트 인증")){
             intent.putExtra("request","알림")
-        } else {
+        }else if(title.equals("모아 라디오")){
+            intent.putExtra("request","모아 라디오")
+        } else if(title.equals("재능공유")){
+
+        }else{
             intent.putExtra("request","채팅")
         }
         val pendingIntent : PendingIntent = PendingIntent.getActivity(applicationContext,0, intent ,PendingIntent.FLAG_ONE_SHOT)
 
         builder.setContentText(content)
+
         builder.setDefaults(Notification.DEFAULT_ALL)
 
         builder.priority = NotificationCompat.PRIORITY_HIGH // 3
@@ -155,7 +161,7 @@ class FcmService() : FirebaseMessagingService() {
             User.getInstance().certificationStatus = "인증"
         }else if(content.contains("인증이 반려되었습니다") && title.equals("아파트 인증")){
             User.getInstance().certificationStatus = "반려"
-        }else{
+        }else if(content.contains("요청이 심사중입니다") && title.equals("아파트 인증")){
             User.getInstance().certificationStatus = "심사중"
         }
 

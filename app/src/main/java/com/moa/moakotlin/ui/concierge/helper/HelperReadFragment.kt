@@ -80,7 +80,6 @@ class HelperReadFragment : BaseFragment() {
 
             helper = it.getParcelable<Helper>("data")!!
             writer = it.getParcelable<User>("writer")!!
-            println("오호??")
             println(helper.aptName)
         }
         binding.back.setOnClickListener { navController.popBackStack() }

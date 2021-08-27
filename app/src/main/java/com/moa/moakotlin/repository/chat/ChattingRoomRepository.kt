@@ -16,7 +16,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
 class ChattingRoomRepository {
+
      var livedata = MutableLiveData<ArrayList<ChattingRoom>>()
+
     suspend fun getChattingRoomList(uid : String) :ArrayList<ChattingRoom> {
             var db = FirebaseFirestore.getInstance()
         var result = ArrayList<ChattingRoom>()

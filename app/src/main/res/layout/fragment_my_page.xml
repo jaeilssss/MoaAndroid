@@ -51,6 +51,8 @@
         app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintBottom_toTopOf="@id/MyPageUserAptInfoText"
         android:id="@+id/MyPageNickName"/>
+
+
     <TextView
         android:layout_width="0dp"
         android:layout_height="wrap_content"

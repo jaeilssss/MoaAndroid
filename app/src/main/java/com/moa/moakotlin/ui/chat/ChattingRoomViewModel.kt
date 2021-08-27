@@ -44,7 +44,7 @@ class ChattingRoomViewModel() : ViewModel(){
          if (snapshot != null) {
             println("snapshot.documents.size -> ${snapshot.documents.size}")
              for(dc in snapshot.documentChanges){
-                    println("몇번일까요?")
+
                     when(dc.type) {
                      DocumentChange.Type.ADDED -> {
 
@@ -57,7 +57,7 @@ class ChattingRoomViewModel() : ViewModel(){
 
                      }
                      DocumentChange.Type.MODIFIED -> {
-                         println("modify..")
+
                          var chattingRoom = dc.document.toObject(ChattingRoom::class.java)
                              var index = roomList?.indexOf(dc.document.id) ?: -1
 
@@ -65,7 +65,7 @@ class ChattingRoomViewModel() : ViewModel(){
                              list?.add(chattingRoom)
                              roomList.add(dc.document.id)
                          }else{
-                             println("index -> ${index}")
+
                              list?.removeAt(index)
                              list?.add(0,chattingRoom)
                              roomList.removeAt(index)
@@ -76,7 +76,6 @@ class ChattingRoomViewModel() : ViewModel(){
                      DocumentChange.Type.REMOVED -> {
 
                      }else ->{
-                         println("여기 채팅룸...")
                      }
                  }
              }

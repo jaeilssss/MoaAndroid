@@ -20,7 +20,6 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 >
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="70dp"
@@ -135,7 +134,10 @@
                     android:layout_marginStart="10dp"
                     android:includeFontPadding="false"
                     android:textSize="18dp"
+                    android:ellipsize="end"
                     android:textStyle="bold"
+                    android:singleLine="true"
+                    android:maxLines="1"
                     android:fontFamily="@font/notosanscjkkr_medium"
                     android:textColor="@color/moaBlack" />
 

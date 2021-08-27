@@ -74,7 +74,9 @@ class UserProfileModifyFragment : BaseFragment() {
                        bundle.putParcelable("user",User.getInstance())
                        User.getInstance().nickName = viewModel.nickname.value.toString()
                        User.getInstance().introduction = viewModel.introduction.value.toString()
-                       User.getInstance().profileImage = viewModel.image
+                       if(viewModel.image.isNotEmpty()){
+                           User.getInstance().profileImage = viewModel.image
+                       }
                        navController.popBackStack()
 
                    }else{

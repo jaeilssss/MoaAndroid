@@ -22,19 +22,23 @@ class UserProfileModifyViewModel : ViewModel() {
         var user = User()
         if(image.isNotEmpty()){
 
-            var path = repository.upload(image)
-             user = setUser(path)
+             image = repository.upload(image)
+             user = setUser(image)
           check = repository.modify(user)
 
         }else{
              user = setUser(User.getInstance().profileImage)
+
             check = repository.modify(user)
         }
 
         if(check){
-           User.getInstance().profileImage = user.profileImage
-            User.getInstance().nickName = user.nickName
-            User.getInstance().introduction = user.introduction
+            if(image.isNotEmpty()){
+                User.getInstance().profileImage = user.profileImage
+                User.getInstance().nickName = user.nickName
+                User.getInstance().introduction = user.introduction
+            }
+
         }
 
         return check
@@ -46,8 +50,8 @@ class UserProfileModifyViewModel : ViewModel() {
         tempUser.introduction = introduction.value!!
         tempUser.nickName = nickname.value!!
         tempUser.name = User.getInstance().name
-        tempUser.profileImage = path
-        tempUser.aptName = User.getInstance().aptName
+            tempUser.profileImage = path
+
         tempUser.aptCode = User.getInstance().aptCode
         tempUser.phoneNumber = User.getInstance().phoneNumber
         tempUser.address = User.getInstance().address

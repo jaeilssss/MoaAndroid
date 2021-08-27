@@ -80,8 +80,6 @@ class ChattingRoomAdapter(var context: Context,var list: ArrayList<ChattingRoom>
                 }
                 if(user!=null && user.profileImage!=null){
                     Glide.with(context).load(user.profileImage).into(holder.profile_Image)
-                }else if(user?.profileImage==null){
-                    holder.profile_Image.setImageResource(R.drawable.profile_human)
                 }
             }
         }

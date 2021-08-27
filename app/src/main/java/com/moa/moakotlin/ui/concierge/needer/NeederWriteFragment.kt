@@ -59,10 +59,12 @@ class NeederWriteFragment : Fragment() {
         model = ViewModelProvider(this).get(NeederWriteViewModel::class.java)
 
         binding.model = model
+
         binding.back.setOnClickListener { activity?.finish() }
         binding.NeederWriteCategoryLayout.setOnClickListener { selectCategory() }
         binding.NeederWriteHopeDateLayout.setOnClickListener { selectHopeDate() }
         binding.NeederWriteAlbum.setOnClickListener { checkPermission() }
+
         binding.NeederWriteSubmit.setOnClickListener {
             binding.NeederWriteLoading.show()
             activity?.getWindow()?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,

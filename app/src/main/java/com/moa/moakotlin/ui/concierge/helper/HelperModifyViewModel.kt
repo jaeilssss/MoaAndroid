@@ -30,7 +30,6 @@ class HelperModifyViewModel : ViewModel() {
         if(uploadedPosition==-1){
                 if(selectedPictureList.value?.size!=0){
                     repository.upload(uploadedPosition,helper.mainCategory, selectedPictureList.value!!,helper){
-                        println("invoke 부분")
                         newHelper.value = repository.modify(helper.mainCategory,helper)
                     }
                 }else{
@@ -39,8 +38,6 @@ class HelperModifyViewModel : ViewModel() {
 
         }else{
             if(selectedPictureList.value?.size!=0){
-                println("여기 ${helper.images?.get(0)}")
-                println("size 0>  ${selectedPictureList.value?.size}")
                 repository.upload(uploadedPosition,helper.mainCategory, selectedPictureList.value!!,helper){
                     newHelper.value = repository.modify(helper.mainCategory,helper)
                 }

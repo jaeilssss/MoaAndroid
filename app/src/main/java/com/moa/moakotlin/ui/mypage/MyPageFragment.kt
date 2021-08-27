@@ -101,6 +101,8 @@ class MyPageFragment : BaseFragment() {
 
         var strList = User.getInstance().address.split(" ")
         binding.MyPageUserAptInfoText.text = "${strList.get(strList.size-3)} ${strList.get(strList.size-2)} ${strList.get(strList.size-1)}"
+
+
     }
 
 

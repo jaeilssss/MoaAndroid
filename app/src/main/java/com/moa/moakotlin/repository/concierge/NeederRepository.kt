@@ -196,7 +196,7 @@ class NeederRepository {
         var list = ArrayList<Needer>()
 
         db.collectionGroup("NeederContent")
-                .whereArrayContainsAny("aroundApt", arrayListOf(User.getInstance().aptCode,"All"))
+                .whereArrayContainsAny("aroundApt", arrayListOf(User.getInstance().aptCode))
             .orderBy("timeStamp",Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener {

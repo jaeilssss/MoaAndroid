@@ -21,7 +21,7 @@
             android:id="@+id/VoiceRoomExitLayout"
             app:layout_constraintBottom_toBottomOf="parent">
             <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="210dp"
+                android:layout_width="150dp"
                 android:layout_height="55dp"
                 android:background="@drawable/shape_moa_black_radius_10"
                 android:text="방 나가기"
@@ -36,13 +36,14 @@
                 app:layout_constraintHorizontal_chainStyle="packed"/>
 
         <ImageButton
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             app:layout_constraintStart_toEndOf="@id/VoiceRoomExitBtn"
             app:layout_constraintTop_toTopOf="parent"
             android:background="@drawable/shape_selected_hand"
             android:src="@drawable/ic_hand"
             android:id="@+id/VoiceRoomHandBtn"
+
             app:layout_constraintEnd_toStartOf="@id/VoiceRoomMicBtn"
             android:clickable="true"/>
             <TextView
@@ -62,8 +63,8 @@
                 />
 
             <androidx.appcompat.widget.AppCompatImageButton
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
                 app:layout_constraintStart_toEndOf="@id/VoiceRoomHandBtn"
                 app:layout_constraintTop_toTopOf="parent"
                 android:src="@drawable/ic_mic_on"

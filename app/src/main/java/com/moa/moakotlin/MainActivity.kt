@@ -59,11 +59,23 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
             navGraph.startDestination = R.id.chattingRoomFragment
             navController.graph = navGraph
             binding.mainBottomNavigation.menu.get(1).isChecked = true
-        }else if(intent.getStringExtra("request").equals("알림")){
+        }else if(intent.getStringExtra("request").equals("알림")) {
             navGraph = navController.graph
             navGraph.startDestination = R.id.alarmFragment
             navController.graph = navGraph
             binding.mainBottomNavigation.menu.get(3).isChecked = true
+        }else if(intent.getStringExtra("request").equals("모아 라디오")) {
+            init()
+            navGraph = navController.graph
+            navGraph.startDestination = R.id.HomeFragment
+            navController.graph = navGraph
+            var data = getSharedPreferences("MyLatestNotification", Context.MODE_PRIVATE)
+            data.getString("documentID", "")?.let { model.setAlarmSnapShot(it)
+            }
+            model.setChattingRoomSnapShot()
+
+            navController.navigate(R.id.action_HomeFragment_to_voiceMainFragment)
+
         } else if(User.getInstance().uid.equals("")){
             navGraph = navController.graph
             navGraph.startDestination = R.id.firstViewFragment

@@ -50,7 +50,7 @@ class  AptModifyCertificationNoticeFragment : BaseFragment() {
     }
 
     override fun onBackPressed() {
-        navController.popBackStack()
+        navController.popBackStack(R.id.MyPageFragment,false)
     }
 
 }

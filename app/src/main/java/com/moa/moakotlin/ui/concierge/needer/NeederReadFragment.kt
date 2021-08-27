@@ -167,7 +167,7 @@ class NeederReadFragment : BaseFragment() {
     private fun setNeederData(){
         binding.NeederMainTitle.text = needer.title
         binding.NeederReadNickName.text = writer?.nickName
-        binding.NeederReadMainCategory.text = "${needer.mainCategory} / ${needer.subCategory}"
+        binding.NeederReadMainCategory.text = "${needer.mainCategory}"
         binding.NeederReadHopeDate.text = needer.hopeDate
         binding.NeederReadHireStatusText.text = needer.hireStatus
         if(needer.hireStatus.equals("모집완료")) binding.NeederReadGearImg.isVisible  = false

@@ -38,6 +38,7 @@ class MyApp : Application(), LifecycleObserver {
     fun onAppPaused() {  }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
-    fun onAppAny() {  } }
+    fun onAppAny() {  }
+}
 
 

@@ -152,6 +152,7 @@ class VoiceRoomFragment : BaseFragment() {
             audienceAdapter.map = viewModel.audienceListMap
 
             audienceAdapter.list = it
+
             audienceAdapter.notifyDataSetChanged()
 
         })
@@ -269,7 +270,6 @@ class VoiceRoomFragment : BaseFragment() {
 
         for(i in 0..rs.size-1){
             var rsi : ActivityManager.RunningServiceInfo = rs.get(i)
-            println("현재서비스 리스트 - -- ------")
             println(rsi.service.packageName)
             println(rsi.service.className)
 
@@ -388,7 +388,6 @@ class VoiceRoomFragment : BaseFragment() {
                     viewModel.deleteVoiceChatRoom(voiceChatRoom.documentID)
                 }
                 if(viewModel.myVoiceUser.value?.role.equals("speaker")){
-
                     viewModel.changeSpeakersCount(voiceChatRoom.documentID, -1)
                 }
                 if(isRequest==true){
@@ -465,7 +464,6 @@ class VoiceRoomFragment : BaseFragment() {
 
                     }
                     2->{
-                        println("이야기하는중...")
                         CoroutineScope(Dispatchers.Main).launch {
                             viewModel.talking.add("0${uid}")
                             speakerAdapter.talking.add("0${uid}")
@@ -475,7 +473,6 @@ class VoiceRoomFragment : BaseFragment() {
                         }
 
                     }0->{
-                    println("stoped")
                     CoroutineScope(Dispatchers.Main).launch {
                         viewModel.talking.remove("0${uid}")
                         speakerAdapter.talking.remove("0${uid}")
@@ -484,7 +481,7 @@ class VoiceRoomFragment : BaseFragment() {
                     }
                     }
                     3->{
-                        println("333")
+
                         CoroutineScope(Dispatchers.Main).launch {
                             viewModel.talking.remove("0${uid}")
                             speakerAdapter.talking.remove("0${uid}")
@@ -494,7 +491,7 @@ class VoiceRoomFragment : BaseFragment() {
                         }
                     }
                     4->{
-                        println("4444")
+
                     }
 
                 }

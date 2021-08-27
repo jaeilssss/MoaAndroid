@@ -39,7 +39,6 @@ class CategoryNeederMainViewModel : ViewModel() {
 
         list.addAll(data)
 
-        println("lise.size - >${list.size}")
         neederList.value = list!!
     }
 }

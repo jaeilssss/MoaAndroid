@@ -41,7 +41,6 @@ var str = "11"
                 if(height>2000){
                     height = 2000
                 }
-
             }
 
             heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY)
@@ -50,11 +49,6 @@ var str = "11"
 
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
     }
-
-fun reset(){
-
-
-}
 
 
 }
