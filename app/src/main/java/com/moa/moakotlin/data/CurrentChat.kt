@@ -2,7 +2,7 @@ package com.moa.moakotlin.data
 
 class CurrentChat {
 
-    var boolean = false
+    var nickName = ""
     companion object {
         // 자기변수 선언하기
         @Volatile

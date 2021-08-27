@@ -66,7 +66,7 @@ class ChatFragment : BaseFragment() {
     ): View? {
 
 
-        CurrentChat.getInstance().boolean = true
+
         transfer.bottomVisible()
         check = 0
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_chat,container , false)
@@ -77,8 +77,8 @@ class ChatFragment : BaseFragment() {
 
         roomId = arguments?.getString("roomId")?:"x"
         opponentUser = arguments?.getParcelable<User>("opponentUser")!!
-
-        needer?.images?.map { print(it)  }
+        CurrentChat.getInstance().nickName =opponentUser.nickName
+                needer?.images?.map { print(it)  }
         needer = arguments?.getParcelable<Needer>("Needer") ?:null
         helper = arguments?.getParcelable<Helper>("helper") ?:null
 
@@ -147,7 +147,7 @@ class ChatFragment : BaseFragment() {
     }
 
     override fun onPause() {
-        CurrentChat.getInstance().boolean = false
+        CurrentChat.getInstance().nickName = ""
         super.onPause()
     }
 

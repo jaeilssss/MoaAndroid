@@ -22,6 +22,7 @@ import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.custom.AptCertificationImageAlertDialog
 import com.moa.moakotlin.custom.SinglePositiveButtonDialog
+import com.moa.moakotlin.data.CurrentVoice
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.data.VoiceChatRoom
 import com.moa.moakotlin.databinding.VoiceRoomFragmentBinding
@@ -89,6 +90,7 @@ class VoiceRoomFragment : BaseFragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        CurrentVoice.getInstance().boolean = true
         myActivity.isResume.value = false
         binding = DataBindingUtil.inflate(inflater, R.layout.voice_room_fragment, container, false)
         viewModel = ViewModelProvider(this).get(VoiceRoomViewModel::class.java)
@@ -500,14 +502,13 @@ class VoiceRoomFragment : BaseFragment() {
 
 
     override fun onStop() {
-
+        CurrentVoice.getInstance().boolean = false
 //        viewModel.deleteSnapShot()
 //        viewModel.clearViewModel()
         super.onStop()
     }
 
     override fun onDestroy() {
-
 
         viewModel.deleteSnapShot()
         CoroutineScope(Dispatchers.Main).launch {

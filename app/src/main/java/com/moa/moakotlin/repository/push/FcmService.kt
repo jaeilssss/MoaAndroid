@@ -20,6 +20,7 @@ import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.MyApp
 import com.moa.moakotlin.R
 import com.moa.moakotlin.data.CurrentChat
+import com.moa.moakotlin.data.CurrentVoice
 import com.moa.moakotlin.data.User
 
 
@@ -65,19 +66,27 @@ class FcmService() : FirebaseMessagingService() {
                     remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
                 }
             }
-             if(data?.getBoolean("isEventAlarm",false) == true && remotemessage.data.get("uid").equals(User.getInstance().uid).not()){
+        else if(data?.getBoolean("isChattingAlarm",false)==true && remotemessage.data.get("title").equals("채팅")){
+                if(MyApp.isForeground){
+
+                    remotemessage.data.get("title")?.let { sendNotificationForGround(remotemessage.data.get("body")!!, it) }
+                }else{
+                    remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
+                }
+
+            }else  if(data?.getBoolean("isEventAlarm",false) == true && remotemessage.data.get("uid").equals(User.getInstance().uid).not()){
                  if(MyApp.isForeground){
-                     remotemessage.data.get("title")?.let { sendNotificationForGround(remotemessage.data.get("body")!!, it) }
+                     if(remotemessage!!.data?.get("title").equals("모아 라디오")){
+                         if(CurrentVoice.getInstance().boolean.not()){
+                             remotemessage.data.get("title")?.let { sendNotificationForGround(remotemessage.data.get("body")!!, it) }
+                         }
+                     }else{
+                         remotemessage.data.get("title")?.let { sendNotificationForGround(remotemessage.data.get("body")!!, it) }
+                     }
                  }else{
                      remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
                  }
-            }else if(data?.getBoolean("isChattingAlarm",false)==true && !CurrentChat.getInstance().boolean && remotemessage.data.get("title").equals("채팅")){
-                 if(MyApp.isForeground){
-                     remotemessage.data.get("title")?.let { sendNotificationForGround(remotemessage.data.get("body")!!, it) }
-                 }else{
-                     remotemessage.data.get("title")?.let { sendNotificationBackGround(remotemessage.data.get("body")!!, it) }
-                 }
-            }else if(data?.getBoolean("isMarketingAlarm",false) ==true && remotemessage.data.get("title").equals("이벤트")){
+            } else if(data?.getBoolean("isMarketingAlarm",false) ==true && remotemessage.data.get("title").equals("이벤트")){
                  if(MyApp.isForeground){
                      remotemessage.data.get("title")?.let { sendNotificationForGround(remotemessage.data.get("body")!!, it) }
                  }else{
@@ -163,6 +172,8 @@ class FcmService() : FirebaseMessagingService() {
             User.getInstance().certificationStatus = "반려"
         }else if(content.contains("요청이 심사중입니다") && title.equals("아파트 인증")){
             User.getInstance().certificationStatus = "심사중"
+        }else if(title.equals(CurrentChat.getInstance().nickName)){
+            return
         }
 
         val builder = NotificationCompat.Builder(this, channelId)
