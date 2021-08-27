@@ -93,7 +93,7 @@ class VoiceRoomFragment : BaseFragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.voice_room_fragment, container, false)
         viewModel = ViewModelProvider(this).get(VoiceRoomViewModel::class.java)
         binding.model = viewModel
-
+        var initCount = 0
         var token = arguments?.get("token") as String
 
 
