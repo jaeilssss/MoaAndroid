@@ -177,7 +177,6 @@ class VoiceRoomFragment : BaseFragment() {
                                 }
 //                                navController.popBackStack()
 //                                voiceChatRoomExit()
-
                             }
                             .show()
                 }

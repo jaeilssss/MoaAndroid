@@ -11,6 +11,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -65,10 +66,20 @@ class ImagePickerFragment : BaseFragment() {
         binding.imagePickerSubmit.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 if(adapter.checkBox!=-1){
+                    binding.ImagePickerLoading.show()
+                    activity?.getWindow()?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                    var result =  model.submit(adapter.list.get(adapter.checkBox),roomId,opponentUid)
                     if(result ==true){
+                        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         navController.popBackStack()
+
+                    }else{
+                        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+
+                        Toast.makeText(context,"사진 전송을 실패했습니다",Toast.LENGTH_SHORT).show()
                     }
+                    binding.ImagePickerLoading.hide()
                 }
             }
         }
