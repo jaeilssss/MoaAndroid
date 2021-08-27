@@ -128,6 +128,7 @@ class VoiceMainFragment : BaseFragment() {
         setCurrentOnboardingIndicator(0)
         adapter.setOnItemClickListener(object :OnItemClickListener{
             override fun onItemClick(v: View, position: Int) {
+
                 var intent = Intent(activity, WebViewActivity::class.java)
 
                 intent.putExtra("url",adapter.list[position].url)

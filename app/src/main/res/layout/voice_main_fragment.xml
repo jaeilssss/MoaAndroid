@@ -44,22 +44,7 @@
             app:layout_constraintBottom_toBottomOf="@id/back"
             android:id="@+id/VoiceTextView"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="0dp"
-            android:layout_height="55dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@drawable/button_shape_main_color"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:text="방 개설하기"
-            android:textStyle="bold"
-            android:textSize="18dp"
-            android:fontFamily="@font/notosanscjkkr_medium"
-            android:id="@+id/VoiceMainCreateRoomBtn"
-            android:layout_marginBottom="10dp"
-            />
+
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
@@ -67,10 +52,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/VoiceTextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="70dp"
+        app:layout_constraintBottom_toTopOf="@id/VoiceMainCreateRoomBtn"
         android:fillViewport="true"
-        >
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
     <androidx.constraintlayout.widget.ConstraintLayout
 
         android:layout_width="match_parent"
@@ -86,6 +71,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
             android:id="@+id/VoiceMainViewPager"/>
         <LinearLayout
             android:layout_width="0dp"
@@ -103,12 +89,11 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/indicators"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:scrollbars="vertical"
+
             android:id="@+id/VoiceMainRcv"/>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
@@ -164,5 +149,21 @@
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/button_shape_main_color"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:text="방 개설하기"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:id="@+id/VoiceMainCreateRoomBtn"
+            android:layout_marginBottom="10dp"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

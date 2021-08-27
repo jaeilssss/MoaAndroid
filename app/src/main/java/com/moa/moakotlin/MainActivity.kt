@@ -72,6 +72,7 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
             var data = getSharedPreferences("MyLatestNotification", Context.MODE_PRIVATE)
             data.getString("documentID", "")?.let { model.setAlarmSnapShot(it)
             }
+
             model.setChattingRoomSnapShot()
 
             navController.navigate(R.id.action_HomeFragment_to_voiceMainFragment)
