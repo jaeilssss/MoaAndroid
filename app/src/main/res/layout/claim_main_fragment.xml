@@ -20,8 +20,8 @@
     tools:context=".ui.claim.ClaimMainFragment">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/back"
-        android:layout_width="52dp"
-        android:layout_height="31dp"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:padding="5dp"
@@ -32,10 +32,258 @@
             android:layout_width="12dp"
             android:layout_height="25dp"
             android:background="@drawable/ic_back"
+            android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/back"
+        app:layout_constraintBottom_toBottomOf="@id/back"
+        android:text="민원신청"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:id="@+id/ClaimMainText"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:textColor="@color/moaBlack"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ClaimMainText"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="20dp"
+        android:id="@+id/ClaimMainMyAptLayout"
+        android:background="@drawable/shape_grey_radius_15">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ClaimMainMyAptText"
+            app:layout_constraintTop_toTopOf="@id/ClaimMainMyAptText"
+            app:layout_constraintBottom_toBottomOf="@id/ClaimMainMyAptText"
+            android:src="@drawable/ic_compass"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:id="@+id/ClaimMainCompassImg"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/ClaimMainCompassImg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="만현마을 쌍용 1차"
+            android:textColor="@color/moaBlack"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:id="@+id/ClaimMainMyAptText"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <GridLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ClaimMainMyAptLayout"
+        android:columnCount="3"
+        android:id="@+id/ClaimMainGridLayout">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="170dp"
+            android:background="@drawable/shape_grey_radius_15"
+            android:layout_columnWeight="1"
+            android:layout_margin="15dp"
+            android:id="@+id/ClaimMainReceiveLayout"
+            >
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintBottom_toTopOf="@id/ClaimMainReceiveText"
+                android:src="@drawable/img_claim_main_receive"
+                android:id="@+id/ClaimMainReceiveImg"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ClaimMainReceiveImg"
+                app:layout_constraintBottom_toTopOf="@id/ClaimMainReceiveCounting"
+                android:text="접수중"
+                android:textSize="11dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:id="@+id/ClaimMainReceiveText"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ClaimMainReceiveText"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="5건"
+                android:textColor="@color/moaBlack"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:layout_marginTop="10dp"
+                android:id="@+id/ClaimMainReceiveCounting"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="170dp"
+            android:background="@drawable/shape_grey_radius_15"
+            android:layout_columnWeight="1"
+            android:layout_margin="15dp"
+            android:id="@+id/ClaimMainOnGoingLayout"
+            >
+            
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/ClaimMainOngoingText"
+                android:src="@drawable/img_claim_on_going"
+                android:id="@+id/ClaimMainOnGoingImg"
+                app:layout_constraintVertical_chainStyle="packed"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ClaimMainOnGoingImg"
+                app:layout_constraintBottom_toTopOf="@id/ClaimMainOnGoingCounting"
+                android:text="진행중"
+                android:textColor="@color/moaBlack"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:id="@+id/ClaimMainOngoingText"
+                app:layout_constraintVertical_chainStyle="packed"
+                android:textSize="11dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ClaimMainOngoingText"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="5건"
+                android:id="@+id/ClaimMainOnGoingCounting"
+                app:layout_constraintVertical_chainStyle="packed"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/moaBlack"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"/>
+
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="170dp"
+            android:background="@drawable/shape_grey_radius_15"
+            android:layout_columnWeight="1"
+            android:layout_margin="15dp"
+            android:id="@+id/ClaimMainCompleteLayout"
+            >
+
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:src="@drawable/img_claim_main_complete"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/ClaimMainCompleteText"
+                app:layout_constraintVertical_chainStyle="packed"
+                android:id="@+id/ClaimMainCompleteImg"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ClaimMainCompleteImg"
+                app:layout_constraintBottom_toTopOf="@id/ClaimMainCompleteCounting"
+                android:text="완료"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                app:layout_constraintVertical_chainStyle="packed"
+                android:textSize="11dp"
+                android:textColor="@color/moaBlack"
+                android:id="@+id/ClaimMainCompleteText"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ClaimMainCompleteText"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="5건"
+                android:textColor="@color/moaBlack"
+                android:fontFamily="@font/notosanscjkkr_medium"
+                android:includeFontPadding="false"
+                android:id="@+id/ClaimMainCompleteCounting"
+                app:layout_constraintVertical_chainStyle="packed"
+                android:layout_marginTop="10dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </GridLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ClaimMainGridLayout"
+        android:text="나의 민원 현황"
+        android:textColor="@color/moaBlack"
+        android:textSize="16dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        android:textStyle="bold"
+        android:id="@+id/ClaimMainMyClaimText"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="15dp"
+        app:layout_constraintTop_toBottomOf="@id/ClaimMainMyClaimText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="70dp"
+        tools:listitem="@layout/item_claim"
+        android:id="@+id/ClaimMainRcv"/>
+<androidx.appcompat.widget.AppCompatButton
+    android:layout_width="0dp"
+    android:layout_height="55dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    android:background="@drawable/button_shape_main_color"
+    android:layout_marginHorizontal="15dp"
+    android:layout_marginBottom="10dp"
+    android:text="아파트 전체 글 보기"
+    android:fontFamily="@font/notosanscjkkr_medium"
+    android:includeFontPadding="false"
+    android:textStyle="bold"
+    android:textSize="14dp"
+    android:id="@+id/ClaimMainGotoAllContent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
     </layout>
