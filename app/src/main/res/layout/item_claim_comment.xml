@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        tools:src="#bdbdbd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="15dp"
+        android:id="@+id/itemClaimCommentProfileImage"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/itemClaimCommentProfileImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/itemClaimCommentProfileImage"
+        app:layout_constraintBottom_toTopOf="@id/itemCommentDate"
+        tools:text="만현마을 쌍용 1차 관리 사무소"
+        android:layout_marginStart="15dp"
+        android:textColor="@color/moaBlack"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:textSize="18dp"
+        android:includeFontPadding="false"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:id="@+id/itemClaimCommentNickName"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/itemClaimCommentNickName"
+        app:layout_constraintTop_toBottomOf="@id/itemClaimCommentNickName"
+        app:layout_constraintBottom_toBottomOf="@id/itemClaimCommentProfileImage"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="2021년 3월 23일 오후 5:12"
+        android:id="@+id/itemCommentDate"
+        android:layout_marginTop="5dp"
+        />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/itemCommentDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemCommentDate"
+        tools:text="관제실에 말씀드려 단속을 강화하겠습니다\n 불편을 드려서 죄송합니다"
+        android:layout_marginTop="15dp"
+        android:textSize="20dp"
+        android:textColor="@color/moaBlack"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        android:id="@+id/itemCommentContent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
