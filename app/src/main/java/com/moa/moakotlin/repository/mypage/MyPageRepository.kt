@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
 import com.moa.moakotlin.R
 import com.moa.moakotlin.data.*
@@ -63,6 +64,7 @@ class MyPageRepository {
         db.collection("MyPage")
             .document("MyPage")
             .collection("Question")
+                .orderBy("timeStamp",Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener {
                 for(document in it.documents){
@@ -82,6 +84,7 @@ class MyPageRepository {
         db.collection("MyPage")
                 .document("MyPage")
                 .collection("Notice")
+                .orderBy("timeStamp",Query.Direction.DESCENDING)
                 .get()
                 .addOnSuccessListener {
                     for(document in it.documents){
