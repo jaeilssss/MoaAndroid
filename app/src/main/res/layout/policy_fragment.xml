@@ -57,7 +57,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="20dp">
-        <CheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -90,7 +90,7 @@
             android:background="#dedede"
             android:layout_marginTop="5dp"
             android:id="@+id/view"/>
-        <CheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -115,7 +115,7 @@
             app:layout_constraintBaseline_toBaselineOf="@id/servicePolicyCheck"
             app:layout_constraintStart_toEndOf="@id/servicePolicyCheck"
             android:textColor="@color/moaBlack"/>
-        <CheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -140,7 +140,7 @@
             app:layout_constraintBaseline_toBaselineOf="@id/personalPolicyCheck"
             app:layout_constraintStart_toEndOf="@id/personalPolicyCheck"
             android:textColor="@color/moaBlack"/>
-        <CheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"

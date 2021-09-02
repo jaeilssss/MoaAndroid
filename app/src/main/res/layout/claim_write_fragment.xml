@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fillViewport="true"
+    xmlns:tools="http://schemas.android.com/tools">
+<data>
+    <variable
+        name="model"
+        type="com.moa.moakotlin.ui.claim.ClaimWriteViewModel" />
+</data>
+
+<ScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+>
 
 <androidx.constraintlayout.widget.ConstraintLayout
 
@@ -63,12 +70,16 @@
         android:layout_width="0dp"
         android:layout_height="55dp"
         android:hint="제목을 작성해주세요"
+        android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ClaimWriteTitleText"
         android:id="@+id/ClaimDetailEdit"
         android:background="@drawable/shape_grey_radius_15"
-        android:layout_marginHorizontal="15dp"/>
+        android:layout_marginHorizontal="15dp"
+        android:text="@={model.title}"
+        />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -192,6 +203,7 @@
     app:layout_constraintTop_toBottomOf="@id/ClaimWriteGuideLayout"
     android:text="신청내용"
     android:layout_marginStart="15dp"
+    android:textSize="15dp"
     android:layout_marginTop="15dp"
     android:textColor="@color/moaBlack"
     android:fontFamily="@font/notosanscjkkr_medium"
@@ -208,6 +220,7 @@
         android:background="@drawable/shape_grey_radius_15"
         android:gravity="top"
         android:hint="내용을 입력해주세요"
+        android:text="@={model.content}"
         android:minHeight="158dp"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:paddingStart="10dp"
@@ -285,6 +298,7 @@
         android:textSize="18dp"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:id="@+id/ClaimWriteSubmit"/>
     <androidx.core.widget.ContentLoadingProgressBar
         android:layout_width="wrap_content"
@@ -301,3 +315,4 @@
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
+</layout>

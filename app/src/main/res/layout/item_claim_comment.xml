@@ -49,7 +49,7 @@
         app:layout_constraintStart_toStartOf="@id/itemCommentDate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/itemCommentDate"
-        tools:text="관제실에 말씀드려 단속을 강화하겠습니다\n 불편을 드려서 죄송합니다"
+        tools:text="관제실에 말씀드려 단속을 강화하겠습니다\n불편을 드려서 죄송합니다"
         android:layout_marginTop="15dp"
         android:textSize="20dp"
         android:textColor="@color/moaBlack"
