@@ -281,7 +281,18 @@
         app:layout_constraintBottom_toBottomOf="@id/ClaimWriteAlbum"
         app:layout_constraintStart_toEndOf="@id/ClaimWriteAlbum"
         app:layout_constraintEnd_toEndOf="parent"
-        android:id="@+id/NeederWriteRcv"/>
+        android:id="@+id/ClaimWriteRcv"/>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ClaimWriteRcv"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:text="비공개로 민원신청하기"
+        android:button="@drawable/selector_signup_policy_checkbox"
+        android:id="@+id/ClaimWritePricateCheck"/>
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="0dp"
         android:layout_height="55dp"
@@ -289,7 +300,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        app:layout_constraintTop_toBottomOf="@id/NeederWriteRcv"
+        app:layout_constraintTop_toBottomOf="@id/ClaimWritePricateCheck"
         android:background="@drawable/shape_unable_radius_15"
         android:textColor="@color/moaBlack"
         android:text="다음"
