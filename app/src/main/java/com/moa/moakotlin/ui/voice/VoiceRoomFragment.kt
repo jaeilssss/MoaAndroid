@@ -90,6 +90,8 @@ class VoiceRoomFragment : BaseFragment() {
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+
+
         CurrentVoice.getInstance().boolean = true
         myActivity.isResume.value = false
         binding = DataBindingUtil.inflate(inflater, R.layout.voice_room_fragment, container, false)
@@ -97,7 +99,6 @@ class VoiceRoomFragment : BaseFragment() {
         binding.model = viewModel
         var initCount = 0
         var token = arguments?.get("token") as String
-
 
          voiceChatRoom  = arguments?.getParcelable<VoiceChatRoom>("voiceChatRoom")!!
         if(viewModel.mlistener ==null ){
@@ -513,26 +514,7 @@ class VoiceRoomFragment : BaseFragment() {
         viewModel.deleteSnapShot()
         CoroutineScope(Dispatchers.Main).launch {
 
-//            // 방 나갈때 방을 나가시겠습니까? 라고 물어봐야하지않을까??
-//            viewModel.deleteVoiceUser(voiceChatRoom?.documentID!!, User.getInstance().uid)
-//            viewModel.changeAudienceCount(voiceChatRoom?.documentID)
-//            rtcEngine.leaveChannel()
-//            viewModel.deleteSnapShot()
-//            if(voiceChatRoom.owner.equals(User.getInstance().uid)){
-//                println("voiceChatRoomExit -> owner ")
-//                viewModel.deleteVoiceChatRoom(voiceChatRoom.documentID)
-//            }
-//            if(viewModel.myVoiceUser.value?.role.equals("speaker")){
-//                println("여기 호출됨!!")
-//                viewModel.changeSpeakersCount(voiceChatRoom.documentID, -1)
-//            }
-//            if(isRequest==true){
-//                viewModel.deleteRequestUser(voiceChatRoom.documentID, User.getInstance().uid)
-//            }
-//            isClose = true
-//            navController.popBackStack(R.id.voiceMainFragment, false)
             voiceChatRoomExit()
-
 
         }
 
@@ -544,8 +526,7 @@ class VoiceRoomFragment : BaseFragment() {
 
     override fun onBackPressed() {
         if(System.currentTimeMillis() - lastTimeBackPressed < 1500){
-//            voiceChatRoomExit()
-    navController.popBackStack()
+            checkOwnerExit()
             return
         }
         lastTimeBackPressed = System.currentTimeMillis();
