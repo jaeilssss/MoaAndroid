@@ -18,6 +18,7 @@ import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.custom.AptCertificationImageAlertDialog
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.DropOutQuestionFragmentBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -158,6 +159,7 @@ class DropOutQuestionFragment : BaseFragment() {
 
                 binding.DropOutLoading.hide()
                 Toast.makeText(context, "탈퇴가 완료되었습니다",Toast.LENGTH_SHORT).show()
+                User.deleteUser()
                 var intent = Intent(context, LoadingActivity::class.java)
                 startActivity(intent)
                 activity?.finish()

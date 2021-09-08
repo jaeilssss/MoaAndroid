@@ -2,10 +2,7 @@ package com.moa.moakotlin.ui.home
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,18 +18,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.functions.FirebaseFunctions
-import com.google.firebase.functions.ktx.functions
-import com.google.firebase.ktx.Firebase
 import com.moa.moakotlin.MainActivity
-import com.moa.moakotlin.MyPhone
 import com.moa.moakotlin.R
 import com.moa.moakotlin.WebViewActivity
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.base.Transfer
-import com.moa.moakotlin.base.onBackPressedListener
 import com.moa.moakotlin.custom.SinglePositiveButtonDialog
 import com.moa.moakotlin.data.Banner
 import com.moa.moakotlin.data.Megazin
@@ -40,12 +31,9 @@ import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentHomeBinding
 import com.moa.moakotlin.recyclerview.home.MegazinAdapter
 import com.moa.moakotlin.viewpageradapter.HomeViewPagerAdapter
-import kotlinx.android.synthetic.main.item_moa_megazin.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-
 
 class HomeFragment : BaseFragment(){
     var lastTimeBackPressed : Long = 0
@@ -81,8 +69,6 @@ lateinit var transfer: Transfer
 
         binding.UserAptName.text = "${User.getInstance().aptName} ${User.getInstance().nickName}님"
 
-        var list = ArrayList<Int>()
-
         binding.model = model
 
         transfer.bottomVisible()
@@ -98,11 +84,12 @@ lateinit var transfer: Transfer
                 startActivity(intent)
             }
         })
+
         binding.homeMegazinRcv.layoutManager = GridLayoutManager(activity?.applicationContext!!,2)
 
         binding.homeTalentSharingBnt.setOnClickListener { navController.navigate(R.id.ConciergeMainFragment) }
         binding.homeMoaVoiceChatBtn.setOnClickListener { navController.navigate(R.id.voiceMainFragment) }
-        binding.homeClaimBtn.setOnClickListener { homeClaimAlertDialog() }
+        binding.homeClaimBtn.setOnClickListener { goToClaimView() }
         binding.homeGroupBuyingBtn.setOnClickListener{goToGroupBuyingBtn()}
 
 
@@ -112,6 +99,22 @@ lateinit var transfer: Transfer
         return binding.root
     }
 
+    fun goToClaimView(){
+        CoroutineScope(Dispatchers.Main).launch {
+            var partnerApart =model.findPartnerApart()
+
+            if(partnerApart!=null){
+                var bundle = Bundle()
+                bundle.putParcelable("partnerApart",partnerApart)
+                navController.navigate(R.id.action_HomeFragment_to_claimMainFragment,bundle)
+
+            }else{
+                homeClaimAlertDialog()
+            }
+        }
+
+
+    }
     fun goToGroupBuyingBtn(){
         var intent = Intent(activity,WebViewActivity::class.java)
 
@@ -157,7 +160,6 @@ lateinit var transfer: Transfer
                     activity?.applicationContext!!,
                     R.drawable.onboarding_indicator_inactive
             ))
-
             indicators[i]?.layoutParams = layoutParams
             binding.indicators?.addView(indicators[i])
         }

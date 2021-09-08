@@ -84,11 +84,7 @@ class LoginRepository(var activity: FragmentActivity){
 
                        }.
                        addOnFailureListener {
-                           if(code2!=null && code2.equals(code)){
-                               isChecked =true
-                           }else{
-                               isChecked=false
-                           }
+                           isChecked = code2!=null && code2.equals(code)
                        }.await()
             return   isChecked
            

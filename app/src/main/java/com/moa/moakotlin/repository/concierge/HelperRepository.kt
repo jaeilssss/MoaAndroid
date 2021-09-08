@@ -23,9 +23,11 @@ import java.io.File
 import java.io.FileInputStream
 
 class HelperRepository {
+
     companion object{
         val mainHelperCategoryList = arrayListOf<String>("육아","기타","인테리어","반려동물케어","교육")
     }
+
     suspend fun submit(mainCaregory: String,helper : Helper) : Helper{
         var db = FirebaseFirestore.getInstance()
         db.collection("Helper")
@@ -39,6 +41,7 @@ class HelperRepository {
     }
     suspend fun modify(mainCategory: String,helper : Helper) : Helper{
         var db = FirebaseFirestore.getInstance()
+
         db.collection("Helper")
                 .document(mainCategory)
                 .collection("HelperContent")
@@ -47,7 +50,7 @@ class HelperRepository {
                 }.await()
         return helper
     }
-  suspend  fun initSetList(mainCategory: String) : ArrayList<Helper>{
+  suspend fun initSetList(mainCategory: String) : ArrayList<Helper>{
         var db = FirebaseFirestore.getInstance()
       var result = ArrayList<Helper>()
             db.collection("Helper").document(mainCategory)
@@ -65,6 +68,7 @@ class HelperRepository {
                             }
                         }
                     }.await()
+
       return result
 
     }
@@ -122,8 +126,7 @@ class HelperRepository {
 
                 uploadTask.continueWithTask { riversRef.downloadUrl }.addOnCompleteListener { task ->
                     uploadedList.put(number, task.result.toString())
-                    println("실행중")
-                    println("순서 -> ${i}")
+
                     if(uploadedList.size==picturePathList.size){
 
                         for(i in 0 until picturePathList.size){
@@ -131,7 +134,6 @@ class HelperRepository {
                         }
                         CoroutineScope(Dispatchers.Main).async {
                             action.invoke()
-
                         }
                     }
 

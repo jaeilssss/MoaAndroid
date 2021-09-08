@@ -104,49 +104,49 @@ class VoiceMainFragment : BaseFragment() {
             override fun onItemClick(v: View, position: Int) {
                 voiceChatRoom = adapter.currentList[position]
                 permission(1000)
-
             }
         })
 
 
-        fun setBanner(){
-            CoroutineScope(Dispatchers.Main).launch {
-                var list = viewModel.getVoiceBanner()
-                var adapter = HomeViewPagerAdapter(list)
-                adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
 
-        binding.VoiceMainViewPager.adapter = adapter
-
-        binding.VoiceMainViewPager.offscreenPageLimit =list.size
-
-        binding.back.setOnClickListener { onBackPressed() }
-
-        binding.VoiceMainViewPager.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
-
-        setUpBoardingIndicators(list)
-
-        setCurrentOnboardingIndicator(0)
-        adapter.setOnItemClickListener(object :OnItemClickListener{
-            override fun onItemClick(v: View, position: Int) {
-
-                var intent = Intent(activity, WebViewActivity::class.java)
-
-                intent.putExtra("url",adapter.list[position].url)
-
-                startActivity(intent)
-            }
-
-        })
-        binding.VoiceMainViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                setCurrentOnboardingIndicator(position)
-            }
-        })
-            }
-        }
 
         setBanner()
         return binding.root
+    }
+    fun setBanner(){
+        CoroutineScope(Dispatchers.Main).launch {
+            var list = viewModel.getVoiceBanner()
+            var adapter = HomeViewPagerAdapter(list)
+            adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+
+            binding.VoiceMainViewPager.adapter = adapter
+
+            binding.VoiceMainViewPager.offscreenPageLimit =list.size
+
+            binding.back.setOnClickListener { onBackPressed() }
+
+            binding.VoiceMainViewPager.getChildAt(0).overScrollMode=View.OVER_SCROLL_NEVER
+
+            setUpBoardingIndicators(list)
+
+            setCurrentOnboardingIndicator(0)
+            adapter.setOnItemClickListener(object :OnItemClickListener{
+                override fun onItemClick(v: View, position: Int) {
+
+                    var intent = Intent(activity, WebViewActivity::class.java)
+
+                    intent.putExtra("url",adapter.list[position].url)
+
+                    startActivity(intent)
+                }
+
+            })
+            binding.VoiceMainViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    setCurrentOnboardingIndicator(position)
+                }
+            })
+        }
     }
     fun goToVoiceChatRoom(){
         if(context?.let { MyPhone().getBatteryRemain(it) }!! <20 ){
@@ -256,13 +256,16 @@ class VoiceMainFragment : BaseFragment() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(grantResults.get(0)==PackageManager.PERMISSION_GRANTED && grantResults.get(1)==PackageManager.PERMISSION_GRANTED){
-            if(requestCode==1000){
-                goToVoiceChatRoom()
-            }else if(requestCode==2000){
-                checkAptCertification()
+        if(grantResults.isNotEmpty()){
+            if(grantResults.get(0)==PackageManager.PERMISSION_GRANTED && grantResults.get(1)==PackageManager.PERMISSION_GRANTED){
+                if(requestCode==1000){
+                    goToVoiceChatRoom()
+                }else if(requestCode==2000){
+                    checkAptCertification()
+                }
             }
         }
+
 
     }
     private fun setUpBoardingIndicators(list : ArrayList<Banner>){

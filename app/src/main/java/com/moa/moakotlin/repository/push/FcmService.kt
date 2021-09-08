@@ -190,7 +190,6 @@ class FcmService() : FirebaseMessagingService() {
             addCategory(Intent.CATEGORY_LAUNCHER)
         }
 
-
         if(title.equals("리뷰") || title.equals("아파트 인증")){
             intent.putExtra("request","알림")
         }else {
@@ -202,7 +201,6 @@ class FcmService() : FirebaseMessagingService() {
             }
 
         }
-
         val pendingIntent : PendingIntent = PendingIntent.getActivity(baseContext,0, intent ,PendingIntent.FLAG_UPDATE_CURRENT)
         builder.setWhen(System.currentTimeMillis())
         builder.setContentText(content)

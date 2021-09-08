@@ -18,6 +18,7 @@ import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.Transfer
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentFirstViewBinding
 import com.moa.moakotlin.viewpageradapter.FirstViewPagerAdapter
 
@@ -37,6 +38,8 @@ class FirstViewFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        // 혹시 몰라서 User 인스터스 클리어
+
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_first_view,container,false)
         (context as MainActivity).backListener = this

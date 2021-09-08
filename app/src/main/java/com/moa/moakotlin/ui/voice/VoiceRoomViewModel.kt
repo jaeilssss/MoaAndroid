@@ -23,7 +23,7 @@ class VoiceRoomViewModel : ViewModel() {
     var TAG = "VoiceRoomViewModel"
     private lateinit var mRtcEventHandler: IRtcEngineEventHandler
 
-     var speakers = MutableLiveData<ArrayList<String>>()
+    var speakers = MutableLiveData<ArrayList<String>>()
     var talking = ArrayList<String>()
      var mlistener: ListenerRegistration ? =null
      var requestSpeakerListener : ListenerRegistration ? =null
@@ -108,7 +108,7 @@ class VoiceRoomViewModel : ViewModel() {
     }
 
     fun setSnapShotListener(channelID: String) {
-        println("set 스냅샷")
+
         var db = VoiceRepository()
         var snapShot = db.setSnapShot(channelID)
         var owner = false
@@ -127,7 +127,7 @@ class VoiceRoomViewModel : ViewModel() {
                             if(voiceUser.uid==User.getInstance().uid){
                                 myVoiceUser.value = voiceUser
                             }
-                            println("added")
+
                             if(voiceUser.role.equals("audience")){
                                 audienceList.add("${voiceUser.phoneNumber.toString()}")
                                 audienceListMap.put(voiceUser.phoneNumber,voiceUser)
@@ -143,9 +143,7 @@ class VoiceRoomViewModel : ViewModel() {
                             if(voiceUser.uid==User.getInstance().uid){
                                 myVoiceUser.value = voiceUser
                             }
-                                println("음.. 수정${voiceUser.phoneNumber}")
 
-                            println("수정 도큐먼트 ${voiceUser.nickName}")
                             if(voiceUser.role.equals("speaker")){
                                 if(voiceUser.phoneNumber ==myVoiceUser.value?.phoneNumber){
                                     myVoiceUser.value = voiceUser
@@ -183,7 +181,7 @@ class VoiceRoomViewModel : ViewModel() {
                                 speakerListMap.remove("${voiceUser.phoneNumber}")
                             }
                         }else ->{
-                            println("else")
+
                         }
                     }
                 }

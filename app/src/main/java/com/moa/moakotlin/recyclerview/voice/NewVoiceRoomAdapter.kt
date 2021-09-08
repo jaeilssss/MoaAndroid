@@ -51,12 +51,10 @@ class NewVoiceRoomAdapter() : RecyclerView.Adapter<NewVoiceRoomAdapter.NewRoomVo
             }
 
             if (voiceUser?.profileImage?.isNotEmpty() == true) {
-                println("여기 이미지 널아님 ")
                 Glide.with(binding.root).load(voiceUser?.profileImage).into(binding.ItemVoiceUserImage)
             }
-            if (voiceUser?.role.equals("owner").not()) {
-                binding.ItemVoiceUserRoomMakerImg.isVisible = false
-            }
+
+            binding.ItemVoiceUserRoomMakerImg.isVisible = !voiceUser?.role.equals("owner").not()
         }
 
 

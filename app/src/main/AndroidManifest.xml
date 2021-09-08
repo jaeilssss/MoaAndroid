@@ -27,27 +27,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoaKotlin"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.signup.AptModifySearchActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
+        <activity android:name=".ui.claim.ClaimCategorySelectActivity"></activity>
         <activity
-            android:name=".WebViewActivity"
+            android:name=".ui.signup.AptModifySearchActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"></activity>
         <activity
+            android:name=".WebViewActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".ui.concierge.category.NeederCategoryActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.concierge.ConciergeWriteActivity"
+            android:screenOrientation="portrait"
+
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.concierge.needer.CustomCalendarActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.imagepicker.ImagePickerActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.concierge.category.HelperCategoryActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize" />
 
         <service
@@ -58,17 +66,20 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <service
             android:name=".ui.service.ForecdTerminationService"
             android:stopWithTask="false" />
 
         <activity
             android:name=".ui.signup.AptSearchActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/MainTheme"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".LoadingActivity"
             android:launchMode="singleTop"
+            android:screenOrientation="portrait"
             android:theme="@style/LoadingTheme"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -80,7 +91,7 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/MainTheme"
+            android:theme="@style/Theme.MoaKotlin"
             android:windowSoftInputMode="adjustResize" />
 
         <provider

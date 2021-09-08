@@ -104,6 +104,7 @@ class NeederReadFragment : BaseFragment() {
                     }
                 }
             }
+
             option.show(activity?.supportFragmentManager!!,"bottomsheet")
         }
 
@@ -116,6 +117,7 @@ class NeederReadFragment : BaseFragment() {
                 navController.navigate(R.id.ChatFragment,bundle)
             }
         })
+
         viewModel.newNeeder.observe(viewLifecycleOwner, Observer {
             needer = it
             adapter.list = ArrayList()
@@ -126,6 +128,7 @@ class NeederReadFragment : BaseFragment() {
             setUpBoardingIndicators(it.images!!.size)
             setCurrentOnboardingIndicator(0)
         })
+
         adapter = needer.images?.let { it1 ->
 
             if(it1.size==0){
@@ -161,9 +164,11 @@ class NeederReadFragment : BaseFragment() {
             binding.NeederReadGearImg.isVisible = false
         }
     }
+
     private fun setWriterInfo(){
         binding.NeederReadNickName.text = writer?.nickName
     }
+
     private fun setNeederData(){
         binding.NeederMainTitle.text = needer.title
         binding.NeederReadNickName.text = writer?.nickName
@@ -176,6 +181,7 @@ class NeederReadFragment : BaseFragment() {
 
         Glide.with(binding.root).load(writer.profileImage).into(binding.NeederReadProfileImage)
     }
+
     fun setUpFragment(fragment : Fragment){
         val fragmentManager: FragmentManager = activity?.supportFragmentManager!!
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()

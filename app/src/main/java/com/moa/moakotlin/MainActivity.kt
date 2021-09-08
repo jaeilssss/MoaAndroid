@@ -44,8 +44,6 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
         val REQUEST_WRITE_CODE = 1000
      }
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -122,6 +120,7 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
         binding.mainBottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.writeSelectFragment -> {
+
 //                    val bottomSheet = WriteSelectFragment()
 //                    bottomSheet.show(supportFragmentManager, bottomSheet.tag)
                     var intent = Intent(this, ConciergeWriteActivity::class.java)
@@ -138,6 +137,7 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
                     navController.navigate(R.id.MyPageFragment)
                     return@setOnNavigationItemSelectedListener true
                 }
+
                 R.id.chattingRoomFragment -> {
                     binding.mainBottomNavigation.removeBadge(R.id.chattingRoomFragment)
                     model.isChattingRoomRead.value = true
@@ -214,7 +214,7 @@ getSharedPreferences("AlarmSetting", Context.MODE_PRIVATE)!!
 
 
     override fun onResume() {
-        println("리섬")
+
         isResume.value = true
         super.onResume()
     }

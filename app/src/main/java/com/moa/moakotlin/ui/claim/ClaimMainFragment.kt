@@ -11,11 +11,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.BottomNavController
 import com.moa.moakotlin.data.PartnerApart
 import com.moa.moakotlin.databinding.ClaimMainFragmentBinding
+import com.moa.moakotlin.recyclerview.complaint.ComplaintAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -34,6 +36,7 @@ class ClaimMainFragment : BaseFragment() {
 
     private lateinit var partnerApart : PartnerApart
 
+    private lateinit var adapter : ComplaintAdapter
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -41,31 +44,35 @@ class ClaimMainFragment : BaseFragment() {
         binding.ClaimMainReceiveLayout.setOnClickListener {  }
         binding.ClaimMainOnGoingLayout.setOnClickListener {  }
         binding.ClaimMainCompleteLayout.setOnClickListener {  }
+        binding.ClaimMainWriteBtn.setOnClickListener { navController.navigate(R.id.action_claimMainFragment_to_claimWriteFragment) }
         binding.back.setOnClickListener { onBackPressed() }
 
-
         return binding.root
-
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-
         viewModel = ViewModelProvider(this).get(ClaimMainViewModel::class.java)
 
         navController = findNavController()
+
         arguments?.let {
             partnerApart = it.getParcelable<PartnerApart>("partnerApart")!!
         }
-
+        adapter = ComplaintAdapter()
+        binding.ClaimMainRcv.adapter = adapter
+        binding.ClaimMainRcv.layoutManager = LinearLayoutManager(context)
         viewModel.complaintList.observe(viewLifecycleOwner, Observer {
             if(it.size==0){
                 binding.ClaimMainRcv.isVisible = false
                 binding.ClaimMainEmptyLayout.isVisible =true
+            }else{
+                adapter.submitList(it)
             }
+
         })
-        
+
         setDataView()
         getMyClaimList()
     }
@@ -79,8 +86,6 @@ class ClaimMainFragment : BaseFragment() {
         CoroutineScope(Dispatchers.Main).launch {
             viewModel.getMyClaimList()
         }
-
-
     }
 
     fun setDataView(){

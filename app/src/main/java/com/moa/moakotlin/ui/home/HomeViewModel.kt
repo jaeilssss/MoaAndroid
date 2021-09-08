@@ -15,11 +15,9 @@ import com.google.firebase.iid.FirebaseInstanceId
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.moa.moakotlin.base.BaseViewModel
-import com.moa.moakotlin.data.Banner
-import com.moa.moakotlin.data.Magazine
-import com.moa.moakotlin.data.PushDTO
-import com.moa.moakotlin.data.PushMessage
+import com.moa.moakotlin.data.*
 import com.moa.moakotlin.repository.banner.BannerRepository
+import com.moa.moakotlin.repository.partnerapart.PartnerApartRepository
 import com.moa.moakotlin.repository.push.FcmRepository
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -108,6 +106,15 @@ class HomeViewModel() : ViewModel() {
         homeBannerList.value = list
     }
 
+    suspend fun findPartnerApart() : PartnerApart?{
+
+
+        var repository = PartnerApartRepository()
+
+        return repository.findPartnerApart()
+
+
+    }
 
 
 

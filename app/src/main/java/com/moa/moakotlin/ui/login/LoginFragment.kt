@@ -83,8 +83,6 @@ class LoginFragment : BaseScrollFragment() {
                     isSend  =true
                     binding.certificationCode.isVisible = true
                     binding.checkCertificationCodeBtn.isVisible = true
-
-
             }
         }
 
@@ -94,6 +92,7 @@ class LoginFragment : BaseScrollFragment() {
                 // 아니면 회원가입 페이지로 이동
 
             // 인증코드가 맞는지도 확인 할 것!!!
+
             CoroutineScope(Dispatchers.Main).launch {
                 binding.loginLoadingProgressBar.show()
                 activity?.getWindow()?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
@@ -114,6 +113,7 @@ class LoginFragment : BaseScrollFragment() {
                         activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         binding.loginLoadingProgressBar.hide()
                     }else{
+
                         navController.navigate(R.id.policyFragment)
                         activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         binding.loginLoadingProgressBar.hide()

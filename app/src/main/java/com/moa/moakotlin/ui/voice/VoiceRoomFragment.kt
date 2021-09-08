@@ -37,47 +37,35 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
 class VoiceRoomFragment : BaseFragment() {
+
     var lastTimeBackPressed : Long = 0
-    private lateinit var viewModel: VoiceRoomViewModel
 
-    private lateinit var binding: VoiceRoomFragmentBinding
+    private lateinit var viewModel : VoiceRoomViewModel
 
-    private lateinit var navController: NavController
+    private lateinit var binding : VoiceRoomFragmentBinding
 
-    private lateinit var rtcEngine: RtcEngine
+    private lateinit var navController : NavController
 
-    private lateinit var mRtcEventHandler :IRtcEngineEventHandler
+    private lateinit var rtcEngine : RtcEngine
 
-    private val ACTION_WORKER_CONFIG_ENGINE = 0X2012
+    private lateinit var mRtcEventHandler : IRtcEngineEventHandler
 
     private var muteState = false;
 
     lateinit  var voiceChatRoom : VoiceChatRoom
+
     var speakerAdapter = NewVoiceRoomAdapter()
 
     var countDownTimer: CountDownTimer ?=null
+
     var isRequest = false
+
     var isClose = false
 
 
-
-    var EVENT_TYPE_ON_USER_AUDIO_MUTED = 7
-
-    var EVENT_TYPE_ON_SPEAKER_STATS = 8
-
-    var EVENT_TYPE_ON_AGORA_MEDIA_ERROR = 9
-
-    var EVENT_TYPE_ON_AUDIO_QUALITY = 10
-
-    var EVENT_TYPE_ON_APP_ERROR = 13
-
-    var EVENT_TYPE_ON_AUDIO_ROUTE_CHANGED = 18
-
-    var isInitData  = false
-    var initCount = 0
     var audienceAdapter = NewVoiceRoomAdapter()
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 //        if (voiceChatRoom != null) {
@@ -112,7 +100,6 @@ class VoiceRoomFragment : BaseFragment() {
 
         rtcEngine.setClientRole(1)
 
-        rtcEngine.enableAudioVolumeIndication(0,100,true)
 
         rtcEngine.joinChannel(token, voiceChatRoom?.documentID, "Extra Optional Data", User.getInstance().phoneNumber.toInt())
 
@@ -460,10 +447,19 @@ class VoiceRoomFragment : BaseFragment() {
           }
             override fun onRemoteAudioStateChanged(uid: Int, state: Int, reason: Int, elapsed: Int) {
 //                super.onRemoteAudioStateChanged(uid, state, reason, elapsed)
+                println("????on Remote Audio State Changed")
+                println("state -> ${state}")
+                println("reason -> ${reason}")
+
                 when(state){
                     1 ->{
-
-
+                        CoroutineScope(Dispatchers.Main).launch {
+                            viewModel.talking.add("0${uid}")
+                            speakerAdapter.talking.add("0${uid}")
+                            var index = speakerAdapter.list.indexOf("0${uid}")
+                            speakerAdapter.notifyItemChanged(index)
+//                            speakerAdapter.notifyDataSetChanged()
+                        }
                     }
                     2->{
                         CoroutineScope(Dispatchers.Main).launch {
@@ -493,11 +489,19 @@ class VoiceRoomFragment : BaseFragment() {
                         }
                     }
                     4->{
-
+                        CoroutineScope(Dispatchers.Main).launch {
+                            viewModel.talking.remove("0${uid}")
+                            speakerAdapter.talking.remove("0${uid}")
+                            var index = speakerAdapter.list.indexOf("0${uid}")
+                            speakerAdapter.notifyItemChanged(index)
+//                            speakerAdapter.notifyDataSetChanged()
+                        }
                     }
 
                 }
             }
+
+
         }
     }
 
@@ -512,16 +516,13 @@ class VoiceRoomFragment : BaseFragment() {
     override fun onDestroy() {
 
         viewModel.deleteSnapShot()
+
         CoroutineScope(Dispatchers.Main).launch {
 
             voiceChatRoomExit()
 
         }
-
-
         super.onDestroy()
-
-
     }
 
     override fun onBackPressed() {
@@ -541,7 +542,5 @@ class VoiceRoomFragment : BaseFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
     }
-
-
 }
 

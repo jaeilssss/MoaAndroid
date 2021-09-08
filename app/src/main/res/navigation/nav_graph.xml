@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_HomeFragment_to_voiceMainFragment"
             app:destination="@id/voiceMainFragment" />
+        <action
+            android:id="@+id/action_HomeFragment_to_claimMainFragment"
+            app:destination="@id/claimMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/MyPageFragment"
@@ -443,5 +446,37 @@
         android:name="com.moa.moakotlin.ui.mypage.MoaOperationPolicy"
         android:label="moa_operation_policy_fragment"
         tools:layout="@layout/moa_operation_policy_fragment" />
+    <fragment
+        android:id="@+id/claimReadFragment"
+        android:name="com.moa.moakotlin.ui.claim.ClaimReadFragment"
+        android:label="ClaimReadFragment" />
+    <fragment
+        android:id="@+id/claimDetailViewFragment"
+        android:name="com.moa.moakotlin.ui.claim.ClaimDetailViewFragment"
+        android:label="claim_detail_view_fragment"
+        tools:layout="@layout/claim_detail_view_fragment" >
+        <action
+            android:id="@+id/action_claimDetailViewFragment_to_claimReadFragment"
+            app:destination="@id/claimReadFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/claimMainFragment"
+        android:name="com.moa.moakotlin.ui.claim.ClaimMainFragment"
+        android:label="ClaimMainFragment" >
+        <action
+            android:id="@+id/action_claimMainFragment_to_claimDetailViewFragment"
+            app:destination="@id/claimDetailViewFragment" />
+        <action
+            android:id="@+id/action_claimMainFragment_to_claimWriteFragment"
+            app:destination="@id/claimWriteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/claimWriteFragment"
+        android:name="com.moa.moakotlin.ui.claim.ClaimWriteFragment"
+        android:label="ClaimWriteFragment" >
+        <action
+            android:id="@+id/action_claimWriteFragment_to_claimReadFragment"
+            app:destination="@id/claimReadFragment" />
+    </fragment>
 
 </navigation>

@@ -55,7 +55,7 @@ class UserProfileModifyFragment : BaseFragment() {
         (context as MainActivity).backListener = this
         binding.UserModifyCamera.setOnClickListener { checkPermission() }
         binding.model = viewModel
-
+        binding.UserProfileModifyBackBtn.setOnClickListener { onBackPressed() }
         navController  = findNavController()
 
         binding.UserModifySubmit.setOnClickListener {

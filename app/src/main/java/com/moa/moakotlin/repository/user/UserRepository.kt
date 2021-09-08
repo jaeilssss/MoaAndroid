@@ -32,9 +32,11 @@ class UserRepository {
                         user = document.toObject(User::class.java)
                         user?.uid = document.id
                     }
-                }.await()
+                }
+                .await()
         return user
     }
+
     suspend fun getUserInfo(documentId : String): User ?{
         var user :User ?=null
         User.getInstance()
@@ -118,7 +120,6 @@ class UserRepository {
 
         var storageRef : StorageReference = FirebaseStorage.getInstance().reference
 
-
         var file = Uri.fromFile(File(path))
 
         var inputstream = FileInputStream(File(path))
@@ -130,6 +131,7 @@ class UserRepository {
         uploadTask.continueWithTask { riversRef.downloadUrl }.addOnCompleteListener { task ->
             result = task.result.toString()
         }.await()
+
         return result
     }
 
@@ -193,9 +195,11 @@ class UserRepository {
     }
 
     fun registerPushToken() {
+
         //v17.0.0 이전까지는
         ////var pushToken = FirebaseInstanceId.getInstance().token
         //v17.0.1 이후부터는 onTokenRefresh()-depriciated
+
         var pushToken: String? = null
 
         var uid = FirebaseAuth.getInstance().currentUser!!.uid

@@ -16,10 +16,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.databinding.ClaimWriteFragmentBinding
+import com.moa.moakotlin.recyclerview.certification.CertificationImageAdapter
 import com.moa.moakotlin.ui.imagepicker.ImagePickerActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ClaimWriteFragment : BaseFragment() {
 
@@ -35,7 +40,9 @@ class ClaimWriteFragment : BaseFragment() {
     private lateinit var binding : ClaimWriteFragmentBinding
 
     private lateinit var navController: NavController
+    var selectedPictureList = ArrayList<String>()
 
+    lateinit var adapter : CertificationImageAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,7 +59,10 @@ class ClaimWriteFragment : BaseFragment() {
 
             checkPermission()
         }
-        binding.ClaimWriteSubmit.setOnClickListener { }
+        binding.ClaimWriteSubmit.setOnClickListener {
+            CoroutineScope(Dispatchers.Main).launch {
+                viewModel.submit()
+            }}
         return binding.root
     }
 
@@ -72,6 +82,25 @@ class ClaimWriteFragment : BaseFragment() {
             setChangeBackgroundBtn()
         })
 
+        adapter = CertificationImageAdapter()
+
+        binding.ClaimWriteRcv.adapter = adapter
+
+        binding.ClaimWriteRcv.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        adapter.submitList(selectedPictureList)
+
+        viewModel.isWriteComplete.observe(viewLifecycleOwner, Observer {
+            if(it){
+                var bundle  = Bundle()
+
+                bundle.putParcelable("complaint",viewModel.complaint)
+                navController.navigate(R.id.action_claimWriteFragment_to_claimReadFragment,bundle)
+                Toast.makeText(context,"작성이 완료되었습니다!",Toast.LENGTH_SHORT).show()
+            }else{
+
+            }
+        })
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -81,8 +110,16 @@ class ClaimWriteFragment : BaseFragment() {
 
             viewModel.category.value= data?.getStringExtra("category")
             binding.ClaimWriteCategory.text = viewModel.category.value
-        }else if(requestCode==REQUEST_PHOTO_CODE && resultCode ==REQUEST_PHOTO_CODE){
 
+        }else if(requestCode==REQUEST_PHOTO_CODE && resultCode ==REQUEST_PHOTO_CODE){
+            var list = data?.getStringArrayListExtra("selectedPictures")
+
+            if (list != null) {
+                selectedPictureList.addAll(list)
+                adapter.submitList(selectedPictureList)
+                adapter.notifyDataSetChanged()
+                viewModel.images = selectedPictureList
+            }
         }
     }
 
@@ -128,9 +165,9 @@ class ClaimWriteFragment : BaseFragment() {
     private fun goToAlbum(){
 
         var intent = Intent(activity, ImagePickerActivity::class.java)
-        intent.putExtra("selectedPictureList",ArrayList<String>())
+        intent.putExtra("selectedPictureList",selectedPictureList)
         startActivityForResult(intent,1000)
-        
+
     }
     private fun showContextPopupPermission(){
         AlertDialog.Builder(context).setTitle("권한이 필요합니다")

@@ -28,6 +28,8 @@ class BannerRepository{
     }
 
 
+
+
     suspend fun getHomeBanner() : ArrayList<Banner>{
         var list = ArrayList<Banner>()
 
@@ -38,13 +40,16 @@ class BannerRepository{
                 .orderBy("order",Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener {
+
                 for(document in it.documents){
                     var banner = document.toObject(Banner::class.java)
                     if (banner != null) {
                         list.add(banner)
                     }
                 }
-            }.await()
+            }.addOnFailureListener {
+
+                }.await()
 
         return list
     }
@@ -70,6 +75,7 @@ class BannerRepository{
         return list
     }
     suspend fun getConciergeBanner() : ArrayList<Banner>{
+
         var list = ArrayList<Banner>()
 
         var db = FirebaseFirestore.getInstance()

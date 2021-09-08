@@ -10,6 +10,7 @@ import com.moa.moakotlin.MainActivity
 abstract class BaseFragment() : Fragment() ,onBackPressedListener {
 
     lateinit var myActivity: MainActivity
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (context as MainActivity).backListener = this
@@ -21,6 +22,5 @@ abstract class BaseFragment() : Fragment() ,onBackPressedListener {
      fun showToast(context: Context,msg:String){
          Toast.makeText(context,msg,Toast.LENGTH_SHORT).show()
      }
-
 
 }

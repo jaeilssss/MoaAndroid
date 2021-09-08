@@ -291,6 +291,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:text="비공개로 민원신청하기"
+        android:checked="@={model.isPrivate}"
         android:button="@drawable/selector_signup_policy_checkbox"
         android:id="@+id/ClaimWritePricateCheck"/>
     <androidx.appcompat.widget.AppCompatButton

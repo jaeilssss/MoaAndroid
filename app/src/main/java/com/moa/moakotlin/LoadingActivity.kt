@@ -42,7 +42,9 @@ lateinit var model : LoadingViewModel
                 finish()
 
             }else{
+
                 var result = FirebaseAuth.getInstance().currentUser?.let { model.initApp(it.uid,this) }
+
                 if(result == true){
 
                     FirebaseMessaging.getInstance().subscribeToTopic("MOA")

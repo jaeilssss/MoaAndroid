@@ -78,6 +78,7 @@ class MyAccountSettingFragment : BaseFragment() {
                         viewModel.logout()
                         var intent = Intent(context, LoadingActivity::class.java)
                         startActivity(intent)
+                        User.deleteUser()
                         activity?.finish()
                     }.setNegativeButton {  }
                         .show()

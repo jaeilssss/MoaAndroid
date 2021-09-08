@@ -28,11 +28,13 @@ lateinit var mlistener : ListenerRegistration
     fun deleteSnapShot(){
         mlistener.remove()
     }
+
     fun setReadTrue(roomId: String){
         var repository = ChatRepository(roomId)
 
         repository.setReadTrue()
     }
+
     fun imagePicker(){
 
 
