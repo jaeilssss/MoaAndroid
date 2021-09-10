@@ -2,7 +2,6 @@ package com.moa.moakotlin.ui.claim
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
-import com.moa.moakotlin.base.BottomNavController
+import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.PartnerApart
 import com.moa.moakotlin.databinding.ClaimMainFragmentBinding
 import com.moa.moakotlin.recyclerview.complaint.ComplaintAdapter
@@ -37,6 +36,8 @@ class ClaimMainFragment : BaseFragment() {
     private lateinit var partnerApart : PartnerApart
 
     private lateinit var adapter : ComplaintAdapter
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
@@ -47,6 +48,7 @@ class ClaimMainFragment : BaseFragment() {
         binding.ClaimMainWriteBtn.setOnClickListener { navController.navigate(R.id.action_claimMainFragment_to_claimWriteFragment) }
         binding.back.setOnClickListener { onBackPressed() }
 
+        myActivity?.bottomNavigationGone()
         return binding.root
     }
 
@@ -61,6 +63,16 @@ class ClaimMainFragment : BaseFragment() {
             partnerApart = it.getParcelable<PartnerApart>("partnerApart")!!
         }
         adapter = ComplaintAdapter()
+        adapter.setOnItemClickListener(object : OnItemClickListener {
+            override fun onItemClick(v: View, position: Int) {
+
+                var bundle = Bundle()
+                bundle.putParcelable("complaint",adapter.currentList[position])
+                navController.navigate(R.id.action_claimMainFragment_to_ClaimReadFragment,bundle)
+            }
+
+
+        })
         binding.ClaimMainRcv.adapter = adapter
         binding.ClaimMainRcv.layoutManager = LinearLayoutManager(context)
         viewModel.complaintList.observe(viewLifecycleOwner, Observer {

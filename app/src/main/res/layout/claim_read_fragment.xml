@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="model"
+            type="com.moa.moakotlin.ui.claim.ClaimReadViewModel" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,8 +36,8 @@
             android:hint="메시지를 입력하세요"
             android:gravity="center_vertical"
             android:padding="5dp"
+
             android:includeFontPadding="false"
-            android:text="@={model.talk}"
             app:layout_constraintTop_toTopOf="parent"
             android:fontFamily="@font/notosanscjkkr_medium"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -92,6 +99,15 @@
         android:fontFamily="@font/notosanscjkkr_medium"
         android:includeFontPadding="false"
         android:id="@+id/ClaimReadText"/>
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/back"
+        app:layout_constraintBottom_toBottomOf="@id/back"
+        android:src="@drawable/ic_option"
+        android:layout_marginEnd="15dp"
+        android:id="@+id/ClaimReadOption"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -168,14 +184,17 @@
     android:lineSpacingExtra="5dp"
     android:id="@+id/ClaimReadContentText"
     android:textColor="@color/moaBlack"/>
+
     <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/ClaimReadViewPager"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ClaimReadContentText"
+        android:layout_marginHorizontal="10dp"
         app:layout_constraintDimensionRatio="H, 1:1"
-        android:id="@+id/ClaimReadViewPager"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ClaimReadContentText" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -203,3 +222,5 @@
 
 </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

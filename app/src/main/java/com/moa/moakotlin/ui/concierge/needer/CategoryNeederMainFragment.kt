@@ -19,6 +19,7 @@ import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Needer
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.CategoryNeederMainFragmentBinding
 import com.moa.moakotlin.recyclerview.chat.ChatAdapter
 import com.moa.moakotlin.recyclerview.concierge.CategoryHelperMainAdapter
@@ -79,7 +80,7 @@ class CategoryNeederMainFragment : BaseFragment() {
 
             adapterNeeder.submitList(it)
             adapterNeeder.notifyDataSetChanged()
-            activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
             binding.CategoryNeederMainSwipeRefreshLayout.isRefreshing = false
         })
         onScrollListener(binding.CategoryNeederMainRcv,adapterNeeder)
@@ -115,6 +116,15 @@ class CategoryNeederMainFragment : BaseFragment() {
                             if(writer!=null){
                                 var bundle = Bundle()
                                 bundle.putParcelable("needer",adapterNeeder.currentList[position])
+                                if(writer==null){
+
+                                    var emptyWriter = User()
+                                    emptyWriter.nickName= "알수없음"
+                                    emptyWriter.uid ="-1"
+                                    bundle.putParcelable("writer",emptyWriter)
+                                }else{
+                                    bundle.putParcelable("writer",writer)
+                                }
                                 bundle.putParcelable("writer",writer)
                                 navController.navigate(R.id.action_categoryNeederMainFragment_to_neederReadFragment,bundle)
                             }
@@ -122,9 +132,9 @@ class CategoryNeederMainFragment : BaseFragment() {
                     }
                 }
             }
-
         })
     }
+    
     fun getList(mainCategory : String){
         CoroutineScope(Dispatchers.Main).launch {
                  viewModel.getList(mainCategory)

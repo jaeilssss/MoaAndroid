@@ -40,7 +40,7 @@ class ConciergeMainFragment : BaseFragment() {
         model = ViewModelProvider(this).get(ConciergeMainViewModel::class.java)
 
         binding.ConciergeMainTalentSharingLayout.setOnClickListener {
-            navController.navigate(R.id.HelperMainFragment)
+            navController.navigate(R.id.action_ConciergeMainFragment_to_HelperMainFragment)
         }
 
         binding.ConciergeMainHelpLayout.setOnClickListener {
@@ -48,7 +48,9 @@ class ConciergeMainFragment : BaseFragment() {
         }
 
         binding.back.setOnClickListener { navController.popBackStack() }
+
         binding.model =model
+
         return binding.root
     }
 

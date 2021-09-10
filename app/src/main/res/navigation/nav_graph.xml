@@ -13,7 +13,11 @@
         tools:layout="@layout/fragment_chat">
         <action
             android:id="@+id/action_ChatFragment_to_imagePickerFragment"
-            app:destination="@id/imagePickerFragment" />
+            app:destination="@id/imagePickerFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/HomeFragment"
@@ -23,13 +27,25 @@
 
         <action
             android:id="@+id/action_HomeFragment_to_ConciergeMainFragment"
-            app:destination="@id/ConciergeMainFragment" />
+            app:destination="@id/ConciergeMainFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_HomeFragment_to_voiceMainFragment"
-            app:destination="@id/voiceMainFragment" />
+            app:destination="@id/voiceMainFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_HomeFragment_to_claimMainFragment"
-            app:destination="@id/claimMainFragment" />
+            app:destination="@id/claimMainFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/MyPageFragment"
@@ -38,28 +54,60 @@
         tools:layout="@layout/fragment_my_page">
         <action
             android:id="@+id/action_MyPageFragment_to_userProfileFragment"
-            app:destination="@id/userProfileFragment" />
+            app:destination="@id/userProfileFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_MyPageFragment_to_myConciergeListFragment"
-            app:destination="@id/myConciergeListFragment" />
+            app:destination="@id/myConciergeListFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_MyPageFragment_to_aptModifyFragment"
-            app:destination="@id/aptModifyFragment" />
+            app:destination="@id/aptModifyFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_MyPageFragment_to_aptModifyCertificationNoticeFragment"
-            app:destination="@id/aptModifyCertificationNoticeFragment" />
+            app:destination="@id/aptModifyCertificationNoticeFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_MyPageFragment_to_myAccountSettingFragment"
-            app:destination="@id/myAccountSettingFragment" />
+            app:destination="@id/myAccountSettingFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_MyPageFragment_to_alarmSettingFragment"
-            app:destination="@id/alarmSettingFragment" />
+            app:destination="@id/alarmSettingFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_MyPageFragment_to_questionFragment"
-            app:destination="@id/questionFragment" />
+            app:destination="@id/questionFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_MyPageFragment_to_noticeFragment"
-            app:destination="@id/noticeFragment" />
+            app:destination="@id/noticeFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -67,7 +115,11 @@
         android:label="LoginFragment">
         <action
             android:id="@+id/action_loginFragment_to_phoneCertification"
-            app:destination="@id/phoneCertification" />
+            app:destination="@id/phoneCertification"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/firstViewFragment"
@@ -75,7 +127,11 @@
         android:label="FirstViewFragment">
         <action
             android:id="@+id/action_firstViewFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -83,7 +139,11 @@
         android:label="SignUpFragment">
         <action
             android:id="@+id/action_signUpFragment_to_signUpInfoFragment"
-            app:destination="@id/signUpInfoFragment" />
+            app:destination="@id/signUpInfoFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/signUpInfoFragment"
@@ -92,7 +152,11 @@
         tools:layout="@layout/fragment_sign_up_info">
         <action
             android:id="@+id/action_signUpInfoFragment_to_aptInfoFragment"
-            app:destination="@id/aptInfoFragment" />
+            app:destination="@id/aptInfoFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/phoneCertification"
@@ -101,10 +165,18 @@
         tools:layout="@layout/fragment_phone_certification">
         <action
             android:id="@+id/action_phoneCertification_to_signUpFragment"
-            app:destination="@id/signUpFragment" />
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_phoneCertification_to_HomeFragment"
-            app:destination="@id/HomeFragment" />
+            app:destination="@id/HomeFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/aptInfoFragment"
@@ -113,10 +185,18 @@
         tools:layout="@layout/fragment_apt_info">
         <action
             android:id="@+id/action_aptInfoFragment_to_aptSearchFragment"
-            app:destination="@id/aptSearchFragment" />
+            app:destination="@id/aptSearchFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_aptInfoFragment_to_certificationNoticeFragment"
-            app:destination="@id/certificationNoticeFragment" />
+            app:destination="@id/certificationNoticeFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/aptSearchFragment"
@@ -130,7 +210,11 @@
         tools:layout="@layout/fragment_certification_notice">
         <action
             android:id="@+id/action_certificationNoticeFragment_to_certificationSkipFragment"
-            app:destination="@id/certificationSkipFragment" />
+            app:destination="@id/certificationSkipFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/certificationResultFragment"
@@ -143,7 +227,11 @@
         android:label="CertificationSkipFragment">
         <action
             android:id="@+id/action_certificationSkipFragment_to_signUpResultFragment"
-            app:destination="@id/signUpResultFragment" />
+            app:destination="@id/signUpResultFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/signUpResultFragment"
@@ -152,10 +240,18 @@
         tools:layout="@layout/fragment_sign_up_result">
         <action
             android:id="@+id/action_signUpResultFragment_to_firstViewFragment"
-            app:destination="@id/firstViewFragment" />
+            app:destination="@id/firstViewFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_signUpResultFragment_to_HomeFragment"
-            app:destination="@id/HomeFragment" />
+            app:destination="@id/HomeFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
 
     <fragment
@@ -164,7 +260,11 @@
         android:label="ChattingRoomFragment">
         <action
             android:id="@+id/action_chattingRoomFragment_to_ChatFragment"
-            app:destination="@id/ChatFragment" />
+            app:destination="@id/ChatFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/imagePickerFragment"
@@ -173,7 +273,11 @@
         tools:layout="@layout/fragment_image_picker">
         <action
             android:id="@+id/action_imagePickerFragment_to_ChatFragment"
-            app:destination="@id/ChatFragment" />
+            app:destination="@id/ChatFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/writeSelectFragment"
@@ -187,7 +291,18 @@
 
         <action
             android:id="@+id/action_ConciergeMainFragment_to_neederMainFragment"
-            app:destination="@id/neederMainFragment" />
+            app:destination="@id/neederMainFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_ConciergeMainFragment_to_HelperMainFragment"
+            app:destination="@id/HelperMainFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/userProfileFragment"
@@ -195,7 +310,11 @@
         android:label="UserProfileFragment">
         <action
             android:id="@+id/action_userProfileFragment_to_userProfileModifyFragment"
-            app:destination="@id/userProfileModifyFragment" />
+            app:destination="@id/userProfileModifyFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/userProfileModifyFragment"
@@ -203,10 +322,18 @@
         android:label="UserProfileModifyFragment">
         <action
             android:id="@+id/action_userProfileModifyFragment_to_userProfileFragment"
-            app:destination="@id/userProfileFragment" />
+            app:destination="@id/userProfileFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_userProfileModifyFragment_to_userImagePickerFragment"
-            app:destination="@id/userImagePickerFragment" />
+            app:destination="@id/userImagePickerFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/userImagePickerFragment"
@@ -220,7 +347,11 @@
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/SecondFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -230,7 +361,11 @@
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            app:destination="@id/FirstFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/voiceMainFragment"
@@ -239,7 +374,11 @@
         tools:layout="@layout/voice_main_fragment" >
         <action
             android:id="@+id/action_voiceMainFragment_to_voiceRoomMakeFragment"
-            app:destination="@id/voiceRoomMakeFragment" />
+            app:destination="@id/voiceRoomMakeFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/voiceRoomFragment"
@@ -248,7 +387,11 @@
         tools:layout="@layout/voice_room_fragment" >
         <action
             android:id="@+id/action_voiceRoomFragment_to_userProfileFragment"
-            app:destination="@id/userProfileFragment" />
+            app:destination="@id/userProfileFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/policyFragment"
@@ -256,7 +399,11 @@
         android:label="PolicyFragment" >
         <action
             android:id="@+id/action_policyFragment_to_moaOperationFragment"
-            app:destination="@id/moaOperationPolicy"/>
+            app:destination="@id/moaOperationPolicy"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/aptCertificationGuideFragment"
@@ -281,17 +428,44 @@
         android:id="@+id/HelperMainFragment"
         android:name="com.moa.moakotlin.ui.concierge.helper.HelperMainFragment"
         android:label="NeederMainFragment" />
+    <action
+        android:id="@+id/action_HelperMainFragment_to_HelperReadFragment"
+        app:destination="@id/HelperReadFragment"
+        app:enterAnim="@anim/from_right"
+        app:exitAnim="@anim/to_left"
+        app:popEnterAnim="@anim/from_left"
+        app:popExitAnim="@anim/to_right" />
+    <action
+        android:id="@+id/action_HelperMainFragment_to_CategoryMainFragment"
+        app:destination="@id/categoryMainFragment"
+        app:enterAnim="@anim/from_right"
+        app:exitAnim="@anim/to_left"
+        app:popEnterAnim="@anim/from_left"
+        app:popExitAnim="@anim/to_right" />
     <fragment
         android:id="@+id/categoryMainFragment"
         android:name="com.moa.moakotlin.ui.concierge.helper.CategoryMainFragment"
         android:label="CategoryMainFragment" />
+    <action
+        android:id="@+id/action_CategoryMainFragment_to_HelperReadFragment"
+        app:destination="@id/HelperReadFragment"
+        app:enterAnim="@anim/from_right"
+        app:exitAnim="@anim/to_left"
+        app:popEnterAnim="@anim/from_left"
+        app:popExitAnim="@anim/to_right" />
+
+
     <fragment
         android:id="@+id/HelperReadFragment"
         android:name="com.moa.moakotlin.ui.concierge.helper.HelperReadFragment"
         android:label="NeederReadFragment" >
         <action
             android:id="@+id/action_HelperReadFragment_to_ChatFragment"
-            app:destination="@id/ChatFragment" />
+            app:destination="@id/ChatFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/conciergeWriteFragment"
@@ -312,10 +486,18 @@
         tools:layout="@layout/needer_main_fragment" >
         <action
             android:id="@+id/action_neederMainFragment_to_neederReadFragment"
-            app:destination="@id/neederReadFragment" />
+            app:destination="@id/neederReadFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_neederMainFragment_to_categoryNeederMainFragment"
-            app:destination="@id/categoryNeederMainFragment" />
+            app:destination="@id/categoryNeederMainFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/neederReadFragment"
@@ -323,7 +505,11 @@
         android:label="NeederReadFragment" >
         <action
             android:id="@+id/action_neederReadFragment_to_neederCompletionFragment"
-            app:destination="@id/neederCompletionFragment" />
+            app:destination="@id/neederCompletionFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/neederCompletionFragment"
@@ -332,7 +518,11 @@
         tools:layout="@layout/needer_completion_fragment" >
         <action
             android:id="@+id/action_neederCompletionFragment_to_neederReviewWriteFragment"
-            app:destination="@id/neederReviewWriteFragment" />
+            app:destination="@id/neederReviewWriteFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/neederReviewWriteFragment"
@@ -348,7 +538,15 @@
         android:id="@+id/categoryNeederMainFragment"
         android:name="com.moa.moakotlin.ui.concierge.needer.CategoryNeederMainFragment"
         android:label="category_needer_main_fragment"
-        tools:layout="@layout/category_needer_main_fragment" />
+        tools:layout="@layout/category_needer_main_fragment" >
+        <action
+            android:id="@+id/action_categoryNeederMainFragment_to_neederReadFragment"
+            app:destination="@id/neederReadFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
     <fragment
         android:id="@+id/voiceRoomMakeFragment"
         android:name="com.moa.moakotlin.ui.voice.VoiceRoomMakeFragment"
@@ -361,10 +559,18 @@
         tools:layout="@layout/my_concierge_list_fragment" >
         <action
             android:id="@+id/action_myConciergeListFragment_to_HelperReadFragment"
-            app:destination="@id/HelperReadFragment" />
+            app:destination="@id/HelperReadFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_myConciergeListFragment_to_neederReadFragment"
-            app:destination="@id/neederReadFragment" />
+            app:destination="@id/neederReadFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/myHelperFragment"
@@ -378,7 +584,11 @@
         tools:layout="@layout/apt_modify_fragment" >
         <action
             android:id="@+id/action_aptModifyFragment_to_aptModifyCertificationNoticeFragment"
-            app:destination="@id/aptModifyCertificationNoticeFragment" />
+            app:destination="@id/aptModifyCertificationNoticeFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/aptModifyCertificationNoticeFragment"
@@ -387,7 +597,11 @@
         tools:layout="@layout/apt_modify_certification_notice_fragment" >
         <action
             android:id="@+id/action_aptModifyCertificationNoticeFragment_to_aptModifyCertificationFragment"
-            app:destination="@id/aptModifyCertificationFragment" />
+            app:destination="@id/aptModifyCertificationFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/aptModifyCertificationFragment"
@@ -400,16 +614,32 @@
         tools:layout="@layout/my_account_setting_fragment" >
         <action
             android:id="@+id/action_myAccountSettingFragment_to_changeMyPhoneNumberFragment"
-            app:destination="@id/changeMyPhoneNumberFragment" />
+            app:destination="@id/changeMyPhoneNumberFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_myAccountSettingFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            app:destination="@id/FirstFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_myAccountSettingFragment_to_dropOutQuestionFragment"
-            app:destination="@id/dropOutQuestionFragment" />
+            app:destination="@id/dropOutQuestionFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_myAccountSettingFragment_to_moaOperationPolicy"
-            app:destination="@id/moaOperationPolicy" />
+            app:destination="@id/moaOperationPolicy"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/changeMyPhoneNumberFragment"
@@ -457,7 +687,11 @@
         tools:layout="@layout/claim_detail_view_fragment" >
         <action
             android:id="@+id/action_claimDetailViewFragment_to_claimReadFragment"
-            app:destination="@id/claimReadFragment" />
+            app:destination="@id/claimReadFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/claimMainFragment"
@@ -465,10 +699,25 @@
         android:label="ClaimMainFragment" >
         <action
             android:id="@+id/action_claimMainFragment_to_claimDetailViewFragment"
-            app:destination="@id/claimDetailViewFragment" />
+            app:destination="@id/claimDetailViewFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_claimMainFragment_to_claimWriteFragment"
-            app:destination="@id/claimWriteFragment" />
+            app:destination="@id/claimWriteFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_claimMainFragment_to_ClaimReadFragment"
+            app:destination="@id/claimReadFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/claimWriteFragment"
@@ -476,7 +725,11 @@
         android:label="ClaimWriteFragment" >
         <action
             android:id="@+id/action_claimWriteFragment_to_claimReadFragment"
-            app:destination="@id/claimReadFragment" />
+            app:destination="@id/claimReadFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
 
 </navigation>

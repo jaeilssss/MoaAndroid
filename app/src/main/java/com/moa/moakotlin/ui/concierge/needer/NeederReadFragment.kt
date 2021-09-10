@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -109,7 +110,9 @@ class NeederReadFragment : BaseFragment() {
         }
 
         viewModel.roomId.observe(viewLifecycleOwner, Observer {
-            if(it.equals("x").not()){
+            if(writer.uid.equals("-1")){
+                Toast.makeText(context,"회원 탈퇴한 유저 입니다!",Toast.LENGTH_SHORT).show()
+            } else if(it.equals("x").not()){
                 var bundle = Bundle()
                 bundle.putString("roomId",it)
                 bundle.putParcelable("opponentUser",writer)

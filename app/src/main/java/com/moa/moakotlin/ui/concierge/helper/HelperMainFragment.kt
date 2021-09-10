@@ -23,6 +23,7 @@ import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Banner
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Needer
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.FragmentHelperMainBinding
 import com.moa.moakotlin.recyclerview.concierge.HelperMainAdapter
 import com.moa.moakotlin.viewpageradapter.HomeViewPagerAdapter
@@ -145,8 +146,17 @@ class HelperMainFragment : BaseFragment() {
                     if(writer!=null){
                         var bundle = Bundle()
                         bundle.putParcelable("data",adapter.currentList[position])
+                        if(writer==null){
+
+                            var emptyWriter = User()
+                            emptyWriter.nickName= "알수없음"
+                            emptyWriter.uid ="-1"
+                            bundle.putParcelable("writer",emptyWriter)
+                        }else{
+                            bundle.putParcelable("writer",writer)
+                        }
                         bundle.putParcelable("writer",writer)
-                        navController.navigate(R.id.HelperReadFragment,bundle)
+                        navController.navigate(R.id.action_HelperMainFragment_to_HelperReadFragment,bundle)
                     }
                 }
             }
@@ -194,7 +204,7 @@ class HelperMainFragment : BaseFragment() {
 
         var bundle = Bundle()
         bundle.putString("mainCategory",mainCategory)
-        navController.navigate(R.id.categoryMainFragment,bundle)
+        navController.navigate(R.id.action_HelperMainFragment_to_CategoryMainFragment,bundle)
     }
 
 

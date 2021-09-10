@@ -21,6 +21,7 @@ import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Helper
 import com.moa.moakotlin.data.Needer
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.CategoryMainFragmentBinding
 import com.moa.moakotlin.recyclerview.concierge.CategoryHelperMainAdapter
 import com.moa.moakotlin.recyclerview.concierge.CategoryNeederMainAdapter
@@ -113,9 +114,18 @@ class CategoryMainFragment : BaseFragment() {
                             if(writer!=null){
                                 var bundle = Bundle()
                                 bundle.putParcelable("data",adapterHelper.currentList[position])
+                                if(writer==null){
+
+                                    var emptyWriter = User()
+                                    emptyWriter.nickName= "알수없음"
+                                    emptyWriter.uid ="-1"
+                                    bundle.putParcelable("writer",emptyWriter)
+                                }else{
+                                    bundle.putParcelable("writer",writer)
+                                }
                                 bundle.putParcelable("writer",writer)
                                 viewModel.lastPosition = position
-                                navController.navigate(R.id.HelperReadFragment,bundle)
+                                navController.navigate(R.id.action_CategoryMainFragment_to_HelperReadFragment,bundle)
                             }
                         }
                     }

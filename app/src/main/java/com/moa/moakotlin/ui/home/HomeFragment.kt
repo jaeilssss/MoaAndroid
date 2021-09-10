@@ -87,8 +87,8 @@ lateinit var transfer: Transfer
 
         binding.homeMegazinRcv.layoutManager = GridLayoutManager(activity?.applicationContext!!,2)
 
-        binding.homeTalentSharingBnt.setOnClickListener { navController.navigate(R.id.ConciergeMainFragment) }
-        binding.homeMoaVoiceChatBtn.setOnClickListener { navController.navigate(R.id.voiceMainFragment) }
+        binding.homeTalentSharingBnt.setOnClickListener { navController.navigate(R.id.action_HomeFragment_to_ConciergeMainFragment) }
+        binding.homeMoaVoiceChatBtn.setOnClickListener { navController.navigate(R.id.action_HomeFragment_to_voiceMainFragment) }
         binding.homeClaimBtn.setOnClickListener { goToClaimView() }
         binding.homeGroupBuyingBtn.setOnClickListener{goToGroupBuyingBtn()}
 

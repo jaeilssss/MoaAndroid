@@ -55,7 +55,6 @@ class NeederWriteFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_needer_write,container,false)
 
-
         model = ViewModelProvider(this).get(NeederWriteViewModel::class.java)
 
         binding.model = model

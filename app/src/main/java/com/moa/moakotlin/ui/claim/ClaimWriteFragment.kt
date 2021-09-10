@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -61,6 +62,9 @@ class ClaimWriteFragment : BaseFragment() {
         }
         binding.ClaimWriteSubmit.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
+                binding.ClaimWriteLoading.show()
+                activity?.getWindow()?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                 viewModel.submit()
             }}
         return binding.root
@@ -94,8 +98,10 @@ class ClaimWriteFragment : BaseFragment() {
                 var bundle  = Bundle()
 
                 bundle.putParcelable("complaint",viewModel.complaint)
+                activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 navController.navigate(R.id.action_claimWriteFragment_to_claimReadFragment,bundle)
                 Toast.makeText(context,"작성이 완료되었습니다!",Toast.LENGTH_SHORT).show()
+
             }else{
 
             }

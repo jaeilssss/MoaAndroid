@@ -23,6 +23,7 @@ import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Banner
 import com.moa.moakotlin.data.Needer
+import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.NeederMainFragmentBinding
 import com.moa.moakotlin.recyclerview.concierge.HelperMainAdapter
 import com.moa.moakotlin.recyclerview.concierge.NeederMainAdapter
@@ -188,7 +189,15 @@ class NeederMainFragment : BaseFragment() {
                     var writer = viewModel.getWriterData(adapter.currentList[position].uid)
                     var bundle = Bundle()
                     bundle.putParcelable("needer",adapter.currentList[position])
-                    bundle.putParcelable("writer",writer)
+                    if(writer==null){
+
+                        var emptyWriter = User()
+                        emptyWriter.nickName= "알수없음"
+                        emptyWriter.uid ="-1"
+                        bundle.putParcelable("writer",emptyWriter)
+                    }else{
+                        bundle.putParcelable("writer",writer)
+                    }
 
                     navController.navigate(R.id.action_neederMainFragment_to_neederReadFragment,bundle)
                 }
