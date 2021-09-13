@@ -84,8 +84,8 @@ class VoiceMainFragment : BaseFragment() {
 
         binding.VoiceMainCreateRoomBtn.setOnClickListener {
             permission(2000)
-
         }
+
         viewModel.voiceChatRoomList.observe(viewLifecycleOwner, Observer {
             if(it.size>0){
                 binding.VoiceMainEmptyLayout.isVisible = false
@@ -96,7 +96,6 @@ class VoiceMainFragment : BaseFragment() {
                 binding.VoiceMainEmptyLayout.isVisible = true
                 binding.VoiceMainRcv.isVisible = false
             }
-
         })
 
 
@@ -106,8 +105,6 @@ class VoiceMainFragment : BaseFragment() {
                 permission(1000)
             }
         })
-
-
 
 
         setBanner()

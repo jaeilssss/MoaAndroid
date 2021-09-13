@@ -48,6 +48,7 @@ lateinit var model : LoadingViewModel
                 if(result == true){
 
                     FirebaseMessaging.getInstance().subscribeToTopic("MOA")
+
                     FirebaseMessaging.getInstance().subscribeToTopic(User.getInstance().aptCode)
 
                     userRepository.registerPushToken()
@@ -64,9 +65,11 @@ lateinit var model : LoadingViewModel
                         var intent = Intent(this,MainActivity::class.java)
                         intent.putExtra("request","모아 라디오")
                         startActivity(intent)
-                    } else{
+                    } else {
+
                         var intent = Intent(this,MainActivity::class.java)
                         startActivity(intent)
+
                     }
 
                     finish()

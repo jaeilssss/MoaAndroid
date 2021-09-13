@@ -93,6 +93,7 @@ class VoiceRepository  {
                         if(data!=null){
                             voiceChatRoomList.add(data)
                         }
+
                     }
                 }.await()
 

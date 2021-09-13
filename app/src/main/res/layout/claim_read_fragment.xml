@@ -56,8 +56,12 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 <androidx.core.widget.NestedScrollView
 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/ClaimEditLayout"
     android:fillViewport="true"
     tools:context=".ui.claim.ClaimReadFragment">
 
@@ -178,7 +182,7 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toBottomOf="@id/ClaimReadProfileImage"
     android:layout_marginHorizontal="15dp"
-    android:layout_marginTop="25dp"
+    android:layout_marginTop="10dp"
     tools:text="102동 앞으로 계속 대형 차량이 주차되어있어요 \n 통행에 매우 불편합니다"
     android:fontFamily="@font/notosanscjkkr_medium"
     android:lineSpacingExtra="5dp"
@@ -214,6 +218,7 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toBottomOf="@id/ClaimReadViewPager"
+
     tools:listitem="@layout/item_claim"
     android:id="@+id/ClaimReadCommentRcv"/>
 

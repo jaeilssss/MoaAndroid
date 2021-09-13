@@ -8,11 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.moa.moakotlin.R
+import com.moa.moakotlin.data.Comment
 import com.moa.moakotlin.data.Complaint
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.ClaimReadFragmentBinding
+import com.moa.moakotlin.recyclerview.comment.CommentAdapter
 import com.moa.moakotlin.viewpageradapter.ConciergeReadViewpagerAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,6 +33,7 @@ class ClaimReadFragment : Fragment() {
 
     private lateinit var complaint : Complaint
 
+    private lateinit var adapter  : CommentAdapter
     private lateinit var viewPagerAdapter : ConciergeReadViewpagerAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -51,8 +55,17 @@ class ClaimReadFragment : Fragment() {
         setViewData()
         viewPagerAdapter = context?.let { ConciergeReadViewpagerAdapter(it,complaint.images) }!!
         binding.ClaimReadViewPager.adapter = viewPagerAdapter
+        adapter = CommentAdapter()
 
-        // TODO: Use the ViewModel
+        binding.ClaimReadCommentRcv.adapter = adapter
+
+        binding.ClaimReadCommentRcv.layoutManager = LinearLayoutManager(context)
+
+        var  list = ArrayList<Comment>()
+
+
+        adapter.submitList(list)
+
     }
 
 

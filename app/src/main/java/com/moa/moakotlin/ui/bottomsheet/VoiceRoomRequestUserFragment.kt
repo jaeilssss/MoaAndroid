@@ -33,23 +33,27 @@ class VoiceRoomRequestUserFragment(var documentID : String  , val itemCLick: (In
                 .get()
                 .addOnSuccessListener {
                     for(document in  it.documents){
+
                         var requestUser  = document.toObject(RequestUser::class.java)
 
                         if (requestUser != null) {
+
                             list.add(requestUser)
+                            
                         }
+
                     }
 
                     rcv.adapter= adapter
 
                     adapter.submitList(list)
-                    rcv.layoutManager = LinearLayoutManager(activity)
 
+                    rcv.layoutManager = LinearLayoutManager(activity)
                 }
 
         adapter.setOnItemClickListener(object : OnItemClickListener{
             override fun onItemClick(v: View, position: Int) {
-                println("클릭 리스너")
+
                 context?.let {
                     AptCertificationImageAlertDialog(it)
                             .setMessage("${adapter.currentList[position].nickName}님에게 발언권을 부여하시겠습니까?")

@@ -56,7 +56,7 @@ class FcmRepository {
         val data = hashMapOf(
                 "title" to message.title,
                 "body" to message.body,
-                "topic" to "MOA"
+                "topic" to "test"
         )
         var functions = Firebase.functions("asia-northeast3")
         functions.getHttpsCallable("sendCloudMessageByTopic").call(data)
