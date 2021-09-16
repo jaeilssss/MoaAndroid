@@ -97,9 +97,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:padding="20dp"
                 app:layout_constraintDimensionRatio="H,1:1"
                 app:layout_constraintBottom_toTopOf="@id/ClaimMainCategoryelevatorText"
-                android:src="@drawable/default_elevator_img"
+                android:src="@drawable/img_elevator_active"
                 android:id="@+id/ClaimMainCategoryelevator"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -142,7 +143,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintDimensionRatio="H,1:1"
-                android:src="@drawable/default_park_img"
+                android:padding="20dp"
+                android:src="@drawable/img_park_active"
                 app:layout_constraintBottom_toTopOf="@id/ClaimMainCategoryParkText"
                 android:id="@+id/ClaimMainCategoryPark"/>
             <TextView
@@ -185,7 +187,8 @@
                 android:id="@+id/ClaimMainCategorySecurity"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:src="@drawable/default_security_img"
+                android:src="@drawable/img_security_active"
+                android:padding="20dp"
                 app:layout_constraintBottom_toTopOf="@id/ClaimMainCategorySecurityText"
                 app:layout_constraintDimensionRatio="H,1:1"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -238,7 +241,8 @@
                 android:id="@+id/ClaimMainCategoryLandscape"
                 app:layout_constraintBottom_toTopOf="@id/ClaimMainCategoryLandscapeText"
                 android:layout_margin="10dp"
-                android:src="@drawable/default_landscape_img"/>
+                android:src="@drawable/img_landscape_active"
+                android:padding="20dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -281,7 +285,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintDimensionRatio="H,1:1"
-                android:src="@drawable/default_facility_img"
+                android:src="@drawable/img_facility_active"
+                android:padding="20dp"
                 app:layout_constraintBottom_toTopOf="@id/ClaimMainCategoryFacilityText"
                 />
             <TextView
@@ -321,7 +326,8 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/default_entrance_img"
+                android:src="@drawable/img_entrance_active"
+                android:padding="20dp"
                 app:layout_constraintDimensionRatio="H ,1:1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -370,7 +376,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:src="@drawable/default_flaw_img"
+                android:src="@drawable/img_flaw_active"
+                android:padding="20dp"
                 android:id="@+id/ClaimMainCategoryFlaw"
                 app:layout_constraintBottom_toTopOf="@id/ClaimMainCategoryFlawText"
                 />
@@ -410,7 +417,7 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/default_etc_img"
+                android:src="@drawable/ic_category_etc"
                 app:layout_constraintDimensionRatio="H ,1:1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
