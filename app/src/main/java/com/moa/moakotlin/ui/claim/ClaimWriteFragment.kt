@@ -18,8 +18,10 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.moa.moakotlin.MainActivity
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
+import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.databinding.ClaimWriteFragmentBinding
 import com.moa.moakotlin.recyclerview.certification.CertificationImageAdapter
 import com.moa.moakotlin.ui.imagepicker.ImagePickerActivity
@@ -48,7 +50,7 @@ class ClaimWriteFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
+        (context as MainActivity).backListener = this
         binding = DataBindingUtil.inflate(inflater,R.layout.claim_write_fragment ,container , false)
         binding.back.setOnClickListener { navController.popBackStack() }
         binding.ClaimWriteCategoryLayout.setOnClickListener {
@@ -67,6 +69,7 @@ class ClaimWriteFragment : BaseFragment() {
                         WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                 viewModel.submit()
             }}
+        binding.back.setOnClickListener { navController.popBackStack() }
         return binding.root
     }
 
@@ -87,6 +90,14 @@ class ClaimWriteFragment : BaseFragment() {
         })
 
         adapter = CertificationImageAdapter()
+        adapter.setOnItemCLickListener(object : OnItemClickListener{
+            override fun onItemClick(v: View, position: Int) {
+                selectedPictureList.removeAt(position)
+                viewModel.images = selectedPictureList
+            }
+
+        })
+
 
         binding.ClaimWriteRcv.adapter = adapter
 
@@ -98,8 +109,9 @@ class ClaimWriteFragment : BaseFragment() {
                 var bundle  = Bundle()
 
                 bundle.putParcelable("complaint",viewModel.complaint)
+                bundle.putBoolean("detail",false)
                 activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                navController.navigate(R.id.action_claimWriteFragment_to_claimReadFragment,bundle)
+                navController.popBackStack(R.id.claimMainFragment,false)
                 Toast.makeText(context,"작성이 완료되었습니다!",Toast.LENGTH_SHORT).show()
 
             }else{
@@ -175,6 +187,7 @@ class ClaimWriteFragment : BaseFragment() {
         startActivityForResult(intent,1000)
 
     }
+
     private fun showContextPopupPermission(){
         AlertDialog.Builder(context).setTitle("권한이 필요합니다")
                 .setMessage("사진을 불러오기 위해 권한이 필요합니다")

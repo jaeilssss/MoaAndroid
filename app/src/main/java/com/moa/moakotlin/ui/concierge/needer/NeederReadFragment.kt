@@ -67,7 +67,7 @@ class NeederReadFragment : BaseFragment() {
                               savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.needer_read_fragment,container,false)
-        binding = DataBindingUtil.inflate(inflater,R.layout.needer_read_fragment,container,false)
+
         (context as MainActivity).backListener = this
         return binding.root
     }

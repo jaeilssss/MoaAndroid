@@ -91,6 +91,7 @@ lateinit var transfer: Transfer
         binding.homeMoaVoiceChatBtn.setOnClickListener { navController.navigate(R.id.action_HomeFragment_to_voiceMainFragment) }
         binding.homeClaimBtn.setOnClickListener { goToClaimView() }
         binding.homeGroupBuyingBtn.setOnClickListener{goToGroupBuyingBtn()}
+        binding.homePartnerNoticeBtn.setOnClickListener { goToPartnerNoticeView() }
 
 
         getMoaMagazine()
@@ -109,11 +110,22 @@ lateinit var transfer: Transfer
                 navController.navigate(R.id.action_HomeFragment_to_claimMainFragment,bundle)
 
             }else{
-                homeClaimAlertDialog()
+                homeClaimAlertDialog("민원신청 기능은 아파트와 계약이 필요해요\n관리 사무소에 문의해주세요")
             }
         }
+    }
+    fun goToPartnerNoticeView(){
+        CoroutineScope(Dispatchers.Main).launch {
+            var partnerApart =model.findPartnerApart()
 
+            if(partnerApart!=null){
 
+                navController.navigate(R.id.action_homeFragment_to_PartnerNoticeMainFragment)
+
+            }else{
+                homeClaimAlertDialog("아파트 공지사항 기능은 아파트와 계약이 필요해요\n관리 사무소에 문의해주세요")
+            }
+        }
     }
     fun goToGroupBuyingBtn(){
         var intent = Intent(activity,WebViewActivity::class.java)
@@ -122,10 +134,10 @@ lateinit var transfer: Transfer
 
         startActivity(intent)
     }
-    fun homeClaimAlertDialog(){
+    fun homeClaimAlertDialog(message : String){
         context?.let {
             SinglePositiveButtonDialog(it)
-                .setMessage("민원신청 기능은 아파트와 계약이 필요해요\n관리 사무소에 문의해주세요")
+                .setMessage(message)
                 .setPositiveButton("확인"){
 
                 }.show()

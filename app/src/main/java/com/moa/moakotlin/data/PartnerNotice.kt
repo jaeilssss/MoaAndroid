@@ -5,17 +5,16 @@ import com.google.firebase.Timestamp
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Complaint(
-        var category : String ="",
+data class PartnerNotice(
+        var aptCode : String ="",
         var content : String ="",
         var images : ArrayList<String> = ArrayList(),
         @field:JvmField
-        var isPrivate : Boolean = false,
+        var isPriority : Boolean =false,
         var timeStamp : Timestamp = Timestamp.now(),
-        var title : String = "",
-        var uid :  String = "",
-        var status : String = "",
-        var documentId : String = ""
-                // requested  , inprogress , completed
+        var title : String ="",
+        var uid : String =""
+): Parcelable {
 
-): Parcelable
+
+}
