@@ -3,10 +3,10 @@ package com.moa.moakotlin.ui.claim
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.moa.moakotlin.data.Complaint
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.repository.FirebaseRepository
-import com.moa.moakotlin.repository.complaint.ComplaintRepository
 
 class ClaimMainViewModel : ViewModel() {
 
@@ -22,6 +22,7 @@ class ClaimMainViewModel : ViewModel() {
                         .document(User.getInstance().aptCode)
                         .collection("Complaint")
                         .whereEqualTo("uid",User.getInstance().uid)
+                        .orderBy("timeStamp",Query.Direction.DESCENDING)
                         .get()
         )
       complaintList.value = list

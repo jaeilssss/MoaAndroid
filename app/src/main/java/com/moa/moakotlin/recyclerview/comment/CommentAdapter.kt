@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Comment
-import com.moa.moakotlin.data.Complaint
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.ItemClaimCommentBinding
 import com.moa.moakotlin.repository.FirebaseRepository

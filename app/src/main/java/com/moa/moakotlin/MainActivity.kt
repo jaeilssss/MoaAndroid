@@ -158,8 +158,8 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
 
 
 
-fun init(){
-getSharedPreferences("AlarmSetting", Context.MODE_PRIVATE)!!
+    fun init(){
+            getSharedPreferences("AlarmSetting", Context.MODE_PRIVATE)!!
         .edit {
             putBoolean("isChattingAlarm", User.getInstance().isAgreeChattingAlarm)
             putBoolean("isEventAlarm", User.getInstance().isAgreeEventAlarm)

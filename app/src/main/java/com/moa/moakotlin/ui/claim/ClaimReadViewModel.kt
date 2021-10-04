@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import com.moa.moakotlin.data.Comment
 import com.moa.moakotlin.data.Complaint
 import com.moa.moakotlin.data.User

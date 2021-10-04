@@ -11,5 +11,8 @@ data class Apt(
         var aroundApt : ArrayList<String> = ArrayList(),
         var doroJuso : String="",
         var lat : Double=0.0,
-        var lon : Double=0.0
+        var lon : Double=0.0,
+        var city : String ="",
+        var gu : String =""
+
 ): Parcelable

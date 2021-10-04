@@ -19,6 +19,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import android.view.View
+import androidx.core.view.isVisible
 import com.moa.moakotlin.R
 
 class ComplaintAdapter : ListAdapter<Complaint, ComplaintAdapter.complaintViewHolder>(diffUtil){
@@ -40,12 +41,16 @@ class ComplaintAdapter : ListAdapter<Complaint, ComplaintAdapter.complaintViewHo
       holder.binding(currentList[position])
     }
 
+
+
     inner class complaintViewHolder(var binding : ItemClaimBinding ) : RecyclerView.ViewHolder(binding.root){
 
         fun binding(complaint: Complaint){
             binding.itemClaimTitle.text = complaint.title
             binding.itemClaimCategory.text = complaint.category
-
+            if(complaint.isPrivate.not()){
+                binding.claimReadLock.isVisible = false
+            }
             if(complaint.status.equals("requested")){
                 binding.itemClaimStatus.text = "요청중"
             }else if(complaint.status.equals("inProgress")){
@@ -66,7 +71,7 @@ class ComplaintAdapter : ListAdapter<Complaint, ComplaintAdapter.complaintViewHo
                                     .get()
                     )
                     if(result.size>0){
-                        var otherUser  : User =result.get(0)
+                        var otherUser  : User = result.get(0)
                         binding.itemClaimNickName.text = otherUser.nickName
                     }
                 }

@@ -1,13 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.partner.PartnerNoticeReadFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
+    <data>
+        <variable
+            name="model"
+            type="com.moa.moakotlin.ui.partner.PartnerNoticeReadViewModel" />
+    </data>
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        tools:context=".ui.partner.PartnerNoticeReadFragment">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/back"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:padding="5dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="12dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_back"
+                android:scaleType="fitXY"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/back"
+            app:layout_constraintBottom_toBottomOf="@id/back"
+            android:text="공지사항"
+            android:textSize="18dp"
+            android:textColor="@color/moaBlack"
+            android:textStyle="bold"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:id="@+id/partnerNoticeReadText"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/partnerNoticeReadText"
+            android:text="관리실 공지"
+            android:background="@drawable/shape_main_color_radius_5"
+            android:textSize="12dp"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="5dp"
+            android:layout_marginStart="15dp"
+            android:textColor="@color/moaBlack"
+            android:layout_marginTop="15dp"
+            android:id="@+id/partnerNoticeReadType"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/partnerNoticeReadType"
+            app:layout_constraintTop_toTopOf="@id/partnerNoticeReadType"
+            app:layout_constraintBottom_toBottomOf="@id/partnerNoticeReadType"
+            android:maxLines="1"
+            tools:text="102동 앞 주차장 단속 바랍니다"
+            android:textSize="16dp"
+            android:textColor="@color/moaBlack"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:textStyle="bold"
+            android:layout_marginStart="10dp"
+            android:id="@+id/partnerNoticeReadTitle"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            app:layout_constraintStart_toStartOf="@id/partnerNoticeReadType"
+            app:layout_constraintTop_toBottomOf="@id/partnerNoticeReadType"
+            android:layout_marginTop="20dp"
+            android:id="@+id/partnerNoticeReadPrifile"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/partnerNoticeReadPrifile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/partnerNoticeReadPrifile"
+        app:layout_constraintBottom_toTopOf="@id/partnerNoticeReadDate"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="만현마을 쌍용 1차 관리사무소"
+        android:layout_marginStart="15dp"
+        android:textSize="16dp"
+        android:paddingVertical="3dp"
+        android:textColor="@color/moaBlack"
+        android:fontFamily="@font/notosanscjkkr_medium"
+        android:includeFontPadding="false"
+        android:textStyle="bold"
+        android:id="@+id/partnerNoticeReadNickname"/>
+<TextView
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    app:layout_constraintVertical_chainStyle="packed"
+    app:layout_constraintStart_toStartOf="@id/partnerNoticeReadNickname"
+    app:layout_constraintTop_toBottomOf="@id/partnerNoticeReadNickname"
+    android:paddingVertical="3dp"
+    app:layout_constraintBottom_toBottomOf="@id/partnerNoticeReadPrifile"
+    tools:text="2021년 3월 23일 오후 3:21"
+    android:id="@+id/partnerNoticeReadDate"/>
+<TextView
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:textSize="16dp"
+    android:textColor="@color/moaBlack"
+    android:fontFamily="@font/notosanscjkkr_medium"
+    tools:text="gdgdgdgdgdg\ndsdsdsdsdsdsds"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/partnerNoticeReadPrifile"
+    android:layout_marginHorizontal="15dp"
+    android:id="@+id/partnerNoticeReadContent"
+    />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/partnerNoticeReadContent"
+            app:layout_constraintDimensionRatio="H , 1:1"
+            android:id="@+id/partnerNoticeReadViewPager"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/partnerNoticeReadIndicators"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/partnerNoticeReadViewPager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:padding="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
+</layout>

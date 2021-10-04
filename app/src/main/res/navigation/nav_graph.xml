@@ -24,7 +24,13 @@
         android:name="com.moa.moakotlin.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
-
+        <action
+            android:id="@+id/action_homeFragment_to_PartnerNoticeMainFragment"
+            app:destination="@id/partnerNoticeMainFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
         <action
             android:id="@+id/action_HomeFragment_to_ConciergeMainFragment"
             app:destination="@id/ConciergeMainFragment"
@@ -679,7 +685,16 @@
     <fragment
         android:id="@+id/claimReadFragment"
         android:name="com.moa.moakotlin.ui.claim.ClaimReadFragment"
-        android:label="ClaimReadFragment" />
+        android:label="ClaimReadFragment" >
+        <action
+            android:id="@+id/action_claimReadFragment_to_claimModifyFragment"
+            app:destination="@id/claimModifyFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+
+    </fragment>
     <fragment
         android:id="@+id/claimDetailViewFragment"
         android:name="com.moa.moakotlin.ui.claim.ClaimDetailViewFragment"
@@ -730,6 +745,53 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/claimModifyFragment"
+        android:name="com.moa.moakotlin.ui.claim.ClaimModifyFragment"
+        android:label="ClaimWriteFragment" >
+        <action
+            android:id="@+id/action_claimModifyFragment_to_claimReadFragment"
+            app:destination="@id/claimReadFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/partnerNoticeMainFragment"
+        android:name="com.moa.moakotlin.ui.partner.PartnerNoticeMainFragment"
+        android:label="PartnerNoticeMainFragment"
+        tools:layout="@layout/partner_notice_main_fragment"
+        >
+        <action
+            android:id="@+id/action_partnerNoticeMainFragment_to_partnerNoticeReadFragment"
+            app:destination="@id/partnerNoticeReadFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_partnerNoticeMainFragment_to_partnerContractReadFragment"
+            app:destination="@id/partnerContractReadFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/partnerNoticeReadFragment"
+        android:name="com.moa.moakotlin.ui.partner.PartnerNoticeReadFragment"
+        android:label="PartnerNoticeReadFragment">
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/partnerContractReadFragment"
+        android:name="com.moa.moakotlin.ui.partner.PartnerContractReadFragment"
+        android:label="PartnerContractReadFragment">
+
     </fragment>
 
 </navigation>

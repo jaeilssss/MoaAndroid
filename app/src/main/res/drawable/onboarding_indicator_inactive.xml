@@ -4,8 +4,8 @@
     >
 
     <size
-        android:width="6.5dp"
-        android:height="6.2dp"/>
+        android:width="8dp"
+        android:height="8dp"/>
     <solid
         android:color="@color/semiGrey15"/>
 

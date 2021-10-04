@@ -80,8 +80,9 @@ class UserRepository {
                 if(it.exists()){
                     var list = it.toObject(aptList::class.java)
                     if (list != null) {
-                        println(list.aroundApt.get(0))
+//                        println(list.aroundApt.get(0))
                         aptList.setInstance(list)
+
                     }
                     result = true
                 }

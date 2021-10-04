@@ -89,9 +89,11 @@ class VoiceRoomFragment : BaseFragment() {
         var token = arguments?.get("token") as String
 
          voiceChatRoom  = arguments?.getParcelable<VoiceChatRoom>("voiceChatRoom")!!
+
         if(viewModel.mlistener ==null ){
             setVoiceRoomListener()
         }
+
         setView(voiceChatRoom)
 
         createIRtcEnginHandler()
@@ -259,9 +261,6 @@ class VoiceRoomFragment : BaseFragment() {
 
         for(i in 0..rs.size-1){
             var rsi : ActivityManager.RunningServiceInfo = rs.get(i)
-            println(rsi.service.packageName)
-            println(rsi.service.className)
-
         }
     }
     fun myMicOn(){
@@ -372,7 +371,7 @@ class VoiceRoomFragment : BaseFragment() {
                 viewModel.changeAudienceCount(voiceChatRoom?.documentID)
                 rtcEngine.leaveChannel()
                 viewModel.deleteSnapShot()
-                if(voiceChatRoom.owner.equals(User.getInstance().uid)){
+                if(voiceChatRoom.owner == User.getInstance().uid){
 
                     viewModel.deleteVoiceChatRoom(voiceChatRoom.documentID)
                 }
@@ -515,12 +514,12 @@ class VoiceRoomFragment : BaseFragment() {
 
     override fun onDestroy() {
 
-        viewModel.deleteSnapShot()
+
 
         CoroutineScope(Dispatchers.Main).launch {
 
             voiceChatRoomExit()
-
+            viewModel.deleteSnapShot()
         }
         super.onDestroy()
     }

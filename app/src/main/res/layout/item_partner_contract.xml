@@ -8,6 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:id="@+id/itemPartnerContractLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -29,12 +30,10 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/itemPartnerContractImg"
-
             app:layout_constraintTop_toTopOf="@id/itemPartnerContractImg"
             app:layout_constraintBottom_toTopOf="@id/itemPartnerContractTitle"
             android:textSize="16dp"
             android:textColor="@color/moaBlack"
-
             android:layout_marginStart="20dp"
             android:maxLines="1"
             tools:text="정상"
@@ -72,7 +71,7 @@
             app:layout_constraintVertical_chainStyle="packed"
             tools:text="관리사무소"
             android:id="@+id/itemPartnerContractDate"
-            android:textSize="14dp"
+            android:textSize="12dp"
             android:textColor="@color/moaBlack"
             android:padding="2dp"
             android:fontFamily="@font/notosanscjkkr_medium"

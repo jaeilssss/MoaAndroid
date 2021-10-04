@@ -44,15 +44,11 @@ val db = FirebaseFirestore.getInstance()
         documentID = intent?.getStringExtra("documentID").toString()
         voiceUser  = intent?.getParcelableExtra<VoiceUser>("voiceUser")!!
 
-
     }
 
     override fun onTaskRemoved(rootIntent: Intent?) {
 
-
-        println("Thread sleep")
         Thread.sleep(5000)
-        println("꺠어남 스레드")
 //        super.onTaskRemoved(rootIntent)
         stopSelf()
 

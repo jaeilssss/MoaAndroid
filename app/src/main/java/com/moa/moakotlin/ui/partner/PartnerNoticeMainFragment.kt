@@ -6,13 +6,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
+import com.moa.moakotlin.data.aptList
 import com.moa.moakotlin.databinding.PartnerNoticeMainFragmentBinding
 import com.moa.moakotlin.viewpageradapter.PartnerNoticeViewPagerAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class PartnerNoticeMainFragment : Fragment() {
 
@@ -32,6 +38,7 @@ class PartnerNoticeMainFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.partner_notice_main_fragment , container , false)
+
         return binding.root
     }
 
@@ -43,6 +50,9 @@ class PartnerNoticeMainFragment : Fragment() {
         viewPagerAdapter = PartnerNoticeViewPagerAdapter(childFragmentManager , navController)
         binding.partnerNoticeViewPager.adapter = viewPagerAdapter
         binding.partnerNoticeTabLayout.setupWithViewPager(binding.partnerNoticeViewPager)
+
+
     }
+
 
 }

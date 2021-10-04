@@ -76,7 +76,6 @@ class ClaimReadFragment : BaseFragment() {
                        val inputMethodManager = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                        inputMethodManager.hideSoftInputFromWindow(binding.ChatEdit.windowToken, 0)
                    }
-
                 }
             }
         }
@@ -158,12 +157,10 @@ class ClaimReadFragment : BaseFragment() {
         })
 
         getComment(complaint.documentId)
-
-
     }
 
     override fun onBackPressed() {
-        
+
         if(checkDetailView){
             navController.popBackStack()
         }else{
