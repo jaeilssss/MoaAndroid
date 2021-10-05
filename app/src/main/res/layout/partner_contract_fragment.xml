@@ -6,7 +6,6 @@
     <data>
 
     </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,7 +17,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/partnerContractReadSearch"
         android:id="@+id/PartnerContractRcv"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/shape_main_color_radius_5"
+            android:text="만료 계약 건 조회"
+            android:textSize="15dp"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/partnerContractReadSearch"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
