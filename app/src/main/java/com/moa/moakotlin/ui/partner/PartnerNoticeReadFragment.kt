@@ -11,9 +11,11 @@ import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.data.PartnerNotice
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.PartnerNoticeReadFragmentBinding
@@ -24,7 +26,7 @@ import kotlinx.coroutines.launch
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 
-class PartnerNoticeReadFragment : Fragment() {
+class PartnerNoticeReadFragment : BaseFragment() {
 
 
     private lateinit var viewModel: PartnerNoticeReadViewModel
@@ -42,6 +44,8 @@ class PartnerNoticeReadFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.partner_notice_read_fragment , container , false)
+        binding.back.setOnClickListener { onBackPressed() }
+        myActivity.bottomNavigationGone()
         return binding.root
     }
 
@@ -49,11 +53,15 @@ class PartnerNoticeReadFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(PartnerNoticeReadViewModel::class.java)
         binding.model = viewModel
-
+        navController = findNavController()
         arguments?.let {
             partnerNotice = it.getParcelable<PartnerNotice>("notice")!!
             setViewData()
         }
+    }
+
+    override fun onBackPressed() {
+        navController.popBackStack()
     }
 
     fun setViewData(){
