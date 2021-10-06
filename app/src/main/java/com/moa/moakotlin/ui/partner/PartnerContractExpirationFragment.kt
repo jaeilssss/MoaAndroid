@@ -12,6 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.databinding.PartnerContractExpirationFragmentBinding
 import com.moa.moakotlin.recyclerview.partner.PartnerContractAdapter
@@ -19,7 +20,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class PartnerContractExpirationFragment : Fragment() {
+class PartnerContractExpirationFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = PartnerContractExpirationFragment()
@@ -38,6 +39,9 @@ class PartnerContractExpirationFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.partner_contract_expiration_fragment,container,false)
+        binding.back.setOnClickListener { navController.popBackStack() }
+        myActivity.bottomNavigationGone()
+        binding.back.setOnClickListener { onBackPressed() }
         return binding.root
     }
 
@@ -65,6 +69,11 @@ class PartnerContractExpirationFragment : Fragment() {
 
 
     }
+
+    override fun onBackPressed() {
+     navController.popBackStack()
+    }
+
     fun setDataView(){
         CoroutineScope(Dispatchers.Main).launch {
             viewModel.getDocumentList()

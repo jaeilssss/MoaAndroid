@@ -73,11 +73,12 @@ class ClaimMainFragment : BaseFragment() {
                 bundle.putBoolean("detail",false)
                 navController.navigate(R.id.action_claimMainFragment_to_ClaimReadFragment,bundle)
             }
-
-
         })
+
         binding.ClaimMainRcv.adapter = adapter
         binding.ClaimMainRcv.layoutManager = LinearLayoutManager(context)
+        binding.ClaimMainRcv.setItemViewCacheSize(100)
+        binding.ClaimMainRcv.setHasFixedSize(true)
         viewModel.complaintList.observe(viewLifecycleOwner, Observer {
             if(it.size==0){
                 binding.ClaimMainRcv.isVisible = false

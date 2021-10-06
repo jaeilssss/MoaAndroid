@@ -25,6 +25,9 @@ class PartnerNoticeAdapter : ListAdapter<PartnerNotice,PartnerNoticeAdapter.Part
 
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PartnerNoticeViewHolder {
         return PartnerNoticeViewHolder(ItemPartnerNoticeBinding.inflate(LayoutInflater.from(parent.context),parent,false))

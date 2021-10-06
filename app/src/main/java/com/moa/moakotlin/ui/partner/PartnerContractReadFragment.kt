@@ -10,8 +10,11 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.data.Contract
 import com.moa.moakotlin.databinding.PartnerContractReadFragmentBinding
 import com.moa.moakotlin.viewpageradapter.ConciergeReadViewpagerAdapter
@@ -20,7 +23,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 
-class PartnerContractReadFragment : Fragment() {
+class PartnerContractReadFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = PartnerContractReadFragment()
@@ -35,9 +38,16 @@ class PartnerContractReadFragment : Fragment() {
 
     private lateinit var viewPagerAdapter : ConciergeReadViewpagerAdapter
 
+    private lateinit var navController: NavController
+
+    var defaultUrl = "https://firebasestorage.googleapis.com/v0/b/moakr-8c0ab.appspot.com/o/CONCIERGE_DEFAULT.png?alt=media&token=8623aaa7-4f88-44fb-a05e-64d2a02cb683"
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.partner_contract_read_fragment,container,false)
+        myActivity.bottomNavigationGone()
+        binding.back.setOnClickListener { onBackPressed() }
         return binding.root
     }
 
@@ -45,7 +55,7 @@ class PartnerContractReadFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(PartnerContractReadViewModel::class.java)
 
-
+        navController= findNavController()
         arguments?.let {
             contract = it.getParcelable<Contract>("contract")!!
             setDataView()
@@ -54,18 +64,30 @@ class PartnerContractReadFragment : Fragment() {
 
     }
 
+    override fun onBackPressed() {
+        navController.popBackStack()
+    }
+
 
     fun setDataView(){
        binding.partnerContractReadName.text = contract.companyName
-        binding.partnerContractReadInfo.text = contract.contractInfo
-        binding.partnerContractReadPrice.text = contract.price
+        binding.partnerContractReadInfo.text = "${contract.contractInfo} / ${contract.transaction}"
+        binding.partnerContractReadPrice.text = contract.price.toString()
         val dateFormat = SimpleDateFormat("yyyy.MM.dd.")
         binding.partnerContractReadDate.text = "${dateFormat.format(contract.contractStartDate.toDate())}~${dateFormat.format(contract.contractEndDate.toDate())}"
-        viewPagerAdapter = ConciergeReadViewpagerAdapter(requireContext(),contract.images)
+        if(contract.images.size==0){
+            var list = ArrayList<String>()
+            list.add(defaultUrl)
+            viewPagerAdapter = ConciergeReadViewpagerAdapter(requireContext(),list)
+        }else{
+            viewPagerAdapter = ConciergeReadViewpagerAdapter(requireContext(),contract.images)
+        }
+
         binding.PartnerContractReadViewPager.adapter = viewPagerAdapter
 
 
         setCurrentOnboardingIndicator(0)
+
         setUpBoardingIndicators(contract.images.size)
         binding.PartnerContractReadViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {

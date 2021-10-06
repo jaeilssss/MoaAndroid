@@ -59,6 +59,9 @@ class ClaimReadFragment : BaseFragment() {
 
     private  var checkDetailView  = false
 
+    var defaultUrl = "https://firebasestorage.googleapis.com/v0/b/moakr-8c0ab.appspot.com/o/CONCIERGE_DEFAULT.png?alt=media&token=8623aaa7-4f88-44fb-a05e-64d2a02cb683"
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         (context as MainActivity).backListener = this
@@ -133,7 +136,14 @@ class ClaimReadFragment : BaseFragment() {
         }
 
         setViewData()
-        viewPagerAdapter = context?.let { ConciergeReadViewpagerAdapter(it,complaint.images) }!!
+        if(complaint.images.size==0){
+            var list = ArrayList<String>()
+            list.add(defaultUrl)
+            viewPagerAdapter = ConciergeReadViewpagerAdapter(requireContext(),list)
+        }else{
+            viewPagerAdapter = context?.let { ConciergeReadViewpagerAdapter(it,complaint.images) }!!
+        }
+
         binding.ClaimReadViewPager.adapter = viewPagerAdapter
         adapter = CommentAdapter()
         adapter.setOnItemClickListener(object : OnItemClickListener{

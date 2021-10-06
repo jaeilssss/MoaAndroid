@@ -7,6 +7,9 @@
 
     </data>
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -37,16 +40,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/back"
             app:layout_constraintDimensionRatio="H,1:1"
-            android:id="@+id/PartnerContractViewPager"/>
+            android:id="@+id/PartnerContractReadViewPager"/>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/PartnerViewPagerIndicator"
+            android:id="@+id/PartnerViewPagerReadIndicator"
             android:orientation="horizontal"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@id/PartnerContractViewPager"
+            app:layout_constraintTop_toBottomOf="@id/PartnerContractReadViewPager"
             android:padding="15dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"/>
@@ -55,19 +58,129 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/PartnerViewPagerIndicator"
+            app:layout_constraintTop_toBottomOf="@id/PartnerViewPagerReadIndicator"
             android:text="업체명"
             android:layout_marginStart="15dp"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:fontFamily="@font/notosanscjkkr_medium"
-            android:textColor="@color/moaBlack"/>
+            android:includeFontPadding="false"
+            android:textColor="@color/moaBlack"
+            android:id="@+id/partnerContractReadNameText"
+            />
 
-<!--        <TextView-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf=""/>-->
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/partnerContractReadNameText"
+            android:background="@drawable/shape_grey_radius_10"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            tools:text="gdgdgdgdgdgd"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="10dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/moaBlack"
+            android:textSize="18dp"
+            android:id="@+id/partnerContractReadName"
+            />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="@id/partnerContractReadName"
+    app:layout_constraintTop_toBottomOf="@id/partnerContractReadName"
+    android:text="계약기간"
+    android:textSize="16dp"
+    android:fontFamily="@font/notosanscjkkr_medium"
+    android:includeFontPadding="false"
+    android:textColor="@color/moaBlack"
+    android:layout_marginTop="10dp"
+    android:id="@+id/partnerContractReadDateText"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/partnerContractReadDateText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/partnerContractReadDateText"
+            tools:text="fsdfdgdgdgd"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:textColor="@color/moaBlack"
+            android:background="@drawable/shape_grey_radius_10"
+            android:layout_marginTop="10dp"
+            android:textSize="18dp"
+            android:layout_marginEnd="15dp"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="10dp"
+            android:id="@+id/partnerContractReadDate"/>
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintStart_toStartOf="@id/partnerContractReadDate"
+    app:layout_constraintTop_toBottomOf="@id/partnerContractReadDate"
+    android:layout_marginTop="10dp"
+    android:id="@+id/partnerContractReadPriceText"
+    android:text="월 산정 금액"
+    android:textSize="16dp"
+    android:fontFamily="@font/notosanscjkkr_medium"
+    android:includeFontPadding="false"
+    android:textColor="@color/moaBlack"
+    />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/partnerContractReadPriceText"
+            app:layout_constraintTop_toBottomOf="@id/partnerContractReadPriceText"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:textSize="18dp"
+            tools:text="2000000"
+            android:background="@drawable/shape_grey_radius_10"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="10dp"
+            android:textColor="@color/moaBlack"
+            android:id="@+id/partnerContractReadPrice"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/partnerContractReadPrice"
+            android:text="계약 정보"
+            app:layout_constraintTop_toBottomOf="@id/partnerContractReadPrice"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:textColor="@color/moaBlack"
+            android:id="@+id/partnerContractReadInfoText"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/partnerContractReadInfoText"
+            app:layout_constraintTop_toBottomOf="@id/partnerContractReadInfoText"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/notosanscjkkr_medium"
+            android:includeFontPadding="false"
+            android:textSize="18dp"
+            tools:text="dsdsds"
+            android:background="@drawable/shape_grey_radius_10"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="10dp"
+            android:textColor="@color/moaBlack"
+            android:id="@+id/partnerContractReadInfo"
+            />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

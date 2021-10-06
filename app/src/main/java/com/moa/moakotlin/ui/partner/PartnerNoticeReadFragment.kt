@@ -39,6 +39,7 @@ class PartnerNoticeReadFragment : BaseFragment() {
 
     private lateinit var viewPagerAdapter : ConciergeReadViewpagerAdapter
 
+    var defaultUrl = "https://firebasestorage.googleapis.com/v0/b/moakr-8c0ab.appspot.com/o/CONCIERGE_DEFAULT.png?alt=media&token=8623aaa7-4f88-44fb-a05e-64d2a02cb683"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -79,7 +80,14 @@ class PartnerNoticeReadFragment : BaseFragment() {
             binding.partnerNoticeReadNickname.text = writer.nickName
             Glide.with(binding.root).load(writer.profileImage).into(binding.partnerNoticeReadPrifile)
         }
-        viewPagerAdapter = ConciergeReadViewpagerAdapter(requireContext(),partnerNotice.images)
+        if(partnerNotice.images.size==0){
+            var list = ArrayList<String>()
+            list.add(defaultUrl)
+            viewPagerAdapter = ConciergeReadViewpagerAdapter(requireContext(),list)
+        }else{
+            viewPagerAdapter = ConciergeReadViewpagerAdapter(requireContext(),partnerNotice.images)
+        }
+
         binding.partnerNoticeReadViewPager.adapter = viewPagerAdapter
         setCurrentOnboardingIndicator(0)
         setUpBoardingIndicators(partnerNotice.images.size)

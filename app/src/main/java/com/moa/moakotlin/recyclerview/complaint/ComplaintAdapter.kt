@@ -32,7 +32,11 @@ class ComplaintAdapter : ListAdapter<Complaint, ComplaintAdapter.complaintViewHo
         this.mListener = mListener
 
     }
-    
+
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ComplaintAdapter.complaintViewHolder {
         return complaintViewHolder(ItemClaimBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
@@ -80,6 +84,8 @@ class ComplaintAdapter : ListAdapter<Complaint, ComplaintAdapter.complaintViewHo
 
             if(complaint.images.size!=0){
                 Glide.with(binding.root).load(complaint.images[0]).into(binding.itemClaimImage)
+            }else{
+                Glide.with(binding.root).load(defaultUrl).into(binding.itemClaimImage)
             }
             
             

@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.moa.moakotlin.R
+import com.moa.moakotlin.base.BaseFragment
 import com.moa.moakotlin.data.aptList
 import com.moa.moakotlin.databinding.PartnerNoticeMainFragmentBinding
 import com.moa.moakotlin.viewpageradapter.PartnerNoticeViewPagerAdapter
@@ -20,7 +21,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class PartnerNoticeMainFragment : Fragment() {
+class PartnerNoticeMainFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = PartnerNoticeMainFragment()
@@ -38,7 +39,8 @@ class PartnerNoticeMainFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.partner_notice_main_fragment , container , false)
-
+        myActivity.bottomNavigationGone()
+        binding.back.setOnClickListener { onBackPressed() }
         return binding.root
     }
 
@@ -52,6 +54,10 @@ class PartnerNoticeMainFragment : Fragment() {
         binding.partnerNoticeTabLayout.setupWithViewPager(binding.partnerNoticeViewPager)
 
 
+    }
+
+    override fun onBackPressed() {
+        navController.popBackStack()
     }
 
 

@@ -6,24 +6,27 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.moa.moakotlin.data.Contract
+import com.moa.moakotlin.data.PartnerNotice
 import com.moa.moakotlin.data.User
+import com.moa.moakotlin.data.aptList
 import com.moa.moakotlin.repository.FirebaseRepository
 
-class PartnerContractViewModel : ViewModel() {
+class PartnerContractExpirationViewModel : ViewModel() {
 
-    var partnerContractList = MutableLiveData<ArrayList<Contract>>()
-    suspend fun  getDocumentList(){
-        var repository = FirebaseRepository<Contract>()
+    var contractList = MutableLiveData<ArrayList<Contract>>()
+    suspend fun getDocumentList(){
+        var repository = FirebaseRepository<PartnerNotice>()
 
-        var list = repository.getDocumentList<Contract>(
+        contractList.value =  repository.getDocumentList<Contract>(
                 FirebaseFirestore.getInstance()
                         .collection("PartnerApart")
                         .document(User.getInstance().aptCode)
                         .collection("Contract")
-                        .orderBy("timeStamp", Query.Direction.DESCENDING)
+                        .whereLessThan("contractEndDate", Timestamp.now())
+                        .orderBy("timeStamp",Query.Direction.DESCENDING)
                         .get()
 
         )
-        partnerContractList.value = list
+
     }
 }

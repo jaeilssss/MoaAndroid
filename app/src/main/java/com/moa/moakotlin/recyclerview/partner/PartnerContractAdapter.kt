@@ -28,6 +28,9 @@ class PartnerContractAdapter  : ListAdapter<Contract,PartnerContractAdapter.Cont
     override fun onBindViewHolder(holder: PartnerContractAdapter.ContractViewHolder, position: Int) {
         holder.binding(currentList[position])
     }
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
 
     inner class ContractViewHolder(var binding : ItemPartnerContractBinding): RecyclerView.ViewHolder(binding.root){
 
@@ -35,6 +38,7 @@ class PartnerContractAdapter  : ListAdapter<Contract,PartnerContractAdapter.Cont
         fun binding(contract: Contract){
 
             binding.itemPartnerContractTitle.text = contract.title
+            binding.itemPartnerContractStatus.text = contract.status
             val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일")
             binding.itemPartnerContractDate.text = "${contract.companyName} ${dateFormat.format(contract.contractStartDate.toDate())}~${dateFormat.format(contract.contractEndDate.toDate())}"
             if(contract.images.isNotEmpty()){

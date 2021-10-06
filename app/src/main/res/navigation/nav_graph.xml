@@ -778,6 +778,13 @@
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
+        <action
+            android:id="@+id/action_partnerNoticeMainFragment_to_partnerContractExpirationFragment"
+            app:destination="@id/PartnerContractExpirationFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
     </fragment>
 
     <fragment
@@ -793,5 +800,16 @@
         android:label="PartnerContractReadFragment">
 
     </fragment>
-
+    <fragment
+        android:id="@+id/PartnerContractExpirationFragment"
+        android:name="com.moa.moakotlin.ui.partner.PartnerContractExpirationFragment"
+        android:label="PartnerContractExpirationFragment">
+        <action
+            android:id="@+id/action_partnerContractExpirationFragment_to_partnerContractReadFragment"
+            app:destination="@id/partnerContractReadFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
 </navigation>

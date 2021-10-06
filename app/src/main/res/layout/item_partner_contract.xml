@@ -32,7 +32,7 @@
             app:layout_constraintStart_toEndOf="@id/itemPartnerContractImg"
             app:layout_constraintTop_toTopOf="@id/itemPartnerContractImg"
             app:layout_constraintBottom_toTopOf="@id/itemPartnerContractTitle"
-            android:textSize="16dp"
+            android:textSize="12dp"
             android:textColor="@color/moaBlack"
             android:layout_marginStart="20dp"
             android:maxLines="1"

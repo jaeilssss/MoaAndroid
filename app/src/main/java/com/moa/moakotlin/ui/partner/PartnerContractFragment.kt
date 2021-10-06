@@ -41,6 +41,7 @@ class PartnerContractFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater,R.layout.partner_contract_fragment,container,false)
+        binding.partnerContractReadSearch.setOnClickListener { navController.navigate(R.id.action_partnerNoticeMainFragment_to_partnerContractExpirationFragment) }
         return binding.root
     }
 
@@ -63,7 +64,6 @@ class PartnerContractFragment : Fragment() {
                 bundle.putParcelable("contract",adapter.currentList[position])
                 navController.navigate(R.id.action_partnerNoticeMainFragment_to_partnerContractReadFragment,bundle)
             }
-
         })
     }
 

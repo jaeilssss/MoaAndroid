@@ -94,6 +94,8 @@ class ClaimWriteFragment : BaseFragment() {
             override fun onItemClick(v: View, position: Int) {
                 selectedPictureList.removeAt(position)
                 viewModel.images = selectedPictureList
+                adapter.notifyDataSetChanged()
+                binding.ClaimWriteCountPicture.text = adapter.currentList.size.toString()
             }
 
         })
@@ -137,6 +139,7 @@ class ClaimWriteFragment : BaseFragment() {
                 adapter.submitList(selectedPictureList)
                 adapter.notifyDataSetChanged()
                 viewModel.images = selectedPictureList
+                binding.ClaimWriteCountPicture.text = adapter.currentList.size.toString()
             }
         }
     }

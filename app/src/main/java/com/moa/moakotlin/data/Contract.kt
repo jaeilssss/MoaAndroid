@@ -9,10 +9,14 @@ data class Contract(
         var companyName : String= "",
         var contractStartDate : Timestamp = Timestamp.now(),
         var contractEndDate : Timestamp = Timestamp.now(),
-        var price : String = "",
+        var price : Int = 0,
         var aptCode : String ="",
         var images: ArrayList<String> = ArrayList(),
         var documentId : String ="",
-        var title : String = ""
+        var title : String = "",
+        var contractInfo :String ="",
+        var uid : String ="",
+        var transaction : String ="",
+        var status : String =""
 ): Parcelable {
 }
