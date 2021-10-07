@@ -64,7 +64,6 @@ class HelperModifyFragment : Fragment() {
         arguments.let {
             helper = it?.getParcelable<Helper>("helper")!!
             setData(helper)
-            println("시작 할떄 helper - > ${helper.documentID}")
         }
 
         binding.HelperModifyAlbum.setOnClickListener {
@@ -163,10 +162,13 @@ class HelperModifyFragment : Fragment() {
                     selectedPictureList.removeAt(position)
                     helper.images?.removeAt(position)
                     viewModel.selectedPictureList.value = selectedPictureList
+
                 }else{
                     selectedPictureList.removeAt(position)
                     viewModel.selectedPictureList.value = selectedPictureList
                 }
+
+
             }
 
         })

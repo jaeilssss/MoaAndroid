@@ -135,6 +135,9 @@ class HelperWritePageFragment : Fragment() {
             override fun onItemClick(v: View, position: Int) {
                 selectedPictureList.removeAt(position)
                 model.selectedPictureList.value = selectedPictureList
+                adapter.submitList(selectedPictureList)
+                adapter.notifyDataSetChanged()
+                binding.HelperWriteCountPicture.text = adapter.currentList.size.toString()
             }
 
         })
