@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -77,18 +78,18 @@ class ClaimMainFragment : BaseFragment() {
 
         binding.ClaimMainRcv.adapter = adapter
         binding.ClaimMainRcv.layoutManager = LinearLayoutManager(context)
-        binding.ClaimMainRcv.setItemViewCacheSize(100)
-        binding.ClaimMainRcv.setHasFixedSize(true)
+
         viewModel.complaintList.observe(viewLifecycleOwner, Observer {
             if(it.size==0){
                 binding.ClaimMainRcv.isVisible = false
                 binding.ClaimMainEmptyLayout.isVisible =true
             }else{
+
                 adapter.submitList(it)
+                adapter.notifyDataSetChanged()
             }
 
         })
-
         setDataView()
         getMyClaimList()
     }
