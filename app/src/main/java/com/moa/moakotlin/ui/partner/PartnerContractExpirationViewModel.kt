@@ -22,8 +22,9 @@ class PartnerContractExpirationViewModel : ViewModel() {
                         .collection("PartnerApart")
                         .document(User.getInstance().aptCode)
                         .collection("Contract")
+
                         .whereLessThan("contractEndDate", Timestamp.now())
-                        .orderBy("timeStamp",Query.Direction.DESCENDING)
+                        .orderBy("contractEndDate",Query.Direction.DESCENDING)
                         .get()
 
         )
