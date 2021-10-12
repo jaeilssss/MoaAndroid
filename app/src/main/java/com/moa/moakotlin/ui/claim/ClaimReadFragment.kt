@@ -1,6 +1,7 @@
 package com.moa.moakotlin.ui.claim
 
 import android.content.Context
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.KeyEvent
@@ -33,6 +34,7 @@ import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.ClaimReadFragmentBinding
 import com.moa.moakotlin.recyclerview.comment.CommentAdapter
 import com.moa.moakotlin.ui.bottomsheet.ConciergeReadBottomSheetFragment
+import com.moa.moakotlin.ui.image.imageActivity
 import com.moa.moakotlin.viewpageradapter.ConciergeReadViewpagerAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -102,6 +104,11 @@ class ClaimReadFragment : BaseFragment() {
         return binding.root
     }
 
+    fun goToImage(url : String){
+        var intent = Intent(requireContext(),imageActivity::class.java)
+        intent.putExtra("url",url)
+        startActivity(intent)
+    }
     private fun customDialog() {
         AptCertificationImageAlertDialog(requireContext()).
                 setMessage("게시글 을 삭제하시겠습니까?")
@@ -143,7 +150,11 @@ class ClaimReadFragment : BaseFragment() {
         }else{
             viewPagerAdapter = context?.let { ConciergeReadViewpagerAdapter(it,complaint.images) }!!
         }
-
+        viewPagerAdapter.setOnItemClickListener(object :OnItemClickListener{
+            override fun onItemClick(v: View, position: Int) {
+                goToImage(viewPagerAdapter.list[position])
+            }
+        })
         binding.ClaimReadViewPager.adapter = viewPagerAdapter
         adapter = CommentAdapter()
         adapter.setOnItemClickListener(object : OnItemClickListener{
@@ -236,9 +247,7 @@ class ClaimReadFragment : BaseFragment() {
 
         }
 
-        if(complaint.uid.equals(User.getInstance().uid).not()){
-            binding.ClaimEditLayout.isVisible = false
-        }
+
     }
 
     private fun setUpBoardingIndicators(size : Int){
