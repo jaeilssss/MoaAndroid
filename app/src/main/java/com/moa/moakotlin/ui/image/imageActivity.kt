@@ -39,15 +39,14 @@ class imageActivity : AppCompatActivity() {
         }
         Glide.with(this).load(url).into(image)
         mAttacher = PhotoViewAttacher(image)
-//        mScaleGestureDetector = ScaleGestureDetector(this,ScaleListener())
+
+
     }
 
 
     override fun onTouchEvent(motionEvent: MotionEvent) : Boolean{
 
-//
-//
-//        mScaleGestureDetector.onTouchEvent(motionEvent)
+
 
         return true
     }

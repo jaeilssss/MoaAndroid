@@ -70,7 +70,7 @@ class ImagePickerFragment : BaseFragment() {
                     activity?.getWindow()?.setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                             WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE)
                    var result =  model.submit(adapter.list.get(adapter.checkBox),roomId,opponentUid)
-                    if(result ==true){
+                    if(result){
                         activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                         navController.popBackStack()
 

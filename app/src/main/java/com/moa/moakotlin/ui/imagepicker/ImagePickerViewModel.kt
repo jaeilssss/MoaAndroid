@@ -19,23 +19,9 @@ import kotlin.collections.ArrayList
 class ImagePickerViewModel() : ViewModel() {
 
     suspend fun submit(path: String,roomId: String,opponentUid: String) :Boolean {
-//        var bundle = Bundle()
-//      var picture = adapter.list.get(adapter.checkBox)
-//
-//        var storageRef = FirebaseStorage.getInstance().getReference()
-//
-//        var file = Uri.fromFile(File(picture))
-//
-//        var inputstream = FileInputStream(File(picture))
-//
-//        val riversRef = storageRef.child("chattingImage/" + file.lastPathSegment)
-//
-//        val uploadTask = riversRef.putStream(inputstream)
-//
-//        uploadTask.continueWithTask { riversRef.downloadUrl }.addOnCompleteListener { task ->
+
 
         var db = FirebaseFirestore.getInstance()
-//            navController.popBackStack()
         //임시로 나의 pk와 상대 pk지정함
         var result = false
         var chatImagePickerRepository = ImagePickerRepository()

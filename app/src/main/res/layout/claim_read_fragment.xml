@@ -14,8 +14,8 @@
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="0dp"
-    android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -121,9 +121,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -215,7 +212,7 @@
     app:layout_constraintTop_toBottomOf="@id/ClaimReadProfileImage"
     android:layout_marginHorizontal="15dp"
     android:layout_marginTop="10dp"
-    tools:text="102동 앞으로 계속 대형 차량이 주차되어있어요 \n 통행에 매우 불편합니다"
+    tools:text="102동 앞으로 계속 대형 차량이 주차되어있어요 \n통행에 매우 불편합니다"
     android:fontFamily="@font/notosanscjkkr_medium"
     android:lineSpacingExtra="5dp"
     android:textSize="16dp"
@@ -264,7 +261,6 @@
         android:layout_marginHorizontal="10dp"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:id="@+id/commentText"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ClaimReadIndicators"/>
