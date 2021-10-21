@@ -39,7 +39,6 @@ class ClaimMainFragment : BaseFragment() {
 
     private lateinit var adapter : ComplaintAdapter
 
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         (context as MainActivity).backListener = this
@@ -53,6 +52,7 @@ class ClaimMainFragment : BaseFragment() {
         binding.back.setOnClickListener { onBackPressed() }
 
         myActivity?.bottomNavigationGone()
+
         return binding.root
     }
 
@@ -84,11 +84,9 @@ class ClaimMainFragment : BaseFragment() {
                 binding.ClaimMainRcv.isVisible = false
                 binding.ClaimMainEmptyLayout.isVisible =true
             }else{
-
                 adapter.submitList(it)
                 adapter.notifyDataSetChanged()
             }
-
         })
         setDataView()
         getMyClaimList()
@@ -111,10 +109,10 @@ class ClaimMainFragment : BaseFragment() {
     }
 
     fun setDataView(){
+
         binding.ClaimMainCompleteCounting.text = "${partnerApart.completed} 건"
         binding.ClaimMainOnGoingCounting.text = "${partnerApart.inProgress} 건"
         binding.ClaimMainReceiveCounting.text = "${partnerApart.requested} 건"
-
         binding.ClaimMainMyAptText.text = "${partnerApart.aptName}"
 
     }

@@ -53,9 +53,7 @@ class CertificationNoticeFragment : BaseFragment() {
         }
 
         binding.back.setOnClickListener { navController.popBackStack() }
-        binding.CertificationBtn.setOnClickListener {
-            navController.navigate(R.id.aptCertificationGuideFragment)
-        }
+        binding.CertificationBtn.setOnClickListener { navController.navigate(R.id.aptCertificationGuideFragment) }
 
         return binding.root
     }

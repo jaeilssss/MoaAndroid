@@ -45,7 +45,7 @@ class AlarmFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        println("알람 프레그먼트")
+
         viewModel = ViewModelProvider(this).get(AlarmViewModel::class.java)
 //        val data = activity?.getSharedPreferences("AlarmSetting",Context.MODE_PRIVATE)
 //

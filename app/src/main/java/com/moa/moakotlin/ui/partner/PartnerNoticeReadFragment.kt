@@ -1,5 +1,6 @@
 package com.moa.moakotlin.ui.partner
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -16,9 +17,11 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
+import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.PartnerNotice
 import com.moa.moakotlin.data.User
 import com.moa.moakotlin.databinding.PartnerNoticeReadFragmentBinding
+import com.moa.moakotlin.ui.image.imageActivity
 import com.moa.moakotlin.viewpageradapter.ConciergeReadViewpagerAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -88,6 +91,11 @@ class PartnerNoticeReadFragment : BaseFragment() {
             viewPagerAdapter = ConciergeReadViewpagerAdapter(requireContext(),partnerNotice.images)
         }
 
+        viewPagerAdapter.setOnItemClickListener(object :OnItemClickListener{
+            override fun onItemClick(v: View, position: Int) {
+                goToImage(viewPagerAdapter.list[position])
+            }
+        })
         binding.partnerNoticeReadViewPager.adapter = viewPagerAdapter
         setCurrentOnboardingIndicator(0)
         setUpBoardingIndicators(partnerNotice.images.size)
@@ -98,7 +106,11 @@ class PartnerNoticeReadFragment : BaseFragment() {
         })
     }
 
-
+    fun goToImage(url : String){
+        var intent = Intent(requireContext(), imageActivity::class.java)
+        intent.putExtra("url",url)
+        startActivity(intent)
+    }
 
 
 

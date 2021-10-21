@@ -35,7 +35,6 @@ class ConciergeReadViewpagerAdapter(var context : Context , var list : ArrayList
 
         holder.binding(list[position])
 
-
     }
 
     override fun getItemCount(): Int {

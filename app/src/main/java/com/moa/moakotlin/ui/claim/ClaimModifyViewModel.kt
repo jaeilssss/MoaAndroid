@@ -53,7 +53,7 @@ class ClaimModifyViewModel : ViewModel() {
             }else {
                     
                      repository.upload<Complaint>(0, category.value!!, pictureList) { map ->
-                        println("업로드 된 메소드 ...")
+
                          for (key in map.keys) {
 
                              map[key]?.let { complaint.images?.add(it) }

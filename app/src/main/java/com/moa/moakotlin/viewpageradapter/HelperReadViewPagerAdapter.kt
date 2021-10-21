@@ -15,7 +15,7 @@ import com.moa.moakotlin.ui.mypage.MyNeederFragment
 class HelperReadViewPagerAdapter(var fm: FragmentManager,var helper : Helper ) : FragmentStatePagerAdapter(fm!!){
     var list = ArrayList<Fragment>()
     init {
-        println("init")
+
         list.add(ConciergeReadIntroduceFragment(helper,null))
         list.add(HelperReadReviewFragment(helper))
     }
@@ -37,7 +37,7 @@ class HelperReadViewPagerAdapter(var fm: FragmentManager,var helper : Helper ) :
 
     fun getCurrentViewHeight(){
         if(fm.fragments[0] is ConciergeReadIntroduceFragment){
-            println("컨시어지 리드 인트ㄹ호두")
+
             fm.fragments[0] as ConciergeReadIntroduceFragment
             fm.fragments[0].view?.height
         }

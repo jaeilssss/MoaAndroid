@@ -23,22 +23,22 @@ class ClaimCategorySelectActivity : AppCompatActivity() {
         setContentView(view)
 
         binding.ClaimMainCategoryelevatorLayout.setOnClickListener {
-        checkCategory("승강기",it)
+            checkCategory("승강기",it)
         }
         binding.ClaimMainCategoryParkLayout.setOnClickListener {
-        checkCategory("주차장",it)
+            checkCategory("주차장",it)
         }
         binding.ClaimMainCategorySecurityLayout.setOnClickListener {
-          checkCategory("보안/경비",it)
+            checkCategory("보안/경비",it)
         }
         binding.ClaimMainCategoryLandscapeLayout.setOnClickListener {
-           checkCategory("조경시설",it)
+            checkCategory("조경시설",it)
         }
         binding.ClaimMainCategoryFacilityLayout.setOnClickListener {
             checkCategory("공동시설",it)
         }
         binding.ClaimMainCategoryEntranceLayout.setOnClickListener {
-           checkCategory("공동현관/복도",it)
+            checkCategory("공동현관/복도",it)
         }
         binding.ClaimMainCategoryFlawLayout.setOnClickListener {
             checkCategory("세대하자/민원",it)

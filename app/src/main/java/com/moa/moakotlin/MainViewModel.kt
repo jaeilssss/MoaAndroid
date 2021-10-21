@@ -26,6 +26,7 @@ class MainViewModel : ViewModel() {
     var latestChatRoom = MutableLiveData<String>("")
 
     var isRead = MutableLiveData<Boolean>(true)
+    var isChatRead = MutableLiveData<Boolean>(true)
     var isChattingRoomRead = MutableLiveData<Boolean>(true)
     var num = 0
     var chattingRoom = MutableLiveData<ChattingRoom>()
@@ -42,7 +43,7 @@ class MainViewModel : ViewModel() {
                 return@addSnapshotListener
             }
             if(value!=null){
-                println("오호...")
+
                 for(dc in value.documentChanges){
 
                     var notification = dc.document.toObject(Notification::class.java)
@@ -69,6 +70,9 @@ class MainViewModel : ViewModel() {
                 for(dc in value.documentChanges){
 
                     var chattingRoom = dc.document.toObject(ChattingRoom::class.java)
+                    if(!chattingRoom.isRead){
+                        isRead.value = false
+                    }
                     latestChatRoom.value = chattingRoom.timeStamp.toString()
                     this.chattingRoom.value = chattingRoom
                 }

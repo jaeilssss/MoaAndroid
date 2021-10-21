@@ -8,6 +8,7 @@ import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.moa.moakotlin.R
+import uk.co.senab.photoview.PhotoViewAttacher
 
 class imageActivity : AppCompatActivity() {
     enum class TOUCH_MODE {
@@ -16,10 +17,10 @@ class imageActivity : AppCompatActivity() {
         MULTI   //두손가락 터치
     }
 
+    lateinit var mAttacher : PhotoViewAttacher
     var url : String = ""
     private lateinit var image : ImageView
     private lateinit var back : ConstraintLayout
-    // https://elliot-kim.github.io/boostcourse/boostcourse-6-pinch_zoom/
 
 
     private lateinit var mScaleGestureDetector : ScaleGestureDetector
@@ -37,15 +38,16 @@ class imageActivity : AppCompatActivity() {
             finish()
         }
         Glide.with(this).load(url).into(image)
-        mScaleGestureDetector = ScaleGestureDetector(this,ScaleListener())
+        mAttacher = PhotoViewAttacher(image)
+//        mScaleGestureDetector = ScaleGestureDetector(this,ScaleListener())
     }
 
 
     override fun onTouchEvent(motionEvent: MotionEvent) : Boolean{
 
-
-
-        mScaleGestureDetector.onTouchEvent(motionEvent)
+//
+//
+//        mScaleGestureDetector.onTouchEvent(motionEvent)
 
         return true
     }

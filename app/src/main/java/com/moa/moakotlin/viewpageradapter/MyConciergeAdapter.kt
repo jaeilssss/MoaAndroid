@@ -12,7 +12,7 @@ import com.moa.moakotlin.ui.mypage.MyNeederFragment
 class MyConciergeAdapter(var fm: FragmentManager) : FragmentStatePagerAdapter(fm!!){
    var list = ArrayList<Fragment>()
     init {
-        println("init")
+
         list.add(MyHelperFragment())
         list.add(MyNeederFragment())
     }
@@ -21,7 +21,7 @@ class MyConciergeAdapter(var fm: FragmentManager) : FragmentStatePagerAdapter(fm
     }
 
     override fun getItem(position: Int): Fragment {
-        println("getItem..")
+
        return list.get(position)
     }
 

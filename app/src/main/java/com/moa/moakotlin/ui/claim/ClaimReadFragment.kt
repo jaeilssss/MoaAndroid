@@ -43,10 +43,6 @@ import java.text.SimpleDateFormat
 
 class ClaimReadFragment : BaseFragment() {
 
-    companion object {
-        fun newInstance() = ClaimReadFragment()
-    }
-
     private lateinit var viewModel: ClaimReadViewModel
 
     private lateinit var binding : ClaimReadFragmentBinding
@@ -99,7 +95,7 @@ class ClaimReadFragment : BaseFragment() {
 
             option.show(activity?.supportFragmentManager!!,"bottomsheet")
         }
-        binding.back.setOnClickListener { navController.popBackStack() }
+        binding.back.setOnClickListener { onBackPressed() }
 
         return binding.root
     }
@@ -246,8 +242,6 @@ class ClaimReadFragment : BaseFragment() {
             }
 
         }
-
-
     }
 
     private fun setUpBoardingIndicators(size : Int){

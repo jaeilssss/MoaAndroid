@@ -49,6 +49,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toStartOf="@id/itemRightChatMessage"
             android:text="오후 6:50"
+            android:textSize="13dp"
             android:includeFontPadding="false"
             android:fontFamily="@font/notosanscjkkr_medium"
             app:layout_constraintBottom_toBottomOf="@id/itemRightChatMessage"

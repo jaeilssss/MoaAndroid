@@ -7,6 +7,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -102,27 +103,33 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
 
             }
         })
-
-        model.latestChatRoom.observe(this, Observer {
-            var chattingRoomData = getSharedPreferences("MyLatestChattingRoomTimeStamp", Context.MODE_PRIVATE)
-            if (it == chattingRoomData.getString("timeStamp", "")) {
+        model.isChatRead.observe(this, Observer {
+            if(it){
                 binding.mainBottomNavigation.removeBadge(R.id.chattingRoomFragment)
-            } else {
-                if (model.chattingRoom.value?.isRead == true) {
-                    binding.mainBottomNavigation.removeBadge(R.id.chattingRoomFragment)
-                } else {
-                    var badge = binding.mainBottomNavigation.getOrCreateBadge(R.id.chattingRoomFragment)
-                    badge.backgroundColor = Color.parseColor("#ffe402")
-                }
-
+            }else{
+                var badge = binding.mainBottomNavigation.getOrCreateBadge(R.id.chattingRoomFragment)
+                badge.backgroundColor = Color.parseColor("#ffe402")
             }
         })
+
+//        model.latestChatRoom.observe(this, Observer {
+//            var chattingRoomData = getSharedPreferences("MyLatestChattingRoomTimeStamp", Context.MODE_PRIVATE)
+//            if (it == chattingRoomData.getString("timeStamp", "")) {
+//                binding.mainBottomNavigation.removeBadge(R.id.chattingRoomFragment)
+//            } else {
+//                if (model.chattingRoom.value?.isRead == true) {
+//                    binding.mainBottomNavigation.removeBadge(R.id.chattingRoomFragment)
+//                } else {
+//                    var badge = binding.mainBottomNavigation.getOrCreateBadge(R.id.chattingRoomFragment)
+//                    badge.backgroundColor = Color.parseColor("#ffe402")
+//                }
+//
+//            }
+//        })
         binding.mainBottomNavigation.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.writeSelectFragment -> {
 
-//                    val bottomSheet = WriteSelectFragment()
-//                    bottomSheet.show(supportFragmentManager, bottomSheet.tag)
                     var intent = Intent(this, ConciergeWriteActivity::class.java)
                     startActivityForResult(intent, REQUEST_WRITE_CODE)
 
@@ -133,7 +140,7 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.MyPageFragment -> {
-//                    binding.mainBottomNavigation.menu.get(0).isChecked = true
+
                     navController.navigate(R.id.MyPageFragment)
                     return@setOnNavigationItemSelectedListener true
                 }
@@ -165,7 +172,7 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
             putBoolean("isEventAlarm", User.getInstance().isAgreeEventAlarm)
             putBoolean("isMarketingAlarm", User.getInstance().isAgreeMarketing)
             commit()  }
-}
+    }
 
     override fun bottomVisible() {
         binding.mainBottomNavigation.visibility= View.VISIBLE
@@ -222,7 +229,6 @@ class MainActivity : AppCompatActivity() ,Transfer,BottomNavController{
 
         super.onDestroy()
     }
-
 
 
 }

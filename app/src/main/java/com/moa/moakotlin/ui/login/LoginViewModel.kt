@@ -36,7 +36,7 @@ class LoginViewModel() : ViewModel(){
      unBoxingBundle()
      loginRepository  = LoginRepository(activity)
      loginRepository.sendMessage(phoneNumberString)
-//    phoneNumber.get()?.let { loginRepository.sendMessage(it) }
+
 }
 
 suspend fun getUserInfo(uid : String) : Boolean{
@@ -72,7 +72,6 @@ suspend fun getUserInfo(uid : String) : Boolean{
 //        phoneNumberString = phoneNumberString.plus("-")
         phoneNumberString = phoneNumberString.plus(inputData.substring(7,11))
 
-        println(phoneNumberString)
     }
     fun unBoxingBundle(){
 //        phoneNumberString = phoneNumber.get().toString()

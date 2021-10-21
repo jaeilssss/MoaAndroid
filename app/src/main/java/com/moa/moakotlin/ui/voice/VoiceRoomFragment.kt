@@ -409,7 +409,7 @@ class VoiceRoomFragment : BaseFragment() {
 //            optional()
         } catch (e: Exception) {
             Log.e("TAG", Log.getStackTraceString(e))
-            println("error 나오네 initRtcEngine")
+
             throw RuntimeException(
                     "NEED TO check rtc sdk init fatal error\n" + Log.getStackTraceString(
                             e
@@ -428,27 +428,25 @@ class VoiceRoomFragment : BaseFragment() {
             }
 
             override fun onJoinChannelSuccess(channel: String?, uid: Int, elapsed: Int) {
-              println("성공!!!@@@@@@")
+
           }
           override fun onUserJoined(uid: Int, elapsed: Int) {
               super.onUserJoined(uid, elapsed)
-              println("join~~~~~%%%%%%")
+
           }
 
           override fun onUserOffline(uid: Int, reason: Int) {
               super.onUserOffline(uid, reason)
-              println("offline")
+
           }
 
           override fun onError(err: Int) {
               super.onError(err)
-              println("error handler rtc engin")
+
           }
             override fun onRemoteAudioStateChanged(uid: Int, state: Int, reason: Int, elapsed: Int) {
 //                super.onRemoteAudioStateChanged(uid, state, reason, elapsed)
-                println("????on Remote Audio State Changed")
-                println("state -> ${state}")
-                println("reason -> ${reason}")
+
 
                 when(state){
                     1 ->{

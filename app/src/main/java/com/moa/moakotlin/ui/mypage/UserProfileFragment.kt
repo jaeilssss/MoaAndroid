@@ -78,7 +78,6 @@ class UserProfileFragment : BaseFragment() {
         binding.UserProfileRcv.layoutManager = LinearLayoutManager(context)
 
         viewModel.reviewList.observe(viewLifecycleOwner, Observer {
-            println(it.size)
             adapter.submitList(it)
 
         })

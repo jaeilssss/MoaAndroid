@@ -78,6 +78,7 @@
                 android:background="@drawable/shape_grey_radius_15"
                 android:layout_marginHorizontal="15dp"
                 android:text="@={model.title}"
+                android:textSize="16dp"
                 />
 
             <TextView
@@ -212,6 +213,7 @@
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:paddingStart="10dp"
                 android:paddingTop="5dp"
+                android:textSize="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ClaimModifyContentText" />
@@ -278,6 +280,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:text="비공개로 민원신청하기"
+                android:textSize="16dp"
                 android:checked="@={model.isPrivate}"
                 android:button="@drawable/selector_signup_policy_checkbox"
                 android:id="@+id/ClaimModifyPricateCheck"/>

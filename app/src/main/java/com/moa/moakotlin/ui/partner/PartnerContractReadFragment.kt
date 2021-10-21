@@ -1,5 +1,6 @@
 package com.moa.moakotlin.ui.partner
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,8 +16,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.moa.moakotlin.R
 import com.moa.moakotlin.base.BaseFragment
+import com.moa.moakotlin.base.OnItemClickListener
 import com.moa.moakotlin.data.Contract
 import com.moa.moakotlin.databinding.PartnerContractReadFragmentBinding
+import com.moa.moakotlin.ui.image.imageActivity
 import com.moa.moakotlin.viewpageradapter.ConciergeReadViewpagerAdapter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -68,12 +71,16 @@ class PartnerContractReadFragment : BaseFragment() {
         navController.popBackStack()
     }
 
-
+    fun goToImage(url : String){
+        var intent = Intent(requireContext(), imageActivity::class.java)
+        intent.putExtra("url",url)
+        startActivity(intent)
+    }
     fun setDataView(){
        binding.partnerContractReadName.text = contract.companyName
         binding.partnerContractReadInfo.text = "${contract.contractInfo} / ${contract.transaction}"
         binding.partnerContractReadPrice.text = contract.price.toString()
-        val dateFormat = SimpleDateFormat("yyyy.MM.dd.")
+        val dateFormat = SimpleDateFormat("yyyy.MM.dd")
         binding.partnerContractReadDate.text = "${dateFormat.format(contract.contractStartDate.toDate())}~${dateFormat.format(contract.contractEndDate.toDate())}"
         if(contract.images.size==0){
             var list = ArrayList<String>()
@@ -82,7 +89,11 @@ class PartnerContractReadFragment : BaseFragment() {
         }else{
             viewPagerAdapter = ConciergeReadViewpagerAdapter(requireContext(),contract.images)
         }
-
+        viewPagerAdapter.setOnItemClickListener(object : OnItemClickListener {
+            override fun onItemClick(v: View, position: Int) {
+                goToImage(viewPagerAdapter.list[position])
+            }
+        })
         binding.PartnerContractReadViewPager.adapter = viewPagerAdapter
 
 

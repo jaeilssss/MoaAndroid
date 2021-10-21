@@ -8,8 +8,8 @@
 
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         tools:src="#bdbdbd"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -27,7 +27,7 @@
         android:layout_marginStart="15dp"
         android:textColor="@color/moaBlack"
         android:fontFamily="@font/notosanscjkkr_medium"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:includeFontPadding="false"
         android:layout_marginBottom="5dp"
         app:layout_constraintVertical_chainStyle="packed"
@@ -42,7 +42,7 @@
         tools:text="2021년 3월 23일 오후 5:12"
         android:id="@+id/itemCommentDate"
         android:layout_marginTop="5dp"
-        android:textSize="15dp"
+        android:textSize="14dp"
         />
     <TextView
         android:layout_width="0dp"
@@ -52,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@id/itemCommentDate"
         tools:text="관제실에 말씀드려 단속을 강화하겠습니다\n불편을 드려서 죄송합니다"
         android:layout_marginTop="15dp"
-        android:textSize="18dp"
+        android:textSize="14dp"
         android:textColor="@color/moaBlack"
         android:fontFamily="@font/notosanscjkkr_medium"
         android:includeFontPadding="false"

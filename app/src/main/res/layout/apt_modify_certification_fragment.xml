@@ -10,7 +10,9 @@
     </data>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -85,6 +87,7 @@
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:id="@+id/aptModifyCertificationSupplies"
                 android:gravity="center"
+                android:textColor="@color/moaBlack"
                 android:textStyle="bold"
                 android:textSize="18dp"/>
 
@@ -98,6 +101,7 @@
                 android:text="@string/AptCertificationSuppliesText"
                 android:gravity="center"
                 android:textSize="16dp"
+                android:textColor="@color/moaBlack"
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:id="@+id/aptModifyCertificationSuppliesText"
                 />
@@ -111,6 +115,8 @@
                 app:layout_constraintTop_toBottomOf="@id/aptModifyCertificationSuppliesText"
                 android:layout_marginTop="60dp"
                 android:gravity="center"
+                android:textSize="14dp"
+                android:textColor="@color/moaBlack"
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:background="@drawable/login_edit_text_radius_15"
                 android:text="@string/AptCertificationSuppliesDetail"
@@ -124,11 +130,13 @@
                 android:background="@drawable/button_shape_main_color"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/AptModifyCertificationSuppliesDetail"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginTop="15dp"
                 android:textStyle="bold"
                 android:fontFamily="@font/notosanscjkkr_medium"
                 android:textSize="18dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="15dp"
                 android:id="@+id/AptModifyCertificationNext"/>
 
             <androidx.core.widget.ContentLoadingProgressBar

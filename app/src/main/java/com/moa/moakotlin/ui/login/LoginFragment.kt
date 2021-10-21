@@ -194,7 +194,6 @@ class LoginFragment : BaseScrollFragment() {
         object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
             override fun onVerificationCompleted(phoneAuth: PhoneAuthCredential) {
-                    println(phoneAuth.smsCode.toString())
 
 
             }

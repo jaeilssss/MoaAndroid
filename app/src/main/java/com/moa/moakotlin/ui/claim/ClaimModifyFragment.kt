@@ -60,33 +60,34 @@ class ClaimModifyFragment : BaseFragment() {
 
             }
         }
+        binding.ClaimModifyCategoryLayout.setOnClickListener {
+            var intent = Intent(context,ClaimCategorySelectActivity::class.java)
+
+            startActivityForResult(intent , ClaimWriteFragment.REQUEST_CATEGORY_SELECTION)
+
+        }
         binding.ClaimModifyRcv.adapter = adapter
         adapter.setOnItemCLickListener(object :OnItemClickListener{
             override fun onItemClick(v: View, position: Int) {
                 when(v.id){
                     R.id.itemAptCertificationClose->{
-                        if(position<=uploadedPosition ){
+                        if(position<=uploadedPosition){
 
                             viewModel.uploadedPosition--
                             uploadedPosition--
 
                             complaint.images.removeAt(position)
-//                            selectedPictureList.removeAt(position)
+
                             var list = ArrayList<String>()
                             list.addAll(complaint.images)
                             list.addAll(selectedPictureList)
                             viewModel.selectedPictureList.value = list
-//                            adapter.submitList(viewModel.selectedPictureList.value)
-//                            adapter.notifyDataSetChanged()
 
                         }else{
                             selectedPictureList.removeAt(position)
                             viewModel.selectedPictureList.value = selectedPictureList
-//                            adapter.submitList(viewModel.selectedPictureList.value)
-//                            adapter.notifyDataSetChanged()
-                        }
 
-//                        binding.ClaimModifyCountPicture.text = adapter.currentList.size.toString()
+                        }
                     }
                 }
             }
@@ -136,7 +137,9 @@ class ClaimModifyFragment : BaseFragment() {
             adapter.submitList(it)
 
             adapter.notifyDataSetChanged()
+
         })
+
         viewModel.newData.observe(viewLifecycleOwner, Observer {
             Toast.makeText(context,"글이 수정되었습니다",Toast.LENGTH_SHORT).show()
             var bundle = Bundle()
@@ -186,7 +189,6 @@ class ClaimModifyFragment : BaseFragment() {
     }
 
     private fun goToAlbum(){
-
         var intent = Intent(activity, ImagePickerActivity::class.java)
         intent.putExtra("selectedPictureList",selectedPictureList)
         startActivityForResult(intent,1000)

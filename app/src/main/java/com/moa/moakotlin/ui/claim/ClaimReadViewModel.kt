@@ -72,7 +72,7 @@ class ClaimReadViewModel : ViewModel() {
     }
     suspend fun delete(complaint : Complaint) : Boolean{
         var repository = FirebaseRepository<Complaint>()
-        println("-----------")
+
         println(complaint.documentId)
         return repository.deleteDocument(
                 FirebaseFirestore.getInstance()

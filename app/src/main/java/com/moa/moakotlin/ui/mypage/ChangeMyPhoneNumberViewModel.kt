@@ -65,7 +65,6 @@ class ChangeMyPhoneNumberViewModel : ViewModel() {
 //        phoneNumberString = phoneNumberString.plus("-")
         phoneNumberString = phoneNumberString.plus(inputData.substring(7,11))
 
-        println(phoneNumberString)
     }
     fun unBoxingBundle(){
 //        phoneNumberString = phoneNumber.get().toString()

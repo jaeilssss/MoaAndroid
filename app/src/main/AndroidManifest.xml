@@ -27,11 +27,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MoaKotlin"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.claim.ClaimCategorySelectActivity"></activity>
+        <activity android:name=".ui.image.imageActivity"></activity>
+        <activity android:name=".ui.claim.ClaimCategorySelectActivity" />
         <activity
             android:name=".ui.signup.AptModifySearchActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".WebViewActivity"
             android:screenOrientation="portrait"
@@ -43,7 +44,6 @@
         <activity
             android:name=".ui.concierge.ConciergeWriteActivity"
             android:screenOrientation="portrait"
-
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.concierge.needer.CustomCalendarActivity"
@@ -66,7 +66,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
         <service
             android:name=".ui.service.ForecdTerminationService"
             android:stopWithTask="false" />

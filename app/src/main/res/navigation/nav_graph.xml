@@ -812,4 +812,10 @@
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
     </fragment>
+    <fragment
+        android:id="@+id/imageFragment"
+        android:name="com.moa.moakotlin.ui.image.ImageFragment"
+        android:label="imageFragment">
+
+    </fragment>
 </navigation>

@@ -53,7 +53,7 @@ class MyHelperFragment : BaseFragment() {
         binding.MyHelperRcv.layoutManager = LinearLayoutManager(context)
         viewModel.initData()
         viewModel.myHelperDataList.observe(viewLifecycleOwner, Observer {
-            println("mHelperData list - > ${it.size}")
+
             adapter.submitList(it)
         })
 
@@ -69,8 +69,7 @@ class MyHelperFragment : BaseFragment() {
             override fun onItemClick(v: View, position: Int) {
                 CoroutineScope(Dispatchers.Main).launch {
                     var writer = viewModel.getUserInfo(adapter.currentList[position].uid)
-                    println(adapter.currentList[position].uid)
-                    println("writer -> ${writer}")
+
                     var bundle = Bundle()
 
                     bundle.putParcelable("writer", User.getInstance())

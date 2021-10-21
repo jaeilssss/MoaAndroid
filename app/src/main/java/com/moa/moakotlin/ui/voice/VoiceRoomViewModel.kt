@@ -77,7 +77,6 @@ class VoiceRoomViewModel : ViewModel() {
                 return@addSnapshotListener
             }
             if(snapshot != null){
-                println(User.getInstance().phoneNumber)
                 for(dc in value!!.documentChanges){
 
                     var requestUser = dc.document.toObject(RequestUser::class.java)
@@ -119,7 +118,7 @@ class VoiceRoomViewModel : ViewModel() {
                 return@addSnapshotListener
             }
             if(snapshot != null){
-                println(User.getInstance().phoneNumber)
+
                 for(dc in snapshot.documentChanges){
                     var voiceUser = dc.document.toObject(VoiceUser::class.java)
                     when(dc.type){
@@ -167,7 +166,7 @@ class VoiceRoomViewModel : ViewModel() {
                             }
                         }
                         DocumentChange.Type.REMOVED->{
-                            println("삭제됨!!!")
+
                             if(voiceUser.role.equals("audience")){
                                 audienceList.remove("${voiceUser.phoneNumber.toString()}")
                                 audienceListMap.remove(voiceUser.phoneNumber)

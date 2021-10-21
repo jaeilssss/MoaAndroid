@@ -65,8 +65,6 @@ class ChatFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
-
         transfer.bottomVisible()
         check = 0
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_chat,container , false)
@@ -78,7 +76,7 @@ class ChatFragment : BaseFragment() {
         roomId = arguments?.getString("roomId")?:"x"
         opponentUser = arguments?.getParcelable<User>("opponentUser")!!
         CurrentChat.getInstance().nickName =opponentUser.nickName
-                needer?.images?.map { print(it)  }
+
         needer = arguments?.getParcelable<Needer>("Needer") ?:null
         helper = arguments?.getParcelable<Helper>("helper") ?:null
 
@@ -99,7 +97,6 @@ class ChatFragment : BaseFragment() {
         model.setReadTrue(roomId)
         binding.model = model
         model.setSnapShot(roomId)
-//        onScrollListener(rcv,adapter)
             CoroutineScope(Dispatchers.Main).launch {
                 if(Chat.getInstance().get(roomId)==null){
                     if(model.initView(roomId)){
@@ -189,25 +186,6 @@ class ChatFragment : BaseFragment() {
 
     override fun onBackPressed() {
 
-//        if(needer!=null){
-//            var bundle = Bundle()
-//
-//            bundle.putParcelable("needer",needer)
-//            bundle.putParcelable("writer",opponentUser)
-//
-//            navController.popBackStack()
-//            //이거 .. Pop백스택 해야하는대?....
-////            navController.navigate(R.id.neederReadFragment,bundle)
-//        }else{
-//            navController.popBackStack()
-//        }
-
-//        if(helper!=null){
-//            var bundle = Bundle()
-//            bundle.putParcelable("data",helper)
-//            bundle.putParcelable("writer",opponentUser)
-//            navController.popBackStack(R.id.HelperReadFragment,false)
-//        }
             navController.popBackStack()
 
     }
@@ -256,8 +234,6 @@ class ChatFragment : BaseFragment() {
             }
         }
     }
-private fun navigatesPhotos(){
 
-}
 
 }

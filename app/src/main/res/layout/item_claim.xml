@@ -75,15 +75,16 @@
             app:layout_constraintStart_toEndOf="@id/itemClaimTitle"
             app:layout_constraintTop_toTopOf="@id/itemClaimTitle" />
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/itemClaimImage"
+            app:layout_constraintEnd_toStartOf="@id/itemClaimStatus"
             app:layout_constraintTop_toBottomOf="@id/itemClaimTitle"
             android:layout_marginStart="15dp"
             tools:text="닉네임"
+            android:maxLines="1"
             android:layout_marginTop="5dp"
-            android:textSize="13dp"
-
+            android:textSize="11dp"
             android:textColor="@color/moaBlack"
             android:fontFamily="@font/notosanscjkkr_medium"
             android:includeFontPadding="false"

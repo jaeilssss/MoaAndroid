@@ -78,6 +78,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/shape_grey_radius_10"
                 android:hint="제목을 써주세요"
+                android:textSize="16dp"
                 android:id="@+id/NeederModifyTitleEdit"
                 android:paddingStart="10dp"
                 android:text="@={model.title}"
@@ -119,6 +120,7 @@
                     android:gravity="center_vertical"
                     android:id="@+id/NeederModifyCategory"
                     android:textSize="16dp"
+
                     android:textColor="@color/moaBlack"
                     android:paddingStart="10dp"/>
 
@@ -170,6 +172,7 @@
                 android:layout_marginEnd="15dp"
                 android:background="@drawable/shape_grey_radius_10"
                 android:hint="희망시급"
+                android:textSize="16dp"
                 android:inputType="number"
                 android:paddingStart="10dp"
                 android:fontFamily="@font/notosanscjkkr_medium"
@@ -349,6 +352,7 @@
                 app:layout_constraintVertical_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="@id/NeederModifyAlbum"
                 app:layout_constraintTop_toTopOf="@id/NeederModifyAlbum" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -362,6 +366,7 @@
                 app:layout_constraintStart_toStartOf="@id/NeederModifyAlbum"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 android:id="@+id/NeederModifyCountPicture"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -373,7 +378,6 @@
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toEndOf="@id/NeederModifyCountPicture"
                 app:layout_constraintEnd_toEndOf="@id/NeederModifyAlbum"/>
-
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="0dp"

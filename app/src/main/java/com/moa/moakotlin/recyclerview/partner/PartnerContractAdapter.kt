@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat
 class PartnerContractAdapter  : ListAdapter<Contract,PartnerContractAdapter.ContractViewHolder>(diffUtil){
 
     private var mListener : OnItemClickListener?=null
+    var defaultUrl = "https://firebasestorage.googleapis.com/v0/b/moakr-8c0ab.appspot.com/o/CONCIERGE_DEFAULT_200x200.png?alt=media&token=8ba33ee5-1b36-4d39-b400-6af648439187"
 
     fun setOnItemClickListener(mListener: OnItemClickListener){
         this.mListener = mListener
@@ -43,6 +44,8 @@ class PartnerContractAdapter  : ListAdapter<Contract,PartnerContractAdapter.Cont
             binding.itemPartnerContractDate.text = "${contract.companyName} ${dateFormat.format(contract.contractStartDate.toDate())}~${dateFormat.format(contract.contractEndDate.toDate())}"
             if(contract.images.isNotEmpty()){
                 Glide.with(binding.root).load(contract.images[0]).into(binding.itemPartnerContractImg)
+            }else{
+                Glide.with(binding.root).load(defaultUrl).into(binding.itemPartnerContractImg)
             }
             binding.itemPartnerContractLayout.setOnClickListener(ButtonClick())
         }

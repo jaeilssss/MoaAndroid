@@ -21,7 +21,7 @@ class FirstViewPagerAdapter(fm :FragmentManager)  : FragmentStatePagerAdapter(fm
     }
 
     override fun getItem(position: Int): Fragment {
-        println("getItem..")
+
         return list.get(position)
     }
 
