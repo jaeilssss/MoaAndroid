@@ -10,7 +10,9 @@
 </data>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -78,13 +80,13 @@
                 android:id="@+id/CertificationFirstText"/>
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/CertificationFirstText"
                 android:layout_marginTop="5dp"
                 android:text="@string/CertificationMessageSecond"
-                app:layout_constraintDimensionRatio="H,4:1"
+
                 android:gravity="center"
                 android:textSize="14dp"
                 android:fontFamily="@font/notosanscjkkr_medium"
@@ -93,11 +95,11 @@
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/CertificationSecondText"
-                app:layout_constraintDimensionRatio="H,4.5:1"
+                android:padding="5dp"
                 android:layout_marginTop="25dp"
                 android:text="@string/CertificationMessageThird"
                 android:textSize="14dp"
