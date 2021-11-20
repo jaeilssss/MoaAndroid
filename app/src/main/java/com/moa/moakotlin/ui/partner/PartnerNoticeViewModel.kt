@@ -14,17 +14,19 @@ class PartnerNoticeViewModel : ViewModel() {
     suspend fun getDocumentList(){
         var repository = FirebaseRepository<PartnerNotice>()
 
+
         noticeList.value =  repository.getDocumentList<PartnerNotice>(
                 FirebaseFirestore.getInstance()
                         .collection("Notice")
                         .document(aptList.getInstance().gu)
                         .collection("Notice")
                         .whereIn("aptCode",listOf(User.getInstance().aptCode, aptList.getInstance().gu))
+                        .orderBy("isPriority",Query.Direction.DESCENDING)
                         .orderBy("timeStamp",Query.Direction.DESCENDING)
                         .get()
 
         )
-//                .whereArrayContainsAny("aptCode", arrayListOf(User.getInstance().aptCode,aptList.getInstance().gu))
+
 
     }
 

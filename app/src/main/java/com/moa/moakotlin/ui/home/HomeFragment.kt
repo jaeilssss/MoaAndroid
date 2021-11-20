@@ -65,7 +65,7 @@ lateinit var transfer: Transfer
 
         model = ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        model.init()
+       
 
         binding.UserAptName.text = "${User.getInstance().aptName} ${User.getInstance().nickName}님"
 
@@ -115,17 +115,18 @@ lateinit var transfer: Transfer
         }
     }
     fun goToPartnerNoticeView(){
-        CoroutineScope(Dispatchers.Main).launch {
-            var partnerApart =model.findPartnerApart()
-
-            if(partnerApart!=null){
-
-                navController.navigate(R.id.action_homeFragment_to_PartnerNoticeMainFragment)
-
-            }else{
-                homeClaimAlertDialog("아파트 공지사항 기능은 아파트와 계약이 필요해요\n관리 사무소에 문의해주세요")
-            }
-        }
+        navController.navigate(R.id.action_homeFragment_to_PartnerNoticeMainFragment)
+//        CoroutineScope(Dispatchers.Main).launch {
+//            var partnerApart =model.findPartnerApart()
+//
+//            if(partnerApart!=null){
+//
+//                navController.navigate(R.id.action_homeFragment_to_PartnerNoticeMainFragment)
+//
+//            }else{
+//                homeClaimAlertDialog("아파트 공지사항 기능은 아파트와 계약이 필요해요\n관리 사무소에 문의해주세요")
+//            }
+//        }
     }
     fun goToGroupBuyingBtn(){
         var intent = Intent(activity,WebViewActivity::class.java)

@@ -74,8 +74,8 @@ class LoginFragment : BaseScrollFragment() {
                 showToast(activity?.applicationContext!!,"이미 인증메시지를 보냈습니다")
             } else{
 
-                        countDownTimer?.cancel()
-                        countDownTimer?.onFinish()
+                    countDownTimer?.cancel()
+                    countDownTimer?.onFinish()
                     countDownTimer =  createCountDownTimer(1200*100L)
                     countDownTimer?.start()
                     loginViewModel.sendMessage()
