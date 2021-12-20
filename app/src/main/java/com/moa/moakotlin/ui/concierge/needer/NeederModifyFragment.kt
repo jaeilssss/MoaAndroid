@@ -71,13 +71,15 @@ class NeederModifyFragment : Fragment() {
         }
         initAdapter()
 
+        binding.neederModifyBack.setOnClickListener { activity?.onBackPressed() }
+
         binding.NeederModifyCategoryLayout.setOnClickListener { Toast.makeText(context,"카테고리는 변경이 불가능 합니다",Toast.LENGTH_SHORT).show() }
 
         binding.NeederModifyHopeDateLayout.setOnClickListener { selectHopeDate() }
 
         binding.NeederModifyAlbum.setOnClickListener { checkPermission() }
 
-        binding.back.setOnClickListener {  }
+
 
         viewModel.title.observe(viewLifecycleOwner, Observer {setSubmitBtnChange()})
         viewModel.mainCategory.observe(viewLifecycleOwner, Observer {setSubmitBtnChange()})

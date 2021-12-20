@@ -190,6 +190,7 @@ class HelperRepository {
         var list = ArrayList<Helper>()
         db.collectionGroup("HelperContent")
             .whereEqualTo("uid",User.getInstance().uid)
+                .whereArrayContainsAny("aroundApt", arrayListOf(User.getInstance().aptCode))
             .orderBy("timeStamp",Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener {

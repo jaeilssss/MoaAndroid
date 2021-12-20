@@ -23,17 +23,18 @@
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
-                android:id="@+id/back"
+                android:id="@+id/neederModifyBack"
                 android:layout_marginTop="15dp"
                 android:layout_marginStart="15dp"
                 android:padding="5dp"
                 app:layout_constraintTop_toTopOf="parent">
+
                 <ImageView
                     android:layout_width="12dp"
-                    android:layout_height="25dp"
+                    android:layout_height="15dp"
+                    android:background="@drawable/ic_back"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:background="@drawable/ic_back" />
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView

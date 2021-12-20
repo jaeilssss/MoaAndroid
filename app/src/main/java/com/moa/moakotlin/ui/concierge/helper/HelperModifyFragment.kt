@@ -152,6 +152,9 @@ class HelperModifyFragment : Fragment() {
         adapter  = CertificationImageAdapter()
         binding.HelperModifyRcv.adapter = adapter
 
+        binding.back.setOnClickListener {
+            activity?.onBackPressed()
+        }
         binding.HelperModifyRcv.layoutManager = LinearLayoutManager(activity?.applicationContext!!,
             LinearLayoutManager.HORIZONTAL,false)
 
