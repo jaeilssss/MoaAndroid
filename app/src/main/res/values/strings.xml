@@ -51,6 +51,7 @@
     <string name="marketingPolicyUrl">https://moduapt.com/terms/marketing</string>
     <string name="groupBuyingUrl">https://m.post.naver.com/viewer/postView.naver?volumeNo=32031386&amp;memberNo=25160931</string>
     <string name="complaintGuideText">이곳은 관리실에 민원을 신청하는 공간 이에요.사진과 함께 의견이나 요청사항을 적어주시면 관리사무실에서 확인 후\n 조치사항을 안내드립니다.</string>
+    <string name="notFoundAptInfo">검색값이 없습니다\n 아파트 이름 혹은 주소를(도로명,지번) 검색해보세요\n 검색 값이 없을 경우 하단의 우리 아파트 추가 요청하기 버튼을 클릭해주세요</string>
     <string name="appVersion">1.0.0</string>
     <string-array name="mainCategory">
         <item>"인테리어"</item>

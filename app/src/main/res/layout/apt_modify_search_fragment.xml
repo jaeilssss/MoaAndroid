@@ -51,7 +51,7 @@
                 android:text="우리 아파트 검색" />
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
-                android:layout_height="55dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginStart="15dp"
@@ -65,28 +65,42 @@
                     android:layout_height="40dp"
                     android:background="@drawable/ic_search"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/aptSearchEdit"
+                    app:layout_constraintTop_toTopOf="@id/aptSearchEdit"
                     android:layout_marginStart="15dp"
                     android:layout_marginEnd="15dp"
                     android:id="@+id/searchIcon"/>
                 <EditText
                     android:layout_width="0dp"
-                    android:layout_height="55dp"
+                    android:layout_height="70dp"
                     app:layout_constraintStart_toEndOf="@id/searchIcon"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:background="@drawable/login_edit_text_radius_15"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:hint="아파트를 입력해주세요"
+                    android:hint="아파트 이름 혹은 주소 일부를 입력하세요"
                     android:fontFamily="@font/notosanscjkkr_medium"
                     android:includeFontPadding="false"
                     android:text="@={model.searchContent}"
+                    android:textSize="16dp"
                     android:padding="10dp"
                     android:id="@+id/aptSearchEdit"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!--    리사이클러뷰 높이는 좀더 고민 해볼것!-->
 
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/notFoundAptInfo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/aptSearchLayout"
+                app:layout_constraintBottom_toTopOf="@id/claimMyAptBtn"
+                android:textSize="16dp"
+                android:padding="3dp"
+                android:visibility="gone"
+                android:id="@+id/aptModifyNotFoundTxt"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="0dp"
                 android:layout_height="0dp"
@@ -97,6 +111,7 @@
                 app:layout_constraintBottom_toTopOf="@id/claimMyAptBtn"
                 android:layout_marginTop="10dp"
                 android:id="@+id/searchAptActivityRcv"
+                android:visibility="visible"
                 tools:listitem="@layout/item_apt"
                 android:layout_marginStart="15dp"
                 android:layout_marginBottom="15dp"

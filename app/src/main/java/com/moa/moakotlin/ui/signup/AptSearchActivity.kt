@@ -45,7 +45,15 @@ class AptSearchActivity : AppCompatActivity() {
         }
 
         model.AptList.observe(this, Observer {
-            adapter.submitList(it)
+            if(it.size==0){
+                binding.searchAptActivityRcv.visibility = View.GONE
+                binding.aptModifyNotFoundTxt.visibility = View.VISIBLE
+            }else{
+                adapter.submitList(it)
+                binding.searchAptActivityRcv.visibility = View.VISIBLE
+                binding.aptModifyNotFoundTxt.visibility = View.GONE
+            }
+
         })
 
 

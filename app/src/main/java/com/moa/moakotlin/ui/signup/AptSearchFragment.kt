@@ -61,7 +61,14 @@ lateinit var model : AptSearchViewModel
         })
 
         model.AptList.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
+            if(it.size==0){
+                binding.searchAptRcv.visibility = View.GONE
+                binding.aptModifyNotFoundTxt.visibility = View.VISIBLE
+            }else{
+                adapter.submitList(it)
+                binding.searchAptRcv.visibility = View.VISIBLE
+                binding.aptModifyNotFoundTxt.visibility = View.GONE
+            }
         })
 
         binding.claimMyAptBtn.setOnClickListener {
