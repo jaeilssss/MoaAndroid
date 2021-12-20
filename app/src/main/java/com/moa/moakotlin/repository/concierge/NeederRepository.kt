@@ -196,6 +196,7 @@ class NeederRepository {
         var list = ArrayList<Needer>()
 
         db.collectionGroup("NeederContent")
+                .whereEqualTo("uid",User.getInstance().uid)
                 .whereArrayContainsAny("aroundApt", arrayListOf(User.getInstance().aptCode))
             .orderBy("timeStamp",Query.Direction.DESCENDING)
             .get()

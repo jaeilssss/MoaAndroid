@@ -14,6 +14,9 @@ class PartnerNoticeViewModel : ViewModel() {
     suspend fun getDocumentList(){
         var repository = FirebaseRepository<PartnerNotice>()
 
+        var list = ArrayList<PartnerNotice>()
+
+
 
         noticeList.value =  repository.getDocumentList<PartnerNotice>(
                 FirebaseFirestore.getInstance()
